@@ -1,33 +1,48 @@
-cmake_minimum_required(VERSION 3.15)
-project(veda64 VERSION 1.0.0 LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.14)
+project(veda64 VERSION 0.1.0 LANGUAGES CXX)
 
 # Set C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+# Option to reduce binary size and remove strings
+option(VEDA64_NO_STRINGS "Disable all string functions (to_string, mnemonic_to_string, status_to_string, dump_hook)" OFF)
+
+# Compiler warnings
+if(MSVC)
+    add_compile_options(/W4)
+else()
+    add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
+
+# Pass options as compile definitions
+if(VEDA64_NO_STRINGS)
+    add_compile_definitions(VEDA64_NO_STRINGS)
+endif()
+
+# Collect all source files
+file(GLOB_RECURSE VEDA64_SOURCES "lib/*.cpp")
 
 # Create library
-add_library(veda64 STATIC
-    lib/veda64.cpp
-)
-
-# Set public headers
+add_library(veda64 ${VEDA64_SOURCES})
 target_include_directories(veda64 PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}/lib
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
 )
 
-# Add compiler flags for better warnings
-if(MSVC)
-    target_compile_options(veda64 PRIVATE /W4)
-else()
-    target_compile_options(veda64 PRIVATE -Wall -Wextra -Wpedantic)
-endif()
+# Tools
+add_executable(veda64-disasm tools/veda64-disasm.cpp)
+target_link_libraries(veda64-disasm PRIVATE veda64)
 
 # Enable testing
 enable_testing()
+add_subdirectory(test)
 
-# Add test executable
-add_executable(veda64_test test/test_veda64.cpp)
-target_link_libraries(veda64_test PRIVATE veda64)
-
-# Register tests
-add_test(NAME veda64_basic_tests COMMAND veda64_test)
+# Installation
+install(TARGETS veda64 veda64-disasm
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+    RUNTIME DESTINATION bin
+)
+install(DIRECTORY include/ DESTINATION include)

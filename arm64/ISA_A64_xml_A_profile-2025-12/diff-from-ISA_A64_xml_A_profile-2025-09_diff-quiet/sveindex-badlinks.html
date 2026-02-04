@@ -1,0 +1,1923 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head><title>A64</title><link href="insn.css" rel="stylesheet" type="text/css"/></head>
+  <body><div align="center" class="htmldiff_header"><table><tbody><tr><td class="old">(old) </td><td class="explain">htmldiff from-</td><td class="new">(new) </td></tr></tbody></table></div><table style="margin: 0 auto;"><tr><td><div class="topbar"><a href="index.html">Base Instructions</a></div></td><td><div class="topbar"><a href="fpsimdindex.html">SIMD&amp;FP Instructions</a></div></td><td><div class="topbar"><a href="sveindex.html">SVE Instructions</a></div></td><td><div class="topbar"><a href="mortlachindex.html">SME Instructions</a></div></td><td><div class="topbar"><a href="encodingindex.html">Index by Encoding</a></div></td><td><div class="topbar"><a href="shared_pseudocode.html">Shared Pseudocode</a></div></td><td><div class="topbar"><a href="notice.html">Proprietary Notice</a></div></td></tr></table><hr/><h1 class="alphindextitle">A64 -- SVE Instructions (alphabetic order)</h1>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ABS:
+        Absolute value (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ADCLB:
+        Add with carry long (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ADCLT:
+        Add with carry long (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="add_z_zi.html">ADD (immediate)</a>:
+        Add immediate (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ADD (vectors, predicated):
+        Add (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ADD (vectors, unpredicated):
+        Add (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ADDHNB:
+        Add narrow high part (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ADDHNT:
+        Add narrow high part (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ADDP:
+        Add pairwise.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ADDPL:
+        Add multiple of predicate register size to scalar register.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ADDPT (predicated):
+        Add checked pointer vectors (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ADDPT (unpredicated):
+        Add checked pointer vectors (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ADDQP:
+        Add pairwise within quadword vector segments (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ADDQV:
+        Add reduction of quadword vector segments.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ADDSUBP:
+        Add subtract pairwise.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ADDVL:
+        Add multiple of vector register size to scalar register.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ADR:
+        Calculate vector address.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">AESD (indexed):
+        Multi-vector AES single round decryption.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">AESD (vectors):
+        AES single round decryption.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">AESDIMC:
+        Multi-vector AES single round decryption and inverse mix columns.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">AESE (indexed):
+        Multi-vector AES single round encryption.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">AESE (vectors):
+        AES single round encryption.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">AESEMC:
+        Multi-vector AES single round encryption and mix columns.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">AESIMC:
+        AES inverse mix columns.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">AESMC:
+        AES mix columns.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">AND (immediate):
+        Bitwise AND with immediate (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">AND (predicates):
+        Bitwise AND predicates.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">AND (vectors, predicated):
+        Bitwise AND (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">AND (vectors, unpredicated):
+        Bitwise AND (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ANDQV:
+        Bitwise AND reduction of quadword vector segments.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ANDS:
+        Bitwise AND predicates, setting the condition flags.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ANDV:
+        Bitwise AND reduction to scalar.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ASR (immediate, predicated):
+        Arithmetic shift right by immediate (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ASR (immediate, unpredicated):
+        Arithmetic shift right by immediate (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ASR (vectors):
+        Arithmetic shift right by vector (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ASR (wide elements, predicated):
+        Arithmetic shift right by 64-bit wide elements (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ASR (wide elements, unpredicated):
+        Arithmetic shift right by 64-bit wide elements (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ASRD:
+        Arithmetic shift right for divide by immediate (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ASRR:
+        Reversed arithmetic shift right by vector (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BCAX:
+        Bitwise clear and exclusive-OR.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BDEP:
+        Scatter lower bits into positions selected by bitmask.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BEXT:
+        Gather lower bits from positions selected by bitmask.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BF1CVT, BF2CVT:
+        8-bit floating-point convert to BFloat16.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BF1CVTLT, BF2CVTLT:
+        8-bit floating-point convert to BFloat16 (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFADD (predicated):
+        BFloat16 add (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFADD (unpredicated):
+        BFloat16 add (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFCLAMP:
+        BFloat16 clamp to minimum/maximum number.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFCVT:
+        Single-precision convert to BFloat16 (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFCVTN:
+        BFloat16 convert to interleaved 8-bit floating-point.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFCVTNT:
+        Single-precision convert to BFloat16 (top, predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFDOT (indexed):
+        BFloat16 dot product by indexed element to single-precision.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFDOT (vectors):
+        BFloat16 dot product to single-precision.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFMAX:
+        BFloat16 maximum (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFMAXNM:
+        BFloat16 maximum number (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFMIN:
+        BFloat16 minimum (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFMINNM:
+        BFloat16 minimum number (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFMLA (indexed):
+        BFloat16 fused multiply-add by indexed element.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFMLA (vectors):
+        BFloat16 fused multiply-add.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFMLALB (indexed):
+        BFloat16 multiply-add by indexed element to single-precision (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFMLALB (vectors):
+        BFloat16 multiply-add to single-precision (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFMLALT (indexed):
+        BFloat16 multiply-add by indexed element to single-precision (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFMLALT (vectors):
+        BFloat16 multiply-add to single-precision (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFMLS (indexed):
+        BFloat16 fused multiply-subtract by indexed element.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFMLS (vectors):
+        BFloat16 fused multiply-subtract.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFMLSLB (indexed):
+        BFloat16 multiply-subtract by indexed element from single-precision (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFMLSLB (vectors):
+        BFloat16 multiply-subtract from single-precision (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFMLSLT (indexed):
+        BFloat16 multiply-subtract by indexed element from single-precision (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFMLSLT (vectors):
+        BFloat16 multiply-subtract from single-precision (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFMMLA (non-widening):
+        BFloat16 matrix multiply-accumulate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="bfmmla_z_zzz.html">BFMMLA (widening)</a>:
+        BFloat16 matrix multiply-accumulate to single-precision.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFMUL (indexed):
+        BFloat16 multiply by indexed element.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFMUL (vectors, predicated):
+        BFloat16 multiply (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFMUL (vectors, unpredicated):
+        BFloat16 multiply (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFSCALE:
+        BFloat16 adjust exponent (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFSUB (predicated):
+        BFloat16 subtract (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BFSUB (unpredicated):
+        BFloat16 subtract (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BGRP:
+        Group bits to right or left as selected by bitmask.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BIC (immediate):
+        Bitwise clear bits using immediate (unpredicated): an alias of AND (immediate).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BIC (predicates):
+        Bitwise clear predicates.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BIC (vectors, predicated):
+        Bitwise clear (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BIC (vectors, unpredicated):
+        Bitwise clear (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BICS:
+        Bitwise clear predicates, setting the condition flags.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BRKA:
+        Break after first true condition.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BRKAS:
+        Break after first true condition, setting the condition flags.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BRKB:
+        Break before first true condition.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BRKBS:
+        Break before first true condition, setting the condition flags.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BRKN:
+        Propagate break to next partition.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BRKNS:
+        Propagate break to next partition, setting the condition flags.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BRKPA:
+        Break after first true condition, propagating from previous partition.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BRKPAS:
+        Break after first true condition, propagating from previous partition and setting the condition flags.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BRKPB:
+        Break before first true condition, propagating from previous partition.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BRKPBS:
+        Break before first true condition, propagating from previous partition and setting the condition flags.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BSL:
+        Bitwise select.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BSL1N:
+        Bitwise select with first input inverted.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">BSL2N:
+        Bitwise select with second input inverted.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CADD:
+        Complex integer add.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CDOT (indexed):
+        Complex integer dot product by indexed element.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CDOT (vectors):
+        Complex integer dot product.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CLASTA (scalar):
+        Conditionally extract element after last to general-purpose register.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CLASTA (SIMD&amp;FP scalar):
+        Conditionally extract element after last to SIMD&amp;FP scalar register.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CLASTA (vectors):
+        Conditionally extract element after last to vector register.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CLASTB (scalar):
+        Conditionally extract last element to general-purpose register.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CLASTB (SIMD&amp;FP scalar):
+        Conditionally extract last element to SIMD&amp;FP scalar register.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CLASTB (vectors):
+        Conditionally extract last element to vector register.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CLS:
+        Count leading sign bits (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CLZ:
+        Count leading zero bits (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CMLA (indexed):
+        Complex integer multiply-add by indexed element.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CMLA (vectors):
+        Complex integer multiply-add.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CMP&lt;cc&gt; (immediate):
+        Compare vector to immediate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CMP&lt;cc&gt; (vectors):
+        Compare vectors.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CMP&lt;cc&gt; (wide elements):
+        Compare vector to 64-bit wide elements.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CMPLE (vectors):
+        Compare signed less than or equal to vector, setting the condition flags: an alias of CMP&lt;cc&gt; (vectors).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CMPLO (vectors):
+        Compare unsigned lower than vector, setting the condition flags: an alias of CMP&lt;cc&gt; (vectors).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CMPLS (vectors):
+        Compare unsigned lower than or same as vector, setting the condition flags: an alias of CMP&lt;cc&gt; (vectors).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CMPLT (vectors):
+        Compare signed less than vector, setting the condition flags: an alias of CMP&lt;cc&gt; (vectors).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CNOT:
+        Logically invert boolean condition (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CNT:
+        Count non-zero bits (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CNTB, CNTD, CNTH, CNTW:
+        Set scalar to multiple of predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CNTP (predicate as counter):
+        Set scalar to count from predicate-as-counter.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CNTP (predicate):
+        Set scalar to count of true predicate elements.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">COMPACT:
+        Copy Active vector elements to lower-numbered elements.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="cpy_z_p_i.html">CPY (immediate, merging)</a>:
+        Copy signed integer immediate to vector elements (merging).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="cpy_z_o_i.html">CPY (immediate, zeroing)</a>:
+        Copy signed integer immediate to vector elements (zeroing).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CPY (scalar):
+        Copy general-purpose register to vector elements (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CPY (SIMD&amp;FP scalar):
+        Copy SIMD&amp;FP scalar register to vector elements (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">CTERMEQ, CTERMNE:
+        Compare and terminate loop.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">DECB, DECD, DECH, DECW (scalar):
+        Decrement scalar by multiple of predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">DECD, DECH, DECW (vector):
+        Decrement vector by multiple of predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">DECP (scalar):
+        Decrement scalar by count of true predicate elements.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">DECP (vector):
+        Decrement vector by count of true predicate elements.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="dup_z_i.html">DUP (immediate)</a>:
+        Broadcast signed immediate to vector elements (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">DUP (indexed):
+        Broadcast indexed element to vector (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">DUP (scalar):
+        Broadcast general-purpose register to vector elements (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">DUPM:
+        Broadcast logical bitmask immediate to vector (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">DUPQ:
+        Broadcast indexed element within each quadword vector segment (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">EON:
+        Bitwise exclusive-OR with inverted immediate (unpredicated): an alias of EOR (immediate).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">EOR (immediate):
+        Bitwise exclusive-OR with immediate (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">EOR (predicates):
+        Bitwise exclusive-OR predicates.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">EOR (vectors, predicated):
+        Bitwise exclusive-OR (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">EOR (vectors, unpredicated):
+        Bitwise exclusive-OR (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">EOR3:
+        Bitwise exclusive-OR between three vectors.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">EORBT:
+        Interleaving exclusive-OR (bottom, top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">EORQV:
+        Bitwise exclusive-OR reduction of quadword vector segments.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">EORS:
+        Bitwise exclusive-OR predicates, setting the condition flags.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">EORTB:
+        Interleaving exclusive-OR (top, bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">EORV:
+        Bitwise exclusive-OR reduction to scalar.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">EXPAND:
+        Copy lower-numbered vector elements to Active elements.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">EXT:
+        Extract vector from pair of vectors.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">EXTQ:
+        Extract vector segment from each pair of quadword vector segments.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">F1CVT, F2CVT:
+        8-bit floating-point convert to half-precision.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">F1CVTLT, F2CVTLT:
+        8-bit floating-point convert to half-precision (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FABD:
+        Floating-point absolute difference (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FABS:
+        Floating-point absolute value (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FAC&lt;cc&gt;:
+        Floating-point absolute compare.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FACLE:
+        Floating-point absolute compare less than or equal: an alias of FAC&lt;cc&gt;.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FACLT:
+        Floating-point absolute compare less than: an alias of FAC&lt;cc&gt;.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FADD (immediate):
+        Floating-point add immediate (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FADD (vectors, predicated):
+        Floating-point add (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FADD (vectors, unpredicated):
+        Floating-point add (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FADDA:
+        Floating-point add strictly-ordered reduction, accumulating in scalar.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FADDP:
+        Floating-point add pairwise.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FADDQV:
+        Floating-point add recursive reduction of quadword vector segments.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FADDV:
+        Floating-point add recursive reduction to scalar.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FAMAX:
+        Floating-point absolute maximum (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FAMIN:
+        Floating-point absolute minimum (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FCADD:
+        Floating-point complex add (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FCLAMP:
+        Floating-point clamp to minimum/maximum number.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FCM&lt;cc&gt; (vectors):
+        Floating-point compare.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FCM&lt;cc&gt; (zero):
+        Floating-point compare with zero.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FCMLA (indexed):
+        Floating-point complex multiply-add by indexed element.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FCMLA (vectors):
+        Floating-point complex multiply-add (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FCMLE (vectors):
+        Floating-point compare less than or equal to vector: an alias of FCM&lt;cc&gt; (vectors).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FCMLT (vectors):
+        Floating-point compare less than vector: an alias of FCM&lt;cc&gt; (vectors).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FCPY:
+        Copy floating-point immediate to vector elements (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FCVT:
+        Floating-point convert (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FCVTLT:
+        Floating-point widening convert (top, predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FCVTN:
+        Half-precision convert to interleaved 8-bit floating-point.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FCVTNB:
+        Single-precision convert to interleaved 8-bit floating-point (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FCVTNT (predicated):
+        Floating-point narrowing convert (top, predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FCVTNT (unpredicated):
+        Single-precision convert to interleaved 8-bit floating-point (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FCVTX:
+        Double-precision convert to single-precision, rounding to odd (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FCVTXNT:
+        Double-precision convert to single-precision, rounding to odd (top, predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FCVTZS:
+        Floating-point convert to signed integer, rounding toward zero (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FCVTZSN:
+        Floating-point narrowing convert to interleaved signed integer, rounding toward zero.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FCVTZU:
+        Floating-point convert to unsigned integer, rounding toward zero (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FCVTZUN:
+        Floating-point narrowing convert to interleaved unsigned integer, rounding toward zero.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FDIV:
+        Floating-point divide (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FDIVR:
+        Floating-point reversed divide (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FDOT (2-way, indexed, FP16 to FP32):
+        Half-precision dot product by indexed element to single-precision.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FDOT (2-way, indexed, FP8 to FP16):
+        8-bit floating-point dot product by indexed element to half-precision.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FDOT (2-way, vectors, FP16 to FP32):
+        Half-precision dot product to single-precision.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FDOT (2-way, vectors, FP8 to FP16):
+        8-bit floating-point dot product to half-precision.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FDOT (4-way, indexed):
+        8-bit floating-point dot product by indexed element to single-precision.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FDOT (4-way, vectors):
+        8-bit floating-point dot product to single-precision.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FDUP:
+        Broadcast floating-point immediate to vector elements (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FEXPA:
+        Floating-point exponential accelerator.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FIRSTP:
+        Scalar index of first true predicate element (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FLOGB:
+        Floating-point base 2 logarithm as integer.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMAD:
+        Floating-point fused multiply-add to multiplicand (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMAX (immediate):
+        Floating-point maximum with immediate (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMAX (vectors):
+        Floating-point maximum (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMAXNM (immediate):
+        Floating-point maximum number with immediate (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMAXNM (vectors):
+        Floating-point maximum number (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMAXNMP:
+        Floating-point maximum number pairwise.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMAXNMQV:
+        Floating-point maximum number recursive reduction of quadword vector segments.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMAXNMV:
+        Floating-point maximum number recursive reduction to scalar.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMAXP:
+        Floating-point maximum pairwise.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMAXQV:
+        Floating-point maximum reduction of quadword vector segments.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMAXV:
+        Floating-point maximum recursive reduction to scalar.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMIN (immediate):
+        Floating-point minimum with immediate (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMIN (vectors):
+        Floating-point minimum (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMINNM (immediate):
+        Floating-point minimum number with immediate (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMINNM (vectors):
+        Floating-point minimum number (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMINNMP:
+        Floating-point minimum number pairwise.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMINNMQV:
+        Floating-point minimum number recursive reduction of quadword vector segments.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMINNMV:
+        Floating-point minimum number recursive reduction to scalar.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMINP:
+        Floating-point minimum pairwise.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMINQV:
+        Floating-point minimum recursive reduction of quadword vector segments.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMINV:
+        Floating-point minimum recursive reduction to scalar.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMLA (indexed):
+        Floating-point fused multiply-add by indexed element.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMLA (vectors):
+        Floating-point fused multiply-add (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMLALB (indexed, FP16 to FP32):
+        Half-precision multiply-add by indexed element to single-precision (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMLALB (indexed, FP8 to FP16):
+        8-bit floating-point multiply-add by indexed element to half-precision (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMLALB (vectors, FP16 to FP32):
+        Half-precision multiply-add to single-precision (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMLALB (vectors, FP8 to FP16):
+        8-bit floating-point multiply-add to half-precision (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMLALLBB (indexed):
+        8-bit floating-point multiply-add by indexed element to single-precision (bottom bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMLALLBB (vectors):
+        8-bit floating-point multiply-add to single-precision (bottom bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMLALLBT (indexed):
+        8-bit floating-point multiply-add by indexed element to single-precision (bottom top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMLALLBT (vectors):
+        8-bit floating-point multiply-add to single-precision (bottom top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMLALLTB (indexed):
+        8-bit floating-point multiply-add by indexed element to single-precision (top bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMLALLTB (vectors):
+        8-bit floating-point multiply-add to single-precision (top bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMLALLTT (indexed):
+        8-bit floating-point multiply-add by indexed element to single-precision (top top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMLALLTT (vectors):
+        8-bit floating-point multiply-add to single-precision (top top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMLALT (indexed, FP16 to FP32):
+        Half-precision multiply-add by indexed element to single-precision (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMLALT (indexed, FP8 to FP16):
+        8-bit floating-point multiply-add by indexed element to half-precision (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMLALT (vectors, FP16 to FP32):
+        Half-precision multiply-add to single-precision (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMLALT (vectors, FP8 to FP16):
+        8-bit floating-point multiply-add to half-precision (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMLS (indexed):
+        Floating-point fused multiply-subtract by indexed element.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMLS (vectors):
+        Floating-point fused multiply-subtract (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMLSLB (indexed):
+        Half-precision multiply-subtract by indexed element from single-precision (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMLSLB (vectors):
+        Half-precision multiply-subtract from single-precision (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMLSLT (indexed):
+        Half-precision multiply-subtract by indexed element from single-precision (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMLSLT (vectors):
+        Half-precision multiply-subtract from single-precision (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMMLA (non-widening):
+        Floating-point matrix multiply-accumulate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="fmmla_z32_zzz.html">FMMLA (widening, FP16 to FP32)</a>:
+        Half-precision matrix multiply-accumulate to single-precision.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="fmmla_z16_zz8z8.html">FMMLA (widening, FP8 to FP16)</a>:
+        8-bit floating-point matrix multiply-accumulate to half-precision.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="fmmla_z32_zz8z8.html">FMMLA (widening, FP8 to FP32)</a>:
+        8-bit floating-point matrix multiply-accumulate to single-precision.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMOV (immediate, predicated):
+        Move floating-point immediate to vector elements (predicated): an alias of FCPY.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMOV (immediate, unpredicated):
+        Move floating-point immediate to vector elements (unpredicated): an alias of FDUP.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMOV (zero, predicated):
+        Move floating-point +0.0 to vector elements (predicated): an alias of CPY (immediate, merging).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMOV (zero, unpredicated):
+        Move floating-point +0.0 to vector elements (unpredicated): an alias of DUP (immediate).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMSB:
+        Floating-point fused multiply-subtract to multiplicand (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMUL (immediate):
+        Floating-point multiply by immediate (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMUL (indexed):
+        Floating-point multiply by indexed element.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMUL (vectors, predicated):
+        Floating-point multiply (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMUL (vectors, unpredicated):
+        Floating-point multiply (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FMULX:
+        Floating-point multiply extended (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FNEG:
+        Floating-point negate (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FNMAD:
+        Floating-point negated fused multiply-add to multiplicand (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FNMLA:
+        Floating-point negated fused multiply-add (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FNMLS:
+        Floating-point negated fused multiply-subtract (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FNMSB:
+        Floating-point negated fused multiply-subtract to multiplicand (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FRECPE:
+        Floating-point reciprocal estimate (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FRECPS:
+        Floating-point reciprocal step (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FRECPX:
+        Floating-point reciprocal exponent (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FRINT32X:
+        Floating-point round to 32-bit integer (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FRINT32Z:
+        Floating-point round to 32-bit integer, rounding toward zero (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FRINT64X:
+        Floating-point round to 64-bit integer (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FRINT64Z:
+        Floating-point round to 64-bit integer, rounding toward zero (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FRINT&lt;r&gt;:
+        Floating-point round to integral value (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FRSQRTE:
+        Floating-point reciprocal square root estimate (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FRSQRTS:
+        Floating-point reciprocal square root step (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FSCALE:
+        Floating-point adjust exponent (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FSQRT:
+        Floating-point square root (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FSUB (immediate):
+        Floating-point subtract immediate (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FSUB (vectors, predicated):
+        Floating-point subtract (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FSUB (vectors, unpredicated):
+        Floating-point subtract (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FSUBR (immediate):
+        Floating-point reversed subtract from immediate (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FSUBR (vectors):
+        Floating-point reversed subtract (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FTMAD:
+        Floating-point trigonometric multiply-add coefficient.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FTSMUL:
+        Floating-point trigonometric starting value.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">FTSSEL:
+        Floating-point trigonometric select coefficient.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">HISTCNT:
+        Count matching elements in vector.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">HISTSEG:
+        Count matching elements in vector segments.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">INCB, INCD, INCH, INCW (scalar):
+        Increment scalar by multiple of predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">INCD, INCH, INCW (vector):
+        Increment vector by multiple of predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">INCP (scalar):
+        Increment scalar by count of true predicate elements.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">INCP (vector):
+        Increment vector by count of true predicate elements.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">INDEX (immediate, scalar):
+        Create index starting from immediate and incremented by general-purpose register.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">INDEX (immediates):
+        Create index starting from and incremented by immediate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">INDEX (scalar, immediate):
+        Create index starting from general-purpose register and incremented by immediate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">INDEX (scalars):
+        Create index starting from and incremented by general-purpose register.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">INSR (scalar):
+        Insert general-purpose register in shifted vector.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">INSR (SIMD&amp;FP scalar):
+        Insert SIMD&amp;FP scalar register in shifted vector.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LASTA (scalar):
+        Extract element after last to general-purpose register.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LASTA (SIMD&amp;FP scalar):
+        Extract element after last to SIMD&amp;FP scalar register.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LASTB (scalar):
+        Extract last element to general-purpose register.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LASTB (SIMD&amp;FP scalar):
+        Extract last element to SIMD&amp;FP scalar register.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LASTP:
+        Scalar index of last true predicate element (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1B (scalar plus immediate, consecutive registers):
+        Contiguous load of bytes to multiple consecutive vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1B (scalar plus immediate, single register):
+        Contiguous load unsigned bytes to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1B (scalar plus scalar, consecutive registers):
+        Contiguous load of bytes to multiple consecutive vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1B (scalar plus scalar, single register):
+        Contiguous load unsigned bytes to vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1B (scalar plus vector):
+        Gather load unsigned bytes to vector (vector index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1B (vector plus immediate):
+        Gather load unsigned bytes to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1D (scalar plus immediate, consecutive registers):
+        Contiguous load of doublewords to multiple consecutive vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1D (scalar plus immediate, single register):
+        Contiguous load unsigned doublewords to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1D (scalar plus scalar, consecutive registers):
+        Contiguous load of doublewords to multiple consecutive vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1D (scalar plus scalar, single register):
+        Contiguous load unsigned doublewords to vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1D (scalar plus vector):
+        Gather load doublewords to vector (vector index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1D (vector plus immediate):
+        Gather load doublewords to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1H (scalar plus immediate, consecutive registers):
+        Contiguous load of halfwords to multiple consecutive vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1H (scalar plus immediate, single register):
+        Contiguous load unsigned halfwords to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1H (scalar plus scalar, consecutive registers):
+        Contiguous load of halfwords to multiple consecutive vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1H (scalar plus scalar, single register):
+        Contiguous load unsigned halfwords to vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1H (scalar plus vector):
+        Gather load unsigned halfwords to vector (vector index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1H (vector plus immediate):
+        Gather load unsigned halfwords to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1Q:
+        Gather load quadwords.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1RB:
+        Load and broadcast unsigned byte to vector.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1RD:
+        Load and broadcast doubleword to vector.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1RH:
+        Load and broadcast unsigned halfword to vector.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1ROB (scalar plus immediate):
+        Contiguous load and replicate thirty-two bytes (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1ROB (scalar plus scalar):
+        Contiguous load and replicate thirty-two bytes (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1ROD (scalar plus immediate):
+        Contiguous load and replicate four doublewords (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1ROD (scalar plus scalar):
+        Contiguous load and replicate four doublewords (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1ROH (scalar plus immediate):
+        Contiguous load and replicate sixteen halfwords (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1ROH (scalar plus scalar):
+        Contiguous load and replicate sixteen halfwords (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1ROW (scalar plus immediate):
+        Contiguous load and replicate eight words (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1ROW (scalar plus scalar):
+        Contiguous load and replicate eight words (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1RQB (scalar plus immediate):
+        Contiguous load and replicate sixteen bytes (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1RQB (scalar plus scalar):
+        Contiguous load and replicate sixteen bytes (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1RQD (scalar plus immediate):
+        Contiguous load and replicate two doublewords (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1RQD (scalar plus scalar):
+        Contiguous load and replicate two doublewords (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1RQH (scalar plus immediate):
+        Contiguous load and replicate eight halfwords (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1RQH (scalar plus scalar):
+        Contiguous load and replicate eight halfwords (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1RQW (scalar plus immediate):
+        Contiguous load and replicate four words (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1RQW (scalar plus scalar):
+        Contiguous load and replicate four words (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1RSB:
+        Load and broadcast signed byte to vector.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1RSH:
+        Load and broadcast signed halfword to vector.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1RSW:
+        Load and broadcast signed word to vector.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1RW:
+        Load and broadcast unsigned word to vector.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1SB (scalar plus immediate):
+        Contiguous load signed bytes to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1SB (scalar plus scalar):
+        Contiguous load signed bytes to vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1SB (scalar plus vector):
+        Gather load signed bytes to vector (vector index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1SB (vector plus immediate):
+        Gather load signed bytes to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1SH (scalar plus immediate):
+        Contiguous load signed halfwords to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1SH (scalar plus scalar):
+        Contiguous load signed halfwords to vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1SH (scalar plus vector):
+        Gather load signed halfwords to vector (vector index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1SH (vector plus immediate):
+        Gather load signed halfwords to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1SW (scalar plus immediate):
+        Contiguous load signed words to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1SW (scalar plus scalar):
+        Contiguous load signed words to vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1SW (scalar plus vector):
+        Gather load signed words to vector (vector index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1SW (vector plus immediate):
+        Gather load signed words to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1W (scalar plus immediate, consecutive registers):
+        Contiguous load of words to multiple consecutive vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1W (scalar plus immediate, single register):
+        Contiguous load unsigned words to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1W (scalar plus scalar, consecutive registers):
+        Contiguous load of words to multiple consecutive vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1W (scalar plus scalar, single register):
+        Contiguous load unsigned words to vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1W (scalar plus vector):
+        Gather load unsigned words to vector (vector index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD1W (vector plus immediate):
+        Gather load unsigned words to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD2B (scalar plus immediate):
+        Contiguous load two-byte structures to two vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD2B (scalar plus scalar):
+        Contiguous load two-byte structures to two vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD2D (scalar plus immediate):
+        Contiguous load two-doubleword structures to two vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD2D (scalar plus scalar):
+        Contiguous load two-doubleword structures to two vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD2H (scalar plus immediate):
+        Contiguous load two-halfword structures to two vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD2H (scalar plus scalar):
+        Contiguous load two-halfword structures to two vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD2Q (scalar plus immediate):
+        Contiguous load two-quadword structures to two vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD2Q (scalar plus scalar):
+        Contiguous load two-quadword structures to two vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD2W (scalar plus immediate):
+        Contiguous load two-word structures to two vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD2W (scalar plus scalar):
+        Contiguous load two-word structures to two vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD3B (scalar plus immediate):
+        Contiguous load three-byte structures to three vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD3B (scalar plus scalar):
+        Contiguous load three-byte structures to three vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD3D (scalar plus immediate):
+        Contiguous load three-doubleword structures to three vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD3D (scalar plus scalar):
+        Contiguous load three-doubleword structures to three vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD3H (scalar plus immediate):
+        Contiguous load three-halfword structures to three vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD3H (scalar plus scalar):
+        Contiguous load three-halfword structures to three vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD3Q (scalar plus immediate):
+        Contiguous load three-quadword structures to three vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD3Q (scalar plus scalar):
+        Contiguous load three-quadword structures to three vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD3W (scalar plus immediate):
+        Contiguous load three-word structures to three vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD3W (scalar plus scalar):
+        Contiguous load three-word structures to three vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD4B (scalar plus immediate):
+        Contiguous load four-byte structures to four vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD4B (scalar plus scalar):
+        Contiguous load four-byte structures to four vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD4D (scalar plus immediate):
+        Contiguous load four-doubleword structures to four vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD4D (scalar plus scalar):
+        Contiguous load four-doubleword structures to four vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD4H (scalar plus immediate):
+        Contiguous load four-halfword structures to four vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD4H (scalar plus scalar):
+        Contiguous load four-halfword structures to four vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD4Q (scalar plus immediate):
+        Contiguous load four-quadword structures to four vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD4Q (scalar plus scalar):
+        Contiguous load four-quadword structures to four vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD4W (scalar plus immediate):
+        Contiguous load four-word structures to four vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LD4W (scalar plus scalar):
+        Contiguous load four-word structures to four vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDFF1B (scalar plus scalar):
+        Contiguous load first-fault unsigned bytes to vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDFF1B (scalar plus vector):
+        Gather load first-fault unsigned bytes to vector (vector index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDFF1B (vector plus immediate):
+        Gather load first-fault unsigned bytes to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDFF1D (scalar plus scalar):
+        Contiguous load first-fault doublewords to vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDFF1D (scalar plus vector):
+        Gather load first-fault doublewords to vector (vector index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDFF1D (vector plus immediate):
+        Gather load first-fault doublewords to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDFF1H (scalar plus scalar):
+        Contiguous load first-fault unsigned halfwords to vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDFF1H (scalar plus vector):
+        Gather load first-fault unsigned halfwords to vector (vector index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDFF1H (vector plus immediate):
+        Gather load first-fault unsigned halfwords to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDFF1SB (scalar plus scalar):
+        Contiguous load first-fault signed bytes to vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDFF1SB (scalar plus vector):
+        Gather load first-fault signed bytes to vector (vector index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDFF1SB (vector plus immediate):
+        Gather load first-fault signed bytes to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDFF1SH (scalar plus scalar):
+        Contiguous load first-fault signed halfwords to vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDFF1SH (scalar plus vector):
+        Gather load first-fault signed halfwords to vector (vector index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDFF1SH (vector plus immediate):
+        Gather load first-fault signed halfwords to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDFF1SW (scalar plus scalar):
+        Contiguous load first-fault signed words to vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDFF1SW (scalar plus vector):
+        Gather load first-fault signed words to vector (vector index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDFF1SW (vector plus immediate):
+        Gather load first-fault signed words to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDFF1W (scalar plus scalar):
+        Contiguous load first-fault unsigned words to vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDFF1W (scalar plus vector):
+        Gather load first-fault unsigned words to vector (vector index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDFF1W (vector plus immediate):
+        Gather load first-fault unsigned words to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNF1B:
+        Contiguous load non-fault unsigned bytes to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNF1D:
+        Contiguous load non-fault doublewords to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNF1H:
+        Contiguous load non-fault unsigned halfwords to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNF1SB:
+        Contiguous load non-fault signed bytes to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNF1SH:
+        Contiguous load non-fault signed halfwords to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNF1SW:
+        Contiguous load non-fault signed words to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNF1W:
+        Contiguous load non-fault unsigned words to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNT1B (scalar plus immediate, consecutive registers):
+        Contiguous load non-temporal of bytes to multiple consecutive vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNT1B (scalar plus immediate, single register):
+        Contiguous load non-temporal bytes to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNT1B (scalar plus scalar, consecutive registers):
+        Contiguous load non-temporal of bytes to multiple consecutive vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNT1B (scalar plus scalar, single register):
+        Contiguous load non-temporal bytes to vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNT1B (vector plus scalar):
+        Gather load non-temporal unsigned bytes.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNT1D (scalar plus immediate, consecutive registers):
+        Contiguous load non-temporal of doublewords to multiple consecutive vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNT1D (scalar plus immediate, single register):
+        Contiguous load non-temporal doublewords to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNT1D (scalar plus scalar, consecutive registers):
+        Contiguous load non-temporal of doublewords to multiple consecutive vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNT1D (scalar plus scalar, single register):
+        Contiguous load non-temporal doublewords to vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNT1D (vector plus scalar):
+        Gather load non-temporal unsigned doublewords.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNT1H (scalar plus immediate, consecutive registers):
+        Contiguous load non-temporal of halfwords to multiple consecutive vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNT1H (scalar plus immediate, single register):
+        Contiguous load non-temporal halfwords to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNT1H (scalar plus scalar, consecutive registers):
+        Contiguous load non-temporal of halfwords to multiple consecutive vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNT1H (scalar plus scalar, single register):
+        Contiguous load non-temporal halfwords to vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNT1H (vector plus scalar):
+        Gather load non-temporal unsigned halfwords.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNT1SB:
+        Gather load non-temporal signed bytes.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNT1SH:
+        Gather load non-temporal signed halfwords.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNT1SW:
+        Gather load non-temporal signed words.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNT1W (scalar plus immediate, consecutive registers):
+        Contiguous load non-temporal of words to multiple consecutive vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNT1W (scalar plus immediate, single register):
+        Contiguous load non-temporal words to vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNT1W (scalar plus scalar, consecutive registers):
+        Contiguous load non-temporal of words to multiple consecutive vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNT1W (scalar plus scalar, single register):
+        Contiguous load non-temporal words to vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LDNT1W (vector plus scalar):
+        Gather load non-temporal unsigned words.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="ldr_p_bi.html">LDR (predicate)</a>:
+        Load predicate register.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="ldr_z_bi.html">LDR (vector)</a>:
+        Load vector register.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LSL (immediate, predicated):
+        Logical shift left by immediate (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LSL (immediate, unpredicated):
+        Logical shift left by immediate (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LSL (vectors):
+        Logical shift left by vector (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LSL (wide elements, predicated):
+        Logical shift left by 64-bit wide elements (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LSL (wide elements, unpredicated):
+        Logical shift left by 64-bit wide elements (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LSLR:
+        Reversed logical shift left by vector (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LSR (immediate, predicated):
+        Logical shift right by immediate (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LSR (immediate, unpredicated):
+        Logical shift right by immediate (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LSR (vectors):
+        Logical shift right by vector (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LSR (wide elements, predicated):
+        Logical shift right by 64-bit wide elements (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LSR (wide elements, unpredicated):
+        Logical shift right by 64-bit wide elements (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LSRR:
+        Reversed logical shift right by vector (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LUTI2 (8-bit and 16-bit):
+        Lookup table read with 2-bit indices (8-bit and 16-bit).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LUTI4 (8-bit and 16-bit):
+        Lookup table read with 4-bit indices (8-bit and 16-bit).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LUTI6 (16-bit):
+        Lookup table read with 6-bit indices (16-bit).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">LUTI6 (8-bit):
+        Lookup table read with 6-bit indices (8-bit).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MAD:
+        Multiply-add to multiplicand (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MADPT:
+        Multiply-add checked pointer vectors to multiplicand.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MATCH:
+        Detect any matching elements, setting the condition flags.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MLA (indexed):
+        Multiply-add by indexed element.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MLA (vectors):
+        Multiply-add (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MLAPT:
+        Multiply-add checked pointer vectors.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MLS (indexed):
+        Multiply-subtract by indexed element.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MLS (vectors):
+        Multiply-subtract (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MOV:
+        Move logical bitmask immediate to vector (unpredicated): an alias of DUPM.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MOV:
+        Move predicate (unpredicated): an alias of ORR (predicates).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="mov_cpy_z_p_i.html">MOV (immediate, merging)</a>:
+        Move signed integer immediate to vector elements (merging): an alias of CPY (immediate, merging).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="mov_dup_z_i.html">MOV (immediate, unpredicated)</a>:
+        Move signed immediate to vector elements (unpredicated): an alias of DUP (immediate).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="mov_cpy_z_o_i.html">MOV (immediate, zeroing)</a>:
+        Move signed integer immediate to vector elements (zeroing): an alias of CPY (immediate, zeroing).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MOV (predicate, merging):
+        Move predicates (merging): an alias of SEL (predicates).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MOV (predicate, zeroing):
+        Move predicates (zeroing): an alias of AND (predicates).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MOV (scalar, predicated):
+        Move general-purpose register to vector elements (predicated): an alias of CPY (scalar).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MOV (scalar, unpredicated):
+        Move general-purpose register to vector elements (unpredicated): an alias of DUP (scalar).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MOV (SIMD&amp;FP scalar, predicated):
+        Move SIMD&amp;FP scalar register to vector elements (predicated): an alias of CPY (SIMD&amp;FP scalar).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MOV (SIMD&amp;FP scalar, unpredicated):
+        Move indexed element or SIMD&amp;FP scalar to vector (unpredicated): an alias of DUP (indexed).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MOV (vector, predicated):
+        Move vector elements (predicated): an alias of SEL (vectors).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MOV (vector, unpredicated):
+        Move vector register (unpredicated): an alias of ORR (vectors, unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MOVPRFX (predicated):
+        Move prefix (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MOVPRFX (unpredicated):
+        Move prefix (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MOVS (predicated):
+        Move predicates (zeroing), setting the condition flags: an alias of ANDS.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MOVS (unpredicated):
+        Move predicate (unpredicated), setting the condition flags: an alias of ORRS.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MSB:
+        Multiply-subtract to multiplicand.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MUL (immediate):
+        Multiply by immediate (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MUL (indexed):
+        Multiply by indexed element.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MUL (vectors, predicated):
+        Multiply (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">MUL (vectors, unpredicated):
+        Multiply (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">NAND:
+        Bitwise NAND predicates.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">NANDS:
+        Bitwise NAND predicates, setting the condition flags.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">NBSL:
+        Bitwise inverted select.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">NEG:
+        Negate (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">NMATCH:
+        Detect no matching elements, setting the condition flags.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">NOR:
+        Bitwise NOR predicates.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">NORS:
+        Bitwise NOR predicates, setting the condition flags.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">NOT (predicate):
+        Bitwise invert predicate: an alias of EOR (predicates).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">NOT (vector):
+        Bitwise invert (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">NOTS:
+        Bitwise invert predicate, setting the condition flags: an alias of EORS.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ORN (immediate):
+        Bitwise inclusive OR with inverted immediate (unpredicated): an alias of ORR (immediate).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ORN (predicates):
+        Bitwise inclusive OR inverted predicate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ORNS:
+        Bitwise inclusive OR inverted predicate, setting the condition flags.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ORQV:
+        Bitwise inclusive OR reduction of quadword vector segments.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ORR (immediate):
+        Bitwise inclusive OR with immediate (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ORR (predicates):
+        Bitwise inclusive OR predicates.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ORR (vectors, predicated):
+        Bitwise inclusive OR (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ORR (vectors, unpredicated):
+        Bitwise inclusive OR (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ORRS:
+        Bitwise inclusive OR predicates, setting the condition flags.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ORV:
+        Bitwise inclusive OR reduction to scalar.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PEXT (predicate pair):
+        Predicate extract pair from predicate-as-counter.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PEXT (predicate):
+        Predicate extract from predicate-as-counter.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PFALSE:
+        Set all predicate elements to false.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PFIRST:
+        Set the First active predicate element to true.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PMLAL:
+        Multi-vector polynomial multiply long and accumulate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PMOV (to predicate):
+        Move predicate from vector.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PMOV (to vector):
+        Move predicate to vector.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PMUL:
+        Polynomial multiply (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PMULL:
+        Multi-vector polynomial multiply long.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PMULLB:
+        Polynomial multiply long (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PMULLT:
+        Polynomial multiply long (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PNEXT:
+        Find next active predicate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PRFB (scalar plus immediate):
+        Contiguous prefetch bytes (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PRFB (scalar plus scalar):
+        Contiguous prefetch bytes (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PRFB (scalar plus vector):
+        Gather prefetch bytes (scalar plus vector).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PRFB (vector plus immediate):
+        Gather prefetch bytes (vector plus immediate).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PRFD (scalar plus immediate):
+        Contiguous prefetch doublewords (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PRFD (scalar plus scalar):
+        Contiguous prefetch doublewords (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PRFD (scalar plus vector):
+        Gather prefetch doublewords (scalar plus vector).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PRFD (vector plus immediate):
+        Gather prefetch doublewords (vector plus immediate).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PRFH (scalar plus immediate):
+        Contiguous prefetch halfwords (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PRFH (scalar plus scalar):
+        Contiguous prefetch halfwords (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PRFH (scalar plus vector):
+        Gather prefetch halfwords (scalar plus vector).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PRFH (vector plus immediate):
+        Gather prefetch halfwords (vector plus immediate).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PRFW (scalar plus immediate):
+        Contiguous prefetch words (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PRFW (scalar plus scalar):
+        Contiguous prefetch words (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PRFW (scalar plus vector):
+        Gather prefetch words (scalar plus vector).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PRFW (vector plus immediate):
+        Gather prefetch words (vector plus immediate).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PSEL:
+        Predicate select between predicate register or all-false.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PTEST:
+        Set condition flags for predicate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PTRUE (predicate as counter):
+        Initialize predicate-as-counter to all active.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PTRUE (predicate):
+        Initialize predicate from named constraint.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PTRUES:
+        Initialize predicate from named constraint and set the condition flags.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">PUNPKHI, PUNPKLO:
+        Unpack and widen half of predicate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">RADDHNB:
+        Rounding add narrow high part (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">RADDHNT:
+        Rounding add narrow high part (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">RAX1:
+        Bitwise rotate left by 1 and exclusive-OR.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">RBIT:
+        Reverse bits (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">RDFFR (predicated):
+        Return predicate of successfully loaded elements.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">RDFFR (unpredicated):
+        Read the first-fault register.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">RDFFRS:
+        Return predicate of successfully loaded elements, setting the condition flags.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">RDVL:
+        Read multiple of vector register size to scalar register.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">REV (predicate):
+        Reverse all elements in a predicate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">REV (vector):
+        Reverse all elements in a vector (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">REVB, REVH, REVW:
+        Reverse bytes / halfwords / words within elements (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">REVD:
+        Reverse 64-bit doublewords in elements (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">RSHRNB:
+        Rounding shift right narrow by immediate (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">RSHRNT:
+        Rounding shift right narrow by immediate (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">RSUBHNB:
+        Rounding subtract narrow high part (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">RSUBHNT:
+        Rounding subtract narrow high part (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SABA:
+        Signed absolute difference and accumulate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SABAL:
+        Two-way signed absolute difference sum and accumulate long.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SABALB:
+        Signed absolute difference and accumulate long (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SABALT:
+        Signed absolute difference and accumulate long (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SABD:
+        Signed absolute difference (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SABDLB:
+        Signed absolute difference long (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SABDLT:
+        Signed absolute difference long (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SADALP:
+        Signed add and accumulate long pairwise.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SADDLB:
+        Signed add long (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SADDLBT:
+        Signed add long (bottom + top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SADDLT:
+        Signed add long (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SADDV:
+        Signed add reduction to scalar.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SADDWB:
+        Signed add wide (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SADDWT:
+        Signed add wide (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SBCLB:
+        Subtract with carry long (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SBCLT:
+        Subtract with carry long (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SCLAMP:
+        Signed clamp to minimum/maximum.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SCVTF (bottom, unpredicated):
+        Signed integer convert to floating-point (bottom, unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SCVTF (predicated):
+        Signed integer convert to floating-point (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SCVTFLT:
+        Signed integer convert to floating-point (top, unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SDIV:
+        Signed divide (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SDIVR:
+        Signed reversed divide (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SDOT (2-way, indexed):
+        Signed integer dot product by indexed element (two-way).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SDOT (2-way, vectors):
+        Signed integer dot product (two-way).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SDOT (4-way, indexed):
+        Signed integer dot product by indexed element (four-way).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SDOT (4-way, vectors):
+        Signed integer dot product (four-way).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SEL (predicates):
+        Conditionally select elements from two predicates.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SEL (vectors):
+        Conditionally select elements from two vectors.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SETFFR:
+        Initialize the first-fault register to all true.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SHADD:
+        Signed halving add.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SHRNB:
+        Shift right narrow by immediate (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SHRNT:
+        Shift right narrow by immediate (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SHSUB:
+        Signed halving subtract.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SHSUBR:
+        Signed halving subtract reversed.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SLI:
+        Shift left and insert (immediate).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SM4E:
+        SM4 encryption and decryption.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SM4EKEY:
+        SM4 key updates.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SMAX (immediate):
+        Signed maximum with immediate (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SMAX (vectors):
+        Signed maximum (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SMAXP:
+        Signed maximum pairwise.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SMAXQV:
+        Signed maximum reduction of quadword vector segments.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SMAXV:
+        Signed maximum reduction to scalar.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SMIN (immediate):
+        Signed minimum with immediate (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SMIN (vectors):
+        Signed minimum (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SMINP:
+        Signed minimum pairwise.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SMINQV:
+        Signed minimum reduction of quadword vector segments.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SMINV:
+        Signed minimum reduction to scalar.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SMLALB (indexed):
+        Signed multiply-add long by indexed element (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SMLALB (vectors):
+        Signed multiply-add long (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SMLALT (indexed):
+        Signed multiply-add long by indexed element (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SMLALT (vectors):
+        Signed multiply-add long (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SMLSLB (indexed):
+        Signed multiply-subtract long by indexed element (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SMLSLB (vectors):
+        Signed multiply-subtract long (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SMLSLT (indexed):
+        Signed multiply-subtract long by indexed element (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SMLSLT (vectors):
+        Signed multiply-subtract long (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SMMLA:
+        Signed 8-bit integer matrix multiply-accumulate to 32-bit integer.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SMULH (predicated):
+        Signed multiply returning high half (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SMULH (unpredicated):
+        Signed multiply returning high half (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SMULLB (indexed):
+        Signed multiply long by indexed element (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SMULLB (vectors):
+        Signed multiply long (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SMULLT (indexed):
+        Signed multiply long by indexed element (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SMULLT (vectors):
+        Signed multiply long (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SPLICE:
+        Splice two vectors under predicate control.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQABS:
+        Signed saturating absolute value.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="sqadd_z_zi.html">SQADD (immediate)</a>:
+        Signed saturating add immediate (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQADD (vectors, predicated):
+        Signed saturating add (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQADD (vectors, unpredicated):
+        Signed saturating add (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQCADD:
+        Saturating complex integer add.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQCVTN:
+        Signed 32-bit integer saturating extract narrow to interleaved 16-bit integer.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQCVTUN:
+        Signed 32-bit integer saturating extract narrow to interleaved unsigned 16-bit integer.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQDECB:
+        Signed saturating decrement scalar by multiple of 8-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQDECD (scalar):
+        Signed saturating decrement scalar by multiple of 64-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQDECD (vector):
+        Signed saturating decrement vector by multiple of 64-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQDECH (scalar):
+        Signed saturating decrement scalar by multiple of 16-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQDECH (vector):
+        Signed saturating decrement vector by multiple of 16-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQDECP (scalar):
+        Signed saturating decrement scalar by count of true predicate elements.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQDECP (vector):
+        Signed saturating decrement vector by count of true predicate elements.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQDECW (scalar):
+        Signed saturating decrement scalar by multiple of 32-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQDECW (vector):
+        Signed saturating decrement vector by multiple of 32-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQDMLALB (indexed):
+        Signed saturating doubling multiply-add by indexed element (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQDMLALB (vectors):
+        Signed saturating doubling multiply-add (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQDMLALBT:
+        Signed saturating doubling multiply-add (bottom × top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQDMLALT (indexed):
+        Signed saturating doubling multiply-add by indexed element (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQDMLALT (vectors):
+        Signed saturating doubling multiply-add (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQDMLSLB (indexed):
+        Signed saturating doubling multiply-subtract by indexed element (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQDMLSLB (vectors):
+        Signed saturating doubling multiply-subtract (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQDMLSLBT:
+        Signed saturating doubling multiply-subtract (bottom × top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQDMLSLT (indexed):
+        Signed saturating doubling multiply-subtract by indexed element (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQDMLSLT (vectors):
+        Signed saturating doubling multiply-subtract (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQDMULH (indexed):
+        Signed saturating doubling multiply high by indexed element.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQDMULH (vectors):
+        Signed saturating doubling multiply high (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQDMULLB (indexed):
+        Signed saturating doubling multiply by indexed element (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQDMULLB (vectors):
+        Signed saturating doubling multiply (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQDMULLT (indexed):
+        Signed saturating doubling multiply by indexed element (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQDMULLT (vectors):
+        Signed saturating doubling multiply (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQINCB:
+        Signed saturating increment scalar by multiple of 8-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQINCD (scalar):
+        Signed saturating increment scalar by multiple of 64-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQINCD (vector):
+        Signed saturating increment vector by multiple of 64-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQINCH (scalar):
+        Signed saturating increment scalar by multiple of 16-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQINCH (vector):
+        Signed saturating increment vector by multiple of 16-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQINCP (scalar):
+        Signed saturating increment scalar by count of true predicate elements.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQINCP (vector):
+        Signed saturating increment vector by count of true predicate elements.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQINCW (scalar):
+        Signed saturating increment scalar by multiple of 32-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQINCW (vector):
+        Signed saturating increment vector by multiple of 32-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQNEG:
+        Signed saturating negate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQRDCMLAH (indexed):
+        Saturating rounding doubling complex integer multiply-add high by indexed element.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQRDCMLAH (vectors):
+        Saturating rounding doubling complex integer multiply-add high.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQRDMLAH (indexed):
+        Signed saturating rounding doubling multiply-add high by indexed element.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQRDMLAH (vectors):
+        Signed saturating rounding doubling multiply-add high (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQRDMLSH (indexed):
+        Signed saturating rounding doubling multiply-subtract high by indexed element.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQRDMLSH (vectors):
+        Signed saturating rounding doubling multiply-subtract high (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQRDMULH (indexed):
+        Signed saturating rounding doubling multiply high by indexed element.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQRDMULH (vectors):
+        Signed saturating rounding doubling multiply high (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQRSHL:
+        Signed saturating rounding shift left (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQRSHLR:
+        Signed saturating rounding shift left reversed (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQRSHRN:
+        Signed saturating rounding shift right narrow by immediate to interleaved integer.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQRSHRNB:
+        Signed saturating rounding shift right narrow by immediate (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQRSHRNT:
+        Signed saturating rounding shift right narrow by immediate (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQRSHRUN:
+        Signed saturating rounding shift right unsigned narrow by immediate and interleave.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQRSHRUNB:
+        Signed saturating rounding shift right narrow by immediate to unsigned integer (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQRSHRUNT:
+        Signed saturating rounding shift right narrow by immediate to unsigned integer (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQSHL (immediate):
+        Signed saturating shift left by immediate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQSHL (vectors):
+        Signed saturating shift left (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQSHLR:
+        Signed saturating shift left reversed (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQSHLU:
+        Signed saturating shift left unsigned by immediate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQSHRN:
+        Signed saturating shift right narrow by immediate to interleaved integer.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQSHRNB:
+        Signed saturating shift right narrow by immediate (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQSHRNT:
+        Signed saturating shift right narrow by immediate (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQSHRUN:
+        Signed saturating shift right narrow by immediate to interleaved unsigned integer.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQSHRUNB:
+        Signed saturating shift right narrow by immediate to unsigned integer (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQSHRUNT:
+        Signed saturating shift right narrow by immediate to unsigned integer (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="sqsub_z_zi.html">SQSUB (immediate)</a>:
+        Signed saturating subtract immediate (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQSUB (vectors, predicated):
+        Signed saturating subtract (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQSUB (vectors, unpredicated):
+        Signed saturating subtract (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQSUBR:
+        Signed saturating subtract reversed (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQXTNB:
+        Signed saturating extract narrow (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQXTNT:
+        Signed saturating extract narrow (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQXTUNB:
+        Signed saturating extract narrow to unsigned integer (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SQXTUNT:
+        Signed saturating extract narrow to unsigned integer (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SRHADD:
+        Signed rounding halving add.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SRI:
+        Shift right and insert (immediate).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SRSHL:
+        Signed rounding shift left (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SRSHLR:
+        Signed rounding shift left reversed (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SRSHR:
+        Signed rounding shift right by immediate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SRSRA:
+        Signed rounding shift right and accumulate (immediate).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SSHLLB:
+        Signed shift left long by immediate (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SSHLLT:
+        Signed shift left long by immediate (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SSRA:
+        Signed shift right and accumulate (immediate).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SSUBLB:
+        Signed subtract long (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SSUBLBT:
+        Signed subtract long (bottom - top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SSUBLT:
+        Signed subtract long (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SSUBLTB:
+        Signed subtract long (top - bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SSUBWB:
+        Signed subtract wide (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SSUBWT:
+        Signed subtract wide (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST1B (scalar plus immediate, consecutive registers):
+        Contiguous store of bytes from multiple consecutive vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST1B (scalar plus immediate, single register):
+        Contiguous store bytes from vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST1B (scalar plus scalar, consecutive registers):
+        Contiguous store of bytes from multiple consecutive vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST1B (scalar plus scalar, single register):
+        Contiguous store bytes from vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST1B (scalar plus vector):
+        Scatter store bytes from a vector (vector index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST1B (vector plus immediate):
+        Scatter store bytes from a vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST1D (scalar plus immediate, consecutive registers):
+        Contiguous store of doublewords from multiple consecutive vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST1D (scalar plus immediate, single register):
+        Contiguous store doublewords from vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST1D (scalar plus scalar, consecutive registers):
+        Contiguous store of doublewords from multiple consecutive vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST1D (scalar plus scalar, single register):
+        Contiguous store doublewords from vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST1D (scalar plus vector):
+        Scatter store doublewords from a vector (vector index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST1D (vector plus immediate):
+        Scatter store doublewords from a vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST1H (scalar plus immediate, consecutive registers):
+        Contiguous store of halfwords from multiple consecutive vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST1H (scalar plus immediate, single register):
+        Contiguous store halfwords from vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST1H (scalar plus scalar, consecutive registers):
+        Contiguous store of halfwords from multiple consecutive vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST1H (scalar plus scalar, single register):
+        Contiguous store halfwords from vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST1H (scalar plus vector):
+        Scatter store halfwords from a vector (vector index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST1H (vector plus immediate):
+        Scatter store halfwords from a vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST1Q:
+        Scatter store quadwords.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST1W (scalar plus immediate, consecutive registers):
+        Contiguous store of words from multiple consecutive vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST1W (scalar plus immediate, single register):
+        Contiguous store words from vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST1W (scalar plus scalar, consecutive registers):
+        Contiguous store of words from multiple consecutive vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST1W (scalar plus scalar, single register):
+        Contiguous store words from vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST1W (scalar plus vector):
+        Scatter store words from a vector (vector index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST1W (vector plus immediate):
+        Scatter store words from a vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST2B (scalar plus immediate):
+        Contiguous store two-byte structures from two vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST2B (scalar plus scalar):
+        Contiguous store two-byte structures from two vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST2D (scalar plus immediate):
+        Contiguous store two-doubleword structures from two vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST2D (scalar plus scalar):
+        Contiguous store two-doubleword structures from two vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST2H (scalar plus immediate):
+        Contiguous store two-halfword structures from two vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST2H (scalar plus scalar):
+        Contiguous store two-halfword structures from two vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST2Q (scalar plus immediate):
+        Contiguous store two-quadword structures from two vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST2Q (scalar plus scalar):
+        Contiguous store two-quadword structures from two vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST2W (scalar plus immediate):
+        Contiguous store two-word structures from two vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST2W (scalar plus scalar):
+        Contiguous store two-word structures from two vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST3B (scalar plus immediate):
+        Contiguous store three-byte structures from three vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST3B (scalar plus scalar):
+        Contiguous store three-byte structures from three vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST3D (scalar plus immediate):
+        Contiguous store three-doubleword structures from three vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST3D (scalar plus scalar):
+        Contiguous store three-doubleword structures from three vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST3H (scalar plus immediate):
+        Contiguous store three-halfword structures from three vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST3H (scalar plus scalar):
+        Contiguous store three-halfword structures from three vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST3Q (scalar plus immediate):
+        Contiguous store three-quadword structures from three vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST3Q (scalar plus scalar):
+        Contiguous store three-quadword structures from three vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST3W (scalar plus immediate):
+        Contiguous store three-word structures from three vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST3W (scalar plus scalar):
+        Contiguous store three-word structures from three vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST4B (scalar plus immediate):
+        Contiguous store four-byte structures from four vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST4B (scalar plus scalar):
+        Contiguous store four-byte structures from four vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST4D (scalar plus immediate):
+        Contiguous store four-doubleword structures from four vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST4D (scalar plus scalar):
+        Contiguous store four-doubleword structures from four vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST4H (scalar plus immediate):
+        Contiguous store four-halfword structures from four vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST4H (scalar plus scalar):
+        Contiguous store four-halfword structures from four vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST4Q (scalar plus immediate):
+        Contiguous store four-quadword structures from four vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST4Q (scalar plus scalar):
+        Contiguous store four-quadword structures from four vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST4W (scalar plus immediate):
+        Contiguous store four-word structures from four vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ST4W (scalar plus scalar):
+        Contiguous store four-word structures from four vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">STNT1B (scalar plus immediate, consecutive registers):
+        Contiguous store non-temporal of bytes from multiple consecutive vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">STNT1B (scalar plus immediate, single register):
+        Contiguous store non-temporal bytes from vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">STNT1B (scalar plus scalar, consecutive registers):
+        Contiguous store non-temporal of bytes from multiple consecutive vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">STNT1B (scalar plus scalar, single register):
+        Contiguous store non-temporal bytes from vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">STNT1B (vector plus scalar):
+        Scatter store non-temporal bytes.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">STNT1D (scalar plus immediate, consecutive registers):
+        Contiguous store non-temporal of doublewords from multiple consecutive vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">STNT1D (scalar plus immediate, single register):
+        Contiguous store non-temporal doublewords from vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">STNT1D (scalar plus scalar, consecutive registers):
+        Contiguous store non-temporal of doublewords from multiple consecutive vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">STNT1D (scalar plus scalar, single register):
+        Contiguous store non-temporal doublewords from vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">STNT1D (vector plus scalar):
+        Scatter store non-temporal doublewords.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">STNT1H (scalar plus immediate, consecutive registers):
+        Contiguous store non-temporal of halfwords from multiple consecutive vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">STNT1H (scalar plus immediate, single register):
+        Contiguous store non-temporal halfwords from vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">STNT1H (scalar plus scalar, consecutive registers):
+        Contiguous store non-temporal of halfwords from multiple consecutive vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">STNT1H (scalar plus scalar, single register):
+        Contiguous store non-temporal halfwords from vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">STNT1H (vector plus scalar):
+        Scatter store non-temporal halfwords.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">STNT1W (scalar plus immediate, consecutive registers):
+        Contiguous store non-temporal of words from multiple consecutive vectors (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">STNT1W (scalar plus immediate, single register):
+        Contiguous store non-temporal words from vector (immediate index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">STNT1W (scalar plus scalar, consecutive registers):
+        Contiguous store non-temporal of words from multiple consecutive vectors (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">STNT1W (scalar plus scalar, single register):
+        Contiguous store non-temporal words from vector (scalar index).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">STNT1W (vector plus scalar):
+        Scatter store non-temporal words.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="str_p_bi.html">STR (predicate)</a>:
+        Store predicate register.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="str_z_bi.html">STR (vector)</a>:
+        Store vector register.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="sub_z_zi.html">SUB (immediate)</a>:
+        Subtract immediate (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SUB (vectors, predicated):
+        Subtract (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SUB (vectors, unpredicated):
+        Subtract (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SUBHNB:
+        Subtract narrow high part (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SUBHNT:
+        Subtract narrow high part (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SUBP:
+        Subtract pairwise.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SUBPT (predicated):
+        Subtract checked pointer vectors (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SUBPT (unpredicated):
+        Subtract checked pointer vectors (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="subr_z_zi.html">SUBR (immediate)</a>:
+        Reversed subtract from immediate (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SUBR (vectors):
+        Reversed subtract (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SUDOT:
+        Signed by unsigned 8-bit integer dot product by indexed element to 32-bit integer.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SUNPKHI, SUNPKLO:
+        Signed unpack and extend half of vector.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SUQADD:
+        Signed saturating unsigned add.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">SXTB, SXTH, SXTW:
+        Signed byte / halfword / word extend (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">TBL:
+        Programmable table lookup in one or two vector table (zeroing).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">TBLQ:
+        Programmable table lookup within each quadword vector segment (zeroing).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">TBX:
+        Programmable table lookup in single vector table (merging).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">TBXQ:
+        Programmable table lookup within each quadword vector segment (merging).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">TRN1, TRN2 (predicates):
+        Interleave even or odd elements from two predicates.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">TRN1, TRN2 (vectors):
+        Interleave even or odd elements from two vectors.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UABA:
+        Unsigned absolute difference and accumulate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UABAL:
+        Two-way unsigned absolute difference sum and accumulate long.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UABALB:
+        Unsigned absolute difference and accumulate long (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UABALT:
+        Unsigned absolute difference and accumulate long (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UABD:
+        Unsigned absolute difference (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UABDLB:
+        Unsigned absolute difference long (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UABDLT:
+        Unsigned absolute difference long (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UADALP:
+        Unsigned add and accumulate long pairwise.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UADDLB:
+        Unsigned add long (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UADDLT:
+        Unsigned add long (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UADDV:
+        Unsigned add reduction to scalar.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UADDWB:
+        Unsigned add wide (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UADDWT:
+        Unsigned add wide (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UCLAMP:
+        Unsigned clamp to minimum/maximum.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UCVTF (bottom, unpredicated):
+        Unsigned integer convert to floating-point (bottom, unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UCVTF (predicated):
+        Unsigned integer convert to floating-point (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UCVTFLT:
+        Unsigned integer convert to floating-point (top, unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UDIV:
+        Unsigned divide (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UDIVR:
+        Unsigned reversed divide (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UDOT (2-way, indexed):
+        Unsigned integer dot product by indexed element (two-way).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UDOT (2-way, vectors):
+        Unsigned integer dot product (two-way).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UDOT (4-way, indexed):
+        Unsigned integer dot product by indexed element (four-way).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UDOT (4-way, vectors):
+        Unsigned integer dot product (four-way).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UHADD:
+        Unsigned halving add.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UHSUB:
+        Unsigned halving subtract.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UHSUBR:
+        Unsigned halving subtract reversed.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UMAX (immediate):
+        Unsigned maximum with immediate (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UMAX (vectors):
+        Unsigned maximum (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UMAXP:
+        Unsigned maximum pairwise.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UMAXQV:
+        Unsigned maximum reduction of quadword vector segments.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UMAXV:
+        Unsigned maximum reduction to scalar.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UMIN (immediate):
+        Unsigned minimum with immediate (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UMIN (vectors):
+        Unsigned minimum (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UMINP:
+        Unsigned minimum pairwise.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UMINQV:
+        Unsigned minimum reduction of quadword vector segments.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UMINV:
+        Unsigned minimum reduction to scalar.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UMLALB (indexed):
+        Unsigned multiply-add long by indexed element (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UMLALB (vectors):
+        Unsigned multiply-add long (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UMLALT (indexed):
+        Unsigned multiply-add long by indexed element (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UMLALT (vectors):
+        Unsigned multiply-add long (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UMLSLB (indexed):
+        Unsigned multiply-subtract long by indexed element (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UMLSLB (vectors):
+        Unsigned multiply-subtract long (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UMLSLT (indexed):
+        Unsigned multiply-subtract long by indexed element (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UMLSLT (vectors):
+        Unsigned multiply-subtract long (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UMMLA:
+        Unsigned 8-bit integer matrix multiply-accumulate to 32-bit integer.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UMULH (predicated):
+        Unsigned multiply returning high half (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UMULH (unpredicated):
+        Unsigned multiply returning high half (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UMULLB (indexed):
+        Unsigned multiply long by indexed element (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UMULLB (vectors):
+        Unsigned multiply long (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UMULLT (indexed):
+        Unsigned multiply long by indexed element (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UMULLT (vectors):
+        Unsigned multiply long (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="uqadd_z_zi.html">UQADD (immediate)</a>:
+        Unsigned saturating add immediate (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQADD (vectors, predicated):
+        Unsigned saturating add (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQADD (vectors, unpredicated):
+        Unsigned saturating add (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQCVTN:
+        Unsigned 32-bit integer saturating extract narrow to interleaved 16-bit integer.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQDECB:
+        Unsigned saturating decrement scalar by multiple of 8-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQDECD (scalar):
+        Unsigned saturating decrement scalar by multiple of 64-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQDECD (vector):
+        Unsigned saturating decrement vector by multiple of 64-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQDECH (scalar):
+        Unsigned saturating decrement scalar by multiple of 16-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQDECH (vector):
+        Unsigned saturating decrement vector by multiple of 16-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQDECP (scalar):
+        Unsigned saturating decrement scalar by count of true predicate elements.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQDECP (vector):
+        Unsigned saturating decrement vector by count of true predicate elements.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQDECW (scalar):
+        Unsigned saturating decrement scalar by multiple of 32-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQDECW (vector):
+        Unsigned saturating decrement vector by multiple of 32-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQINCB:
+        Unsigned saturating increment scalar by multiple of 8-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQINCD (scalar):
+        Unsigned saturating increment scalar by multiple of 64-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQINCD (vector):
+        Unsigned saturating increment vector by multiple of 64-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQINCH (scalar):
+        Unsigned saturating increment scalar by multiple of 16-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQINCH (vector):
+        Unsigned saturating increment vector by multiple of 16-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQINCP (scalar):
+        Unsigned saturating increment scalar by count of true predicate elements.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQINCP (vector):
+        Unsigned saturating increment vector by count of true predicate elements.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQINCW (scalar):
+        Unsigned saturating increment scalar by multiple of 32-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQINCW (vector):
+        Unsigned saturating increment vector by multiple of 32-bit predicate constraint element count.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQRSHL:
+        Unsigned saturating rounding shift left (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQRSHLR:
+        Unsigned saturating rounding shift left reversed (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQRSHRN:
+        Unsigned saturating rounding shift right narrow by immediate to interleaved integer.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQRSHRNB:
+        Unsigned saturating rounding shift right narrow by immediate (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQRSHRNT:
+        Unsigned saturating rounding shift right narrow by immediate (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQSHL (immediate):
+        Unsigned saturating shift left by immediate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQSHL (vectors):
+        Unsigned saturating shift left (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQSHLR:
+        Unsigned saturating shift left reversed (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQSHRN:
+        Unsigned saturating shift right narrow by immediate to interleaved integer.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQSHRNB:
+        Unsigned saturating shift right narrow by immediate (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQSHRNT:
+        Unsigned saturating shift right narrow by immediate (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="uqsub_z_zi.html">UQSUB (immediate)</a>:
+        Unsigned saturating subtract immediate (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQSUB (vectors, predicated):
+        Unsigned saturating subtract (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQSUB (vectors, unpredicated):
+        Unsigned saturating subtract (unpredicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQSUBR:
+        Unsigned saturating subtract reversed (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQXTNB:
+        Unsigned saturating extract narrow (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UQXTNT:
+        Unsigned saturating extract narrow (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">URECPE:
+        Unsigned reciprocal estimate (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">URHADD:
+        Unsigned rounding halving add.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">URSHL:
+        Unsigned rounding shift left (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">URSHLR:
+        Unsigned rounding shift left reversed (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">URSHR:
+        Unsigned rounding shift right by immediate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">URSQRTE:
+        Unsigned reciprocal square root estimate (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">URSRA:
+        Unsigned rounding shift right and accumulate (immediate).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">USDOT (indexed):
+        Unsigned by signed 8-bit integer dot product by indexed element to 32-bit integer.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">USDOT (vectors):
+        Unsigned by signed 8-bit integer dot product to 32-bit integer.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">USHLLB:
+        Unsigned shift left long by immediate (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">USHLLT:
+        Unsigned shift left long by immediate (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">USMMLA:
+        Unsigned by signed 8-bit integer matrix multiply-accumulate to 32-bit integer.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">USQADD:
+        Unsigned saturating signed add.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">USRA:
+        Unsigned shift right and accumulate (immediate).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">USUBLB:
+        Unsigned subtract long (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">USUBLT:
+        Unsigned subtract long (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">USUBWB:
+        Unsigned subtract wide (bottom).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">USUBWT:
+        Unsigned subtract wide (top).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UUNPKHI, UUNPKLO:
+        Unsigned unpack and extend half of vector.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UXTB, UXTH, UXTW:
+        Unsigned byte / halfword / word extend (predicated).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UZP1, UZP2 (predicates):
+        Concatenate even or odd elements from two predicates.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UZP1, UZP2 (vectors):
+        Concatenate even or odd elements from two vectors.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UZPQ1:
+        Concatenate even elements within each pair of quadword vector segments.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">UZPQ2:
+        Concatenate odd elements within each pair of quadword vector segments.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILEGE (predicate as counter):
+        While decrementing signed scalar greater than or equal to scalar (predicate-as-counter).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILEGE (predicate pair):
+        While decrementing signed scalar greater than or equal to scalar (pair of predicates).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILEGE (predicate):
+        While decrementing signed scalar greater than or equal to scalar.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILEGT (predicate as counter):
+        While decrementing signed scalar greater than scalar (predicate-as-counter).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILEGT (predicate pair):
+        While decrementing signed scalar greater than scalar (pair of predicates).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILEGT (predicate):
+        While decrementing signed scalar greater than scalar.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILEHI (predicate as counter):
+        While decrementing unsigned scalar higher than scalar (predicate-as-counter).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILEHI (predicate pair):
+        While decrementing unsigned scalar higher than scalar (pair of predicates).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILEHI (predicate):
+        While decrementing unsigned scalar higher than scalar.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILEHS (predicate as counter):
+        While decrementing unsigned scalar higher than or same as scalar (predicate-as-counter).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILEHS (predicate pair):
+        While decrementing unsigned scalar higher than or same as scalar (pair of predicates).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILEHS (predicate):
+        While decrementing unsigned scalar higher than or same as scalar.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILELE (predicate as counter):
+        While incrementing signed scalar less than or equal to scalar (predicate-as-counter).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILELE (predicate pair):
+        While incrementing signed scalar less than or equal to scalar (pair of predicates).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILELE (predicate):
+        While incrementing signed scalar less than or equal to scalar.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILELO (predicate as counter):
+        While incrementing unsigned scalar lower than scalar (predicate-as-counter).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILELO (predicate pair):
+        While incrementing unsigned scalar lower than scalar (pair of predicates).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILELO (predicate):
+        While incrementing unsigned scalar lower than scalar.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILELS (predicate as counter):
+        While incrementing unsigned scalar lower than or same as scalar (predicate-as-counter).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILELS (predicate pair):
+        While incrementing unsigned scalar lower than or same as scalar (pair of predicates).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILELS (predicate):
+        While incrementing unsigned scalar lower than or same as scalar.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILELT (predicate as counter):
+        While incrementing signed scalar less than scalar (predicate-as-counter).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILELT (predicate pair):
+        While incrementing signed scalar less than scalar (pair of predicates).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILELT (predicate):
+        While incrementing signed scalar less than scalar.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILERW:
+        While free of read-after-write conflicts.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WHILEWR:
+        While free of write-after-read/write conflicts.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">WRFFR:
+        Write the first-fault register.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">XAR:
+        Bitwise exclusive-OR and rotate right by immediate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ZIP1, ZIP2 (predicates):
+        Interleave elements from two half predicates.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ZIP1, ZIP2 (vectors):
+        Interleave elements from two half vectors.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ZIPQ1:
+        Interleave elements from low halves of each pair of quadword vector segments.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading">ZIPQ2:
+        Interleave elements from high halves of each pair of quadword vector segments.</span></p></div>
+  <hr/><table style="margin: 0 auto;"><tr><td><div class="topbar"><a href="index.html">Base Instructions</a></div></td><td><div class="topbar"><a href="fpsimdindex.html">SIMD&amp;FP Instructions</a></div></td><td><div class="topbar"><a href="sveindex.html">SVE Instructions</a></div></td><td><div class="topbar"><a href="mortlachindex.html">SME Instructions</a></div></td><td><div class="topbar"><a href="encodingindex.html">Index by Encoding</a></div></td><td><div class="topbar"><a href="shared_pseudocode.html">Shared Pseudocode</a></div></td><td><div class="topbar"><a href="notice.html">Proprietary Notice</a></div></td></tr></table><p class="versions">
+        <ins>2025-12_rel</ins><del>2025-09_diff_tag</del>
+
+        <ins>2025-12-10</ins><del>2025-11-28</del> 16:<ins>41</ins><del>29</del>:<ins>45</ins><del>05</del>
+    </p><p class="copyconf">
+      Copyright © 2010-2025 Arm Limited or its affiliates. All rights reserved.
+      This document is Non-Confidential.
+    </p><div align="center" class="htmldiff_header"><table><tbody><tr><td class="old">(old) </td><td class="explain">htmldiff from-</td><td class="new">(new) </td></tr></tbody></table></div></body>
+</html>
