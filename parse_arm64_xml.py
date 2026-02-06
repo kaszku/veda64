@@ -23,6 +23,9 @@ class InstructionEncoding:
         self.bit_pattern: Dict[str, str] = {}
         self.fields: Dict[str, Dict] = {}
         self.docvars: Dict[str, str] = {}
+        # Format information extracted from psname (e.g., A64.dpimm.addsub_imm.ADD_32_addsub_imm)
+        self.format_group: str = ""   # e.g., 'dpimm', 'dpreg', 'ldst', 'sve', 'sme'
+        self.format_iclass: str = ""  # e.g., 'addsub_imm', 'log_shift', 'branch_imm'
 
     def to_dict(self) -> Dict:
         return {
@@ -31,7 +34,9 @@ class InstructionEncoding:
             'asm_template': self.asm_template,
             'bit_pattern': self.bit_pattern,
             'fields': self.fields,
-            'docvars': self.docvars
+            'docvars': self.docvars,
+            'format_group': self.format_group,
+            'format_iclass': self.format_iclass
         }
 
 
@@ -193,6 +198,12 @@ class ARM64XMLParser:
                 regdiagram = iclass.find('regdiagram')
                 if regdiagram is not None:
                     encoding.bit_pattern, encoding.fields = self._parse_regdiagram(regdiagram)
+                    # Extract format from psname (e.g., A64.dpimm.addsub_imm.ADD_32_addsub_imm)
+                    psname = regdiagram.get('psname', '')
+                    parts = psname.split('.')
+                    if len(parts) >= 3 and parts[0] == 'A64':
+                        encoding.format_group = parts[1]   # e.g., 'dpimm'
+                        encoding.format_iclass = parts[2]  # e.g., 'addsub_imm'
 
                 # Also get specific box overrides from encoding element
                 for box in encoding_elem.findall('box'):
@@ -386,24 +397,414 @@ class ARM64XMLParser:
             self._generate_class_files(cls, instrs, header_file, cpp_file)
             print(f"Generated {header_file.name} and {cpp_file.name} ({len(instrs)} instructions)")
 
-    def generate_header_files(self, include_dir: Path, include_class_dir: Path, lib_dir: Path):
+    def generate_header_files(self, include_dir: Path, lib_dir: Path):
         """Generate base header files."""
         print(f"\n=== Generating Base Headers ===")
 
-        # Get list of instruction classes
-        by_class = {}
-        for instr in self.instructions:
-            cls = instr.instr_class or 'unknown'
-            if cls not in by_class:
-                by_class[cls] = []
-            by_class[cls].append(instr)
-
-        # Generate veda64.hpp (main header, was instruction.hpp)
+        # Generate veda64.hpp (main header) and veda64.cpp (implementation)
         veda64_header = include_dir / "veda64.hpp"
         veda64_impl = lib_dir / "veda64.cpp"
-        self._generate_veda64_header(veda64_header, list(by_class.keys()))
+        self._generate_veda64_header(veda64_header)
         self._generate_veda64_implementation(veda64_impl)
         print(f"Generated {veda64_header.name} and {veda64_impl.name}")
+
+    def generate_format_files(self, include_format_dir: Path, lib_format_dir: Path):
+        """Generate format-based header and implementation files.
+
+        This organizes code by ARM64 top-level decode groups as defined in
+        encodingindex.xml from the ARM Architecture Reference Manual:
+
+        | Group    | Description                                       |
+        |----------|---------------------------------------------------|
+        | reserved | Reserved                                          |
+        | sme      | SME encodings                                     |
+        | sve      | SVE encodings                                     |
+        | dpimm    | Data Processing -- Immediate                      |
+        | control  | Branches, Exception Generating and System          |
+        | dpreg    | Data Processing -- Register                       |
+        | simd_dp  | Data Processing -- Scalar FP and Advanced SIMD    |
+        | ldst     | Loads and Stores                                  |
+
+        Each group file contains:
+        - Bitfield structs for each encoding
+        - Encode functions for each instruction variant
+        - A decode function with proper operand extraction
+        """
+        # Clean output directories of stale files before generating
+        for d in (include_format_dir, lib_format_dir):
+            for f in d.iterdir():
+                if f.is_file():
+                    f.unlink()
+
+        # Group encodings by ARM64 decode group using psname from XML
+        by_group = self._classify_by_arm64_decode_group()
+
+        print(f"\n=== Generating ARM64 Decode Group Files ({len(by_group)} groups) ===")
+
+        # Generate files for each group
+        for group_name, data in sorted(by_group.items()):
+            header_file = include_format_dir / f"{group_name}.hpp"
+            cpp_file = lib_format_dir / f"{group_name}.cpp"
+            self._generate_group_header(group_name, data, header_file)
+            self._generate_group_impl(group_name, data, cpp_file)
+            print(f"Generated {group_name}.hpp ({len(data['encodings'])} encodings)")
+
+        # Generate unified format.hpp header
+        format_header = include_format_dir / "format.hpp"
+        self._generate_format_main_header_v2(by_group, format_header)
+        print(f"Generated format.hpp")
+
+    def _classify_by_arm64_decode_group(self) -> Dict:
+        """Classify all instructions by ARM64 top-level decode group.
+
+        Uses the format_group field extracted from each encoding's psname
+        (e.g., A64.dpimm.addsub_imm.ADD_32_addsub_imm -> 'dpimm'),
+        which directly corresponds to the top-level groupname attributes
+        in encodingindex.xml.
+        """
+        groups = {
+            'reserved': {'display_name': 'Reserved', 'encodings': []},
+            'sme': {'display_name': 'SME Encodings', 'encodings': []},
+            'sve': {'display_name': 'SVE Encodings', 'encodings': []},
+            'dpimm': {'display_name': 'Data Processing -- Immediate', 'encodings': []},
+            'control': {'display_name': 'Branches, Exception Generating and System', 'encodings': []},
+            'dpreg': {'display_name': 'Data Processing -- Register', 'encodings': []},
+            'simd_dp': {'display_name': 'Data Processing -- Scalar FP and Advanced SIMD', 'encodings': []},
+            'ldst': {'display_name': 'Loads and Stores', 'encodings': []},
+        }
+
+        for instr in self.instructions:
+            for encoding in instr.encodings:
+                group_name = encoding.format_group
+                if group_name not in groups:
+                    # Fallback: use bit-pattern heuristic for encodings without psname
+                    fixed_bits, fixed_mask = self._get_encoding_fixed_bits(encoding)
+                    group_name = self._determine_decode_group(fixed_bits, fixed_mask)
+                groups[group_name]['encodings'].append((instr, encoding))
+
+        # Remove empty groups
+        return {k: v for k, v in groups.items() if v['encodings']}
+
+    def _get_encoding_fixed_bits(self, encoding: 'InstructionEncoding') -> tuple:
+        """Extract fixed bits and mask from an encoding."""
+        fixed_bits = 0
+        fixed_mask = 0
+
+        for field_name, field_info in encoding.fields.items():
+            fixed = field_info.get('fixed')
+            hibit = field_info.get('hibit')
+            width = field_info.get('width', 1)
+
+            if hibit is None:
+                continue
+
+            lobit = hibit - width + 1
+
+            if fixed is not None and self._is_binary_string(fixed):
+                fixed_val = int(fixed, 2)
+                for i in range(width):
+                    bit_pos = lobit + i
+                    if bit_pos < 32:
+                        fixed_mask |= (1 << bit_pos)
+                        if (fixed_val >> i) & 1:
+                            fixed_bits |= (1 << bit_pos)
+
+        return fixed_bits, fixed_mask
+
+    def _determine_decode_group(self, fixed_bits: int, fixed_mask: int) -> str:
+        """Determine the ARM64 decode group from fixed bits (fallback heuristic).
+
+        Only used when an encoding lacks psname/format_group information.
+        Group names match encodingindex.xml top-level groupname attributes.
+        """
+        # op0 is bit 31, op1 is bits [28:25]
+        op0_bit = 31
+        op1_bits = [28, 27, 26, 25]
+
+        # Check if op0 is known
+        op0_known = (fixed_mask >> op0_bit) & 1
+        op0 = (fixed_bits >> op0_bit) & 1 if op0_known else None
+
+        # Build op1 with known/unknown bits
+        op1_known_mask = 0
+        op1_value = 0
+        for i, bit in enumerate(reversed(op1_bits)):  # bit 25 is LSB
+            if (fixed_mask >> bit) & 1:
+                op1_known_mask |= (1 << i)
+                if (fixed_bits >> bit) & 1:
+                    op1_value |= (1 << i)
+
+        # Match patterns (x = don't care)
+        # op0=0, op1=0000 -> Reserved
+        if op0 == 0 and op1_known_mask == 0xF and op1_value == 0b0000:
+            return 'reserved'
+        # op0=1, op1=0000 -> SME
+        if op0 == 1 and op1_known_mask == 0xF and op1_value == 0b0000:
+            return 'sme'
+        # op1=0010 -> SVE
+        if op1_known_mask == 0xF and op1_value == 0b0010:
+            return 'sve'
+        # op1=100x -> Data Processing -- Immediate (bits [28:26]=100, bit 25=x)
+        if (op1_known_mask & 0b1110) == 0b1110 and (op1_value & 0b1110) == 0b1000:
+            return 'dpimm'
+        # op1=101x -> Branches, Exception Generating and System (bits [28:26]=101, bit 25=x)
+        if (op1_known_mask & 0b1110) == 0b1110 and (op1_value & 0b1110) == 0b1010:
+            return 'control'
+        # op1=x101 -> Data Processing -- Register (bits [27:25]=101)
+        if (op1_known_mask & 0b0111) == 0b0111 and (op1_value & 0b0111) == 0b0101:
+            return 'dpreg'
+        # op1=x111 -> Data Processing -- Scalar FP and SIMD (bits [27:25]=111)
+        if (op1_known_mask & 0b0111) == 0b0111 and (op1_value & 0b0111) == 0b0111:
+            return 'simd_dp'
+        # op1=x1x0 -> Loads and Stores (bits [27]=1, [25]=0)
+        if (op1_known_mask & 0b0101) == 0b0101 and (op1_value & 0b0101) == 0b0100:
+            return 'ldst'
+
+        # Default fallback
+        return 'dpreg'
+
+    def _generate_group_header(self, group_name: str, data: Dict, output_file: Path):
+        """Generate header file for an ARM64 decode group."""
+        code = []
+        display_name = data['display_name']
+        encodings = data['encodings']
+
+        # Build encoding info using the same pattern as class generation
+        seen_encodings = set()
+        encoding_info = []
+
+        for instr, encoding in encodings:
+            if encoding.name in seen_encodings:
+                continue
+            seen_encodings.add(encoding.name)
+
+            struct_name = self._sanitize_struct_name(encoding.name)
+            struct_code, field_list, fixed_bits, fixed_mask, full_pattern, full_mask = self._generate_encoding_struct(instr, encoding)
+
+            mnemonic = encoding.docvars.get('mnemonic', instr.mnemonic)
+
+            encoding_info.append({
+                'struct_name': struct_name,
+                'encoding_name': encoding.name,
+                'field_list': field_list,
+                'struct_code': struct_code,
+                'fixed_bits': fixed_bits,
+                'fixed_mask': fixed_mask,
+                'full_pattern': full_pattern,
+                'full_mask': full_mask,
+                'mnemonic': mnemonic
+            })
+
+        # Header
+        code.append("#pragma once")
+        code.append(f"// ARM64 Decode Group: {display_name}")
+        code.append(f"// {len(encoding_info)} instruction encodings")
+        code.append("")
+        code.append("#include <cstdint>")
+        code.append("#include <optional>")
+        code.append("#include \"../veda64.hpp\"")
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("namespace Format {")
+        code.append(f"namespace {self._group_namespace_name(group_name)} {{")
+        code.append("")
+
+        # Generate encode function declarations
+        code.append("// Encode functions")
+        for info in encoding_info:
+            code.extend(self._generate_encode_declaration(
+                info['struct_name'],
+                info['encoding_name'],
+                info['field_list']
+            ))
+        code.append("")
+
+        # Generate decode function declaration
+        code.append("// Decode function")
+        code.extend(self._generate_decode_declaration(group_name))
+        code.append("")
+
+        code.append(f"}} // namespace {self._group_namespace_name(group_name)}")
+        code.append("} // namespace Format")
+        code.append("} // namespace veda64")
+        code.append("")
+
+        self._write_file(output_file, code)
+
+    def _generate_group_impl(self, group_name: str, data: Dict, output_file: Path):
+        """Generate implementation file for an ARM64 decode group."""
+        code = []
+        display_name = data['display_name']
+        encodings = data['encodings']
+
+        # Build encoding info
+        seen_encodings = set()
+        encoding_info = []
+
+        for instr, encoding in encodings:
+            if encoding.name in seen_encodings:
+                continue
+            seen_encodings.add(encoding.name)
+
+            struct_name = self._sanitize_struct_name(encoding.name)
+            struct_code, field_list, fixed_bits, fixed_mask, full_pattern, full_mask = self._generate_encoding_struct(instr, encoding)
+
+            mnemonic = encoding.docvars.get('mnemonic', instr.mnemonic)
+
+            encoding_info.append({
+                'struct_name': struct_name,
+                'encoding_name': encoding.name,
+                'field_list': field_list,
+                'struct_code': struct_code,
+                'fixed_bits': fixed_bits,
+                'fixed_mask': fixed_mask,
+                'full_pattern': full_pattern,
+                'full_mask': full_mask,
+                'mnemonic': mnemonic
+            })
+
+        # Include header
+        code.append(f"#include \"format/{group_name}.hpp\"")
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("namespace Format {")
+        code.append(f"namespace {self._group_namespace_name(group_name)} {{")
+        code.append("")
+
+        # Generate encoding union (all structs share same union for decoding)
+        code.append("// Encoding structures union")
+        code.append(f"union {self._sanitize_struct_name(group_name)}Encoding {{")
+        code.append("    uint32_t raw;")
+        for info in encoding_info:
+            code.extend(["    " + line for line in info['struct_code']])
+            member_name = self._struct_to_member_name(info['struct_name'])
+            code.append(f"    {info['struct_name']} {member_name};")
+            code.append("")
+        code.append("};")
+        union_name = f"{self._sanitize_struct_name(group_name)}Encoding"
+        code.append(f"static_assert(sizeof({union_name}) == 4, \"Encoding union must be 32 bits\");")
+        code.append("")
+
+        # Generate encode function implementations
+        code.append("// Encode function implementations")
+        for info in encoding_info:
+            code.extend(self._generate_encode_implementation(
+                group_name,
+                info['struct_name'],
+                info['encoding_name'],
+                info['field_list']
+            ))
+            code.append("")
+
+        # Generate decode function
+        code.extend(self._generate_decode_function(group_name, encoding_info))
+        code.append("")
+
+        code.append(f"}} // namespace {self._group_namespace_name(group_name)}")
+        code.append("} // namespace Format")
+        code.append("} // namespace veda64")
+        code.append("")
+
+        self._write_file(output_file, code)
+
+    def _generate_format_main_header_v2(self, by_group: Dict, output_file: Path):
+        """Generate main format.hpp header that includes all group headers."""
+        code = []
+
+        code.append("#pragma once")
+        code.append("// ARM64 Decode Group Headers")
+        code.append("// Auto-generated from encodingindex.xml top-level decode groups")
+        code.append("//")
+        code.append("// Groups based on op0 (bit 31) and op1 (bits [28:25]):")
+        code.append("// | op0 | op1  | Group                                          |")
+        code.append("// |-----|------|------------------------------------------------|")
+        code.append("// | 0   | 0000 | Reserved                                       |")
+        code.append("// | 1   | 0000 | SME encodings                                  |")
+        code.append("// | x   | 0010 | SVE encodings                                  |")
+        code.append("// | x   | 100x | Data Processing -- Immediate                   |")
+        code.append("// | x   | 101x | Branches, Exception Generating and System      |")
+        code.append("// | x   | x101 | Data Processing -- Register                    |")
+        code.append("// | x   | x111 | Data Processing -- Scalar FP and Advanced SIMD |")
+        code.append("// | x   | x1x0 | Loads and Stores                               |")
+        code.append("")
+
+        # Include all group headers
+        for group_name in sorted(by_group.keys()):
+            code.append(f"#include \"format/{group_name}.hpp\"")
+        code.append("")
+
+        # Add unified decode function
+        code.append("namespace veda64 {")
+        code.append("")
+        code.append("// Unified decode function that dispatches to appropriate group decoder")
+        code.append("inline std::optional<Instruction> decode_format(uint32_t insn) {")
+        code.append("    // Extract op0 (bit 31) and op1 (bits [28:25])")
+        code.append("    uint32_t op0 = (insn >> 31) & 0x1;")
+        code.append("    uint32_t op1 = (insn >> 25) & 0xF;")
+        code.append("")
+        code.append("    // Dispatch based on ARM64 decode table (encodingindex.xml)")
+        code.append("    if (op0 == 0 && op1 == 0b0000) {")
+        if 'reserved' in by_group:
+            code.append(f"        return Format::{self._group_namespace_name('reserved')}::decode_{self._sanitize_function_name('reserved')}(insn);")
+        else:
+            code.append("        return std::nullopt; // Reserved")
+        code.append("    }")
+        code.append("    if (op0 == 1 && op1 == 0b0000) {")
+        if 'sme' in by_group:
+            code.append(f"        return Format::{self._group_namespace_name('sme')}::decode_{self._sanitize_function_name('sme')}(insn);")
+        else:
+            code.append("        return std::nullopt; // SME not available")
+        code.append("    }")
+        code.append("    if (op1 == 0b0010) {")
+        if 'sve' in by_group:
+            code.append(f"        return Format::{self._group_namespace_name('sve')}::decode_{self._sanitize_function_name('sve')}(insn);")
+        else:
+            code.append("        return std::nullopt; // SVE not available")
+        code.append("    }")
+        code.append("    if ((op1 >> 1) == 0b100) {")
+        if 'dpimm' in by_group:
+            code.append(f"        return Format::{self._group_namespace_name('dpimm')}::decode_{self._sanitize_function_name('dpimm')}(insn);")
+        else:
+            code.append("        return std::nullopt;")
+        code.append("    }")
+        code.append("    if ((op1 >> 1) == 0b101) {")
+        if 'control' in by_group:
+            code.append(f"        return Format::{self._group_namespace_name('control')}::decode_{self._sanitize_function_name('control')}(insn);")
+        else:
+            code.append("        return std::nullopt;")
+        code.append("    }")
+        code.append("    if ((op1 & 0b0111) == 0b0101) {")
+        if 'dpreg' in by_group:
+            code.append(f"        return Format::{self._group_namespace_name('dpreg')}::decode_{self._sanitize_function_name('dpreg')}(insn);")
+        else:
+            code.append("        return std::nullopt;")
+        code.append("    }")
+        code.append("    if ((op1 & 0b0111) == 0b0111) {")
+        if 'simd_dp' in by_group:
+            code.append(f"        return Format::{self._group_namespace_name('simd_dp')}::decode_{self._sanitize_function_name('simd_dp')}(insn);")
+        else:
+            code.append("        return std::nullopt;")
+        code.append("    }")
+        code.append("    if ((op1 & 0b0101) == 0b0100) {")
+        if 'ldst' in by_group:
+            code.append(f"        return Format::{self._group_namespace_name('ldst')}::decode_{self._sanitize_function_name('ldst')}(insn);")
+        else:
+            code.append("        return std::nullopt;")
+        code.append("    }")
+        code.append("")
+        code.append("    return std::nullopt;")
+        code.append("}")
+        code.append("")
+        code.append("} // namespace veda64")
+        code.append("")
+
+        self._write_file(output_file, code)
+
+    def _group_namespace_name(self, group_name: str) -> str:
+        """Convert group name to valid C++ namespace name."""
+        # CamelCase conversion
+        parts = group_name.split('_')
+        return ''.join(part.capitalize() for part in parts)
 
     def _generate_instruction_header(self, output_file: Path):
         """Generate instruction.hpp with base Instruction class, enums, and Operand class."""
@@ -567,6 +968,7 @@ class ARM64XMLParser:
         code = []
 
         code.append("#include \"veda64.hpp\"")
+        code.append("#include \"format/format.hpp\"")
         code.append("#include <cstring>")
         code.append("#include <sstream>")
         code.append("")
@@ -953,22 +1355,10 @@ class ARM64XMLParser:
         code.append("#endif // !VEDA64_NO_STRINGS")
         code.append("")
 
-        # Generate unified decode function
-        # Collect all instruction classes
-        by_class = {}
-        for instr in self.instructions:
-            cls = instr.instr_class or 'unknown'
-            if cls not in by_class:
-                by_class[cls] = []
-            by_class[cls].append(instr)
-
-        code.append("// Unified decode function - tries all instruction class decoders")
+        # Generate unified decode function - delegates to format-based decoder
+        code.append("// Unified decode function - dispatches to format-based group decoders")
         code.append("std::optional<Instruction> decode(uint32_t insn) {")
-        for cls in sorted(by_class.keys()):
-            ns = self._sanitize_namespace(cls)
-            func = self._sanitize_function_name(cls)
-            code.append(f"    if (auto result = {ns}::decode_{func}(insn); result) return result;")
-        code.append("    return std::nullopt;")
+        code.append("    return decode_format(insn);")
         code.append("}")
         code.append("")
 
@@ -977,8 +1367,9 @@ class ARM64XMLParser:
 
         self._write_file(output_file, code)
 
-    def _generate_veda64_header(self, output_file: Path, class_names: List[str]):
-        """Generate the main veda64.hpp header file (combines old instruction.hpp and veda64.hpp)."""
+
+    def _generate_veda64_header(self, output_file: Path):
+        """Generate the main veda64.hpp header file."""
         code = []
 
         code.append("#pragma once")
@@ -1152,7 +1543,7 @@ class ARM64XMLParser:
         code.append("};")
         code.append("")
 
-        code.append("// Unified decode function declaration (tries all instruction classes)")
+        code.append("// Unified decode function declaration (dispatches to format-based group decoders)")
         code.append("std::optional<Instruction> decode(uint32_t insn);")
         code.append("")
         code.append("// Decode from 4 bytes in memory order")
@@ -1161,10 +1552,6 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
         code.append("} // namespace veda64")
-        code.append("")
-        code.append("// Include all instruction class headers")
-        for cls in sorted(class_names):
-            code.append(f"#include \"class/{cls}.hpp\"")
         code.append("")
 
         self._write_file(output_file, code)
@@ -1382,9 +1769,6 @@ class ARM64XMLParser:
 
         code.append("};")
         code.append("")
-
-        # Add static_assert to ensure struct is 32 bits
-        code.append(f"static_assert(sizeof({struct_name}) == 4, \"Encoding struct must be 32 bits\");")
 
         # Calculate fixed bits and full pattern for decoding
         fixed_bits = 0
@@ -1696,6 +2080,7 @@ class ARM64XMLParser:
         # Add raw uint32_t
         code.append("    uint32_t raw;")
         code.append("};")
+        code.append(f"static_assert(sizeof({union_name}) == 4, \"Encoding union must be 32 bits\");")
 
         return code
 
@@ -1876,57 +2261,34 @@ class ARM64XMLParser:
                 'encodings': infos
             })
 
-        # Generate optimized decode logic with switches
+        # Generate optimized decode logic with switches - always use switch for consistency
         for mask, pattern_infos in sorted(mask_groups.items(), reverse=True):
-            if len(pattern_infos) == 1:
-                # Single pattern for this mask - use if statement
-                pattern_info = pattern_infos[0]
+            total_encodings = sum(len(p['encodings']) for p in pattern_infos)
+            unique_patterns = len(pattern_infos)
+            code.append(f"    // Switch for mask 0x{mask:08X}u ({unique_patterns} pattern{'s' if unique_patterns > 1 else ''}, {total_encodings} encoding{'s' if total_encodings > 1 else ''})")
+            code.append(f"    switch (insn & 0x{mask:08X}u) {{")
+
+            for pattern_info in sorted(pattern_infos, key=lambda x: x['pattern']):
                 pattern = pattern_info['pattern']
                 encodings = pattern_info['encodings']
 
                 if len(encodings) == 1:
                     info = encodings[0]
-                    code.append(f"    // {info['encoding_name']}")
-                    code.append(f"    if ((insn & 0x{mask:08X}u) == 0x{pattern:08X}u) {{")
-                    code.extend(self._generate_operand_extraction(class_name, info))
-                    code.append(f"    }}")
+                    code.append(f"        case 0x{pattern:08X}u: {{ // {info['encoding_name']}")
+                    code.extend(['            ' + line for line in self._generate_operand_extraction(class_name, info, indent=3)])
+                    code.append(f"        }}")
                 else:
-                    # Multiple encodings with same pattern - return first, comment others
+                    # Multiple encodings with identical pattern - return first
                     primary = encodings[0]
-                    code.append(f"    // {primary['encoding_name']}")
+                    code.append(f"        case 0x{pattern:08X}u: {{ // {primary['encoding_name']}")
                     for alt in encodings[1:]:
-                        code.append(f"    // Also matches: {alt['encoding_name']} ({alt['mnemonic']})")
-                    code.append(f"    if ((insn & 0x{mask:08X}u) == 0x{pattern:08X}u) {{")
-                    code.extend(self._generate_operand_extraction(class_name, primary))
-                    code.append(f"    }}")
-                code.append("")
-            else:
-                # Multiple patterns for this mask - use switch statement
-                total_encodings = sum(len(p['encodings']) for p in pattern_infos)
-                unique_patterns = len(pattern_infos)
-                code.append(f"    // Optimized switch for mask 0x{mask:08X}u ({unique_patterns} unique patterns, {total_encodings} encodings)")
-                code.append(f"    switch (insn & 0x{mask:08X}u) {{")
+                        code.append(f"            // Also matches: {alt['encoding_name']} ({alt['mnemonic']})")
+                    code.extend(['            ' + line for line in self._generate_operand_extraction(class_name, primary, indent=3)])
+                    code.append(f"        }}")
 
-                for pattern_info in sorted(pattern_infos, key=lambda x: x['pattern']):
-                    pattern = pattern_info['pattern']
-                    encodings = pattern_info['encodings']
-
-                    if len(encodings) == 1:
-                        info = encodings[0]
-                        code.append(f"        case 0x{pattern:08X}u: {{ // {info['encoding_name']}")
-                        code.extend(['            ' + line for line in self._generate_operand_extraction(class_name, info, indent=3)])
-                        code.append(f"        }}")
-                    else:
-                        # Multiple encodings with identical pattern - return first
-                        primary = encodings[0]
-                        code.append(f"        case 0x{pattern:08X}u: {{ // {primary['encoding_name']}")
-                        for alt in encodings[1:]:
-                            code.append(f"            // Also matches: {alt['encoding_name']} ({alt['mnemonic']})")
-                        code.extend(['            ' + line for line in self._generate_operand_extraction(class_name, primary, indent=3)])
-                        code.append(f"        }}")
-
-                code.append("    }")
-                code.append("")
+            code.append("        default: break;")
+            code.append("    }")
+            code.append("")
 
         code.append("    // No matching encoding found")
         code.append("    return std::nullopt;")
@@ -2563,6 +2925,11 @@ class ARM64XMLParser:
         code.append("    $<INSTALL_INTERFACE:include>")
         code.append(")")
         code.append("")
+        code.append("# Link ntdll for NT syscalls on Windows")
+        code.append("if(WIN32)")
+        code.append("    target_link_libraries(veda64 PUBLIC ntdll)")
+        code.append("endif()")
+        code.append("")
         code.append("# Tools")
         code.append("add_executable(veda64-disasm tools/veda64-disasm.cpp)")
         code.append("target_link_libraries(veda64-disasm PRIVATE veda64)")
@@ -2606,6 +2973,11 @@ class ARM64XMLParser:
 
     def generate_test_suite(self, test_dir: Path):
         """Generate test files for each instruction class."""
+        # Clean up old test files (remove stale generated files)
+        for f in test_dir.iterdir():
+            if f.is_file() and f.suffix == '.cpp' and f.name.startswith('test_'):
+                f.unlink()
+
         # Group instructions by class
         by_class = {}
         for instr in self.instructions:
@@ -2626,6 +2998,7 @@ class ARM64XMLParser:
 
         code.append(f"// Test suite for {class_name} instruction class")
         code.append("#include \"veda64.hpp\"")
+        code.append(f"#include \"class/{class_name}.hpp\"")
         code.append("#include <cassert>")
         code.append("#include <iostream>")
         code.append("#include <iomanip>")
@@ -2748,13 +3121,13 @@ class ARM64XMLParser:
         code.append("    std::cerr << \"Disassemble one or more ARM64 instructions.\\n\";")
         code.append("    std::cerr << \"\\n\";")
         code.append("    std::cerr << \"Arguments:\\n\";")
-        code.append("    std::cerr << \"  instruction  32-bit value in little-endian memory order\\n\";")
+        code.append("    std::cerr << \"  instruction  32-bit native instruction value\\n\";")
         code.append("    std::cerr << \"               (hex: 0x..., binary: 0b..., or decimal)\\n\";")
         code.append("    std::cerr << \"\\n\";")
         code.append("    std::cerr << \"Examples:\\n\";")
-        code.append("    std::cerr << \"  \" << progname << \" 0x7f2303d5              # PACIBSP\\n\";")
-        code.append("    std::cerr << \"  \" << progname << \" 0xc0035fd6              # RET\\n\";")
-        code.append("    std::cerr << \"  \" << progname << \" 0x7f2303d5 0xc0035fd6   # Multiple instructions\\n\";")
+        code.append("    std::cerr << \"  \" << progname << \" 0xd503237f              # PACIBSP\\n\";")
+        code.append("    std::cerr << \"  \" << progname << \" 0xd65f03c0              # RET\\n\";")
+        code.append("    std::cerr << \"  \" << progname << \" 0xd503237f 0xd65f03c0   # Multiple instructions\\n\";")
         code.append("}")
         code.append("")
         code.append("int main(int argc, char* argv[]) {")
@@ -3032,7 +3405,6 @@ class ARM64XMLParser:
         code.append("#if defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT)")
         code.append("")
         code.append("#include <Windows.h>")
-        code.append("#include <winternl.h>")
         code.append("#include <vector>")
         code.append("#include <unordered_map>")
         code.append("#include <mutex>")
@@ -3041,7 +3413,7 @@ class ARM64XMLParser:
         code.append("#include <cstdio>")
         code.append("")
         code.append("// ============================================================================")
-        code.append("// NT API Definitions")
+        code.append("// NT API Definitions (minimal, avoiding winternl.h conflicts)")
         code.append("// ============================================================================")
         code.append("")
         code.append("// NT status codes")
@@ -3054,50 +3426,41 @@ class ARM64XMLParser:
         code.append("#endif")
         code.append("")
         code.append("// Pseudo handles")
+        code.append("#ifndef NtCurrentProcess")
         code.append("#define NtCurrentProcess() ((HANDLE)(LONG_PTR)-1)")
+        code.append("#endif")
+        code.append("#ifndef NtCurrentThread")
         code.append("#define NtCurrentThread() ((HANDLE)(LONG_PTR)-2)")
-        code.append("")
-        code.append("// System information classes")
-        code.append("typedef enum _SYSTEM_INFORMATION_CLASS_EX {")
-        code.append("    SystemBasicInformationEx = 0,")
-        code.append("    SystemProcessInformationEx = 5,")
-        code.append("} SYSTEM_INFORMATION_CLASS_EX;")
-        code.append("")
-        code.append("// Client ID structure (if not defined)")
-        code.append("#ifndef _CLIENT_ID_DEFINED")
-        code.append("#define _CLIENT_ID_DEFINED")
-        code.append("typedef struct _CLIENT_ID {")
-        code.append("    HANDLE UniqueProcess;")
-        code.append("    HANDLE UniqueThread;")
-        code.append("} CLIENT_ID, *PCLIENT_ID;")
         code.append("#endif")
         code.append("")
-        code.append("// Object attributes (if not defined)")
-        code.append("#ifndef _OBJECT_ATTRIBUTES_DEFINED")
-        code.append("#define _OBJECT_ATTRIBUTES_DEFINED")
-        code.append("typedef struct _OBJECT_ATTRIBUTES {")
+        code.append("// Local type definitions to avoid SDK conflicts")
+        code.append("namespace veda64_nt {")
+        code.append("")
+        code.append("// Unicode string structure")
+        code.append("struct UNICODE_STRING {")
+        code.append("    USHORT Length;")
+        code.append("    USHORT MaximumLength;")
+        code.append("    PWSTR Buffer;")
+        code.append("};")
+        code.append("")
+        code.append("// Client ID structure")
+        code.append("struct CLIENT_ID {")
+        code.append("    HANDLE UniqueProcess;")
+        code.append("    HANDLE UniqueThread;")
+        code.append("};")
+        code.append("")
+        code.append("// Object attributes")
+        code.append("struct OBJECT_ATTRIBUTES {")
         code.append("    ULONG Length;")
         code.append("    HANDLE RootDirectory;")
-        code.append("    PUNICODE_STRING ObjectName;")
+        code.append("    void* ObjectName;  // PUNICODE_STRING")
         code.append("    ULONG Attributes;")
         code.append("    PVOID SecurityDescriptor;")
         code.append("    PVOID SecurityQualityOfService;")
-        code.append("} OBJECT_ATTRIBUTES, *POBJECT_ATTRIBUTES;")
-        code.append("#endif")
-        code.append("")
-        code.append("#ifndef InitializeObjectAttributes")
-        code.append("#define InitializeObjectAttributes(p, n, a, r, s) { \\")
-        code.append("    (p)->Length = sizeof(OBJECT_ATTRIBUTES); \\")
-        code.append("    (p)->RootDirectory = r; \\")
-        code.append("    (p)->Attributes = a; \\")
-        code.append("    (p)->ObjectName = n; \\")
-        code.append("    (p)->SecurityDescriptor = s; \\")
-        code.append("    (p)->SecurityQualityOfService = NULL; \\")
-        code.append("}")
-        code.append("#endif")
+        code.append("};")
         code.append("")
         code.append("// System basic information")
-        code.append("typedef struct _SYSTEM_BASIC_INFORMATION {")
+        code.append("struct SYSTEM_BASIC_INFORMATION {")
         code.append("    ULONG Reserved;")
         code.append("    ULONG TimerResolution;")
         code.append("    ULONG PageSize;")
@@ -3108,11 +3471,11 @@ class ARM64XMLParser:
         code.append("    ULONG_PTR MinimumUserModeAddress;")
         code.append("    ULONG_PTR MaximumUserModeAddress;")
         code.append("    ULONG_PTR ActiveProcessorsAffinityMask;")
-        code.append("    CCHAR NumberOfProcessors;")
-        code.append("} SYSTEM_BASIC_INFORMATION, *PSYSTEM_BASIC_INFORMATION;")
+        code.append("    ULONG NumberOfProcessors;")
+        code.append("};")
         code.append("")
         code.append("// System thread information (within process info)")
-        code.append("typedef struct _SYSTEM_THREAD_INFORMATION_EX {")
+        code.append("struct SYSTEM_THREAD_INFORMATION {")
         code.append("    LARGE_INTEGER KernelTime;")
         code.append("    LARGE_INTEGER UserTime;")
         code.append("    LARGE_INTEGER CreateTime;")
@@ -3124,10 +3487,10 @@ class ARM64XMLParser:
         code.append("    ULONG ContextSwitches;")
         code.append("    ULONG ThreadState;")
         code.append("    ULONG WaitReason;")
-        code.append("} SYSTEM_THREAD_INFORMATION_EX, *PSYSTEM_THREAD_INFORMATION_EX;")
+        code.append("};")
         code.append("")
         code.append("// System process information")
-        code.append("typedef struct _SYSTEM_PROCESS_INFORMATION_EX {")
+        code.append("struct SYSTEM_PROCESS_INFORMATION {")
         code.append("    ULONG NextEntryOffset;")
         code.append("    ULONG NumberOfThreads;")
         code.append("    LARGE_INTEGER WorkingSetPrivateSize;")
@@ -3162,8 +3525,14 @@ class ARM64XMLParser:
         code.append("    LARGE_INTEGER ReadTransferCount;")
         code.append("    LARGE_INTEGER WriteTransferCount;")
         code.append("    LARGE_INTEGER OtherTransferCount;")
-        code.append("    SYSTEM_THREAD_INFORMATION_EX Threads[1];")
-        code.append("} SYSTEM_PROCESS_INFORMATION_EX, *PSYSTEM_PROCESS_INFORMATION_EX;")
+        code.append("    SYSTEM_THREAD_INFORMATION Threads[1];")
+        code.append("};")
+        code.append("")
+        code.append("// System information class values")
+        code.append("constexpr ULONG SystemBasicInformation = 0;")
+        code.append("constexpr ULONG SystemProcessInformation = 5;")
+        code.append("")
+        code.append("} // namespace veda64_nt")
         code.append("")
         code.append("// ============================================================================")
         code.append("// NT API Static Imports (linked against ntdll.lib)")
@@ -3202,7 +3571,7 @@ class ARM64XMLParser:
         code.append(");")
         code.append("")
         code.append("NTSYSAPI NTSTATUS NTAPI NtQuerySystemInformation(")
-        code.append("    SYSTEM_INFORMATION_CLASS_EX SystemInformationClass,")
+        code.append("    ULONG SystemInformationClass,")
         code.append("    PVOID SystemInformation,")
         code.append("    ULONG SystemInformationLength,")
         code.append("    PULONG ReturnLength")
@@ -3211,8 +3580,8 @@ class ARM64XMLParser:
         code.append("NTSYSAPI NTSTATUS NTAPI NtOpenThread(")
         code.append("    PHANDLE ThreadHandle,")
         code.append("    ACCESS_MASK DesiredAccess,")
-        code.append("    POBJECT_ATTRIBUTES ObjectAttributes,")
-        code.append("    PCLIENT_ID ClientId")
+        code.append("    veda64_nt::OBJECT_ATTRIBUTES* ObjectAttributes,")
+        code.append("    veda64_nt::CLIENT_ID* ClientId")
         code.append(");")
         code.append("")
         code.append("NTSYSAPI NTSTATUS NTAPI NtSuspendThread(")
@@ -3239,27 +3608,22 @@ class ARM64XMLParser:
         code.append("    static bool initialized = false;")
         code.append("    if (initialized) return;")
         code.append("")
-        code.append("    SYSTEM_BASIC_INFORMATION sbi = {};")
+        code.append("    veda64_nt::SYSTEM_BASIC_INFORMATION sbi = {};")
         code.append("    ULONG len = 0;")
-        code.append("    if (NtQuerySystemInformation(SystemBasicInformationEx, &sbi, sizeof(sbi), &len) == STATUS_SUCCESS) {")
+        code.append("    if (NtQuerySystemInformation(veda64_nt::SystemBasicInformation, &sbi, sizeof(sbi), &len) == STATUS_SUCCESS) {")
         code.append("        g_AllocationGranularity = sbi.AllocationGranularity;")
         code.append("    }")
         code.append("    initialized = true;")
         code.append("}")
         code.append("")
-        code.append("// Get current thread ID using TEB (ARM64 only)")
+        code.append("// Get current thread ID using TEB (ARM64: x18 register)")
         code.append("static DWORD nt_get_current_thread_id() {")
-        code.append("    // ARM64: TEB pointer is in x18 register")
-        code.append("    // x18 points directly to TEB, and ClientId is at offset 0x48")
-        code.append("    PTEB teb = reinterpret_cast<PTEB>(__getReg(18));")
-        code.append("    return HandleToULong(teb->ClientId.UniqueThread);")
+        code.append("    return GetCurrentThreadId();  // Fallback to Win32 for compatibility")
         code.append("}")
         code.append("")
-        code.append("// Get current process ID using TEB (ARM64 only)")
+        code.append("// Get current process ID using TEB")
         code.append("static DWORD nt_get_current_process_id() {")
-        code.append("    // ARM64: TEB pointer is in x18 register")
-        code.append("    PTEB teb = reinterpret_cast<PTEB>(__getReg(18));")
-        code.append("    return HandleToULong(teb->ClientId.UniqueProcess);")
+        code.append("    return GetCurrentProcessId();  // Fallback to Win32 for compatibility")
         code.append("}")
         code.append("")
         code.append("namespace veda64 {")
@@ -3496,7 +3860,7 @@ class ARM64XMLParser:
         code.append("")
         code.append("    NTSTATUS status;")
         code.append("    while ((status = NtQuerySystemInformation(")
-        code.append("        SystemProcessInformationEx,")
+        code.append("        veda64_nt::SystemProcessInformation,")
         code.append("        buffer.data(),")
         code.append("        static_cast<ULONG>(buffer.size()),")
         code.append("        &return_length)) == STATUS_INFO_LENGTH_MISMATCH) {")
@@ -3508,7 +3872,7 @@ class ARM64XMLParser:
         code.append("    }")
         code.append("")
         code.append("    // Find our process and enumerate its threads")
-        code.append("    PSYSTEM_PROCESS_INFORMATION_EX proc_info = reinterpret_cast<PSYSTEM_PROCESS_INFORMATION_EX>(buffer.data());")
+        code.append("    auto* proc_info = reinterpret_cast<veda64_nt::SYSTEM_PROCESS_INFORMATION*>(buffer.data());")
         code.append("    while (true) {")
         code.append("        if (HandleToULong(proc_info->UniqueProcessId) == pid) {")
         code.append("            // Found our process, enumerate threads")
@@ -3517,11 +3881,10 @@ class ARM64XMLParser:
         code.append("                if (tid != current_tid) {")
         code.append("                    // Open and suspend this thread")
         code.append("                    HANDLE thread_handle = nullptr;")
-        code.append("                    OBJECT_ATTRIBUTES obj_attr;")
-        code.append("                    CLIENT_ID client_id;")
-        code.append("                    client_id.UniqueProcess = nullptr;")
+        code.append("                    veda64_nt::OBJECT_ATTRIBUTES obj_attr = {};")
+        code.append("                    obj_attr.Length = sizeof(obj_attr);")
+        code.append("                    veda64_nt::CLIENT_ID client_id = {};")
         code.append("                    client_id.UniqueThread = ULongToHandle(tid);")
-        code.append("                    InitializeObjectAttributes(&obj_attr, nullptr, 0, nullptr, nullptr);")
         code.append("")
         code.append("                    if (NtOpenThread(&thread_handle, THREAD_SUSPEND_RESUME, &obj_attr, &client_id) == STATUS_SUCCESS) {")
         code.append("                        NtSuspendThread(thread_handle, nullptr);")
@@ -3533,7 +3896,7 @@ class ARM64XMLParser:
         code.append("        }")
         code.append("")
         code.append("        if (proc_info->NextEntryOffset == 0) break;")
-        code.append("        proc_info = reinterpret_cast<PSYSTEM_PROCESS_INFORMATION_EX>(")
+        code.append("        proc_info = reinterpret_cast<veda64_nt::SYSTEM_PROCESS_INFORMATION*>(")
         code.append("            reinterpret_cast<BYTE*>(proc_info) + proc_info->NextEntryOffset);")
         code.append("    }")
         code.append("}")
@@ -3549,7 +3912,7 @@ class ARM64XMLParser:
         code.append("")
         code.append("    NTSTATUS status;")
         code.append("    while ((status = NtQuerySystemInformation(")
-        code.append("        SystemProcessInformationEx,")
+        code.append("        veda64_nt::SystemProcessInformation,")
         code.append("        buffer.data(),")
         code.append("        static_cast<ULONG>(buffer.size()),")
         code.append("        &return_length)) == STATUS_INFO_LENGTH_MISMATCH) {")
@@ -3561,7 +3924,7 @@ class ARM64XMLParser:
         code.append("    }")
         code.append("")
         code.append("    // Find our process and enumerate its threads")
-        code.append("    PSYSTEM_PROCESS_INFORMATION_EX proc_info = reinterpret_cast<PSYSTEM_PROCESS_INFORMATION_EX>(buffer.data());")
+        code.append("    auto* proc_info = reinterpret_cast<veda64_nt::SYSTEM_PROCESS_INFORMATION*>(buffer.data());")
         code.append("    while (true) {")
         code.append("        if (HandleToULong(proc_info->UniqueProcessId) == pid) {")
         code.append("            // Found our process, enumerate threads")
@@ -3570,11 +3933,10 @@ class ARM64XMLParser:
         code.append("                if (tid != current_tid) {")
         code.append("                    // Open and resume this thread")
         code.append("                    HANDLE thread_handle = nullptr;")
-        code.append("                    OBJECT_ATTRIBUTES obj_attr;")
-        code.append("                    CLIENT_ID client_id;")
-        code.append("                    client_id.UniqueProcess = nullptr;")
+        code.append("                    veda64_nt::OBJECT_ATTRIBUTES obj_attr = {};")
+        code.append("                    obj_attr.Length = sizeof(obj_attr);")
+        code.append("                    veda64_nt::CLIENT_ID client_id = {};")
         code.append("                    client_id.UniqueThread = ULongToHandle(tid);")
-        code.append("                    InitializeObjectAttributes(&obj_attr, nullptr, 0, nullptr, nullptr);")
         code.append("")
         code.append("                    if (NtOpenThread(&thread_handle, THREAD_SUSPEND_RESUME, &obj_attr, &client_id) == STATUS_SUCCESS) {")
         code.append("                        NtResumeThread(thread_handle, nullptr);")
@@ -3586,7 +3948,7 @@ class ARM64XMLParser:
         code.append("        }")
         code.append("")
         code.append("        if (proc_info->NextEntryOffset == 0) break;")
-        code.append("        proc_info = reinterpret_cast<PSYSTEM_PROCESS_INFORMATION_EX>(")
+        code.append("        proc_info = reinterpret_cast<veda64_nt::SYSTEM_PROCESS_INFORMATION*>(")
         code.append("            reinterpret_cast<BYTE*>(proc_info) + proc_info->NextEntryOffset);")
         code.append("    }")
         code.append("}")
@@ -4395,29 +4757,31 @@ class ARM64XMLParser:
         code.append("")
 
         # Reference test cases - validated against actual ARM64 instruction encodings
-        # Format: (little-endian hex, expected full disassembly)
+        # Format: (native uint32_t hex value, expected full disassembly)
+        # Native value = byte-swap of the little-endian memory representation
+        # e.g., memory bytes {0xd5, 0x03, 0x23, 0x7f} -> native 0xd503237f (PACIBSP)
         # Note: Using alias forms where applicable (MOV for ADD #0, MOVZ with shift=0, MOVN)
         # Register names: fp=X29, lr=X30, sp=SP, wzr=WZR
         # All immediate values are in hexadecimal
         test_cases = [
-            ("0x7f2303d5", "pacibsp"),                     # HINT #27 (CRm=3, op2=3)
-            ("0xfd7bbea9", "stp fp, lr, [sp, #-0x20]!"),   # -32 = -0x20
-            ("0xfd030091", "mov fp, sp"),                  # alias: ADD with imm=0
-            ("0xbf430039", "strb wzr, [fp, #0x10]"),       # 16 = 0x10
-            ("0x040080d2", "mov x4, #0x0"),               # alias: MOVZ with no shift
-            ("0x23008052", "mov w3, #0x1"),               # alias: MOVZ 32-bit
-            ("0xa2430091", "add x2, fp, #0x10"),
-            ("0x21028052", "mov w1, #0x11"),              # alias: MOVZ 32-bit
-            ("0x20008092", "mvn x0, #0x1"),               # alias: MOVN
-            ("0xa394fa97", "bl .-0x15ad74"),               # -1420660 = -0x15ad74
-            ("0xa000f837", "tbnz w0, #0x1f, .+0x14"),      # 20 = 0x14
-            ("0xa8434039", "ldrb w8, [fp, #0x10]"),
-            ("0x68000035", "cbnz w8, .+0xc"),              # 12 = 0xc
-            ("0x00003ed4", "brk #0xf000"),
-            ("0x01000014", "b .+0x4"),
-            ("0xfd7bc2a8", "ldp fp, lr, [sp], #0x20"),     # 32 = 0x20
-            ("0xff2303d5", "autibsp"),                     # HINT #31
-            ("0xc0035fd6", "ret"),
+            ("0xd503237f", "pacibsp"),                     # HINT #27 (CRm=3, op2=3)
+            ("0xa9be7bfd", "stp fp, lr, [sp, #-0x20]!"),   # -32 = -0x20
+            ("0x910003fd", "mov fp, sp"),                  # alias: ADD with imm=0
+            ("0x390043bf", "strb wzr, [fp, #0x10]"),       # 16 = 0x10
+            ("0xd2800004", "mov x4, #0x0"),               # alias: MOVZ with no shift
+            ("0x52800023", "mov w3, #0x1"),               # alias: MOVZ 32-bit
+            ("0x910043a2", "add x2, fp, #0x10"),
+            ("0x52800221", "mov w1, #0x11"),              # alias: MOVZ 32-bit
+            ("0x92800020", "mvn x0, #0x1"),               # alias: MOVN
+            ("0x97fa94a3", "bl .-0x15ad74"),               # -1420660 = -0x15ad74
+            ("0x37f800a0", "tbnz w0, #0x1f, .+0x14"),      # b5=0, b40=31, imm14=5 (5*4=20=0x14)
+            ("0x394043a8", "ldrb w8, [fp, #0x10]"),
+            ("0x35000068", "cbnz w8, .+0xc"),              # 12 = 0xc
+            ("0xd43e0000", "brk #0xf000"),
+            ("0x14000001", "b .+0x4"),
+            ("0xa8c27bfd", "ldp fp, lr, [sp], #0x20"),     # 32 = 0x20
+            ("0xd50323ff", "autibsp"),                     # HINT #31
+            ("0xd65f03c0", "ret"),
         ]
 
         for insn_hex, expected in test_cases:
@@ -4438,6 +4802,578 @@ class ARM64XMLParser:
         code.append("")
 
         output_file = test_dir / "test_reference.cpp"
+        self._write_file(output_file, code)
+        print(f"Generated {output_file.name}")
+
+    def generate_hook_test(self, test_dir: Path):
+        """Generate test_hook.cpp for the hooking subsystem."""
+        code = []
+
+        code.append("// Hook library tests - validates hooking subsystem functionality")
+        code.append("// Auto-generated by parse_arm64_xml.py")
+        code.append("// Cross-platform tests run on any Windows target (x64 or ARM64)")
+        code.append("// Live hook tests only run on ARM64")
+        code.append("#include \"veda64.hpp\"")
+        code.append("")
+        code.append("#if defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT)")
+        code.append("")
+        code.append("#include \"hook.hpp\"")
+        code.append("#include <cassert>")
+        code.append("#include <cstdint>")
+        code.append("#include <cstring>")
+        code.append("#include <iostream>")
+        code.append("")
+        code.append("using namespace veda64;")
+        code.append("")
+
+        # ---- Test 1: Initialization lifecycle ----
+        code.append("void test_initialization_lifecycle() {")
+        code.append("    std::cout << \"  test_initialization_lifecycle...\" << std::endl;")
+        code.append("")
+        code.append("    // Should not be initialized yet")
+        code.append("    Hook::shutdown(); // clean slate")
+        code.append("    assert(!Hook::is_initialized());")
+        code.append("")
+        code.append("    // Initialize")
+        code.append("    auto status = Hook::initialize();")
+        code.append("    assert(status == Hook::HookStatus::Success);")
+        code.append("    assert(Hook::is_initialized());")
+        code.append("")
+        code.append("    // Double-init is idempotent")
+        code.append("    status = Hook::initialize();")
+        code.append("    assert(status == Hook::HookStatus::Success);")
+        code.append("    assert(Hook::is_initialized());")
+        code.append("")
+        code.append("    // Shutdown")
+        code.append("    Hook::shutdown();")
+        code.append("    assert(!Hook::is_initialized());")
+        code.append("")
+        code.append("    // Double-shutdown is safe")
+        code.append("    Hook::shutdown();")
+        code.append("    assert(!Hook::is_initialized());")
+        code.append("}")
+        code.append("")
+
+        # ---- Test 2: Configuration round-trip ----
+        code.append("void test_configuration() {")
+        code.append("    std::cout << \"  test_configuration...\" << std::endl;")
+        code.append("")
+        code.append("    Hook::initialize();")
+        code.append("")
+        code.append("    Hook::HookConfig cfg;")
+        code.append("    cfg.min_hook_size = 32;")
+        code.append("    cfg.max_relocated_insns = 64;")
+        code.append("    cfg.thread_safe = false;")
+        code.append("    cfg.preserve_flags = false;")
+        code.append("    cfg.allow_chain = true;")
+        code.append("    Hook::set_config(cfg);")
+        code.append("")
+        code.append("    auto got = Hook::get_config();")
+        code.append("    assert(got.min_hook_size == 32);")
+        code.append("    assert(got.max_relocated_insns == 64);")
+        code.append("    assert(got.thread_safe == false);")
+        code.append("    assert(got.preserve_flags == false);")
+        code.append("    assert(got.allow_chain == true);")
+        code.append("")
+        code.append("    Hook::shutdown();")
+        code.append("}")
+        code.append("")
+
+        # ---- Test 3: Status strings ----
+        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("void test_status_strings() {")
+        code.append("    std::cout << \"  test_status_strings...\" << std::endl;")
+        code.append("")
+        code.append("    assert(Hook::status_to_string(Hook::HookStatus::Success) != nullptr);")
+        code.append("    assert(Hook::status_to_string(Hook::HookStatus::NotInitialized) != nullptr);")
+        code.append("    assert(Hook::status_to_string(Hook::HookStatus::InvalidTarget) != nullptr);")
+        code.append("    assert(Hook::status_to_string(Hook::HookStatus::InvalidDetour) != nullptr);")
+        code.append("    assert(Hook::status_to_string(Hook::HookStatus::AllocationFailed) != nullptr);")
+        code.append("    assert(Hook::status_to_string(Hook::HookStatus::ProtectionFailed) != nullptr);")
+        code.append("    assert(Hook::status_to_string(Hook::HookStatus::DisassemblyFailed) != nullptr);")
+        code.append("    assert(Hook::status_to_string(Hook::HookStatus::RelocationFailed) != nullptr);")
+        code.append("    assert(Hook::status_to_string(Hook::HookStatus::InstructionTooComplex) != nullptr);")
+        code.append("    assert(Hook::status_to_string(Hook::HookStatus::HookAlreadyInstalled) != nullptr);")
+        code.append("    assert(Hook::status_to_string(Hook::HookStatus::HookNotFound) != nullptr);")
+        code.append("    assert(Hook::status_to_string(Hook::HookStatus::HookDisabled) != nullptr);")
+        code.append("    assert(Hook::status_to_string(Hook::HookStatus::InternalError) != nullptr);")
+        code.append("")
+        code.append("    // Verify specific strings are not empty")
+        code.append("    assert(strlen(Hook::status_to_string(Hook::HookStatus::Success)) > 0);")
+        code.append("    assert(strlen(Hook::status_to_string(Hook::HookStatus::InternalError)) > 0);")
+        code.append("}")
+        code.append("#endif")
+        code.append("")
+
+        # ---- Test 4: Error handling ----
+        code.append("void test_error_handling() {")
+        code.append("    std::cout << \"  test_error_handling...\" << std::endl;")
+        code.append("")
+        code.append("    // Ensure not initialized")
+        code.append("    Hook::shutdown();")
+        code.append("")
+        code.append("    // install before initialize should fail")
+        code.append("    Hook::HookStatus status;")
+        code.append("    int dummy_target = 0;")
+        code.append("    int dummy_detour = 0;")
+        code.append("    void* original = nullptr;")
+        code.append("    auto handle = Hook::install_ex(&dummy_target, &dummy_detour, &original, &status);")
+        code.append("    assert(handle == nullptr);")
+        code.append("    assert(status == Hook::HookStatus::NotInitialized);")
+        code.append("")
+        code.append("    // Initialize for remaining tests")
+        code.append("    Hook::initialize();")
+        code.append("")
+        code.append("    // null target should fail")
+        code.append("    handle = Hook::install_ex(nullptr, &dummy_detour, &original, &status);")
+        code.append("    assert(handle == nullptr);")
+        code.append("    assert(status == Hook::HookStatus::InvalidTarget);")
+        code.append("")
+        code.append("    // null detour should fail")
+        code.append("    handle = Hook::install_ex(&dummy_target, nullptr, &original, &status);")
+        code.append("    assert(handle == nullptr);")
+        code.append("    assert(status == Hook::HookStatus::InvalidDetour);")
+        code.append("")
+        code.append("    Hook::shutdown();")
+        code.append("}")
+        code.append("")
+
+        # ---- Test 5: Jump generation ----
+        code.append("void test_generate_jump() {")
+        code.append("    std::cout << \"  test_generate_jump...\" << std::endl;")
+        code.append("")
+        code.append("    uint8_t buffer[16] = {};")
+        code.append("    void* target = reinterpret_cast<void*>(static_cast<uintptr_t>(0xDEADBEEFCAFE0000ULL));")
+        code.append("    size_t written = Hook::Detail::generate_jump(buffer, target);")
+        code.append("    (void)written;")
+        code.append("")
+        code.append("    assert(written == 16);")
+        code.append("")
+        code.append("    // First instruction: LDR X16, [PC+8] = 0x58000050")
+        code.append("    uint32_t insn0;")
+        code.append("    memcpy(&insn0, &buffer[0], 4);")
+        code.append("    assert(insn0 == 0x58000050);")
+        code.append("")
+        code.append("    // Second instruction: BR X16 = 0xD61F0200")
+        code.append("    uint32_t insn1;")
+        code.append("    memcpy(&insn1, &buffer[4], 4);")
+        code.append("    assert(insn1 == 0xD61F0200);")
+        code.append("")
+        code.append("    // Remaining 8 bytes: target address")
+        code.append("    uint64_t addr;")
+        code.append("    memcpy(&addr, &buffer[8], 8);")
+        code.append("    assert(addr == reinterpret_cast<uint64_t>(target));")
+        code.append("}")
+        code.append("")
+
+        # ---- Test 6: Call generation ----
+        code.append("void test_generate_call() {")
+        code.append("    std::cout << \"  test_generate_call...\" << std::endl;")
+        code.append("")
+        code.append("    uint8_t buffer[16] = {};")
+        code.append("    void* target = reinterpret_cast<void*>(static_cast<uintptr_t>(0x1234567890ABCDEFULL));")
+        code.append("    size_t written = Hook::Detail::generate_call(buffer, target);")
+        code.append("    (void)written;")
+        code.append("")
+        code.append("    assert(written == 16);")
+        code.append("")
+        code.append("    // First instruction: LDR X16, [PC+8] = 0x58000050")
+        code.append("    uint32_t insn0;")
+        code.append("    memcpy(&insn0, &buffer[0], 4);")
+        code.append("    assert(insn0 == 0x58000050);")
+        code.append("")
+        code.append("    // Second instruction: BLR X16 = 0xD63F0200")
+        code.append("    uint32_t insn1;")
+        code.append("    memcpy(&insn1, &buffer[4], 4);")
+        code.append("    assert(insn1 == 0xD63F0200);")
+        code.append("")
+        code.append("    // Remaining 8 bytes: target address")
+        code.append("    uint64_t addr;")
+        code.append("    memcpy(&addr, &buffer[8], 8);")
+        code.append("    assert(addr == reinterpret_cast<uint64_t>(target));")
+        code.append("}")
+        code.append("")
+
+        # ---- Test 7: PC-relative detection ----
+        code.append("void test_is_pc_relative() {")
+        code.append("    std::cout << \"  test_is_pc_relative...\" << std::endl;")
+        code.append("")
+        code.append("    // PC-relative instructions should return true")
+        code.append("    assert(Hook::Detail::is_pc_relative(0x14000001));  // B .+4")
+        code.append("    assert(Hook::Detail::is_pc_relative(0x97fa94a3));  // BL offset")
+        code.append("    assert(Hook::Detail::is_pc_relative(0x54000040));  // B.EQ .+8")
+        code.append("    assert(Hook::Detail::is_pc_relative(0x34000060));  // CBZ W0, .+0xC")
+        code.append("    assert(Hook::Detail::is_pc_relative(0x35000068));  // CBNZ W8, .+0xC")
+        code.append("    assert(Hook::Detail::is_pc_relative(0x36080040));  // TBZ W0, #1, .+8")
+        code.append("    assert(Hook::Detail::is_pc_relative(0x37f800a0));  // TBNZ W0, #31, .+0x14")
+        code.append("    assert(Hook::Detail::is_pc_relative(0x10000020));  // ADR X0, .+4")
+        code.append("    assert(Hook::Detail::is_pc_relative(0x90000000));  // ADRP X0, current page")
+        code.append("")
+        code.append("    // Non-PC-relative instructions should return false")
+        code.append("    assert(!Hook::Detail::is_pc_relative(0x8b020020));  // ADD X0, X1, X2")
+        code.append("    assert(!Hook::Detail::is_pc_relative(0x910003fd));  // MOV FP, SP")
+        code.append("    assert(!Hook::Detail::is_pc_relative(0xd503201f));  // NOP")
+        code.append("    assert(!Hook::Detail::is_pc_relative(0xd65f03c0));  // RET")
+        code.append("}")
+        code.append("")
+
+        # ---- Test 8: Relocation capability ----
+        code.append("void test_can_relocate() {")
+        code.append("    std::cout << \"  test_can_relocate...\" << std::endl;")
+        code.append("")
+        code.append("    // Relocatable instructions")
+        code.append("    assert(Hook::Detail::can_relocate(0x14000001));  // B .+4")
+        code.append("    assert(Hook::Detail::can_relocate(0x8b020020));  // ADD X0, X1, X2")
+        code.append("    assert(Hook::Detail::can_relocate(0xd503201f));  // NOP")
+        code.append("")
+        code.append("    // Non-relocatable instructions")
+        code.append("    assert(!Hook::Detail::can_relocate(0xd65f03c0));  // RET")
+        code.append("}")
+        code.append("")
+
+        # ---- Test 9: Instruction relocation ----
+        code.append("void test_relocate_instruction() {")
+        code.append("    std::cout << \"  test_relocate_instruction...\" << std::endl;")
+        code.append("")
+        code.append("    uint32_t out_insn[4];")
+        code.append("    size_t out_count;")
+        code.append("    bool ok;")
+        code.append("")
+
+        # 9a: Non-PC-relative (ADD) copied unchanged
+        code.append("    // Non-PC-relative (ADD) should be copied unchanged")
+        code.append("    ok = Hook::Detail::relocate_instruction(0x8b020020, 0x1000, 0x2000, out_insn, &out_count);")
+        code.append("    assert(ok);")
+        code.append("    assert(out_count == 1);")
+        code.append("    assert(out_insn[0] == 0x8b020020);")
+        code.append("")
+
+        # 9b: B instruction relocation
+        # B .+4 (0x14000001): imm26=1, offset=4, target=old_pc+4
+        # old_pc=0x1000, target=0x1004
+        # new_pc=0x2000, new_offset=0x1004-0x2000=-0xFFC, new_imm26=-0xFFC/4=-0x3FF=0x03FFFC01
+        code.append("    // B .+4 relocated from 0x1000 to 0x2000")
+        code.append("    // target=0x1004, new_offset=0x1004-0x2000=-0xFFC")
+        code.append("    ok = Hook::Detail::relocate_instruction(0x14000001, 0x1000, 0x2000, out_insn, &out_count);")
+        code.append("    assert(ok);")
+        code.append("    assert(out_count == 1);")
+        code.append("    // new_imm26 = (-0xFFC / 4) & 0x03FFFFFF = 0x03FFFC01")
+        code.append("    assert(out_insn[0] == (0x14000000 | 0x03FFFC01));")
+        code.append("")
+
+        # 9c: B.cond relocation
+        # B.EQ .+8 (0x54000040): cond=0, imm19=2, offset=8, target=old_pc+8
+        # old_pc=0x1000, target=0x1008
+        # new_pc=0x3000, new_offset=0x1008-0x3000=-0x1FF8, new_imm19=-0x1FF8/4=-0x7FE
+        code.append("    // B.EQ .+8 relocated from 0x1000 to 0x3000")
+        code.append("    // target=0x1008, new_offset=0x1008-0x3000=-0x1FF8")
+        code.append("    ok = Hook::Detail::relocate_instruction(0x54000040, 0x1000, 0x3000, out_insn, &out_count);")
+        code.append("    assert(ok);")
+        code.append("    assert(out_count == 1);")
+        code.append("    // new_imm19 = (-0x1FF8 / 4) & 0x7FFFF = 0x7F802")
+        code.append("    // encoding: (insn & 0xFF00001F) | (new_imm19 << 5)")
+        code.append("    assert(out_insn[0] == (0x54000000 | (0x7F802u << 5)));")
+        code.append("")
+
+        # 9d: CBZ relocation
+        # CBZ W0, .+0xC (0x34000060): Rt=0, imm19=3, offset=0xC, target=old_pc+0xC
+        # old_pc=0x1000, target=0x100C
+        # new_pc=0x2000, new_offset=0x100C-0x2000=-0xFF4, new_imm19=-0xFF4/4=-0x3FD
+        code.append("    // CBZ W0, .+0xC relocated from 0x1000 to 0x2000")
+        code.append("    // target=0x100C, new_offset=0x100C-0x2000=-0xFF4")
+        code.append("    ok = Hook::Detail::relocate_instruction(0x34000060, 0x1000, 0x2000, out_insn, &out_count);")
+        code.append("    assert(ok);")
+        code.append("    assert(out_count == 1);")
+        code.append("    // new_imm19 = (-0xFF4 / 4) & 0x7FFFF = 0x7FC03")
+        code.append("    // encoding: (insn & 0xFF00001F) | (new_imm19 << 5)")
+        code.append("    assert(out_insn[0] == (0x34000000 | (0x7FC03u << 5)));")
+        code.append("")
+
+        # 9e: TBZ relocation
+        # TBZ W0, #1, .+8 (0x36080040): b5=0, b40=1, Rt=0, imm14=2, offset=8
+        # old_pc=0x1000, target=0x1008
+        # new_pc=0x2000, new_offset=0x1008-0x2000=-0xFF8, new_imm14=-0xFF8/4=-0x3FE
+        code.append("    // TBZ W0, #1, .+8 relocated from 0x1000 to 0x2000")
+        code.append("    // target=0x1008, new_offset=0x1008-0x2000=-0xFF8")
+        code.append("    ok = Hook::Detail::relocate_instruction(0x36080040, 0x1000, 0x2000, out_insn, &out_count);")
+        code.append("    assert(ok);")
+        code.append("    assert(out_count == 1);")
+        code.append("    // new_imm14 = (-0xFF8 / 4) & 0x3FFF = 0x3C02")
+        code.append("    // encoding: (insn & 0xFFF8001F) | (new_imm14 << 5)")
+        code.append("    assert(out_insn[0] == (0x36080000 | (0x3C02u << 5)));")
+        code.append("")
+
+        # 9f: ADR relocation
+        # ADR X0, .+4 (0x10000020): Rd=0, immhi=0, immlo=1 -> imm21=0b10=2? No.
+        # Actually: ADR encoding: immlo = bits[30:29], immhi = bits[23:5]
+        # 0x10000020 = 0001_0000_0000_0000_0000_0000_0010_0000
+        # op=0 (ADR), immlo=bits[30:29]=00, immhi=bits[23:5]=0x00001, Rd=bits[4:0]=0x00
+        # imm21 = (immhi << 2) | immlo = (1 << 2) | 0 = 4
+        # target = old_pc + 4
+        code.append("    // ADR X0, .+4 relocated from 0x1000 to 0x5000")
+        code.append("    // target=0x1004, new_offset=0x1004-0x5000=-0x3FFC")
+        code.append("    ok = Hook::Detail::relocate_instruction(0x10000020, 0x1000, 0x5000, out_insn, &out_count);")
+        code.append("    assert(ok);")
+        code.append("    assert(out_count == 1);")
+        code.append("    // new_imm21 = -0x3FFC & 0x1FFFFF = 0x1C0004")
+        code.append("    // new_immlo = 0x1C0004 & 0x3 = 0")
+        code.append("    // new_immhi = (0x1C0004 >> 2) & 0x7FFFF = 0x70001")
+        code.append("    // encoding: (insn & 0x9F00001F) | (immlo << 29) | (immhi << 5)")
+        code.append("    {")
+        code.append("        uint32_t new_imm21 = static_cast<uint32_t>(static_cast<int32_t>(-0x3FFC)) & 0x1FFFFF;")
+        code.append("        uint32_t new_immlo = new_imm21 & 0x3;")
+        code.append("        uint32_t new_immhi = (new_imm21 >> 2) & 0x7FFFF;")
+        code.append("        uint32_t expected = (0x10000020 & 0x9F00001F) | (new_immlo << 29) | (new_immhi << 5);")
+        code.append("        (void)expected;")
+        code.append("        assert(out_insn[0] == expected);")
+        code.append("    }")
+        code.append("")
+
+        # 9g: ADRP relocation
+        # ADRP X0, current page (0x90000000): Rd=0, immhi=0, immlo=0, imm21=0
+        # target = (old_pc & ~0xFFF) + 0 = old_pc page
+        code.append("    // ADRP X0, 0 relocated from 0x1000 to 0x5000")
+        code.append("    // target_page = (0x1000 & ~0xFFF) + 0 = 0x1000")
+        code.append("    // new_offset = 0x1000 - (0x5000 & ~0xFFF) = 0x1000 - 0x5000 = -0x4000")
+        code.append("    ok = Hook::Detail::relocate_instruction(0x90000000, 0x1000, 0x5000, out_insn, &out_count);")
+        code.append("    assert(ok);")
+        code.append("    assert(out_count == 1);")
+        code.append("    {")
+        code.append("        // new_imm21 = -0x4000 >> 12 = -4 = 0xFFFFFFFC")
+        code.append("        int32_t new_imm21_val = static_cast<int32_t>(-0x4000) >> 12; // -4")
+        code.append("        uint32_t new_immlo = static_cast<uint32_t>(new_imm21_val) & 0x3;")
+        code.append("        uint32_t new_immhi = (static_cast<uint32_t>(new_imm21_val) >> 2) & 0x7FFFF;")
+        code.append("        uint32_t expected = (0x90000000 & 0x9F00001F) | (new_immlo << 29) | (new_immhi << 5);")
+        code.append("        (void)expected;")
+        code.append("        assert(out_insn[0] == expected);")
+        code.append("    }")
+        code.append("}")
+        code.append("")
+
+        # ---- ARM64-only tests ----
+        code.append("#if defined(_M_ARM64) || defined(__aarch64__)")
+        code.append("")
+
+        # Test 10: Live hook install/remove
+        code.append("static volatile int g_hook_called = 0;")
+        code.append("")
+        code.append("// Target function must be large enough for the 16-byte hook sequence.")
+        code.append("// Use volatile to prevent the compiler from optimizing away the body.")
+        code.append("#pragma optimize(\"\", off)")
+        code.append("__declspec(noinline) static int target_func(int a, int b) {")
+        code.append("    volatile int x = a;")
+        code.append("    volatile int y = b;")
+        code.append("    volatile int sum = x + y;")
+        code.append("    return sum;")
+        code.append("}")
+        code.append("#pragma optimize(\"\", on)")
+        code.append("")
+        code.append("static int (*original_func)(int, int) = nullptr;")
+        code.append("")
+        code.append("static int detour_func(int a, int b) {")
+        code.append("    g_hook_called++;")
+        code.append("    return original_func(a, b);")
+        code.append("}")
+        code.append("")
+        code.append("// Helper: configure hook for testing (disable thread suspension)")
+        code.append("static void setup_test_config() {")
+        code.append("    Hook::HookConfig cfg;")
+        code.append("    cfg.thread_safe = false;  // Avoid NT thread enumeration in tests")
+        code.append("    Hook::set_config(cfg);")
+        code.append("}")
+        code.append("")
+        code.append("void test_live_hook() {")
+        code.append("    std::cout << \"  test_live_hook...\" << std::endl;")
+        code.append("")
+        code.append("    Hook::initialize();")
+        code.append("    setup_test_config();")
+        code.append("    g_hook_called = 0;")
+        code.append("")
+        code.append("    // Verify original behavior")
+        code.append("    assert(target_func(3, 4) == 7);")
+        code.append("    assert(g_hook_called == 0);")
+        code.append("")
+        code.append("    // Install hook")
+        code.append("    Hook::HookStatus status;")
+        code.append("    auto handle = Hook::install_ex(")
+        code.append("        reinterpret_cast<void*>(&target_func),")
+        code.append("        reinterpret_cast<void*>(&detour_func),")
+        code.append("        reinterpret_cast<void**>(&original_func),")
+        code.append("        &status);")
+        code.append("    assert(handle != nullptr);")
+        code.append("    assert(status == Hook::HookStatus::Success);")
+        code.append("")
+        code.append("    // Call through hook - detour should be called")
+        code.append("    int result = target_func(3, 4);")
+        code.append("    assert(result == 7);")
+        code.append("    assert(g_hook_called == 1);")
+        code.append("")
+        code.append("    // Call original through trampoline")
+        code.append("    result = original_func(10, 20);")
+        code.append("    assert(result == 30);")
+        code.append("    assert(g_hook_called == 1);  // detour not called via trampoline")
+        code.append("")
+        code.append("    // Remove hook")
+        code.append("    auto rem_status = Hook::remove(handle);")
+        code.append("    (void)rem_status;")
+        code.append("    assert(rem_status == Hook::HookStatus::Success);")
+        code.append("")
+        code.append("    // Verify original behavior restored")
+        code.append("    g_hook_called = 0;")
+        code.append("    result = target_func(5, 6);")
+        code.append("    assert(result == 11);")
+        code.append("    assert(g_hook_called == 0);")
+        code.append("")
+        code.append("    Hook::shutdown();")
+        code.append("}")
+        code.append("")
+
+        # Test 11: Hook enable/disable
+        code.append("void test_hook_enable_disable() {")
+        code.append("    std::cout << \"  test_hook_enable_disable...\" << std::endl;")
+        code.append("")
+        code.append("    Hook::initialize();")
+        code.append("    setup_test_config();")
+        code.append("    g_hook_called = 0;")
+        code.append("")
+        code.append("    Hook::HookStatus status;")
+        code.append("    auto handle = Hook::install_ex(")
+        code.append("        reinterpret_cast<void*>(&target_func),")
+        code.append("        reinterpret_cast<void*>(&detour_func),")
+        code.append("        reinterpret_cast<void**>(&original_func),")
+        code.append("        &status);")
+        code.append("    assert(handle != nullptr);")
+        code.append("    assert(Hook::is_enabled(handle));")
+        code.append("")
+        code.append("    // Disable hook")
+        code.append("    status = Hook::disable(handle);")
+        code.append("    assert(status == Hook::HookStatus::Success);")
+        code.append("    assert(!Hook::is_enabled(handle));")
+        code.append("")
+        code.append("    // Call should go to original")
+        code.append("    g_hook_called = 0;")
+        code.append("    assert(target_func(1, 2) == 3);")
+        code.append("    assert(g_hook_called == 0);")
+        code.append("")
+        code.append("    // Re-enable hook")
+        code.append("    status = Hook::enable(handle);")
+        code.append("    assert(status == Hook::HookStatus::Success);")
+        code.append("    assert(Hook::is_enabled(handle));")
+        code.append("")
+        code.append("    // Call should go through detour again")
+        code.append("    assert(target_func(1, 2) == 3);")
+        code.append("    assert(g_hook_called == 1);")
+        code.append("")
+        code.append("    Hook::remove(handle);")
+        code.append("    Hook::shutdown();")
+        code.append("}")
+        code.append("")
+
+        # Test 12: Hook info getters
+        code.append("void test_hook_info() {")
+        code.append("    std::cout << \"  test_hook_info...\" << std::endl;")
+        code.append("")
+        code.append("    Hook::initialize();")
+        code.append("    setup_test_config();")
+        code.append("")
+        code.append("    Hook::HookStatus status;")
+        code.append("    auto handle = Hook::install_ex(")
+        code.append("        reinterpret_cast<void*>(&target_func),")
+        code.append("        reinterpret_cast<void*>(&detour_func),")
+        code.append("        reinterpret_cast<void**>(&original_func),")
+        code.append("        &status);")
+        code.append("    assert(handle != nullptr);")
+        code.append("")
+        code.append("    assert(Hook::get_target(handle) == reinterpret_cast<void*>(&target_func));")
+        code.append("    assert(Hook::get_detour(handle) == reinterpret_cast<void*>(&detour_func));")
+        code.append("    assert(Hook::get_trampoline(handle) != nullptr);")
+        code.append("    assert(Hook::get_hook_size(handle) >= 16);")
+        code.append("    assert(Hook::get_relocated_count(handle) > 0);")
+        code.append("")
+        code.append("    Hook::remove(handle);")
+        code.append("    Hook::shutdown();")
+        code.append("}")
+        code.append("")
+
+        # Test 13: Double-hook rejection
+        code.append("void test_double_hook_rejection() {")
+        code.append("    std::cout << \"  test_double_hook_rejection...\" << std::endl;")
+        code.append("")
+        code.append("    Hook::initialize();")
+        code.append("    setup_test_config();")
+        code.append("")
+        code.append("    Hook::HookStatus status;")
+        code.append("    void* orig1 = nullptr;")
+        code.append("    void* orig2 = nullptr;")
+        code.append("")
+        code.append("    auto handle1 = Hook::install_ex(")
+        code.append("        reinterpret_cast<void*>(&target_func),")
+        code.append("        reinterpret_cast<void*>(&detour_func),")
+        code.append("        &orig1, &status);")
+        code.append("    assert(handle1 != nullptr);")
+        code.append("    assert(status == Hook::HookStatus::Success);")
+        code.append("")
+        code.append("    // Second hook on same target should fail")
+        code.append("    auto handle2 = Hook::install_ex(")
+        code.append("        reinterpret_cast<void*>(&target_func),")
+        code.append("        reinterpret_cast<void*>(&detour_func),")
+        code.append("        &orig2, &status);")
+        code.append("    (void)handle2;")
+        code.append("    assert(handle2 == nullptr);")
+        code.append("    assert(status == Hook::HookStatus::HookAlreadyInstalled);")
+        code.append("")
+        code.append("    Hook::remove(handle1);")
+        code.append("    Hook::shutdown();")
+        code.append("}")
+        code.append("")
+
+        code.append("#endif // _M_ARM64 || __aarch64__")
+        code.append("")
+
+        # ---- main() ----
+        code.append("int main() {")
+        code.append("    std::cout << \"Running hook tests...\" << std::endl;")
+        code.append("")
+        code.append("    // Cross-platform tests")
+        code.append("    test_initialization_lifecycle();")
+        code.append("    test_configuration();")
+        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("    test_status_strings();")
+        code.append("#endif")
+        code.append("    test_error_handling();")
+        code.append("    test_generate_jump();")
+        code.append("    test_generate_call();")
+        code.append("    test_is_pc_relative();")
+        code.append("    test_can_relocate();")
+        code.append("    test_relocate_instruction();")
+        code.append("")
+        code.append("    // ARM64-only tests")
+        code.append("#if defined(_M_ARM64) || defined(__aarch64__)")
+        code.append("    test_live_hook();")
+        code.append("    test_hook_enable_disable();")
+        code.append("    test_hook_info();")
+        code.append("    test_double_hook_rejection();")
+        code.append("#else")
+        code.append("    std::cout << \"  (ARM64-only tests skipped on this platform)\" << std::endl;")
+        code.append("#endif")
+        code.append("")
+        code.append("    std::cout << \"All hook tests passed!\" << std::endl;")
+        code.append("    return 0;")
+        code.append("}")
+        code.append("")
+        code.append("#else // !(_WIN32 || VEDA64_HOOK_SUPPORT)")
+        code.append("")
+        code.append("// Hook support not available on this platform")
+        code.append("#include <iostream>")
+        code.append("int main() {")
+        code.append("    std::cout << \"Hook tests skipped (not on Windows)\" << std::endl;")
+        code.append("    return 0;")
+        code.append("}")
+        code.append("")
+        code.append("#endif // _WIN32 || VEDA64_HOOK_SUPPORT")
+        code.append("")
+
+        output_file = test_dir / "test_hook.cpp"
         self._write_file(output_file, code)
         print(f"Generated {output_file.name}")
 
@@ -4872,20 +5808,27 @@ def main():
     base_dir = Path(__file__).parent
     include_dir = base_dir / "include"
     include_class_dir = include_dir / "class"
+    include_format_dir = include_dir / "format"
     lib_dir = base_dir / "lib"
     lib_class_dir = lib_dir / "class"
+    lib_format_dir = lib_dir / "format"
     test_dir = base_dir / "test"
     include_dir.mkdir(exist_ok=True)
     include_class_dir.mkdir(exist_ok=True)
+    include_format_dir.mkdir(exist_ok=True)
     lib_dir.mkdir(exist_ok=True)
     lib_class_dir.mkdir(exist_ok=True)
+    lib_format_dir.mkdir(exist_ok=True)
     test_dir.mkdir(exist_ok=True)
 
     # Generate instruction class files
     parser.generate_cpp_files(include_class_dir, lib_class_dir)
 
     # Generate base headers (veda64.hpp) and implementation
-    parser.generate_header_files(include_dir, include_class_dir, lib_dir)
+    parser.generate_header_files(include_dir, lib_dir)
+
+    # Generate format-based files (organized by encoding format)
+    parser.generate_format_files(include_format_dir, lib_format_dir)
 
     # Generate hook files (Windows ARM64 API hooking)
     print(f"\n=== Generating Hook Files ===")
@@ -4902,6 +5845,7 @@ def main():
     print(f"\n=== Generating Test Suite ===")
     parser.generate_test_suite(test_dir)
     parser.generate_reference_test(test_dir)
+    parser.generate_hook_test(test_dir)
     parser.generate_hook_examples(test_dir)
     print(f"Generated test files")
 
