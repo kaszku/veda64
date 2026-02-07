@@ -32618,7 +32618,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns32s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns32s_float2int.Rn, is_64bit));
@@ -32628,7 +32627,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_sfloatdp1.Rn, is_64bit));
@@ -32638,7 +32636,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FABS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fabs_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fabs_sfloatdp1.Rn, is_64bit));
@@ -32648,7 +32645,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu32s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu32s_float2int.Rn, is_64bit));
@@ -32658,7 +32654,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FNEG, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fneg_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fneg_sfloatdp1.Rn, is_64bit));
@@ -32668,7 +32663,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FSQRT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fsqrt_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fsqrt_sfloatdp1.Rn, is_64bit));
@@ -32678,7 +32672,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_s32float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_s32float2int.Rn, is_64bit));
@@ -32688,7 +32681,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvt_ds_floatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvt_ds_floatdp1.Rn, is_64bit));
@@ -32698,7 +32690,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_s32float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_s32float2int.Rn, is_64bit));
@@ -32708,7 +32699,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvt_hs_floatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvt_hs_floatdp1.Rn, is_64bit));
@@ -32718,7 +32708,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas32s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas32s_float2int.Rn, is_64bit));
@@ -32728,7 +32717,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintn_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintn_sfloatdp1.Rn, is_64bit));
@@ -32738,7 +32726,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintp_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintp_sfloatdp1.Rn, is_64bit));
@@ -32748,7 +32735,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau32s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau32s_float2int.Rn, is_64bit));
@@ -32758,7 +32744,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTM, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintm_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintm_sfloatdp1.Rn, is_64bit));
@@ -32768,7 +32753,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTZ, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintz_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintz_sfloatdp1.Rn, is_64bit));
@@ -32778,7 +32762,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov32s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov32s_float2int.Rn, is_64bit));
@@ -32788,7 +32771,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frinta_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frinta_sfloatdp1.Rn, is_64bit));
@@ -32798,7 +32780,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_s32float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_s32float2int.Rn, is_64bit));
@@ -32808,7 +32789,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintx_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintx_sfloatdp1.Rn, is_64bit));
@@ -32818,7 +32798,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTI, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frinti_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frinti_sfloatdp1.Rn, is_64bit));
@@ -32828,7 +32807,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps32s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps32s_float2int.Rn, is_64bit));
@@ -32838,7 +32816,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINT32Z, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frint32z_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frint32z_sfloatdp1.Rn, is_64bit));
@@ -32848,7 +32825,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINT32X, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frint32x_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frint32x_sfloatdp1.Rn, is_64bit));
@@ -32858,7 +32834,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu32s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu32s_float2int.Rn, is_64bit));
@@ -32868,7 +32843,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINT64Z, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frint64z_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frint64z_sfloatdp1.Rn, is_64bit));
@@ -32878,7 +32852,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINT64X, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frint64x_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frint64x_sfloatdp1.Rn, is_64bit));
@@ -32888,7 +32861,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms32s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms32s_float2int.Rn, is_64bit));
@@ -32898,7 +32870,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu32s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu32s_float2int.Rn, is_64bit));
@@ -32908,7 +32879,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32s_float2int.Rn, is_64bit));
@@ -32918,7 +32888,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32s_float2int.Rn, is_64bit));
@@ -32928,7 +32897,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns32d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns32d_float2int.Rn, is_64bit));
@@ -32938,7 +32906,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_dfloatdp1.Rn, is_64bit));
@@ -32948,7 +32915,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FABS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fabs_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fabs_dfloatdp1.Rn, is_64bit));
@@ -32958,7 +32924,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu32d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu32d_float2int.Rn, is_64bit));
@@ -32968,7 +32933,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FNEG, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fneg_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fneg_dfloatdp1.Rn, is_64bit));
@@ -32978,7 +32942,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FSQRT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fsqrt_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fsqrt_dfloatdp1.Rn, is_64bit));
@@ -32988,7 +32951,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_d32float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_d32float2int.Rn, is_64bit));
@@ -32998,7 +32960,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvt_sd_floatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvt_sd_floatdp1.Rn, is_64bit));
@@ -33008,7 +32969,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_d32float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_d32float2int.Rn, is_64bit));
@@ -33018,7 +32978,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::BFCVT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.bfcvt_bs_floatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bfcvt_bs_floatdp1.Rn, is_64bit));
@@ -33028,7 +32987,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvt_hd_floatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvt_hd_floatdp1.Rn, is_64bit));
@@ -33038,7 +32996,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas32d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas32d_float2int.Rn, is_64bit));
@@ -33048,7 +33005,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintn_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintn_dfloatdp1.Rn, is_64bit));
@@ -33058,7 +33014,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintp_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintp_dfloatdp1.Rn, is_64bit));
@@ -33068,7 +33023,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau32d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau32d_float2int.Rn, is_64bit));
@@ -33078,7 +33032,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTM, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintm_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintm_dfloatdp1.Rn, is_64bit));
@@ -33088,7 +33041,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTZ, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintz_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintz_dfloatdp1.Rn, is_64bit));
@@ -33098,7 +33050,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frinta_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frinta_dfloatdp1.Rn, is_64bit));
@@ -33108,7 +33059,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintx_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintx_dfloatdp1.Rn, is_64bit));
@@ -33118,7 +33068,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTI, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frinti_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frinti_dfloatdp1.Rn, is_64bit));
@@ -33128,7 +33077,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps32d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps32d_float2int.Rn, is_64bit));
@@ -33138,7 +33086,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINT32Z, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frint32z_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frint32z_dfloatdp1.Rn, is_64bit));
@@ -33148,7 +33095,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINT32X, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frint32x_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frint32x_dfloatdp1.Rn, is_64bit));
@@ -33158,7 +33104,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu32d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu32d_float2int.Rn, is_64bit));
@@ -33168,7 +33113,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINT64Z, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frint64z_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frint64z_dfloatdp1.Rn, is_64bit));
@@ -33178,7 +33122,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINT64X, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frint64x_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frint64x_dfloatdp1.Rn, is_64bit));
@@ -33188,7 +33131,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns_sisd32d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns_sisd32d.Rn, is_64bit));
@@ -33198,7 +33140,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu_sisd32d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu_sisd32d.Rn, is_64bit));
@@ -33208,7 +33149,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms32d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms32d_float2int.Rn, is_64bit));
@@ -33218,7 +33158,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu32d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu32d_float2int.Rn, is_64bit));
@@ -33228,7 +33167,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps_sisd32d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps_sisd32d.Rn, is_64bit));
@@ -33238,7 +33176,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu_sisd32d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu_sisd32d.Rn, is_64bit));
@@ -33248,7 +33185,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms_sisd32d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms_sisd32d.Rn, is_64bit));
@@ -33258,7 +33194,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu_sisd32d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu_sisd32d.Rn, is_64bit));
@@ -33268,7 +33203,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_sisd32d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_sisd32d.Rn, is_64bit));
@@ -33278,7 +33212,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_sisd32d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_sisd32d.Rn, is_64bit));
@@ -33288,7 +33221,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32d_float2int.Rn, is_64bit));
@@ -33298,7 +33230,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32d_float2int.Rn, is_64bit));
@@ -33308,7 +33239,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas_sisd32d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas_sisd32d.Rn, is_64bit));
@@ -33318,7 +33248,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau_sisd32d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau_sisd32d.Rn, is_64bit));
@@ -33328,7 +33257,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_sisd32d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_sisd32d.Rn, is_64bit));
@@ -33338,7 +33266,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_sisd32d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_sisd32d.Rn, is_64bit));
@@ -33348,7 +33275,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FJCVTZS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fjcvtzs32d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fjcvtzs32d_float2int.Rn, is_64bit));
@@ -33358,7 +33284,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns32h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns32h_float2int.Rn, is_64bit));
@@ -33368,7 +33293,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_hfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_hfloatdp1.Rn, is_64bit));
@@ -33378,7 +33302,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FABS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fabs_hfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fabs_hfloatdp1.Rn, is_64bit));
@@ -33388,7 +33311,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu32h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu32h_float2int.Rn, is_64bit));
@@ -33398,7 +33320,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FNEG, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fneg_hfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fneg_hfloatdp1.Rn, is_64bit));
@@ -33408,7 +33329,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FSQRT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fsqrt_hfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fsqrt_hfloatdp1.Rn, is_64bit));
@@ -33418,7 +33338,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_h32float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_h32float2int.Rn, is_64bit));
@@ -33428,7 +33347,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvt_sh_floatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvt_sh_floatdp1.Rn, is_64bit));
@@ -33438,7 +33356,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvt_dh_floatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvt_dh_floatdp1.Rn, is_64bit));
@@ -33448,7 +33365,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_h32float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_h32float2int.Rn, is_64bit));
@@ -33458,7 +33374,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas32h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas32h_float2int.Rn, is_64bit));
@@ -33468,7 +33383,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintn_hfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintn_hfloatdp1.Rn, is_64bit));
@@ -33478,7 +33392,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintp_hfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintp_hfloatdp1.Rn, is_64bit));
@@ -33488,7 +33401,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau32h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau32h_float2int.Rn, is_64bit));
@@ -33498,7 +33410,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTM, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintm_hfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintm_hfloatdp1.Rn, is_64bit));
@@ -33508,7 +33419,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTZ, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintz_hfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintz_hfloatdp1.Rn, is_64bit));
@@ -33518,7 +33428,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov32h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov32h_float2int.Rn, is_64bit));
@@ -33528,7 +33437,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frinta_hfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frinta_hfloatdp1.Rn, is_64bit));
@@ -33538,7 +33446,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_h32float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_h32float2int.Rn, is_64bit));
@@ -33548,7 +33455,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintx_hfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintx_hfloatdp1.Rn, is_64bit));
@@ -33558,7 +33464,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTI, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frinti_hfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frinti_hfloatdp1.Rn, is_64bit));
@@ -33568,7 +33473,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps32h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps32h_float2int.Rn, is_64bit));
@@ -33578,7 +33482,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu32h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu32h_float2int.Rn, is_64bit));
@@ -33588,7 +33491,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns_sisd32h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns_sisd32h.Rn, is_64bit));
@@ -33598,7 +33500,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu_sisd32h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu_sisd32h.Rn, is_64bit));
@@ -33608,7 +33509,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms32h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms32h_float2int.Rn, is_64bit));
@@ -33618,7 +33518,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu32h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu32h_float2int.Rn, is_64bit));
@@ -33628,7 +33527,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps_sisd32h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps_sisd32h.Rn, is_64bit));
@@ -33638,7 +33536,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu_sisd32h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu_sisd32h.Rn, is_64bit));
@@ -33648,7 +33545,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms_sisd32h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms_sisd32h.Rn, is_64bit));
@@ -33658,7 +33554,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu_sisd32h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu_sisd32h.Rn, is_64bit));
@@ -33668,7 +33563,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_sisd32h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_sisd32h.Rn, is_64bit));
@@ -33678,7 +33572,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_sisd32h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_sisd32h.Rn, is_64bit));
@@ -33688,7 +33581,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32h_float2int.Rn, is_64bit));
@@ -33698,7 +33590,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32h_float2int.Rn, is_64bit));
@@ -33708,7 +33599,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas_sisd32h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas_sisd32h.Rn, is_64bit));
@@ -33718,7 +33608,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau_sisd32h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau_sisd32h.Rn, is_64bit));
@@ -33728,7 +33617,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_sisd32h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_sisd32h.Rn, is_64bit));
@@ -33738,7 +33626,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_sisd32h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_sisd32h.Rn, is_64bit));
@@ -33748,7 +33635,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::AESE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.aese_bcryptoaes.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.aese_bcryptoaes.Rn, is_64bit));
@@ -33758,7 +33644,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::AESD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.aesd_bcryptoaes.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.aesd_bcryptoaes.Rn, is_64bit));
@@ -33768,7 +33653,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::AESMC, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.aesmc_bcryptoaes.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.aesmc_bcryptoaes.Rn, is_64bit));
@@ -33778,7 +33662,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::AESIMC, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.aesimc_bcryptoaes.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.aesimc_bcryptoaes.Rn, is_64bit));
@@ -33788,7 +33671,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SHA1H, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sha1h_ss_cryptosha2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sha1h_ss_cryptosha2.Rn, is_64bit));
@@ -33798,7 +33680,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SHA1SU1, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sha1su1vv_cryptosha2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sha1su1vv_cryptosha2.Rn, is_64bit));
@@ -33808,7 +33689,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SHA256SU0, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sha256su0vv_cryptosha2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sha256su0vv_cryptosha2.Rn, is_64bit));
@@ -33818,7 +33698,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXNMP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnmp_asisdpair_only_h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnmp_asisdpair_only_h.Rn, is_64bit));
@@ -33828,7 +33707,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FADDP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.faddp_asisdpair_only_h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.faddp_asisdpair_only_h.Rn, is_64bit));
@@ -33838,7 +33716,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxp_asisdpair_only_h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxp_asisdpair_only_h.Rn, is_64bit));
@@ -33848,7 +33725,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns_asisdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns_asisdmiscfp16r.Rn, is_64bit));
@@ -33858,7 +33734,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms_asisdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms_asisdmiscfp16r.Rn, is_64bit));
@@ -33868,7 +33743,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas_asisdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas_asisdmiscfp16r.Rn, is_64bit));
@@ -33878,7 +33752,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_asisdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_asisdmiscfp16r.Rn, is_64bit));
@@ -33888,7 +33761,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMINNMP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnmp_asisdpair_only_h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnmp_asisdpair_only_h.Rn, is_64bit));
@@ -33898,7 +33770,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMINP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fminp_asisdpair_only_h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fminp_asisdpair_only_h.Rn, is_64bit));
@@ -33908,7 +33779,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CMGT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmgt_asisdmisc_z.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmgt_asisdmisc_z.Rn, is_64bit));
@@ -33918,7 +33788,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CMEQ, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmeq_asisdmisc_z.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmeq_asisdmisc_z.Rn, is_64bit));
@@ -33928,7 +33797,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CMLT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmlt_asisdmisc_z.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmlt_asisdmisc_z.Rn, is_64bit));
@@ -33938,7 +33806,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::ABS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.abs_asisdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.abs_asisdmisc_r.Rn, is_64bit));
@@ -33948,7 +33815,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::ADDP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.addp_asisdpair_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.addp_asisdpair_only.Rn, is_64bit));
@@ -33958,7 +33824,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMGT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmgt_asisdmiscfp16fz.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmgt_asisdmiscfp16fz.Rn, is_64bit));
@@ -33968,7 +33833,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMEQ, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmeq_asisdmiscfp16fz.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmeq_asisdmiscfp16fz.Rn, is_64bit));
@@ -33978,7 +33842,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMLT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmlt_asisdmiscfp16fz.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmlt_asisdmiscfp16fz.Rn, is_64bit));
@@ -33988,7 +33851,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps_asisdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps_asisdmiscfp16r.Rn, is_64bit));
@@ -33998,7 +33860,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_asisdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_asisdmiscfp16r.Rn, is_64bit));
@@ -34008,7 +33869,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRECPE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frecpe_asisdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frecpe_asisdmiscfp16r.Rn, is_64bit));
@@ -34018,7 +33878,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRECPX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frecpx_asisdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frecpx_asisdmiscfp16r.Rn, is_64bit));
@@ -34028,7 +33887,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXNMV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnmv_asimdall_only_sd.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnmv_asimdall_only_sd.Rn, is_64bit));
@@ -34038,7 +33896,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxv_asimdall_only_sd.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxv_asimdall_only_sd.Rn, is_64bit));
@@ -34048,7 +33905,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMINNMV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnmv_asimdall_only_sd.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnmv_asimdall_only_sd.Rn, is_64bit));
@@ -34058,7 +33914,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMINV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fminv_asimdall_only_sd.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fminv_asimdall_only_sd.Rn, is_64bit));
@@ -34068,7 +33923,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTXN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtxn_asisdmisc_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtxn_asisdmisc_n.Rn, is_64bit));
@@ -34078,7 +33932,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu_asisdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu_asisdmiscfp16r.Rn, is_64bit));
@@ -34088,7 +33941,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu_asisdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu_asisdmiscfp16r.Rn, is_64bit));
@@ -34098,7 +33950,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau_asisdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau_asisdmiscfp16r.Rn, is_64bit));
@@ -34108,7 +33959,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_asisdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_asisdmiscfp16r.Rn, is_64bit));
@@ -34118,7 +33968,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CMGE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmge_asisdmisc_z.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmge_asisdmisc_z.Rn, is_64bit));
@@ -34128,7 +33977,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CMLE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmle_asisdmisc_z.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmle_asisdmisc_z.Rn, is_64bit));
@@ -34138,7 +33986,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::NEG, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.neg_asisdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.neg_asisdmisc_r.Rn, is_64bit));
@@ -34148,7 +33995,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMGE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmge_asisdmiscfp16fz.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmge_asisdmiscfp16fz.Rn, is_64bit));
@@ -34158,7 +34004,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMLE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmle_asisdmiscfp16fz.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmle_asisdmiscfp16fz.Rn, is_64bit));
@@ -34168,7 +34013,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu_asisdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu_asisdmiscfp16r.Rn, is_64bit));
@@ -34178,7 +34022,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_asisdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_asisdmiscfp16r.Rn, is_64bit));
@@ -34188,7 +34031,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRSQRTE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frsqrte_asisdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frsqrte_asisdmiscfp16r.Rn, is_64bit));
@@ -34198,7 +34040,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns64s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns64s_float2int.Rn, is_64bit));
@@ -34208,7 +34049,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu64s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu64s_float2int.Rn, is_64bit));
@@ -34218,7 +34058,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_s64float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_s64float2int.Rn, is_64bit));
@@ -34228,7 +34067,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_s64float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_s64float2int.Rn, is_64bit));
@@ -34238,7 +34076,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas64s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas64s_float2int.Rn, is_64bit));
@@ -34248,7 +34085,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau64s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau64s_float2int.Rn, is_64bit));
@@ -34258,7 +34094,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps64s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps64s_float2int.Rn, is_64bit));
@@ -34268,7 +34103,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu64s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu64s_float2int.Rn, is_64bit));
@@ -34278,7 +34112,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns_sisd64s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns_sisd64s.Rn, is_64bit));
@@ -34288,7 +34121,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu_sisd64s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu_sisd64s.Rn, is_64bit));
@@ -34298,7 +34130,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms64s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms64s_float2int.Rn, is_64bit));
@@ -34308,7 +34139,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu64s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu64s_float2int.Rn, is_64bit));
@@ -34318,7 +34148,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps_sisd64s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps_sisd64s.Rn, is_64bit));
@@ -34328,7 +34157,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu_sisd64s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu_sisd64s.Rn, is_64bit));
@@ -34338,7 +34166,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms_sisd64s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms_sisd64s.Rn, is_64bit));
@@ -34348,7 +34175,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu_sisd64s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu_sisd64s.Rn, is_64bit));
@@ -34358,7 +34184,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_sisd64s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_sisd64s.Rn, is_64bit));
@@ -34368,7 +34193,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_sisd64s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_sisd64s.Rn, is_64bit));
@@ -34378,7 +34202,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64s_float2int.Rn, is_64bit));
@@ -34388,7 +34211,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64s_float2int.Rn, is_64bit));
@@ -34398,7 +34220,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas_sisd64s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas_sisd64s.Rn, is_64bit));
@@ -34408,7 +34229,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau_sisd64s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau_sisd64s.Rn, is_64bit));
@@ -34418,7 +34238,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_sisd64s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_sisd64s.Rn, is_64bit));
@@ -34428,7 +34247,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_sisd64s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_sisd64s.Rn, is_64bit));
@@ -34438,7 +34256,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns64d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns64d_float2int.Rn, is_64bit));
@@ -34448,7 +34265,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu64d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu64d_float2int.Rn, is_64bit));
@@ -34458,7 +34274,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_d64float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_d64float2int.Rn, is_64bit));
@@ -34468,7 +34283,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_d64float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_d64float2int.Rn, is_64bit));
@@ -34478,7 +34292,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas64d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas64d_float2int.Rn, is_64bit));
@@ -34488,7 +34301,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau64d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau64d_float2int.Rn, is_64bit));
@@ -34498,7 +34310,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov64d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov64d_float2int.Rn, is_64bit));
@@ -34508,7 +34319,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_d64float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_d64float2int.Rn, is_64bit));
@@ -34518,7 +34328,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps64d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps64d_float2int.Rn, is_64bit));
@@ -34528,7 +34337,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu64d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu64d_float2int.Rn, is_64bit));
@@ -34538,7 +34346,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms64d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms64d_float2int.Rn, is_64bit));
@@ -34548,7 +34355,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu64d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu64d_float2int.Rn, is_64bit));
@@ -34558,7 +34364,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64d_float2int.Rn, is_64bit));
@@ -34568,7 +34373,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64d_float2int.Rn, is_64bit));
@@ -34578,7 +34382,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov64vx_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov64vx_float2int.Rn, is_64bit));
@@ -34588,7 +34391,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_v64i_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_v64i_float2int.Rn, is_64bit));
@@ -34598,7 +34400,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns64h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns64h_float2int.Rn, is_64bit));
@@ -34608,7 +34409,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu64h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu64h_float2int.Rn, is_64bit));
@@ -34618,7 +34418,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_h64float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_h64float2int.Rn, is_64bit));
@@ -34628,7 +34427,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_h64float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_h64float2int.Rn, is_64bit));
@@ -34638,7 +34436,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas64h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas64h_float2int.Rn, is_64bit));
@@ -34648,7 +34445,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau64h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau64h_float2int.Rn, is_64bit));
@@ -34658,7 +34454,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov64h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov64h_float2int.Rn, is_64bit));
@@ -34668,7 +34463,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_h64float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_h64float2int.Rn, is_64bit));
@@ -34678,7 +34472,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps64h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps64h_float2int.Rn, is_64bit));
@@ -34688,7 +34481,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu64h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu64h_float2int.Rn, is_64bit));
@@ -34698,7 +34490,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns_sisd64h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns_sisd64h.Rn, is_64bit));
@@ -34708,7 +34499,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu_sisd64h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu_sisd64h.Rn, is_64bit));
@@ -34718,7 +34508,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms64h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms64h_float2int.Rn, is_64bit));
@@ -34728,7 +34517,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu64h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu64h_float2int.Rn, is_64bit));
@@ -34738,7 +34526,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps_sisd64h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps_sisd64h.Rn, is_64bit));
@@ -34748,7 +34535,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu_sisd64h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu_sisd64h.Rn, is_64bit));
@@ -34758,7 +34544,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms_sisd64h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms_sisd64h.Rn, is_64bit));
@@ -34768,7 +34553,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu_sisd64h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu_sisd64h.Rn, is_64bit));
@@ -34778,7 +34562,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_sisd64h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_sisd64h.Rn, is_64bit));
@@ -34788,7 +34571,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_sisd64h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_sisd64h.Rn, is_64bit));
@@ -34798,7 +34580,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64h_float2int.Rn, is_64bit));
@@ -34808,7 +34589,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64h_float2int.Rn, is_64bit));
@@ -34818,7 +34598,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas_sisd64h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas_sisd64h.Rn, is_64bit));
@@ -34828,7 +34607,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau_sisd64h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau_sisd64h.Rn, is_64bit));
@@ -34838,7 +34616,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_sisd64h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_sisd64h.Rn, is_64bit));
@@ -34848,7 +34625,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_sisd64h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_sisd64h.Rn, is_64bit));
@@ -34858,7 +34634,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SHA512SU0, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sha512su0vv2cryptosha5122.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sha512su0vv2cryptosha5122.Rn, is_64bit));
@@ -34868,7 +34643,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SM4E, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sm4e_vv4cryptosha5122.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sm4e_vv4cryptosha5122.Rn, is_64bit));
@@ -34883,7 +34657,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_s32float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_s32float2fix.Rn, is_64bit));
@@ -34893,7 +34666,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_s32float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_s32float2fix.Rn, is_64bit));
@@ -34903,7 +34675,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32s_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32s_float2fix.Rn, is_64bit));
@@ -34913,7 +34684,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32s_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32s_float2fix.Rn, is_64bit));
@@ -34923,7 +34693,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_d32float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_d32float2fix.Rn, is_64bit));
@@ -34933,7 +34702,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_d32float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_d32float2fix.Rn, is_64bit));
@@ -34943,7 +34711,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32d_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32d_float2fix.Rn, is_64bit));
@@ -34953,7 +34720,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32d_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32d_float2fix.Rn, is_64bit));
@@ -34963,7 +34729,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_h32float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_h32float2fix.Rn, is_64bit));
@@ -34973,7 +34738,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_h32float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_h32float2fix.Rn, is_64bit));
@@ -34983,7 +34747,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32h_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32h_float2fix.Rn, is_64bit));
@@ -34993,7 +34756,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32h_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32h_float2fix.Rn, is_64bit));
@@ -35003,7 +34765,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_s64float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_s64float2fix.Rn, is_64bit));
@@ -35013,7 +34774,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_s64float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_s64float2fix.Rn, is_64bit));
@@ -35023,7 +34783,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64s_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64s_float2fix.Rn, is_64bit));
@@ -35033,7 +34792,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64s_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64s_float2fix.Rn, is_64bit));
@@ -35043,7 +34801,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_d64float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_d64float2fix.Rn, is_64bit));
@@ -35053,7 +34810,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_d64float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_d64float2fix.Rn, is_64bit));
@@ -35063,7 +34819,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64d_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64d_float2fix.Rn, is_64bit));
@@ -35073,7 +34828,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64d_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64d_float2fix.Rn, is_64bit));
@@ -35083,7 +34837,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_h64float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_h64float2fix.Rn, is_64bit));
@@ -35093,7 +34846,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_h64float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_h64float2fix.Rn, is_64bit));
@@ -35103,7 +34855,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64h_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64h_float2fix.Rn, is_64bit));
@@ -35113,7 +34864,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64h_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64h_float2fix.Rn, is_64bit));
@@ -35128,7 +34878,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::MOVI, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.movi_asimdimm_dds.Rd, is_64bit));
                         return result;
@@ -35137,7 +34886,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQSHL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshl_asisdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshl_asisdshf_r.Rn, is_64bit));
@@ -35147,7 +34895,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQSHRN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshrn_asisdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshrn_asisdshf_n.Rn, is_64bit));
@@ -35157,7 +34904,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQRSHRN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrshrn_asisdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrshrn_asisdshf_n.Rn, is_64bit));
@@ -35167,7 +34913,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_asisdshf_c.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_asisdshf_c.Rn, is_64bit));
@@ -35177,7 +34922,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_asisdshf_c.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_asisdshf_c.Rn, is_64bit));
@@ -35187,7 +34931,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::MOVI, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.movi_asimdimm_d2d.Rd, is_64bit));
                         return result;
@@ -35196,7 +34939,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_asimdimm_d2d.Rd, is_64bit));
                         return result;
@@ -35205,7 +34947,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQSHLU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshlu_asisdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshlu_asisdshf_r.Rn, is_64bit));
@@ -35215,7 +34956,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UQSHL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqshl_asisdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uqshl_asisdshf_r.Rn, is_64bit));
@@ -35225,7 +34965,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQSHRUN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshrun_asisdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshrun_asisdshf_n.Rn, is_64bit));
@@ -35235,7 +34974,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQRSHRUN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrshrun_asisdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrshrun_asisdshf_n.Rn, is_64bit));
@@ -35245,7 +34983,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UQSHRN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqshrn_asisdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uqshrn_asisdshf_n.Rn, is_64bit));
@@ -35255,7 +34992,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UQRSHRN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqrshrn_asisdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uqrshrn_asisdshf_n.Rn, is_64bit));
@@ -35265,7 +35001,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_asisdshf_c.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_asisdshf_c.Rn, is_64bit));
@@ -35275,7 +35010,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_asisdshf_c.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_asisdshf_c.Rn, is_64bit));
@@ -35291,7 +35025,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UMOV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_umov_asimdins_xx.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_umov_asimdins_xx.Rn, is_64bit));
@@ -35307,7 +35040,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UMOV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_umov_asimdins_ww.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_umov_asimdins_ww.Rn, is_64bit));
@@ -35323,7 +35055,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmp_sfloatcmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmp_sfloatcmp.Rm, is_64bit));
@@ -35333,7 +35064,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmp_sz_floatcmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmp_sz_floatcmp.Rm, is_64bit));
@@ -35343,7 +35073,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMPE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmpe_sfloatcmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmpe_sfloatcmp.Rm, is_64bit));
@@ -35353,7 +35082,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMPE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmpe_sz_floatcmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmpe_sz_floatcmp.Rm, is_64bit));
@@ -35363,7 +35091,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmp_dfloatcmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmp_dfloatcmp.Rm, is_64bit));
@@ -35373,7 +35100,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmp_dz_floatcmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmp_dz_floatcmp.Rm, is_64bit));
@@ -35383,7 +35109,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMPE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmpe_dfloatcmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmpe_dfloatcmp.Rm, is_64bit));
@@ -35393,7 +35118,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMPE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmpe_dz_floatcmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmpe_dz_floatcmp.Rm, is_64bit));
@@ -35403,7 +35127,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmp_hfloatcmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmp_hfloatcmp.Rm, is_64bit));
@@ -35413,7 +35136,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmp_hz_floatcmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmp_hz_floatcmp.Rm, is_64bit));
@@ -35423,7 +35145,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMPE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmpe_hfloatcmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmpe_hfloatcmp.Rm, is_64bit));
@@ -35433,7 +35154,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMPE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmpe_hz_floatcmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmpe_hz_floatcmp.Rm, is_64bit));
@@ -35448,7 +35168,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SMOV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.smov_asimdins_ww.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smov_asimdins_ww.Rn, is_64bit));
@@ -35459,7 +35178,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UMOV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.umov_asimdins_ww.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.umov_asimdins_ww.Rn, is_64bit));
@@ -35470,7 +35188,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLALLBB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlallbb_asimdsame2g.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlallbb_asimdsame2g.Rn, is_64bit));
@@ -35481,7 +35198,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLALLBT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlallbt_asimdsame2g.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlallbt_asimdsame2g.Rn, is_64bit));
@@ -35492,7 +35208,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLALB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlalb_asimdsame2j.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlalb_asimdsame2j.Rn, is_64bit));
@@ -35503,7 +35218,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMUL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmul_sfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmul_sfloatdp2.Rn, is_64bit));
@@ -35514,7 +35228,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FDIV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fdiv_sfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fdiv_sfloatdp2.Rn, is_64bit));
@@ -35525,7 +35238,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fadd_sfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fadd_sfloatdp2.Rn, is_64bit));
@@ -35536,7 +35248,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FSUB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fsub_sfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fsub_sfloatdp2.Rn, is_64bit));
@@ -35547,7 +35258,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMAX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmax_sfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmax_sfloatdp2.Rn, is_64bit));
@@ -35558,7 +35268,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMIN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmin_sfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmin_sfloatdp2.Rn, is_64bit));
@@ -35569,7 +35278,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXNM, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnm_sfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnm_sfloatdp2.Rn, is_64bit));
@@ -35580,7 +35288,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMINNM, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnm_sfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnm_sfloatdp2.Rn, is_64bit));
@@ -35591,7 +35298,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FNMUL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmul_sfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmul_sfloatdp2.Rn, is_64bit));
@@ -35602,7 +35308,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMUL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmul_dfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmul_dfloatdp2.Rn, is_64bit));
@@ -35613,7 +35318,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FDIV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fdiv_dfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fdiv_dfloatdp2.Rn, is_64bit));
@@ -35624,7 +35328,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fadd_dfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fadd_dfloatdp2.Rn, is_64bit));
@@ -35635,7 +35338,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FSUB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fsub_dfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fsub_dfloatdp2.Rn, is_64bit));
@@ -35646,7 +35348,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMAX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmax_dfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmax_dfloatdp2.Rn, is_64bit));
@@ -35657,7 +35358,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMIN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmin_dfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmin_dfloatdp2.Rn, is_64bit));
@@ -35668,7 +35368,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXNM, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnm_dfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnm_dfloatdp2.Rn, is_64bit));
@@ -35679,7 +35378,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMINNM, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnm_dfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnm_dfloatdp2.Rn, is_64bit));
@@ -35690,7 +35388,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FNMUL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmul_dfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmul_dfloatdp2.Rn, is_64bit));
@@ -35701,7 +35398,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMUL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmul_hfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmul_hfloatdp2.Rn, is_64bit));
@@ -35712,7 +35408,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FDIV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fdiv_hfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fdiv_hfloatdp2.Rn, is_64bit));
@@ -35723,7 +35418,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fadd_hfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fadd_hfloatdp2.Rn, is_64bit));
@@ -35734,7 +35428,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FSUB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fsub_hfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fsub_hfloatdp2.Rn, is_64bit));
@@ -35745,7 +35438,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMAX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmax_hfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmax_hfloatdp2.Rn, is_64bit));
@@ -35756,7 +35448,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMIN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmin_hfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmin_hfloatdp2.Rn, is_64bit));
@@ -35767,7 +35458,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXNM, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnm_hfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnm_hfloatdp2.Rn, is_64bit));
@@ -35778,7 +35468,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMINNM, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnm_hfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnm_hfloatdp2.Rn, is_64bit));
@@ -35789,7 +35478,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FNMUL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmul_hfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmul_hfloatdp2.Rn, is_64bit));
@@ -35801,7 +35489,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::INS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ins_asimdins_ir_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ins_asimdins_ir_r.Rn, is_64bit));
@@ -35812,7 +35499,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SMOV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.smov_asimdins_xx.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smov_asimdins_xx.Rn, is_64bit));
@@ -35823,7 +35509,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLALLTB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlalltb_asimdsame2g.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlalltb_asimdsame2g.Rn, is_64bit));
@@ -35834,7 +35519,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLALLTT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlalltt_asimdsame2g.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlalltt_asimdsame2g.Rn, is_64bit));
@@ -35845,7 +35529,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMMLA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmmla_asimd_fp16fp32.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmmla_asimd_fp16fp32.Rn, is_64bit));
@@ -35856,7 +35539,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SMMLA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.smmla_asimdsame2g.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smmla_asimdsame2g.Rn, is_64bit));
@@ -35867,7 +35549,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::USMMLA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.usmmla_asimdsame2g.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.usmmla_asimdsame2g.Rn, is_64bit));
@@ -35878,7 +35559,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMMLA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmmla_asimd_fp16fp16.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmmla_asimd_fp16fp16.Rn, is_64bit));
@@ -35889,7 +35569,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLALT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlalt_asimdsame2j.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlalt_asimdsame2j.Rn, is_64bit));
@@ -35900,7 +35579,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SHA1C, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sha1c_qsv_cryptosha3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sha1c_qsv_cryptosha3.Rn, is_64bit));
@@ -35912,7 +35590,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::DUP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.dup_asisdone_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.dup_asisdone_only.Rn, is_64bit));
@@ -35923,7 +35600,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SHA1P, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sha1p_qsv_cryptosha3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sha1p_qsv_cryptosha3.Rn, is_64bit));
@@ -35934,7 +35610,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SHA1M, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sha1m_qsv_cryptosha3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sha1m_qsv_cryptosha3.Rn, is_64bit));
@@ -35945,7 +35620,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SHA1SU0, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sha1su0vvv_cryptosha3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sha1su0vvv_cryptosha3.Rn, is_64bit));
@@ -35956,7 +35630,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SHA256H, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sha256h_qqv_cryptosha3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sha256h_qqv_cryptosha3.Rn, is_64bit));
@@ -35967,7 +35640,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SHA256H2, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sha256h2qqv_cryptosha3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sha256h2qqv_cryptosha3.Rn, is_64bit));
@@ -35978,7 +35650,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SHA256SU1, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sha256su1vvv_cryptosha3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sha256su1vvv_cryptosha3.Rn, is_64bit));
@@ -35989,7 +35660,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMULX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmulx_asisdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmulx_asisdsamefp16only.Rn, is_64bit));
@@ -36000,7 +35670,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMEQ, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmeq_asisdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmeq_asisdsamefp16only.Rn, is_64bit));
@@ -36011,7 +35680,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRECPS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frecps_asisdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frecps_asisdsamefp16only.Rn, is_64bit));
@@ -36022,7 +35690,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRSQRTS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frsqrts_asisdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frsqrts_asisdsamefp16only.Rn, is_64bit));
@@ -36033,7 +35700,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CMGT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmgt_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmgt_asisdsame_only.Rn, is_64bit));
@@ -36044,7 +35710,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CMGE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmge_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmge_asisdsame_only.Rn, is_64bit));
@@ -36055,7 +35720,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SSHL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sshl_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sshl_asisdsame_only.Rn, is_64bit));
@@ -36066,7 +35730,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SRSHL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.srshl_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.srshl_asisdsame_only.Rn, is_64bit));
@@ -36077,7 +35740,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::ADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.add_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.add_asisdsame_only.Rn, is_64bit));
@@ -36088,7 +35750,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CMTST, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmtst_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmtst_asisdsame_only.Rn, is_64bit));
@@ -36099,7 +35760,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMMLA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmmla_asimd_fp8fp16.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmmla_asimd_fp8fp16.Rn, is_64bit));
@@ -36110,7 +35770,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::BFMMLA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.bfmmla_asimdsame2e.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bfmmla_asimdsame2e.Rn, is_64bit));
@@ -36121,7 +35780,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UMMLA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ummla_asimdsame2g.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ummla_asimdsame2g.Rn, is_64bit));
@@ -36132,7 +35790,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMMLA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmmla_asimd_fp8fp32.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmmla_asimd_fp8fp32.Rn, is_64bit));
@@ -36143,7 +35800,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMGE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmge_asisdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmge_asisdsamefp16only.Rn, is_64bit));
@@ -36154,7 +35810,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FACGE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.facge_asisdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.facge_asisdsamefp16only.Rn, is_64bit));
@@ -36165,7 +35820,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FABD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fabd_asisdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fabd_asisdsamefp16only.Rn, is_64bit));
@@ -36176,7 +35830,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMGT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmgt_asisdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmgt_asisdsamefp16only.Rn, is_64bit));
@@ -36187,7 +35840,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FACGT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.facgt_asisdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.facgt_asisdsamefp16only.Rn, is_64bit));
@@ -36198,7 +35850,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CMHI, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmhi_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmhi_asisdsame_only.Rn, is_64bit));
@@ -36209,7 +35860,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CMHS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmhs_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmhs_asisdsame_only.Rn, is_64bit));
@@ -36220,7 +35870,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::USHL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ushl_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ushl_asisdsame_only.Rn, is_64bit));
@@ -36231,7 +35880,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::URSHL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.urshl_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.urshl_asisdsame_only.Rn, is_64bit));
@@ -36242,7 +35890,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SUB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sub_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sub_asisdsame_only.Rn, is_64bit));
@@ -36253,7 +35900,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CMEQ, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmeq_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmeq_asisdsame_only.Rn, is_64bit));
@@ -36264,7 +35910,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SHA512H, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sha512h_qqv_cryptosha5123.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sha512h_qqv_cryptosha5123.Rn, is_64bit));
@@ -36275,7 +35920,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SHA512H2, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sha512h2qqv_cryptosha5123.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sha512h2qqv_cryptosha5123.Rn, is_64bit));
@@ -36286,7 +35930,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SHA512SU1, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sha512su1vvv2cryptosha5123.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sha512su1vvv2cryptosha5123.Rn, is_64bit));
@@ -36297,7 +35940,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::RAX1, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rax1vvv2cryptosha5123.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rax1vvv2cryptosha5123.Rn, is_64bit));
@@ -36308,7 +35950,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SM3PARTW1, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3partw1vvv4cryptosha5123.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3partw1vvv4cryptosha5123.Rn, is_64bit));
@@ -36319,7 +35960,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SM3PARTW2, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3partw2vvv4cryptosha5123.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3partw2vvv4cryptosha5123.Rn, is_64bit));
@@ -36330,7 +35970,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SM4EKEY, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sm4ekey_vvv4cryptosha5123.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sm4ekey_vvv4cryptosha5123.Rn, is_64bit));
@@ -36346,7 +35985,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SM3TT1A, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3tt1a_vvv4crypto3imm2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3tt1a_vvv4crypto3imm2.Rn, is_64bit));
@@ -36357,7 +35995,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SM3TT1B, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3tt1b_vvv4crypto3imm2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3tt1b_vvv4crypto3imm2.Rn, is_64bit));
@@ -36368,7 +36005,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SM3TT2A, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3tt2a_vvv4crypto3imm2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3tt2a_vvv4crypto3imm2.Rn, is_64bit));
@@ -36379,7 +36015,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SM3TT2B, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3tt2b_vvv_crypto3imm2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3tt2b_vvv_crypto3imm2.Rn, is_64bit));
@@ -36395,7 +36030,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI4, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.luti4asimdtbl_l5.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.luti4asimdtbl_l5.Rn, is_64bit));
@@ -36411,7 +36045,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI4, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.luti4asimdtbl_l7.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.luti4asimdtbl_l7.Rn, is_64bit));
@@ -36422,7 +36055,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI2, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.luti2asimdtbl_l5.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.luti2asimdtbl_l5.Rn, is_64bit));
@@ -36438,7 +36070,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI2, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.luti2asimdtbl_l6.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.luti2asimdtbl_l6.Rn, is_64bit));
@@ -36455,7 +36086,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::INS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ins_asimdins_iv_v.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ins_asimdins_iv_v.Rn, is_64bit));
@@ -36471,7 +36101,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmadd_sfloatdp3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmadd_sfloatdp3.Rn, is_64bit));
@@ -36483,7 +36112,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMSUB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmsub_sfloatdp3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmsub_sfloatdp3.Rn, is_64bit));
@@ -36495,7 +36123,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FNMADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmadd_sfloatdp3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmadd_sfloatdp3.Rn, is_64bit));
@@ -36507,7 +36134,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FNMSUB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmsub_sfloatdp3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmsub_sfloatdp3.Rn, is_64bit));
@@ -36519,7 +36145,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmadd_dfloatdp3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmadd_dfloatdp3.Rn, is_64bit));
@@ -36531,7 +36156,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMSUB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmsub_dfloatdp3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmsub_dfloatdp3.Rn, is_64bit));
@@ -36543,7 +36167,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FNMADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmadd_dfloatdp3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmadd_dfloatdp3.Rn, is_64bit));
@@ -36555,7 +36178,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FNMSUB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmsub_dfloatdp3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmsub_dfloatdp3.Rn, is_64bit));
@@ -36567,7 +36189,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmadd_hfloatdp3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmadd_hfloatdp3.Rn, is_64bit));
@@ -36579,7 +36200,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMSUB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmsub_hfloatdp3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmsub_hfloatdp3.Rn, is_64bit));
@@ -36591,7 +36211,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FNMADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmadd_hfloatdp3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmadd_hfloatdp3.Rn, is_64bit));
@@ -36603,7 +36222,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FNMSUB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmsub_hfloatdp3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmsub_hfloatdp3.Rn, is_64bit));
@@ -36615,7 +36233,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::EOR3, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.eor3vvv16crypto4.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.eor3vvv16crypto4.Rn, is_64bit));
@@ -36627,7 +36244,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::BCAX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.bcax_vvv16crypto4.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bcax_vvv16crypto4.Rn, is_64bit));
@@ -36639,7 +36255,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SM3SS1, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3ss1vvv4crypto4.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3ss1vvv4crypto4.Rn, is_64bit));
@@ -36656,7 +36271,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_sfloatimm.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmov_sfloatimm.imm8, true));
@@ -36666,7 +36280,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_dfloatimm.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmov_dfloatimm.imm8, true));
@@ -36676,7 +36289,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_hfloatimm.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmov_hfloatimm.imm8, true));
@@ -36691,60 +36303,60 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCCMP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmp_sfloatccmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmp_sfloatccmp.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.fccmp_sfloatccmp.cond, true));
                         return result;
         }
         case 0x1E200410u: { // FCCMPE_S_floatccmp
                         Instruction result(Mnemonic::FCCMPE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmpe_sfloatccmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmpe_sfloatccmp.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.fccmpe_sfloatccmp.cond, true));
                         return result;
         }
         case 0x1E600400u: { // FCCMP_D_floatccmp
                         Instruction result(Mnemonic::FCCMP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmp_dfloatccmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmp_dfloatccmp.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.fccmp_dfloatccmp.cond, true));
                         return result;
         }
         case 0x1E600410u: { // FCCMPE_D_floatccmp
                         Instruction result(Mnemonic::FCCMPE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmpe_dfloatccmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmpe_dfloatccmp.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.fccmpe_dfloatccmp.cond, true));
                         return result;
         }
         case 0x1EE00400u: { // FCCMP_H_floatccmp
                         Instruction result(Mnemonic::FCCMP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmp_hfloatccmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmp_hfloatccmp.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.fccmp_hfloatccmp.cond, true));
                         return result;
         }
         case 0x1EE00410u: { // FCCMPE_H_floatccmp
                         Instruction result(Mnemonic::FCCMPE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmpe_hfloatccmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmpe_hfloatccmp.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.fccmpe_hfloatccmp.cond, true));
                         return result;
         }
         default: break;
@@ -36756,33 +36368,33 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCSEL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_sfloatsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_sfloatsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_sfloatsel.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.fcsel_sfloatsel.cond, true));
                         return result;
         }
         case 0x1E600C00u: { // FCSEL_D_floatsel
                         Instruction result(Mnemonic::FCSEL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_dfloatsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_dfloatsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_dfloatsel.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.fcsel_dfloatsel.cond, true));
                         return result;
         }
         case 0x1EE00C00u: { // FCSEL_H_floatsel
                         Instruction result(Mnemonic::FCSEL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_hfloatsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_hfloatsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_hfloatsel.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.fcsel_hfloatsel.cond, true));
                         return result;
         }
         default: break;
@@ -36794,7 +36406,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::XAR, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.xar_vvv2crypto3imm6.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.xar_vvv2crypto3imm6.Rn, is_64bit));
@@ -36811,7 +36422,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SSHR, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sshr_asisdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sshr_asisdshf_r.Rn, is_64bit));
@@ -36821,7 +36431,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SSRA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ssra_asisdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ssra_asisdshf_r.Rn, is_64bit));
@@ -36831,7 +36440,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SRSHR, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.srshr_asisdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.srshr_asisdshf_r.Rn, is_64bit));
@@ -36841,7 +36449,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SRSRA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.srsra_asisdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.srsra_asisdshf_r.Rn, is_64bit));
@@ -36851,7 +36458,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SHL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.shl_asisdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.shl_asisdshf_r.Rn, is_64bit));
@@ -36861,7 +36467,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::USHR, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ushr_asisdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ushr_asisdshf_r.Rn, is_64bit));
@@ -36871,7 +36476,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::USRA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.usra_asisdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.usra_asisdshf_r.Rn, is_64bit));
@@ -36881,7 +36485,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::URSHR, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.urshr_asisdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.urshr_asisdshf_r.Rn, is_64bit));
@@ -36891,7 +36494,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::URSRA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ursra_asisdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ursra_asisdshf_r.Rn, is_64bit));
@@ -36901,7 +36503,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SRI, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sri_asisdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sri_asisdshf_r.Rn, is_64bit));
@@ -36911,7 +36512,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SLI, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sli_asisdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sli_asisdshf_r.Rn, is_64bit));
@@ -36926,7 +36526,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLALB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlalb_asimdelem_h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlalb_asimdelem_h.Rn, is_64bit));
@@ -36937,7 +36536,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLALLBB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlallbb_asimdelem_j.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlallbb_asimdelem_j.Rn, is_64bit));
@@ -36948,7 +36546,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLALLBT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlallbt_asimdelem_j.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlallbt_asimdelem_j.Rn, is_64bit));
@@ -36959,7 +36556,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLALT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlalt_asimdelem_h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlalt_asimdelem_h.Rn, is_64bit));
@@ -36970,7 +36566,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmla_asisdelem_rh_h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmla_asisdelem_rh_h.Rn, is_64bit));
@@ -36981,7 +36576,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmls_asisdelem_rh_h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmls_asisdelem_rh_h.Rn, is_64bit));
@@ -36992,7 +36586,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMUL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmul_asisdelem_rh_h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmul_asisdelem_rh_h.Rn, is_64bit));
@@ -37003,7 +36596,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLALLTB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlalltb_asimdelem_j.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlalltb_asimdelem_j.Rn, is_64bit));
@@ -37014,7 +36606,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLALLTT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlalltt_asimdelem_j.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlalltt_asimdelem_j.Rn, is_64bit));
@@ -37025,7 +36616,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMULX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmulx_asisdelem_rh_h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmulx_asisdelem_rh_h.Rn, is_64bit));
@@ -37041,7 +36631,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns_asisdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns_asisdmisc_r.Rn, is_64bit));
@@ -37051,7 +36640,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms_asisdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms_asisdmisc_r.Rn, is_64bit));
@@ -37061,7 +36649,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas_asisdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas_asisdmisc_r.Rn, is_64bit));
@@ -37071,7 +36658,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_asisdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_asisdmisc_r.Rn, is_64bit));
@@ -37081,7 +36667,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMGT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmgt_asisdmisc_fz.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmgt_asisdmisc_fz.Rn, is_64bit));
@@ -37091,7 +36676,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMEQ, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmeq_asisdmisc_fz.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmeq_asisdmisc_fz.Rn, is_64bit));
@@ -37101,7 +36685,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMLT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmlt_asisdmisc_fz.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmlt_asisdmisc_fz.Rn, is_64bit));
@@ -37111,7 +36694,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps_asisdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps_asisdmisc_r.Rn, is_64bit));
@@ -37121,7 +36703,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_asisdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_asisdmisc_r.Rn, is_64bit));
@@ -37131,7 +36712,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRECPE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frecpe_asisdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frecpe_asisdmisc_r.Rn, is_64bit));
@@ -37141,7 +36721,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRECPX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frecpx_asisdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frecpx_asisdmisc_r.Rn, is_64bit));
@@ -37151,7 +36730,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu_asisdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu_asisdmisc_r.Rn, is_64bit));
@@ -37161,7 +36739,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu_asisdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu_asisdmisc_r.Rn, is_64bit));
@@ -37171,7 +36748,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau_asisdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau_asisdmisc_r.Rn, is_64bit));
@@ -37181,7 +36757,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_asisdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_asisdmisc_r.Rn, is_64bit));
@@ -37191,7 +36766,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXNMP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnmp_asisdpair_only_sd.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnmp_asisdpair_only_sd.Rn, is_64bit));
@@ -37201,7 +36775,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FADDP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.faddp_asisdpair_only_sd.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.faddp_asisdpair_only_sd.Rn, is_64bit));
@@ -37211,7 +36784,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxp_asisdpair_only_sd.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxp_asisdpair_only_sd.Rn, is_64bit));
@@ -37221,7 +36793,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMGE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmge_asisdmisc_fz.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmge_asisdmisc_fz.Rn, is_64bit));
@@ -37231,7 +36802,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMLE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmle_asisdmisc_fz.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmle_asisdmisc_fz.Rn, is_64bit));
@@ -37241,7 +36811,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu_asisdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu_asisdmisc_r.Rn, is_64bit));
@@ -37251,7 +36820,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_asisdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_asisdmisc_r.Rn, is_64bit));
@@ -37261,7 +36829,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRSQRTE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frsqrte_asisdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frsqrte_asisdmisc_r.Rn, is_64bit));
@@ -37271,7 +36838,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMINNMP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnmp_asisdpair_only_sd.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnmp_asisdpair_only_sd.Rn, is_64bit));
@@ -37281,7 +36847,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMINP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fminp_asisdpair_only_sd.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fminp_asisdpair_only_sd.Rn, is_64bit));
@@ -37296,7 +36861,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMULX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmulx_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmulx_asisdsame_only.Rn, is_64bit));
@@ -37307,7 +36871,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMEQ, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmeq_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmeq_asisdsame_only.Rn, is_64bit));
@@ -37318,7 +36881,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRECPS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frecps_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frecps_asisdsame_only.Rn, is_64bit));
@@ -37329,7 +36891,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRSQRTS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frsqrts_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frsqrts_asisdsame_only.Rn, is_64bit));
@@ -37340,7 +36901,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMGE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmge_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmge_asisdsame_only.Rn, is_64bit));
@@ -37351,7 +36911,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FACGE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.facge_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.facge_asisdsame_only.Rn, is_64bit));
@@ -37362,7 +36921,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FABD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fabd_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fabd_asisdsame_only.Rn, is_64bit));
@@ -37373,7 +36931,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMGT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmgt_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmgt_asisdsame_only.Rn, is_64bit));
@@ -37384,7 +36941,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FACGT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.facgt_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.facgt_asisdsame_only.Rn, is_64bit));
@@ -37400,7 +36956,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmla_asisdelem_rsd.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmla_asisdelem_rsd.Rn, is_64bit));
@@ -37411,7 +36966,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmls_asisdelem_rsd.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmls_asisdelem_rsd.Rn, is_64bit));
@@ -37422,7 +36976,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMUL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmul_asisdelem_rsd.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmul_asisdelem_rsd.Rn, is_64bit));
@@ -37433,7 +36986,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMULX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmulx_asisdelem_rsd.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmulx_asisdelem_rsd.Rn, is_64bit));
@@ -37449,7 +37001,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SUQADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.suqadd_asisdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.suqadd_asisdmisc_r.Rn, is_64bit));
@@ -37459,7 +37010,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQABS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqabs_asisdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqabs_asisdmisc_r.Rn, is_64bit));
@@ -37469,7 +37019,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQXTN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqxtn_asisdmisc_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqxtn_asisdmisc_n.Rn, is_64bit));
@@ -37479,7 +37028,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::USQADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.usqadd_asisdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.usqadd_asisdmisc_r.Rn, is_64bit));
@@ -37489,7 +37037,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQNEG, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqneg_asisdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqneg_asisdmisc_r.Rn, is_64bit));
@@ -37499,7 +37046,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQXTUN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqxtun_asisdmisc_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqxtun_asisdmisc_n.Rn, is_64bit));
@@ -37509,7 +37055,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UQXTN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqxtn_asisdmisc_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uqxtn_asisdmisc_n.Rn, is_64bit));
@@ -37524,7 +37069,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqadd_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqadd_asisdsame_only.Rn, is_64bit));
@@ -37535,7 +37079,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQSUB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqsub_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqsub_asisdsame_only.Rn, is_64bit));
@@ -37546,7 +37089,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQSHL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshl_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshl_asisdsame_only.Rn, is_64bit));
@@ -37557,7 +37099,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQRSHL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrshl_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrshl_asisdsame_only.Rn, is_64bit));
@@ -37568,7 +37109,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQDMLAL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmlal_asisddiff_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmlal_asisddiff_only.Rn, is_64bit));
@@ -37579,7 +37119,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQDMLSL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmlsl_asisddiff_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmlsl_asisddiff_only.Rn, is_64bit));
@@ -37590,7 +37129,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQDMULH, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmulh_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmulh_asisdsame_only.Rn, is_64bit));
@@ -37601,7 +37139,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQDMULL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmull_asisddiff_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmull_asisddiff_only.Rn, is_64bit));
@@ -37612,7 +37149,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQRDMLAH, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmlah_asisdsame2only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmlah_asisdsame2only.Rn, is_64bit));
@@ -37623,7 +37159,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQRDMLSH, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmlsh_asisdsame2only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmlsh_asisdsame2only.Rn, is_64bit));
@@ -37634,7 +37169,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UQADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqadd_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uqadd_asisdsame_only.Rn, is_64bit));
@@ -37645,7 +37179,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UQSUB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqsub_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uqsub_asisdsame_only.Rn, is_64bit));
@@ -37656,7 +37189,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UQSHL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqshl_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uqshl_asisdsame_only.Rn, is_64bit));
@@ -37667,7 +37199,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UQRSHL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqrshl_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uqrshl_asisdsame_only.Rn, is_64bit));
@@ -37678,7 +37209,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQRDMULH, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmulh_asisdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmulh_asisdsame_only.Rn, is_64bit));
@@ -37694,7 +37224,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQDMLAL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmlal_asisdelem_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmlal_asisdelem_l.Rn, is_64bit));
@@ -37705,7 +37234,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQDMLSL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmlsl_asisdelem_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmlsl_asisdelem_l.Rn, is_64bit));
@@ -37716,7 +37244,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQDMULL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmull_asisdelem_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmull_asisdelem_l.Rn, is_64bit));
@@ -37727,7 +37254,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQDMULH, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmulh_asisdelem_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmulh_asisdelem_r.Rn, is_64bit));
@@ -37738,7 +37264,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQRDMULH, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmulh_asisdelem_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmulh_asisdelem_r.Rn, is_64bit));
@@ -37749,7 +37274,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQRDMLAH, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmlah_asisdelem_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmlah_asisdelem_r.Rn, is_64bit));
@@ -37760,7 +37284,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQRDMLSH, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmlsh_asisdelem_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmlsh_asisdelem_r.Rn, is_64bit));
@@ -37776,7 +37299,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXNMV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnmv_asimdall_only_h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnmv_asimdall_only_h.Rn, is_64bit));
@@ -37786,7 +37308,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxv_asimdall_only_h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxv_asimdall_only_h.Rn, is_64bit));
@@ -37796,7 +37317,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintn_asimdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintn_asimdmiscfp16r.Rn, is_64bit));
@@ -37806,7 +37326,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTM, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintm_asimdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintm_asimdmiscfp16r.Rn, is_64bit));
@@ -37816,7 +37335,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns_asimdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns_asimdmiscfp16r.Rn, is_64bit));
@@ -37826,7 +37344,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms_asimdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms_asimdmiscfp16r.Rn, is_64bit));
@@ -37836,7 +37353,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas_asimdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas_asimdmiscfp16r.Rn, is_64bit));
@@ -37846,7 +37362,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_asimdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_asimdmiscfp16r.Rn, is_64bit));
@@ -37856,7 +37371,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::BFCVTN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.bfcvtn_asimdmisc4s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bfcvtn_asimdmisc4s.Rn, is_64bit));
@@ -37866,7 +37380,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMINNMV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnmv_asimdall_only_h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnmv_asimdall_only_h.Rn, is_64bit));
@@ -37876,7 +37389,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMINV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fminv_asimdall_only_h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fminv_asimdall_only_h.Rn, is_64bit));
@@ -37886,7 +37398,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMGT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmgt_asimdmiscfp16fz.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmgt_asimdmiscfp16fz.Rn, is_64bit));
@@ -37896,7 +37407,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMEQ, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmeq_asimdmiscfp16fz.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmeq_asimdmiscfp16fz.Rn, is_64bit));
@@ -37906,7 +37416,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMLT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmlt_asimdmiscfp16fz.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmlt_asimdmiscfp16fz.Rn, is_64bit));
@@ -37916,7 +37425,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FABS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fabs_asimdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fabs_asimdmiscfp16r.Rn, is_64bit));
@@ -37926,7 +37434,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintp_asimdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintp_asimdmiscfp16r.Rn, is_64bit));
@@ -37936,7 +37443,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTZ, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintz_asimdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintz_asimdmiscfp16r.Rn, is_64bit));
@@ -37946,7 +37452,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps_asimdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps_asimdmiscfp16r.Rn, is_64bit));
@@ -37956,7 +37461,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_asimdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_asimdmiscfp16r.Rn, is_64bit));
@@ -37966,7 +37470,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRECPE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frecpe_asimdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frecpe_asimdmiscfp16r.Rn, is_64bit));
@@ -37976,7 +37479,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SSHLL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sxtl_sshll_asimdshf_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sxtl_sshll_asimdshf_l.Rn, is_64bit));
@@ -37987,7 +37489,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::NOT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mvn_not_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.mvn_not_asimdmisc_r.Rn, is_64bit));
@@ -37997,7 +37498,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::F1CVTL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.f1cvtl_asimdmisc_v.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.f1cvtl_asimdmisc_v.Rn, is_64bit));
@@ -38007,7 +37507,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::RBIT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rbit_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rbit_asimdmisc_r.Rn, is_64bit));
@@ -38017,7 +37516,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTXN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtxn_asimdmisc_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtxn_asimdmisc_n.Rn, is_64bit));
@@ -38027,7 +37525,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::F2CVTL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.f2cvtl_asimdmisc_v.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.f2cvtl_asimdmisc_v.Rn, is_64bit));
@@ -38037,7 +37534,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frinta_asimdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frinta_asimdmiscfp16r.Rn, is_64bit));
@@ -38047,7 +37543,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintx_asimdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintx_asimdmiscfp16r.Rn, is_64bit));
@@ -38057,7 +37552,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu_asimdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu_asimdmiscfp16r.Rn, is_64bit));
@@ -38067,7 +37561,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu_asimdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu_asimdmiscfp16r.Rn, is_64bit));
@@ -38077,7 +37570,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau_asimdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau_asimdmiscfp16r.Rn, is_64bit));
@@ -38087,7 +37579,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_asimdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_asimdmiscfp16r.Rn, is_64bit));
@@ -38097,7 +37588,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SHLL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.shll_asimdmisc_s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.shll_asimdmisc_s.Rn, is_64bit));
@@ -38107,7 +37597,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::BF1CVTL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.bf1cvtl_asimdmisc_v.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bf1cvtl_asimdmisc_v.Rn, is_64bit));
@@ -38117,7 +37606,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::BF2CVTL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.bf2cvtl_asimdmisc_v.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bf2cvtl_asimdmisc_v.Rn, is_64bit));
@@ -38127,7 +37615,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMGE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmge_asimdmiscfp16fz.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmge_asimdmiscfp16fz.Rn, is_64bit));
@@ -38137,7 +37624,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMLE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmle_asimdmiscfp16fz.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmle_asimdmiscfp16fz.Rn, is_64bit));
@@ -38147,7 +37633,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FNEG, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fneg_asimdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fneg_asimdmiscfp16r.Rn, is_64bit));
@@ -38157,7 +37642,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTI, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frinti_asimdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frinti_asimdmiscfp16r.Rn, is_64bit));
@@ -38167,7 +37651,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu_asimdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu_asimdmiscfp16r.Rn, is_64bit));
@@ -38177,7 +37660,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_asimdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_asimdmiscfp16r.Rn, is_64bit));
@@ -38187,7 +37669,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRSQRTE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frsqrte_asimdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frsqrte_asimdmiscfp16r.Rn, is_64bit));
@@ -38197,7 +37678,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FSQRT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fsqrt_asimdmiscfp16r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fsqrt_asimdmiscfp16r.Rn, is_64bit));
@@ -38207,7 +37687,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::USHLL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uxtl_ushll_asimdshf_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uxtl_ushll_asimdshf_l.Rn, is_64bit));
@@ -38222,7 +37701,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SSHR, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sshr_asimdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sshr_asimdshf_r.Rn, is_64bit));
@@ -38232,7 +37710,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SSRA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ssra_asimdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ssra_asimdshf_r.Rn, is_64bit));
@@ -38242,7 +37719,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SRSHR, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.srshr_asimdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.srshr_asimdshf_r.Rn, is_64bit));
@@ -38252,7 +37728,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SRSRA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.srsra_asimdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.srsra_asimdshf_r.Rn, is_64bit));
@@ -38262,7 +37737,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SHL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.shl_asimdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.shl_asimdshf_r.Rn, is_64bit));
@@ -38272,7 +37746,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQSHL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshl_asimdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshl_asimdshf_r.Rn, is_64bit));
@@ -38282,7 +37755,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SHRN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.shrn_asimdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.shrn_asimdshf_n.Rn, is_64bit));
@@ -38292,7 +37764,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::RSHRN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rshrn_asimdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rshrn_asimdshf_n.Rn, is_64bit));
@@ -38302,7 +37773,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQSHRN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshrn_asimdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshrn_asimdshf_n.Rn, is_64bit));
@@ -38312,7 +37782,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQRSHRN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrshrn_asimdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrshrn_asimdshf_n.Rn, is_64bit));
@@ -38322,7 +37791,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SSHLL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sshll_asimdshf_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sshll_asimdshf_l.Rn, is_64bit));
@@ -38333,7 +37801,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::MOVI, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.movi_asimdimm_nb.Rd, is_64bit));
                         return result;
@@ -38342,7 +37809,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_asimdimm_ss.Rd, is_64bit));
                         return result;
@@ -38352,7 +37818,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_asimdshf_c.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_asimdshf_c.Rn, is_64bit));
@@ -38362,7 +37827,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::USHR, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ushr_asimdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ushr_asimdshf_r.Rn, is_64bit));
@@ -38372,7 +37836,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::USRA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.usra_asimdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.usra_asimdshf_r.Rn, is_64bit));
@@ -38382,7 +37845,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::URSHR, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.urshr_asimdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.urshr_asimdshf_r.Rn, is_64bit));
@@ -38392,7 +37854,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::URSRA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ursra_asimdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ursra_asimdshf_r.Rn, is_64bit));
@@ -38402,7 +37863,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SRI, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sri_asimdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sri_asimdshf_r.Rn, is_64bit));
@@ -38412,7 +37872,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SLI, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sli_asimdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sli_asimdshf_r.Rn, is_64bit));
@@ -38422,7 +37881,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQSHLU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshlu_asimdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshlu_asimdshf_r.Rn, is_64bit));
@@ -38432,7 +37890,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UQSHL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqshl_asimdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uqshl_asimdshf_r.Rn, is_64bit));
@@ -38442,7 +37899,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQSHRUN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshrun_asimdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshrun_asimdshf_n.Rn, is_64bit));
@@ -38452,7 +37908,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQRSHRUN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrshrun_asimdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrshrun_asimdshf_n.Rn, is_64bit));
@@ -38462,7 +37917,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UQSHRN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqshrn_asimdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uqshrn_asimdshf_n.Rn, is_64bit));
@@ -38472,7 +37926,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UQRSHRN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqrshrn_asimdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uqrshrn_asimdshf_n.Rn, is_64bit));
@@ -38482,7 +37935,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::USHLL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ushll_asimdshf_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ushll_asimdshf_l.Rn, is_64bit));
@@ -38492,7 +37944,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_asimdshf_c.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_asimdshf_c.Rn, is_64bit));
@@ -38502,7 +37953,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_asimdshf_c.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_asimdshf_c.Rn, is_64bit));
@@ -38517,7 +37967,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::MOVI, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.movi_asimdimm_msm.Rd, is_64bit));
                         return result;
@@ -38526,7 +37975,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::MVNI, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mvni_asimdimm_msm.Rd, is_64bit));
                         return result;
@@ -38540,7 +37988,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::MOVI, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.movi_asimdimm_lhl.Rd, is_64bit));
                         return result;
@@ -38549,7 +37996,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::ORR, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.orr_asimdimm_lhl.Rd, is_64bit));
                         return result;
@@ -38558,7 +38004,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::MVNI, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mvni_asimdimm_lhl.Rd, is_64bit));
                         return result;
@@ -38567,7 +38012,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::BIC, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.bic_asimdimm_lhl.Rd, is_64bit));
                         return result;
@@ -38581,7 +38025,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::MOVI, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.movi_asimdimm_lsl.Rd, is_64bit));
                         return result;
@@ -38590,7 +38033,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::ORR, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.orr_asimdimm_lsl.Rd, is_64bit));
                         return result;
@@ -38599,7 +38041,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::MVNI, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mvni_asimdimm_lsl.Rd, is_64bit));
                         return result;
@@ -38608,7 +38049,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::BIC, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.bic_asimdimm_lsl.Rd, is_64bit));
                         return result;
@@ -38622,7 +38062,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::TBL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.tbl_asimdtbl_l11.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.tbl_asimdtbl_l11.Rn, is_64bit));
@@ -38633,7 +38072,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::DUP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.dup_asimdins_dv_v.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.dup_asimdins_dv_v.Rn, is_64bit));
@@ -38644,7 +38082,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::DUP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.dup_asimdins_dr_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.dup_asimdins_dr_r.Rn, is_64bit));
@@ -38655,7 +38092,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::TBX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.tbx_asimdtbl_l11.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.tbx_asimdtbl_l11.Rn, is_64bit));
@@ -38666,7 +38102,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::TBL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.tbl_asimdtbl_l22.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.tbl_asimdtbl_l22.Rn, is_64bit));
@@ -38677,7 +38112,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::TBX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.tbx_asimdtbl_l22.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.tbx_asimdtbl_l22.Rn, is_64bit));
@@ -38688,7 +38122,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::TBL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.tbl_asimdtbl_l33.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.tbl_asimdtbl_l33.Rn, is_64bit));
@@ -38699,7 +38132,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::TBX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.tbx_asimdtbl_l33.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.tbx_asimdtbl_l33.Rn, is_64bit));
@@ -38710,7 +38142,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::TBL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.tbl_asimdtbl_l44.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.tbl_asimdtbl_l44.Rn, is_64bit));
@@ -38721,7 +38152,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::TBX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.tbx_asimdtbl_l44.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.tbx_asimdtbl_l44.Rn, is_64bit));
@@ -38732,7 +38162,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtn_asimdsame2h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtn_asimdsame2h.Rn, is_64bit));
@@ -38743,7 +38172,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FDOT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fdot_asimdsame2dd.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fdot_asimdsame2dd.Rn, is_64bit));
@@ -38754,7 +38182,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::AND, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.and_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.and_asimdsame_only.Rn, is_64bit));
@@ -38765,7 +38192,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLAL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlal_asimdsame_f.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlal_asimdsame_f.Rn, is_64bit));
@@ -38776,7 +38202,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXNM, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnm_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnm_asimdsamefp16only.Rn, is_64bit));
@@ -38787,7 +38212,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmla_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmla_asimdsamefp16only.Rn, is_64bit));
@@ -38798,7 +38222,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fadd_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fadd_asimdsamefp16only.Rn, is_64bit));
@@ -38809,7 +38232,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMULX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmulx_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmulx_asimdsamefp16only.Rn, is_64bit));
@@ -38820,7 +38242,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMEQ, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmeq_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmeq_asimdsamefp16only.Rn, is_64bit));
@@ -38831,7 +38252,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMAX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmax_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmax_asimdsamefp16only.Rn, is_64bit));
@@ -38842,7 +38262,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRECPS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frecps_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frecps_asimdsamefp16only.Rn, is_64bit));
@@ -38853,7 +38272,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtn_asimdsame2d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtn_asimdsame2d.Rn, is_64bit));
@@ -38864,7 +38282,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FDOT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fdot_asimdsame2d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fdot_asimdsame2d.Rn, is_64bit));
@@ -38875,7 +38292,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::BIC, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.bic_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bic_asimdsame_only.Rn, is_64bit));
@@ -38886,7 +38302,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::USDOT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.usdot_asimdsame2d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.usdot_asimdsame2d.Rn, is_64bit));
@@ -38897,7 +38312,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FDOT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fdot_asimdsame2fp16fp32.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fdot_asimdsame2fp16fp32.Rn, is_64bit));
@@ -38909,7 +38323,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::ORR, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_orr_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_orr_asimdsame_only.Rn, is_64bit));
@@ -38920,7 +38333,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLSL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlsl_asimdsame_f.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlsl_asimdsame_f.Rn, is_64bit));
@@ -38931,7 +38343,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMINNM, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnm_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnm_asimdsamefp16only.Rn, is_64bit));
@@ -38942,7 +38353,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmls_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmls_asimdsamefp16only.Rn, is_64bit));
@@ -38953,7 +38363,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FSUB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fsub_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fsub_asimdsamefp16only.Rn, is_64bit));
@@ -38964,7 +38373,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FAMAX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.famax_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.famax_asimdsamefp16only.Rn, is_64bit));
@@ -38975,7 +38383,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMIN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmin_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmin_asimdsamefp16only.Rn, is_64bit));
@@ -38986,7 +38393,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRSQRTS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frsqrts_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frsqrts_asimdsamefp16only.Rn, is_64bit));
@@ -38997,7 +38403,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SDOT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sdot_asimdsame2d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sdot_asimdsame2d.Rn, is_64bit));
@@ -39008,7 +38413,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::ORN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.orn_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.orn_asimdsame_only.Rn, is_64bit));
@@ -39019,7 +38423,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::EOR, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.eor_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.eor_asimdsame_only.Rn, is_64bit));
@@ -39030,7 +38433,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLAL2, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlal2asimdsame_f.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlal2asimdsame_f.Rn, is_64bit));
@@ -39041,7 +38443,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXNMP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnmp_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnmp_asimdsamefp16only.Rn, is_64bit));
@@ -39052,7 +38453,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FADDP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.faddp_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.faddp_asimdsamefp16only.Rn, is_64bit));
@@ -39063,7 +38463,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMUL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmul_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmul_asimdsamefp16only.Rn, is_64bit));
@@ -39074,7 +38473,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMGE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmge_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmge_asimdsamefp16only.Rn, is_64bit));
@@ -39085,7 +38483,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FACGE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.facge_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.facge_asimdsamefp16only.Rn, is_64bit));
@@ -39096,7 +38493,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxp_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxp_asimdsamefp16only.Rn, is_64bit));
@@ -39107,7 +38503,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FDIV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fdiv_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fdiv_asimdsamefp16only.Rn, is_64bit));
@@ -39118,7 +38513,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::BFDOT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.bfdot_asimdsame2d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bfdot_asimdsame2d.Rn, is_64bit));
@@ -39129,7 +38523,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::BSL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.bsl_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bsl_asimdsame_only.Rn, is_64bit));
@@ -39140,7 +38533,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::BIT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.bit_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bit_asimdsame_only.Rn, is_64bit));
@@ -39151,7 +38543,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLSL2, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlsl2asimdsame_f.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlsl2asimdsame_f.Rn, is_64bit));
@@ -39162,7 +38553,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMINNMP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnmp_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnmp_asimdsamefp16only.Rn, is_64bit));
@@ -39173,7 +38563,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FABD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fabd_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fabd_asimdsamefp16only.Rn, is_64bit));
@@ -39184,7 +38573,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FAMIN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.famin_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.famin_asimdsamefp16only.Rn, is_64bit));
@@ -39195,7 +38583,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMGT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmgt_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmgt_asimdsamefp16only.Rn, is_64bit));
@@ -39206,7 +38593,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FACGT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.facgt_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.facgt_asimdsamefp16only.Rn, is_64bit));
@@ -39217,7 +38603,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMINP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fminp_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fminp_asimdsamefp16only.Rn, is_64bit));
@@ -39228,7 +38613,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FSCALE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fscale_asimdsamefp16only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fscale_asimdsamefp16only.Rn, is_64bit));
@@ -39239,7 +38623,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UDOT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.udot_asimdsame2d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.udot_asimdsame2d.Rn, is_64bit));
@@ -39250,7 +38633,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::BFMLAL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.bfmlal_asimdsame2f.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bfmlal_asimdsame2f.Rn, is_64bit));
@@ -39261,7 +38643,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::BIF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.bif_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bif_asimdsame_only.Rn, is_64bit));
@@ -39277,7 +38658,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::EXT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ext_asimdext_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ext_asimdext_only.Rn, is_64bit));
@@ -39293,7 +38673,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FDOT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fdot_asimdelem_d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fdot_asimdelem_d.Rn, is_64bit));
@@ -39304,7 +38683,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmla_asimdelem_rh_h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmla_asimdelem_rh_h.Rn, is_64bit));
@@ -39315,7 +38693,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmls_asimdelem_rh_h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmls_asimdelem_rh_h.Rn, is_64bit));
@@ -39326,7 +38703,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMUL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmul_asimdelem_rh_h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmul_asimdelem_rh_h.Rn, is_64bit));
@@ -39337,7 +38713,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SUDOT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sudot_asimdelem_d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sudot_asimdelem_d.Rn, is_64bit));
@@ -39348,7 +38723,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FDOT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fdot_asimdelem_g.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fdot_asimdelem_g.Rn, is_64bit));
@@ -39359,7 +38733,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FDOT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fdot_asimdelem_fp16fp32.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fdot_asimdelem_fp16fp32.Rn, is_64bit));
@@ -39370,7 +38743,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::BFDOT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.bfdot_asimdelem_e.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bfdot_asimdelem_e.Rn, is_64bit));
@@ -39381,7 +38753,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLAL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlal_asimdelem_lh.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlal_asimdelem_lh.Rn, is_64bit));
@@ -39392,7 +38763,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLSL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlsl_asimdelem_lh.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlsl_asimdelem_lh.Rn, is_64bit));
@@ -39403,7 +38773,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::USDOT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.usdot_asimdelem_d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.usdot_asimdelem_d.Rn, is_64bit));
@@ -39414,7 +38783,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SDOT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sdot_asimdelem_d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sdot_asimdelem_d.Rn, is_64bit));
@@ -39425,7 +38793,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::BFMLAL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.bfmlal_asimdelem_f.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bfmlal_asimdelem_f.Rn, is_64bit));
@@ -39436,7 +38803,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMULX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmulx_asimdelem_rh_h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmulx_asimdelem_rh_h.Rn, is_64bit));
@@ -39447,7 +38813,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLAL2, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlal2asimdelem_lh.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlal2asimdelem_lh.Rn, is_64bit));
@@ -39458,7 +38823,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLSL2, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlsl2asimdelem_lh.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlsl2asimdelem_lh.Rn, is_64bit));
@@ -39469,7 +38833,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UDOT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.udot_asimdelem_d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.udot_asimdelem_d.Rn, is_64bit));
@@ -39485,7 +38848,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtn_asimdmisc_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtn_asimdmisc_n.Rn, is_64bit));
@@ -39495,7 +38857,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtl_asimdmisc_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtl_asimdmisc_l.Rn, is_64bit));
@@ -39505,7 +38866,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintn_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintn_asimdmisc_r.Rn, is_64bit));
@@ -39515,7 +38875,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTM, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintm_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintm_asimdmisc_r.Rn, is_64bit));
@@ -39525,7 +38884,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns_asimdmisc_r.Rn, is_64bit));
@@ -39535,7 +38893,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms_asimdmisc_r.Rn, is_64bit));
@@ -39545,7 +38902,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas_asimdmisc_r.Rn, is_64bit));
@@ -39555,7 +38911,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_asimdmisc_r.Rn, is_64bit));
@@ -39565,7 +38920,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINT32Z, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frint32z_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frint32z_asimdmisc_r.Rn, is_64bit));
@@ -39575,7 +38929,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINT64Z, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frint64z_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frint64z_asimdmisc_r.Rn, is_64bit));
@@ -39585,7 +38938,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMGT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmgt_asimdmisc_fz.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmgt_asimdmisc_fz.Rn, is_64bit));
@@ -39595,7 +38947,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMEQ, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmeq_asimdmisc_fz.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmeq_asimdmisc_fz.Rn, is_64bit));
@@ -39605,7 +38956,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMLT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmlt_asimdmisc_fz.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmlt_asimdmisc_fz.Rn, is_64bit));
@@ -39615,7 +38965,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FABS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fabs_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fabs_asimdmisc_r.Rn, is_64bit));
@@ -39625,7 +38974,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintp_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintp_asimdmisc_r.Rn, is_64bit));
@@ -39635,7 +38983,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTZ, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintz_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintz_asimdmisc_r.Rn, is_64bit));
@@ -39645,7 +38992,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps_asimdmisc_r.Rn, is_64bit));
@@ -39655,7 +39001,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_asimdmisc_r.Rn, is_64bit));
@@ -39665,7 +39010,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::URECPE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.urecpe_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.urecpe_asimdmisc_r.Rn, is_64bit));
@@ -39675,7 +39019,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRECPE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frecpe_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frecpe_asimdmisc_r.Rn, is_64bit));
@@ -39685,7 +39028,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frinta_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frinta_asimdmisc_r.Rn, is_64bit));
@@ -39695,7 +39037,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintx_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintx_asimdmisc_r.Rn, is_64bit));
@@ -39705,7 +39046,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu_asimdmisc_r.Rn, is_64bit));
@@ -39715,7 +39055,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu_asimdmisc_r.Rn, is_64bit));
@@ -39725,7 +39064,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau_asimdmisc_r.Rn, is_64bit));
@@ -39735,7 +39073,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_asimdmisc_r.Rn, is_64bit));
@@ -39745,7 +39082,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINT32X, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frint32x_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frint32x_asimdmisc_r.Rn, is_64bit));
@@ -39755,7 +39091,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINT64X, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frint64x_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frint64x_asimdmisc_r.Rn, is_64bit));
@@ -39765,7 +39100,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMGE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmge_asimdmisc_fz.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmge_asimdmisc_fz.Rn, is_64bit));
@@ -39775,7 +39109,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMLE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmle_asimdmisc_fz.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmle_asimdmisc_fz.Rn, is_64bit));
@@ -39785,7 +39118,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FNEG, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fneg_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fneg_asimdmisc_r.Rn, is_64bit));
@@ -39795,7 +39127,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTI, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frinti_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frinti_asimdmisc_r.Rn, is_64bit));
@@ -39805,7 +39136,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu_asimdmisc_r.Rn, is_64bit));
@@ -39815,7 +39145,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_asimdmisc_r.Rn, is_64bit));
@@ -39825,7 +39154,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::URSQRTE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ursqrte_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ursqrte_asimdmisc_r.Rn, is_64bit));
@@ -39835,7 +39163,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRSQRTE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frsqrte_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frsqrte_asimdmisc_r.Rn, is_64bit));
@@ -39845,7 +39172,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FSQRT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fsqrt_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fsqrt_asimdmisc_r.Rn, is_64bit));
@@ -39860,7 +39186,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXNM, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnm_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnm_asimdsame_only.Rn, is_64bit));
@@ -39871,7 +39196,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmla_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmla_asimdsame_only.Rn, is_64bit));
@@ -39882,7 +39206,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fadd_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fadd_asimdsame_only.Rn, is_64bit));
@@ -39893,7 +39216,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMULX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmulx_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmulx_asimdsame_only.Rn, is_64bit));
@@ -39904,7 +39226,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMEQ, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmeq_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmeq_asimdsame_only.Rn, is_64bit));
@@ -39915,7 +39236,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMAX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmax_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmax_asimdsame_only.Rn, is_64bit));
@@ -39926,7 +39246,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRECPS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frecps_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frecps_asimdsame_only.Rn, is_64bit));
@@ -39937,7 +39256,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMINNM, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnm_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnm_asimdsame_only.Rn, is_64bit));
@@ -39948,7 +39266,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmls_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmls_asimdsame_only.Rn, is_64bit));
@@ -39959,7 +39276,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FSUB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fsub_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fsub_asimdsame_only.Rn, is_64bit));
@@ -39970,7 +39286,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FAMAX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.famax_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.famax_asimdsame_only.Rn, is_64bit));
@@ -39981,7 +39296,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMIN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmin_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmin_asimdsame_only.Rn, is_64bit));
@@ -39992,7 +39306,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FRSQRTS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frsqrts_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frsqrts_asimdsame_only.Rn, is_64bit));
@@ -40003,7 +39316,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXNMP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnmp_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnmp_asimdsame_only.Rn, is_64bit));
@@ -40014,7 +39326,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FADDP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.faddp_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.faddp_asimdsame_only.Rn, is_64bit));
@@ -40025,7 +39336,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMUL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmul_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmul_asimdsame_only.Rn, is_64bit));
@@ -40036,7 +39346,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMGE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmge_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmge_asimdsame_only.Rn, is_64bit));
@@ -40047,7 +39356,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FACGE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.facge_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.facge_asimdsame_only.Rn, is_64bit));
@@ -40058,7 +39366,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxp_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxp_asimdsame_only.Rn, is_64bit));
@@ -40069,7 +39376,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FDIV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fdiv_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fdiv_asimdsame_only.Rn, is_64bit));
@@ -40080,7 +39386,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMINNMP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnmp_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnmp_asimdsame_only.Rn, is_64bit));
@@ -40091,7 +39396,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FABD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fabd_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fabd_asimdsame_only.Rn, is_64bit));
@@ -40102,7 +39406,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FAMIN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.famin_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.famin_asimdsame_only.Rn, is_64bit));
@@ -40113,7 +39416,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMGT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmgt_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmgt_asimdsame_only.Rn, is_64bit));
@@ -40124,7 +39426,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FACGT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.facgt_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.facgt_asimdsame_only.Rn, is_64bit));
@@ -40135,7 +39436,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMINP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fminp_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fminp_asimdsame_only.Rn, is_64bit));
@@ -40146,7 +39446,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FSCALE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fscale_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fscale_asimdsame_only.Rn, is_64bit));
@@ -40162,7 +39461,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmla_asimdelem_rsd.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmla_asimdelem_rsd.Rn, is_64bit));
@@ -40173,7 +39471,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMLS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmls_asimdelem_rsd.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmls_asimdelem_rsd.Rn, is_64bit));
@@ -40184,7 +39481,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMUL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmul_asimdelem_rsd.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmul_asimdelem_rsd.Rn, is_64bit));
@@ -40195,7 +39491,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMULX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmulx_asimdelem_rsd.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmulx_asimdelem_rsd.Rn, is_64bit));
@@ -40211,7 +39506,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::REV64, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rev64asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rev64asimdmisc_r.Rn, is_64bit));
@@ -40221,7 +39515,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::REV16, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rev16asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rev16asimdmisc_r.Rn, is_64bit));
@@ -40231,7 +39524,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SADDLP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.saddlp_asimdmisc_p.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.saddlp_asimdmisc_p.Rn, is_64bit));
@@ -40241,7 +39533,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SUQADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.suqadd_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.suqadd_asimdmisc_r.Rn, is_64bit));
@@ -40251,7 +39542,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CLS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cls_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cls_asimdmisc_r.Rn, is_64bit));
@@ -40261,7 +39551,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CNT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cnt_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cnt_asimdmisc_r.Rn, is_64bit));
@@ -40271,7 +39560,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SADALP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sadalp_asimdmisc_p.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sadalp_asimdmisc_p.Rn, is_64bit));
@@ -40281,7 +39569,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQABS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqabs_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqabs_asimdmisc_r.Rn, is_64bit));
@@ -40291,7 +39578,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CMGT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmgt_asimdmisc_z.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmgt_asimdmisc_z.Rn, is_64bit));
@@ -40301,7 +39587,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CMEQ, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmeq_asimdmisc_z.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmeq_asimdmisc_z.Rn, is_64bit));
@@ -40311,7 +39596,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CMLT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmlt_asimdmisc_z.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmlt_asimdmisc_z.Rn, is_64bit));
@@ -40321,7 +39605,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::ABS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.abs_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.abs_asimdmisc_r.Rn, is_64bit));
@@ -40331,7 +39614,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::XTN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.xtn_asimdmisc_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.xtn_asimdmisc_n.Rn, is_64bit));
@@ -40341,7 +39623,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQXTN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqxtn_asimdmisc_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqxtn_asimdmisc_n.Rn, is_64bit));
@@ -40351,7 +39632,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SADDLV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.saddlv_asimdall_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.saddlv_asimdall_only.Rn, is_64bit));
@@ -40361,7 +39641,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SMAXV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.smaxv_asimdall_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smaxv_asimdall_only.Rn, is_64bit));
@@ -40371,7 +39650,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SMINV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sminv_asimdall_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sminv_asimdall_only.Rn, is_64bit));
@@ -40381,7 +39659,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::ADDV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.addv_asimdall_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.addv_asimdall_only.Rn, is_64bit));
@@ -40391,7 +39668,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::REV32, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rev32asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rev32asimdmisc_r.Rn, is_64bit));
@@ -40401,7 +39677,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UADDLP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uaddlp_asimdmisc_p.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uaddlp_asimdmisc_p.Rn, is_64bit));
@@ -40411,7 +39686,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::USQADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.usqadd_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.usqadd_asimdmisc_r.Rn, is_64bit));
@@ -40421,7 +39695,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CLZ, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.clz_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.clz_asimdmisc_r.Rn, is_64bit));
@@ -40431,7 +39704,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UADALP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uadalp_asimdmisc_p.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uadalp_asimdmisc_p.Rn, is_64bit));
@@ -40441,7 +39713,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQNEG, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqneg_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqneg_asimdmisc_r.Rn, is_64bit));
@@ -40451,7 +39722,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CMGE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmge_asimdmisc_z.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmge_asimdmisc_z.Rn, is_64bit));
@@ -40461,7 +39731,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CMLE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmle_asimdmisc_z.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmle_asimdmisc_z.Rn, is_64bit));
@@ -40471,7 +39740,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::NEG, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.neg_asimdmisc_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.neg_asimdmisc_r.Rn, is_64bit));
@@ -40481,7 +39749,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQXTUN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqxtun_asimdmisc_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqxtun_asimdmisc_n.Rn, is_64bit));
@@ -40491,7 +39758,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UQXTN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqxtn_asimdmisc_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uqxtn_asimdmisc_n.Rn, is_64bit));
@@ -40501,7 +39767,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UADDLV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uaddlv_asimdall_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uaddlv_asimdall_only.Rn, is_64bit));
@@ -40511,7 +39776,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UMAXV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.umaxv_asimdall_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.umaxv_asimdall_only.Rn, is_64bit));
@@ -40521,7 +39785,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UMINV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uminv_asimdall_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uminv_asimdall_only.Rn, is_64bit));
@@ -40536,7 +39799,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UZP1, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uzp1asimdperm_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uzp1asimdperm_only.Rn, is_64bit));
@@ -40547,7 +39809,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::TRN1, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.trn1asimdperm_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.trn1asimdperm_only.Rn, is_64bit));
@@ -40558,7 +39819,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::ZIP1, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.zip1asimdperm_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.zip1asimdperm_only.Rn, is_64bit));
@@ -40569,7 +39829,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UZP2, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uzp2asimdperm_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uzp2asimdperm_only.Rn, is_64bit));
@@ -40580,7 +39839,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::TRN2, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.trn2asimdperm_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.trn2asimdperm_only.Rn, is_64bit));
@@ -40591,7 +39849,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::ZIP2, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.zip2asimdperm_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.zip2asimdperm_only.Rn, is_64bit));
@@ -40602,7 +39859,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SADDL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.saddl_asimddiff_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.saddl_asimddiff_l.Rn, is_64bit));
@@ -40613,7 +39869,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SHADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.shadd_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.shadd_asimdsame_only.Rn, is_64bit));
@@ -40624,7 +39879,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqadd_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqadd_asimdsame_only.Rn, is_64bit));
@@ -40635,7 +39889,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SADDW, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.saddw_asimddiff_w.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.saddw_asimddiff_w.Rn, is_64bit));
@@ -40646,7 +39899,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SRHADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.srhadd_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.srhadd_asimdsame_only.Rn, is_64bit));
@@ -40657,7 +39909,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SSUBL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ssubl_asimddiff_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ssubl_asimddiff_l.Rn, is_64bit));
@@ -40668,7 +39919,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SHSUB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.shsub_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.shsub_asimdsame_only.Rn, is_64bit));
@@ -40679,7 +39929,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQSUB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqsub_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqsub_asimdsame_only.Rn, is_64bit));
@@ -40690,7 +39939,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SSUBW, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ssubw_asimddiff_w.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ssubw_asimddiff_w.Rn, is_64bit));
@@ -40701,7 +39949,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CMGT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmgt_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmgt_asimdsame_only.Rn, is_64bit));
@@ -40712,7 +39959,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CMGE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmge_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmge_asimdsame_only.Rn, is_64bit));
@@ -40723,7 +39969,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::ADDHN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.addhn_asimddiff_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.addhn_asimddiff_n.Rn, is_64bit));
@@ -40734,7 +39979,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SSHL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sshl_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sshl_asimdsame_only.Rn, is_64bit));
@@ -40745,7 +39989,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQSHL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshl_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshl_asimdsame_only.Rn, is_64bit));
@@ -40756,7 +39999,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SABAL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sabal_asimddiff_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sabal_asimddiff_l.Rn, is_64bit));
@@ -40767,7 +40009,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SRSHL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.srshl_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.srshl_asimdsame_only.Rn, is_64bit));
@@ -40778,7 +40019,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQRSHL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrshl_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrshl_asimdsame_only.Rn, is_64bit));
@@ -40789,7 +40029,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SUBHN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.subhn_asimddiff_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.subhn_asimddiff_n.Rn, is_64bit));
@@ -40800,7 +40039,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SMAX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.smax_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smax_asimdsame_only.Rn, is_64bit));
@@ -40811,7 +40049,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SMIN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.smin_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smin_asimdsame_only.Rn, is_64bit));
@@ -40822,7 +40059,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SABDL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sabdl_asimddiff_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sabdl_asimddiff_l.Rn, is_64bit));
@@ -40833,7 +40069,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SABD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sabd_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sabd_asimdsame_only.Rn, is_64bit));
@@ -40844,7 +40079,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SABA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.saba_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.saba_asimdsame_only.Rn, is_64bit));
@@ -40855,7 +40089,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SMLAL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.smlal_asimddiff_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smlal_asimddiff_l.Rn, is_64bit));
@@ -40866,7 +40099,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::ADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.add_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.add_asimdsame_only.Rn, is_64bit));
@@ -40877,7 +40109,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CMTST, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmtst_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmtst_asimdsame_only.Rn, is_64bit));
@@ -40888,7 +40119,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQDMLAL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmlal_asimddiff_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmlal_asimddiff_l.Rn, is_64bit));
@@ -40899,7 +40129,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::MLA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mla_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.mla_asimdsame_only.Rn, is_64bit));
@@ -40910,7 +40139,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::MUL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mul_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.mul_asimdsame_only.Rn, is_64bit));
@@ -40921,7 +40149,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SMLSL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.smlsl_asimddiff_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smlsl_asimddiff_l.Rn, is_64bit));
@@ -40932,7 +40159,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SMAXP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.smaxp_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smaxp_asimdsame_only.Rn, is_64bit));
@@ -40943,7 +40169,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SMINP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sminp_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sminp_asimdsame_only.Rn, is_64bit));
@@ -40954,7 +40179,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQDMLSL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmlsl_asimddiff_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmlsl_asimddiff_l.Rn, is_64bit));
@@ -40965,7 +40189,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQDMULH, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmulh_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmulh_asimdsame_only.Rn, is_64bit));
@@ -40976,7 +40199,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::ADDP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.addp_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.addp_asimdsame_only.Rn, is_64bit));
@@ -40987,7 +40209,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SMULL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.smull_asimddiff_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smull_asimddiff_l.Rn, is_64bit));
@@ -40998,7 +40219,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQDMULL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmull_asimddiff_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmull_asimddiff_l.Rn, is_64bit));
@@ -41009,7 +40229,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::PMULL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.pmull_asimddiff_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.pmull_asimddiff_l.Rn, is_64bit));
@@ -41020,7 +40239,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQRDMLAH, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmlah_asimdsame2only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmlah_asimdsame2only.Rn, is_64bit));
@@ -41031,7 +40249,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQRDMLSH, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmlsh_asimdsame2only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmlsh_asimdsame2only.Rn, is_64bit));
@@ -41042,7 +40259,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UADDL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uaddl_asimddiff_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uaddl_asimddiff_l.Rn, is_64bit));
@@ -41053,7 +40269,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UHADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uhadd_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uhadd_asimdsame_only.Rn, is_64bit));
@@ -41064,7 +40279,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UQADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqadd_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uqadd_asimdsame_only.Rn, is_64bit));
@@ -41075,7 +40289,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UADDW, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uaddw_asimddiff_w.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uaddw_asimddiff_w.Rn, is_64bit));
@@ -41086,7 +40299,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::URHADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.urhadd_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.urhadd_asimdsame_only.Rn, is_64bit));
@@ -41097,7 +40309,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::USUBL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.usubl_asimddiff_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.usubl_asimddiff_l.Rn, is_64bit));
@@ -41108,7 +40319,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UHSUB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uhsub_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uhsub_asimdsame_only.Rn, is_64bit));
@@ -41119,7 +40329,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UQSUB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqsub_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uqsub_asimdsame_only.Rn, is_64bit));
@@ -41130,7 +40339,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::USUBW, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.usubw_asimddiff_w.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.usubw_asimddiff_w.Rn, is_64bit));
@@ -41141,7 +40349,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CMHI, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmhi_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmhi_asimdsame_only.Rn, is_64bit));
@@ -41152,7 +40359,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CMHS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmhs_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmhs_asimdsame_only.Rn, is_64bit));
@@ -41163,7 +40369,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::RADDHN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.raddhn_asimddiff_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.raddhn_asimddiff_n.Rn, is_64bit));
@@ -41174,7 +40379,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::USHL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ushl_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ushl_asimdsame_only.Rn, is_64bit));
@@ -41185,7 +40389,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UQSHL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqshl_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uqshl_asimdsame_only.Rn, is_64bit));
@@ -41196,7 +40399,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UABAL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uabal_asimddiff_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uabal_asimddiff_l.Rn, is_64bit));
@@ -41207,7 +40409,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::URSHL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.urshl_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.urshl_asimdsame_only.Rn, is_64bit));
@@ -41218,7 +40419,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UQRSHL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqrshl_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uqrshl_asimdsame_only.Rn, is_64bit));
@@ -41229,7 +40429,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::RSUBHN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rsubhn_asimddiff_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rsubhn_asimddiff_n.Rn, is_64bit));
@@ -41240,7 +40439,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UMAX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.umax_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.umax_asimdsame_only.Rn, is_64bit));
@@ -41251,7 +40449,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UMIN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.umin_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.umin_asimdsame_only.Rn, is_64bit));
@@ -41262,7 +40459,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UABDL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uabdl_asimddiff_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uabdl_asimddiff_l.Rn, is_64bit));
@@ -41273,7 +40469,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UABD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uabd_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uabd_asimdsame_only.Rn, is_64bit));
@@ -41284,7 +40479,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UABA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uaba_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uaba_asimdsame_only.Rn, is_64bit));
@@ -41295,7 +40489,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UMLAL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.umlal_asimddiff_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.umlal_asimddiff_l.Rn, is_64bit));
@@ -41306,7 +40499,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SUB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sub_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sub_asimdsame_only.Rn, is_64bit));
@@ -41317,7 +40509,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CMEQ, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmeq_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmeq_asimdsame_only.Rn, is_64bit));
@@ -41328,7 +40519,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::MLS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mls_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.mls_asimdsame_only.Rn, is_64bit));
@@ -41339,7 +40529,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::PMUL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.pmul_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.pmul_asimdsame_only.Rn, is_64bit));
@@ -41350,7 +40539,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UMLSL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.umlsl_asimddiff_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.umlsl_asimddiff_l.Rn, is_64bit));
@@ -41361,7 +40549,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UMAXP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.umaxp_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.umaxp_asimdsame_only.Rn, is_64bit));
@@ -41372,7 +40559,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UMINP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uminp_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uminp_asimdsame_only.Rn, is_64bit));
@@ -41383,7 +40569,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQRDMULH, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmulh_asimdsame_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmulh_asimdsame_only.Rn, is_64bit));
@@ -41394,7 +40579,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UMULL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.umull_asimddiff_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.umull_asimddiff_l.Rn, is_64bit));
@@ -41410,7 +40594,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcadd_asimdsame2c.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcadd_asimdsame2c.Rn, is_64bit));
@@ -41426,7 +40609,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMLA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmla_asimdsame2c.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmla_asimdsame2c.Rn, is_64bit));
@@ -41442,7 +40624,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SMLAL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.smlal_asimdelem_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smlal_asimdelem_l.Rn, is_64bit));
@@ -41453,7 +40634,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQDMLAL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmlal_asimdelem_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmlal_asimdelem_l.Rn, is_64bit));
@@ -41464,7 +40644,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SMLSL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.smlsl_asimdelem_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smlsl_asimdelem_l.Rn, is_64bit));
@@ -41475,7 +40654,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQDMLSL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmlsl_asimdelem_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmlsl_asimdelem_l.Rn, is_64bit));
@@ -41486,7 +40664,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::MUL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mul_asimdelem_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.mul_asimdelem_r.Rn, is_64bit));
@@ -41497,7 +40674,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SMULL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.smull_asimdelem_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smull_asimdelem_l.Rn, is_64bit));
@@ -41508,7 +40684,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQDMULL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmull_asimdelem_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmull_asimdelem_l.Rn, is_64bit));
@@ -41519,7 +40694,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQDMULH, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmulh_asimdelem_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdmulh_asimdelem_r.Rn, is_64bit));
@@ -41530,7 +40704,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQRDMULH, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmulh_asimdelem_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmulh_asimdelem_r.Rn, is_64bit));
@@ -41541,7 +40714,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::MLA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mla_asimdelem_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.mla_asimdelem_r.Rn, is_64bit));
@@ -41552,7 +40724,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UMLAL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.umlal_asimdelem_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.umlal_asimdelem_l.Rn, is_64bit));
@@ -41563,7 +40734,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::MLS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mls_asimdelem_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.mls_asimdelem_r.Rn, is_64bit));
@@ -41574,7 +40744,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UMLSL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.umlsl_asimdelem_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.umlsl_asimdelem_l.Rn, is_64bit));
@@ -41585,7 +40754,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UMULL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.umull_asimdelem_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.umull_asimdelem_l.Rn, is_64bit));
@@ -41596,7 +40764,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQRDMLAH, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmlah_asimdelem_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmlah_asimdelem_r.Rn, is_64bit));
@@ -41607,7 +40774,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQRDMLSH, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmlsh_asimdelem_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmlsh_asimdelem_r.Rn, is_64bit));
@@ -41623,7 +40789,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMLA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmla_advsimd_elt.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmla_advsimd_elt.Rn, is_64bit));

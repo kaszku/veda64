@@ -5000,217 +5000,186 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::NOP, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503203Fu: { // YIELD_HI_hints
                         Instruction result(Mnemonic::YIELD, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503205Fu: { // WFE_HI_hints
                         Instruction result(Mnemonic::WFE, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503207Fu: { // WFI_HI_hints
                         Instruction result(Mnemonic::WFI, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503209Fu: { // SEV_HI_hints
                         Instruction result(Mnemonic::SEV, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD50320BFu: { // SEVL_HI_hints
                         Instruction result(Mnemonic::SEVL, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD50320DFu: { // DGH_HI_hints
                         Instruction result(Mnemonic::DGH, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD50320FFu: { // XPACLRI_HI_hints
                         Instruction result(Mnemonic::XPACLRI, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503211Fu: { // PACIA1716_HI_hints
                         Instruction result(Mnemonic::PACIA1716, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503215Fu: { // PACIB1716_HI_hints
                         Instruction result(Mnemonic::PACIB1716, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503219Fu: { // AUTIA1716_HI_hints
                         Instruction result(Mnemonic::AUTIA1716, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD50321DFu: { // AUTIB1716_HI_hints
                         Instruction result(Mnemonic::AUTIB1716, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503221Fu: { // ESB_HI_hints
                         Instruction result(Mnemonic::ESB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503223Fu: { // PSB_HC_hints
                         Instruction result(Mnemonic::PSB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503225Fu: { // TSB_HC_hints
                         Instruction result(Mnemonic::TSB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503227Fu: { // GCSB_HD_hints
                         Instruction result(Mnemonic::GCSB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503229Fu: { // CSDB_HI_hints
                         Instruction result(Mnemonic::CSDB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD50322DFu: { // CLRBHB_HI_hints
                         Instruction result(Mnemonic::CLRBHB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503231Fu: { // PACIAZ_HI_hints
                         Instruction result(Mnemonic::PACIAZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503233Fu: { // PACIASP_HI_hints
                         Instruction result(Mnemonic::PACIASP, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503235Fu: { // PACIBZ_HI_hints
                         Instruction result(Mnemonic::PACIBZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503237Fu: { // PACIBSP_HI_hints
                         Instruction result(Mnemonic::PACIBSP, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503239Fu: { // AUTIAZ_HI_hints
                         Instruction result(Mnemonic::AUTIAZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD50323BFu: { // AUTIASP_HI_hints
                         Instruction result(Mnemonic::AUTIASP, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD50323DFu: { // AUTIBZ_HI_hints
                         Instruction result(Mnemonic::AUTIBZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD50323FFu: { // AUTIBSP_HI_hints
                         Instruction result(Mnemonic::AUTIBSP, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD50324FFu: { // PACM_HI_hints
                         Instruction result(Mnemonic::PACM, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503251Fu: { // CHKFEAT_HF_hints
                         Instruction result(Mnemonic::CHKFEAT, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503269Fu: { // STCPH_HI_hints
                         Instruction result(Mnemonic::STCPH, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503309Fu: { // SSBB_DSB_BO_barriers
                         Instruction result(Mnemonic::DSB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503349Fu: { // PSSBB_DSB_BO_barriers
                         Instruction result(Mnemonic::DSB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD65F0BFFu: { // RETAA_64E_branch_reg
@@ -5218,7 +5187,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::RETAA, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD65F0FFFu: { // RETAB_64E_branch_reg
@@ -5226,35 +5194,30 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::RETAB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD69F03E0u: { // ERET_64E_branch_reg
                         Instruction result(Mnemonic::ERET, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD69F0BFFu: { // ERETAA_64E_branch_reg
                         Instruction result(Mnemonic::ERETAA, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD69F0FFFu: { // ERETAB_64E_branch_reg
                         Instruction result(Mnemonic::ERETAB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD6BF03E0u: { // DRPS_64E_branch_reg
                         Instruction result(Mnemonic::DRPS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -5266,7 +5229,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::WFET, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.wfet_only_systeminstrswithreg.Rd, is_64bit));
                         return result;
@@ -5275,7 +5237,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::WFIT, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.wfit_only_systeminstrswithreg.Rd, is_64bit));
                         return result;
@@ -5284,7 +5245,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.gcspushx_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -5293,7 +5253,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.gcspopcx_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -5302,7 +5261,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.gcspopx_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -5311,7 +5269,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.trcit_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -5320,7 +5277,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cfp_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -5329,7 +5285,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.dvp_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -5338,7 +5293,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cosp_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -5347,7 +5301,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpp_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -5356,7 +5309,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.gcspushm_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -5365,7 +5317,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.gcsss1sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -5374,7 +5325,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.apas_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -5383,7 +5333,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYSL, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.gcspopm_sysl_rc_systeminstrs.Rt, is_64bit));
                         return result;
@@ -5392,7 +5341,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYSL, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.gcsss2sysl_rc_systeminstrs.Rt, is_64bit));
                         return result;
@@ -5406,14 +5354,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::STSHH, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503265Fu: { // SHUH_HI_hints
                         Instruction result(Mnemonic::SHUH, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -5425,7 +5371,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mlbi_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -5439,7 +5384,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::BTI, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -5451,7 +5395,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.gsb_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -5460,7 +5403,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.brb_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -5469,7 +5411,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYSL, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.gicr_sysl_rc_systeminstrs.Rt, is_64bit));
                         return result;
@@ -5483,7 +5424,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.gic_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -5497,7 +5437,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::BR, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.br64branch_reg.Rn, is_64bit));
                         return result;
@@ -5506,7 +5445,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::BRAAZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.braaz64branch_reg.Rn, is_64bit));
                         return result;
@@ -5515,7 +5453,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::BRABZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.brabz64branch_reg.Rn, is_64bit));
                         return result;
@@ -5524,7 +5461,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::BLR, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.blr64branch_reg.Rn, is_64bit));
                         return result;
@@ -5533,7 +5469,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::BLRAAZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.blraaz64branch_reg.Rn, is_64bit));
                         return result;
@@ -5542,16 +5477,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::BLRABZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.blrabz64branch_reg.Rn, is_64bit));
                         return result;
         }
         case 0xD65F0000u: { // RET_64R_branch_reg
                         Instruction result(Mnemonic::RET, insn);
-                        ControlEncoding enc = {};
-                        enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         // RET - X30 is implicit, no operands needed
                         return result;
         }
@@ -5564,7 +5495,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::BRAA, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.braa64p_branch_reg.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.braa64p_branch_reg.Rm, is_64bit));
@@ -5574,7 +5504,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::BRAB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.brab64p_branch_reg.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.brab64p_branch_reg.Rm, is_64bit));
@@ -5584,7 +5513,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::BLRAA, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.blraa64p_branch_reg.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.blraa64p_branch_reg.Rm, is_64bit));
@@ -5594,7 +5522,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::BLRAB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.blrab64p_branch_reg.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.blrab64p_branch_reg.Rm, is_64bit));
@@ -5609,14 +5536,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::MSR, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503417Fu: { // SMSTART_MSR_SI_pstate
                         Instruction result(Mnemonic::MSR, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -5628,7 +5553,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::DSB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -5640,28 +5564,24 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CFINV, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD500403Fu: { // XAFLAG_M_pstate
                         Instruction result(Mnemonic::XAFLAG, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD500405Fu: { // AXFLAG_M_pstate
                         Instruction result(Mnemonic::AXFLAG, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD50330FFu: { // SB_only_barriers
                         Instruction result(Mnemonic::SB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -5673,28 +5593,24 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CLREX, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503309Fu: { // DSB_BO_barriers
                         Instruction result(Mnemonic::DSB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD50330BFu: { // DMB_BO_barriers
                         Instruction result(Mnemonic::DMB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD50330DFu: { // ISB_BI_barriers
                         Instruction result(Mnemonic::ISB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -5704,9 +5620,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     switch (insn & 0xFFFFF01Fu) {
         case 0xD503201Fu: { // HINT_HM_hints
                         Instruction result(Mnemonic::HINT, insn);
-                        ControlEncoding enc = {};
-                        enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         // HINT instruction - decode to alias based on CRm:op2
                         uint32_t CRm = (insn >> 8) & 0xF;
                         uint32_t op2 = (insn >> 5) & 0x7;
@@ -5751,7 +5664,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.at_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -5765,7 +5677,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::MSR, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -5778,7 +5689,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.dc_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -5792,7 +5702,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.tlbi_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -5801,7 +5710,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYSP, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.tlbip_sysp_cr_syspairinstrs.Rt, is_64bit));
                         return result;
@@ -5815,7 +5723,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -5824,7 +5731,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYSL, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sysl_rc_systeminstrs.Rt, is_64bit));
                         return result;
@@ -5833,7 +5739,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYSP, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sysp_cr_syspairinstrs.Rt, is_64bit));
                         return result;
@@ -5847,7 +5752,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::MSR, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.msr_sr_systemmove.Rt, is_64bit));
                         return result;
@@ -5856,7 +5760,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::MRS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mrs_rs_systemmove.Rt, is_64bit));
                         return result;
@@ -5865,7 +5768,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::MSRR, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.msrr_sr_systemmovepr.Rt, is_64bit));
                         return result;
@@ -5874,7 +5776,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::MRRS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mrrs_rs_systemmovepr.Rt, is_64bit));
                         return result;
@@ -5889,7 +5790,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBGT, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbgt32regs.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cbgt32regs.Rt, is_64bit));
@@ -5904,7 +5804,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBBGT, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbbgt8regs.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cbbgt8regs.Rt, is_64bit));
@@ -5919,7 +5818,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBHGT, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhgt16regs.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhgt16regs.Rt, is_64bit));
@@ -5934,7 +5832,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBGE, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbge32regs.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cbge32regs.Rt, is_64bit));
@@ -5949,7 +5846,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBBGE, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbbge8regs.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cbbge8regs.Rt, is_64bit));
@@ -5964,7 +5860,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBHGE, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhge16regs.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhge16regs.Rt, is_64bit));
@@ -5979,7 +5874,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBHI, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhi32regs.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhi32regs.Rt, is_64bit));
@@ -5994,7 +5888,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBBHI, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbbhi8regs.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cbbhi8regs.Rt, is_64bit));
@@ -6009,7 +5902,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBHHI, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhhi16regs.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhhi16regs.Rt, is_64bit));
@@ -6024,7 +5916,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBHS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhs32regs.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhs32regs.Rt, is_64bit));
@@ -6039,7 +5930,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBBHS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbbhs8regs.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cbbhs8regs.Rt, is_64bit));
@@ -6054,7 +5944,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBHHS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhhs16regs.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhhs16regs.Rt, is_64bit));
@@ -6068,7 +5957,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBEQ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbeq32regs.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cbeq32regs.Rt, is_64bit));
@@ -6082,7 +5970,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBBEQ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbbeq8regs.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cbbeq8regs.Rt, is_64bit));
@@ -6096,7 +5983,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBHEQ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbheq16regs.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cbheq16regs.Rt, is_64bit));
@@ -6110,7 +5996,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBNE, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbne32regs.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cbne32regs.Rt, is_64bit));
@@ -6124,7 +6009,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBBNE, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbbne8regs.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cbbne8regs.Rt, is_64bit));
@@ -6138,7 +6022,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBHNE, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhne16regs.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhne16regs.Rt, is_64bit));
@@ -6153,7 +6036,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBGT, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbgt64regs.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cbgt64regs.Rt, is_64bit));
@@ -6168,7 +6050,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBGE, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbge64regs.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cbge64regs.Rt, is_64bit));
@@ -6183,7 +6064,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBHI, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhi64regs.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhi64regs.Rt, is_64bit));
@@ -6198,7 +6078,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBHS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhs64regs.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhs64regs.Rt, is_64bit));
@@ -6212,7 +6091,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBEQ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbeq64regs.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cbeq64regs.Rt, is_64bit));
@@ -6226,7 +6104,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBNE, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbne64regs.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cbne64regs.Rt, is_64bit));
@@ -6246,7 +6123,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBGT, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbgt32imm.Rt, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cbgt32imm.imm6, true));
@@ -6261,7 +6137,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBLT, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cblt32imm.Rt, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cblt32imm.imm6, true));
@@ -6276,7 +6151,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBHI, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhi32imm.Rt, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cbhi32imm.imm6, true));
@@ -6291,7 +6165,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBLO, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cblo32imm.Rt, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cblo32imm.imm6, true));
@@ -6305,7 +6178,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBEQ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbeq32imm.Rt, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cbeq32imm.imm6, true));
@@ -6319,7 +6191,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBNE, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbne32imm.Rt, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cbne32imm.imm6, true));
@@ -6334,7 +6205,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBGT, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbgt64imm.Rt, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cbgt64imm.imm6, true));
@@ -6349,7 +6219,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBLT, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cblt64imm.Rt, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cblt64imm.imm6, true));
@@ -6364,7 +6233,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBHI, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhi64imm.Rt, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cbhi64imm.imm6, true));
@@ -6379,7 +6247,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBLO, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cblo64imm.Rt, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cblo64imm.imm6, true));
@@ -6393,7 +6260,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBEQ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbeq64imm.Rt, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cbeq64imm.imm6, true));
@@ -6407,7 +6273,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBNE, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cbne64imm.Rt, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cbne64imm.imm6, true));
@@ -6426,7 +6291,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::RETAASPPC, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.retaasppc_only_miscbranch.imm16, true));
                         return result;
         }
@@ -6434,7 +6298,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::RETABSPPC, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.retabsppc_only_miscbranch.imm16, true));
                         return result;
         }
@@ -6442,7 +6305,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SVC, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.svc_ex_exception.imm16, true));
                         return result;
         }
@@ -6450,7 +6312,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::HVC, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.hvc_ex_exception.imm16, true));
                         return result;
         }
@@ -6458,7 +6319,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SMC, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.smc_ex_exception.imm16, true));
                         return result;
         }
@@ -6466,7 +6326,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::BRK, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.brk_ex_exception.imm16, true));
                         return result;
         }
@@ -6474,7 +6333,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::HLT, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.hlt_ex_exception.imm16, true));
                         return result;
         }
@@ -6482,7 +6340,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::DCPS1, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.dcps1dc_exception.imm16, true));
                         return result;
         }
@@ -6490,7 +6347,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::DCPS2, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.dcps2dc_exception.imm16, true));
                         return result;
         }
@@ -6498,7 +6354,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::DCPS3, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.dcps3dc_exception.imm16, true));
                         return result;
         }
@@ -6511,7 +6366,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::B, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         int32_t offset = static_cast<int32_t>(enc.bonly_condbranch.imm19 << 13) >> 13;
                         offset *= 4;
                         result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));
@@ -6521,7 +6375,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::BC, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
+                        result.operands.push_back(Operand(OperandType::Condition, enc.bc_only_condbranch.cond, true));
                         return result;
         }
         default: break;
@@ -6533,7 +6387,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.cbz32compbranch.Rt, false));
                         int32_t offset = static_cast<int32_t>(enc.cbz32compbranch.imm19 << 13) >> 13;
                         offset *= 4;
@@ -6544,7 +6397,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBNZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.cbnz32compbranch.Rt, false));
                         int32_t offset = static_cast<int32_t>(enc.cbnz32compbranch.imm19 << 13) >> 13;
                         offset *= 4;
@@ -6555,8 +6407,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbz64compbranch.Rt, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.cbz64compbranch.Rt, true));
                         int32_t offset = static_cast<int32_t>(enc.cbz64compbranch.imm19 << 13) >> 13;
                         offset *= 4;
                         result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));
@@ -6566,8 +6417,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBNZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbnz64compbranch.Rt, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.cbnz64compbranch.Rt, true));
                         int32_t offset = static_cast<int32_t>(enc.cbnz64compbranch.imm19 << 13) >> 13;
                         offset *= 4;
                         result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));
@@ -6582,7 +6432,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::B, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         int32_t offset = static_cast<int32_t>(enc.bonly_branch_imm.imm26 << 6) >> 6;
                         offset *= 4;
                         result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));
@@ -6592,7 +6441,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::BL, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         int32_t offset = static_cast<int32_t>(enc.bl_only_branch_imm.imm26 << 6) >> 6;
                         offset *= 4;
                         result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));
@@ -6607,7 +6455,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::TBZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.tbz_only_testbranch.Rt, static_cast<bool>(enc.tbz_only_testbranch.b5)));
                         result.operands.push_back(Operand(OperandType::Immediate, (enc.tbz_only_testbranch.b5 << 5) | enc.tbz_only_testbranch.b40, true));
                         int32_t offset = static_cast<int32_t>(enc.tbz_only_testbranch.imm14 << 18) >> 18;
@@ -6619,7 +6466,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::TBNZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.tbnz_only_testbranch.Rt, static_cast<bool>(enc.tbnz_only_testbranch.b5)));
                         result.operands.push_back(Operand(OperandType::Immediate, (enc.tbnz_only_testbranch.b5 << 5) | enc.tbnz_only_testbranch.b40, true));
                         int32_t offset = static_cast<int32_t>(enc.tbnz_only_testbranch.imm14 << 18) >> 18;

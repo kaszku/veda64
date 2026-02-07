@@ -2491,7 +2491,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::ZERO, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.zero_za_i.imm8, true));
                         return result;
         }
@@ -2504,7 +2503,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::RDSVL, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rdsvl_ri.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.rdsvl_ri.imm6, true));
@@ -2519,7 +2517,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_za_ri.Rn, is_64bit));
                         return result;
@@ -2528,7 +2525,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_za_ri.Rn, is_64bit));
                         return result;
@@ -2543,7 +2539,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_zprza_bmova_zprza_b.Rs, is_64bit));
                         return result;
@@ -2553,7 +2548,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_zprza_hmova_zprza_h.Rs, is_64bit));
                         return result;
@@ -2563,7 +2557,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_zprza_wmova_zprza_w.Rs, is_64bit));
                         return result;
@@ -2573,7 +2566,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_zprza_dmova_zprza_d.Rs, is_64bit));
                         return result;
@@ -2583,7 +2575,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_zprza_qmova_zprza_q.Rs, is_64bit));
                         return result;
@@ -2597,14 +2588,12 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::ADDHA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC0910000u: { // addva_za_pp_z_32
                         Instruction result(Mnemonic::ADDVA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -2616,14 +2605,12 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::ADDHA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC0D10000u: { // addva_za_pp_z_64
                         Instruction result(Mnemonic::ADDVA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -2636,7 +2623,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za_prz_bmova_za_prz_b.Rs, is_64bit));
                         return result;
@@ -2646,7 +2632,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za_prz_hmova_za_prz_h.Rs, is_64bit));
                         return result;
@@ -2656,7 +2641,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za_prz_wmova_za_prz_w.Rs, is_64bit));
                         return result;
@@ -2666,7 +2650,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za_prz_dmova_za_prz_d.Rs, is_64bit));
                         return result;
@@ -2676,7 +2659,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za_prz_qmova_za_prz_q.Rs, is_64bit));
                         return result;
@@ -2690,7 +2672,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::ADDSVL, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.addsvl_rri.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.addsvl_rri.Rn, is_64bit));
@@ -2701,7 +2682,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::ADDSPL, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.addspl_rri.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.addspl_rri.Rn, is_64bit));
@@ -2717,84 +2697,72 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::BFMOPA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81800010u: { // bfmops_za32_pp_zz_
                         Instruction result(Mnemonic::BFMOPS, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81A00000u: { // fmopa_za32_pp_zz_16
                         Instruction result(Mnemonic::FMOPA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81A00010u: { // fmops_za32_pp_zz_16
                         Instruction result(Mnemonic::FMOPS, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0800000u: { // smopa_za_pp_zz_32
                         Instruction result(Mnemonic::SMOPA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0800010u: { // smops_za_pp_zz_32
                         Instruction result(Mnemonic::SMOPS, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0A00000u: { // sumopa_za_pp_zz_32
                         Instruction result(Mnemonic::SUMOPA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0A00010u: { // sumops_za_pp_zz_32
                         Instruction result(Mnemonic::SUMOPS, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1800000u: { // usmopa_za_pp_zz_32
                         Instruction result(Mnemonic::USMOPA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1800010u: { // usmops_za_pp_zz_32
                         Instruction result(Mnemonic::USMOPS, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1A00000u: { // umopa_za_pp_zz_32
                         Instruction result(Mnemonic::UMOPA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1A00010u: { // umops_za_pp_zz_32
                         Instruction result(Mnemonic::UMOPS, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -2806,56 +2774,48 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::SMOPA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0C00010u: { // smops_za_pp_zz_64
                         Instruction result(Mnemonic::SMOPS, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0E00000u: { // sumopa_za_pp_zz_64
                         Instruction result(Mnemonic::SUMOPA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0E00010u: { // sumops_za_pp_zz_64
                         Instruction result(Mnemonic::SUMOPS, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1C00000u: { // usmopa_za_pp_zz_64
                         Instruction result(Mnemonic::USMOPA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1C00010u: { // usmops_za_pp_zz_64
                         Instruction result(Mnemonic::USMOPS, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1E00000u: { // umopa_za_pp_zz_64
                         Instruction result(Mnemonic::UMOPA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1E00010u: { // umops_za_pp_zz_64
                         Instruction result(Mnemonic::UMOPS, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -2867,7 +2827,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::LD1B, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1b_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1b_za_prrr.Rm, is_64bit));
@@ -2878,7 +2837,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::ST1B, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1b_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1b_za_prrr.Rm, is_64bit));
@@ -2889,7 +2847,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::LD1H, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1h_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1h_za_prrr.Rm, is_64bit));
@@ -2900,7 +2857,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::ST1H, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1h_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1h_za_prrr.Rm, is_64bit));
@@ -2911,7 +2867,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::LD1W, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_za_prrr.Rm, is_64bit));
@@ -2922,7 +2877,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::ST1W, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_za_prrr.Rm, is_64bit));
@@ -2933,7 +2887,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::LD1D, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_za_prrr.Rm, is_64bit));
@@ -2944,7 +2897,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::ST1D, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_za_prrr.Rm, is_64bit));
@@ -2955,7 +2907,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::LD1Q, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1q_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1q_za_prrr.Rm, is_64bit));
@@ -2966,7 +2917,6 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::ST1Q, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1q_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1q_za_prrr.Rm, is_64bit));

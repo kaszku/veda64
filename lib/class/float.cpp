@@ -9309,7 +9309,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns32s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns32s_float2int.Rn, is_64bit));
@@ -9319,7 +9318,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_sfloatdp1.Rn, is_64bit));
@@ -9329,7 +9327,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FABS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fabs_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fabs_sfloatdp1.Rn, is_64bit));
@@ -9339,7 +9336,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu32s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu32s_float2int.Rn, is_64bit));
@@ -9349,7 +9345,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FNEG, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fneg_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fneg_sfloatdp1.Rn, is_64bit));
@@ -9359,7 +9354,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FSQRT, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fsqrt_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fsqrt_sfloatdp1.Rn, is_64bit));
@@ -9369,7 +9363,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_s32float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_s32float2int.Rn, is_64bit));
@@ -9379,7 +9372,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVT, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvt_ds_floatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvt_ds_floatdp1.Rn, is_64bit));
@@ -9389,7 +9381,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_s32float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_s32float2int.Rn, is_64bit));
@@ -9399,7 +9390,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVT, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvt_hs_floatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvt_hs_floatdp1.Rn, is_64bit));
@@ -9409,7 +9399,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas32s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas32s_float2int.Rn, is_64bit));
@@ -9419,7 +9408,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTN, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintn_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintn_sfloatdp1.Rn, is_64bit));
@@ -9429,7 +9417,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTP, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintp_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintp_sfloatdp1.Rn, is_64bit));
@@ -9439,7 +9426,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau32s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau32s_float2int.Rn, is_64bit));
@@ -9449,7 +9435,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTM, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintm_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintm_sfloatdp1.Rn, is_64bit));
@@ -9459,7 +9444,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTZ, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintz_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintz_sfloatdp1.Rn, is_64bit));
@@ -9469,7 +9453,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov32s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov32s_float2int.Rn, is_64bit));
@@ -9479,7 +9462,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTA, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frinta_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frinta_sfloatdp1.Rn, is_64bit));
@@ -9489,7 +9471,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_s32float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_s32float2int.Rn, is_64bit));
@@ -9499,7 +9480,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTX, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintx_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintx_sfloatdp1.Rn, is_64bit));
@@ -9509,7 +9489,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTI, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frinti_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frinti_sfloatdp1.Rn, is_64bit));
@@ -9519,7 +9498,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps32s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps32s_float2int.Rn, is_64bit));
@@ -9529,7 +9507,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINT32Z, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frint32z_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frint32z_sfloatdp1.Rn, is_64bit));
@@ -9539,7 +9516,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINT32X, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frint32x_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frint32x_sfloatdp1.Rn, is_64bit));
@@ -9549,7 +9525,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu32s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu32s_float2int.Rn, is_64bit));
@@ -9559,7 +9534,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINT64Z, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frint64z_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frint64z_sfloatdp1.Rn, is_64bit));
@@ -9569,7 +9543,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINT64X, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frint64x_sfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frint64x_sfloatdp1.Rn, is_64bit));
@@ -9579,7 +9552,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms32s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms32s_float2int.Rn, is_64bit));
@@ -9589,7 +9561,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu32s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu32s_float2int.Rn, is_64bit));
@@ -9599,7 +9570,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32s_float2int.Rn, is_64bit));
@@ -9609,7 +9579,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32s_float2int.Rn, is_64bit));
@@ -9619,7 +9588,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns32d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns32d_float2int.Rn, is_64bit));
@@ -9629,7 +9597,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_dfloatdp1.Rn, is_64bit));
@@ -9639,7 +9606,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FABS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fabs_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fabs_dfloatdp1.Rn, is_64bit));
@@ -9649,7 +9615,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu32d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu32d_float2int.Rn, is_64bit));
@@ -9659,7 +9624,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FNEG, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fneg_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fneg_dfloatdp1.Rn, is_64bit));
@@ -9669,7 +9633,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FSQRT, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fsqrt_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fsqrt_dfloatdp1.Rn, is_64bit));
@@ -9679,7 +9642,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_d32float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_d32float2int.Rn, is_64bit));
@@ -9689,7 +9651,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVT, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvt_sd_floatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvt_sd_floatdp1.Rn, is_64bit));
@@ -9699,7 +9660,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_d32float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_d32float2int.Rn, is_64bit));
@@ -9709,7 +9669,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::BFCVT, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.bfcvt_bs_floatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bfcvt_bs_floatdp1.Rn, is_64bit));
@@ -9719,7 +9678,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVT, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvt_hd_floatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvt_hd_floatdp1.Rn, is_64bit));
@@ -9729,7 +9687,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas32d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas32d_float2int.Rn, is_64bit));
@@ -9739,7 +9696,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTN, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintn_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintn_dfloatdp1.Rn, is_64bit));
@@ -9749,7 +9705,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTP, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintp_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintp_dfloatdp1.Rn, is_64bit));
@@ -9759,7 +9714,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau32d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau32d_float2int.Rn, is_64bit));
@@ -9769,7 +9723,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTM, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintm_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintm_dfloatdp1.Rn, is_64bit));
@@ -9779,7 +9732,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTZ, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintz_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintz_dfloatdp1.Rn, is_64bit));
@@ -9789,7 +9741,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTA, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frinta_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frinta_dfloatdp1.Rn, is_64bit));
@@ -9799,7 +9750,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTX, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintx_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintx_dfloatdp1.Rn, is_64bit));
@@ -9809,7 +9759,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTI, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frinti_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frinti_dfloatdp1.Rn, is_64bit));
@@ -9819,7 +9768,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps32d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps32d_float2int.Rn, is_64bit));
@@ -9829,7 +9777,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINT32Z, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frint32z_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frint32z_dfloatdp1.Rn, is_64bit));
@@ -9839,7 +9786,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINT32X, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frint32x_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frint32x_dfloatdp1.Rn, is_64bit));
@@ -9849,7 +9795,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu32d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu32d_float2int.Rn, is_64bit));
@@ -9859,7 +9804,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINT64Z, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frint64z_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frint64z_dfloatdp1.Rn, is_64bit));
@@ -9869,7 +9813,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINT64X, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.frint64x_dfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frint64x_dfloatdp1.Rn, is_64bit));
@@ -9879,7 +9822,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns_sisd32d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns_sisd32d.Rn, is_64bit));
@@ -9889,7 +9831,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu_sisd32d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu_sisd32d.Rn, is_64bit));
@@ -9899,7 +9840,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms32d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms32d_float2int.Rn, is_64bit));
@@ -9909,7 +9849,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu32d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu32d_float2int.Rn, is_64bit));
@@ -9919,7 +9858,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps_sisd32d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps_sisd32d.Rn, is_64bit));
@@ -9929,7 +9867,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu_sisd32d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu_sisd32d.Rn, is_64bit));
@@ -9939,7 +9876,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms_sisd32d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms_sisd32d.Rn, is_64bit));
@@ -9949,7 +9885,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu_sisd32d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu_sisd32d.Rn, is_64bit));
@@ -9959,7 +9894,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_sisd32d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_sisd32d.Rn, is_64bit));
@@ -9969,7 +9903,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_sisd32d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_sisd32d.Rn, is_64bit));
@@ -9979,7 +9912,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32d_float2int.Rn, is_64bit));
@@ -9989,7 +9921,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32d_float2int.Rn, is_64bit));
@@ -9999,7 +9930,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas_sisd32d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas_sisd32d.Rn, is_64bit));
@@ -10009,7 +9939,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau_sisd32d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau_sisd32d.Rn, is_64bit));
@@ -10019,7 +9948,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_sisd32d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_sisd32d.Rn, is_64bit));
@@ -10029,7 +9957,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_sisd32d.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_sisd32d.Rn, is_64bit));
@@ -10039,7 +9966,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FJCVTZS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fjcvtzs32d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fjcvtzs32d_float2int.Rn, is_64bit));
@@ -10049,7 +9975,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns32h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns32h_float2int.Rn, is_64bit));
@@ -10059,7 +9984,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_hfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_hfloatdp1.Rn, is_64bit));
@@ -10069,7 +9993,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FABS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fabs_hfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fabs_hfloatdp1.Rn, is_64bit));
@@ -10079,7 +10002,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu32h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu32h_float2int.Rn, is_64bit));
@@ -10089,7 +10011,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FNEG, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fneg_hfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fneg_hfloatdp1.Rn, is_64bit));
@@ -10099,7 +10020,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FSQRT, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fsqrt_hfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fsqrt_hfloatdp1.Rn, is_64bit));
@@ -10109,7 +10029,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_h32float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_h32float2int.Rn, is_64bit));
@@ -10119,7 +10038,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVT, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvt_sh_floatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvt_sh_floatdp1.Rn, is_64bit));
@@ -10129,7 +10047,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVT, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvt_dh_floatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvt_dh_floatdp1.Rn, is_64bit));
@@ -10139,7 +10056,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_h32float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_h32float2int.Rn, is_64bit));
@@ -10149,7 +10065,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas32h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas32h_float2int.Rn, is_64bit));
@@ -10159,7 +10074,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTN, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintn_hfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintn_hfloatdp1.Rn, is_64bit));
@@ -10169,7 +10083,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTP, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintp_hfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintp_hfloatdp1.Rn, is_64bit));
@@ -10179,7 +10092,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau32h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau32h_float2int.Rn, is_64bit));
@@ -10189,7 +10101,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTM, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintm_hfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintm_hfloatdp1.Rn, is_64bit));
@@ -10199,7 +10110,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTZ, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintz_hfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintz_hfloatdp1.Rn, is_64bit));
@@ -10209,7 +10119,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov32h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov32h_float2int.Rn, is_64bit));
@@ -10219,7 +10128,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTA, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frinta_hfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frinta_hfloatdp1.Rn, is_64bit));
@@ -10229,7 +10137,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_h32float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_h32float2int.Rn, is_64bit));
@@ -10239,7 +10146,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTX, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frintx_hfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frintx_hfloatdp1.Rn, is_64bit));
@@ -10249,7 +10155,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTI, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.frinti_hfloatdp1.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.frinti_hfloatdp1.Rn, is_64bit));
@@ -10259,7 +10164,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps32h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps32h_float2int.Rn, is_64bit));
@@ -10269,7 +10173,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu32h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu32h_float2int.Rn, is_64bit));
@@ -10279,7 +10182,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns_sisd32h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns_sisd32h.Rn, is_64bit));
@@ -10289,7 +10191,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu_sisd32h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu_sisd32h.Rn, is_64bit));
@@ -10299,7 +10200,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms32h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms32h_float2int.Rn, is_64bit));
@@ -10309,7 +10209,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu32h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu32h_float2int.Rn, is_64bit));
@@ -10319,7 +10218,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps_sisd32h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps_sisd32h.Rn, is_64bit));
@@ -10329,7 +10227,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu_sisd32h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu_sisd32h.Rn, is_64bit));
@@ -10339,7 +10236,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms_sisd32h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms_sisd32h.Rn, is_64bit));
@@ -10349,7 +10245,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu_sisd32h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu_sisd32h.Rn, is_64bit));
@@ -10359,7 +10254,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_sisd32h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_sisd32h.Rn, is_64bit));
@@ -10369,7 +10263,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_sisd32h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_sisd32h.Rn, is_64bit));
@@ -10379,7 +10272,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32h_float2int.Rn, is_64bit));
@@ -10389,7 +10281,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32h_float2int.Rn, is_64bit));
@@ -10399,7 +10290,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas_sisd32h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas_sisd32h.Rn, is_64bit));
@@ -10409,7 +10299,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau_sisd32h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau_sisd32h.Rn, is_64bit));
@@ -10419,7 +10308,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_sisd32h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_sisd32h.Rn, is_64bit));
@@ -10429,7 +10317,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_sisd32h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_sisd32h.Rn, is_64bit));
@@ -10439,7 +10326,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns64s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns64s_float2int.Rn, is_64bit));
@@ -10449,7 +10335,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu64s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu64s_float2int.Rn, is_64bit));
@@ -10459,7 +10344,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_s64float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_s64float2int.Rn, is_64bit));
@@ -10469,7 +10353,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_s64float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_s64float2int.Rn, is_64bit));
@@ -10479,7 +10362,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas64s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas64s_float2int.Rn, is_64bit));
@@ -10489,7 +10371,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau64s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau64s_float2int.Rn, is_64bit));
@@ -10499,7 +10380,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps64s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps64s_float2int.Rn, is_64bit));
@@ -10509,7 +10389,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu64s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu64s_float2int.Rn, is_64bit));
@@ -10519,7 +10398,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns_sisd64s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns_sisd64s.Rn, is_64bit));
@@ -10529,7 +10407,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu_sisd64s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu_sisd64s.Rn, is_64bit));
@@ -10539,7 +10416,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms64s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms64s_float2int.Rn, is_64bit));
@@ -10549,7 +10425,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu64s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu64s_float2int.Rn, is_64bit));
@@ -10559,7 +10434,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps_sisd64s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps_sisd64s.Rn, is_64bit));
@@ -10569,7 +10443,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu_sisd64s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu_sisd64s.Rn, is_64bit));
@@ -10579,7 +10452,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms_sisd64s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms_sisd64s.Rn, is_64bit));
@@ -10589,7 +10461,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu_sisd64s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu_sisd64s.Rn, is_64bit));
@@ -10599,7 +10470,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_sisd64s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_sisd64s.Rn, is_64bit));
@@ -10609,7 +10479,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_sisd64s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_sisd64s.Rn, is_64bit));
@@ -10619,7 +10488,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64s_float2int.Rn, is_64bit));
@@ -10629,7 +10497,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64s_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64s_float2int.Rn, is_64bit));
@@ -10639,7 +10506,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas_sisd64s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas_sisd64s.Rn, is_64bit));
@@ -10649,7 +10515,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau_sisd64s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau_sisd64s.Rn, is_64bit));
@@ -10659,7 +10524,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_sisd64s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_sisd64s.Rn, is_64bit));
@@ -10669,7 +10533,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_sisd64s.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_sisd64s.Rn, is_64bit));
@@ -10679,7 +10542,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns64d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns64d_float2int.Rn, is_64bit));
@@ -10689,7 +10551,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu64d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu64d_float2int.Rn, is_64bit));
@@ -10699,7 +10560,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_d64float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_d64float2int.Rn, is_64bit));
@@ -10709,7 +10569,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_d64float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_d64float2int.Rn, is_64bit));
@@ -10719,7 +10578,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas64d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas64d_float2int.Rn, is_64bit));
@@ -10729,7 +10587,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau64d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau64d_float2int.Rn, is_64bit));
@@ -10739,7 +10596,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov64d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov64d_float2int.Rn, is_64bit));
@@ -10749,7 +10605,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_d64float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_d64float2int.Rn, is_64bit));
@@ -10759,7 +10614,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps64d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps64d_float2int.Rn, is_64bit));
@@ -10769,7 +10623,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu64d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu64d_float2int.Rn, is_64bit));
@@ -10779,7 +10632,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms64d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms64d_float2int.Rn, is_64bit));
@@ -10789,7 +10641,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu64d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu64d_float2int.Rn, is_64bit));
@@ -10799,7 +10650,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64d_float2int.Rn, is_64bit));
@@ -10809,7 +10659,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64d_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64d_float2int.Rn, is_64bit));
@@ -10819,7 +10668,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov64vx_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov64vx_float2int.Rn, is_64bit));
@@ -10829,7 +10677,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_v64i_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_v64i_float2int.Rn, is_64bit));
@@ -10839,7 +10686,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns64h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns64h_float2int.Rn, is_64bit));
@@ -10849,7 +10695,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu64h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu64h_float2int.Rn, is_64bit));
@@ -10859,7 +10704,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_h64float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_h64float2int.Rn, is_64bit));
@@ -10869,7 +10713,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_h64float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_h64float2int.Rn, is_64bit));
@@ -10879,7 +10722,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas64h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas64h_float2int.Rn, is_64bit));
@@ -10889,7 +10731,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau64h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau64h_float2int.Rn, is_64bit));
@@ -10899,7 +10740,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov64h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov64h_float2int.Rn, is_64bit));
@@ -10909,7 +10749,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_h64float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_h64float2int.Rn, is_64bit));
@@ -10919,7 +10758,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps64h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps64h_float2int.Rn, is_64bit));
@@ -10929,7 +10767,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu64h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu64h_float2int.Rn, is_64bit));
@@ -10939,7 +10776,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns_sisd64h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtns_sisd64h.Rn, is_64bit));
@@ -10949,7 +10785,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTNU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu_sisd64h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtnu_sisd64h.Rn, is_64bit));
@@ -10959,7 +10794,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms64h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms64h_float2int.Rn, is_64bit));
@@ -10969,7 +10803,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu64h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu64h_float2int.Rn, is_64bit));
@@ -10979,7 +10812,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps_sisd64h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtps_sisd64h.Rn, is_64bit));
@@ -10989,7 +10821,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTPU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu_sisd64h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtpu_sisd64h.Rn, is_64bit));
@@ -10999,7 +10830,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms_sisd64h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtms_sisd64h.Rn, is_64bit));
@@ -11009,7 +10839,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTMU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu_sisd64h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtmu_sisd64h.Rn, is_64bit));
@@ -11019,7 +10848,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_sisd64h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_sisd64h.Rn, is_64bit));
@@ -11029,7 +10857,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_sisd64h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_sisd64h.Rn, is_64bit));
@@ -11039,7 +10866,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64h_float2int.Rn, is_64bit));
@@ -11049,7 +10875,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64h_float2int.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64h_float2int.Rn, is_64bit));
@@ -11059,7 +10884,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas_sisd64h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtas_sisd64h.Rn, is_64bit));
@@ -11069,7 +10893,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTAU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau_sisd64h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtau_sisd64h.Rn, is_64bit));
@@ -11079,7 +10902,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_sisd64h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_sisd64h.Rn, is_64bit));
@@ -11089,7 +10911,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_sisd64h.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_sisd64h.Rn, is_64bit));
@@ -11104,7 +10925,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_s32float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_s32float2fix.Rn, is_64bit));
@@ -11114,7 +10934,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_s32float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_s32float2fix.Rn, is_64bit));
@@ -11124,7 +10943,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32s_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32s_float2fix.Rn, is_64bit));
@@ -11134,7 +10952,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32s_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32s_float2fix.Rn, is_64bit));
@@ -11144,7 +10961,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_d32float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_d32float2fix.Rn, is_64bit));
@@ -11154,7 +10970,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_d32float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_d32float2fix.Rn, is_64bit));
@@ -11164,7 +10979,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32d_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32d_float2fix.Rn, is_64bit));
@@ -11174,7 +10988,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32d_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32d_float2fix.Rn, is_64bit));
@@ -11184,7 +10997,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_h32float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_h32float2fix.Rn, is_64bit));
@@ -11194,7 +11006,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_h32float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_h32float2fix.Rn, is_64bit));
@@ -11204,7 +11015,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32h_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32h_float2fix.Rn, is_64bit));
@@ -11214,7 +11024,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32h_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32h_float2fix.Rn, is_64bit));
@@ -11224,7 +11033,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_s64float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_s64float2fix.Rn, is_64bit));
@@ -11234,7 +11042,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_s64float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_s64float2fix.Rn, is_64bit));
@@ -11244,7 +11051,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64s_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64s_float2fix.Rn, is_64bit));
@@ -11254,7 +11060,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64s_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64s_float2fix.Rn, is_64bit));
@@ -11264,7 +11069,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_d64float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_d64float2fix.Rn, is_64bit));
@@ -11274,7 +11078,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_d64float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_d64float2fix.Rn, is_64bit));
@@ -11284,7 +11087,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64d_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64d_float2fix.Rn, is_64bit));
@@ -11294,7 +11096,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64d_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64d_float2fix.Rn, is_64bit));
@@ -11304,7 +11105,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_h64float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_h64float2fix.Rn, is_64bit));
@@ -11314,7 +11114,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_h64float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_h64float2fix.Rn, is_64bit));
@@ -11324,7 +11123,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64h_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64h_float2fix.Rn, is_64bit));
@@ -11334,7 +11132,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZU, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64h_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64h_float2fix.Rn, is_64bit));
@@ -11349,7 +11146,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCMP, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmp_sfloatcmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmp_sfloatcmp.Rm, is_64bit));
@@ -11359,7 +11155,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCMP, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmp_sz_floatcmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmp_sz_floatcmp.Rm, is_64bit));
@@ -11369,7 +11164,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCMPE, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmpe_sfloatcmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmpe_sfloatcmp.Rm, is_64bit));
@@ -11379,7 +11173,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCMPE, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmpe_sz_floatcmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmpe_sz_floatcmp.Rm, is_64bit));
@@ -11389,7 +11182,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCMP, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmp_dfloatcmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmp_dfloatcmp.Rm, is_64bit));
@@ -11399,7 +11191,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCMP, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmp_dz_floatcmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmp_dz_floatcmp.Rm, is_64bit));
@@ -11409,7 +11200,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCMPE, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmpe_dfloatcmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmpe_dfloatcmp.Rm, is_64bit));
@@ -11419,7 +11209,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCMPE, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmpe_dz_floatcmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmpe_dz_floatcmp.Rm, is_64bit));
@@ -11429,7 +11218,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCMP, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmp_hfloatcmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmp_hfloatcmp.Rm, is_64bit));
@@ -11439,7 +11227,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCMP, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmp_hz_floatcmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmp_hz_floatcmp.Rm, is_64bit));
@@ -11449,7 +11236,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCMPE, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmpe_hfloatcmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmpe_hfloatcmp.Rm, is_64bit));
@@ -11459,7 +11245,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCMPE, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmpe_hz_floatcmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmpe_hz_floatcmp.Rm, is_64bit));
@@ -11474,7 +11259,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMUL, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmul_sfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmul_sfloatdp2.Rn, is_64bit));
@@ -11485,7 +11269,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FDIV, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fdiv_sfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fdiv_sfloatdp2.Rn, is_64bit));
@@ -11496,7 +11279,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FADD, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fadd_sfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fadd_sfloatdp2.Rn, is_64bit));
@@ -11507,7 +11289,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FSUB, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fsub_sfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fsub_sfloatdp2.Rn, is_64bit));
@@ -11518,7 +11299,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMAX, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmax_sfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmax_sfloatdp2.Rn, is_64bit));
@@ -11529,7 +11309,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMIN, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmin_sfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmin_sfloatdp2.Rn, is_64bit));
@@ -11540,7 +11319,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXNM, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnm_sfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnm_sfloatdp2.Rn, is_64bit));
@@ -11551,7 +11329,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMINNM, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnm_sfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnm_sfloatdp2.Rn, is_64bit));
@@ -11562,7 +11339,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FNMUL, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmul_sfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmul_sfloatdp2.Rn, is_64bit));
@@ -11573,7 +11349,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMUL, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmul_dfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmul_dfloatdp2.Rn, is_64bit));
@@ -11584,7 +11359,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FDIV, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fdiv_dfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fdiv_dfloatdp2.Rn, is_64bit));
@@ -11595,7 +11369,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FADD, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fadd_dfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fadd_dfloatdp2.Rn, is_64bit));
@@ -11606,7 +11379,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FSUB, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fsub_dfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fsub_dfloatdp2.Rn, is_64bit));
@@ -11617,7 +11389,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMAX, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmax_dfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmax_dfloatdp2.Rn, is_64bit));
@@ -11628,7 +11399,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMIN, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmin_dfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmin_dfloatdp2.Rn, is_64bit));
@@ -11639,7 +11409,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXNM, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnm_dfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnm_dfloatdp2.Rn, is_64bit));
@@ -11650,7 +11419,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMINNM, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnm_dfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnm_dfloatdp2.Rn, is_64bit));
@@ -11661,7 +11429,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FNMUL, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmul_dfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmul_dfloatdp2.Rn, is_64bit));
@@ -11672,7 +11439,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMUL, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmul_hfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmul_hfloatdp2.Rn, is_64bit));
@@ -11683,7 +11449,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FDIV, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fdiv_hfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fdiv_hfloatdp2.Rn, is_64bit));
@@ -11694,7 +11459,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FADD, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fadd_hfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fadd_hfloatdp2.Rn, is_64bit));
@@ -11705,7 +11469,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FSUB, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fsub_hfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fsub_hfloatdp2.Rn, is_64bit));
@@ -11716,7 +11479,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMAX, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmax_hfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmax_hfloatdp2.Rn, is_64bit));
@@ -11727,7 +11489,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMIN, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmin_hfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmin_hfloatdp2.Rn, is_64bit));
@@ -11738,7 +11499,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXNM, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnm_hfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmaxnm_hfloatdp2.Rn, is_64bit));
@@ -11749,7 +11509,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMINNM, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnm_hfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fminnm_hfloatdp2.Rn, is_64bit));
@@ -11760,7 +11519,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FNMUL, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmul_hfloatdp2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmul_hfloatdp2.Rn, is_64bit));
@@ -11776,7 +11534,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMADD, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmadd_sfloatdp3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmadd_sfloatdp3.Rn, is_64bit));
@@ -11788,7 +11545,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMSUB, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmsub_sfloatdp3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmsub_sfloatdp3.Rn, is_64bit));
@@ -11800,7 +11556,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FNMADD, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmadd_sfloatdp3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmadd_sfloatdp3.Rn, is_64bit));
@@ -11812,7 +11567,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FNMSUB, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmsub_sfloatdp3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmsub_sfloatdp3.Rn, is_64bit));
@@ -11824,7 +11578,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMADD, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmadd_dfloatdp3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmadd_dfloatdp3.Rn, is_64bit));
@@ -11836,7 +11589,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMSUB, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmsub_dfloatdp3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmsub_dfloatdp3.Rn, is_64bit));
@@ -11848,7 +11600,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FNMADD, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmadd_dfloatdp3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmadd_dfloatdp3.Rn, is_64bit));
@@ -11860,7 +11611,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FNMSUB, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmsub_dfloatdp3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmsub_dfloatdp3.Rn, is_64bit));
@@ -11872,7 +11622,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMADD, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmadd_hfloatdp3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmadd_hfloatdp3.Rn, is_64bit));
@@ -11884,7 +11633,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMSUB, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmsub_hfloatdp3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmsub_hfloatdp3.Rn, is_64bit));
@@ -11896,7 +11644,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FNMADD, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmadd_hfloatdp3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmadd_hfloatdp3.Rn, is_64bit));
@@ -11908,7 +11655,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FNMSUB, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmsub_hfloatdp3.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmsub_hfloatdp3.Rn, is_64bit));
@@ -11925,7 +11671,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_sfloatimm.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmov_sfloatimm.imm8, true));
@@ -11935,7 +11680,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_dfloatimm.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmov_dfloatimm.imm8, true));
@@ -11945,7 +11689,6 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fmov_hfloatimm.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmov_hfloatimm.imm8, true));
@@ -11960,60 +11703,60 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCCMP, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmp_sfloatccmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmp_sfloatccmp.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.fccmp_sfloatccmp.cond, true));
                         return result;
         }
         case 0x1E200410u: { // FCCMPE_S_floatccmp
                         Instruction result(Mnemonic::FCCMPE, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmpe_sfloatccmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmpe_sfloatccmp.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.fccmpe_sfloatccmp.cond, true));
                         return result;
         }
         case 0x1E600400u: { // FCCMP_D_floatccmp
                         Instruction result(Mnemonic::FCCMP, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmp_dfloatccmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmp_dfloatccmp.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.fccmp_dfloatccmp.cond, true));
                         return result;
         }
         case 0x1E600410u: { // FCCMPE_D_floatccmp
                         Instruction result(Mnemonic::FCCMPE, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmpe_dfloatccmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmpe_dfloatccmp.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.fccmpe_dfloatccmp.cond, true));
                         return result;
         }
         case 0x1EE00400u: { // FCCMP_H_floatccmp
                         Instruction result(Mnemonic::FCCMP, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmp_hfloatccmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmp_hfloatccmp.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.fccmp_hfloatccmp.cond, true));
                         return result;
         }
         case 0x1EE00410u: { // FCCMPE_H_floatccmp
                         Instruction result(Mnemonic::FCCMPE, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmpe_hfloatccmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmpe_hfloatccmp.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.fccmpe_hfloatccmp.cond, true));
                         return result;
         }
         default: break;
@@ -12025,33 +11768,33 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         Instruction result(Mnemonic::FCSEL, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_sfloatsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_sfloatsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_sfloatsel.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.fcsel_sfloatsel.cond, true));
                         return result;
         }
         case 0x1E600C00u: { // FCSEL_D_floatsel
                         Instruction result(Mnemonic::FCSEL, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_dfloatsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_dfloatsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_dfloatsel.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.fcsel_dfloatsel.cond, true));
                         return result;
         }
         case 0x1EE00C00u: { // FCSEL_H_floatsel
                         Instruction result(Mnemonic::FCSEL, insn);
                         FloatEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_hfloatsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_hfloatsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_hfloatsel.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.fcsel_hfloatsel.cond, true));
                         return result;
         }
         default: break;

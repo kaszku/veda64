@@ -6515,56 +6515,48 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::PACNBIASPPC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xDAC187FEu: { // PACNBIBSPPC_64LR_dp_1src
                         Instruction result(Mnemonic::PACNBIBSPPC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xDAC18BFEu: { // PACIA171615_64LR_dp_1src
                         Instruction result(Mnemonic::PACIA171615, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xDAC18FFEu: { // PACIB171615_64LR_dp_1src
                         Instruction result(Mnemonic::PACIB171615, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xDAC1A3FEu: { // PACIASPPC_64LR_dp_1src
                         Instruction result(Mnemonic::PACIASPPC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xDAC1A7FEu: { // PACIBSPPC_64LR_dp_1src
                         Instruction result(Mnemonic::PACIBSPPC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xDAC1BBFEu: { // AUTIA171615_64LR_dp_1src
                         Instruction result(Mnemonic::AUTIA171615, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xDAC1BFFEu: { // AUTIB171615_64LR_dp_1src
                         Instruction result(Mnemonic::AUTIB171615, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -6576,7 +6568,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::PACIZA, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.paciza64z_dp1src.Rd, is_64bit));
                         return result;
@@ -6585,7 +6576,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::PACIZB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.pacizb64z_dp1src.Rd, is_64bit));
                         return result;
@@ -6594,7 +6584,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::PACDZA, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.pacdza64z_dp1src.Rd, is_64bit));
                         return result;
@@ -6603,7 +6592,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::PACDZB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.pacdzb64z_dp1src.Rd, is_64bit));
                         return result;
@@ -6612,7 +6600,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::AUTIZA, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.autiza64z_dp1src.Rd, is_64bit));
                         return result;
@@ -6621,7 +6608,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::AUTIZB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.autizb64z_dp1src.Rd, is_64bit));
                         return result;
@@ -6630,7 +6616,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::AUTDZA, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.autdza64z_dp1src.Rd, is_64bit));
                         return result;
@@ -6639,7 +6624,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::AUTDZB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.autdzb64z_dp1src.Rd, is_64bit));
                         return result;
@@ -6648,7 +6632,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::XPACI, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.xpaci64z_dp1src.Rd, is_64bit));
                         return result;
@@ -6657,7 +6640,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::XPACD, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.xpacd64z_dp1src.Rd, is_64bit));
                         return result;
@@ -6671,7 +6653,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SETF8, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.setf8only_setf.Rn, is_64bit));
                         return result;
@@ -6680,7 +6661,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SETF16, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.setf16only_setf.Rn, is_64bit));
                         return result;
@@ -6689,7 +6669,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::AUTIASPPCR, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.autiasppcr64lrr_dp1src.Rn, is_64bit));
                         return result;
@@ -6698,7 +6677,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::AUTIBSPPCR, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.autibsppcr64lrr_dp1src.Rn, is_64bit));
                         return result;
@@ -6712,7 +6690,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::RBIT, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rbit32dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rbit32dp1src.Rn, is_64bit));
@@ -6722,7 +6699,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::REV16, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rev1632dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rev1632dp1src.Rn, is_64bit));
@@ -6732,7 +6708,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::REV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rev32dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rev32dp1src.Rn, is_64bit));
@@ -6742,7 +6717,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CLZ, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.clz32dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.clz32dp1src.Rn, is_64bit));
@@ -6752,7 +6726,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CLS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cls32dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cls32dp1src.Rn, is_64bit));
@@ -6762,7 +6735,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CTZ, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ctz32dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ctz32dp1src.Rn, is_64bit));
@@ -6772,7 +6744,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CNT, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cnt32dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cnt32dp1src.Rn, is_64bit));
@@ -6782,7 +6753,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ABS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.abs32dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.abs32dp1src.Rn, is_64bit));
@@ -6792,7 +6762,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::RBIT, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rbit64dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rbit64dp1src.Rn, is_64bit));
@@ -6802,7 +6771,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::REV16, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rev1664dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rev1664dp1src.Rn, is_64bit));
@@ -6812,7 +6780,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::REV32, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rev3264dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rev3264dp1src.Rn, is_64bit));
@@ -6823,7 +6790,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::REV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rev64dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rev64dp1src.Rn, is_64bit));
@@ -6833,7 +6799,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CLZ, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.clz64dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.clz64dp1src.Rn, is_64bit));
@@ -6843,7 +6808,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CLS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cls64dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cls64dp1src.Rn, is_64bit));
@@ -6853,7 +6817,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CTZ, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ctz64dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ctz64dp1src.Rn, is_64bit));
@@ -6863,7 +6826,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CNT, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cnt64dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cnt64dp1src.Rn, is_64bit));
@@ -6873,7 +6835,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ABS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.abs64dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.abs64dp1src.Rn, is_64bit));
@@ -6883,7 +6844,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::PACIA, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.pacia64p_dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.pacia64p_dp1src.Rn, is_64bit));
@@ -6893,7 +6853,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::PACIB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.pacib64p_dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.pacib64p_dp1src.Rn, is_64bit));
@@ -6903,7 +6862,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::PACDA, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.pacda64p_dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.pacda64p_dp1src.Rn, is_64bit));
@@ -6913,7 +6871,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::PACDB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.pacdb64p_dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.pacdb64p_dp1src.Rn, is_64bit));
@@ -6923,7 +6880,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::AUTIA, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.autia64p_dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.autia64p_dp1src.Rn, is_64bit));
@@ -6933,7 +6889,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::AUTIB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.autib64p_dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.autib64p_dp1src.Rn, is_64bit));
@@ -6943,7 +6898,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::AUTDA, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.autda64p_dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.autda64p_dp1src.Rn, is_64bit));
@@ -6953,7 +6907,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::AUTDB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.autdb64p_dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.autdb64p_dp1src.Rn, is_64bit));
@@ -6969,11 +6922,11 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CSINC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc32condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc32condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc32condsel.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.cinc_csinc32condsel.cond, true));
                         return result;
         }
         case 0x5A9FE3E0u: { // CINV_CSINV_32_condsel
@@ -6981,11 +6934,11 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CSINV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv32condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv32condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv32condsel.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.cinv_csinv32condsel.cond, true));
                         return result;
         }
         case 0x9A9FE7E0u: { // CINC_CSINC_64_condsel
@@ -6993,11 +6946,11 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CSINC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc64condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc64condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc64condsel.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.cinc_csinc64condsel.cond, true));
                         return result;
         }
         case 0xDA9FE3E0u: { // CINV_CSINV_64_condsel
@@ -7005,11 +6958,11 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CSINV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv64condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv64condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv64condsel.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.cinv_csinv64condsel.cond, true));
                         return result;
         }
         default: break;
@@ -7022,7 +6975,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SMULH, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.smulh64dp3src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smulh64dp3src.Rn, is_64bit));
@@ -7039,7 +6991,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ORR, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_orr32log_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_orr32log_shift.Rm, is_64bit));
@@ -7049,7 +7000,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SBC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ngc_sbc32addsub_carry.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ngc_sbc32addsub_carry.Rm, is_64bit));
@@ -7059,7 +7009,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SBCS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ngcs_sbcs32addsub_carry.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ngcs_sbcs32addsub_carry.Rm, is_64bit));
@@ -7069,7 +7018,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ORR, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_orr64log_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_orr64log_shift.Rm, is_64bit));
@@ -7079,7 +7027,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SBC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ngc_sbc64addsub_carry.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ngc_sbc64addsub_carry.Rm, is_64bit));
@@ -7089,7 +7036,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SBCS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ngcs_sbcs64addsub_carry.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ngcs_sbcs64addsub_carry.Rm, is_64bit));
@@ -7104,7 +7050,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SUBPS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmpp_subps64s_dp2src.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmpp_subps64s_dp2src.Rm, is_64bit));
@@ -7119,7 +7064,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ADC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.adc32addsub_carry.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.adc32addsub_carry.Rn, is_64bit));
@@ -7130,7 +7074,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::UDIV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.udiv32dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.udiv32dp2src.Rn, is_64bit));
@@ -7141,7 +7084,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SDIV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sdiv32dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sdiv32dp2src.Rn, is_64bit));
@@ -7153,7 +7095,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::LSLV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.lsl_lslv32dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lsl_lslv32dp2src.Rn, is_64bit));
@@ -7165,7 +7106,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::LSRV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.lsr_lsrv32dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lsr_lsrv32dp2src.Rn, is_64bit));
@@ -7177,7 +7117,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ASRV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.asr_asrv32dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.asr_asrv32dp2src.Rn, is_64bit));
@@ -7189,7 +7128,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::RORV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ror_rorv32dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ror_rorv32dp2src.Rn, is_64bit));
@@ -7200,7 +7138,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CRC32B, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.crc32b32c_dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.crc32b32c_dp2src.Rn, is_64bit));
@@ -7211,7 +7148,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CRC32H, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.crc32h32c_dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.crc32h32c_dp2src.Rn, is_64bit));
@@ -7222,7 +7158,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CRC32W, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.crc32w32c_dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.crc32w32c_dp2src.Rn, is_64bit));
@@ -7233,7 +7168,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CRC32CB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.crc32cb32c_dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.crc32cb32c_dp2src.Rn, is_64bit));
@@ -7244,7 +7178,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CRC32CH, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.crc32ch32c_dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.crc32ch32c_dp2src.Rn, is_64bit));
@@ -7255,7 +7188,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CRC32CW, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.crc32cw32c_dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.crc32cw32c_dp2src.Rn, is_64bit));
@@ -7266,7 +7198,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SMAX, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.smax32dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smax32dp2src.Rn, is_64bit));
@@ -7277,7 +7208,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::UMAX, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.umax32dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.umax32dp2src.Rn, is_64bit));
@@ -7288,7 +7218,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SMIN, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.smin32dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smin32dp2src.Rn, is_64bit));
@@ -7299,7 +7228,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::UMIN, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.umin32dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.umin32dp2src.Rn, is_64bit));
@@ -7310,7 +7238,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::MADD, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.mul_madd32a_dp3src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.mul_madd32a_dp3src.Rn, is_64bit));
@@ -7321,7 +7248,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::MSUB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.mneg_msub32a_dp3src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.mneg_msub32a_dp3src.Rn, is_64bit));
@@ -7332,7 +7258,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ADCS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.adcs32addsub_carry.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.adcs32addsub_carry.Rn, is_64bit));
@@ -7343,7 +7268,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SBC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sbc32addsub_carry.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sbc32addsub_carry.Rn, is_64bit));
@@ -7354,7 +7278,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SBCS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sbcs32addsub_carry.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sbcs32addsub_carry.Rn, is_64bit));
@@ -7365,7 +7288,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ADC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.adc64addsub_carry.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.adc64addsub_carry.Rn, is_64bit));
@@ -7376,7 +7298,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SUBP, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.subp64s_dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.subp64s_dp2src.Rn, is_64bit));
@@ -7387,7 +7308,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::UDIV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.udiv64dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.udiv64dp2src.Rn, is_64bit));
@@ -7398,7 +7318,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SDIV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sdiv64dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sdiv64dp2src.Rn, is_64bit));
@@ -7409,7 +7328,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::IRG, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.irg64i_dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.irg64i_dp2src.Rn, is_64bit));
@@ -7420,7 +7338,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::GMI, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.gmi64g_dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.gmi64g_dp2src.Rn, is_64bit));
@@ -7432,7 +7349,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::LSLV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.lsl_lslv64dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lsl_lslv64dp2src.Rn, is_64bit));
@@ -7444,7 +7360,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::LSRV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.lsr_lsrv64dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lsr_lsrv64dp2src.Rn, is_64bit));
@@ -7456,7 +7371,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ASRV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.asr_asrv64dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.asr_asrv64dp2src.Rn, is_64bit));
@@ -7468,7 +7382,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::RORV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ror_rorv64dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ror_rorv64dp2src.Rn, is_64bit));
@@ -7479,7 +7392,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::PACGA, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.pacga64p_dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.pacga64p_dp2src.Rn, is_64bit));
@@ -7490,7 +7402,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CRC32X, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.crc32x64c_dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.crc32x64c_dp2src.Rn, is_64bit));
@@ -7501,7 +7412,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CRC32CX, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.crc32cx64c_dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.crc32cx64c_dp2src.Rn, is_64bit));
@@ -7512,7 +7422,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SMAX, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.smax64dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smax64dp2src.Rn, is_64bit));
@@ -7523,7 +7432,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::UMAX, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.umax64dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.umax64dp2src.Rn, is_64bit));
@@ -7534,7 +7442,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SMIN, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.smin64dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smin64dp2src.Rn, is_64bit));
@@ -7545,7 +7452,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::UMIN, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.umin64dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.umin64dp2src.Rn, is_64bit));
@@ -7556,7 +7462,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::MADD, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.mul_madd64a_dp3src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.mul_madd64a_dp3src.Rn, is_64bit));
@@ -7567,7 +7472,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::MSUB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.mneg_msub64a_dp3src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.mneg_msub64a_dp3src.Rn, is_64bit));
@@ -7578,7 +7482,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SMADDL, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.smull_smaddl64wa_dp3src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smull_smaddl64wa_dp3src.Rn, is_64bit));
@@ -7589,7 +7492,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SMSUBL, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.smnegl_smsubl64wa_dp3src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smnegl_smsubl64wa_dp3src.Rn, is_64bit));
@@ -7600,7 +7502,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::UMADDL, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.umull_umaddl64wa_dp3src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.umull_umaddl64wa_dp3src.Rn, is_64bit));
@@ -7611,7 +7512,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::UMSUBL, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.umnegl_umsubl64wa_dp3src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.umnegl_umsubl64wa_dp3src.Rn, is_64bit));
@@ -7622,7 +7522,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ADCS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.adcs64addsub_carry.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.adcs64addsub_carry.Rn, is_64bit));
@@ -7633,7 +7532,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SUBPS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.subps64s_dp2src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.subps64s_dp2src.Rn, is_64bit));
@@ -7644,7 +7542,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SBC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sbc64addsub_carry.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sbc64addsub_carry.Rn, is_64bit));
@@ -7655,7 +7552,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SBCS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sbcs64addsub_carry.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sbcs64addsub_carry.Rn, is_64bit));
@@ -7671,22 +7567,22 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CSNEG, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg32condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg32condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg32condsel.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.cneg_csneg32condsel.cond, true));
                         return result;
         }
         case 0xDA80E400u: { // CNEG_CSNEG_64_condsel
                         Instruction result(Mnemonic::CSNEG, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg64condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg64condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg64condsel.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.cneg_csneg64condsel.cond, true));
                         return result;
         }
         default: break;
@@ -7698,7 +7594,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ADDPT, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.addpt64addsub_pt.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.addpt64addsub_pt.Rn, is_64bit));
@@ -7709,7 +7604,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SUBPT, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.subpt64addsub_pt.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.subpt64addsub_pt.Rn, is_64bit));
@@ -7725,7 +7619,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::MADD, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.madd32a_dp3src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.madd32a_dp3src.Rn, is_64bit));
@@ -7737,7 +7630,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::MSUB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.msub32a_dp3src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.msub32a_dp3src.Rn, is_64bit));
@@ -7749,7 +7641,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::MADD, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.madd64a_dp3src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.madd64a_dp3src.Rn, is_64bit));
@@ -7761,7 +7652,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::MSUB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.msub64a_dp3src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.msub64a_dp3src.Rn, is_64bit));
@@ -7773,7 +7663,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SMADDL, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.smaddl64wa_dp3src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smaddl64wa_dp3src.Rn, is_64bit));
@@ -7785,7 +7674,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SMSUBL, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.smsubl64wa_dp3src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smsubl64wa_dp3src.Rn, is_64bit));
@@ -7797,7 +7685,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::MADDPT, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.maddpt64a_dp3src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.maddpt64a_dp3src.Rn, is_64bit));
@@ -7809,7 +7696,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::MSUBPT, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.msubpt64a_dp3src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.msubpt64a_dp3src.Rn, is_64bit));
@@ -7821,7 +7707,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::UMADDL, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.umaddl64wa_dp3src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.umaddl64wa_dp3src.Rn, is_64bit));
@@ -7833,7 +7718,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::UMSUBL, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.umsubl64wa_dp3src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.umsubl64wa_dp3src.Rn, is_64bit));
@@ -7850,7 +7734,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::RMIF, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rmif_only_rmif.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.rmif_only_rmif.imm6, true));
@@ -7865,80 +7748,80 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CCMN, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmn32condcmp_reg.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmn32condcmp_reg.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.ccmn32condcmp_reg.cond, true));
                         return result;
         }
         case 0x3A400800u: { // CCMN_32_condcmp_imm
                         Instruction result(Mnemonic::CCMN, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmn32condcmp_imm.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.ccmn32condcmp_imm.imm5, true));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.ccmn32condcmp_imm.cond, true));
                         return result;
         }
         case 0x7A400000u: { // CCMP_32_condcmp_reg
                         Instruction result(Mnemonic::CCMP, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmp32condcmp_reg.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmp32condcmp_reg.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.ccmp32condcmp_reg.cond, true));
                         return result;
         }
         case 0x7A400800u: { // CCMP_32_condcmp_imm
                         Instruction result(Mnemonic::CCMP, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmp32condcmp_imm.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.ccmp32condcmp_imm.imm5, true));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.ccmp32condcmp_imm.cond, true));
                         return result;
         }
         case 0xBA400000u: { // CCMN_64_condcmp_reg
                         Instruction result(Mnemonic::CCMN, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmn64condcmp_reg.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmn64condcmp_reg.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.ccmn64condcmp_reg.cond, true));
                         return result;
         }
         case 0xBA400800u: { // CCMN_64_condcmp_imm
                         Instruction result(Mnemonic::CCMN, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmn64condcmp_imm.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.ccmn64condcmp_imm.imm5, true));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.ccmn64condcmp_imm.cond, true));
                         return result;
         }
         case 0xFA400000u: { // CCMP_64_condcmp_reg
                         Instruction result(Mnemonic::CCMP, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmp64condcmp_reg.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmp64condcmp_reg.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.ccmp64condcmp_reg.cond, true));
                         return result;
         }
         case 0xFA400800u: { // CCMP_64_condcmp_imm
                         Instruction result(Mnemonic::CCMP, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmp64condcmp_imm.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.ccmp64condcmp_imm.imm5, true));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.ccmp64condcmp_imm.cond, true));
                         return result;
         }
         default: break;
@@ -7950,88 +7833,88 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CSEL, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.csel32condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csel32condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csel32condsel.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.csel32condsel.cond, true));
                         return result;
         }
         case 0x1A800400u: { // CSINC_32_condsel
                         Instruction result(Mnemonic::CSINC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.csinc32condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csinc32condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csinc32condsel.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.csinc32condsel.cond, true));
                         return result;
         }
         case 0x5A800000u: { // CSINV_32_condsel
                         Instruction result(Mnemonic::CSINV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.csinv32condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csinv32condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csinv32condsel.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.csinv32condsel.cond, true));
                         return result;
         }
         case 0x5A800400u: { // CSNEG_32_condsel
                         Instruction result(Mnemonic::CSNEG, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.csneg32condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csneg32condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csneg32condsel.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.csneg32condsel.cond, true));
                         return result;
         }
         case 0x9A800000u: { // CSEL_64_condsel
                         Instruction result(Mnemonic::CSEL, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.csel64condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csel64condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csel64condsel.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.csel64condsel.cond, true));
                         return result;
         }
         case 0x9A800400u: { // CSINC_64_condsel
                         Instruction result(Mnemonic::CSINC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.csinc64condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csinc64condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csinc64condsel.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.csinc64condsel.cond, true));
                         return result;
         }
         case 0xDA800000u: { // CSINV_64_condsel
                         Instruction result(Mnemonic::CSINV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.csinv64condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csinv64condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csinv64condsel.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.csinv64condsel.cond, true));
                         return result;
         }
         case 0xDA800400u: { // CSNEG_64_condsel
                         Instruction result(Mnemonic::CSNEG, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.csneg64condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csneg64condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csneg64condsel.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Condition, enc.csneg64condsel.cond, true));
                         return result;
         }
         default: break;
@@ -8043,7 +7926,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ADDS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds32s_addsub_ext.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds32s_addsub_ext.Rm, is_64bit));
@@ -8053,7 +7935,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SUBS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs32s_addsub_ext.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs32s_addsub_ext.Rm, is_64bit));
@@ -8063,7 +7944,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ADDS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds64s_addsub_ext.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds64s_addsub_ext.Rm, is_64bit));
@@ -8073,7 +7953,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SUBS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs64s_addsub_ext.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs64s_addsub_ext.Rm, is_64bit));
@@ -8088,7 +7967,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ADD, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.add32addsub_ext.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.add32addsub_ext.Rn, is_64bit));
@@ -8099,7 +7977,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ADDS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.adds32s_addsub_ext.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.adds32s_addsub_ext.Rn, is_64bit));
@@ -8110,7 +7987,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SUB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sub32addsub_ext.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sub32addsub_ext.Rn, is_64bit));
@@ -8121,7 +7997,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SUBS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.subs32s_addsub_ext.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.subs32s_addsub_ext.Rn, is_64bit));
@@ -8132,7 +8007,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ADD, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.add64addsub_ext.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.add64addsub_ext.Rn, is_64bit));
@@ -8143,7 +8017,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ADDS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.adds64s_addsub_ext.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.adds64s_addsub_ext.Rn, is_64bit));
@@ -8154,7 +8027,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SUB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sub64addsub_ext.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sub64addsub_ext.Rn, is_64bit));
@@ -8165,7 +8037,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SUBS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.subs64s_addsub_ext.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.subs64s_addsub_ext.Rn, is_64bit));
@@ -8181,15 +8052,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SUBS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.negs_subs32addsub_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.negs_subs32addsub_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.negs_subs32addsub_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.negs_subs32addsub_shift.shift;
                             uint32_t shift_amount = enc.negs_subs32addsub_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8199,15 +8069,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SUBS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.negs_subs64addsub_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.negs_subs64addsub_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.negs_subs64addsub_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.negs_subs64addsub_shift.shift;
                             uint32_t shift_amount = enc.negs_subs64addsub_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8222,15 +8091,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ORN, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mvn_orn32log_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.mvn_orn32log_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.mvn_orn32log_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.mvn_orn32log_shift.shift;
                             uint32_t shift_amount = enc.mvn_orn32log_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8240,15 +8108,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SUB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.neg_sub32addsub_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.neg_sub32addsub_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.neg_sub32addsub_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.neg_sub32addsub_shift.shift;
                             uint32_t shift_amount = enc.neg_sub32addsub_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8258,15 +8125,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ORN, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.mvn_orn64log_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.mvn_orn64log_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.mvn_orn64log_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.mvn_orn64log_shift.shift;
                             uint32_t shift_amount = enc.mvn_orn64log_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8276,15 +8142,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SUB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.neg_sub64addsub_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.neg_sub64addsub_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.neg_sub64addsub_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.neg_sub64addsub_shift.shift;
                             uint32_t shift_amount = enc.neg_sub64addsub_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8299,15 +8164,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ADDS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds32addsub_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds32addsub_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cmn_adds32addsub_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.cmn_adds32addsub_shift.shift;
                             uint32_t shift_amount = enc.cmn_adds32addsub_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8317,15 +8181,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ANDS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.tst_ands32log_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.tst_ands32log_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.tst_ands32log_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.tst_ands32log_shift.shift;
                             uint32_t shift_amount = enc.tst_ands32log_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8335,15 +8198,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SUBS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs32addsub_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs32addsub_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cmp_subs32addsub_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.cmp_subs32addsub_shift.shift;
                             uint32_t shift_amount = enc.cmp_subs32addsub_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8353,15 +8215,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ADDS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds64addsub_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds64addsub_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cmn_adds64addsub_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.cmn_adds64addsub_shift.shift;
                             uint32_t shift_amount = enc.cmn_adds64addsub_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8371,15 +8232,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ANDS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.tst_ands64log_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.tst_ands64log_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.tst_ands64log_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.tst_ands64log_shift.shift;
                             uint32_t shift_amount = enc.tst_ands64log_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8389,15 +8249,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SUBS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs64addsub_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs64addsub_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cmp_subs64addsub_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.cmp_subs64addsub_shift.shift;
                             uint32_t shift_amount = enc.cmp_subs64addsub_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8412,16 +8271,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::AND, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.and32log_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.and32log_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.and32log_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.and32log_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.and32log_shift.shift;
                             uint32_t shift_amount = enc.and32log_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8431,16 +8289,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::BIC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.bic32log_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bic32log_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bic32log_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bic32log_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.bic32log_shift.shift;
                             uint32_t shift_amount = enc.bic32log_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8450,16 +8307,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ADD, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.add32addsub_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.add32addsub_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.add32addsub_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.add32addsub_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.add32addsub_shift.shift;
                             uint32_t shift_amount = enc.add32addsub_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8469,16 +8325,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ORR, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.orr32log_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.orr32log_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.orr32log_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.orr32log_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.orr32log_shift.shift;
                             uint32_t shift_amount = enc.orr32log_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8488,16 +8343,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ORN, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.orn32log_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.orn32log_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.orn32log_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.orn32log_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.orn32log_shift.shift;
                             uint32_t shift_amount = enc.orn32log_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8507,16 +8361,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ADDS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.adds32addsub_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.adds32addsub_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.adds32addsub_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.adds32addsub_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.adds32addsub_shift.shift;
                             uint32_t shift_amount = enc.adds32addsub_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8526,16 +8379,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::EOR, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.eor32log_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.eor32log_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.eor32log_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.eor32log_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.eor32log_shift.shift;
                             uint32_t shift_amount = enc.eor32log_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8545,16 +8397,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::EON, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.eon32log_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.eon32log_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.eon32log_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.eon32log_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.eon32log_shift.shift;
                             uint32_t shift_amount = enc.eon32log_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8564,16 +8415,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SUB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sub32addsub_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sub32addsub_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sub32addsub_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sub32addsub_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.sub32addsub_shift.shift;
                             uint32_t shift_amount = enc.sub32addsub_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8583,16 +8433,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ANDS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ands32log_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ands32log_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ands32log_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.ands32log_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.ands32log_shift.shift;
                             uint32_t shift_amount = enc.ands32log_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8602,16 +8451,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::BICS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.bics32log_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bics32log_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bics32log_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bics32log_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.bics32log_shift.shift;
                             uint32_t shift_amount = enc.bics32log_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8621,16 +8469,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SUBS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.subs32addsub_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.subs32addsub_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.subs32addsub_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.subs32addsub_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.subs32addsub_shift.shift;
                             uint32_t shift_amount = enc.subs32addsub_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8640,16 +8487,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::AND, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.and64log_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.and64log_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.and64log_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.and64log_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.and64log_shift.shift;
                             uint32_t shift_amount = enc.and64log_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8659,16 +8505,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::BIC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.bic64log_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bic64log_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bic64log_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bic64log_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.bic64log_shift.shift;
                             uint32_t shift_amount = enc.bic64log_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8678,16 +8523,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ADD, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.add64addsub_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.add64addsub_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.add64addsub_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.add64addsub_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.add64addsub_shift.shift;
                             uint32_t shift_amount = enc.add64addsub_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8697,16 +8541,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ORR, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.orr64log_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.orr64log_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.orr64log_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.orr64log_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.orr64log_shift.shift;
                             uint32_t shift_amount = enc.orr64log_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8716,16 +8559,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ORN, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.orn64log_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.orn64log_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.orn64log_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.orn64log_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.orn64log_shift.shift;
                             uint32_t shift_amount = enc.orn64log_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8735,16 +8577,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ADDS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.adds64addsub_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.adds64addsub_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.adds64addsub_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.adds64addsub_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.adds64addsub_shift.shift;
                             uint32_t shift_amount = enc.adds64addsub_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8754,16 +8595,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::EOR, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.eor64log_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.eor64log_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.eor64log_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.eor64log_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.eor64log_shift.shift;
                             uint32_t shift_amount = enc.eor64log_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8773,16 +8613,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::EON, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.eon64log_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.eon64log_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.eon64log_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.eon64log_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.eon64log_shift.shift;
                             uint32_t shift_amount = enc.eon64log_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8792,16 +8631,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SUB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sub64addsub_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sub64addsub_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sub64addsub_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sub64addsub_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.sub64addsub_shift.shift;
                             uint32_t shift_amount = enc.sub64addsub_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8811,16 +8649,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ANDS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ands64log_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ands64log_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ands64log_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.ands64log_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.ands64log_shift.shift;
                             uint32_t shift_amount = enc.ands64log_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8830,16 +8667,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::BICS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.bics64log_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bics64log_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bics64log_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bics64log_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.bics64log_shift.shift;
                             uint32_t shift_amount = enc.bics64log_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }
@@ -8849,16 +8685,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SUBS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.subs64addsub_shift.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.subs64addsub_shift.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.subs64addsub_shift.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.subs64addsub_shift.imm6, true));
                         {
                             uint32_t shift_type = enc.subs64addsub_shift.shift;
                             uint32_t shift_amount = enc.subs64addsub_shift.imm6;
-                            if (shift_type < 4) {
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
                             }
                         }

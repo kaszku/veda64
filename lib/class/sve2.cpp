@@ -20930,14 +20930,12 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::AESMC, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4520E400u: { // aesimc_z_z_
                         Instruction result(Mnemonic::AESIMC, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -20949,7 +20947,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::PMOV, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -20961,49 +20958,42 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::SQCVTN, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45314800u: { // uqcvtn_z_mz2_
                         Instruction result(Mnemonic::UQCVTN, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45315000u: { // sqcvtun_z_mz2_
                         Instruction result(Mnemonic::SQCVTUN, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x650A3000u: { // fcvtn_z8_mz2_h2b
                         Instruction result(Mnemonic::FCVTN, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x650A3400u: { // fcvtnb_z8_mz2_s2b
                         Instruction result(Mnemonic::FCVTNB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x650A3800u: { // bfcvtn_z8_mz2_bf2b
                         Instruction result(Mnemonic::BFCVTN, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x650A3C00u: { // fcvtnt_z8_mz2_s2b
                         Instruction result(Mnemonic::FCVTNT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -21015,7 +21005,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::PMOV, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -21027,77 +21016,66 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::AESE, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4522E400u: { // aesd_z_zz_
                         Instruction result(Mnemonic::AESD, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4523E000u: { // sm4e_z_zz_
                         Instruction result(Mnemonic::SM4E, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x65083000u: { // f1cvt_z_z8_b2h
                         Instruction result(Mnemonic::F1CVT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x65083400u: { // f2cvt_z_z8_b2h
                         Instruction result(Mnemonic::F2CVT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x65083800u: { // bf1cvt_z_z8_b2bf
                         Instruction result(Mnemonic::BF1CVT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x65083C00u: { // bf2cvt_z_z8_b2bf
                         Instruction result(Mnemonic::BF2CVT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x65093000u: { // f1cvtlt_z_z8_b2h
                         Instruction result(Mnemonic::F1CVTLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x65093400u: { // f2cvtlt_z_z8_b2h
                         Instruction result(Mnemonic::F2CVTLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x65093800u: { // bf1cvtlt_z_z8_b2bf
                         Instruction result(Mnemonic::BF1CVTLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x65093C00u: { // bf2cvtlt_z_z8_b2bf
                         Instruction result(Mnemonic::BF2CVTLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -21109,175 +21087,150 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::ADDPT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x04C50000u: { // subpt_z_p_zz_
                         Instruction result(Mnemonic::SUBPT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x052E8000u: { // revd_z_p_z_m
                         Instruction result(Mnemonic::REVD, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x052EA000u: { // revd_z_p_z_z
                         Instruction result(Mnemonic::REVD, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x6402A000u: { // fcvtxnt_z_p_z_d2sz
                         Instruction result(Mnemonic::FCVTXNT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x640AA000u: { // fcvtxnt_z_p_z_d2s
                         Instruction result(Mnemonic::FCVTXNT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x641AC000u: { // fcvtx_z_p_z_d2sz
                         Instruction result(Mnemonic::FCVTX, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x6480A000u: { // fcvtnt_z_p_z_s2hz
                         Instruction result(Mnemonic::FCVTNT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x6481A000u: { // fcvtlt_z_p_z_h2sz
                         Instruction result(Mnemonic::FCVTLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x6488A000u: { // fcvtnt_z_p_z_s2h
                         Instruction result(Mnemonic::FCVTNT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x6489A000u: { // fcvtlt_z_p_z_h2s
                         Instruction result(Mnemonic::FCVTLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64C2A000u: { // fcvtnt_z_p_z_d2sz
                         Instruction result(Mnemonic::FCVTNT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64C3A000u: { // fcvtlt_z_p_z_s2dz
                         Instruction result(Mnemonic::FCVTLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64CAA000u: { // fcvtnt_z_p_z_d2s
                         Instruction result(Mnemonic::FCVTNT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64CBA000u: { // fcvtlt_z_p_z_s2d
                         Instruction result(Mnemonic::FCVTLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x65008000u: { // bfadd_z_p_zz_
                         Instruction result(Mnemonic::BFADD, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x65018000u: { // bfsub_z_p_zz_
                         Instruction result(Mnemonic::BFSUB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x65028000u: { // bfmul_z_p_zz_
                         Instruction result(Mnemonic::BFMUL, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x65048000u: { // bfmaxnm_z_p_zz_
                         Instruction result(Mnemonic::BFMAXNM, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x65058000u: { // bfminnm_z_p_zz_
                         Instruction result(Mnemonic::BFMINNM, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x65068000u: { // bfmax_z_p_zz_
                         Instruction result(Mnemonic::BFMAX, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x65078000u: { // bfmin_z_p_zz_
                         Instruction result(Mnemonic::BFMIN, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x65098000u: { // bfscale_z_p_zz_
                         Instruction result(Mnemonic::BFSCALE, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x650AA000u: { // fcvtx_z_p_z_d2s
                         Instruction result(Mnemonic::FCVTX, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA4BF8000u: { // ld2q_z_p_br_contiguous
                         Instruction result(Mnemonic::LD2Q, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2q_zpbr_contiguous.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2q_zpbr_contiguous.Rm, is_64bit));
@@ -21287,7 +21240,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LD3Q, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3q_zpbr_contiguous.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3q_zpbr_contiguous.Rm, is_64bit));
@@ -21297,7 +21249,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LD4Q, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4q_zpbr_contiguous.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4q_zpbr_contiguous.Rm, is_64bit));
@@ -21307,7 +21258,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::ST2Q, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st2q_zpbr_contiguous.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st2q_zpbr_contiguous.Rm, is_64bit));
@@ -21317,7 +21267,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::ST3Q, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st3q_zpbr_contiguous.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st3q_zpbr_contiguous.Rm, is_64bit));
@@ -21327,7 +21276,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::ST4Q, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st4q_zpbr_contiguous.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st4q_zpbr_contiguous.Rm, is_64bit));
@@ -21342,28 +21290,24 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::FRINT32Z, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x641CA000u: { // frint32x_z_p_z_z
                         Instruction result(Mnemonic::FRINT32X, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x641D8000u: { // frint64z_z_p_z_z
                         Instruction result(Mnemonic::FRINT64Z, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x641DA000u: { // frint64x_z_p_z_z
                         Instruction result(Mnemonic::FRINT64X, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -21375,7 +21319,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::FLOGB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -21387,7 +21330,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::PMOV, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -21399,7 +21341,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::PMOV, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -21411,28 +21352,24 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::FRINT32Z, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x6511A000u: { // frint32x_z_p_z_m
                         Instruction result(Mnemonic::FRINT32X, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x6514A000u: { // frint64z_z_p_z_m
                         Instruction result(Mnemonic::FRINT64Z, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x6515A000u: { // frint64x_z_p_z_m
                         Instruction result(Mnemonic::FRINT64X, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -21444,7 +21381,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::PMOV, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -21456,7 +21392,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::PMOV, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -21468,7 +21403,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::FLOGB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -21480,21 +21414,18 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::SQRSHRUN, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45A82800u: { // sqrshrn_z_mz2_b
                         Instruction result(Mnemonic::SQRSHRN, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45A83800u: { // uqrshrn_z_mz2_b
                         Instruction result(Mnemonic::UQRSHRN, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -21506,21 +21437,18 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::SQRSHRUN, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45B02800u: { // sqrshrn_z_mz2_
                         Instruction result(Mnemonic::SQRSHRN, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45B03800u: { // uqrshrn_z_mz2_
                         Instruction result(Mnemonic::UQRSHRN, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -21532,7 +21460,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::EXTQ, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -21544,7 +21471,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LD1B, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1b_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -21553,7 +21479,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1B, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1b_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -21562,7 +21487,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LD1H, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1h_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -21571,7 +21495,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1H, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1h_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -21580,7 +21503,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LD1W, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -21589,7 +21511,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1W, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1w_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -21598,7 +21519,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LD1D, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -21607,7 +21527,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1D, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1d_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -21616,7 +21535,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::ST1B, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1b_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -21625,7 +21543,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1B, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1b_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -21634,7 +21551,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::ST1H, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1h_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -21643,7 +21559,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1H, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1h_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -21652,7 +21567,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::ST1W, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -21661,7 +21575,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1W, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1w_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -21670,7 +21583,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::ST1D, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -21679,7 +21591,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1D, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1d_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -21693,7 +21604,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LD1B, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1b_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -21702,7 +21612,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1B, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1b_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -21711,7 +21620,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LD1H, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1h_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -21720,7 +21628,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1H, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1h_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -21729,7 +21636,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LD1W, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -21738,7 +21644,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1W, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1w_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -21747,7 +21652,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LD1D, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -21756,7 +21660,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1D, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1d_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -21765,7 +21668,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::ST1B, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1b_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -21774,7 +21676,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1B, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1b_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -21783,7 +21684,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::ST1H, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1h_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -21792,7 +21692,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1H, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1h_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -21801,7 +21700,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::ST1W, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -21810,7 +21708,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1W, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1w_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -21819,7 +21716,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::ST1D, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -21828,7 +21724,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1D, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1d_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -21842,7 +21737,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LD2Q, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2q_zpbi_contiguous.Rn, is_64bit));
                         return result;
@@ -21851,7 +21745,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LD3Q, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3q_zpbi_contiguous.Rn, is_64bit));
                         return result;
@@ -21860,7 +21753,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LD4Q, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4q_zpbi_contiguous.Rn, is_64bit));
                         return result;
@@ -21869,7 +21761,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::ST2Q, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st2q_zpbi_contiguous.Rn, is_64bit));
                         return result;
@@ -21878,7 +21769,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::ST3Q, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st3q_zpbi_contiguous.Rn, is_64bit));
                         return result;
@@ -21887,7 +21777,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::ST4Q, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st4q_zpbi_contiguous.Rn, is_64bit));
                         return result;
@@ -21901,28 +21790,24 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::AESE, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4526EC00u: { // aesd_mz_zzi_4x1
                         Instruction result(Mnemonic::AESD, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4527E800u: { // aesemc_mz_zzi_4x1
                         Instruction result(Mnemonic::AESEMC, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4527EC00u: { // aesdimc_mz_zzi_4x1
                         Instruction result(Mnemonic::AESDIMC, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -21934,28 +21819,24 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::AESE, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4522EC00u: { // aesd_mz_zzi_2x1
                         Instruction result(Mnemonic::AESD, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4523E800u: { // aesemc_mz_zzi_2x1
                         Instruction result(Mnemonic::AESEMC, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4523EC00u: { // aesdimc_mz_zzi_2x1
                         Instruction result(Mnemonic::AESDIMC, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -21967,21 +21848,18 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::SQSHRN, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45A01000u: { // uqshrn_z_mz2_
                         Instruction result(Mnemonic::UQSHRN, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45A02000u: { // sqshrun_z_mz2_
                         Instruction result(Mnemonic::SQSHRUN, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -21993,14 +21871,12 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::PMULL, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4520FC00u: { // pmlal_mz_zzzw_1x2
                         Instruction result(Mnemonic::PMLAL, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -22012,224 +21888,192 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::EOR3, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x04203C00u: { // bsl_z_zzz_
                         Instruction result(Mnemonic::BSL, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x04206400u: { // pmul_z_zz_
                         Instruction result(Mnemonic::PMUL, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x04603800u: { // bcax_z_zzz_
                         Instruction result(Mnemonic::BCAX, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x04603C00u: { // bsl1n_z_zzz_
                         Instruction result(Mnemonic::BSL1N, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x04A03C00u: { // bsl2n_z_zzz_
                         Instruction result(Mnemonic::BSL2N, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x04E00800u: { // addpt_z_zz_
                         Instruction result(Mnemonic::ADDPT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x04E00C00u: { // subpt_z_zz_
                         Instruction result(Mnemonic::SUBPT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x04E03C00u: { // nbsl_z_zzz_
                         Instruction result(Mnemonic::NBSL, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x05202400u: { // dupq_z_zi_
                         Instruction result(Mnemonic::DUPQ, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4400C800u: { // sdot_z32_zzz_
                         Instruction result(Mnemonic::SDOT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4400CC00u: { // udot_z32_zzz_
                         Instruction result(Mnemonic::UDOT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44400000u: { // sdot_z16_zzz_h
                         Instruction result(Mnemonic::SDOT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44400400u: { // udot_z16_zzz_h
                         Instruction result(Mnemonic::UDOT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4480C800u: { // sdot_z32_zzzi_
                         Instruction result(Mnemonic::SDOT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4480CC00u: { // udot_z32_zzzi_
                         Instruction result(Mnemonic::UDOT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A00800u: { // mla_z_zzzi_s
                         Instruction result(Mnemonic::MLA, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A00C00u: { // mls_z_zzzi_s
                         Instruction result(Mnemonic::MLS, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A01000u: { // sqrdmlah_z_zzzi_s
                         Instruction result(Mnemonic::SQRDMLAH, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A01400u: { // sqrdmlsh_z_zzzi_s
                         Instruction result(Mnemonic::SQRDMLSH, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A0F000u: { // sqdmulh_z_zzi_s
                         Instruction result(Mnemonic::SQDMULH, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A0F400u: { // sqrdmulh_z_zzi_s
                         Instruction result(Mnemonic::SQRDMULH, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A0F800u: { // mul_z_zzi_s
                         Instruction result(Mnemonic::MUL, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44C0D000u: { // mlapt_z_zzz_
                         Instruction result(Mnemonic::MLAPT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44C0D800u: { // madpt_z_zzz_
                         Instruction result(Mnemonic::MADPT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E00800u: { // mla_z_zzzi_d
                         Instruction result(Mnemonic::MLA, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E00C00u: { // mls_z_zzzi_d
                         Instruction result(Mnemonic::MLS, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E01000u: { // sqrdmlah_z_zzzi_d
                         Instruction result(Mnemonic::SQRDMLAH, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E01400u: { // sqrdmlsh_z_zzzi_d
                         Instruction result(Mnemonic::SQRDMLSH, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E0F000u: { // sqdmulh_z_zzi_d
                         Instruction result(Mnemonic::SQDMULH, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E0F400u: { // sqrdmulh_z_zzi_d
                         Instruction result(Mnemonic::SQRDMULH, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E0F800u: { // mul_z_zzi_d
                         Instruction result(Mnemonic::MUL, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45006800u: { // pmullb_z_zz_
@@ -22237,7 +22081,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::PMULLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45006C00u: { // pmullt_z_zz_
@@ -22245,28 +22088,24 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::PMULLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4520AC00u: { // luti6_z_zzz_8
                         Instruction result(Mnemonic::LUTI6, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4520F000u: { // sm4ekey_z_zz_
                         Instruction result(Mnemonic::SM4EKEY, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4520F400u: { // rax1_z_zz_
                         Instruction result(Mnemonic::RAX1, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64202400u: { // bfclamp_z_zz_
@@ -22274,168 +22113,144 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::BFCLAMP, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64204000u: { // fdot_z_zzzi_
                         Instruction result(Mnemonic::FDOT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64208000u: { // fdot_z_zzz_
                         Instruction result(Mnemonic::FDOT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64208400u: { // fdot_z_zz8z8_
                         Instruction result(Mnemonic::FDOT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64208800u: { // fmlallbb_z32_z8z8z8_
                         Instruction result(Mnemonic::FMLALLBB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64209800u: { // fmlallbt_z32_z8z8z8_
                         Instruction result(Mnemonic::FMLALLBT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x6420A800u: { // fmlalltb_z32_z8z8z8_
                         Instruction result(Mnemonic::FMLALLTB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x6420B800u: { // fmlalltt_z32_z8z8z8_
                         Instruction result(Mnemonic::FMLALLTT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x6420E000u: { // fmmla_z32_zz8z8_
                         Instruction result(Mnemonic::FMMLA, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x6420E400u: { // fmmla_z32_zzz_h
                         Instruction result(Mnemonic::FMMLA, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64604400u: { // fdot_z32_zz8z8i_
                         Instruction result(Mnemonic::FDOT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64608400u: { // fdot_z32_zz8z8_
                         Instruction result(Mnemonic::FDOT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x6460E000u: { // fmmla_z16_zz8z8_
                         Instruction result(Mnemonic::FMMLA, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64A08000u: { // fmlalb_z_zzz_
                         Instruction result(Mnemonic::FMLALB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64A08400u: { // fmlalt_z_zzz_
                         Instruction result(Mnemonic::FMLALT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64A08800u: { // fmlalb_z_z8z8z8_
                         Instruction result(Mnemonic::FMLALB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64A09800u: { // fmlalt_z_z8z8z8_
                         Instruction result(Mnemonic::FMLALT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64A0A000u: { // fmlslb_z_zzz_
                         Instruction result(Mnemonic::FMLSLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64A0A400u: { // fmlslt_z_zzz_
                         Instruction result(Mnemonic::FMLSLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64E0A000u: { // bfmlslb_z_zzz_
                         Instruction result(Mnemonic::BFMLSLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64E0A400u: { // bfmlslt_z_zzz_
                         Instruction result(Mnemonic::BFMLSLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x65000000u: { // bfadd_z_zz_
                         Instruction result(Mnemonic::BFADD, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x65000400u: { // bfsub_z_zz_
                         Instruction result(Mnemonic::BFSUB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x65000800u: { // bfmul_z_zz_
                         Instruction result(Mnemonic::BFMUL, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -22447,301 +22262,258 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::SQDMLALB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A02400u: { // sqdmlalt_z_zzzi_s
                         Instruction result(Mnemonic::SQDMLALT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A03000u: { // sqdmlslb_z_zzzi_s
                         Instruction result(Mnemonic::SQDMLSLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A03400u: { // sqdmlslt_z_zzzi_s
                         Instruction result(Mnemonic::SQDMLSLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A08000u: { // smlalb_z_zzzi_s
                         Instruction result(Mnemonic::SMLALB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A08400u: { // smlalt_z_zzzi_s
                         Instruction result(Mnemonic::SMLALT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A09000u: { // umlalb_z_zzzi_s
                         Instruction result(Mnemonic::UMLALB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A09400u: { // umlalt_z_zzzi_s
                         Instruction result(Mnemonic::UMLALT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A0A000u: { // smlslb_z_zzzi_s
                         Instruction result(Mnemonic::SMLSLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A0A400u: { // smlslt_z_zzzi_s
                         Instruction result(Mnemonic::SMLSLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A0B000u: { // umlslb_z_zzzi_s
                         Instruction result(Mnemonic::UMLSLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A0B400u: { // umlslt_z_zzzi_s
                         Instruction result(Mnemonic::UMLSLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A0C000u: { // smullb_z_zzi_s
                         Instruction result(Mnemonic::SMULLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A0C400u: { // smullt_z_zzi_s
                         Instruction result(Mnemonic::SMULLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A0D000u: { // umullb_z_zzi_s
                         Instruction result(Mnemonic::UMULLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A0D400u: { // umullt_z_zzi_s
                         Instruction result(Mnemonic::UMULLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A0E000u: { // sqdmullb_z_zzi_s
                         Instruction result(Mnemonic::SQDMULLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A0E400u: { // sqdmullt_z_zzi_s
                         Instruction result(Mnemonic::SQDMULLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E02000u: { // sqdmlalb_z_zzzi_d
                         Instruction result(Mnemonic::SQDMLALB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E02400u: { // sqdmlalt_z_zzzi_d
                         Instruction result(Mnemonic::SQDMLALT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E03000u: { // sqdmlslb_z_zzzi_d
                         Instruction result(Mnemonic::SQDMLSLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E03400u: { // sqdmlslt_z_zzzi_d
                         Instruction result(Mnemonic::SQDMLSLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E08000u: { // smlalb_z_zzzi_d
                         Instruction result(Mnemonic::SMLALB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E08400u: { // smlalt_z_zzzi_d
                         Instruction result(Mnemonic::SMLALT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E09000u: { // umlalb_z_zzzi_d
                         Instruction result(Mnemonic::UMLALB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E09400u: { // umlalt_z_zzzi_d
                         Instruction result(Mnemonic::UMLALT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E0A000u: { // smlslb_z_zzzi_d
                         Instruction result(Mnemonic::SMLSLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E0A400u: { // smlslt_z_zzzi_d
                         Instruction result(Mnemonic::SMLSLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E0B000u: { // umlslb_z_zzzi_d
                         Instruction result(Mnemonic::UMLSLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E0B400u: { // umlslt_z_zzzi_d
                         Instruction result(Mnemonic::UMLSLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E0C000u: { // smullb_z_zzi_d
                         Instruction result(Mnemonic::SMULLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E0C400u: { // smullt_z_zzi_d
                         Instruction result(Mnemonic::SMULLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E0D000u: { // umullb_z_zzi_d
                         Instruction result(Mnemonic::UMULLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E0D400u: { // umullt_z_zzi_d
                         Instruction result(Mnemonic::UMULLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E0E000u: { // sqdmullb_z_zzi_d
                         Instruction result(Mnemonic::SQDMULLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E0E400u: { // sqdmullt_z_zzi_d
                         Instruction result(Mnemonic::SQDMULLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64204400u: { // fdot_z_zz8z8i_
                         Instruction result(Mnemonic::FDOT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64A04000u: { // fmlalb_z_zzzi_s
                         Instruction result(Mnemonic::FMLALB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64A04400u: { // fmlalt_z_zzzi_s
                         Instruction result(Mnemonic::FMLALT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64A06000u: { // fmlslb_z_zzzi_s
                         Instruction result(Mnemonic::FMLSLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64A06400u: { // fmlslt_z_zzzi_s
                         Instruction result(Mnemonic::FMLSLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64E06000u: { // bfmlslb_z_zzzi_
                         Instruction result(Mnemonic::BFMLSLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64E06400u: { // bfmlslt_z_zzzi_
                         Instruction result(Mnemonic::BFMLSLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -22753,84 +22525,72 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::CDOT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A06000u: { // cmla_z_zzzi_h
                         Instruction result(Mnemonic::CMLA, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44A07000u: { // sqrdcmlah_z_zzzi_h
                         Instruction result(Mnemonic::SQRDCMLAH, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E04000u: { // cdot_z_zzzi_d
                         Instruction result(Mnemonic::CDOT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E06000u: { // cmla_z_zzzi_s
                         Instruction result(Mnemonic::CMLA, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44E07000u: { // sqrdcmlah_z_zzzi_s
                         Instruction result(Mnemonic::SQRDCMLAH, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64205000u: { // fmlalb_z_z8z8z8i_
                         Instruction result(Mnemonic::FMLALB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x6420C000u: { // fmlallbb_z32_z8z8z8i_
                         Instruction result(Mnemonic::FMLALLBB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x6460C000u: { // fmlallbt_z32_z8z8z8i_
                         Instruction result(Mnemonic::FMLALLBT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64A05000u: { // fmlalt_z_z8z8z8i_
                         Instruction result(Mnemonic::FMLALT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64A0C000u: { // fmlalltb_z32_z8z8z8i_
                         Instruction result(Mnemonic::FMLALLTB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64E0C000u: { // fmlalltt_z32_z8z8z8i_
                         Instruction result(Mnemonic::FMLALLTT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -22842,7 +22602,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LD1B, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1b_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1b_mz_pbr4.Rm, is_64bit));
@@ -22852,7 +22611,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1B, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1b_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1b_mz_pbr4.Rm, is_64bit));
@@ -22862,7 +22620,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LD1H, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1h_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1h_mz_pbr4.Rm, is_64bit));
@@ -22872,7 +22629,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1H, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1h_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1h_mz_pbr4.Rm, is_64bit));
@@ -22882,7 +22638,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LD1W, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_mz_pbr4.Rm, is_64bit));
@@ -22892,7 +22647,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1W, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1w_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1w_mz_pbr4.Rm, is_64bit));
@@ -22902,7 +22656,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LD1D, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_mz_pbr4.Rm, is_64bit));
@@ -22912,7 +22665,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1D, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1d_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1d_mz_pbr4.Rm, is_64bit));
@@ -22922,7 +22674,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::ST1B, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1b_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1b_mz_pbr4.Rm, is_64bit));
@@ -22932,7 +22683,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1B, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1b_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1b_mz_pbr4.Rm, is_64bit));
@@ -22942,7 +22692,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::ST1H, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1h_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1h_mz_pbr4.Rm, is_64bit));
@@ -22952,7 +22701,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1H, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1h_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1h_mz_pbr4.Rm, is_64bit));
@@ -22962,7 +22710,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::ST1W, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_mz_pbr4.Rm, is_64bit));
@@ -22972,7 +22719,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1W, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1w_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1w_mz_pbr4.Rm, is_64bit));
@@ -22982,7 +22728,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::ST1D, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_mz_pbr4.Rm, is_64bit));
@@ -22992,7 +22737,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1D, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1d_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1d_mz_pbr4.Rm, is_64bit));
@@ -23007,7 +22751,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LD1B, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1b_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1b_mz_pbr2.Rm, is_64bit));
@@ -23017,7 +22760,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1B, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1b_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1b_mz_pbr2.Rm, is_64bit));
@@ -23027,7 +22769,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LD1H, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1h_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1h_mz_pbr2.Rm, is_64bit));
@@ -23037,7 +22778,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1H, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1h_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1h_mz_pbr2.Rm, is_64bit));
@@ -23047,7 +22787,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LD1W, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_mz_pbr2.Rm, is_64bit));
@@ -23057,7 +22796,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1W, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1w_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1w_mz_pbr2.Rm, is_64bit));
@@ -23067,7 +22805,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LD1D, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_mz_pbr2.Rm, is_64bit));
@@ -23077,7 +22814,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1D, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1d_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1d_mz_pbr2.Rm, is_64bit));
@@ -23087,7 +22823,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::ST1B, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1b_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1b_mz_pbr2.Rm, is_64bit));
@@ -23097,7 +22832,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1B, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1b_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1b_mz_pbr2.Rm, is_64bit));
@@ -23107,7 +22841,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::ST1H, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1h_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1h_mz_pbr2.Rm, is_64bit));
@@ -23117,7 +22850,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1H, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1h_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1h_mz_pbr2.Rm, is_64bit));
@@ -23127,7 +22859,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::ST1W, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_mz_pbr2.Rm, is_64bit));
@@ -23137,7 +22868,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1W, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1w_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1w_mz_pbr2.Rm, is_64bit));
@@ -23147,7 +22877,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::ST1D, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_mz_pbr2.Rm, is_64bit));
@@ -23157,7 +22886,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1D, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1d_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1d_mz_pbr2.Rm, is_64bit));
@@ -23172,21 +22900,18 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::BFMLA, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x65202000u: { // bfmls_z_p_zzz_
                         Instruction result(Mnemonic::BFMLS, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x84008000u: { // ldnt1sb_z_p_ar_s_x32_unscaled
                         Instruction result(Mnemonic::LDNT1SB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1sb_zpar_sx32unscaled.Rm, is_64bit));
                         return result;
@@ -23195,7 +22920,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1B, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1b_zpar_sx32unscaled.Rm, is_64bit));
                         return result;
@@ -23204,7 +22928,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1SH, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1sh_zpar_sx32unscaled.Rm, is_64bit));
                         return result;
@@ -23213,7 +22936,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1H, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1h_zpar_sx32unscaled.Rm, is_64bit));
                         return result;
@@ -23222,7 +22944,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1W, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1w_zpar_sx32unscaled.Rm, is_64bit));
                         return result;
@@ -23231,7 +22952,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1SB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1sb_zpar_d64unscaled.Rm, is_64bit));
                         return result;
@@ -23240,7 +22960,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LD1Q, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1q_zpar_d64unscaled.Rm, is_64bit));
                         return result;
@@ -23249,7 +22968,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1B, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1b_zpar_d64unscaled.Rm, is_64bit));
                         return result;
@@ -23258,7 +22976,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1SH, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1sh_zpar_d64unscaled.Rm, is_64bit));
                         return result;
@@ -23267,7 +22984,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1H, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1h_zpar_d64unscaled.Rm, is_64bit));
                         return result;
@@ -23276,7 +22992,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1SW, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1sw_zpar_d64unscaled.Rm, is_64bit));
                         return result;
@@ -23285,7 +23000,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1W, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1w_zpar_d64unscaled.Rm, is_64bit));
                         return result;
@@ -23294,7 +23008,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1D, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1d_zpar_d64unscaled.Rm, is_64bit));
                         return result;
@@ -23303,7 +23016,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1B, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1b_zpar_d64unscaled.Rm, is_64bit));
                         return result;
@@ -23312,7 +23024,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::ST1Q, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1q_zpar_d64unscaled.Rm, is_64bit));
                         return result;
@@ -23321,7 +23032,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1B, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1b_zpar_sx32unscaled.Rm, is_64bit));
                         return result;
@@ -23330,7 +23040,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1H, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1h_zpar_d64unscaled.Rm, is_64bit));
                         return result;
@@ -23339,7 +23048,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1H, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1h_zpar_sx32unscaled.Rm, is_64bit));
                         return result;
@@ -23348,7 +23056,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1W, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1w_zpar_d64unscaled.Rm, is_64bit));
                         return result;
@@ -23357,7 +23064,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1W, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1w_zpar_sx32unscaled.Rm, is_64bit));
                         return result;
@@ -23366,7 +23072,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1D, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1d_zpar_d64unscaled.Rm, is_64bit));
                         return result;
@@ -23380,7 +23085,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::PMOV, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -23392,7 +23096,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::PMOV, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -23404,42 +23107,36 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::SQXTNB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45204400u: { // sqxtnt_z_zz_
                         Instruction result(Mnemonic::SQXTNT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45204800u: { // uqxtnb_z_zz_
                         Instruction result(Mnemonic::UQXTNB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45204C00u: { // uqxtnt_z_zz_
                         Instruction result(Mnemonic::UQXTNT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45205000u: { // sqxtunb_z_zz_
                         Instruction result(Mnemonic::SQXTUNB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45205400u: { // sqxtunt_z_zz_
                         Instruction result(Mnemonic::SQXTUNT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -23451,252 +23148,216 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::SDOT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44200400u: { // udot_z16_zzzi_h
                         Instruction result(Mnemonic::UDOT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44200800u: { // mla_z_zzzi_h
                         Instruction result(Mnemonic::MLA, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44200C00u: { // mls_z_zzzi_h
                         Instruction result(Mnemonic::MLS, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44201000u: { // sqrdmlah_z_zzzi_h
                         Instruction result(Mnemonic::SQRDMLAH, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44201400u: { // sqrdmlsh_z_zzzi_h
                         Instruction result(Mnemonic::SQRDMLSH, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4420F000u: { // sqdmulh_z_zzi_h
                         Instruction result(Mnemonic::SQDMULH, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4420F400u: { // sqrdmulh_z_zzi_h
                         Instruction result(Mnemonic::SQRDMULH, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4420F800u: { // mul_z_zzi_h
                         Instruction result(Mnemonic::MUL, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4500A000u: { // sshllb_z_zi_
                         Instruction result(Mnemonic::SSHLLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4500A400u: { // sshllt_z_zi_
                         Instruction result(Mnemonic::SSHLLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4500A800u: { // ushllb_z_zi_
                         Instruction result(Mnemonic::USHLLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4500AC00u: { // ushllt_z_zi_
                         Instruction result(Mnemonic::USHLLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4500D000u: { // adclb_z_zzz_
                         Instruction result(Mnemonic::ADCLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4500D400u: { // adclt_z_zzz_
                         Instruction result(Mnemonic::ADCLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45200000u: { // sqshrunb_z_zi_
                         Instruction result(Mnemonic::SQSHRUNB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45200400u: { // sqshrunt_z_zi_
                         Instruction result(Mnemonic::SQSHRUNT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45200800u: { // sqrshrunb_z_zi_
                         Instruction result(Mnemonic::SQRSHRUNB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45200C00u: { // sqrshrunt_z_zi_
                         Instruction result(Mnemonic::SQRSHRUNT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45201000u: { // shrnb_z_zi_
                         Instruction result(Mnemonic::SHRNB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45201400u: { // shrnt_z_zi_
                         Instruction result(Mnemonic::SHRNT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45201800u: { // rshrnb_z_zi_
                         Instruction result(Mnemonic::RSHRNB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45201C00u: { // rshrnt_z_zi_
                         Instruction result(Mnemonic::RSHRNT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45202000u: { // sqshrnb_z_zi_
                         Instruction result(Mnemonic::SQSHRNB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45202400u: { // sqshrnt_z_zi_
                         Instruction result(Mnemonic::SQSHRNT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45202800u: { // sqrshrnb_z_zi_
                         Instruction result(Mnemonic::SQRSHRNB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45202C00u: { // sqrshrnt_z_zi_
                         Instruction result(Mnemonic::SQRSHRNT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45203000u: { // uqshrnb_z_zi_
                         Instruction result(Mnemonic::UQSHRNB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45203400u: { // uqshrnt_z_zi_
                         Instruction result(Mnemonic::UQSHRNT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45203800u: { // uqrshrnb_z_zi_
                         Instruction result(Mnemonic::UQRSHRNB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45203C00u: { // uqrshrnt_z_zi_
                         Instruction result(Mnemonic::UQRSHRNT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4580D000u: { // sbclb_z_zzz_
                         Instruction result(Mnemonic::SBCLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4580D400u: { // sbclt_z_zzz_
                         Instruction result(Mnemonic::SBCLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64200800u: { // bfmla_z_zzzi_h
                         Instruction result(Mnemonic::BFMLA, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64200C00u: { // bfmls_z_zzzi_h
                         Instruction result(Mnemonic::BFMLS, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64202800u: { // bfmul_z_zzi_h
                         Instruction result(Mnemonic::BFMUL, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -23708,14 +23369,12 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI4, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4560AC00u: { // luti6_z_zzz_16
                         Instruction result(Mnemonic::LUTI6, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -23727,7 +23386,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::PTRUE, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -23739,7 +23397,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::PEXT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -23751,14 +23408,12 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZSN, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x650D3400u: { // fcvtzun_z_mz2_
                         Instruction result(Mnemonic::FCVTZUN, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -23770,7 +23425,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::PEXT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -23782,28 +23436,24 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x650C3400u: { // ucvtf_z_z_
                         Instruction result(Mnemonic::UCVTF, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x650C3800u: { // scvtflt_z_z_
                         Instruction result(Mnemonic::SCVTFLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x650C3C00u: { // ucvtflt_z_z_
                         Instruction result(Mnemonic::UCVTFLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -23815,7 +23465,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::CNTP, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cntp_rpn.Rd, is_64bit));
                         return result;
@@ -23829,14 +23478,12 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::CADD, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4501D800u: { // sqcadd_z_zz_
                         Instruction result(Mnemonic::SQCADD, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -23848,490 +23495,420 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::ADDQV, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x04068000u: { // sqshl_z_p_zi_
                         Instruction result(Mnemonic::SQSHL, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x04078000u: { // uqshl_z_p_zi_
                         Instruction result(Mnemonic::UQSHL, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x040C2000u: { // smaxqv_z_p_z_
                         Instruction result(Mnemonic::SMAXQV, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x040C8000u: { // srshr_z_p_zi_
                         Instruction result(Mnemonic::SRSHR, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x040D2000u: { // umaxqv_z_p_z_
                         Instruction result(Mnemonic::UMAXQV, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x040D8000u: { // urshr_z_p_zi_
                         Instruction result(Mnemonic::URSHR, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x040E2000u: { // sminqv_z_p_z_
                         Instruction result(Mnemonic::SMINQV, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x040F2000u: { // uminqv_z_p_z_
                         Instruction result(Mnemonic::UMINQV, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x040F8000u: { // sqshlu_z_p_zi_
                         Instruction result(Mnemonic::SQSHLU, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x041C2000u: { // orqv_z_p_z_
                         Instruction result(Mnemonic::ORQV, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x041D2000u: { // eorqv_z_p_z_
                         Instruction result(Mnemonic::EORQV, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x041E2000u: { // andqv_z_p_z_
                         Instruction result(Mnemonic::ANDQV, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x05318000u: { // expand_z_p_z_
                         Instruction result(Mnemonic::EXPAND, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4400A000u: { // urecpe_z_p_z_m
                         Instruction result(Mnemonic::URECPE, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4401A000u: { // ursqrte_z_p_z_m
                         Instruction result(Mnemonic::URSQRTE, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44028000u: { // srshl_z_p_zz_
                         Instruction result(Mnemonic::SRSHL, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4402A000u: { // urecpe_z_p_z_z
                         Instruction result(Mnemonic::URECPE, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44038000u: { // urshl_z_p_zz_
                         Instruction result(Mnemonic::URSHL, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4403A000u: { // ursqrte_z_p_z_z
                         Instruction result(Mnemonic::URSQRTE, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4404A000u: { // sadalp_z_p_z_
                         Instruction result(Mnemonic::SADALP, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4405A000u: { // uadalp_z_p_z_
                         Instruction result(Mnemonic::UADALP, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44068000u: { // srshlr_z_p_zz_
                         Instruction result(Mnemonic::SRSHLR, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44078000u: { // urshlr_z_p_zz_
                         Instruction result(Mnemonic::URSHLR, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44088000u: { // sqshl_z_p_zz_
                         Instruction result(Mnemonic::SQSHL, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4408A000u: { // sqabs_z_p_z_m
                         Instruction result(Mnemonic::SQABS, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44098000u: { // uqshl_z_p_zz_
                         Instruction result(Mnemonic::UQSHL, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4409A000u: { // sqneg_z_p_z_m
                         Instruction result(Mnemonic::SQNEG, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x440A8000u: { // sqrshl_z_p_zz_
                         Instruction result(Mnemonic::SQRSHL, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x440AA000u: { // sqabs_z_p_z_z
                         Instruction result(Mnemonic::SQABS, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x440B8000u: { // uqrshl_z_p_zz_
                         Instruction result(Mnemonic::UQRSHL, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x440BA000u: { // sqneg_z_p_z_z
                         Instruction result(Mnemonic::SQNEG, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x440C8000u: { // sqshlr_z_p_zz_
                         Instruction result(Mnemonic::SQSHLR, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x440D8000u: { // uqshlr_z_p_zz_
                         Instruction result(Mnemonic::UQSHLR, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x440E8000u: { // sqrshlr_z_p_zz_
                         Instruction result(Mnemonic::SQRSHLR, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x440F8000u: { // uqrshlr_z_p_zz_
                         Instruction result(Mnemonic::UQRSHLR, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44108000u: { // shadd_z_p_zz_
                         Instruction result(Mnemonic::SHADD, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4410A000u: { // subp_z_p_zz_
                         Instruction result(Mnemonic::SUBP, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44118000u: { // uhadd_z_p_zz_
                         Instruction result(Mnemonic::UHADD, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4411A000u: { // addp_z_p_zz_
                         Instruction result(Mnemonic::ADDP, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44128000u: { // shsub_z_p_zz_
                         Instruction result(Mnemonic::SHSUB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44138000u: { // uhsub_z_p_zz_
                         Instruction result(Mnemonic::UHSUB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44148000u: { // srhadd_z_p_zz_
                         Instruction result(Mnemonic::SRHADD, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4414A000u: { // smaxp_z_p_zz_
                         Instruction result(Mnemonic::SMAXP, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44158000u: { // urhadd_z_p_zz_
                         Instruction result(Mnemonic::URHADD, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4415A000u: { // umaxp_z_p_zz_
                         Instruction result(Mnemonic::UMAXP, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44168000u: { // shsubr_z_p_zz_
                         Instruction result(Mnemonic::SHSUBR, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4416A000u: { // sminp_z_p_zz_
                         Instruction result(Mnemonic::SMINP, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44178000u: { // uhsubr_z_p_zz_
                         Instruction result(Mnemonic::UHSUBR, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4417A000u: { // uminp_z_p_zz_
                         Instruction result(Mnemonic::UMINP, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44188000u: { // sqadd_z_p_zz_
                         Instruction result(Mnemonic::SQADD, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44198000u: { // uqadd_z_p_zz_
                         Instruction result(Mnemonic::UQADD, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x441A8000u: { // sqsub_z_p_zz_
                         Instruction result(Mnemonic::SQSUB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x441B8000u: { // uqsub_z_p_zz_
                         Instruction result(Mnemonic::UQSUB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x441C8000u: { // suqadd_z_p_zz_
                         Instruction result(Mnemonic::SUQADD, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x441D8000u: { // usqadd_z_p_zz_
                         Instruction result(Mnemonic::USQADD, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x441E8000u: { // sqsubr_z_p_zz_
                         Instruction result(Mnemonic::SQSUBR, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x441F8000u: { // uqsubr_z_p_zz_
                         Instruction result(Mnemonic::UQSUBR, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64108000u: { // faddp_z_p_zz_
                         Instruction result(Mnemonic::FADDP, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x6410A000u: { // faddqv_z_p_z_
                         Instruction result(Mnemonic::FADDQV, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64148000u: { // fmaxnmp_z_p_zz_
                         Instruction result(Mnemonic::FMAXNMP, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x6414A000u: { // fmaxnmqv_z_p_z_
                         Instruction result(Mnemonic::FMAXNMQV, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64158000u: { // fminnmp_z_p_zz_
                         Instruction result(Mnemonic::FMINNMP, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x6415A000u: { // fminnmqv_z_p_z_
                         Instruction result(Mnemonic::FMINNMQV, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64168000u: { // fmaxp_z_p_zz_
                         Instruction result(Mnemonic::FMAXP, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x6416A000u: { // fmaxqv_z_p_z_
                         Instruction result(Mnemonic::FMAXQV, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x64178000u: { // fminp_z_p_zz_
                         Instruction result(Mnemonic::FMINP, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x6417A000u: { // fminqv_z_p_z_
                         Instruction result(Mnemonic::FMINQV, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x650E8000u: { // famax_z_p_zz_
                         Instruction result(Mnemonic::FAMAX, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x650F8000u: { // famin_z_p_zz_
                         Instruction result(Mnemonic::FAMIN, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -24343,7 +23920,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::FIRSTP, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.firstp_rpp.Rd, is_64bit));
                         return result;
@@ -24352,7 +23928,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LASTP, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.lastp_rpp.Rd, is_64bit));
                         return result;
@@ -24366,7 +23941,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::WHILEGE, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.whilege_pp_rr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.whilege_pp_rr.Rm, is_64bit));
@@ -24376,7 +23950,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::WHILEGT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.whilegt_pp_rr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.whilegt_pp_rr.Rm, is_64bit));
@@ -24386,7 +23959,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::WHILELT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.whilelt_pp_rr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.whilelt_pp_rr.Rm, is_64bit));
@@ -24396,7 +23968,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::WHILELE, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.whilele_pp_rr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.whilele_pp_rr.Rm, is_64bit));
@@ -24406,7 +23977,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::WHILEHS, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.whilehs_pp_rr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.whilehs_pp_rr.Rm, is_64bit));
@@ -24416,7 +23986,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::WHILEHI, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.whilehi_pp_rr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.whilehi_pp_rr.Rm, is_64bit));
@@ -24426,7 +23995,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::WHILELO, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.whilelo_pp_rr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.whilelo_pp_rr.Rm, is_64bit));
@@ -24436,7 +24004,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::WHILELS, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.whilels_pp_rr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.whilels_pp_rr.Rm, is_64bit));
@@ -24451,7 +24018,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::WHILEWR, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.whilewr_prr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.whilewr_prr.Rm, is_64bit));
@@ -24461,7 +24027,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::WHILERW, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.whilerw_prr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.whilerw_prr.Rm, is_64bit));
@@ -24476,651 +24041,558 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::XAR, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x04206000u: { // mul_z_zz_
                         Instruction result(Mnemonic::MUL, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x04206800u: { // smulh_z_zz_
                         Instruction result(Mnemonic::SMULH, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x04206C00u: { // umulh_z_zz_
                         Instruction result(Mnemonic::UMULH, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x04207000u: { // sqdmulh_z_zz_
                         Instruction result(Mnemonic::SQDMULH, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x04207400u: { // sqrdmulh_z_zz_
                         Instruction result(Mnemonic::SQRDMULH, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x04207800u: { // addqp_z_zz_
                         Instruction result(Mnemonic::ADDQP, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x04207C00u: { // addsubp_z_zz_
                         Instruction result(Mnemonic::ADDSUBP, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x05202C00u: { // tbx_z_zz_
                         Instruction result(Mnemonic::TBX, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x05203400u: { // tbxq_z_zz_
                         Instruction result(Mnemonic::TBXQ, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44000800u: { // sqdmlalbt_z_zzz_
                         Instruction result(Mnemonic::SQDMLALBT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44000C00u: { // sqdmlslbt_z_zzz_
                         Instruction result(Mnemonic::SQDMLSLBT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44004000u: { // smlalb_z_zzz_
                         Instruction result(Mnemonic::SMLALB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44004400u: { // smlalt_z_zzz_
                         Instruction result(Mnemonic::SMLALT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44004800u: { // umlalb_z_zzz_
                         Instruction result(Mnemonic::UMLALB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44004C00u: { // umlalt_z_zzz_
                         Instruction result(Mnemonic::UMLALT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44005000u: { // smlslb_z_zzz_
                         Instruction result(Mnemonic::SMLSLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44005400u: { // smlslt_z_zzz_
                         Instruction result(Mnemonic::SMLSLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44005800u: { // umlslb_z_zzz_
                         Instruction result(Mnemonic::UMLSLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44005C00u: { // umlslt_z_zzz_
                         Instruction result(Mnemonic::UMLSLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44006000u: { // sqdmlalb_z_zzz_
                         Instruction result(Mnemonic::SQDMLALB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44006400u: { // sqdmlalt_z_zzz_
                         Instruction result(Mnemonic::SQDMLALT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44006800u: { // sqdmlslb_z_zzz_
                         Instruction result(Mnemonic::SQDMLSLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44006C00u: { // sqdmlslt_z_zzz_
                         Instruction result(Mnemonic::SQDMLSLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44007000u: { // sqrdmlah_z_zzz_
                         Instruction result(Mnemonic::SQRDMLAH, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44007400u: { // sqrdmlsh_z_zzz_
                         Instruction result(Mnemonic::SQRDMLSH, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4400C000u: { // sclamp_z_zz_
                         Instruction result(Mnemonic::SCLAMP, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4400C400u: { // uclamp_z_zz_
                         Instruction result(Mnemonic::UCLAMP, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4400D400u: { // sabal_z_zz_
                         Instruction result(Mnemonic::SABAL, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4400DC00u: { // uabal_z_zz_
                         Instruction result(Mnemonic::UABAL, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4400E000u: { // zipq1_z_zz_
                         Instruction result(Mnemonic::ZIPQ1, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4400E400u: { // zipq2_z_zz_
                         Instruction result(Mnemonic::ZIPQ2, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4400E800u: { // uzpq1_z_zz_
                         Instruction result(Mnemonic::UZPQ1, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4400EC00u: { // uzpq2_z_zz_
                         Instruction result(Mnemonic::UZPQ2, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4400F800u: { // tblq_z_zz_
                         Instruction result(Mnemonic::TBLQ, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45000000u: { // saddlb_z_zz_
                         Instruction result(Mnemonic::SADDLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45000400u: { // saddlt_z_zz_
                         Instruction result(Mnemonic::SADDLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45000800u: { // uaddlb_z_zz_
                         Instruction result(Mnemonic::UADDLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45000C00u: { // uaddlt_z_zz_
                         Instruction result(Mnemonic::UADDLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45001000u: { // ssublb_z_zz_
                         Instruction result(Mnemonic::SSUBLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45001400u: { // ssublt_z_zz_
                         Instruction result(Mnemonic::SSUBLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45001800u: { // usublb_z_zz_
                         Instruction result(Mnemonic::USUBLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45001C00u: { // usublt_z_zz_
                         Instruction result(Mnemonic::USUBLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45003000u: { // sabdlb_z_zz_
                         Instruction result(Mnemonic::SABDLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45003400u: { // sabdlt_z_zz_
                         Instruction result(Mnemonic::SABDLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45003800u: { // uabdlb_z_zz_
                         Instruction result(Mnemonic::UABDLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45003C00u: { // uabdlt_z_zz_
                         Instruction result(Mnemonic::UABDLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45004000u: { // saddwb_z_zz_
                         Instruction result(Mnemonic::SADDWB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45004400u: { // saddwt_z_zz_
                         Instruction result(Mnemonic::SADDWT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45004800u: { // uaddwb_z_zz_
                         Instruction result(Mnemonic::UADDWB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45004C00u: { // uaddwt_z_zz_
                         Instruction result(Mnemonic::UADDWT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45005000u: { // ssubwb_z_zz_
                         Instruction result(Mnemonic::SSUBWB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45005400u: { // ssubwt_z_zz_
                         Instruction result(Mnemonic::SSUBWT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45005800u: { // usubwb_z_zz_
                         Instruction result(Mnemonic::USUBWB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45005C00u: { // usubwt_z_zz_
                         Instruction result(Mnemonic::USUBWT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45006000u: { // sqdmullb_z_zz_
                         Instruction result(Mnemonic::SQDMULLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45006400u: { // sqdmullt_z_zz_
                         Instruction result(Mnemonic::SQDMULLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45007000u: { // smullb_z_zz_
                         Instruction result(Mnemonic::SMULLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45007400u: { // smullt_z_zz_
                         Instruction result(Mnemonic::SMULLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45007800u: { // umullb_z_zz_
                         Instruction result(Mnemonic::UMULLB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45007C00u: { // umullt_z_zz_
                         Instruction result(Mnemonic::UMULLT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45008000u: { // saddlbt_z_zz_
                         Instruction result(Mnemonic::SADDLBT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45008800u: { // ssublbt_z_zz_
                         Instruction result(Mnemonic::SSUBLBT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45008C00u: { // ssubltb_z_zz_
                         Instruction result(Mnemonic::SSUBLTB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45009000u: { // eorbt_z_zz_
                         Instruction result(Mnemonic::EORBT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45009400u: { // eortb_z_zz_
                         Instruction result(Mnemonic::EORTB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4500B000u: { // bext_z_zz_
                         Instruction result(Mnemonic::BEXT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4500B400u: { // bdep_z_zz_
                         Instruction result(Mnemonic::BDEP, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4500B800u: { // bgrp_z_zz_
                         Instruction result(Mnemonic::BGRP, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4500C000u: { // sabalb_z_zzz_
                         Instruction result(Mnemonic::SABALB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4500C400u: { // sabalt_z_zzz_
                         Instruction result(Mnemonic::SABALT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4500C800u: { // uabalb_z_zzz_
                         Instruction result(Mnemonic::UABALB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4500CC00u: { // uabalt_z_zzz_
                         Instruction result(Mnemonic::UABALT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4500E000u: { // ssra_z_zi_
                         Instruction result(Mnemonic::SSRA, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4500E400u: { // usra_z_zi_
                         Instruction result(Mnemonic::USRA, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4500E800u: { // srsra_z_zi_
                         Instruction result(Mnemonic::SRSRA, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4500EC00u: { // ursra_z_zi_
                         Instruction result(Mnemonic::URSRA, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4500F000u: { // sri_z_zzi_
                         Instruction result(Mnemonic::SRI, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4500F400u: { // sli_z_zzi_
                         Instruction result(Mnemonic::SLI, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4500F800u: { // saba_z_zzz_
                         Instruction result(Mnemonic::SABA, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4500FC00u: { // uaba_z_zzz_
                         Instruction result(Mnemonic::UABA, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45206000u: { // addhnb_z_zz_
                         Instruction result(Mnemonic::ADDHNB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45206400u: { // addhnt_z_zz_
                         Instruction result(Mnemonic::ADDHNT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45206800u: { // raddhnb_z_zz_
                         Instruction result(Mnemonic::RADDHNB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45206C00u: { // raddhnt_z_zz_
                         Instruction result(Mnemonic::RADDHNT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45207000u: { // subhnb_z_zz_
                         Instruction result(Mnemonic::SUBHNB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45207400u: { // subhnt_z_zz_
                         Instruction result(Mnemonic::SUBHNT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45207800u: { // rsubhnb_z_zz_
                         Instruction result(Mnemonic::RSUBHNB, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45207C00u: { // rsubhnt_z_zz_
                         Instruction result(Mnemonic::RSUBHNT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4520A000u: { // histseg_z_zz_
                         Instruction result(Mnemonic::HISTSEG, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4520B000u: { // luti2_z_zz_8
                         Instruction result(Mnemonic::LUTI2, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4520B400u: { // luti4_z_zz_2x16
                         Instruction result(Mnemonic::LUTI4, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x4520BC00u: { // luti4_z_zz_1x16
                         Instruction result(Mnemonic::LUTI4, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -25132,21 +24604,18 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::CDOT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44002000u: { // cmla_z_zzz_
                         Instruction result(Mnemonic::CMLA, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x44003000u: { // sqrdcmlah_z_zzz_
                         Instruction result(Mnemonic::SQRDCMLAH, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -25158,7 +24627,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::WHILEGE, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = enc.whilege_pprr.sf;
                         result.operands.push_back(Operand(OperandType::Register, enc.whilege_pprr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.whilege_pprr.Rm, is_64bit));
@@ -25168,7 +24636,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::WHILEGT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = enc.whilegt_pprr.sf;
                         result.operands.push_back(Operand(OperandType::Register, enc.whilegt_pprr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.whilegt_pprr.Rm, is_64bit));
@@ -25178,7 +24645,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::WHILEHS, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = enc.whilehs_pprr.sf;
                         result.operands.push_back(Operand(OperandType::Register, enc.whilehs_pprr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.whilehs_pprr.Rm, is_64bit));
@@ -25188,7 +24654,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::WHILEHI, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = enc.whilehi_pprr.sf;
                         result.operands.push_back(Operand(OperandType::Register, enc.whilehi_pprr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.whilehi_pprr.Rm, is_64bit));
@@ -25203,7 +24668,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI2, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -25215,14 +24679,12 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::MATCH, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x45208010u: { // nmatch_p_p_zz_
                         Instruction result(Mnemonic::NMATCH, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -25234,7 +24696,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::HISTCNT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -25246,7 +24707,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::WHILEGE, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.whilege_pn_rr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.whilege_pn_rr.Rm, is_64bit));
@@ -25256,7 +24716,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::WHILEGT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.whilegt_pn_rr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.whilegt_pn_rr.Rm, is_64bit));
@@ -25266,7 +24725,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::WHILELT, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.whilelt_pn_rr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.whilelt_pn_rr.Rm, is_64bit));
@@ -25276,7 +24734,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::WHILELE, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.whilele_pn_rr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.whilele_pn_rr.Rm, is_64bit));
@@ -25286,7 +24743,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::WHILEHS, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.whilehs_pn_rr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.whilehs_pn_rr.Rm, is_64bit));
@@ -25296,7 +24752,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::WHILEHI, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.whilehi_pn_rr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.whilehi_pn_rr.Rm, is_64bit));
@@ -25306,7 +24761,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::WHILELO, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.whilelo_pn_rr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.whilelo_pn_rr.Rm, is_64bit));
@@ -25316,7 +24770,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::WHILELS, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.whilels_pn_rr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.whilels_pn_rr.Rm, is_64bit));
@@ -25331,7 +24784,6 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         Instruction result(Mnemonic::PSEL, insn);
                         Sve2Encoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;

@@ -920,6 +920,7 @@ class ARM64XMLParser:
         code.append("    OperandType type = OperandType::Unknown;")
         code.append("    uint32_t value = 0;          // Raw field value for simple operands")
         code.append("    bool is_64bit = true;        // True for 64-bit registers (X), false for 32-bit (W)")
+        code.append("    bool is_sp = false;          // True if reg 31 should be SP/WSP, false for XZR/WZR")
         code.append("")
         code.append("    // Memory operand fields")
         code.append("    uint32_t base_reg = 0;       // Base register number")
@@ -1058,9 +1059,17 @@ class ARM64XMLParser:
         code.append("        }")
         code.append("    }")
         code.append("")
-        code.append("    if (insn.mnemonic == Mnemonic::ORR && insn.operands.size() >= 3) {")
-        code.append("        if (insn.operands[1].value == insn.operands[2].value) {")
+        code.append("    if (insn.mnemonic == Mnemonic::ORR && insn.operands.size() >= 2) {")
+        code.append("        // MOV Rd, Rm = ORR Rd, XZR/WZR, Rm (no shift)")
+        code.append("        if (insn.operands.size() == 2 && insn.operands[1].type == OperandType::Register) {")
+        code.append("            // 2-operand form: MOV alias encoding (Rn=XZR is implicit)")
         code.append('            return std::string("mov ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string();')
+        code.append("        }")
+        code.append("        if (insn.operands.size() >= 3 && insn.operands[1].value == 31 && insn.operands[1].type == OperandType::Register) {")
+        code.append("            bool no_shift = insn.operands.size() < 4 || insn.operands[3].type != OperandType::Shift || insn.operands[3].value == 0;")
+        code.append("            if (no_shift) {")
+        code.append('                return std::string("mov ") + insn.operands[0].to_string() + ", " + insn.operands[2].to_string();')
+        code.append("            }")
         code.append("        }")
         code.append("    }")
         code.append("")
@@ -1112,15 +1121,15 @@ class ARM64XMLParser:
         code.append("        }")
         code.append("    }")
         code.append("")
-        code.append("    // NEG Aliases: SUB/SUBS with Rn==31")
+        code.append("    // NEG Aliases: SUB/SUBS with Rn==31 (register form only, not immediate)")
         code.append("    if (insn.mnemonic == Mnemonic::SUB && insn.operands.size() >= 3) {")
-        code.append("        if (insn.operands[1].value == 31) {")
+        code.append("        if (insn.operands[1].value == 31 && insn.operands[2].type == OperandType::Register) {")
         code.append('            return std::string("neg ") + insn.operands[0].to_string() + ", " + insn.operands[2].to_string();')
         code.append("        }")
         code.append("    }")
         code.append("")
         code.append("    if (insn.mnemonic == Mnemonic::SUBS && insn.operands.size() >= 3) {")
-        code.append("        if (insn.operands[1].value == 31 && insn.operands[0].value != 31) {")
+        code.append("        if (insn.operands[1].value == 31 && insn.operands[0].value != 31 && insn.operands[2].type == OperandType::Register) {")
         code.append('            return std::string("negs ") + insn.operands[0].to_string() + ", " + insn.operands[2].to_string();')
         code.append("        }")
         code.append("    }")
@@ -1178,12 +1187,6 @@ class ARM64XMLParser:
         code.append("std::string Operand::to_string() const {")
         code.append("    switch (type) {")
         code.append("        case OperandType::Register: {")
-        code.append("            // Use is_64bit field to determine register size")
-        code.append("            bool is_sp = false;")
-        code.append("            if (value == 31) {  // Register 31 is SP/WSP depending on context")
-        code.append("                is_sp = is_64bit;  // SP in 64-bit, WSP in 32-bit")
-        code.append("            }")
-        code.append("            ")
         code.append("            return format_register(value, is_64bit, is_sp);")
         code.append("        }")
         code.append("        ")
@@ -1207,6 +1210,8 @@ class ARM64XMLParser:
         code.append("            }")
         code.append("        ")
         code.append("        case OperandType::VectorRegister:")
+        code.append("            // is_64bit used to select Q prefix for 128-bit context (STP/LDP Q)")
+        code.append("            if (is_64bit) return \"q\" + std::to_string(value);")
         code.append("            return format_vector_register(value, \"\");")
         code.append("        ")
         code.append("        case OperandType::SVERegister:")
@@ -1290,11 +1295,12 @@ class ARM64XMLParser:
         code.append("        ")
         code.append("        case OperandType::Shift:")
         code.append("            {")
-        code.append("                // Use value to encode both shift type and amount")
-        code.append("                // Lower bits = amount, shift type stored separately or inferred")
+        code.append("                // value encodes shift_type in bits [9:8] and amount in bits [7:0]")
         code.append("                const char* shifts[] = {\"lsl\", \"lsr\", \"asr\", \"ror\"};")
-        code.append("                if (value < 4) return shifts[value];")
-        code.append('                return "lsl #" + std::to_string(value);')
+        code.append("                uint32_t shift_type = (value >> 8) & 0x3;")
+        code.append("                uint32_t shift_amount = value & 0xFF;")
+        code.append("                if (value < 4) return shifts[value];  // Legacy: bare shift type")
+        code.append('                return std::string(shifts[shift_type]) + " #" + std::to_string(shift_amount);')
         code.append("            }")
         code.append("        ")
         code.append("        case OperandType::Extend:")
@@ -1420,6 +1426,32 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
 
+        # Generate inline DecodeBitMasks helper for logical immediate decoding
+        code.append("// ARM64 DecodeBitMasks - decodes N:imms:immr into a bitmask immediate")
+        code.append("inline uint64_t decode_bit_masks(uint32_t N, uint32_t imms, uint32_t immr, bool is_64bit) {")
+        code.append("    uint32_t len = 0;")
+        code.append("    uint32_t combined = (N << 6) | (~imms & 0x3F);")
+        code.append("    for (int i = 6; i >= 0; --i) {")
+        code.append("        if (combined & (1u << i)) { len = i; break; }")
+        code.append("    }")
+        code.append("    uint32_t esize = 1u << len;")
+        code.append("    uint32_t levels = esize - 1;")
+        code.append("    uint32_t S = imms & levels;")
+        code.append("    uint32_t R = immr & levels;")
+        code.append("    uint64_t welem = (1ULL << (S + 1)) - 1;")
+        code.append("    if (R != 0) {")
+        code.append("        welem = ((welem >> R) | (welem << (esize - R))) & ((1ULL << esize) - 1);")
+        code.append("    }")
+        code.append("    uint64_t result = 0;")
+        code.append("    uint32_t regsize = is_64bit ? 64 : 32;")
+        code.append("    for (uint32_t i = 0; i < regsize; i += esize) {")
+        code.append("        result |= welem << i;")
+        code.append("    }")
+        code.append("    if (!is_64bit) result &= 0xFFFFFFFFULL;")
+        code.append("    return result;")
+        code.append("}")
+        code.append("")
+
         # Generate Mnemonic enum
         code.append("// Mnemonic enumeration")
         code.append("enum class Mnemonic {")
@@ -1505,6 +1537,7 @@ class ARM64XMLParser:
         code.append("    OperandType type = OperandType::Unknown;")
         code.append("    uint32_t value = 0;          // Raw field value for simple operands")
         code.append("    bool is_64bit = true;        // True for 64-bit registers (X), false for 32-bit (W)")
+        code.append("    bool is_sp = false;          // True if reg 31 should be SP/WSP, false for XZR/WZR")
         code.append("")
         code.append("    // Memory operand fields")
         code.append("    uint32_t base_reg = 0;       // Base register number")
@@ -2388,11 +2421,8 @@ class ARM64XMLParser:
         member_name = self._struct_to_member_name(struct_name)
         union_name = f"{self._sanitize_struct_name(class_name)}Encoding"
 
-        # Create Instruction object and decode struct
+        # Create Instruction object
         code.append(f"{ind}Instruction result(Mnemonic::{mnemonic}, insn);")
-        code.append(f"{ind}{union_name} enc = {{}};")
-        code.append(f"{ind}enc.raw = insn;")
-        code.append(f"{ind}(void)enc;  // Suppress unused warning")
 
         # Build field map
         field_map = {}
@@ -2474,6 +2504,10 @@ class ARM64XMLParser:
             code.append(f"{ind}return result;")
             return code
 
+        # Decode struct for field extraction (after early returns that don't need it)
+        code.append(f"{ind}{union_name} enc = {{}};")
+        code.append(f"{ind}enc.raw = insn;")
+
         # Special case: LDP/STP (load/store pair) - only if required fields exist
         if is_ldp_stp and 'Rt' in field_map and 'Rt2' in field_map and 'Rn' in field_map:
             rt_field = field_map['Rt']['name']
@@ -2485,16 +2519,35 @@ class ARM64XMLParser:
                     imm_field = field_map[imm_name]['name']
                     break
 
-            # Determine register size from opc field (bits 31:30)
-            # opc=00/01 -> 32-bit (W), opc=10 -> 64-bit (X), opc=11 -> 128-bit (Q/V)
-            if 'opc' in field_map:
+            # Determine register type from encoding name and opc field
+            # Check for SIMD/FP pair: _Q_ (128-bit), _D_ (64-bit), _S_ (32-bit)
+            is_simd_q = '_Q_' in encoding_name or '_q_' in encoding_name
+            is_simd_d = '_D_' in encoding_name and 'ldstpair' in encoding_name
+            is_simd_s = '_S_' in encoding_name and 'ldstpair' in encoding_name
+
+            if is_simd_q:
+                # 128-bit Q registers (SIMD), scale=16
+                code.append(f"{ind}int scale = 16;")
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{rt_field}, true));")
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{rt2_field}, true));")
+            elif is_simd_d:
+                # 64-bit D registers (SIMD), scale=8 - use 'v' prefix (equivalent to 'd')
+                code.append(f"{ind}int scale = 8;")
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{rt_field}, false));")
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{rt2_field}, false));")
+            elif is_simd_s:
+                # 32-bit S registers (SIMD), scale=4 - use 'v' prefix (equivalent to 's')
+                code.append(f"{ind}int scale = 4;")
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{rt_field}, false));")
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{rt2_field}, false));")
+            elif 'opc' in field_map and not field_map['opc']['is_fixed']:
                 opc_field = field_map['opc']['name']
                 code.append(f"{ind}bool is_64bit = (enc.{member_name}.{opc_field} == 2);")
                 code.append(f"{ind}int scale = is_64bit ? 8 : 4;")
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, is_64bit));")
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt2_field}, is_64bit));")
             else:
-                # Fallback: check encoding name
+                # Fallback: check encoding name for integer size
                 is_64bit_val = '64' in encoding_name or '_d' in encoding_name
                 scale = 8 if is_64bit_val else 4
                 code.append(f"{ind}int scale = {scale};")
@@ -2551,7 +2604,8 @@ class ARM64XMLParser:
                     sf_field = field_map['sf']['name']
                     code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, static_cast<bool>(enc.{member_name}.{sf_field})));")
                 else:
-                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, false));")
+                    is_64 = '_64_' in encoding_name
+                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, {str(is_64).lower()}));")
                 # Sign-extend 19-bit immediate and multiply by 4
                 code.append(f"{ind}int32_t offset = static_cast<int32_t>(enc.{member_name}.{imm_field} << 13) >> 13;")
                 code.append(f"{ind}offset *= 4;")
@@ -2604,13 +2658,15 @@ class ARM64XMLParser:
             rn_field = field_map['Rn']['name']
             imm_field = field_map['imm12']['name']
 
+            # ADD/SUB immediate: Rd and Rn use SP context (reg 31 = SP, not XZR)
             if has_sf and 'sf' in field_map:
                 sf_field = field_map['sf']['name']
-                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rd_field}, static_cast<bool>(enc.{member_name}.{sf_field})));")
-                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rn_field}, static_cast<bool>(enc.{member_name}.{sf_field})));")
+                code.append(f"{ind}{{ Operand op(OperandType::Register, enc.{member_name}.{rd_field}, static_cast<bool>(enc.{member_name}.{sf_field})); op.is_sp = true; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ Operand op(OperandType::Register, enc.{member_name}.{rn_field}, static_cast<bool>(enc.{member_name}.{sf_field})); op.is_sp = true; result.operands.push_back(op); }}")
             else:
-                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rd_field}, true));")
-                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rn_field}, true));")
+                is_64 = '_64_' in encoding_name or not '_32_' in encoding_name
+                code.append(f"{ind}{{ Operand op(OperandType::Register, enc.{member_name}.{rd_field}, {str(is_64).lower()}); op.is_sp = true; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ Operand op(OperandType::Register, enc.{member_name}.{rn_field}, {str(is_64).lower()}); op.is_sp = true; result.operands.push_back(op); }}")
 
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.{imm_field}, true));")
             # Only show shift if non-zero
@@ -2619,6 +2675,41 @@ class ARM64XMLParser:
                 code.append(f"{ind}if (enc.{member_name}.{sh_field} != 0) {{")
                 code.append(f"{ind}    result.operands.push_back(Operand(OperandType::Shift, 12, true));")
                 code.append(f"{ind}}}")
+
+            code.append(f"{ind}return result;")
+            return code
+
+        # Special case: Logical immediate (ORR, AND, EOR, ANDS with log_imm)
+        is_log_imm = mnemonic in ['ORR', 'AND', 'EOR', 'ANDS'] and 'log_imm' in encoding_name
+        if is_log_imm and 'Rd' in field_map and 'Rn' in field_map and 'imms' in field_map and 'immr' in field_map:
+            rd_field = field_map['Rd']['name']
+            rn_field = field_map['Rn']['name']
+            imms_field = field_map['imms']['name']
+            immr_field = field_map['immr']['name']
+            n_field = field_map['N']['name'] if 'N' in field_map else None
+
+            # Determine register width
+            if has_sf and 'sf' in field_map:
+                sf_field = field_map['sf']['name']
+                code.append(f"{ind}bool is_64bit = static_cast<bool>(enc.{member_name}.{sf_field});")
+            else:
+                is_64 = '_64_' in encoding_name
+                code.append(f"{ind}bool is_64bit = {str(is_64).lower()};")
+
+            # Rd uses SP context for ORR/AND/EOR (not ANDS), Rn uses SP context for none
+            rd_is_sp = mnemonic in ['ORR', 'AND', 'EOR']  # Rd can be SP for non-S variants
+            if rd_is_sp:
+                code.append(f"{ind}{{ Operand op(OperandType::Register, enc.{member_name}.{rd_field}, is_64bit); op.is_sp = true; result.operands.push_back(op); }}")
+            else:
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rd_field}, is_64bit));")
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rn_field}, is_64bit));")
+
+            # Decode the logical immediate using DecodeBitMasks
+            if n_field:
+                code.append(f"{ind}uint64_t imm_val = decode_bit_masks(enc.{member_name}.{n_field}, enc.{member_name}.{imms_field}, enc.{member_name}.{immr_field}, is_64bit);")
+            else:
+                code.append(f"{ind}uint64_t imm_val = decode_bit_masks(0, enc.{member_name}.{imms_field}, enc.{member_name}.{immr_field}, is_64bit);")
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit));")
 
             code.append(f"{ind}return result;")
             return code
@@ -2636,6 +2727,10 @@ class ARM64XMLParser:
             # Byte/half loads use W register (32-bit)
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, false));")
 
+            # Determine scale for unsigned offset: halfword = 2, byte = 1
+            is_halfword = any(x in encoding_name for x in ['ldrh', 'strh', '32h_'])
+            scale_factor = 2 if is_halfword else 1
+
             # Memory operand (imm9 is 9-bit signed for pre/post, imm12 is unsigned for offset)
             if addr_mode == 'post_index':
                 if imm_field:
@@ -2651,7 +2746,10 @@ class ARM64XMLParser:
                     code.append(f"{ind}result.operands.push_back(Operand::memory_pre_index(enc.{member_name}.{rn_field}, 0));")
             else:
                 if imm_field:
-                    code.append(f"{ind}result.operands.push_back(Operand::memory_offset(enc.{member_name}.{rn_field}, enc.{member_name}.{imm_field}));")
+                    if scale_factor > 1:
+                        code.append(f"{ind}result.operands.push_back(Operand::memory_offset(enc.{member_name}.{rn_field}, enc.{member_name}.{imm_field} * {scale_factor}));")
+                    else:
+                        code.append(f"{ind}result.operands.push_back(Operand::memory_offset(enc.{member_name}.{rn_field}, enc.{member_name}.{imm_field}));")
                 else:
                     code.append(f"{ind}result.operands.push_back(Operand::memory_base(enc.{member_name}.{rn_field}));")
 
@@ -2743,6 +2841,9 @@ class ARM64XMLParser:
                 code.append(f"{ind}bool is_64bit = enc.{member_name}.{sf_field};")
             elif '64' in encoding_name or '_d' in encoding_name or '_x' in encoding_name:
                 code.append(f"{ind}bool is_64bit = true;")
+            elif mnemonic in ['ADR', 'ADRP'] or 'pcreladdr' in encoding_name:
+                # ADR/ADRP always produce 64-bit X registers
+                code.append(f"{ind}bool is_64bit = true;")
             else:
                 code.append(f"{ind}bool is_64bit = false;")
 
@@ -2767,8 +2868,15 @@ class ARM64XMLParser:
             ('simm7', 7, False),   # Explicitly signed
         ]
 
+        # Check if shift field exists (imm6 is then the shift amount, not standalone)
+        has_shift_field = 'shift' in field_map and not field_map['shift']['is_fixed']
+
         for imm_name, bits, is_unsigned in imm_patterns:
             if imm_name in field_map and not field_map[imm_name]['is_fixed']:
+                # Skip imm6 when a shift field exists - it's the shift amount, not a standalone immediate
+                if imm_name == 'imm6' and has_shift_field:
+                    continue
+
                 field_cpp_name = field_map[imm_name]['name']
 
                 if is_unsigned or not self._is_signed_field(imm_name):
@@ -2795,10 +2903,16 @@ class ARM64XMLParser:
                 code.append(f"{ind}{{")
                 code.append(f"{ind}    uint32_t shift_type = enc.{member_name}.{shift_field};")
                 code.append(f"{ind}    uint32_t shift_amount = enc.{member_name}.{amount_field};")
-                code.append(f"{ind}    if (shift_type < 4) {{")
+                code.append(f"{ind}    // Only emit shift operand if non-zero (suppress LSL #0)")
+                code.append(f"{ind}    if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {{")
                 code.append(f"{ind}        result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));")
                 code.append(f"{ind}    }}")
                 code.append(f"{ind}}}")
+
+        # Handle condition operands (cond field)
+        if 'cond' in field_map and not field_map['cond']['is_fixed']:
+            cond_field = field_map['cond']['name']
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Condition, enc.{member_name}.{cond_field}, true));")
 
         code.append(f"{ind}return result;")
         return code

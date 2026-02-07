@@ -35,6 +35,30 @@ inline void to_bytes(uint32_t insn, uint8_t* bytes) {
     bytes[3] = static_cast<uint8_t>(insn);
 }
 
+// ARM64 DecodeBitMasks - decodes N:imms:immr into a bitmask immediate
+inline uint64_t decode_bit_masks(uint32_t N, uint32_t imms, uint32_t immr, bool is_64bit) {
+    uint32_t len = 0;
+    uint32_t combined = (N << 6) | (~imms & 0x3F);
+    for (int i = 6; i >= 0; --i) {
+        if (combined & (1u << i)) { len = i; break; }
+    }
+    uint32_t esize = 1u << len;
+    uint32_t levels = esize - 1;
+    uint32_t S = imms & levels;
+    uint32_t R = immr & levels;
+    uint64_t welem = (1ULL << (S + 1)) - 1;
+    if (R != 0) {
+        welem = ((welem >> R) | (welem << (esize - R))) & ((1ULL << esize) - 1);
+    }
+    uint64_t result = 0;
+    uint32_t regsize = is_64bit ? 64 : 32;
+    for (uint32_t i = 0; i < regsize; i += esize) {
+        result |= welem << i;
+    }
+    if (!is_64bit) result &= 0xFFFFFFFFULL;
+    return result;
+}
+
 // Mnemonic enumeration
 enum class Mnemonic {
     ABS,
@@ -1611,6 +1635,7 @@ public:
     OperandType type = OperandType::Unknown;
     uint32_t value = 0;          // Raw field value for simple operands
     bool is_64bit = true;        // True for 64-bit registers (X), false for 32-bit (W)
+    bool is_sp = false;          // True if reg 31 should be SP/WSP, false for XZR/WZR
 
     // Memory operand fields
     uint32_t base_reg = 0;       // Base register number

@@ -1660,91 +1660,78 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::XPACLRI, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503211Fu: { // PACIA1716_HI_hints
                         Instruction result(Mnemonic::PACIA1716, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503215Fu: { // PACIB1716_HI_hints
                         Instruction result(Mnemonic::PACIB1716, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503219Fu: { // AUTIA1716_HI_hints
                         Instruction result(Mnemonic::AUTIA1716, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD50321DFu: { // AUTIB1716_HI_hints
                         Instruction result(Mnemonic::AUTIB1716, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503231Fu: { // PACIAZ_HI_hints
                         Instruction result(Mnemonic::PACIAZ, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503233Fu: { // PACIASP_HI_hints
                         Instruction result(Mnemonic::PACIASP, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503235Fu: { // PACIBZ_HI_hints
                         Instruction result(Mnemonic::PACIBZ, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503237Fu: { // PACIBSP_HI_hints
                         Instruction result(Mnemonic::PACIBSP, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503239Fu: { // AUTIAZ_HI_hints
                         Instruction result(Mnemonic::AUTIAZ, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD50323BFu: { // AUTIASP_HI_hints
                         Instruction result(Mnemonic::AUTIASP, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD50323DFu: { // AUTIBZ_HI_hints
                         Instruction result(Mnemonic::AUTIBZ, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD50323FFu: { // AUTIBSP_HI_hints
                         Instruction result(Mnemonic::AUTIBSP, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -1756,7 +1743,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::PACIZA, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.paciza64z_dp1src.Rd, is_64bit));
                         return result;
@@ -1765,7 +1751,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::PACIZB, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.pacizb64z_dp1src.Rd, is_64bit));
                         return result;
@@ -1774,7 +1759,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::AUTIZA, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.autiza64z_dp1src.Rd, is_64bit));
                         return result;
@@ -1783,7 +1767,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::AUTIZB, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.autizb64z_dp1src.Rd, is_64bit));
                         return result;
@@ -1792,7 +1775,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::XPACI, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.xpaci64z_dp1src.Rd, is_64bit));
                         return result;
@@ -1801,7 +1783,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::XPACD, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.xpacd64z_dp1src.Rd, is_64bit));
                         return result;
@@ -1815,7 +1796,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::PACIA, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.pacia64p_dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.pacia64p_dp1src.Rn, is_64bit));
@@ -1825,7 +1805,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::PACIB, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.pacib64p_dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.pacib64p_dp1src.Rn, is_64bit));
@@ -1835,7 +1814,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::AUTIA, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.autia64p_dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.autia64p_dp1src.Rn, is_64bit));
@@ -1845,7 +1823,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::AUTIB, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.autib64p_dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.autib64p_dp1src.Rn, is_64bit));
@@ -1860,7 +1837,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::LD1W, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_zpbr_u128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_zpbr_u128.Rm, is_64bit));
@@ -1870,7 +1846,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::LD1W, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_zpbr_u32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_zpbr_u32.Rm, is_64bit));
@@ -1880,7 +1855,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::LD1W, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_zpbr_u64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_zpbr_u64.Rm, is_64bit));
@@ -1890,7 +1864,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::LD1D, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_zpbr_u128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_zpbr_u128.Rm, is_64bit));
@@ -1900,7 +1873,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::LD1D, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_zpbr_u64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_zpbr_u64.Rm, is_64bit));
@@ -1910,7 +1882,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::ST1W, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_zpbr_u128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_zpbr_u128.Rm, is_64bit));
@@ -1920,7 +1891,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::ST1D, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_zpbr_u128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_zpbr_u128.Rm, is_64bit));
@@ -1930,7 +1900,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::ST1D, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_zpbr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_zpbr.Rm, is_64bit));
@@ -1945,7 +1914,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::LD1W, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_zpbi_u128.Rn, is_64bit));
                         return result;
@@ -1954,7 +1922,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::LD1W, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_zpbi_u32.Rn, is_64bit));
                         return result;
@@ -1963,7 +1930,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::LD1W, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_zpbi_u64.Rn, is_64bit));
                         return result;
@@ -1972,7 +1938,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::LD1D, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_zpbi_u128.Rn, is_64bit));
                         return result;
@@ -1981,7 +1946,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::LD1D, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_zpbi_u64.Rn, is_64bit));
                         return result;
@@ -1990,7 +1954,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::ST1W, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_zpbi_u128.Rn, is_64bit));
                         return result;
@@ -1999,7 +1962,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::ST1D, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_zpbi_u128.Rn, is_64bit));
                         return result;
@@ -2008,7 +1970,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::ST1D, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_zpbi.Rn, is_64bit));
                         return result;
@@ -2022,7 +1983,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::LDRAA, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldraa64ldst_pac.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldraa64ldst_pac.Rt, is_64bit));
@@ -2036,7 +1996,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::LDRAA, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldraa64w_ldst_pac.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldraa64w_ldst_pac.Rt, is_64bit));
@@ -2050,7 +2009,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::LDRAB, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrab64ldst_pac.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrab64ldst_pac.Rt, is_64bit));
@@ -2064,7 +2022,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::LDRAB, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrab64w_ldst_pac.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrab64w_ldst_pac.Rt, is_64bit));
@@ -2083,14 +2040,12 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::FMOPA, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81800018u: { // fmops_za_pp_zz_16
                         Instruction result(Mnemonic::FMOPS, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -2102,14 +2057,12 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::FMOPA, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80800010u: { // fmops_za_pp_zz_32
                         Instruction result(Mnemonic::FMOPS, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -2121,14 +2074,12 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::FMOPA, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80C00010u: { // fmops_za_pp_zz_64
                         Instruction result(Mnemonic::FMOPS, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -2140,7 +2091,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::ST1W, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_zpbr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_zpbr.Rm, is_64bit));
@@ -2155,7 +2105,6 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::ST1W, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_zpbi.Rn, is_64bit));
                         return result;
@@ -2169,14 +2118,12 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::TBL, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x05203000u: { // tbl_z_zz_1
                         Instruction result(Mnemonic::TBL, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;

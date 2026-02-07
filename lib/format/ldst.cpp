@@ -38717,7 +38717,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlso_b11b.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlso_b11b.Rt, is_64bit));
@@ -38727,7 +38726,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlso_s11s.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlso_s11s.Rt, is_64bit));
@@ -38737,7 +38735,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlso_d11d.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlso_d11d.Rt, is_64bit));
@@ -38747,7 +38744,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlso_s33s.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlso_s33s.Rt, is_64bit));
@@ -38757,7 +38753,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlso_d33d.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlso_d33d.Rt, is_64bit));
@@ -38767,7 +38762,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STL1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stl1asisdlso_d1.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stl1asisdlso_d1.Rt, is_64bit));
@@ -38777,7 +38771,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlso_b22b.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlso_b22b.Rt, is_64bit));
@@ -38787,7 +38780,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlso_b44b.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlso_b44b.Rt, is_64bit));
@@ -38797,7 +38789,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlso_s22s.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlso_s22s.Rt, is_64bit));
@@ -38807,7 +38798,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlso_d22d.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlso_d22d.Rt, is_64bit));
@@ -38817,7 +38807,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlso_s44s.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlso_s44s.Rt, is_64bit));
@@ -38827,7 +38816,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlso_d44d.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlso_d44d.Rt, is_64bit));
@@ -38837,7 +38825,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlso_b11b.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlso_b11b.Rt, is_64bit));
@@ -38847,7 +38834,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlso_s11s.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlso_s11s.Rt, is_64bit));
@@ -38857,7 +38843,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlso_d11d.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlso_d11d.Rt, is_64bit));
@@ -38867,7 +38852,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlso_s33s.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlso_s33s.Rt, is_64bit));
@@ -38877,7 +38861,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlso_d33d.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlso_d33d.Rt, is_64bit));
@@ -38887,7 +38870,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAP1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldap1asisdlso_d1.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldap1asisdlso_d1.Rt, is_64bit));
@@ -38897,7 +38879,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlso_b22b.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlso_b22b.Rt, is_64bit));
@@ -38907,7 +38888,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlso_b44b.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlso_b44b.Rt, is_64bit));
@@ -38917,7 +38897,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlso_s22s.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlso_s22s.Rt, is_64bit));
@@ -38927,7 +38906,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlso_d22d.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlso_d22d.Rt, is_64bit));
@@ -38937,7 +38915,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlso_s44s.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlso_s44s.Rt, is_64bit));
@@ -38947,7 +38924,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlso_d44d.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlso_d44d.Rt, is_64bit));
@@ -38957,7 +38933,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_b1i1b.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_b1i1b.Rt, is_64bit));
@@ -38967,7 +38942,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_s1i1s.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_s1i1s.Rt, is_64bit));
@@ -38977,7 +38951,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_d1i1d.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_d1i1d.Rt, is_64bit));
@@ -38987,7 +38960,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_s3i3s.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_s3i3s.Rt, is_64bit));
@@ -38997,7 +38969,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_d3i3d.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_d3i3d.Rt, is_64bit));
@@ -39007,7 +38978,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_b2i2b.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_b2i2b.Rt, is_64bit));
@@ -39017,7 +38987,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_b4i4b.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_b4i4b.Rt, is_64bit));
@@ -39027,7 +38996,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_s2i2s.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_s2i2s.Rt, is_64bit));
@@ -39037,7 +39005,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_d2i2d.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_d2i2d.Rt, is_64bit));
@@ -39047,7 +39014,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_s4i4s.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_s4i4s.Rt, is_64bit));
@@ -39057,7 +39023,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_d4i4d.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_d4i4d.Rt, is_64bit));
@@ -39067,7 +39032,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_b1i1b.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_b1i1b.Rt, is_64bit));
@@ -39077,7 +39041,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_s1i1s.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_s1i1s.Rt, is_64bit));
@@ -39087,7 +39050,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_d1i1d.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_d1i1d.Rt, is_64bit));
@@ -39097,7 +39059,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_s3i3s.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_s3i3s.Rt, is_64bit));
@@ -39107,7 +39068,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_d3i3d.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_d3i3d.Rt, is_64bit));
@@ -39117,7 +39077,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_b2i2b.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_b2i2b.Rt, is_64bit));
@@ -39127,7 +39086,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_b4i4b.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_b4i4b.Rt, is_64bit));
@@ -39137,7 +39095,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_s2i2s.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_s2i2s.Rt, is_64bit));
@@ -39147,7 +39104,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_d2i2d.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_d2i2d.Rt, is_64bit));
@@ -39157,7 +39113,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_s4i4s.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_s4i4s.Rt, is_64bit));
@@ -39167,7 +39122,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_d4i4d.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_d4i4d.Rt, is_64bit));
@@ -39177,7 +39131,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlr32s_ldapstl_writeback.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlr32s_ldapstl_writeback.Rt, is_64bit));
@@ -39187,7 +39140,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapr32l_ldapstl_writeback.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapr32l_ldapstl_writeback.Rt, is_64bit));
@@ -39197,7 +39149,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::GCSSTR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.gcsstr64ldst_gcs.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.gcsstr64ldst_gcs.Rt, is_64bit));
@@ -39207,7 +39158,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::GCSSTTR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.gcssttr64ldst_gcs.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.gcssttr64ldst_gcs.Rt, is_64bit));
@@ -39217,7 +39167,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STZGM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stzgm64bulk_ldsttags.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stzgm64bulk_ldsttags.Rt, is_64bit));
@@ -39227,7 +39176,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlr64s_ldapstl_writeback.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlr64s_ldapstl_writeback.Rt, is_64bit));
@@ -39237,7 +39185,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STGM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stgm64bulk_ldsttags.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stgm64bulk_ldsttags.Rt, is_64bit));
@@ -39247,7 +39194,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapr64l_ldapstl_writeback.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapr64l_ldapstl_writeback.Rt, is_64bit));
@@ -39257,7 +39203,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDGM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldgm64bulk_ldsttags.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldgm64bulk_ldsttags.Rt, is_64bit));
@@ -39267,7 +39212,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST64B, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.st64b64l_memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st64b64l_memop.Rt, is_64bit));
@@ -39277,7 +39221,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD64B, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld64b64l_memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld64b64l_memop.Rt, is_64bit));
@@ -39292,7 +39235,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlso_h11h.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlso_h11h.Rt, is_64bit));
@@ -39302,7 +39244,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlso_h33h.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlso_h33h.Rt, is_64bit));
@@ -39312,7 +39253,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlso_h22h.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlso_h22h.Rt, is_64bit));
@@ -39322,7 +39262,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlso_h44h.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlso_h44h.Rt, is_64bit));
@@ -39332,7 +39271,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlso_h11h.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlso_h11h.Rt, is_64bit));
@@ -39342,7 +39280,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlso_h33h.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlso_h33h.Rt, is_64bit));
@@ -39352,7 +39289,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlso_h22h.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlso_h22h.Rt, is_64bit));
@@ -39362,7 +39298,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlso_h44h.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlso_h44h.Rt, is_64bit));
@@ -39372,7 +39307,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_h1i1h.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_h1i1h.Rt, is_64bit));
@@ -39382,7 +39316,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_h3i3h.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_h3i3h.Rt, is_64bit));
@@ -39392,7 +39325,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_h2i2h.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_h2i2h.Rt, is_64bit));
@@ -39402,7 +39334,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_h4i4h.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_h4i4h.Rt, is_64bit));
@@ -39412,7 +39343,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_h1i1h.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_h1i1h.Rt, is_64bit));
@@ -39422,7 +39352,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_h3i3h.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_h3i3h.Rt, is_64bit));
@@ -39432,7 +39361,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_h2i2h.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_h2i2h.Rt, is_64bit));
@@ -39442,7 +39370,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_h4i4h.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_h4i4h.Rt, is_64bit));
@@ -39457,7 +39384,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlse_r4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlse_r4.Rt, is_64bit));
@@ -39467,7 +39393,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlse_r44v.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlse_r44v.Rt, is_64bit));
@@ -39477,7 +39402,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlse_r3.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlse_r3.Rt, is_64bit));
@@ -39487,7 +39411,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlse_r33v.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlse_r33v.Rt, is_64bit));
@@ -39497,7 +39420,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlse_r11v.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlse_r11v.Rt, is_64bit));
@@ -39507,7 +39429,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlse_r2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlse_r2.Rt, is_64bit));
@@ -39517,7 +39438,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlse_r22v.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlse_r22v.Rt, is_64bit));
@@ -39527,7 +39447,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlse_r4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlse_r4.Rt, is_64bit));
@@ -39537,7 +39456,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlse_r44v.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlse_r44v.Rt, is_64bit));
@@ -39547,7 +39465,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlse_r3.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlse_r3.Rt, is_64bit));
@@ -39557,7 +39474,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlse_r33v.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlse_r33v.Rt, is_64bit));
@@ -39567,7 +39483,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlse_r11v.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlse_r11v.Rt, is_64bit));
@@ -39577,7 +39492,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlse_r2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlse_r2.Rt, is_64bit));
@@ -39587,7 +39501,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlse_r22v.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlse_r22v.Rt, is_64bit));
@@ -39597,7 +39510,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsep_i4i.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsep_i4i.Rt, is_64bit));
@@ -39607,7 +39519,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_i4i4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_i4i4.Rt, is_64bit));
@@ -39617,7 +39528,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsep_i3i.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsep_i3i.Rt, is_64bit));
@@ -39627,7 +39537,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_i3i3.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_i3i3.Rt, is_64bit));
@@ -39637,7 +39546,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_i1i1.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_i1i1.Rt, is_64bit));
@@ -39647,7 +39555,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsep_i2i.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsep_i2i.Rt, is_64bit));
@@ -39657,7 +39564,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_i2i2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_i2i2.Rt, is_64bit));
@@ -39667,7 +39573,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsep_i4i.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsep_i4i.Rt, is_64bit));
@@ -39677,7 +39582,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_i4i4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_i4i4.Rt, is_64bit));
@@ -39687,7 +39591,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsep_i3i.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsep_i3i.Rt, is_64bit));
@@ -39697,7 +39600,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_i3i3.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_i3i3.Rt, is_64bit));
@@ -39707,7 +39609,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_i1i1.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_i1i1.Rt, is_64bit));
@@ -39717,7 +39618,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsep_i2i.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsep_i2i.Rt, is_64bit));
@@ -39727,7 +39627,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_i2i2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_i2i2.Rt, is_64bit));
@@ -39737,7 +39636,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlso_b33b.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlso_b33b.Rt, is_64bit));
@@ -39747,7 +39645,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlso_b33b.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlso_b33b.Rt, is_64bit));
@@ -39757,7 +39654,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1R, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlso_r1.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlso_r1.Rt, is_64bit));
@@ -39767,7 +39663,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD3R, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlso_r3.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlso_r3.Rt, is_64bit));
@@ -39777,7 +39672,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD2R, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlso_r2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlso_r2.Rt, is_64bit));
@@ -39787,7 +39681,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD4R, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlso_r4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlso_r4.Rt, is_64bit));
@@ -39797,7 +39690,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_b3i3b.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_b3i3b.Rt, is_64bit));
@@ -39807,7 +39699,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_b3i3b.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_b3i3b.Rt, is_64bit));
@@ -39817,7 +39708,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1R, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlsop_r1i.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlsop_r1i.Rt, is_64bit));
@@ -39827,7 +39717,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD3R, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlsop_r3i.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlsop_r3i.Rt, is_64bit));
@@ -39837,7 +39726,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD2R, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlsop_r2i.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlsop_r2i.Rt, is_64bit));
@@ -39847,7 +39735,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD4R, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlsop_r4i.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlsop_r4i.Rt, is_64bit));
@@ -39862,7 +39749,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPRB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaprb32l_memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaprb32l_memop.Rt, is_64bit));
@@ -39873,7 +39759,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPRH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaprh32l_memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaprh32l_memop.Rt, is_64bit));
@@ -39884,7 +39769,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapr32l_memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapr32l_memop.Rt, is_64bit));
@@ -39895,7 +39779,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapr64l_memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapr64l_memop.Rt, is_64bit));
@@ -39911,7 +39794,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STXRB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stxrb_sr32ldstexclr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stxrb_sr32ldstexclr.Rt, is_64bit));
@@ -39923,7 +39805,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLXRB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlxrb_sr32ldstexclr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlxrb_sr32ldstexclr.Rt, is_64bit));
@@ -39935,7 +39816,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLLRB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stllrb_sl32ldstord.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stllrb_sl32ldstord.Rt, is_64bit));
@@ -39947,7 +39827,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLRB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlrb_sl32ldstord.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlrb_sl32ldstord.Rt, is_64bit));
@@ -39960,7 +39839,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDLARB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldlarb_lr32ldstord.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldlarb_lr32ldstord.Rt, is_64bit));
@@ -39973,7 +39851,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDARB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldarb_lr32ldstord.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldarb_lr32ldstord.Rt, is_64bit));
@@ -39985,7 +39862,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STXRH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stxrh_sr32ldstexclr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stxrh_sr32ldstexclr.Rt, is_64bit));
@@ -39997,7 +39873,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLXRH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlxrh_sr32ldstexclr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlxrh_sr32ldstexclr.Rt, is_64bit));
@@ -40009,7 +39884,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLLRH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stllrh_sl32ldstord.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stllrh_sl32ldstord.Rt, is_64bit));
@@ -40021,7 +39895,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLRH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlrh_sl32ldstord.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlrh_sl32ldstord.Rt, is_64bit));
@@ -40034,7 +39907,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDLARH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldlarh_lr32ldstord.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldlarh_lr32ldstord.Rt, is_64bit));
@@ -40047,7 +39919,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDARH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldarh_lr32ldstord.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldarh_lr32ldstord.Rt, is_64bit));
@@ -40059,7 +39930,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STXR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stxr_sr32ldstexclr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stxr_sr32ldstexclr.Rt, is_64bit));
@@ -40071,7 +39941,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLXR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlxr_sr32ldstexclr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlxr_sr32ldstexclr.Rt, is_64bit));
@@ -40083,7 +39952,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STTXR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sttxr_sr32ldstexclr_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sttxr_sr32ldstexclr_unpriv.Rt, is_64bit));
@@ -40095,7 +39963,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLTXR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stltxr_sr32ldstexclr_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stltxr_sr32ldstexclr_unpriv.Rt, is_64bit));
@@ -40107,7 +39974,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLLR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stllr_sl32ldstord.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stllr_sl32ldstord.Rt, is_64bit));
@@ -40119,7 +39985,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlr_sl32ldstord.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlr_sl32ldstord.Rt, is_64bit));
@@ -40132,7 +39997,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDLAR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldlar_lr32ldstord.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldlar_lr32ldstord.Rt, is_64bit));
@@ -40145,7 +40009,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldar_lr32ldstord.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldar_lr32ldstord.Rt, is_64bit));
@@ -40157,7 +40020,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTXR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtxr_lr32ldstexclr_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtxr_lr32ldstexclr_unpriv.Rt, is_64bit));
@@ -40169,7 +40031,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDATXR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldatxr_lr32ldstexclr_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldatxr_lr32ldstexclr_unpriv.Rt, is_64bit));
@@ -40181,7 +40042,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STXR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stxr_sr64ldstexclr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stxr_sr64ldstexclr.Rt, is_64bit));
@@ -40193,7 +40053,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLXR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlxr_sr64ldstexclr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlxr_sr64ldstexclr.Rt, is_64bit));
@@ -40205,7 +40064,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STTXR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sttxr_sr64ldstexclr_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sttxr_sr64ldstexclr_unpriv.Rt, is_64bit));
@@ -40217,7 +40075,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLTXR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stltxr_sr64ldstexclr_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stltxr_sr64ldstexclr_unpriv.Rt, is_64bit));
@@ -40229,7 +40086,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLLR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stllr_sl64ldstord.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stllr_sl64ldstord.Rt, is_64bit));
@@ -40241,7 +40097,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlr_sl64ldstord.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlr_sl64ldstord.Rt, is_64bit));
@@ -40254,7 +40109,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDLAR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldlar_lr64ldstord.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldlar_lr64ldstord.Rt, is_64bit));
@@ -40267,7 +40121,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldar_lr64ldstord.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldar_lr64ldstord.Rt, is_64bit));
@@ -40279,7 +40132,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTXR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtxr_lr64ldstexclr_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtxr_lr64ldstexclr_unpriv.Rt, is_64bit));
@@ -40291,7 +40143,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDATXR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldatxr_lr64ldstexclr_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldatxr_lr64ldstexclr_unpriv.Rt, is_64bit));
@@ -40308,7 +40159,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDXP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldxp_lp32ldstexclp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldxp_lp32ldstexclp.Rt, is_64bit));
@@ -40320,7 +40170,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAXP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaxp_lp32ldstexclp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaxp_lp32ldstexclp.Rt, is_64bit));
@@ -40332,7 +40181,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDXP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldxp_lp64ldstexclp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldxp_lp64ldstexclp.Rt, is_64bit));
@@ -40344,7 +40192,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAXP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaxp_lp64ldstexclp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaxp_lp64ldstexclp.Rt, is_64bit));
@@ -40361,7 +40208,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTADD, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sttadd_ldtadd32memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sttadd_ldtadd32memop_unpriv.Rs, is_64bit));
@@ -40371,7 +40217,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTCLR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sttclr_ldtclr32memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sttclr_ldtclr32memop_unpriv.Rs, is_64bit));
@@ -40381,7 +40226,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTSET, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sttset_ldtset32memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sttset_ldtset32memop_unpriv.Rs, is_64bit));
@@ -40391,7 +40235,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTADDL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sttaddl_ldtaddl32memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sttaddl_ldtaddl32memop_unpriv.Rs, is_64bit));
@@ -40401,7 +40244,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTCLRL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sttclrl_ldtclrl32memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sttclrl_ldtclrl32memop_unpriv.Rs, is_64bit));
@@ -40411,7 +40253,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTSETL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sttsetl_ldtsetl32memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sttsetl_ldtsetl32memop_unpriv.Rs, is_64bit));
@@ -40421,7 +40262,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDADDB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.staddb_ldaddb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.staddb_ldaddb32memop.Rs, is_64bit));
@@ -40431,7 +40271,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stclrb_ldclrb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stclrb_ldclrb32memop.Rs, is_64bit));
@@ -40441,7 +40280,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDEORB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.steorb_ldeorb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.steorb_ldeorb32memop.Rs, is_64bit));
@@ -40451,7 +40289,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stsetb_ldsetb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stsetb_ldsetb32memop.Rs, is_64bit));
@@ -40461,7 +40298,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMAXB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stsmaxb_ldsmaxb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stsmaxb_ldsmaxb32memop.Rs, is_64bit));
@@ -40471,7 +40307,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMINB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stsminb_ldsminb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stsminb_ldsminb32memop.Rs, is_64bit));
@@ -40481,7 +40316,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMAXB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stumaxb_ldumaxb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stumaxb_ldumaxb32memop.Rs, is_64bit));
@@ -40491,7 +40325,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMINB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stuminb_lduminb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stuminb_lduminb32memop.Rs, is_64bit));
@@ -40501,7 +40334,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDADDLB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.staddlb_ldaddlb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.staddlb_ldaddlb32memop.Rs, is_64bit));
@@ -40511,7 +40343,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRLB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stclrlb_ldclrlb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stclrlb_ldclrlb32memop.Rs, is_64bit));
@@ -40521,7 +40352,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDEORLB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.steorlb_ldeorlb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.steorlb_ldeorlb32memop.Rs, is_64bit));
@@ -40531,7 +40361,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETLB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stsetlb_ldsetlb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stsetlb_ldsetlb32memop.Rs, is_64bit));
@@ -40541,7 +40370,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMAXLB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stsmaxlb_ldsmaxlb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stsmaxlb_ldsmaxlb32memop.Rs, is_64bit));
@@ -40551,7 +40379,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMINLB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stsminlb_ldsminlb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stsminlb_ldsminlb32memop.Rs, is_64bit));
@@ -40561,7 +40388,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMAXLB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stumaxlb_ldumaxlb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stumaxlb_ldumaxlb32memop.Rs, is_64bit));
@@ -40571,7 +40397,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMINLB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stuminlb_lduminlb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stuminlb_lduminlb32memop.Rs, is_64bit));
@@ -40581,7 +40406,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STBFADD, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfadd16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfadd16.Rs, is_64bit));
@@ -40591,7 +40415,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STBFMAX, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfmax16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfmax16.Rs, is_64bit));
@@ -40601,7 +40424,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STBFMIN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfmin16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfmin16.Rs, is_64bit));
@@ -40611,7 +40433,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STBFMAXNM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfmaxnm16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfmaxnm16.Rs, is_64bit));
@@ -40621,7 +40442,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STBFMINNM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfminnm16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfminnm16.Rs, is_64bit));
@@ -40631,7 +40451,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STBFADDL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfaddl16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfaddl16.Rs, is_64bit));
@@ -40641,7 +40460,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STBFMAXL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfmaxl16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfmaxl16.Rs, is_64bit));
@@ -40651,7 +40469,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STBFMINL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfminl16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfminl16.Rs, is_64bit));
@@ -40661,7 +40478,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STBFMAXNML, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfmaxnml16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfmaxnml16.Rs, is_64bit));
@@ -40671,7 +40487,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STBFMINNML, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfminnml16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfminnml16.Rs, is_64bit));
@@ -40681,7 +40496,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTADD, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sttadd_ldtadd64memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sttadd_ldtadd64memop_unpriv.Rs, is_64bit));
@@ -40691,7 +40505,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTCLR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sttclr_ldtclr64memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sttclr_ldtclr64memop_unpriv.Rs, is_64bit));
@@ -40701,7 +40514,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTSET, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sttset_ldtset64memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sttset_ldtset64memop_unpriv.Rs, is_64bit));
@@ -40711,7 +40523,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTADDL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sttaddl_ldtaddl64memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sttaddl_ldtaddl64memop_unpriv.Rs, is_64bit));
@@ -40721,7 +40532,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTCLRL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sttclrl_ldtclrl64memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sttclrl_ldtclrl64memop_unpriv.Rs, is_64bit));
@@ -40731,7 +40541,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTSETL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sttsetl_ldtsetl64memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sttsetl_ldtsetl64memop_unpriv.Rs, is_64bit));
@@ -40741,7 +40550,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDADDH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.staddh_ldaddh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.staddh_ldaddh32memop.Rs, is_64bit));
@@ -40751,7 +40559,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stclrh_ldclrh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stclrh_ldclrh32memop.Rs, is_64bit));
@@ -40761,7 +40568,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDEORH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.steorh_ldeorh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.steorh_ldeorh32memop.Rs, is_64bit));
@@ -40771,7 +40577,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stseth_ldseth32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stseth_ldseth32memop.Rs, is_64bit));
@@ -40781,7 +40586,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMAXH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stsmaxh_ldsmaxh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stsmaxh_ldsmaxh32memop.Rs, is_64bit));
@@ -40791,7 +40595,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMINH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stsminh_ldsminh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stsminh_ldsminh32memop.Rs, is_64bit));
@@ -40801,7 +40604,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMAXH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stumaxh_ldumaxh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stumaxh_ldumaxh32memop.Rs, is_64bit));
@@ -40811,7 +40613,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMINH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stuminh_lduminh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stuminh_lduminh32memop.Rs, is_64bit));
@@ -40821,7 +40622,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDADDLH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.staddlh_ldaddlh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.staddlh_ldaddlh32memop.Rs, is_64bit));
@@ -40831,7 +40631,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRLH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stclrlh_ldclrlh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stclrlh_ldclrlh32memop.Rs, is_64bit));
@@ -40841,7 +40640,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDEORLH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.steorlh_ldeorlh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.steorlh_ldeorlh32memop.Rs, is_64bit));
@@ -40851,7 +40649,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETLH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stsetlh_ldsetlh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stsetlh_ldsetlh32memop.Rs, is_64bit));
@@ -40861,7 +40658,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMAXLH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stsmaxlh_ldsmaxlh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stsmaxlh_ldsmaxlh32memop.Rs, is_64bit));
@@ -40871,7 +40667,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMINLH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stsminlh_ldsminlh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stsminlh_ldsminlh32memop.Rs, is_64bit));
@@ -40881,7 +40676,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMAXLH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stumaxlh_ldumaxlh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stumaxlh_ldumaxlh32memop.Rs, is_64bit));
@@ -40891,7 +40685,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMINLH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stuminlh_lduminlh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stuminlh_lduminlh32memop.Rs, is_64bit));
@@ -40901,7 +40694,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFADD, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfadd16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfadd16.Rs, is_64bit));
@@ -40911,7 +40703,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFMAX, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmax16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmax16.Rs, is_64bit));
@@ -40921,7 +40712,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFMIN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmin16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmin16.Rs, is_64bit));
@@ -40931,7 +40721,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFMAXNM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxnm16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxnm16.Rs, is_64bit));
@@ -40941,7 +40730,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFMINNM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminnm16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminnm16.Rs, is_64bit));
@@ -40951,7 +40739,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFADDL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfaddl16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfaddl16.Rs, is_64bit));
@@ -40961,7 +40748,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFMAXL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxl16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxl16.Rs, is_64bit));
@@ -40971,7 +40757,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFMINL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminl16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminl16.Rs, is_64bit));
@@ -40981,7 +40766,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFMAXNML, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxnml16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxnml16.Rs, is_64bit));
@@ -40991,7 +40775,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFMINNML, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminnml16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminnml16.Rs, is_64bit));
@@ -41001,7 +40784,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDADD, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stadd_ldadd32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stadd_ldadd32memop.Rs, is_64bit));
@@ -41011,7 +40793,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stclr_ldclr32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stclr_ldclr32memop.Rs, is_64bit));
@@ -41021,7 +40802,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDEOR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.steor_ldeor32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.steor_ldeor32memop.Rs, is_64bit));
@@ -41031,7 +40811,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSET, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stset_ldset32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stset_ldset32memop.Rs, is_64bit));
@@ -41041,7 +40820,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMAX, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stsmax_ldsmax32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stsmax_ldsmax32memop.Rs, is_64bit));
@@ -41051,7 +40829,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMIN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stsmin_ldsmin32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stsmin_ldsmin32memop.Rs, is_64bit));
@@ -41061,7 +40838,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMAX, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stumax_ldumax32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stumax_ldumax32memop.Rs, is_64bit));
@@ -41071,7 +40847,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMIN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stumin_ldumin32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stumin_ldumin32memop.Rs, is_64bit));
@@ -41081,7 +40856,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDADDL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.staddl_ldaddl32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.staddl_ldaddl32memop.Rs, is_64bit));
@@ -41091,7 +40865,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stclrl_ldclrl32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stclrl_ldclrl32memop.Rs, is_64bit));
@@ -41101,7 +40874,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDEORL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.steorl_ldeorl32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.steorl_ldeorl32memop.Rs, is_64bit));
@@ -41111,7 +40883,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stsetl_ldsetl32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stsetl_ldsetl32memop.Rs, is_64bit));
@@ -41121,7 +40892,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMAXL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stsmaxl_ldsmaxl32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stsmaxl_ldsmaxl32memop.Rs, is_64bit));
@@ -41131,7 +40901,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMINL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stsminl_ldsminl32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stsminl_ldsminl32memop.Rs, is_64bit));
@@ -41141,7 +40910,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMAXL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stumaxl_ldumaxl32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stumaxl_ldumaxl32memop.Rs, is_64bit));
@@ -41151,7 +40919,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMINL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stuminl_lduminl32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stuminl_lduminl32memop.Rs, is_64bit));
@@ -41161,7 +40928,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFADD, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfadd32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfadd32.Rs, is_64bit));
@@ -41171,7 +40937,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFMAX, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmax32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmax32.Rs, is_64bit));
@@ -41181,7 +40946,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFMIN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmin32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmin32.Rs, is_64bit));
@@ -41191,7 +40955,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFMAXNM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxnm32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxnm32.Rs, is_64bit));
@@ -41201,7 +40964,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFMINNM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminnm32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminnm32.Rs, is_64bit));
@@ -41211,7 +40973,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFADDL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfaddl32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfaddl32.Rs, is_64bit));
@@ -41221,7 +40982,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFMAXL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxl32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxl32.Rs, is_64bit));
@@ -41231,7 +40991,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFMINL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminl32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminl32.Rs, is_64bit));
@@ -41241,7 +41000,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFMAXNML, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxnml32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxnml32.Rs, is_64bit));
@@ -41251,7 +41009,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFMINNML, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminnml32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminnml32.Rs, is_64bit));
@@ -41261,7 +41018,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDADD, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stadd_ldadd64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stadd_ldadd64memop.Rs, is_64bit));
@@ -41271,7 +41027,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stclr_ldclr64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stclr_ldclr64memop.Rs, is_64bit));
@@ -41281,7 +41036,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDEOR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.steor_ldeor64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.steor_ldeor64memop.Rs, is_64bit));
@@ -41291,7 +41045,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSET, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stset_ldset64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stset_ldset64memop.Rs, is_64bit));
@@ -41301,7 +41054,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMAX, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stsmax_ldsmax64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stsmax_ldsmax64memop.Rs, is_64bit));
@@ -41311,7 +41063,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMIN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stsmin_ldsmin64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stsmin_ldsmin64memop.Rs, is_64bit));
@@ -41321,7 +41072,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMAX, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stumax_ldumax64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stumax_ldumax64memop.Rs, is_64bit));
@@ -41331,7 +41081,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMIN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stumin_ldumin64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stumin_ldumin64memop.Rs, is_64bit));
@@ -41341,7 +41090,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDADDL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.staddl_ldaddl64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.staddl_ldaddl64memop.Rs, is_64bit));
@@ -41351,7 +41099,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stclrl_ldclrl64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stclrl_ldclrl64memop.Rs, is_64bit));
@@ -41361,7 +41108,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDEORL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.steorl_ldeorl64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.steorl_ldeorl64memop.Rs, is_64bit));
@@ -41371,7 +41117,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stsetl_ldsetl64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stsetl_ldsetl64memop.Rs, is_64bit));
@@ -41381,7 +41126,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMAXL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stsmaxl_ldsmaxl64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stsmaxl_ldsmaxl64memop.Rs, is_64bit));
@@ -41391,7 +41135,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMINL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stsminl_ldsminl64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stsminl_ldsminl64memop.Rs, is_64bit));
@@ -41401,7 +41144,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMAXL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stumaxl_ldumaxl64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stumaxl_ldumaxl64memop.Rs, is_64bit));
@@ -41411,7 +41153,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMINL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stuminl_lduminl64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stuminl_lduminl64memop.Rs, is_64bit));
@@ -41421,7 +41162,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFADD, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfadd64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfadd64.Rs, is_64bit));
@@ -41431,7 +41171,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFMAX, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmax64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmax64.Rs, is_64bit));
@@ -41441,7 +41180,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFMIN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmin64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmin64.Rs, is_64bit));
@@ -41451,7 +41189,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFMAXNM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxnm64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxnm64.Rs, is_64bit));
@@ -41461,7 +41198,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFMINNM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminnm64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminnm64.Rs, is_64bit));
@@ -41471,7 +41207,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFADDL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfaddl64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfaddl64.Rs, is_64bit));
@@ -41481,7 +41216,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFMAXL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxl64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxl64.Rs, is_64bit));
@@ -41491,7 +41225,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFMINL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminl64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminl64.Rs, is_64bit));
@@ -41501,7 +41234,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFMAXNML, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxnml64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxnml64.Rs, is_64bit));
@@ -41511,7 +41243,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STFMINNML, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminnml64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminnml64.Rs, is_64bit));
@@ -41526,7 +41257,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.casp_cp32comswappr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.casp_cp32comswappr.Rt, is_64bit));
@@ -41537,7 +41267,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.caspl_cp32comswappr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.caspl_cp32comswappr.Rt, is_64bit));
@@ -41548,7 +41277,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.caspa_cp32comswappr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.caspa_cp32comswappr.Rt, is_64bit));
@@ -41559,7 +41287,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.caspal_cp32comswappr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.caspal_cp32comswappr.Rt, is_64bit));
@@ -41570,7 +41297,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.casb_c32comswap.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.casb_c32comswap.Rt, is_64bit));
@@ -41581,7 +41307,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASLB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.caslb_c32comswap.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.caslb_c32comswap.Rt, is_64bit));
@@ -41592,7 +41317,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASAB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.casab_c32comswap.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.casab_c32comswap.Rt, is_64bit));
@@ -41603,7 +41327,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASALB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.casalb_c32comswap.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.casalb_c32comswap.Rt, is_64bit));
@@ -41614,7 +41337,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_bx1r1b.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_bx1r1b.Rm, is_64bit));
@@ -41625,7 +41347,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_bx3r3b.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_bx3r3b.Rm, is_64bit));
@@ -41636,7 +41357,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_sx1r1s.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_sx1r1s.Rm, is_64bit));
@@ -41647,7 +41367,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_dx1r1d.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_dx1r1d.Rm, is_64bit));
@@ -41658,7 +41377,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_sx3r3s.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_sx3r3s.Rm, is_64bit));
@@ -41669,7 +41387,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_dx3r3d.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_dx3r3d.Rm, is_64bit));
@@ -41680,7 +41397,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_bx2r2b.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_bx2r2b.Rm, is_64bit));
@@ -41691,7 +41407,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_bx4r4b.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_bx4r4b.Rm, is_64bit));
@@ -41702,7 +41417,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_sx2r2s.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_sx2r2s.Rm, is_64bit));
@@ -41713,7 +41427,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_dx2r2d.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_dx2r2d.Rm, is_64bit));
@@ -41724,7 +41437,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_sx4r4s.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_sx4r4s.Rm, is_64bit));
@@ -41735,7 +41447,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_dx4r4d.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_dx4r4d.Rm, is_64bit));
@@ -41746,7 +41457,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_bx1r1b.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_bx1r1b.Rm, is_64bit));
@@ -41757,7 +41467,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_bx3r3b.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_bx3r3b.Rm, is_64bit));
@@ -41768,7 +41477,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_sx1r1s.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_sx1r1s.Rm, is_64bit));
@@ -41779,7 +41487,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_dx1r1d.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_dx1r1d.Rm, is_64bit));
@@ -41790,7 +41497,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_sx3r3s.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_sx3r3s.Rm, is_64bit));
@@ -41801,7 +41507,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_dx3r3d.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_dx3r3d.Rm, is_64bit));
@@ -41812,7 +41517,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_bx2r2b.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_bx2r2b.Rm, is_64bit));
@@ -41823,7 +41527,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_bx4r4b.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_bx4r4b.Rm, is_64bit));
@@ -41834,7 +41537,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_sx2r2s.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_sx2r2s.Rm, is_64bit));
@@ -41845,7 +41547,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_dx2r2d.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_dx2r2d.Rm, is_64bit));
@@ -41856,7 +41557,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_sx4r4s.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_sx4r4s.Rm, is_64bit));
@@ -41867,7 +41567,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_dx4r4d.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_dx4r4d.Rm, is_64bit));
@@ -41878,7 +41577,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTADD, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtadd32memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtadd32memop_unpriv.Rt, is_64bit));
@@ -41889,7 +41587,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWCAS, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwcas_c64rcwcomswap.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwcas_c64rcwcomswap.Rt, is_64bit));
@@ -41900,7 +41597,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWCASP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwcasp_c64rcwcomswappr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwcasp_c64rcwcomswappr.Rt, is_64bit));
@@ -41911,7 +41607,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrp128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrp128memop128.Rt, is_64bit));
@@ -41922,7 +41617,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTCLR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtclr32memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtclr32memop_unpriv.Rt, is_64bit));
@@ -41933,7 +41627,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetp128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetp128memop128.Rt, is_64bit));
@@ -41944,7 +41637,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTSET, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtset32memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtset32memop_unpriv.Rt, is_64bit));
@@ -41955,7 +41647,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.swpp128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swpp128memop128.Rt, is_64bit));
@@ -41966,7 +41657,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.swpt32memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swpt32memop_unpriv.Rt, is_64bit));
@@ -41977,7 +41667,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWCLRP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwclrp128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwclrp128memop128.Rt, is_64bit));
@@ -41988,7 +41677,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSWPP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwswpp128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwswpp128memop128.Rt, is_64bit));
@@ -41999,7 +41687,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSETP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsetp128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsetp128memop128.Rt, is_64bit));
@@ -42010,7 +41697,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTADDL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtaddl32memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtaddl32memop_unpriv.Rt, is_64bit));
@@ -42021,7 +41707,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWCASL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwcasl_c64rcwcomswap.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwcasl_c64rcwcomswap.Rt, is_64bit));
@@ -42032,7 +41717,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWCASPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwcaspl_c64rcwcomswappr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwcaspl_c64rcwcomswappr.Rt, is_64bit));
@@ -42043,7 +41727,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrpl128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrpl128memop128.Rt, is_64bit));
@@ -42054,7 +41737,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTCLRL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtclrl32memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtclrl32memop_unpriv.Rt, is_64bit));
@@ -42065,7 +41747,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetpl128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetpl128memop128.Rt, is_64bit));
@@ -42076,7 +41757,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTSETL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtsetl32memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtsetl32memop_unpriv.Rt, is_64bit));
@@ -42087,7 +41767,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.swppl128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swppl128memop128.Rt, is_64bit));
@@ -42098,7 +41777,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPTL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.swptl32memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swptl32memop_unpriv.Rt, is_64bit));
@@ -42109,7 +41787,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWCLRPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwclrpl128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwclrpl128memop128.Rt, is_64bit));
@@ -42120,7 +41797,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSWPPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwswppl128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwswppl128memop128.Rt, is_64bit));
@@ -42131,7 +41807,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSETPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsetpl128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsetpl128memop128.Rt, is_64bit));
@@ -42142,7 +41817,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTADDA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtadda32memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtadda32memop_unpriv.Rt, is_64bit));
@@ -42153,7 +41827,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWCASA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwcasa_c64rcwcomswap.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwcasa_c64rcwcomswap.Rt, is_64bit));
@@ -42164,7 +41837,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWCASPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwcaspa_c64rcwcomswappr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwcaspa_c64rcwcomswappr.Rt, is_64bit));
@@ -42175,7 +41847,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrpa128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrpa128memop128.Rt, is_64bit));
@@ -42186,7 +41857,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTCLRA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtclra32memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtclra32memop_unpriv.Rt, is_64bit));
@@ -42197,7 +41867,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetpa128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetpa128memop128.Rt, is_64bit));
@@ -42208,7 +41877,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTSETA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtseta32memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtseta32memop_unpriv.Rt, is_64bit));
@@ -42219,7 +41887,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.swppa128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swppa128memop128.Rt, is_64bit));
@@ -42230,7 +41897,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPTA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.swpta32memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swpta32memop_unpriv.Rt, is_64bit));
@@ -42241,7 +41907,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWCLRPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwclrpa128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwclrpa128memop128.Rt, is_64bit));
@@ -42252,7 +41917,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSWPPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwswppa128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwswppa128memop128.Rt, is_64bit));
@@ -42263,7 +41927,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSETPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsetpa128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsetpa128memop128.Rt, is_64bit));
@@ -42274,7 +41937,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTADDAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtaddal32memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtaddal32memop_unpriv.Rt, is_64bit));
@@ -42285,7 +41947,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWCASAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwcasal_c64rcwcomswap.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwcasal_c64rcwcomswap.Rt, is_64bit));
@@ -42296,7 +41957,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWCASPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwcaspal_c64rcwcomswappr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwcaspal_c64rcwcomswappr.Rt, is_64bit));
@@ -42307,7 +41967,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrpal128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrpal128memop128.Rt, is_64bit));
@@ -42318,7 +41977,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTCLRAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtclral32memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtclral32memop_unpriv.Rt, is_64bit));
@@ -42329,7 +41987,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetpal128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetpal128memop128.Rt, is_64bit));
@@ -42340,7 +41997,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTSETAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtsetal32memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtsetal32memop_unpriv.Rt, is_64bit));
@@ -42351,7 +42007,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.swppal128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swppal128memop128.Rt, is_64bit));
@@ -42362,7 +42017,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPTAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.swptal32memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swptal32memop_unpriv.Rt, is_64bit));
@@ -42373,7 +42027,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWCLRPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwclrpal128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwclrpal128memop128.Rt, is_64bit));
@@ -42384,7 +42037,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSWPPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwswppal128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwswppal128memop128.Rt, is_64bit));
@@ -42395,7 +42047,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSETPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsetpal128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsetpal128memop128.Rt, is_64bit));
@@ -42406,7 +42057,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDADDB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaddb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaddb32memop.Rt, is_64bit));
@@ -42417,7 +42067,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrb32memop.Rt, is_64bit));
@@ -42428,7 +42077,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDEORB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeorb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeorb32memop.Rt, is_64bit));
@@ -42439,7 +42087,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetb32memop.Rt, is_64bit));
@@ -42450,7 +42097,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMAXB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxb32memop.Rt, is_64bit));
@@ -42461,7 +42107,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMINB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsminb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsminb32memop.Rt, is_64bit));
@@ -42472,7 +42117,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMAXB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxb32memop.Rt, is_64bit));
@@ -42483,7 +42127,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STRB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.strb32bl_ldst_regoff.Rt, false));
                         result.operands.push_back(Operand::memory_base(enc.strb32bl_ldst_regoff.Rn));
                         return result;
@@ -42492,7 +42135,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMINB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.lduminb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lduminb32memop.Rt, is_64bit));
@@ -42503,7 +42145,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.swpb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swpb32memop.Rt, is_64bit));
@@ -42514,7 +42155,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWCLR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwclr64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwclr64memop.Rt, is_64bit));
@@ -42525,7 +42165,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSWP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwswp64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwswp64memop.Rt, is_64bit));
@@ -42536,7 +42175,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSET, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwset64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwset64memop.Rt, is_64bit));
@@ -42547,7 +42185,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDADDLB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaddlb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaddlb32memop.Rt, is_64bit));
@@ -42558,7 +42195,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRLB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrlb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrlb32memop.Rt, is_64bit));
@@ -42569,7 +42205,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDEORLB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeorlb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeorlb32memop.Rt, is_64bit));
@@ -42580,7 +42215,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETLB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetlb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetlb32memop.Rt, is_64bit));
@@ -42591,7 +42225,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMAXLB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxlb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxlb32memop.Rt, is_64bit));
@@ -42602,7 +42235,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMINLB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsminlb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsminlb32memop.Rt, is_64bit));
@@ -42613,7 +42245,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMAXLB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxlb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxlb32memop.Rt, is_64bit));
@@ -42624,7 +42255,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrb32bl_ldst_regoff.Rt, false));
                         result.operands.push_back(Operand::memory_base(enc.ldrb32bl_ldst_regoff.Rn));
                         return result;
@@ -42633,7 +42263,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMINLB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.lduminlb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lduminlb32memop.Rt, is_64bit));
@@ -42644,7 +42273,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPLB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.swplb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swplb32memop.Rt, is_64bit));
@@ -42655,7 +42283,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWCLRL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwclrl64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwclrl64memop.Rt, is_64bit));
@@ -42666,7 +42293,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSWPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwswpl64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwswpl64memop.Rt, is_64bit));
@@ -42677,7 +42303,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSETL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsetl64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsetl64memop.Rt, is_64bit));
@@ -42688,7 +42313,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDADDAB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaddab32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaddab32memop.Rt, is_64bit));
@@ -42699,7 +42323,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRAB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrab32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrab32memop.Rt, is_64bit));
@@ -42710,7 +42333,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDEORAB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeorab32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeorab32memop.Rt, is_64bit));
@@ -42721,7 +42343,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETAB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetab32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetab32memop.Rt, is_64bit));
@@ -42732,7 +42353,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMAXAB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxab32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxab32memop.Rt, is_64bit));
@@ -42743,7 +42363,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMINAB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsminab32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsminab32memop.Rt, is_64bit));
@@ -42754,7 +42373,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMAXAB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxab32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxab32memop.Rt, is_64bit));
@@ -42765,7 +42383,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRSB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsb64bl_ldst_regoff.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsb64bl_ldst_regoff.Rm, is_64bit));
@@ -42776,7 +42393,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMINAB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.lduminab32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lduminab32memop.Rt, is_64bit));
@@ -42787,7 +42403,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPAB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.swpab32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swpab32memop.Rt, is_64bit));
@@ -42798,7 +42413,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWCLRA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwclra64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwclra64memop.Rt, is_64bit));
@@ -42809,7 +42423,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSWPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwswpa64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwswpa64memop.Rt, is_64bit));
@@ -42820,7 +42433,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSETA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwseta64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwseta64memop.Rt, is_64bit));
@@ -42831,7 +42443,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDADDALB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaddalb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaddalb32memop.Rt, is_64bit));
@@ -42842,7 +42453,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRALB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclralb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclralb32memop.Rt, is_64bit));
@@ -42853,7 +42463,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDEORALB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeoralb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeoralb32memop.Rt, is_64bit));
@@ -42864,7 +42473,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETALB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetalb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetalb32memop.Rt, is_64bit));
@@ -42875,7 +42483,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMAXALB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxalb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxalb32memop.Rt, is_64bit));
@@ -42886,7 +42493,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMINALB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsminalb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsminalb32memop.Rt, is_64bit));
@@ -42897,7 +42503,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMAXALB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxalb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxalb32memop.Rt, is_64bit));
@@ -42908,7 +42513,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRSB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsb32bl_ldst_regoff.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsb32bl_ldst_regoff.Rm, is_64bit));
@@ -42919,7 +42523,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMINALB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.lduminalb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lduminalb32memop.Rt, is_64bit));
@@ -42930,7 +42533,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPALB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.swpalb32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swpalb32memop.Rt, is_64bit));
@@ -42941,7 +42543,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWCLRAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwclral64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwclral64memop.Rt, is_64bit));
@@ -42952,7 +42553,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSWPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwswpal64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwswpal64memop.Rt, is_64bit));
@@ -42963,7 +42563,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSETAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsetal64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsetal64memop.Rt, is_64bit));
@@ -42974,7 +42573,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDBFADD, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfadd16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfadd16.Rt, is_64bit));
@@ -42985,7 +42583,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDBFMAX, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfmax16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfmax16.Rt, is_64bit));
@@ -42996,7 +42593,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDBFMIN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfmin16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfmin16.Rt, is_64bit));
@@ -43007,7 +42603,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDBFMAXNM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxnm16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxnm16.Rt, is_64bit));
@@ -43018,7 +42613,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_bl_ldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.str_bl_ldst_regoff.Rn));
@@ -43028,7 +42622,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDBFMINNM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfminnm16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfminnm16.Rt, is_64bit));
@@ -43039,7 +42632,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDBFADDL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfaddl16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfaddl16.Rt, is_64bit));
@@ -43050,7 +42642,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDBFMAXL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxl16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxl16.Rt, is_64bit));
@@ -43061,7 +42652,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDBFMINL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfminl16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfminl16.Rt, is_64bit));
@@ -43072,7 +42662,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDBFMAXNML, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxnml16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxnml16.Rt, is_64bit));
@@ -43083,7 +42672,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_bl_ldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.ldr_bl_ldst_regoff.Rn));
@@ -43093,7 +42681,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDBFMINNML, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfminnml16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfminnml16.Rt, is_64bit));
@@ -43104,7 +42691,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDBFADDA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfadda16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfadda16.Rt, is_64bit));
@@ -43115,7 +42701,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDBFMAXA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxa16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxa16.Rt, is_64bit));
@@ -43126,7 +42711,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDBFMINA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfmina16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfmina16.Rt, is_64bit));
@@ -43137,7 +42721,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDBFMAXNMA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxnma16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxnma16.Rt, is_64bit));
@@ -43148,7 +42731,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDBFMINNMA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfminnma16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfminnma16.Rt, is_64bit));
@@ -43159,7 +42741,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDBFADDAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfaddal16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfaddal16.Rt, is_64bit));
@@ -43170,7 +42751,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDBFMAXAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxal16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxal16.Rt, is_64bit));
@@ -43181,7 +42761,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDBFMINAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfminal16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfminal16.Rt, is_64bit));
@@ -43192,7 +42771,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDBFMAXNMAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxnmal16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxnmal16.Rt, is_64bit));
@@ -43203,7 +42781,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDBFMINNMAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfminnmal16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldbfminnmal16.Rt, is_64bit));
@@ -43214,7 +42791,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.casp_cp64comswappr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.casp_cp64comswappr.Rt, is_64bit));
@@ -43225,7 +42801,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.caspl_cp64comswappr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.caspl_cp64comswappr.Rt, is_64bit));
@@ -43236,7 +42811,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.caspa_cp64comswappr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.caspa_cp64comswappr.Rt, is_64bit));
@@ -43247,7 +42821,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.caspal_cp64comswappr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.caspal_cp64comswappr.Rt, is_64bit));
@@ -43258,7 +42831,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cash_c32comswap.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cash_c32comswap.Rt, is_64bit));
@@ -43269,7 +42841,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASLH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.caslh_c32comswap.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.caslh_c32comswap.Rt, is_64bit));
@@ -43280,7 +42851,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASAH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.casah_c32comswap.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.casah_c32comswap.Rt, is_64bit));
@@ -43291,7 +42861,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASALH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.casalh_c32comswap.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.casalh_c32comswap.Rt, is_64bit));
@@ -43302,7 +42871,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASPT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.caspt_cp64comswappr_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.caspt_cp64comswappr_unpriv.Rt, is_64bit));
@@ -43313,7 +42881,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASPLT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.casplt_cp64comswappr_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.casplt_cp64comswappr_unpriv.Rt, is_64bit));
@@ -43324,7 +42891,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASPAT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.caspat_cp64comswappr_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.caspat_cp64comswappr_unpriv.Rt, is_64bit));
@@ -43335,7 +42901,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASPALT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.caspalt_cp64comswappr_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.caspalt_cp64comswappr_unpriv.Rt, is_64bit));
@@ -43346,7 +42911,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTADD, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtadd64memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtadd64memop_unpriv.Rt, is_64bit));
@@ -43357,7 +42921,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSCAS, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwscas_c64rcwcomswap.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwscas_c64rcwcomswap.Rt, is_64bit));
@@ -43368,7 +42931,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSCASP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwscasp_c64rcwcomswappr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwscasp_c64rcwcomswappr.Rt, is_64bit));
@@ -43379,7 +42941,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTCLR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtclr64memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtclr64memop_unpriv.Rt, is_64bit));
@@ -43390,7 +42951,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTSET, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtset64memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtset64memop_unpriv.Rt, is_64bit));
@@ -43401,7 +42961,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.swpt64memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swpt64memop_unpriv.Rt, is_64bit));
@@ -43412,7 +42971,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSCLRP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsclrp128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsclrp128memop128.Rt, is_64bit));
@@ -43423,7 +42981,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSSWPP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsswpp128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsswpp128memop128.Rt, is_64bit));
@@ -43434,7 +42991,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSSETP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwssetp128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwssetp128memop128.Rt, is_64bit));
@@ -43445,7 +43001,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTADDL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtaddl64memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtaddl64memop_unpriv.Rt, is_64bit));
@@ -43456,7 +43011,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSCASL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwscasl_c64rcwcomswap.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwscasl_c64rcwcomswap.Rt, is_64bit));
@@ -43467,7 +43021,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSCASPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwscaspl_c64rcwcomswappr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwscaspl_c64rcwcomswappr.Rt, is_64bit));
@@ -43478,7 +43031,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTCLRL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtclrl64memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtclrl64memop_unpriv.Rt, is_64bit));
@@ -43489,7 +43041,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTSETL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtsetl64memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtsetl64memop_unpriv.Rt, is_64bit));
@@ -43500,7 +43051,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPTL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.swptl64memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swptl64memop_unpriv.Rt, is_64bit));
@@ -43511,7 +43061,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSCLRPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsclrpl128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsclrpl128memop128.Rt, is_64bit));
@@ -43522,7 +43071,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSSWPPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsswppl128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsswppl128memop128.Rt, is_64bit));
@@ -43533,7 +43081,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSSETPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwssetpl128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwssetpl128memop128.Rt, is_64bit));
@@ -43544,7 +43091,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTADDA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtadda64memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtadda64memop_unpriv.Rt, is_64bit));
@@ -43555,7 +43101,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSCASA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwscasa_c64rcwcomswap.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwscasa_c64rcwcomswap.Rt, is_64bit));
@@ -43566,7 +43111,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSCASPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwscaspa_c64rcwcomswappr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwscaspa_c64rcwcomswappr.Rt, is_64bit));
@@ -43577,7 +43121,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTCLRA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtclra64memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtclra64memop_unpriv.Rt, is_64bit));
@@ -43588,7 +43131,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTSETA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtseta64memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtseta64memop_unpriv.Rt, is_64bit));
@@ -43599,7 +43141,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPTA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.swpta64memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swpta64memop_unpriv.Rt, is_64bit));
@@ -43610,7 +43151,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSCLRPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsclrpa128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsclrpa128memop128.Rt, is_64bit));
@@ -43621,7 +43161,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSSWPPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsswppa128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsswppa128memop128.Rt, is_64bit));
@@ -43632,7 +43171,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSSETPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwssetpa128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwssetpa128memop128.Rt, is_64bit));
@@ -43643,7 +43181,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTADDAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtaddal64memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtaddal64memop_unpriv.Rt, is_64bit));
@@ -43654,7 +43191,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSCASAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwscasal_c64rcwcomswap.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwscasal_c64rcwcomswap.Rt, is_64bit));
@@ -43665,7 +43201,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSCASPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwscaspal_c64rcwcomswappr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwscaspal_c64rcwcomswappr.Rt, is_64bit));
@@ -43676,7 +43211,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTCLRAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtclral64memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtclral64memop_unpriv.Rt, is_64bit));
@@ -43687,7 +43221,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTSETAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtsetal64memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtsetal64memop_unpriv.Rt, is_64bit));
@@ -43698,7 +43231,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPTAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.swptal64memop_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swptal64memop_unpriv.Rt, is_64bit));
@@ -43709,7 +43241,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSCLRPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsclrpal128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsclrpal128memop128.Rt, is_64bit));
@@ -43720,7 +43251,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSSWPPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsswppal128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsswppal128memop128.Rt, is_64bit));
@@ -43731,7 +43261,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSSETPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwssetpal128memop128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwssetpal128memop128.Rt, is_64bit));
@@ -43742,7 +43271,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDADDH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaddh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaddh32memop.Rt, is_64bit));
@@ -43753,7 +43281,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrh32memop.Rt, is_64bit));
@@ -43764,7 +43291,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDEORH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeorh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeorh32memop.Rt, is_64bit));
@@ -43775,7 +43301,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldseth32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldseth32memop.Rt, is_64bit));
@@ -43786,7 +43311,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMAXH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxh32memop.Rt, is_64bit));
@@ -43797,7 +43321,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMINH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsminh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsminh32memop.Rt, is_64bit));
@@ -43808,7 +43331,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMAXH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxh32memop.Rt, is_64bit));
@@ -43819,7 +43341,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMINH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.lduminh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lduminh32memop.Rt, is_64bit));
@@ -43830,7 +43351,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.swph32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swph32memop.Rt, is_64bit));
@@ -43841,7 +43361,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSCLR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsclr64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsclr64memop.Rt, is_64bit));
@@ -43852,7 +43371,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSSWP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsswp64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsswp64memop.Rt, is_64bit));
@@ -43863,7 +43381,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSSET, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsset64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsset64memop.Rt, is_64bit));
@@ -43874,7 +43391,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDADDLH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaddlh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaddlh32memop.Rt, is_64bit));
@@ -43885,7 +43401,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRLH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrlh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrlh32memop.Rt, is_64bit));
@@ -43896,7 +43411,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDEORLH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeorlh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeorlh32memop.Rt, is_64bit));
@@ -43907,7 +43421,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETLH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetlh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetlh32memop.Rt, is_64bit));
@@ -43918,7 +43431,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMAXLH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxlh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxlh32memop.Rt, is_64bit));
@@ -43929,7 +43441,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMINLH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsminlh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsminlh32memop.Rt, is_64bit));
@@ -43940,7 +43451,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMAXLH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxlh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxlh32memop.Rt, is_64bit));
@@ -43951,7 +43461,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMINLH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.lduminlh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lduminlh32memop.Rt, is_64bit));
@@ -43962,7 +43471,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPLH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.swplh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swplh32memop.Rt, is_64bit));
@@ -43973,7 +43481,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSCLRL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsclrl64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsclrl64memop.Rt, is_64bit));
@@ -43984,7 +43491,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSSWPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsswpl64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsswpl64memop.Rt, is_64bit));
@@ -43995,7 +43501,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSSETL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwssetl64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwssetl64memop.Rt, is_64bit));
@@ -44006,7 +43511,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDADDAH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaddah32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaddah32memop.Rt, is_64bit));
@@ -44017,7 +43521,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRAH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrah32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrah32memop.Rt, is_64bit));
@@ -44028,7 +43531,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDEORAH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeorah32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeorah32memop.Rt, is_64bit));
@@ -44039,7 +43541,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETAH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetah32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetah32memop.Rt, is_64bit));
@@ -44050,7 +43551,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMAXAH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxah32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxah32memop.Rt, is_64bit));
@@ -44061,7 +43561,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMINAH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsminah32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsminah32memop.Rt, is_64bit));
@@ -44072,7 +43571,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMAXAH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxah32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxah32memop.Rt, is_64bit));
@@ -44083,7 +43581,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMINAH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.lduminah32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lduminah32memop.Rt, is_64bit));
@@ -44094,7 +43591,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPAH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.swpah32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swpah32memop.Rt, is_64bit));
@@ -44105,7 +43601,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSCLRA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsclra64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsclra64memop.Rt, is_64bit));
@@ -44116,7 +43611,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSSWPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsswpa64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsswpa64memop.Rt, is_64bit));
@@ -44127,7 +43621,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSSETA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsseta64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsseta64memop.Rt, is_64bit));
@@ -44138,7 +43631,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDADDALH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaddalh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaddalh32memop.Rt, is_64bit));
@@ -44149,7 +43641,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRALH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclralh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclralh32memop.Rt, is_64bit));
@@ -44160,7 +43651,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDEORALH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeoralh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeoralh32memop.Rt, is_64bit));
@@ -44171,7 +43661,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETALH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetalh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetalh32memop.Rt, is_64bit));
@@ -44182,7 +43671,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMAXALH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxalh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxalh32memop.Rt, is_64bit));
@@ -44193,7 +43681,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMINALH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsminalh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsminalh32memop.Rt, is_64bit));
@@ -44204,7 +43691,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMAXALH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxalh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxalh32memop.Rt, is_64bit));
@@ -44215,7 +43701,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMINALH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.lduminalh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lduminalh32memop.Rt, is_64bit));
@@ -44226,7 +43711,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPALH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.swpalh32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swpalh32memop.Rt, is_64bit));
@@ -44237,7 +43721,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSCLRAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsclral64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsclral64memop.Rt, is_64bit));
@@ -44248,7 +43731,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSSWPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsswpal64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsswpal64memop.Rt, is_64bit));
@@ -44259,7 +43741,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSSETAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwssetal64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwssetal64memop.Rt, is_64bit));
@@ -44270,7 +43751,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFADD, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfadd16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfadd16.Rt, is_64bit));
@@ -44281,7 +43761,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMAX, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmax16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmax16.Rt, is_64bit));
@@ -44292,7 +43771,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMIN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmin16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmin16.Rt, is_64bit));
@@ -44303,7 +43781,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMAXNM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnm16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnm16.Rt, is_64bit));
@@ -44314,7 +43791,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMINNM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminnm16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminnm16.Rt, is_64bit));
@@ -44325,7 +43801,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFADDL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfaddl16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfaddl16.Rt, is_64bit));
@@ -44336,7 +43811,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMAXL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxl16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxl16.Rt, is_64bit));
@@ -44347,7 +43821,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMINL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminl16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminl16.Rt, is_64bit));
@@ -44358,7 +43831,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMAXNML, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnml16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnml16.Rt, is_64bit));
@@ -44369,7 +43841,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMINNML, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminnml16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminnml16.Rt, is_64bit));
@@ -44380,7 +43851,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFADDA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfadda16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfadda16.Rt, is_64bit));
@@ -44391,7 +43861,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMAXA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxa16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxa16.Rt, is_64bit));
@@ -44402,7 +43871,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMINA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmina16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmina16.Rt, is_64bit));
@@ -44413,7 +43881,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMAXNMA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnma16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnma16.Rt, is_64bit));
@@ -44424,7 +43891,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMINNMA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminnma16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminnma16.Rt, is_64bit));
@@ -44435,7 +43901,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFADDAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfaddal16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfaddal16.Rt, is_64bit));
@@ -44446,7 +43911,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMAXAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxal16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxal16.Rt, is_64bit));
@@ -44457,7 +43921,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMINAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminal16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminal16.Rt, is_64bit));
@@ -44468,7 +43931,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMAXNMAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnmal16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnmal16.Rt, is_64bit));
@@ -44479,7 +43941,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMINNMAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminnmal16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminnmal16.Rt, is_64bit));
@@ -44490,7 +43951,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CAS, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cas_c32comswap.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cas_c32comswap.Rt, is_64bit));
@@ -44501,7 +43961,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.casl_c32comswap.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.casl_c32comswap.Rt, is_64bit));
@@ -44512,7 +43971,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.casa_c32comswap.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.casa_c32comswap.Rt, is_64bit));
@@ -44523,7 +43981,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.casal_c32comswap.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.casal_c32comswap.Rt, is_64bit));
@@ -44534,7 +43991,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STILP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stilp32se_ldiappstilp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stilp32se_ldiappstilp.Rt, is_64bit));
@@ -44545,7 +44001,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STILP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stilp32s_ldiappstilp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stilp32s_ldiappstilp.Rt, is_64bit));
@@ -44556,7 +44011,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDIAPP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldiapp32le_ldiappstilp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldiapp32le_ldiappstilp.Rt, is_64bit));
@@ -44567,7 +44021,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDIAPP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldiapp32l_ldiappstilp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldiapp32l_ldiappstilp.Rt, is_64bit));
@@ -44578,7 +44031,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDADD, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldadd32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldadd32memop.Rt, is_64bit));
@@ -44589,7 +44041,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclr32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclr32memop.Rt, is_64bit));
@@ -44600,7 +44051,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDEOR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeor32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeor32memop.Rt, is_64bit));
@@ -44611,7 +44061,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSET, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldset32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldset32memop.Rt, is_64bit));
@@ -44622,7 +44071,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMAX, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmax32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmax32memop.Rt, is_64bit));
@@ -44633,7 +44081,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMIN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmin32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmin32memop.Rt, is_64bit));
@@ -44644,7 +44091,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMAX, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumax32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumax32memop.Rt, is_64bit));
@@ -44655,7 +44101,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMIN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumin32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumin32memop.Rt, is_64bit));
@@ -44666,7 +44111,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.swp32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swp32memop.Rt, is_64bit));
@@ -44677,7 +44121,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDADDL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaddl32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaddl32memop.Rt, is_64bit));
@@ -44688,7 +44131,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrl32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrl32memop.Rt, is_64bit));
@@ -44699,7 +44141,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDEORL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeorl32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeorl32memop.Rt, is_64bit));
@@ -44710,7 +44151,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetl32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetl32memop.Rt, is_64bit));
@@ -44721,7 +44161,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMAXL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxl32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxl32memop.Rt, is_64bit));
@@ -44732,7 +44171,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMINL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsminl32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsminl32memop.Rt, is_64bit));
@@ -44743,7 +44181,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMAXL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxl32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxl32memop.Rt, is_64bit));
@@ -44754,7 +44191,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMINL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.lduminl32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lduminl32memop.Rt, is_64bit));
@@ -44765,7 +44201,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.swpl32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swpl32memop.Rt, is_64bit));
@@ -44776,7 +44211,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDADDA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldadda32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldadda32memop.Rt, is_64bit));
@@ -44787,7 +44221,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclra32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclra32memop.Rt, is_64bit));
@@ -44798,7 +44231,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDEORA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeora32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeora32memop.Rt, is_64bit));
@@ -44809,7 +44241,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldseta32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldseta32memop.Rt, is_64bit));
@@ -44820,7 +44251,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMAXA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxa32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxa32memop.Rt, is_64bit));
@@ -44831,7 +44261,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMINA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmina32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmina32memop.Rt, is_64bit));
@@ -44842,7 +44271,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMAXA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxa32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxa32memop.Rt, is_64bit));
@@ -44853,7 +44281,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMINA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumina32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumina32memop.Rt, is_64bit));
@@ -44864,7 +44291,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.swpa32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swpa32memop.Rt, is_64bit));
@@ -44875,7 +44301,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDADDAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaddal32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaddal32memop.Rt, is_64bit));
@@ -44886,7 +44311,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclral32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclral32memop.Rt, is_64bit));
@@ -44897,7 +44321,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDEORAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeoral32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeoral32memop.Rt, is_64bit));
@@ -44908,7 +44331,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetal32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetal32memop.Rt, is_64bit));
@@ -44919,7 +44341,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMAXAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxal32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxal32memop.Rt, is_64bit));
@@ -44930,7 +44351,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMINAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsminal32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsminal32memop.Rt, is_64bit));
@@ -44941,7 +44361,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMAXAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxal32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxal32memop.Rt, is_64bit));
@@ -44952,7 +44371,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMINAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.lduminal32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lduminal32memop.Rt, is_64bit));
@@ -44963,7 +44381,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.swpal32memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swpal32memop.Rt, is_64bit));
@@ -44974,7 +44391,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFADD, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfadd32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfadd32.Rt, is_64bit));
@@ -44985,7 +44401,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMAX, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmax32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmax32.Rt, is_64bit));
@@ -44996,7 +44411,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMIN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmin32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmin32.Rt, is_64bit));
@@ -45007,7 +44421,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMAXNM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnm32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnm32.Rt, is_64bit));
@@ -45018,7 +44431,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMINNM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminnm32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminnm32.Rt, is_64bit));
@@ -45029,7 +44441,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFADDL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfaddl32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfaddl32.Rt, is_64bit));
@@ -45040,7 +44451,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMAXL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxl32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxl32.Rt, is_64bit));
@@ -45051,7 +44461,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMINL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminl32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminl32.Rt, is_64bit));
@@ -45062,7 +44471,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMAXNML, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnml32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnml32.Rt, is_64bit));
@@ -45073,7 +44481,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMINNML, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminnml32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminnml32.Rt, is_64bit));
@@ -45084,7 +44491,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFADDA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfadda32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfadda32.Rt, is_64bit));
@@ -45095,7 +44501,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMAXA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxa32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxa32.Rt, is_64bit));
@@ -45106,7 +44511,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMINA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmina32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmina32.Rt, is_64bit));
@@ -45117,7 +44521,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMAXNMA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnma32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnma32.Rt, is_64bit));
@@ -45128,7 +44531,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMINNMA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminnma32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminnma32.Rt, is_64bit));
@@ -45139,7 +44541,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFADDAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfaddal32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfaddal32.Rt, is_64bit));
@@ -45150,7 +44551,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMAXAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxal32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxal32.Rt, is_64bit));
@@ -45161,7 +44561,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMINAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminal32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminal32.Rt, is_64bit));
@@ -45172,7 +44571,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMAXNMAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnmal32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnmal32.Rt, is_64bit));
@@ -45183,7 +44581,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMINNMAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminnmal32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminnmal32.Rt, is_64bit));
@@ -45194,7 +44591,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CAS, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cas_c64comswap.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cas_c64comswap.Rt, is_64bit));
@@ -45205,7 +44601,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.casl_c64comswap.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.casl_c64comswap.Rt, is_64bit));
@@ -45216,7 +44611,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.casa_c64comswap.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.casa_c64comswap.Rt, is_64bit));
@@ -45227,7 +44621,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.casal_c64comswap.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.casal_c64comswap.Rt, is_64bit));
@@ -45238,7 +44631,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CAST, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cast_c64comswap_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cast_c64comswap_unpriv.Rt, is_64bit));
@@ -45249,7 +44641,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASLT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.caslt_c64comswap_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.caslt_c64comswap_unpriv.Rt, is_64bit));
@@ -45260,7 +44651,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASAT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.casat_c64comswap_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.casat_c64comswap_unpriv.Rt, is_64bit));
@@ -45271,7 +44661,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CASALT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.casalt_c64comswap_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.casalt_c64comswap_unpriv.Rt, is_64bit));
@@ -45282,7 +44671,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STILP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stilp64ss_ldiappstilp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stilp64ss_ldiappstilp.Rt, is_64bit));
@@ -45293,7 +44681,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STILP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stilp64s_ldiappstilp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stilp64s_ldiappstilp.Rt, is_64bit));
@@ -45304,7 +44691,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlp64ldiappstilp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlp64ldiappstilp.Rt, is_64bit));
@@ -45315,7 +44701,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDIAPP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldiapp64ls_ldiappstilp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldiapp64ls_ldiappstilp.Rt, is_64bit));
@@ -45326,7 +44711,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDIAPP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldiapp64l_ldiappstilp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldiapp64l_ldiappstilp.Rt, is_64bit));
@@ -45337,7 +44721,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldap64ldiappstilp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldap64ldiappstilp.Rt, is_64bit));
@@ -45348,7 +44731,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapp64ldiappstilp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapp64ldiappstilp.Rt, is_64bit));
@@ -45359,7 +44741,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDADD, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldadd64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldadd64memop.Rt, is_64bit));
@@ -45370,7 +44751,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclr64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclr64memop.Rt, is_64bit));
@@ -45381,7 +44761,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDEOR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeor64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeor64memop.Rt, is_64bit));
@@ -45392,7 +44771,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSET, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldset64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldset64memop.Rt, is_64bit));
@@ -45403,7 +44781,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMAX, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmax64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmax64memop.Rt, is_64bit));
@@ -45414,7 +44791,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMIN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmin64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmin64memop.Rt, is_64bit));
@@ -45425,7 +44801,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMAX, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumax64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumax64memop.Rt, is_64bit));
@@ -45436,7 +44811,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMIN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumin64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumin64memop.Rt, is_64bit));
@@ -45447,7 +44821,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.swp64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swp64memop.Rt, is_64bit));
@@ -45458,7 +44831,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST64BV0, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.st64bv064memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st64bv064memop.Rt, is_64bit));
@@ -45469,7 +44841,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST64BV, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.st64bv64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st64bv64memop.Rt, is_64bit));
@@ -45480,7 +44851,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDADDL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaddl64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaddl64memop.Rt, is_64bit));
@@ -45491,7 +44861,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrl64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrl64memop.Rt, is_64bit));
@@ -45502,7 +44871,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDEORL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeorl64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeorl64memop.Rt, is_64bit));
@@ -45513,7 +44881,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetl64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetl64memop.Rt, is_64bit));
@@ -45524,7 +44891,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMAXL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxl64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxl64memop.Rt, is_64bit));
@@ -45535,7 +44901,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMINL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsminl64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsminl64memop.Rt, is_64bit));
@@ -45546,7 +44911,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMAXL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxl64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxl64memop.Rt, is_64bit));
@@ -45557,7 +44921,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMINL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.lduminl64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lduminl64memop.Rt, is_64bit));
@@ -45568,7 +44931,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.swpl64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swpl64memop.Rt, is_64bit));
@@ -45579,7 +44941,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDADDA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldadda64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldadda64memop.Rt, is_64bit));
@@ -45590,7 +44951,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclra64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclra64memop.Rt, is_64bit));
@@ -45601,7 +44961,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDEORA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeora64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeora64memop.Rt, is_64bit));
@@ -45612,7 +44971,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldseta64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldseta64memop.Rt, is_64bit));
@@ -45623,7 +44981,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMAXA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxa64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxa64memop.Rt, is_64bit));
@@ -45634,7 +44991,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMINA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmina64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmina64memop.Rt, is_64bit));
@@ -45645,7 +45001,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMAXA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxa64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxa64memop.Rt, is_64bit));
@@ -45656,7 +45011,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMINA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumina64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumina64memop.Rt, is_64bit));
@@ -45667,7 +45021,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.swpa64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swpa64memop.Rt, is_64bit));
@@ -45678,7 +45031,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDADDAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaddal64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldaddal64memop.Rt, is_64bit));
@@ -45689,7 +45041,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclral64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclral64memop.Rt, is_64bit));
@@ -45700,7 +45051,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDEORAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeoral64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldeoral64memop.Rt, is_64bit));
@@ -45711,7 +45061,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetal64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetal64memop.Rt, is_64bit));
@@ -45722,7 +45071,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMAXAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxal64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsmaxal64memop.Rt, is_64bit));
@@ -45733,7 +45081,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSMINAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsminal64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsminal64memop.Rt, is_64bit));
@@ -45744,7 +45091,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMAXAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxal64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldumaxal64memop.Rt, is_64bit));
@@ -45755,7 +45101,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUMINAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.lduminal64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lduminal64memop.Rt, is_64bit));
@@ -45766,7 +45111,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.swpal64memop.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.swpal64memop.Rt, is_64bit));
@@ -45777,7 +45121,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFADD, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfadd64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfadd64.Rt, is_64bit));
@@ -45788,7 +45131,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMAX, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmax64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmax64.Rt, is_64bit));
@@ -45799,7 +45141,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMIN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmin64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmin64.Rt, is_64bit));
@@ -45810,7 +45151,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMAXNM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnm64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnm64.Rt, is_64bit));
@@ -45821,7 +45161,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMINNM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminnm64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminnm64.Rt, is_64bit));
@@ -45832,7 +45171,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFADDL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfaddl64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfaddl64.Rt, is_64bit));
@@ -45843,7 +45181,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMAXL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxl64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxl64.Rt, is_64bit));
@@ -45854,7 +45191,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMINL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminl64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminl64.Rt, is_64bit));
@@ -45865,7 +45201,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMAXNML, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnml64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnml64.Rt, is_64bit));
@@ -45876,7 +45211,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMINNML, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminnml64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminnml64.Rt, is_64bit));
@@ -45887,7 +45221,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFADDA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfadda64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfadda64.Rt, is_64bit));
@@ -45898,7 +45231,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMAXA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxa64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxa64.Rt, is_64bit));
@@ -45909,7 +45241,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMINA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmina64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmina64.Rt, is_64bit));
@@ -45920,7 +45251,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMAXNMA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnma64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnma64.Rt, is_64bit));
@@ -45931,7 +45261,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMINNMA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminnma64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminnma64.Rt, is_64bit));
@@ -45942,7 +45271,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFADDAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfaddal64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfaddal64.Rt, is_64bit));
@@ -45953,7 +45281,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMAXAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxal64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxal64.Rt, is_64bit));
@@ -45964,7 +45291,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMINAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminal64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminal64.Rt, is_64bit));
@@ -45975,7 +45301,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMAXNMAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnmal64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnmal64.Rt, is_64bit));
@@ -45986,7 +45311,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDFMINNMAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminnmal64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminnmal64.Rt, is_64bit));
@@ -46002,7 +45326,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_hx1r1h.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_hx1r1h.Rm, is_64bit));
@@ -46013,7 +45336,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_hx3r3h.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_hx3r3h.Rm, is_64bit));
@@ -46024,7 +45346,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_hx2r2h.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_hx2r2h.Rm, is_64bit));
@@ -46035,7 +45356,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_hx4r4h.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_hx4r4h.Rm, is_64bit));
@@ -46046,7 +45366,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_hx1r1h.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_hx1r1h.Rm, is_64bit));
@@ -46057,7 +45376,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_hx3r3h.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_hx3r3h.Rm, is_64bit));
@@ -46068,7 +45386,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_hx2r2h.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_hx2r2h.Rm, is_64bit));
@@ -46079,7 +45396,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_hx4r4h.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_hx4r4h.Rm, is_64bit));
@@ -46095,7 +45411,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsep_r4r.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsep_r4r.Rm, is_64bit));
@@ -46106,7 +45421,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r4r4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r4r4.Rm, is_64bit));
@@ -46117,7 +45431,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsep_r3r.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsep_r3r.Rm, is_64bit));
@@ -46128,7 +45441,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r3r3.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r3r3.Rm, is_64bit));
@@ -46139,7 +45451,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r1r1.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r1r1.Rm, is_64bit));
@@ -46150,7 +45461,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsep_r2r.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsep_r2r.Rm, is_64bit));
@@ -46161,7 +45471,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r2r2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r2r2.Rm, is_64bit));
@@ -46172,7 +45481,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD4, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsep_r4r.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsep_r4r.Rm, is_64bit));
@@ -46183,7 +45491,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r4r4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r4r4.Rm, is_64bit));
@@ -46194,7 +45501,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD3, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsep_r3r.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsep_r3r.Rm, is_64bit));
@@ -46205,7 +45511,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r3r3.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r3r3.Rm, is_64bit));
@@ -46216,7 +45521,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r1r1.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r1r1.Rm, is_64bit));
@@ -46227,7 +45531,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD2, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsep_r2r.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsep_r2r.Rm, is_64bit));
@@ -46238,7 +45541,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r2r2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r2r2.Rm, is_64bit));
@@ -46249,7 +45551,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD1R, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlsop_rx1r.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlsop_rx1r.Rm, is_64bit));
@@ -46260,7 +45561,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD3R, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlsop_rx3r.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlsop_rx3r.Rm, is_64bit));
@@ -46271,7 +45571,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD2R, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlsop_rx2r.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlsop_rx2r.Rm, is_64bit));
@@ -46282,7 +45581,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LD4R, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlsop_rx4r.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlsop_rx4r.Rm, is_64bit));
@@ -46298,7 +45596,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STXP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stxp_sp32ldstexclp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stxp_sp32ldstexclp.Rt, is_64bit));
@@ -46310,7 +45607,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLXP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlxp_sp32ldstexclp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlxp_sp32ldstexclp.Rt, is_64bit));
@@ -46322,7 +45618,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STXP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stxp_sp64ldstexclp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stxp_sp64ldstexclp.Rt, is_64bit));
@@ -46334,7 +45629,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLXP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlxp_sp64ldstexclp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlxp_sp64ldstexclp.Rt, is_64bit));
@@ -46352,7 +45646,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::PRFM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.prfm_pldst_regoff.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.prfm_pldst_regoff.Rm, is_64bit));
@@ -46368,7 +45661,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STRB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.strb32b_ldst_regoff.Rt, false));
                         result.operands.push_back(Operand::memory_base(enc.strb32b_ldst_regoff.Rn));
                         return result;
@@ -46377,7 +45669,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrb32b_ldst_regoff.Rt, false));
                         result.operands.push_back(Operand::memory_base(enc.ldrb32b_ldst_regoff.Rn));
                         return result;
@@ -46386,7 +45677,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRSB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsb64b_ldst_regoff.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsb64b_ldst_regoff.Rm, is_64bit));
@@ -46397,7 +45687,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRSB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsb32b_ldst_regoff.Rt, false));
                         result.operands.push_back(Operand::memory_base(enc.ldrsb32b_ldst_regoff.Rn));
                         return result;
@@ -46406,7 +45695,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_bldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.str_bldst_regoff.Rn));
@@ -46416,7 +45704,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_bldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.ldr_bldst_regoff.Rn));
@@ -46426,7 +45713,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_qldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.str_qldst_regoff.Rn));
@@ -46436,7 +45722,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_qldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.ldr_qldst_regoff.Rn));
@@ -46446,7 +45731,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STRH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.strh32ldst_regoff.Rt, false));
                         result.operands.push_back(Operand::memory_base(enc.strh32ldst_regoff.Rn));
                         return result;
@@ -46455,7 +45739,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrh32ldst_regoff.Rt, false));
                         result.operands.push_back(Operand::memory_base(enc.ldrh32ldst_regoff.Rn));
                         return result;
@@ -46464,7 +45747,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRSH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsh64ldst_regoff.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsh64ldst_regoff.Rm, is_64bit));
@@ -46475,7 +45757,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRSH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsh32ldst_regoff.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsh32ldst_regoff.Rm, is_64bit));
@@ -46486,7 +45767,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_hldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.str_hldst_regoff.Rn));
@@ -46496,7 +45776,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_hldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.ldr_hldst_regoff.Rn));
@@ -46506,7 +45785,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str32ldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.str32ldst_regoff.Rn));
@@ -46516,7 +45794,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr32ldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.ldr32ldst_regoff.Rn));
@@ -46526,7 +45803,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRSW, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsw64ldst_regoff.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsw64ldst_regoff.Rm, is_64bit));
@@ -46537,7 +45813,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_sldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.str_sldst_regoff.Rn));
@@ -46547,7 +45822,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_sldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.ldr_sldst_regoff.Rn));
@@ -46557,7 +45831,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.str64ldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.str64ldst_regoff.Rn));
@@ -46567,7 +45840,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr64ldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.ldr64ldst_regoff.Rn));
@@ -46577,7 +45849,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_dldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.str_dldst_regoff.Rn));
@@ -46587,7 +45858,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_dldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.ldr_dldst_regoff.Rn));
@@ -46602,7 +45872,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLURB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlurb32ldapstl_unscaled.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlurb32ldapstl_unscaled.Rt, is_64bit));
@@ -46616,7 +45885,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPURB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapurb32ldapstl_unscaled.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapurb32ldapstl_unscaled.Rt, is_64bit));
@@ -46630,7 +45898,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPURSB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapursb64ldapstl_unscaled.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapursb64ldapstl_unscaled.Rt, is_64bit));
@@ -46644,7 +45911,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPURSB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapursb32ldapstl_unscaled.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapursb32ldapstl_unscaled.Rt, is_64bit));
@@ -46658,7 +45924,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlur_bldapstl_simd.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlur_bldapstl_simd.Rt, is_64bit));
@@ -46672,7 +45937,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapur_bldapstl_simd.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapur_bldapstl_simd.Rt, is_64bit));
@@ -46686,7 +45950,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlur_qldapstl_simd.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlur_qldapstl_simd.Rt, is_64bit));
@@ -46700,7 +45963,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapur_qldapstl_simd.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapur_qldapstl_simd.Rt, is_64bit));
@@ -46714,7 +45976,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STURB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sturb32ldst_unscaled.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sturb32ldst_unscaled.Rt, is_64bit));
@@ -46728,7 +45989,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STRB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.strb32ldst_immpost.Rt, false));
                         int32_t imm = (static_cast<int32_t>(enc.strb32ldst_immpost.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_post_index(enc.strb32ldst_immpost.Rn, imm));
@@ -46738,7 +45998,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STTRB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sttrb32ldst_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sttrb32ldst_unpriv.Rt, is_64bit));
@@ -46752,7 +46011,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STRB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.strb32ldst_immpre.Rt, false));
                         int32_t imm = (static_cast<int32_t>(enc.strb32ldst_immpre.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_pre_index(enc.strb32ldst_immpre.Rn, imm));
@@ -46762,7 +46020,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDURB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldurb32ldst_unscaled.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldurb32ldst_unscaled.Rt, is_64bit));
@@ -46776,7 +46033,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrb32ldst_immpost.Rt, false));
                         int32_t imm = (static_cast<int32_t>(enc.ldrb32ldst_immpost.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_post_index(enc.ldrb32ldst_immpost.Rn, imm));
@@ -46786,7 +46042,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTRB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtrb32ldst_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtrb32ldst_unpriv.Rt, is_64bit));
@@ -46800,7 +46055,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrb32ldst_immpre.Rt, false));
                         int32_t imm = (static_cast<int32_t>(enc.ldrb32ldst_immpre.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_pre_index(enc.ldrb32ldst_immpre.Rn, imm));
@@ -46810,7 +46064,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDURSB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldursb64ldst_unscaled.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldursb64ldst_unscaled.Rt, is_64bit));
@@ -46824,7 +46077,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRSB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsb64ldst_immpost.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsb64ldst_immpost.Rt, is_64bit));
@@ -46838,7 +46090,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTRSB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtrsb64ldst_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtrsb64ldst_unpriv.Rt, is_64bit));
@@ -46852,7 +46103,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRSB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsb64ldst_immpre.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsb64ldst_immpre.Rt, is_64bit));
@@ -46866,7 +46116,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDURSB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldursb32ldst_unscaled.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldursb32ldst_unscaled.Rt, is_64bit));
@@ -46880,7 +46129,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRSB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsb32ldst_immpost.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsb32ldst_immpost.Rt, is_64bit));
@@ -46894,7 +46142,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTRSB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtrsb32ldst_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtrsb32ldst_unpriv.Rt, is_64bit));
@@ -46908,7 +46155,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRSB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsb32ldst_immpre.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsb32ldst_immpre.Rt, is_64bit));
@@ -46922,7 +46168,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.stur_bldst_unscaled.Rt, is_64bit));
@@ -46933,7 +46178,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_bldst_immpost.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.str_bldst_immpost.imm9) << 23) >> 23;
@@ -46944,7 +46188,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_bldst_immpre.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.str_bldst_immpre.imm9) << 23) >> 23;
@@ -46955,7 +46198,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldur_bldst_unscaled.Rt, is_64bit));
@@ -46966,7 +46208,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_bldst_immpost.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.ldr_bldst_immpost.imm9) << 23) >> 23;
@@ -46977,7 +46218,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_bldst_immpre.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.ldr_bldst_immpre.imm9) << 23) >> 23;
@@ -46988,7 +46228,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.stur_qldst_unscaled.Rt, is_64bit));
@@ -46999,7 +46238,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_qldst_immpost.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.str_qldst_immpost.imm9) << 23) >> 23;
@@ -47010,7 +46248,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_qldst_immpre.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.str_qldst_immpre.imm9) << 23) >> 23;
@@ -47021,7 +46258,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldur_qldst_unscaled.Rt, is_64bit));
@@ -47032,7 +46268,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_qldst_immpost.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.ldr_qldst_immpost.imm9) << 23) >> 23;
@@ -47043,7 +46278,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_qldst_immpre.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.ldr_qldst_immpre.imm9) << 23) >> 23;
@@ -47054,7 +46288,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLURH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlurh32ldapstl_unscaled.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlurh32ldapstl_unscaled.Rt, is_64bit));
@@ -47068,7 +46301,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPURH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapurh32ldapstl_unscaled.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapurh32ldapstl_unscaled.Rt, is_64bit));
@@ -47082,7 +46314,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPURSH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapursh64ldapstl_unscaled.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapursh64ldapstl_unscaled.Rt, is_64bit));
@@ -47096,7 +46327,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPURSH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapursh32ldapstl_unscaled.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapursh32ldapstl_unscaled.Rt, is_64bit));
@@ -47110,7 +46340,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlur_hldapstl_simd.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlur_hldapstl_simd.Rt, is_64bit));
@@ -47124,7 +46353,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapur_hldapstl_simd.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapur_hldapstl_simd.Rt, is_64bit));
@@ -47138,7 +46366,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STURH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sturh32ldst_unscaled.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sturh32ldst_unscaled.Rt, is_64bit));
@@ -47152,7 +46379,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STRH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.strh32ldst_immpost.Rt, false));
                         int32_t imm = (static_cast<int32_t>(enc.strh32ldst_immpost.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_post_index(enc.strh32ldst_immpost.Rn, imm));
@@ -47162,7 +46388,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STTRH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sttrh32ldst_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sttrh32ldst_unpriv.Rt, is_64bit));
@@ -47176,7 +46401,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STRH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.strh32ldst_immpre.Rt, false));
                         int32_t imm = (static_cast<int32_t>(enc.strh32ldst_immpre.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_pre_index(enc.strh32ldst_immpre.Rn, imm));
@@ -47186,7 +46410,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDURH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldurh32ldst_unscaled.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldurh32ldst_unscaled.Rt, is_64bit));
@@ -47200,7 +46423,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrh32ldst_immpost.Rt, false));
                         int32_t imm = (static_cast<int32_t>(enc.ldrh32ldst_immpost.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_post_index(enc.ldrh32ldst_immpost.Rn, imm));
@@ -47210,7 +46432,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTRH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtrh32ldst_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtrh32ldst_unpriv.Rt, is_64bit));
@@ -47224,7 +46445,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrh32ldst_immpre.Rt, false));
                         int32_t imm = (static_cast<int32_t>(enc.ldrh32ldst_immpre.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_pre_index(enc.ldrh32ldst_immpre.Rn, imm));
@@ -47234,7 +46454,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDURSH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldursh64ldst_unscaled.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldursh64ldst_unscaled.Rt, is_64bit));
@@ -47248,7 +46467,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRSH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsh64ldst_immpost.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsh64ldst_immpost.Rt, is_64bit));
@@ -47262,7 +46480,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTRSH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtrsh64ldst_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtrsh64ldst_unpriv.Rt, is_64bit));
@@ -47276,7 +46493,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRSH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsh64ldst_immpre.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsh64ldst_immpre.Rt, is_64bit));
@@ -47290,7 +46506,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDURSH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldursh32ldst_unscaled.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldursh32ldst_unscaled.Rt, is_64bit));
@@ -47304,7 +46519,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRSH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsh32ldst_immpost.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsh32ldst_immpost.Rt, is_64bit));
@@ -47318,7 +46532,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTRSH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtrsh32ldst_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtrsh32ldst_unpriv.Rt, is_64bit));
@@ -47332,7 +46545,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRSH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsh32ldst_immpre.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsh32ldst_immpre.Rt, is_64bit));
@@ -47346,7 +46558,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.stur_hldst_unscaled.Rt, is_64bit));
@@ -47357,7 +46568,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_hldst_immpost.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.str_hldst_immpost.imm9) << 23) >> 23;
@@ -47368,7 +46578,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_hldst_immpre.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.str_hldst_immpre.imm9) << 23) >> 23;
@@ -47379,7 +46588,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldur_hldst_unscaled.Rt, is_64bit));
@@ -47390,7 +46598,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_hldst_immpost.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.ldr_hldst_immpost.imm9) << 23) >> 23;
@@ -47401,7 +46608,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_hldst_immpre.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.ldr_hldst_immpre.imm9) << 23) >> 23;
@@ -47412,7 +46618,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlur32ldapstl_unscaled.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlur32ldapstl_unscaled.Rt, is_64bit));
@@ -47426,7 +46631,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapur32ldapstl_unscaled.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapur32ldapstl_unscaled.Rt, is_64bit));
@@ -47440,7 +46644,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPURSW, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapursw64ldapstl_unscaled.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapursw64ldapstl_unscaled.Rt, is_64bit));
@@ -47454,7 +46657,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlur_sldapstl_simd.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlur_sldapstl_simd.Rt, is_64bit));
@@ -47468,7 +46670,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapur_sldapstl_simd.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapur_sldapstl_simd.Rt, is_64bit));
@@ -47482,7 +46683,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.stur32ldst_unscaled.Rt, is_64bit));
@@ -47493,7 +46693,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str32ldst_immpost.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.str32ldst_immpost.imm9) << 23) >> 23;
@@ -47504,7 +46703,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STTR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.sttr32ldst_unpriv.Rt, is_64bit));
@@ -47515,7 +46713,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str32ldst_immpre.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.str32ldst_immpre.imm9) << 23) >> 23;
@@ -47526,7 +46723,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldur32ldst_unscaled.Rt, is_64bit));
@@ -47537,7 +46733,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr32ldst_immpost.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.ldr32ldst_immpost.imm9) << 23) >> 23;
@@ -47548,7 +46743,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtr32ldst_unpriv.Rt, is_64bit));
@@ -47559,7 +46753,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr32ldst_immpre.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.ldr32ldst_immpre.imm9) << 23) >> 23;
@@ -47570,7 +46763,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDURSW, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldursw64ldst_unscaled.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldursw64ldst_unscaled.Rt, is_64bit));
@@ -47584,7 +46776,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRSW, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsw64ldst_immpost.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsw64ldst_immpost.Rt, is_64bit));
@@ -47598,7 +46789,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTRSW, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtrsw64ldst_unpriv.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtrsw64ldst_unpriv.Rt, is_64bit));
@@ -47612,7 +46802,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRSW, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsw64ldst_immpre.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsw64ldst_immpre.Rt, is_64bit));
@@ -47626,7 +46815,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.stur_sldst_unscaled.Rt, is_64bit));
@@ -47637,7 +46825,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_sldst_immpost.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.str_sldst_immpost.imm9) << 23) >> 23;
@@ -47648,7 +46835,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_sldst_immpre.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.str_sldst_immpre.imm9) << 23) >> 23;
@@ -47659,7 +46845,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldur_sldst_unscaled.Rt, is_64bit));
@@ -47670,7 +46855,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_sldst_immpost.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.ldr_sldst_immpost.imm9) << 23) >> 23;
@@ -47681,7 +46865,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_sldst_immpre.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.ldr_sldst_immpre.imm9) << 23) >> 23;
@@ -47692,7 +46875,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlur64ldapstl_unscaled.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlur64ldapstl_unscaled.Rt, is_64bit));
@@ -47706,7 +46888,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STG, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stg64spost_ldsttags.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stg64spost_ldsttags.Rt, is_64bit));
@@ -47720,7 +46901,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STG, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stg64soffset_ldsttags.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stg64soffset_ldsttags.Rt, is_64bit));
@@ -47734,7 +46914,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STG, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stg64spre_ldsttags.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stg64spre_ldsttags.Rt, is_64bit));
@@ -47748,7 +46927,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapur64ldapstl_unscaled.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapur64ldapstl_unscaled.Rt, is_64bit));
@@ -47762,7 +46940,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDG, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldg64loffset_ldsttags.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldg64loffset_ldsttags.Rt, is_64bit));
@@ -47776,7 +46953,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STZG, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stzg64spost_ldsttags.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stzg64spost_ldsttags.Rt, is_64bit));
@@ -47790,7 +46966,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STZG, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stzg64soffset_ldsttags.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stzg64soffset_ldsttags.Rt, is_64bit));
@@ -47804,7 +46979,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STZG, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stzg64spre_ldsttags.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stzg64spre_ldsttags.Rt, is_64bit));
@@ -47818,7 +46992,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST2G, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.st2g64spost_ldsttags.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st2g64spost_ldsttags.Rt, is_64bit));
@@ -47832,7 +47005,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST2G, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.st2g64soffset_ldsttags.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st2g64soffset_ldsttags.Rt, is_64bit));
@@ -47846,7 +47018,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::ST2G, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.st2g64spre_ldsttags.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st2g64spre_ldsttags.Rt, is_64bit));
@@ -47860,7 +47031,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STZ2G, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stz2g64spost_ldsttags.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stz2g64spost_ldsttags.Rt, is_64bit));
@@ -47874,7 +47044,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STZ2G, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stz2g64soffset_ldsttags.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stz2g64soffset_ldsttags.Rt, is_64bit));
@@ -47888,7 +47057,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STZ2G, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stz2g64spre_ldsttags.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stz2g64spre_ldsttags.Rt, is_64bit));
@@ -47902,7 +47070,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlur_dldapstl_simd.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlur_dldapstl_simd.Rt, is_64bit));
@@ -47916,7 +47083,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapur_dldapstl_simd.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapur_dldapstl_simd.Rt, is_64bit));
@@ -47930,7 +47096,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         int scale = 8;
                         result.operands.push_back(Operand(OperandType::Register, enc.stur64ldst_unscaled.Rt, is_64bit));
@@ -47941,7 +47106,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.str64ldst_immpost.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.str64ldst_immpost.imm9) << 23) >> 23;
@@ -47952,7 +47116,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STTR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         int scale = 8;
                         result.operands.push_back(Operand(OperandType::Register, enc.sttr64ldst_unpriv.Rt, is_64bit));
@@ -47963,7 +47126,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.str64ldst_immpre.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.str64ldst_immpre.imm9) << 23) >> 23;
@@ -47974,7 +47136,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRAA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldraa64ldst_pac.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldraa64ldst_pac.Rt, is_64bit));
@@ -47988,7 +47149,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRAA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldraa64w_ldst_pac.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldraa64w_ldst_pac.Rt, is_64bit));
@@ -48002,7 +47162,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         int scale = 8;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldur64ldst_unscaled.Rt, is_64bit));
@@ -48013,7 +47172,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr64ldst_immpost.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.ldr64ldst_immpost.imm9) << 23) >> 23;
@@ -48024,7 +47182,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         int scale = 8;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtr64ldst_unpriv.Rt, is_64bit));
@@ -48035,7 +47192,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr64ldst_immpre.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.ldr64ldst_immpre.imm9) << 23) >> 23;
@@ -48046,7 +47202,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::PRFUM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.prfum_pldst_unscaled.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.prfum_pldst_unscaled.Rt, is_64bit));
@@ -48060,7 +47215,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRAB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrab64ldst_pac.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrab64ldst_pac.Rt, is_64bit));
@@ -48074,7 +47228,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRAB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrab64w_ldst_pac.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrab64w_ldst_pac.Rt, is_64bit));
@@ -48088,7 +47241,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.stur_dldst_unscaled.Rt, is_64bit));
@@ -48099,7 +47251,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_dldst_immpost.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.str_dldst_immpost.imm9) << 23) >> 23;
@@ -48110,7 +47261,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_dldst_immpre.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.str_dldst_immpre.imm9) << 23) >> 23;
@@ -48121,7 +47271,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldur_dldst_unscaled.Rt, is_64bit));
@@ -48132,7 +47281,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_dldst_immpost.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.ldr_dldst_immpost.imm9) << 23) >> 23;
@@ -48143,7 +47291,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_dldst_immpre.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.ldr_dldst_immpre.imm9) << 23) >> 23;
@@ -48159,7 +47306,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STNP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnp32ldstnapair_offs.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnp32ldstnapair_offs.Rt, is_64bit));
@@ -48171,7 +47317,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDNP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnp32ldstnapair_offs.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnp32ldstnapair_offs.Rt, is_64bit));
@@ -48183,11 +47328,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stp32ldstpair_post.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp32ldstpair_post.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp32ldstpair_post.Rt2, is_64bit));
+                        int scale = 4;
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp32ldstpair_post.Rt, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp32ldstpair_post.Rt2, false));
                         int32_t imm = (static_cast<int32_t>(enc.stp32ldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.stp32ldstpair_post.Rn, imm * scale));
                         return result;
@@ -48196,11 +47339,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldp32ldstpair_post.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp32ldstpair_post.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp32ldstpair_post.Rt2, is_64bit));
+                        int scale = 4;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp32ldstpair_post.Rt, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp32ldstpair_post.Rt2, false));
                         int32_t imm = (static_cast<int32_t>(enc.ldp32ldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.ldp32ldstpair_post.Rn, imm * scale));
                         return result;
@@ -48209,11 +47350,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stp32ldstpair_off.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp32ldstpair_off.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp32ldstpair_off.Rt2, is_64bit));
+                        int scale = 4;
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp32ldstpair_off.Rt, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp32ldstpair_off.Rt2, false));
                         int32_t imm = (static_cast<int32_t>(enc.stp32ldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.stp32ldstpair_off.Rn, imm * scale));
                         return result;
@@ -48222,11 +47361,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldp32ldstpair_off.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp32ldstpair_off.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp32ldstpair_off.Rt2, is_64bit));
+                        int scale = 4;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp32ldstpair_off.Rt, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp32ldstpair_off.Rt2, false));
                         int32_t imm = (static_cast<int32_t>(enc.ldp32ldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.ldp32ldstpair_off.Rn, imm * scale));
                         return result;
@@ -48235,11 +47372,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stp32ldstpair_pre.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp32ldstpair_pre.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp32ldstpair_pre.Rt2, is_64bit));
+                        int scale = 4;
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp32ldstpair_pre.Rt, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp32ldstpair_pre.Rt2, false));
                         int32_t imm = (static_cast<int32_t>(enc.stp32ldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.stp32ldstpair_pre.Rn, imm * scale));
                         return result;
@@ -48248,11 +47383,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldp32ldstpair_pre.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp32ldstpair_pre.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp32ldstpair_pre.Rt2, is_64bit));
+                        int scale = 4;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp32ldstpair_pre.Rt, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp32ldstpair_pre.Rt2, false));
                         int32_t imm = (static_cast<int32_t>(enc.ldp32ldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.ldp32ldstpair_pre.Rn, imm * scale));
                         return result;
@@ -48261,7 +47394,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STNP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnp_sldstnapair_offs.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnp_sldstnapair_offs.Rt, is_64bit));
@@ -48273,7 +47405,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDNP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnp_sldstnapair_offs.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnp_sldstnapair_offs.Rt, is_64bit));
@@ -48285,11 +47416,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stp_sldstpair_post.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_sldstpair_post.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_sldstpair_post.Rt2, is_64bit));
+                        int scale = 4;
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp_sldstpair_post.Rt, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp_sldstpair_post.Rt2, false));
                         int32_t imm = (static_cast<int32_t>(enc.stp_sldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.stp_sldstpair_post.Rn, imm * scale));
                         return result;
@@ -48298,11 +47427,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldp_sldstpair_post.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_sldstpair_post.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_sldstpair_post.Rt2, is_64bit));
+                        int scale = 4;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_sldstpair_post.Rt, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_sldstpair_post.Rt2, false));
                         int32_t imm = (static_cast<int32_t>(enc.ldp_sldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.ldp_sldstpair_post.Rn, imm * scale));
                         return result;
@@ -48311,11 +47438,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stp_sldstpair_off.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_sldstpair_off.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_sldstpair_off.Rt2, is_64bit));
+                        int scale = 4;
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp_sldstpair_off.Rt, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp_sldstpair_off.Rt2, false));
                         int32_t imm = (static_cast<int32_t>(enc.stp_sldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.stp_sldstpair_off.Rn, imm * scale));
                         return result;
@@ -48324,11 +47449,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldp_sldstpair_off.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_sldstpair_off.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_sldstpair_off.Rt2, is_64bit));
+                        int scale = 4;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_sldstpair_off.Rt, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_sldstpair_off.Rt2, false));
                         int32_t imm = (static_cast<int32_t>(enc.ldp_sldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.ldp_sldstpair_off.Rn, imm * scale));
                         return result;
@@ -48337,11 +47460,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stp_sldstpair_pre.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_sldstpair_pre.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_sldstpair_pre.Rt2, is_64bit));
+                        int scale = 4;
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp_sldstpair_pre.Rt, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp_sldstpair_pre.Rt2, false));
                         int32_t imm = (static_cast<int32_t>(enc.stp_sldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.stp_sldstpair_pre.Rn, imm * scale));
                         return result;
@@ -48350,11 +47471,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldp_sldstpair_pre.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_sldstpair_pre.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_sldstpair_pre.Rt2, is_64bit));
+                        int scale = 4;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_sldstpair_pre.Rt, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_sldstpair_pre.Rt2, false));
                         int32_t imm = (static_cast<int32_t>(enc.ldp_sldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.ldp_sldstpair_pre.Rn, imm * scale));
                         return result;
@@ -48363,7 +47482,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STRB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.strb32ldst_pos.Rt, false));
                         result.operands.push_back(Operand::memory_offset(enc.strb32ldst_pos.Rn, enc.strb32ldst_pos.imm12));
                         return result;
@@ -48372,7 +47490,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrb32ldst_pos.Rt, false));
                         result.operands.push_back(Operand::memory_offset(enc.ldrb32ldst_pos.Rn, enc.ldrb32ldst_pos.imm12));
                         return result;
@@ -48381,7 +47498,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRSB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsb64ldst_pos.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsb64ldst_pos.Rt, is_64bit));
@@ -48392,7 +47508,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRSB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsb32ldst_pos.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsb32ldst_pos.Rt, is_64bit));
@@ -48403,7 +47518,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_bldst_pos.Rt, is_64bit));
@@ -48414,7 +47528,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_bldst_pos.Rt, is_64bit));
@@ -48425,7 +47538,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_qldst_pos.Rt, is_64bit));
@@ -48436,7 +47548,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_qldst_pos.Rt, is_64bit));
@@ -48447,11 +47558,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STGP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stgp64ldstpair_post.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stgp64ldstpair_post.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stgp64ldstpair_post.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.stgp64ldstpair_post.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stgp64ldstpair_post.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.stgp64ldstpair_post.simm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.stgp64ldstpair_post.Rn, imm * scale));
                         return result;
@@ -48460,11 +47569,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDPSW, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldpsw64ldstpair_post.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldpsw64ldstpair_post.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldpsw64ldstpair_post.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldpsw64ldstpair_post.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldpsw64ldstpair_post.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldpsw64ldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.ldpsw64ldstpair_post.Rn, imm * scale));
                         return result;
@@ -48473,11 +47580,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STGP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stgp64ldstpair_off.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stgp64ldstpair_off.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stgp64ldstpair_off.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.stgp64ldstpair_off.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stgp64ldstpair_off.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.stgp64ldstpair_off.simm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.stgp64ldstpair_off.Rn, imm * scale));
                         return result;
@@ -48486,11 +47591,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDPSW, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldpsw64ldstpair_off.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldpsw64ldstpair_off.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldpsw64ldstpair_off.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldpsw64ldstpair_off.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldpsw64ldstpair_off.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldpsw64ldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.ldpsw64ldstpair_off.Rn, imm * scale));
                         return result;
@@ -48499,11 +47602,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STGP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stgp64ldstpair_pre.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stgp64ldstpair_pre.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stgp64ldstpair_pre.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.stgp64ldstpair_pre.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stgp64ldstpair_pre.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.stgp64ldstpair_pre.simm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.stgp64ldstpair_pre.Rn, imm * scale));
                         return result;
@@ -48512,11 +47613,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDPSW, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldpsw64ldstpair_pre.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldpsw64ldstpair_pre.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldpsw64ldstpair_pre.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldpsw64ldstpair_pre.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldpsw64ldstpair_pre.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldpsw64ldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.ldpsw64ldstpair_pre.Rn, imm * scale));
                         return result;
@@ -48525,7 +47624,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STNP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnp_dldstnapair_offs.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnp_dldstnapair_offs.Rt, is_64bit));
@@ -48537,7 +47635,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDNP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnp_dldstnapair_offs.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnp_dldstnapair_offs.Rt, is_64bit));
@@ -48549,11 +47646,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stp_dldstpair_post.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_dldstpair_post.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_dldstpair_post.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp_dldstpair_post.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp_dldstpair_post.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.stp_dldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.stp_dldstpair_post.Rn, imm * scale));
                         return result;
@@ -48562,11 +47657,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldp_dldstpair_post.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_dldstpair_post.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_dldstpair_post.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_dldstpair_post.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_dldstpair_post.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldp_dldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.ldp_dldstpair_post.Rn, imm * scale));
                         return result;
@@ -48575,11 +47668,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stp_dldstpair_off.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_dldstpair_off.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_dldstpair_off.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp_dldstpair_off.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp_dldstpair_off.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.stp_dldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.stp_dldstpair_off.Rn, imm * scale));
                         return result;
@@ -48588,11 +47679,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldp_dldstpair_off.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_dldstpair_off.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_dldstpair_off.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_dldstpair_off.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_dldstpair_off.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldp_dldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.ldp_dldstpair_off.Rn, imm * scale));
                         return result;
@@ -48601,11 +47690,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stp_dldstpair_pre.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_dldstpair_pre.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_dldstpair_pre.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp_dldstpair_pre.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp_dldstpair_pre.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.stp_dldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.stp_dldstpair_pre.Rn, imm * scale));
                         return result;
@@ -48614,11 +47701,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldp_dldstpair_pre.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_dldstpair_pre.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_dldstpair_pre.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_dldstpair_pre.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_dldstpair_pre.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldp_dldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.ldp_dldstpair_pre.Rn, imm * scale));
                         return result;
@@ -48627,25 +47712,22 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STRH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.strh32ldst_pos.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(enc.strh32ldst_pos.Rn, enc.strh32ldst_pos.imm12));
+                        result.operands.push_back(Operand::memory_offset(enc.strh32ldst_pos.Rn, enc.strh32ldst_pos.imm12 * 2));
                         return result;
         }
         case 0x79400000u: { // LDRH_32_ldst_pos
                         Instruction result(Mnemonic::LDRH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrh32ldst_pos.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(enc.ldrh32ldst_pos.Rn, enc.ldrh32ldst_pos.imm12));
+                        result.operands.push_back(Operand::memory_offset(enc.ldrh32ldst_pos.Rn, enc.ldrh32ldst_pos.imm12 * 2));
                         return result;
         }
         case 0x79800000u: { // LDRSH_64_ldst_pos
                         Instruction result(Mnemonic::LDRSH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsh64ldst_pos.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsh64ldst_pos.Rt, is_64bit));
@@ -48656,7 +47738,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRSH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsh32ldst_pos.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsh32ldst_pos.Rt, is_64bit));
@@ -48667,7 +47748,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_hldst_pos.Rt, is_64bit));
@@ -48678,7 +47758,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_hldst_pos.Rt, is_64bit));
@@ -48689,7 +47768,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STNP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnp64ldstnapair_offs.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnp64ldstnapair_offs.Rt, is_64bit));
@@ -48701,7 +47779,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDNP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnp64ldstnapair_offs.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnp64ldstnapair_offs.Rt, is_64bit));
@@ -48713,11 +47790,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stp64ldstpair_post.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp64ldstpair_post.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp64ldstpair_post.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp64ldstpair_post.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp64ldstpair_post.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.stp64ldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.stp64ldstpair_post.Rn, imm * scale));
                         return result;
@@ -48726,11 +47801,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldp64ldstpair_post.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp64ldstpair_post.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp64ldstpair_post.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp64ldstpair_post.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp64ldstpair_post.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldp64ldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.ldp64ldstpair_post.Rn, imm * scale));
                         return result;
@@ -48739,11 +47812,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stp64ldstpair_off.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp64ldstpair_off.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp64ldstpair_off.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp64ldstpair_off.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp64ldstpair_off.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.stp64ldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.stp64ldstpair_off.Rn, imm * scale));
                         return result;
@@ -48752,11 +47823,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldp64ldstpair_off.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp64ldstpair_off.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp64ldstpair_off.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp64ldstpair_off.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp64ldstpair_off.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldp64ldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.ldp64ldstpair_off.Rn, imm * scale));
                         return result;
@@ -48765,11 +47834,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stp64ldstpair_pre.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp64ldstpair_pre.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp64ldstpair_pre.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp64ldstpair_pre.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp64ldstpair_pre.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.stp64ldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.stp64ldstpair_pre.Rn, imm * scale));
                         return result;
@@ -48778,11 +47845,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldp64ldstpair_pre.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp64ldstpair_pre.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp64ldstpair_pre.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp64ldstpair_pre.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp64ldstpair_pre.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldp64ldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.ldp64ldstpair_pre.Rn, imm * scale));
                         return result;
@@ -48791,7 +47856,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STNP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnp_qldstnapair_offs.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnp_qldstnapair_offs.Rt, is_64bit));
@@ -48803,7 +47867,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDNP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnp_qldstnapair_offs.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnp_qldstnapair_offs.Rt, is_64bit));
@@ -48815,11 +47878,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stp_qldstpair_post.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_qldstpair_post.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_qldstpair_post.Rt2, is_64bit));
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.stp_qldstpair_post.Rt, true));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.stp_qldstpair_post.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.stp_qldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.stp_qldstpair_post.Rn, imm * scale));
                         return result;
@@ -48828,11 +47889,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldp_qldstpair_post.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_qldstpair_post.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_qldstpair_post.Rt2, is_64bit));
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldp_qldstpair_post.Rt, true));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldp_qldstpair_post.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldp_qldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.ldp_qldstpair_post.Rn, imm * scale));
                         return result;
@@ -48841,11 +47900,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stp_qldstpair_off.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_qldstpair_off.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_qldstpair_off.Rt2, is_64bit));
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.stp_qldstpair_off.Rt, true));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.stp_qldstpair_off.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.stp_qldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.stp_qldstpair_off.Rn, imm * scale));
                         return result;
@@ -48854,11 +47911,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldp_qldstpair_off.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_qldstpair_off.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_qldstpair_off.Rt2, is_64bit));
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldp_qldstpair_off.Rt, true));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldp_qldstpair_off.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldp_qldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.ldp_qldstpair_off.Rn, imm * scale));
                         return result;
@@ -48867,11 +47922,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stp_qldstpair_pre.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_qldstpair_pre.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_qldstpair_pre.Rt2, is_64bit));
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.stp_qldstpair_pre.Rt, true));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.stp_qldstpair_pre.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.stp_qldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.stp_qldstpair_pre.Rn, imm * scale));
                         return result;
@@ -48880,11 +47933,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldp_qldstpair_pre.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_qldstpair_pre.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_qldstpair_pre.Rt2, is_64bit));
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldp_qldstpair_pre.Rt, true));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldp_qldstpair_pre.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldp_qldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.ldp_qldstpair_pre.Rn, imm * scale));
                         return result;
@@ -48893,7 +47944,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.str32ldst_pos.Rt, is_64bit));
@@ -48904,7 +47954,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr32ldst_pos.Rt, is_64bit));
@@ -48915,7 +47964,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRSW, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsw64ldst_pos.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsw64ldst_pos.Rt, is_64bit));
@@ -48926,7 +47974,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_sldst_pos.Rt, is_64bit));
@@ -48937,7 +47984,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_sldst_pos.Rt, is_64bit));
@@ -48948,7 +47994,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STTNP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sttnp64ldstnapair_offs.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sttnp64ldstnapair_offs.Rt, is_64bit));
@@ -48960,7 +48005,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTNP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtnp64ldstnapair_offs.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtnp64ldstnapair_offs.Rt, is_64bit));
@@ -48972,11 +48016,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STTP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.sttp64ldstpair_post.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sttp64ldstpair_post.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sttp64ldstpair_post.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.sttp64ldstpair_post.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.sttp64ldstpair_post.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.sttp64ldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.sttp64ldstpair_post.Rn, imm * scale));
                         return result;
@@ -48985,11 +48027,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldtp64ldstpair_post.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldtp64ldstpair_post.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldtp64ldstpair_post.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldtp64ldstpair_post.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldtp64ldstpair_post.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldtp64ldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.ldtp64ldstpair_post.Rn, imm * scale));
                         return result;
@@ -48998,11 +48038,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STTP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.sttp64ldstpair_off.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sttp64ldstpair_off.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sttp64ldstpair_off.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.sttp64ldstpair_off.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.sttp64ldstpair_off.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.sttp64ldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.sttp64ldstpair_off.Rn, imm * scale));
                         return result;
@@ -49011,11 +48049,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldtp64ldstpair_off.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldtp64ldstpair_off.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldtp64ldstpair_off.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldtp64ldstpair_off.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldtp64ldstpair_off.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldtp64ldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.ldtp64ldstpair_off.Rn, imm * scale));
                         return result;
@@ -49024,11 +48060,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STTP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.sttp64ldstpair_pre.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sttp64ldstpair_pre.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sttp64ldstpair_pre.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.sttp64ldstpair_pre.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.sttp64ldstpair_pre.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.sttp64ldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.sttp64ldstpair_pre.Rn, imm * scale));
                         return result;
@@ -49037,11 +48071,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldtp64ldstpair_pre.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldtp64ldstpair_pre.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldtp64ldstpair_pre.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldtp64ldstpair_pre.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldtp64ldstpair_pre.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldtp64ldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.ldtp64ldstpair_pre.Rn, imm * scale));
                         return result;
@@ -49050,7 +48082,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STTNP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sttnp_qldstnapair_offs.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sttnp_qldstnapair_offs.Rt, is_64bit));
@@ -49062,7 +48093,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTNP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtnp_qldstnapair_offs.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtnp_qldstnapair_offs.Rt, is_64bit));
@@ -49074,11 +48104,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STTP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.sttp_qldstpair_post.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sttp_qldstpair_post.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sttp_qldstpair_post.Rt2, is_64bit));
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.sttp_qldstpair_post.Rt, true));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.sttp_qldstpair_post.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.sttp_qldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.sttp_qldstpair_post.Rn, imm * scale));
                         return result;
@@ -49087,11 +48115,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldtp_qldstpair_post.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldtp_qldstpair_post.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldtp_qldstpair_post.Rt2, is_64bit));
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldtp_qldstpair_post.Rt, true));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldtp_qldstpair_post.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldtp_qldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.ldtp_qldstpair_post.Rn, imm * scale));
                         return result;
@@ -49100,11 +48126,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STTP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.sttp_qldstpair_off.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sttp_qldstpair_off.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sttp_qldstpair_off.Rt2, is_64bit));
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.sttp_qldstpair_off.Rt, true));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.sttp_qldstpair_off.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.sttp_qldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.sttp_qldstpair_off.Rn, imm * scale));
                         return result;
@@ -49113,11 +48137,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldtp_qldstpair_off.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldtp_qldstpair_off.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldtp_qldstpair_off.Rt2, is_64bit));
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldtp_qldstpair_off.Rt, true));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldtp_qldstpair_off.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldtp_qldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.ldtp_qldstpair_off.Rn, imm * scale));
                         return result;
@@ -49126,11 +48148,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STTP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.sttp_qldstpair_pre.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sttp_qldstpair_pre.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sttp_qldstpair_pre.Rt2, is_64bit));
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.sttp_qldstpair_pre.Rt, true));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.sttp_qldstpair_pre.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.sttp_qldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.sttp_qldstpair_pre.Rn, imm * scale));
                         return result;
@@ -49139,11 +48159,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDTP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldtp_qldstpair_pre.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldtp_qldstpair_pre.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldtp_qldstpair_pre.Rt2, is_64bit));
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldtp_qldstpair_pre.Rt, true));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldtp_qldstpair_pre.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldtp_qldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.ldtp_qldstpair_pre.Rn, imm * scale));
                         return result;
@@ -49152,7 +48170,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         int scale = 8;
                         result.operands.push_back(Operand(OperandType::Register, enc.str64ldst_pos.Rt, is_64bit));
@@ -49163,7 +48180,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         int scale = 8;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr64ldst_pos.Rt, is_64bit));
@@ -49174,7 +48190,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::PRFM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.prfm_pldst_pos.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.prfm_pldst_pos.Rt, is_64bit));
@@ -49185,7 +48200,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_dldst_pos.Rt, is_64bit));
@@ -49196,7 +48210,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_dldst_pos.Rt, is_64bit));
@@ -49212,7 +48225,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr32loadlit.Rt, is_64bit));
                         return result;
@@ -49221,7 +48233,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_sloadlit.Rt, is_64bit));
                         return result;
@@ -49230,7 +48241,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr64loadlit.Rt, is_64bit));
                         return result;
@@ -49239,7 +48249,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_dloadlit.Rt, is_64bit));
                         return result;
@@ -49248,7 +48257,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRSW, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsw64loadlit.Rt, is_64bit));
                         return result;
@@ -49257,7 +48265,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_qloadlit.Rt, is_64bit));
                         return result;
@@ -49266,7 +48273,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::PRFM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.prfm_ploadlit.Rt, is_64bit));
                         return result;
@@ -49280,7 +48286,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfp_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfp_cpy_memcms.Rn, is_64bit));
@@ -49291,7 +48296,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFPWT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpwt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpwt_cpy_memcms.Rn, is_64bit));
@@ -49302,7 +48306,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFPRT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfprt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfprt_cpy_memcms.Rn, is_64bit));
@@ -49313,7 +48316,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFPT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpt_cpy_memcms.Rn, is_64bit));
@@ -49324,7 +48326,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFPWN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpwn_cpy_memcms.Rn, is_64bit));
@@ -49335,7 +48336,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFPWTWN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpwtwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpwtwn_cpy_memcms.Rn, is_64bit));
@@ -49346,7 +48346,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFPRTWN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfprtwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfprtwn_cpy_memcms.Rn, is_64bit));
@@ -49357,7 +48356,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFPTWN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfptwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfptwn_cpy_memcms.Rn, is_64bit));
@@ -49368,7 +48366,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFPRN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfprn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfprn_cpy_memcms.Rn, is_64bit));
@@ -49379,7 +48376,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFPWTRN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpwtrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpwtrn_cpy_memcms.Rn, is_64bit));
@@ -49390,7 +48386,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFPRTRN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfprtrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfprtrn_cpy_memcms.Rn, is_64bit));
@@ -49401,7 +48396,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFPTRN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfptrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfptrn_cpy_memcms.Rn, is_64bit));
@@ -49412,7 +48406,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFPN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpn_cpy_memcms.Rn, is_64bit));
@@ -49423,7 +48416,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFPWTN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpwtn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpwtn_cpy_memcms.Rn, is_64bit));
@@ -49434,7 +48426,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFPRTN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfprtn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfprtn_cpy_memcms.Rn, is_64bit));
@@ -49445,7 +48436,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFPTN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfptn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfptn_cpy_memcms.Rn, is_64bit));
@@ -49456,7 +48446,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfm_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfm_cpy_memcms.Rn, is_64bit));
@@ -49467,7 +48456,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFMWT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmwt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmwt_cpy_memcms.Rn, is_64bit));
@@ -49478,7 +48466,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFMRT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmrt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmrt_cpy_memcms.Rn, is_64bit));
@@ -49489,7 +48476,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFMT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmt_cpy_memcms.Rn, is_64bit));
@@ -49500,7 +48486,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFMWN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmwn_cpy_memcms.Rn, is_64bit));
@@ -49511,7 +48496,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFMWTWN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmwtwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmwtwn_cpy_memcms.Rn, is_64bit));
@@ -49522,7 +48506,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFMRTWN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmrtwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmrtwn_cpy_memcms.Rn, is_64bit));
@@ -49533,7 +48516,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFMTWN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmtwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmtwn_cpy_memcms.Rn, is_64bit));
@@ -49544,7 +48526,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFMRN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmrn_cpy_memcms.Rn, is_64bit));
@@ -49555,7 +48536,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFMWTRN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmwtrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmwtrn_cpy_memcms.Rn, is_64bit));
@@ -49566,7 +48546,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFMRTRN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmrtrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmrtrn_cpy_memcms.Rn, is_64bit));
@@ -49577,7 +48556,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFMTRN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmtrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmtrn_cpy_memcms.Rn, is_64bit));
@@ -49588,7 +48566,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFMN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmn_cpy_memcms.Rn, is_64bit));
@@ -49599,7 +48576,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFMWTN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmwtn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmwtn_cpy_memcms.Rn, is_64bit));
@@ -49610,7 +48586,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFMRTN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmrtn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmrtn_cpy_memcms.Rn, is_64bit));
@@ -49621,7 +48596,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFMTN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmtn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmtn_cpy_memcms.Rn, is_64bit));
@@ -49632,7 +48606,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFE, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfe_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfe_cpy_memcms.Rn, is_64bit));
@@ -49643,7 +48616,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFEWT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfewt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfewt_cpy_memcms.Rn, is_64bit));
@@ -49654,7 +48626,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFERT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfert_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfert_cpy_memcms.Rn, is_64bit));
@@ -49665,7 +48636,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFET, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfet_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfet_cpy_memcms.Rn, is_64bit));
@@ -49676,7 +48646,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFEWN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfewn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfewn_cpy_memcms.Rn, is_64bit));
@@ -49687,7 +48656,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFEWTWN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfewtwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfewtwn_cpy_memcms.Rn, is_64bit));
@@ -49698,7 +48666,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFERTWN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfertwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfertwn_cpy_memcms.Rn, is_64bit));
@@ -49709,7 +48676,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFETWN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfetwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfetwn_cpy_memcms.Rn, is_64bit));
@@ -49720,7 +48686,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFERN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfern_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfern_cpy_memcms.Rn, is_64bit));
@@ -49731,7 +48696,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFEWTRN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfewtrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfewtrn_cpy_memcms.Rn, is_64bit));
@@ -49742,7 +48706,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFERTRN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfertrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfertrn_cpy_memcms.Rn, is_64bit));
@@ -49753,7 +48716,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFETRN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfetrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfetrn_cpy_memcms.Rn, is_64bit));
@@ -49764,7 +48726,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFEN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfen_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfen_cpy_memcms.Rn, is_64bit));
@@ -49775,7 +48736,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFEWTN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfewtn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfewtn_cpy_memcms.Rn, is_64bit));
@@ -49786,7 +48746,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFERTN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfertn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfertn_cpy_memcms.Rn, is_64bit));
@@ -49797,7 +48756,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYFETN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfetn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfetn_cpy_memcms.Rn, is_64bit));
@@ -49808,7 +48766,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SETP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.setp_set_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.setp_set_memcms.Rn, is_64bit));
@@ -49819,7 +48776,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SETPT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.setpt_set_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.setpt_set_memcms.Rn, is_64bit));
@@ -49830,7 +48786,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SETPN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.setpn_set_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.setpn_set_memcms.Rn, is_64bit));
@@ -49841,7 +48796,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SETPTN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.setptn_set_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.setptn_set_memcms.Rn, is_64bit));
@@ -49852,7 +48806,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SETM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.setm_set_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.setm_set_memcms.Rn, is_64bit));
@@ -49863,7 +48816,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SETMT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.setmt_set_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.setmt_set_memcms.Rn, is_64bit));
@@ -49874,7 +48826,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SETMN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.setmn_set_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.setmn_set_memcms.Rn, is_64bit));
@@ -49885,7 +48836,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SETMTN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.setmtn_set_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.setmtn_set_memcms.Rn, is_64bit));
@@ -49896,7 +48846,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SETE, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sete_set_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sete_set_memcms.Rn, is_64bit));
@@ -49907,7 +48856,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SETET, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.setet_set_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.setet_set_memcms.Rn, is_64bit));
@@ -49918,7 +48866,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SETEN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.seten_set_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.seten_set_memcms.Rn, is_64bit));
@@ -49929,7 +48876,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SETETN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.setetn_set_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.setetn_set_memcms.Rn, is_64bit));
@@ -49940,7 +48886,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyp_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyp_cpy_memcms.Rn, is_64bit));
@@ -49951,7 +48896,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYPWT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypwt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypwt_cpy_memcms.Rn, is_64bit));
@@ -49962,7 +48906,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYPRT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyprt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyprt_cpy_memcms.Rn, is_64bit));
@@ -49973,7 +48916,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYPT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypt_cpy_memcms.Rn, is_64bit));
@@ -49984,7 +48926,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYPWN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypwn_cpy_memcms.Rn, is_64bit));
@@ -49995,7 +48936,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYPWTWN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypwtwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypwtwn_cpy_memcms.Rn, is_64bit));
@@ -50006,7 +48946,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYPRTWN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyprtwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyprtwn_cpy_memcms.Rn, is_64bit));
@@ -50017,7 +48956,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYPTWN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyptwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyptwn_cpy_memcms.Rn, is_64bit));
@@ -50028,7 +48966,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYPRN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyprn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyprn_cpy_memcms.Rn, is_64bit));
@@ -50039,7 +48976,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYPWTRN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypwtrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypwtrn_cpy_memcms.Rn, is_64bit));
@@ -50050,7 +48986,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYPRTRN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyprtrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyprtrn_cpy_memcms.Rn, is_64bit));
@@ -50061,7 +48996,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYPTRN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyptrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyptrn_cpy_memcms.Rn, is_64bit));
@@ -50072,7 +49006,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYPN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypn_cpy_memcms.Rn, is_64bit));
@@ -50083,7 +49016,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYPWTN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypwtn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypwtn_cpy_memcms.Rn, is_64bit));
@@ -50094,7 +49026,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYPRTN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyprtn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyprtn_cpy_memcms.Rn, is_64bit));
@@ -50105,7 +49036,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYPTN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyptn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyptn_cpy_memcms.Rn, is_64bit));
@@ -50116,7 +49046,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpym_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpym_cpy_memcms.Rn, is_64bit));
@@ -50127,7 +49056,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYMWT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymwt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymwt_cpy_memcms.Rn, is_64bit));
@@ -50138,7 +49066,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYMRT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymrt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymrt_cpy_memcms.Rn, is_64bit));
@@ -50149,7 +49076,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYMT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymt_cpy_memcms.Rn, is_64bit));
@@ -50160,7 +49086,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYMWN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymwn_cpy_memcms.Rn, is_64bit));
@@ -50171,7 +49096,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYMWTWN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymwtwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymwtwn_cpy_memcms.Rn, is_64bit));
@@ -50182,7 +49106,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYMRTWN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymrtwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymrtwn_cpy_memcms.Rn, is_64bit));
@@ -50193,7 +49116,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYMTWN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymtwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymtwn_cpy_memcms.Rn, is_64bit));
@@ -50204,7 +49126,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYMRN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymrn_cpy_memcms.Rn, is_64bit));
@@ -50215,7 +49136,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYMWTRN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymwtrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymwtrn_cpy_memcms.Rn, is_64bit));
@@ -50226,7 +49146,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYMRTRN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymrtrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymrtrn_cpy_memcms.Rn, is_64bit));
@@ -50237,7 +49156,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYMTRN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymtrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymtrn_cpy_memcms.Rn, is_64bit));
@@ -50248,7 +49166,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYMN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymn_cpy_memcms.Rn, is_64bit));
@@ -50259,7 +49176,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYMWTN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymwtn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymwtn_cpy_memcms.Rn, is_64bit));
@@ -50270,7 +49186,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYMRTN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymrtn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymrtn_cpy_memcms.Rn, is_64bit));
@@ -50281,7 +49196,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYMTN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymtn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymtn_cpy_memcms.Rn, is_64bit));
@@ -50292,7 +49206,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYE, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpye_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpye_cpy_memcms.Rn, is_64bit));
@@ -50303,7 +49216,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYEWT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyewt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyewt_cpy_memcms.Rn, is_64bit));
@@ -50314,7 +49226,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYERT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyert_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyert_cpy_memcms.Rn, is_64bit));
@@ -50325,7 +49236,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYET, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyet_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyet_cpy_memcms.Rn, is_64bit));
@@ -50336,7 +49246,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYEWN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyewn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyewn_cpy_memcms.Rn, is_64bit));
@@ -50347,7 +49256,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYEWTWN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyewtwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyewtwn_cpy_memcms.Rn, is_64bit));
@@ -50358,7 +49266,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYERTWN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyertwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyertwn_cpy_memcms.Rn, is_64bit));
@@ -50369,7 +49276,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYETWN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyetwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyetwn_cpy_memcms.Rn, is_64bit));
@@ -50380,7 +49286,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYERN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyern_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyern_cpy_memcms.Rn, is_64bit));
@@ -50391,7 +49296,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYEWTRN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyewtrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyewtrn_cpy_memcms.Rn, is_64bit));
@@ -50402,7 +49306,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYERTRN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyertrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyertrn_cpy_memcms.Rn, is_64bit));
@@ -50413,7 +49316,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYETRN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyetrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyetrn_cpy_memcms.Rn, is_64bit));
@@ -50424,7 +49326,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYEN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyen_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyen_cpy_memcms.Rn, is_64bit));
@@ -50435,7 +49336,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYEWTN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyewtn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyewtn_cpy_memcms.Rn, is_64bit));
@@ -50446,7 +49346,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYERTN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyertn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyertn_cpy_memcms.Rn, is_64bit));
@@ -50457,7 +49356,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::CPYETN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyetn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyetn_cpy_memcms.Rn, is_64bit));
@@ -50468,7 +49366,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SETGP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.setgp_set_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.setgp_set_memcms.Rn, is_64bit));
@@ -50479,7 +49376,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SETGPT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.setgpt_set_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.setgpt_set_memcms.Rn, is_64bit));
@@ -50490,7 +49386,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SETGPN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.setgpn_set_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.setgpn_set_memcms.Rn, is_64bit));
@@ -50501,7 +49396,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SETGPTN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.setgptn_set_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.setgptn_set_memcms.Rn, is_64bit));
@@ -50512,7 +49406,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SETGM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.setgm_set_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.setgm_set_memcms.Rn, is_64bit));
@@ -50523,7 +49416,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SETGMT, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.setgmt_set_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.setgmt_set_memcms.Rn, is_64bit));
@@ -50534,7 +49426,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SETGMN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.setgmn_set_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.setgmn_set_memcms.Rn, is_64bit));
@@ -50545,7 +49436,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SETGMTN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.setgmtn_set_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.setgmtn_set_memcms.Rn, is_64bit));
@@ -50556,7 +49446,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SETGE, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.setge_set_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.setge_set_memcms.Rn, is_64bit));
@@ -50567,7 +49456,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SETGET, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.setget_set_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.setget_set_memcms.Rn, is_64bit));
@@ -50578,7 +49466,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SETGEN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.setgen_set_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.setgen_set_memcms.Rn, is_64bit));
@@ -50589,7 +49476,6 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SETGETN, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.setgetn_set_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.setgetn_set_memcms.Rn, is_64bit));

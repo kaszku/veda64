@@ -2513,9 +2513,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::ADD, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        result.operands.push_back(Operand(OperandType::Register, enc.mov_add32addsub_imm.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.mov_add32addsub_imm.Rn, true));
+                        { Operand op(OperandType::Register, enc.mov_add32addsub_imm.Rd, false); op.is_sp = true; result.operands.push_back(op); }
+                        { Operand op(OperandType::Register, enc.mov_add32addsub_imm.Rn, false); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.mov_add32addsub_imm.imm12, true));
                         if (enc.mov_add32addsub_imm.sh != 0) {
                             result.operands.push_back(Operand(OperandType::Shift, 12, true));
@@ -2526,7 +2525,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::SBFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sxtb_sbfm32m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sxtb_sbfm32m_bitfield.Rn, is_64bit));
@@ -2536,7 +2534,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::SBFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sxth_sbfm32m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sxth_sbfm32m_bitfield.Rn, is_64bit));
@@ -2546,7 +2543,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::UBFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uxtb_ubfm32m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uxtb_ubfm32m_bitfield.Rn, is_64bit));
@@ -2556,7 +2552,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::UBFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uxth_ubfm32m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uxth_ubfm32m_bitfield.Rn, is_64bit));
@@ -2566,9 +2561,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::ADD, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        result.operands.push_back(Operand(OperandType::Register, enc.mov_add64addsub_imm.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.mov_add64addsub_imm.Rn, true));
+                        { Operand op(OperandType::Register, enc.mov_add64addsub_imm.Rd, true); op.is_sp = true; result.operands.push_back(op); }
+                        { Operand op(OperandType::Register, enc.mov_add64addsub_imm.Rn, true); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.mov_add64addsub_imm.imm12, true));
                         if (enc.mov_add64addsub_imm.sh != 0) {
                             result.operands.push_back(Operand(OperandType::Shift, 12, true));
@@ -2579,7 +2573,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::SBFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sxtb_sbfm64m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sxtb_sbfm64m_bitfield.Rn, is_64bit));
@@ -2589,7 +2582,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::SBFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sxth_sbfm64m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sxth_sbfm64m_bitfield.Rn, is_64bit));
@@ -2599,7 +2591,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::SBFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sxtw_sbfm64m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sxtw_sbfm64m_bitfield.Rn, is_64bit));
@@ -2614,7 +2605,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::SMAX, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.smax32minmax_imm.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smax32minmax_imm.Rn, is_64bit));
@@ -2625,7 +2615,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::UMAX, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.umax32u_minmax_imm.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.umax32u_minmax_imm.Rn, is_64bit));
@@ -2636,7 +2625,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::SMIN, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.smin32minmax_imm.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smin32minmax_imm.Rn, is_64bit));
@@ -2647,7 +2635,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::UMIN, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.umin32u_minmax_imm.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.umin32u_minmax_imm.Rn, is_64bit));
@@ -2658,7 +2645,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::SMAX, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.smax64minmax_imm.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smax64minmax_imm.Rn, is_64bit));
@@ -2669,7 +2655,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::UMAX, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.umax64u_minmax_imm.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.umax64u_minmax_imm.Rn, is_64bit));
@@ -2680,7 +2665,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::SMIN, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.smin64minmax_imm.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.smin64minmax_imm.Rn, is_64bit));
@@ -2691,7 +2675,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::UMIN, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.umin64u_minmax_imm.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.umin64u_minmax_imm.Rn, is_64bit));
@@ -2708,7 +2691,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::EXTR, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.extr32extract.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.extr32extract.Rn, is_64bit));
@@ -2724,7 +2706,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::AUTIASPPC, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.autiasppc_only_dp1src_imm.imm16, true));
                         return result;
         }
@@ -2732,7 +2713,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::AUTIBSPPC, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.autibsppc_only_dp1src_imm.imm16, true));
                         return result;
         }
@@ -2746,7 +2726,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::EXTR, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.extr64extract.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.extr64extract.Rn, is_64bit));
@@ -2762,7 +2741,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::ADDG, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.addg64addsub_immtags.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.addg64addsub_immtags.Rn, is_64bit));
@@ -2773,7 +2751,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::SUBG, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.subg64addsub_immtags.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.subg64addsub_immtags.Rn, is_64bit));
@@ -2789,7 +2766,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::SBFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.asr_sbfm32m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.asr_sbfm32m_bitfield.Rn, is_64bit));
@@ -2799,7 +2775,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::UBFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.lsr_ubfm32m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lsr_ubfm32m_bitfield.Rn, is_64bit));
@@ -2809,7 +2784,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::SBFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.asr_sbfm64m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.asr_sbfm64m_bitfield.Rn, is_64bit));
@@ -2819,7 +2793,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::UBFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.lsr_ubfm64m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lsr_ubfm64m_bitfield.Rn, is_64bit));
@@ -2834,9 +2807,11 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::ORR, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.mov_orr32log_imm.Rd, is_64bit));
+                        { Operand op(OperandType::Register, enc.mov_orr32log_imm.Rd, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Register, enc.mov_orr32log_imm.Rn, is_64bit));
+                        uint64_t imm_val = decode_bit_masks(enc.mov_orr32log_imm.N, enc.mov_orr32log_imm.imms, enc.mov_orr32log_imm.immr, is_64bit);
+                        result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit));
                         return result;
         }
         case 0x330003E0u: { // BFC_BFM_32M_bitfield
@@ -2844,7 +2819,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::BFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.bfc_bfm32m_bitfield.Rd, is_64bit));
                         return result;
@@ -2854,7 +2828,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::BFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.bfc_bfm64m_bitfield.Rd, is_64bit));
                         return result;
@@ -2868,9 +2841,11 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::ANDS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.tst_ands32s_log_imm.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.tst_ands32s_log_imm.Rn, is_64bit));
+                        uint64_t imm_val = decode_bit_masks(enc.tst_ands32s_log_imm.N, enc.tst_ands32s_log_imm.imms, enc.tst_ands32s_log_imm.immr, is_64bit);
+                        result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit));
                         return result;
         }
         default: break;
@@ -2882,10 +2857,11 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::AND, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.and32log_imm.Rd, is_64bit));
+                        { Operand op(OperandType::Register, enc.and32log_imm.Rd, is_64bit); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Register, enc.and32log_imm.Rn, is_64bit));
+                        uint64_t imm_val = decode_bit_masks(enc.and32log_imm.N, enc.and32log_imm.imms, enc.and32log_imm.immr, is_64bit);
+                        result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit));
                         return result;
         }
         case 0x12800000u: { // MOV_MOVN_32_movewide
@@ -2893,7 +2869,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::MOVN, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_movn32movewide.Rd, false));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.mov_movn32movewide.imm16, true));
                         if (enc.mov_movn32movewide.hw != 0) {
@@ -2907,7 +2882,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::SBFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sbfiz_sbfm32m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sbfiz_sbfm32m_bitfield.Rn, is_64bit));
@@ -2917,10 +2891,11 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::ORR, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.orr32log_imm.Rd, is_64bit));
+                        { Operand op(OperandType::Register, enc.orr32log_imm.Rd, is_64bit); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Register, enc.orr32log_imm.Rn, is_64bit));
+                        uint64_t imm_val = decode_bit_masks(enc.orr32log_imm.N, enc.orr32log_imm.imms, enc.orr32log_imm.immr, is_64bit);
+                        result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit));
                         return result;
         }
         case 0x33000000u: { // BFM_32M_bitfield
@@ -2928,7 +2903,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::BFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.bfm32m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bfm32m_bitfield.Rn, is_64bit));
@@ -2938,10 +2912,11 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::EOR, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.eor32log_imm.Rd, is_64bit));
+                        { Operand op(OperandType::Register, enc.eor32log_imm.Rd, is_64bit); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Register, enc.eor32log_imm.Rn, is_64bit));
+                        uint64_t imm_val = decode_bit_masks(enc.eor32log_imm.N, enc.eor32log_imm.imms, enc.eor32log_imm.immr, is_64bit);
+                        result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit));
                         return result;
         }
         case 0x52800000u: { // MOV_MOVZ_32_movewide
@@ -2949,7 +2924,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::MOVZ, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_movz32movewide.Rd, false));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.mov_movz32movewide.imm16, true));
                         if (enc.mov_movz32movewide.hw != 0) {
@@ -2964,7 +2938,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::UBFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.lsl_ubfm32m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lsl_ubfm32m_bitfield.Rn, is_64bit));
@@ -2974,17 +2947,17 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::ANDS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ands32s_log_imm.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ands32s_log_imm.Rn, is_64bit));
+                        uint64_t imm_val = decode_bit_masks(enc.ands32s_log_imm.N, enc.ands32s_log_imm.imms, enc.ands32s_log_imm.immr, is_64bit);
+                        result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit));
                         return result;
         }
         case 0x72800000u: { // MOVK_32_movewide
                         Instruction result(Mnemonic::MOVK, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.movk32movewide.Rd, false));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.movk32movewide.imm16, true));
                         if (enc.movk32movewide.hw != 0) {
@@ -2998,7 +2971,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::SBFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sbfiz_sbfm64m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sbfiz_sbfm64m_bitfield.Rn, is_64bit));
@@ -3009,7 +2981,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::BFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.bfm64m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bfm64m_bitfield.Rn, is_64bit));
@@ -3022,7 +2993,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::UBFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.lsl_ubfm64m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lsl_ubfm64m_bitfield.Rn, is_64bit));
@@ -3037,9 +3007,11 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::ORR, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.mov_orr64log_imm.Rd, is_64bit));
+                        { Operand op(OperandType::Register, enc.mov_orr64log_imm.Rd, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Register, enc.mov_orr64log_imm.Rn, is_64bit));
+                        uint64_t imm_val = decode_bit_masks(enc.mov_orr64log_imm.N, enc.mov_orr64log_imm.imms, enc.mov_orr64log_imm.immr, is_64bit);
+                        result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit));
                         return result;
         }
         default: break;
@@ -3051,9 +3023,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::ADDS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds32s_addsub_imm.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds32s_addsub_imm.Rn, true));
+                        { Operand op(OperandType::Register, enc.cmn_adds32s_addsub_imm.Rd, true); op.is_sp = true; result.operands.push_back(op); }
+                        { Operand op(OperandType::Register, enc.cmn_adds32s_addsub_imm.Rn, true); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cmn_adds32s_addsub_imm.imm12, true));
                         if (enc.cmn_adds32s_addsub_imm.sh != 0) {
                             result.operands.push_back(Operand(OperandType::Shift, 12, true));
@@ -3064,9 +3035,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::SUBS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs32s_addsub_imm.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs32s_addsub_imm.Rn, true));
+                        { Operand op(OperandType::Register, enc.cmp_subs32s_addsub_imm.Rd, true); op.is_sp = true; result.operands.push_back(op); }
+                        { Operand op(OperandType::Register, enc.cmp_subs32s_addsub_imm.Rn, true); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cmp_subs32s_addsub_imm.imm12, true));
                         if (enc.cmp_subs32s_addsub_imm.sh != 0) {
                             result.operands.push_back(Operand(OperandType::Shift, 12, true));
@@ -3077,9 +3047,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::ADDS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds64s_addsub_imm.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds64s_addsub_imm.Rn, true));
+                        { Operand op(OperandType::Register, enc.cmn_adds64s_addsub_imm.Rd, true); op.is_sp = true; result.operands.push_back(op); }
+                        { Operand op(OperandType::Register, enc.cmn_adds64s_addsub_imm.Rn, true); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cmn_adds64s_addsub_imm.imm12, true));
                         if (enc.cmn_adds64s_addsub_imm.sh != 0) {
                             result.operands.push_back(Operand(OperandType::Shift, 12, true));
@@ -3090,9 +3059,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::SUBS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs64s_addsub_imm.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs64s_addsub_imm.Rn, true));
+                        { Operand op(OperandType::Register, enc.cmp_subs64s_addsub_imm.Rd, true); op.is_sp = true; result.operands.push_back(op); }
+                        { Operand op(OperandType::Register, enc.cmp_subs64s_addsub_imm.Rn, true); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cmp_subs64s_addsub_imm.imm12, true));
                         if (enc.cmp_subs64s_addsub_imm.sh != 0) {
                             result.operands.push_back(Operand(OperandType::Shift, 12, true));
@@ -3103,9 +3071,11 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::ANDS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = true;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.tst_ands64s_log_imm.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.tst_ands64s_log_imm.Rn, is_64bit));
+                        uint64_t imm_val = decode_bit_masks(enc.tst_ands64s_log_imm.N, enc.tst_ands64s_log_imm.imms, enc.tst_ands64s_log_imm.immr, is_64bit);
+                        result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit));
                         return result;
         }
         default: break;
@@ -3117,9 +3087,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::ADD, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        result.operands.push_back(Operand(OperandType::Register, enc.add32addsub_imm.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.add32addsub_imm.Rn, true));
+                        { Operand op(OperandType::Register, enc.add32addsub_imm.Rd, false); op.is_sp = true; result.operands.push_back(op); }
+                        { Operand op(OperandType::Register, enc.add32addsub_imm.Rn, false); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.add32addsub_imm.imm12, true));
                         if (enc.add32addsub_imm.sh != 0) {
                             result.operands.push_back(Operand(OperandType::Shift, 12, true));
@@ -3130,9 +3099,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::ADDS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        result.operands.push_back(Operand(OperandType::Register, enc.adds32s_addsub_imm.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.adds32s_addsub_imm.Rn, true));
+                        { Operand op(OperandType::Register, enc.adds32s_addsub_imm.Rd, true); op.is_sp = true; result.operands.push_back(op); }
+                        { Operand op(OperandType::Register, enc.adds32s_addsub_imm.Rn, true); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.adds32s_addsub_imm.imm12, true));
                         if (enc.adds32s_addsub_imm.sh != 0) {
                             result.operands.push_back(Operand(OperandType::Shift, 12, true));
@@ -3143,9 +3111,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::SUB, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        result.operands.push_back(Operand(OperandType::Register, enc.sub32addsub_imm.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sub32addsub_imm.Rn, true));
+                        { Operand op(OperandType::Register, enc.sub32addsub_imm.Rd, false); op.is_sp = true; result.operands.push_back(op); }
+                        { Operand op(OperandType::Register, enc.sub32addsub_imm.Rn, false); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sub32addsub_imm.imm12, true));
                         if (enc.sub32addsub_imm.sh != 0) {
                             result.operands.push_back(Operand(OperandType::Shift, 12, true));
@@ -3156,9 +3123,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::SUBS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        result.operands.push_back(Operand(OperandType::Register, enc.subs32s_addsub_imm.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.subs32s_addsub_imm.Rn, true));
+                        { Operand op(OperandType::Register, enc.subs32s_addsub_imm.Rd, true); op.is_sp = true; result.operands.push_back(op); }
+                        { Operand op(OperandType::Register, enc.subs32s_addsub_imm.Rn, true); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.subs32s_addsub_imm.imm12, true));
                         if (enc.subs32s_addsub_imm.sh != 0) {
                             result.operands.push_back(Operand(OperandType::Shift, 12, true));
@@ -3169,9 +3135,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::ADD, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        result.operands.push_back(Operand(OperandType::Register, enc.add64addsub_imm.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.add64addsub_imm.Rn, true));
+                        { Operand op(OperandType::Register, enc.add64addsub_imm.Rd, true); op.is_sp = true; result.operands.push_back(op); }
+                        { Operand op(OperandType::Register, enc.add64addsub_imm.Rn, true); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.add64addsub_imm.imm12, true));
                         if (enc.add64addsub_imm.sh != 0) {
                             result.operands.push_back(Operand(OperandType::Shift, 12, true));
@@ -3182,10 +3147,11 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::AND, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.and64log_imm.Rd, is_64bit));
+                        { Operand op(OperandType::Register, enc.and64log_imm.Rd, is_64bit); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Register, enc.and64log_imm.Rn, is_64bit));
+                        uint64_t imm_val = decode_bit_masks(enc.and64log_imm.N, enc.and64log_imm.imms, enc.and64log_imm.immr, is_64bit);
+                        result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit));
                         return result;
         }
         case 0x92800000u: { // MOV_MOVN_64_movewide
@@ -3193,7 +3159,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::MOVN, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_movn64movewide.Rd, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.mov_movn64movewide.imm16, true));
                         if (enc.mov_movn64movewide.hw != 0) {
@@ -3205,9 +3170,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::ADDS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        result.operands.push_back(Operand(OperandType::Register, enc.adds64s_addsub_imm.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.adds64s_addsub_imm.Rn, true));
+                        { Operand op(OperandType::Register, enc.adds64s_addsub_imm.Rd, true); op.is_sp = true; result.operands.push_back(op); }
+                        { Operand op(OperandType::Register, enc.adds64s_addsub_imm.Rn, true); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.adds64s_addsub_imm.imm12, true));
                         if (enc.adds64s_addsub_imm.sh != 0) {
                             result.operands.push_back(Operand(OperandType::Shift, 12, true));
@@ -3218,19 +3182,19 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::ORR, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.orr64log_imm.Rd, is_64bit));
+                        { Operand op(OperandType::Register, enc.orr64log_imm.Rd, is_64bit); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Register, enc.orr64log_imm.Rn, is_64bit));
+                        uint64_t imm_val = decode_bit_masks(enc.orr64log_imm.N, enc.orr64log_imm.imms, enc.orr64log_imm.immr, is_64bit);
+                        result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit));
                         return result;
         }
         case 0xD1000000u: { // SUB_64_addsub_imm
                         Instruction result(Mnemonic::SUB, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        result.operands.push_back(Operand(OperandType::Register, enc.sub64addsub_imm.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sub64addsub_imm.Rn, true));
+                        { Operand op(OperandType::Register, enc.sub64addsub_imm.Rd, true); op.is_sp = true; result.operands.push_back(op); }
+                        { Operand op(OperandType::Register, enc.sub64addsub_imm.Rn, true); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sub64addsub_imm.imm12, true));
                         if (enc.sub64addsub_imm.sh != 0) {
                             result.operands.push_back(Operand(OperandType::Shift, 12, true));
@@ -3241,10 +3205,11 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::EOR, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.eor64log_imm.Rd, is_64bit));
+                        { Operand op(OperandType::Register, enc.eor64log_imm.Rd, is_64bit); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Register, enc.eor64log_imm.Rn, is_64bit));
+                        uint64_t imm_val = decode_bit_masks(enc.eor64log_imm.N, enc.eor64log_imm.imms, enc.eor64log_imm.immr, is_64bit);
+                        result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit));
                         return result;
         }
         case 0xD2800000u: { // MOV_MOVZ_64_movewide
@@ -3252,7 +3217,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::MOVZ, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_movz64movewide.Rd, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.mov_movz64movewide.imm16, true));
                         if (enc.mov_movz64movewide.hw != 0) {
@@ -3264,9 +3228,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::SUBS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        result.operands.push_back(Operand(OperandType::Register, enc.subs64s_addsub_imm.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.subs64s_addsub_imm.Rn, true));
+                        { Operand op(OperandType::Register, enc.subs64s_addsub_imm.Rd, true); op.is_sp = true; result.operands.push_back(op); }
+                        { Operand op(OperandType::Register, enc.subs64s_addsub_imm.Rn, true); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.subs64s_addsub_imm.imm12, true));
                         if (enc.subs64s_addsub_imm.sh != 0) {
                             result.operands.push_back(Operand(OperandType::Shift, 12, true));
@@ -3277,17 +3240,17 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::ANDS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = true;
+                        bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ands64s_log_imm.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ands64s_log_imm.Rn, is_64bit));
+                        uint64_t imm_val = decode_bit_masks(enc.ands64s_log_imm.N, enc.ands64s_log_imm.imms, enc.ands64s_log_imm.immr, is_64bit);
+                        result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit));
                         return result;
         }
         case 0xF2800000u: { // MOVK_64_movewide
                         Instruction result(Mnemonic::MOVK, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Register, enc.movk64movewide.Rd, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.movk64movewide.imm16, true));
                         if (enc.movk64movewide.hw != 0) {
@@ -3304,8 +3267,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::ADR, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.adr_only_pcreladdr.Rd, is_64bit));
                         return result;
         }
@@ -3313,8 +3275,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::ADRP, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.adrp_only_pcreladdr.Rd, is_64bit));
                         return result;
         }

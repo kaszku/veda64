@@ -3134,7 +3134,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_bl_ldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.str_bl_ldst_regoff.Rn));
@@ -3144,7 +3143,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_bl_ldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.ldr_bl_ldst_regoff.Rn));
@@ -3159,7 +3157,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_bldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.str_bldst_regoff.Rn));
@@ -3169,7 +3166,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_bldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.ldr_bldst_regoff.Rn));
@@ -3179,7 +3175,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_qldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.str_qldst_regoff.Rn));
@@ -3189,7 +3184,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_qldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.ldr_qldst_regoff.Rn));
@@ -3199,7 +3193,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_hldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.str_hldst_regoff.Rn));
@@ -3209,7 +3202,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_hldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.ldr_hldst_regoff.Rn));
@@ -3219,7 +3211,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_sldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.str_sldst_regoff.Rn));
@@ -3229,7 +3220,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_sldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.ldr_sldst_regoff.Rn));
@@ -3239,7 +3229,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_dldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.str_dldst_regoff.Rn));
@@ -3249,7 +3238,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_dldst_regoff.Rt, is_64bit));
                         result.operands.push_back(Operand::memory_base(enc.ldr_dldst_regoff.Rn));
@@ -3264,7 +3252,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STLUR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlur_bldapstl_simd.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlur_bldapstl_simd.Rt, is_64bit));
@@ -3278,7 +3265,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPUR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapur_bldapstl_simd.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapur_bldapstl_simd.Rt, is_64bit));
@@ -3292,7 +3278,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STLUR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlur_qldapstl_simd.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlur_qldapstl_simd.Rt, is_64bit));
@@ -3306,7 +3291,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPUR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapur_qldapstl_simd.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapur_qldapstl_simd.Rt, is_64bit));
@@ -3320,7 +3304,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STUR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.stur_bldst_unscaled.Rt, is_64bit));
@@ -3331,7 +3314,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_bldst_immpost.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.str_bldst_immpost.imm9) << 23) >> 23;
@@ -3342,7 +3324,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_bldst_immpre.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.str_bldst_immpre.imm9) << 23) >> 23;
@@ -3353,7 +3334,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDUR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldur_bldst_unscaled.Rt, is_64bit));
@@ -3364,7 +3344,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_bldst_immpost.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.ldr_bldst_immpost.imm9) << 23) >> 23;
@@ -3375,7 +3354,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_bldst_immpre.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.ldr_bldst_immpre.imm9) << 23) >> 23;
@@ -3386,7 +3364,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STUR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.stur_qldst_unscaled.Rt, is_64bit));
@@ -3397,7 +3374,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_qldst_immpost.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.str_qldst_immpost.imm9) << 23) >> 23;
@@ -3408,7 +3384,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_qldst_immpre.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.str_qldst_immpre.imm9) << 23) >> 23;
@@ -3419,7 +3394,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDUR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldur_qldst_unscaled.Rt, is_64bit));
@@ -3430,7 +3404,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_qldst_immpost.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.ldr_qldst_immpost.imm9) << 23) >> 23;
@@ -3441,7 +3414,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_qldst_immpre.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.ldr_qldst_immpre.imm9) << 23) >> 23;
@@ -3452,7 +3424,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STLUR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlur_hldapstl_simd.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlur_hldapstl_simd.Rt, is_64bit));
@@ -3466,7 +3437,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPUR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapur_hldapstl_simd.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapur_hldapstl_simd.Rt, is_64bit));
@@ -3480,7 +3450,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STUR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.stur_hldst_unscaled.Rt, is_64bit));
@@ -3491,7 +3460,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_hldst_immpost.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.str_hldst_immpost.imm9) << 23) >> 23;
@@ -3502,7 +3470,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_hldst_immpre.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.str_hldst_immpre.imm9) << 23) >> 23;
@@ -3513,7 +3480,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDUR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldur_hldst_unscaled.Rt, is_64bit));
@@ -3524,7 +3490,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_hldst_immpost.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.ldr_hldst_immpost.imm9) << 23) >> 23;
@@ -3535,7 +3500,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_hldst_immpre.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.ldr_hldst_immpre.imm9) << 23) >> 23;
@@ -3546,7 +3510,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STLUR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlur_sldapstl_simd.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlur_sldapstl_simd.Rt, is_64bit));
@@ -3560,7 +3523,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPUR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapur_sldapstl_simd.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapur_sldapstl_simd.Rt, is_64bit));
@@ -3574,7 +3536,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STUR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.stur_sldst_unscaled.Rt, is_64bit));
@@ -3585,7 +3546,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_sldst_immpost.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.str_sldst_immpost.imm9) << 23) >> 23;
@@ -3596,7 +3556,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_sldst_immpre.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.str_sldst_immpre.imm9) << 23) >> 23;
@@ -3607,7 +3566,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDUR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldur_sldst_unscaled.Rt, is_64bit));
@@ -3618,7 +3576,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_sldst_immpost.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.ldr_sldst_immpost.imm9) << 23) >> 23;
@@ -3629,7 +3586,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_sldst_immpre.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.ldr_sldst_immpre.imm9) << 23) >> 23;
@@ -3640,7 +3596,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STLUR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stlur_dldapstl_simd.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stlur_dldapstl_simd.Rt, is_64bit));
@@ -3654,7 +3609,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPUR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapur_dldapstl_simd.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldapur_dldapstl_simd.Rt, is_64bit));
@@ -3668,7 +3622,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STUR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.stur_dldst_unscaled.Rt, is_64bit));
@@ -3679,7 +3632,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_dldst_immpost.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.str_dldst_immpost.imm9) << 23) >> 23;
@@ -3690,7 +3642,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_dldst_immpre.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.str_dldst_immpre.imm9) << 23) >> 23;
@@ -3701,7 +3652,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDUR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldur_dldst_unscaled.Rt, is_64bit));
@@ -3712,7 +3662,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_dldst_immpost.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.ldr_dldst_immpost.imm9) << 23) >> 23;
@@ -3723,7 +3672,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_dldst_immpre.Rt, is_64bit));
                         int32_t imm = (static_cast<int32_t>(enc.ldr_dldst_immpre.imm9) << 23) >> 23;
@@ -3739,7 +3687,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STNP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnp_sldstnapair_offs.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnp_sldstnapair_offs.Rt, is_64bit));
@@ -3751,7 +3698,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDNP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnp_sldstnapair_offs.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnp_sldstnapair_offs.Rt, is_64bit));
@@ -3763,11 +3709,9 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stp_sldstpair_post.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_sldstpair_post.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_sldstpair_post.Rt2, is_64bit));
+                        int scale = 4;
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp_sldstpair_post.Rt, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp_sldstpair_post.Rt2, false));
                         int32_t imm = (static_cast<int32_t>(enc.stp_sldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.stp_sldstpair_post.Rn, imm * scale));
                         return result;
@@ -3776,11 +3720,9 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldp_sldstpair_post.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_sldstpair_post.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_sldstpair_post.Rt2, is_64bit));
+                        int scale = 4;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_sldstpair_post.Rt, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_sldstpair_post.Rt2, false));
                         int32_t imm = (static_cast<int32_t>(enc.ldp_sldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.ldp_sldstpair_post.Rn, imm * scale));
                         return result;
@@ -3789,11 +3731,9 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stp_sldstpair_off.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_sldstpair_off.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_sldstpair_off.Rt2, is_64bit));
+                        int scale = 4;
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp_sldstpair_off.Rt, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp_sldstpair_off.Rt2, false));
                         int32_t imm = (static_cast<int32_t>(enc.stp_sldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.stp_sldstpair_off.Rn, imm * scale));
                         return result;
@@ -3802,11 +3742,9 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldp_sldstpair_off.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_sldstpair_off.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_sldstpair_off.Rt2, is_64bit));
+                        int scale = 4;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_sldstpair_off.Rt, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_sldstpair_off.Rt2, false));
                         int32_t imm = (static_cast<int32_t>(enc.ldp_sldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.ldp_sldstpair_off.Rn, imm * scale));
                         return result;
@@ -3815,11 +3753,9 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stp_sldstpair_pre.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_sldstpair_pre.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_sldstpair_pre.Rt2, is_64bit));
+                        int scale = 4;
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp_sldstpair_pre.Rt, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp_sldstpair_pre.Rt2, false));
                         int32_t imm = (static_cast<int32_t>(enc.stp_sldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.stp_sldstpair_pre.Rn, imm * scale));
                         return result;
@@ -3828,11 +3764,9 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldp_sldstpair_pre.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_sldstpair_pre.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_sldstpair_pre.Rt2, is_64bit));
+                        int scale = 4;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_sldstpair_pre.Rt, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_sldstpair_pre.Rt2, false));
                         int32_t imm = (static_cast<int32_t>(enc.ldp_sldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.ldp_sldstpair_pre.Rn, imm * scale));
                         return result;
@@ -3841,7 +3775,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_bldst_pos.Rt, is_64bit));
@@ -3852,7 +3785,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_bldst_pos.Rt, is_64bit));
@@ -3863,7 +3795,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_qldst_pos.Rt, is_64bit));
@@ -3874,7 +3805,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_qldst_pos.Rt, is_64bit));
@@ -3885,7 +3815,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STNP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnp_dldstnapair_offs.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnp_dldstnapair_offs.Rt, is_64bit));
@@ -3897,7 +3826,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDNP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnp_dldstnapair_offs.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnp_dldstnapair_offs.Rt, is_64bit));
@@ -3909,11 +3837,9 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stp_dldstpair_post.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_dldstpair_post.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_dldstpair_post.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp_dldstpair_post.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp_dldstpair_post.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.stp_dldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.stp_dldstpair_post.Rn, imm * scale));
                         return result;
@@ -3922,11 +3848,9 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldp_dldstpair_post.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_dldstpair_post.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_dldstpair_post.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_dldstpair_post.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_dldstpair_post.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldp_dldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.ldp_dldstpair_post.Rn, imm * scale));
                         return result;
@@ -3935,11 +3859,9 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stp_dldstpair_off.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_dldstpair_off.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_dldstpair_off.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp_dldstpair_off.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp_dldstpair_off.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.stp_dldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.stp_dldstpair_off.Rn, imm * scale));
                         return result;
@@ -3948,11 +3870,9 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldp_dldstpair_off.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_dldstpair_off.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_dldstpair_off.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_dldstpair_off.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_dldstpair_off.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldp_dldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.ldp_dldstpair_off.Rn, imm * scale));
                         return result;
@@ -3961,11 +3881,9 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stp_dldstpair_pre.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_dldstpair_pre.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_dldstpair_pre.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp_dldstpair_pre.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stp_dldstpair_pre.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.stp_dldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.stp_dldstpair_pre.Rn, imm * scale));
                         return result;
@@ -3974,11 +3892,9 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldp_dldstpair_pre.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_dldstpair_pre.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_dldstpair_pre.Rt2, is_64bit));
+                        int scale = 8;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_dldstpair_pre.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_dldstpair_pre.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldp_dldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.ldp_dldstpair_pre.Rn, imm * scale));
                         return result;
@@ -3987,7 +3903,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_hldst_pos.Rt, is_64bit));
@@ -3998,7 +3913,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_hldst_pos.Rt, is_64bit));
@@ -4009,7 +3923,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STNP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnp_qldstnapair_offs.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnp_qldstnapair_offs.Rt, is_64bit));
@@ -4021,7 +3934,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDNP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnp_qldstnapair_offs.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnp_qldstnapair_offs.Rt, is_64bit));
@@ -4033,11 +3945,9 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stp_qldstpair_post.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_qldstpair_post.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_qldstpair_post.Rt2, is_64bit));
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.stp_qldstpair_post.Rt, true));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.stp_qldstpair_post.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.stp_qldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.stp_qldstpair_post.Rn, imm * scale));
                         return result;
@@ -4046,11 +3956,9 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldp_qldstpair_post.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_qldstpair_post.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_qldstpair_post.Rt2, is_64bit));
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldp_qldstpair_post.Rt, true));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldp_qldstpair_post.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldp_qldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.ldp_qldstpair_post.Rn, imm * scale));
                         return result;
@@ -4059,11 +3967,9 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stp_qldstpair_off.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_qldstpair_off.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_qldstpair_off.Rt2, is_64bit));
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.stp_qldstpair_off.Rt, true));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.stp_qldstpair_off.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.stp_qldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.stp_qldstpair_off.Rn, imm * scale));
                         return result;
@@ -4072,11 +3978,9 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldp_qldstpair_off.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_qldstpair_off.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_qldstpair_off.Rt2, is_64bit));
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldp_qldstpair_off.Rt, true));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldp_qldstpair_off.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldp_qldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.ldp_qldstpair_off.Rn, imm * scale));
                         return result;
@@ -4085,11 +3989,9 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.stp_qldstpair_pre.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_qldstpair_pre.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stp_qldstpair_pre.Rt2, is_64bit));
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.stp_qldstpair_pre.Rt, true));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.stp_qldstpair_pre.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.stp_qldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.stp_qldstpair_pre.Rn, imm * scale));
                         return result;
@@ -4098,11 +4000,9 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldp_qldstpair_pre.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_qldstpair_pre.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldp_qldstpair_pre.Rt2, is_64bit));
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldp_qldstpair_pre.Rt, true));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldp_qldstpair_pre.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldp_qldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.ldp_qldstpair_pre.Rn, imm * scale));
                         return result;
@@ -4111,7 +4011,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_sldst_pos.Rt, is_64bit));
@@ -4122,7 +4021,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_sldst_pos.Rt, is_64bit));
@@ -4133,7 +4031,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STTNP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sttnp_qldstnapair_offs.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sttnp_qldstnapair_offs.Rt, is_64bit));
@@ -4145,7 +4042,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDTNP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtnp_qldstnapair_offs.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtnp_qldstnapair_offs.Rt, is_64bit));
@@ -4157,11 +4053,9 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STTP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.sttp_qldstpair_post.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sttp_qldstpair_post.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sttp_qldstpair_post.Rt2, is_64bit));
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.sttp_qldstpair_post.Rt, true));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.sttp_qldstpair_post.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.sttp_qldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.sttp_qldstpair_post.Rn, imm * scale));
                         return result;
@@ -4170,11 +4064,9 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDTP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldtp_qldstpair_post.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldtp_qldstpair_post.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldtp_qldstpair_post.Rt2, is_64bit));
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldtp_qldstpair_post.Rt, true));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldtp_qldstpair_post.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldtp_qldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.ldtp_qldstpair_post.Rn, imm * scale));
                         return result;
@@ -4183,11 +4075,9 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STTP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.sttp_qldstpair_off.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sttp_qldstpair_off.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sttp_qldstpair_off.Rt2, is_64bit));
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.sttp_qldstpair_off.Rt, true));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.sttp_qldstpair_off.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.sttp_qldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.sttp_qldstpair_off.Rn, imm * scale));
                         return result;
@@ -4196,11 +4086,9 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDTP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldtp_qldstpair_off.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldtp_qldstpair_off.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldtp_qldstpair_off.Rt2, is_64bit));
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldtp_qldstpair_off.Rt, true));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldtp_qldstpair_off.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldtp_qldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.ldtp_qldstpair_off.Rn, imm * scale));
                         return result;
@@ -4209,11 +4097,9 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STTP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.sttp_qldstpair_pre.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sttp_qldstpair_pre.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sttp_qldstpair_pre.Rt2, is_64bit));
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.sttp_qldstpair_pre.Rt, true));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.sttp_qldstpair_pre.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.sttp_qldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.sttp_qldstpair_pre.Rn, imm * scale));
                         return result;
@@ -4222,11 +4108,9 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDTP, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
-                        bool is_64bit = (enc.ldtp_qldstpair_pre.opc == 2);
-                        int scale = is_64bit ? 8 : 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldtp_qldstpair_pre.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldtp_qldstpair_pre.Rt2, is_64bit));
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldtp_qldstpair_pre.Rt, true));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldtp_qldstpair_pre.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldtp_qldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.ldtp_qldstpair_pre.Rn, imm * scale));
                         return result;
@@ -4235,7 +4119,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_dldst_pos.Rt, is_64bit));
@@ -4246,7 +4129,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_dldst_pos.Rt, is_64bit));
@@ -4262,7 +4144,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_sloadlit.Rt, is_64bit));
                         return result;
@@ -4271,7 +4152,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_dloadlit.Rt, is_64bit));
                         return result;
@@ -4280,7 +4160,6 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         FpsimdEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_qloadlit.Rt, is_64bit));
                         return result;

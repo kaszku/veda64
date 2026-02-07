@@ -2235,140 +2235,120 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::NOP, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503203Fu: { // YIELD_HI_hints
                         Instruction result(Mnemonic::YIELD, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503205Fu: { // WFE_HI_hints
                         Instruction result(Mnemonic::WFE, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503207Fu: { // WFI_HI_hints
                         Instruction result(Mnemonic::WFI, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503209Fu: { // SEV_HI_hints
                         Instruction result(Mnemonic::SEV, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD50320BFu: { // SEVL_HI_hints
                         Instruction result(Mnemonic::SEVL, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD50320DFu: { // DGH_HI_hints
                         Instruction result(Mnemonic::DGH, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503221Fu: { // ESB_HI_hints
                         Instruction result(Mnemonic::ESB, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503223Fu: { // PSB_HC_hints
                         Instruction result(Mnemonic::PSB, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503225Fu: { // TSB_HC_hints
                         Instruction result(Mnemonic::TSB, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503227Fu: { // GCSB_HD_hints
                         Instruction result(Mnemonic::GCSB, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503229Fu: { // CSDB_HI_hints
                         Instruction result(Mnemonic::CSDB, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD50322DFu: { // CLRBHB_HI_hints
                         Instruction result(Mnemonic::CLRBHB, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD50324FFu: { // PACM_HI_hints
                         Instruction result(Mnemonic::PACM, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503251Fu: { // CHKFEAT_HF_hints
                         Instruction result(Mnemonic::CHKFEAT, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503269Fu: { // STCPH_HI_hints
                         Instruction result(Mnemonic::STCPH, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503309Fu: { // SSBB_DSB_BO_barriers
                         Instruction result(Mnemonic::DSB, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503349Fu: { // PSSBB_DSB_BO_barriers
                         Instruction result(Mnemonic::DSB, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD69F03E0u: { // ERET_64E_branch_reg
                         Instruction result(Mnemonic::ERET, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD6BF03E0u: { // DRPS_64E_branch_reg
                         Instruction result(Mnemonic::DRPS, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -2380,7 +2360,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::WFET, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.wfet_only_systeminstrswithreg.Rd, is_64bit));
                         return result;
@@ -2389,7 +2368,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::WFIT, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.wfit_only_systeminstrswithreg.Rd, is_64bit));
                         return result;
@@ -2398,7 +2376,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.gcspushx_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -2407,7 +2384,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.gcspopcx_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -2416,7 +2392,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.gcspopx_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -2425,7 +2400,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.trcit_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -2434,7 +2408,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cfp_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -2443,7 +2416,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.dvp_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -2452,7 +2424,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cosp_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -2461,7 +2432,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpp_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -2470,7 +2440,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.gcspushm_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -2479,7 +2448,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.gcsss1sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -2488,7 +2456,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.apas_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -2497,7 +2464,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SYSL, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.gcspopm_sysl_rc_systeminstrs.Rt, is_64bit));
                         return result;
@@ -2506,7 +2472,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SYSL, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.gcsss2sysl_rc_systeminstrs.Rt, is_64bit));
                         return result;
@@ -2520,14 +2485,12 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::STSHH, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503265Fu: { // SHUH_HI_hints
                         Instruction result(Mnemonic::SHUH, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -2539,7 +2502,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mlbi_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -2553,7 +2515,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::BTI, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -2565,7 +2526,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.gsb_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -2574,7 +2534,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.brb_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -2583,7 +2542,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SYSL, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.gicr_sysl_rc_systeminstrs.Rt, is_64bit));
                         return result;
@@ -2597,7 +2555,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.gic_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -2611,14 +2568,12 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::MSR, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503417Fu: { // SMSTART_MSR_SI_pstate
                         Instruction result(Mnemonic::MSR, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -2630,7 +2585,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::DSB, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -2642,28 +2596,24 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::CFINV, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD500403Fu: { // XAFLAG_M_pstate
                         Instruction result(Mnemonic::XAFLAG, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD500405Fu: { // AXFLAG_M_pstate
                         Instruction result(Mnemonic::AXFLAG, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD50330FFu: { // SB_only_barriers
                         Instruction result(Mnemonic::SB, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -2675,28 +2625,24 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::CLREX, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD503309Fu: { // DSB_BO_barriers
                         Instruction result(Mnemonic::DSB, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD50330BFu: { // DMB_BO_barriers
                         Instruction result(Mnemonic::DMB, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xD50330DFu: { // ISB_BI_barriers
                         Instruction result(Mnemonic::ISB, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -2706,9 +2652,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
     switch (insn & 0xFFFFF01Fu) {
         case 0xD503201Fu: { // HINT_HM_hints
                         Instruction result(Mnemonic::HINT, insn);
-                        SystemEncoding enc = {};
-                        enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         // HINT instruction - decode to alias based on CRm:op2
                         uint32_t CRm = (insn >> 8) & 0xF;
                         uint32_t op2 = (insn >> 5) & 0x7;
@@ -2753,7 +2696,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.at_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -2767,7 +2709,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::MSR, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -2780,7 +2721,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.dc_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -2794,7 +2734,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.tlbi_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -2803,7 +2742,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SYSP, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.tlbip_sysp_cr_syspairinstrs.Rt, is_64bit));
                         return result;
@@ -2817,7 +2755,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
@@ -2826,7 +2763,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SYSL, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sysl_rc_systeminstrs.Rt, is_64bit));
                         return result;
@@ -2835,7 +2771,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SYSP, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sysp_cr_syspairinstrs.Rt, is_64bit));
                         return result;
@@ -2849,7 +2784,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::MSR, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.msr_sr_systemmove.Rt, is_64bit));
                         return result;
@@ -2858,7 +2792,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::MRS, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mrs_rs_systemmove.Rt, is_64bit));
                         return result;
@@ -2867,7 +2800,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::MSRR, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.msrr_sr_systemmovepr.Rt, is_64bit));
                         return result;
@@ -2876,7 +2808,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::MRRS, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mrrs_rs_systemmovepr.Rt, is_64bit));
                         return result;
@@ -2890,7 +2821,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SVC, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.svc_ex_exception.imm16, true));
                         return result;
         }
@@ -2898,7 +2828,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::HVC, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.hvc_ex_exception.imm16, true));
                         return result;
         }
@@ -2906,7 +2835,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::SMC, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.smc_ex_exception.imm16, true));
                         return result;
         }
@@ -2914,7 +2842,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::BRK, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.brk_ex_exception.imm16, true));
                         return result;
         }
@@ -2922,7 +2849,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::HLT, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.hlt_ex_exception.imm16, true));
                         return result;
         }
@@ -2930,7 +2856,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::DCPS1, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.dcps1dc_exception.imm16, true));
                         return result;
         }
@@ -2938,7 +2863,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::DCPS2, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.dcps2dc_exception.imm16, true));
                         return result;
         }
@@ -2946,7 +2870,6 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::DCPS3, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.dcps3dc_exception.imm16, true));
                         return result;
         }

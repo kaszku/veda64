@@ -37178,7 +37178,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ZERO, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -37190,7 +37189,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ZERO, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.zero_za_i.imm8, true));
                         return result;
         }
@@ -37203,7 +37201,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI6, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -37215,77 +37212,66 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI6, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC131E000u: { // fcvtzs_mz_z_4
                         Instruction result(Mnemonic::FCVTZS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC131E020u: { // fcvtzu_mz_z_4
                         Instruction result(Mnemonic::FCVTZU, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC132E000u: { // scvtf_mz_z_4
                         Instruction result(Mnemonic::SCVTF, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC132E020u: { // ucvtf_mz_z_4
                         Instruction result(Mnemonic::UCVTF, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC137E000u: { // zip_mz_z_4q
                         Instruction result(Mnemonic::ZIP, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC137E002u: { // uzp_mz_z_4q
                         Instruction result(Mnemonic::UZP, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1B8E000u: { // frintn_mz_z_4
                         Instruction result(Mnemonic::FRINTN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1B9E000u: { // frintp_mz_z_4
                         Instruction result(Mnemonic::FRINTP, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1BAE000u: { // frintm_mz_z_4
                         Instruction result(Mnemonic::FRINTM, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1BCE000u: { // frinta_mz_z_4
                         Instruction result(Mnemonic::FRINTA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -37297,14 +37283,12 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FCVT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC134E020u: { // fcvtn_z8_mz4_
                         Instruction result(Mnemonic::FCVTN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -37316,56 +37300,48 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC121E020u: { // fcvtzu_mz_z_2
                         Instruction result(Mnemonic::FCVTZU, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC122E000u: { // scvtf_mz_z_2
                         Instruction result(Mnemonic::SCVTF, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC122E020u: { // ucvtf_mz_z_2
                         Instruction result(Mnemonic::UCVTF, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A8E000u: { // frintn_mz_z_2
                         Instruction result(Mnemonic::FRINTN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A9E000u: { // frintp_mz_z_2
                         Instruction result(Mnemonic::FRINTP, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1AAE000u: { // frintm_mz_z_2
                         Instruction result(Mnemonic::FRINTM, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1ACE000u: { // frinta_mz_z_2
                         Instruction result(Mnemonic::FRINTA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -37377,63 +37353,54 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FCVT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120E020u: { // fcvtn_z_mz2_
                         Instruction result(Mnemonic::FCVTN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC123E000u: { // sqcvt_z_mz2_
                         Instruction result(Mnemonic::SQCVT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC123E020u: { // uqcvt_z_mz2_
                         Instruction result(Mnemonic::UQCVT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC124E000u: { // fcvt_z8_mz2_
                         Instruction result(Mnemonic::FCVT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC160E000u: { // bfcvt_z_mz2_
                         Instruction result(Mnemonic::BFCVT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC160E020u: { // bfcvtn_z_mz2_
                         Instruction result(Mnemonic::BFCVTN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC163E000u: { // sqcvtu_z_mz2_
                         Instruction result(Mnemonic::SQCVTU, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC164E000u: { // bfcvt_z8_mz2_
                         Instruction result(Mnemonic::BFCVT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -37445,7 +37412,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_zt_br.Rn, is_64bit));
                         return result;
@@ -37454,7 +37420,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_zt_br.Rn, is_64bit));
                         return result;
@@ -37468,70 +37433,60 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::F1CVT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC126E001u: { // f1cvtl_mz2_z8_
                         Instruction result(Mnemonic::F1CVTL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC166E000u: { // bf1cvt_mz2_z8_
                         Instruction result(Mnemonic::BF1CVT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC166E001u: { // bf1cvtl_mz2_z8_
                         Instruction result(Mnemonic::BF1CVTL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A0E000u: { // fcvt_mz2_z_
                         Instruction result(Mnemonic::FCVT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A0E001u: { // fcvtl_mz2_z_
                         Instruction result(Mnemonic::FCVTL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A6E000u: { // f2cvt_mz2_z8_
                         Instruction result(Mnemonic::F2CVT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A6E001u: { // f2cvtl_mz2_z8_
                         Instruction result(Mnemonic::F2CVTL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1E6E000u: { // bf2cvt_mz2_z8_
                         Instruction result(Mnemonic::BF2CVT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1E6E001u: { // bf2cvtl_mz2_z8_
                         Instruction result(Mnemonic::BF2CVTL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -37543,7 +37498,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI6, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -37555,7 +37509,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -37567,7 +37520,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI4, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -37579,7 +37531,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI4, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -37591,14 +37542,12 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ZERO, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC00F8000u: { // zero_za4_ri_4
                         Instruction result(Mnemonic::ZERO, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -37610,21 +37559,18 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ZERO, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC00D8000u: { // zero_za2_ri_4
                         Instruction result(Mnemonic::ZERO, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC00E8000u: { // zero_za4_ri_1
                         Instruction result(Mnemonic::ZERO, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -37636,21 +37582,18 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ZERO, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC00C8000u: { // zero_za2_ri_1
                         Instruction result(Mnemonic::ZERO, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC00E0000u: { // zero_za1_ri_4
                         Instruction result(Mnemonic::ZERO, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -37663,14 +37606,12 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC0060E00u: { // movaz_mz_za4_1
                         Instruction result(Mnemonic::MOVAZ, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -37683,14 +37624,12 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC0060A00u: { // movaz_mz_za2_1
                         Instruction result(Mnemonic::MOVAZ, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -37703,35 +37642,30 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A51C00u: { // fadd_za_zw_4x4_16
                         Instruction result(Mnemonic::FADD, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A51C08u: { // fsub_za_zw_4x4_16
                         Instruction result(Mnemonic::FSUB, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1E51C00u: { // bfadd_za_zw_4x4_16
                         Instruction result(Mnemonic::BFADD, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1E51C08u: { // bfsub_za_zw_4x4_16
                         Instruction result(Mnemonic::BFSUB, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -37744,35 +37678,30 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A41C00u: { // fadd_za_zw_2x2_16
                         Instruction result(Mnemonic::FADD, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A41C08u: { // fsub_za_zw_2x2_16
                         Instruction result(Mnemonic::FSUB, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1E41C00u: { // bfadd_za_zw_2x2_16
                         Instruction result(Mnemonic::BFADD, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1E41C08u: { // bfsub_za_zw_2x2_16
                         Instruction result(Mnemonic::BFSUB, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -37784,7 +37713,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_za_ri.Rn, is_64bit));
                         return result;
@@ -37793,7 +37721,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_za_ri.Rn, is_64bit));
                         return result;
@@ -37807,7 +37734,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.movt_rzt.Rt, is_64bit));
                         return result;
@@ -37816,7 +37742,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.movt_zt_r.Rt, is_64bit));
                         return result;
@@ -37831,7 +37756,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_mz4za_b1mova_mz4za_b1.Rs, is_64bit));
                         return result;
@@ -37840,7 +37764,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVAZ, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.movaz_mz4za_b1.Rs, is_64bit));
                         return result;
@@ -37850,7 +37773,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_mz4za_h1mova_mz4za_h1.Rs, is_64bit));
                         return result;
@@ -37859,7 +37781,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVAZ, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.movaz_mz4za_h1.Rs, is_64bit));
                         return result;
@@ -37869,7 +37790,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_mz4za_w1mova_mz4za_w1.Rs, is_64bit));
                         return result;
@@ -37878,7 +37798,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVAZ, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.movaz_mz4za_w1.Rs, is_64bit));
                         return result;
@@ -37893,7 +37812,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_mz4za_d1mova_mz4za_d1.Rs, is_64bit));
                         return result;
@@ -37902,7 +37820,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVAZ, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.movaz_mz4za_d1.Rs, is_64bit));
                         return result;
@@ -37917,7 +37834,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_mz2za_b1mova_mz2za_b1.Rs, is_64bit));
                         return result;
@@ -37926,7 +37842,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVAZ, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.movaz_mz2za_b1.Rs, is_64bit));
                         return result;
@@ -37936,7 +37851,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_mz2za_h1mova_mz2za_h1.Rs, is_64bit));
                         return result;
@@ -37945,7 +37859,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVAZ, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.movaz_mz2za_h1.Rs, is_64bit));
                         return result;
@@ -37955,7 +37868,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_mz2za_w1mova_mz2za_w1.Rs, is_64bit));
                         return result;
@@ -37964,7 +37876,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVAZ, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.movaz_mz2za_w1.Rs, is_64bit));
                         return result;
@@ -37974,7 +37885,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_mz2za_d1mova_mz2za_d1.Rs, is_64bit));
                         return result;
@@ -37983,7 +37893,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVAZ, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.movaz_mz2za_d1.Rs, is_64bit));
                         return result;
@@ -37997,7 +37906,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVAZ, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.movaz_zrza_b.Rs, is_64bit));
                         return result;
@@ -38006,7 +37914,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVAZ, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.movaz_zrza_h.Rs, is_64bit));
                         return result;
@@ -38015,7 +37922,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVAZ, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.movaz_zrza_w.Rs, is_64bit));
                         return result;
@@ -38024,7 +37930,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVAZ, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.movaz_zrza_d.Rs, is_64bit));
                         return result;
@@ -38033,7 +37938,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVAZ, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.movaz_zrza_q.Rs, is_64bit));
                         return result;
@@ -38048,7 +37952,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za4zb1mova_za4zb1.Rs, is_64bit));
                         return result;
@@ -38058,7 +37961,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za4zh1mova_za4zh1.Rs, is_64bit));
                         return result;
@@ -38068,7 +37970,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za4zw1mova_za4zw1.Rs, is_64bit));
                         return result;
@@ -38083,7 +37984,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za4zd1mova_za4zd1.Rs, is_64bit));
                         return result;
@@ -38098,7 +37998,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za2zb1mova_za2zb1.Rs, is_64bit));
                         return result;
@@ -38108,7 +38007,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za2zh1mova_za2zh1.Rs, is_64bit));
                         return result;
@@ -38118,7 +38016,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za2zw1mova_za2zw1.Rs, is_64bit));
                         return result;
@@ -38128,7 +38025,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za2zd1mova_za2zd1.Rs, is_64bit));
                         return result;
@@ -38143,7 +38039,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_zprza_bmova_zprza_b.Rs, is_64bit));
                         return result;
@@ -38153,7 +38048,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_zprza_hmova_zprza_h.Rs, is_64bit));
                         return result;
@@ -38163,7 +38057,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_zprza_wmova_zprza_w.Rs, is_64bit));
                         return result;
@@ -38173,7 +38066,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_zprza_dmova_zprza_d.Rs, is_64bit));
                         return result;
@@ -38183,7 +38075,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_zprza_qmova_zprza_q.Rs, is_64bit));
                         return result;
@@ -38197,14 +38088,12 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ADDHA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC0910000u: { // addva_za_pp_z_32
                         Instruction result(Mnemonic::ADDVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -38216,14 +38105,12 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ADDHA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC0D10000u: { // addva_za_pp_z_64
                         Instruction result(Mnemonic::ADDVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -38236,7 +38123,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za_prz_bmova_za_prz_b.Rs, is_64bit));
                         return result;
@@ -38246,7 +38132,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za_prz_hmova_za_prz_h.Rs, is_64bit));
                         return result;
@@ -38256,7 +38141,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za_prz_wmova_za_prz_w.Rs, is_64bit));
                         return result;
@@ -38266,7 +38150,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za_prz_dmova_za_prz_d.Rs, is_64bit));
                         return result;
@@ -38276,7 +38159,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za_prz_qmova_za_prz_q.Rs, is_64bit));
                         return result;
@@ -38290,7 +38172,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI4, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -38302,7 +38183,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI4, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -38314,7 +38194,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI4, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -38326,7 +38205,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI4, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -38338,7 +38216,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI4, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -38350,7 +38227,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI2, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -38362,7 +38238,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI2, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -38374,7 +38249,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI2, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -38386,7 +38260,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI2, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -38398,7 +38271,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI2, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -38410,140 +38282,120 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80200208u: { // fmop4a_za16_z8z8_b2x1
                         Instruction result(Mnemonic::FMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80300008u: { // fmop4a_za16_z8z8_b1x2
                         Instruction result(Mnemonic::FMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80300208u: { // fmop4a_za16_z8z8_b2x2
                         Instruction result(Mnemonic::FMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81000008u: { // fmop4a_za_zz_h1x1
                         Instruction result(Mnemonic::FMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81000018u: { // fmop4s_za_zz_h1x1
                         Instruction result(Mnemonic::FMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81000208u: { // fmop4a_za_zz_h2x1
                         Instruction result(Mnemonic::FMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81000218u: { // fmop4s_za_zz_h2x1
                         Instruction result(Mnemonic::FMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81100008u: { // fmop4a_za_zz_h1x2
                         Instruction result(Mnemonic::FMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81100018u: { // fmop4s_za_zz_h1x2
                         Instruction result(Mnemonic::FMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81100208u: { // fmop4a_za_zz_h2x2
                         Instruction result(Mnemonic::FMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81100218u: { // fmop4s_za_zz_h2x2
                         Instruction result(Mnemonic::FMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81200008u: { // bfmop4a_za_zz_h1x1
                         Instruction result(Mnemonic::BFMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81200018u: { // bfmop4s_za_zz_h1x1
                         Instruction result(Mnemonic::BFMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81200208u: { // bfmop4a_za_zz_h2x1
                         Instruction result(Mnemonic::BFMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81200218u: { // bfmop4s_za_zz_h2x1
                         Instruction result(Mnemonic::BFMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81300008u: { // bfmop4a_za_zz_h1x2
                         Instruction result(Mnemonic::BFMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81300018u: { // bfmop4s_za_zz_h1x2
                         Instruction result(Mnemonic::BFMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81300208u: { // bfmop4a_za_zz_h2x2
                         Instruction result(Mnemonic::BFMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81300218u: { // bfmop4s_za_zz_h2x2
                         Instruction result(Mnemonic::BFMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -38555,532 +38407,456 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80000010u: { // fmop4s_za_zz_s1x1
                         Instruction result(Mnemonic::FMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80000200u: { // fmop4a_za_zz_s2x1
                         Instruction result(Mnemonic::FMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80000210u: { // fmop4s_za_zz_s2x1
                         Instruction result(Mnemonic::FMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80008000u: { // smop4a_za_zz_b1x1
                         Instruction result(Mnemonic::SMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80008008u: { // smop4a_za32_zz_h1x1
                         Instruction result(Mnemonic::SMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80008010u: { // smop4s_za_zz_b1x1
                         Instruction result(Mnemonic::SMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80008018u: { // smop4s_za32_zz_h1x1
                         Instruction result(Mnemonic::SMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80008200u: { // smop4a_za_zz_b2x1
                         Instruction result(Mnemonic::SMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80008208u: { // smop4a_za32_zz_h2x1
                         Instruction result(Mnemonic::SMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80008210u: { // smop4s_za_zz_b2x1
                         Instruction result(Mnemonic::SMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80008218u: { // smop4s_za32_zz_h2x1
                         Instruction result(Mnemonic::SMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80100000u: { // fmop4a_za_zz_s1x2
                         Instruction result(Mnemonic::FMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80100010u: { // fmop4s_za_zz_s1x2
                         Instruction result(Mnemonic::FMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80100200u: { // fmop4a_za_zz_s2x2
                         Instruction result(Mnemonic::FMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80100210u: { // fmop4s_za_zz_s2x2
                         Instruction result(Mnemonic::FMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80108000u: { // smop4a_za_zz_b1x2
                         Instruction result(Mnemonic::SMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80108008u: { // smop4a_za32_zz_h1x2
                         Instruction result(Mnemonic::SMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80108010u: { // smop4s_za_zz_b1x2
                         Instruction result(Mnemonic::SMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80108018u: { // smop4s_za32_zz_h1x2
                         Instruction result(Mnemonic::SMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80108200u: { // smop4a_za_zz_b2x2
                         Instruction result(Mnemonic::SMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80108208u: { // smop4a_za32_zz_h2x2
                         Instruction result(Mnemonic::SMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80108210u: { // smop4s_za_zz_b2x2
                         Instruction result(Mnemonic::SMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80108218u: { // smop4s_za32_zz_h2x2
                         Instruction result(Mnemonic::SMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80200000u: { // fmop4a_za32_z8z8_b1x1
                         Instruction result(Mnemonic::FMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80200200u: { // fmop4a_za32_z8z8_b2x1
                         Instruction result(Mnemonic::FMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80208000u: { // sumop4a_za_zz_b1x1
                         Instruction result(Mnemonic::SUMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80208010u: { // sumop4s_za_zz_b1x1
                         Instruction result(Mnemonic::SUMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80208200u: { // sumop4a_za_zz_b2x1
                         Instruction result(Mnemonic::SUMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80208210u: { // sumop4s_za_zz_b2x1
                         Instruction result(Mnemonic::SUMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80300000u: { // fmop4a_za32_z8z8_b1x2
                         Instruction result(Mnemonic::FMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80300200u: { // fmop4a_za32_z8z8_b2x2
                         Instruction result(Mnemonic::FMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80308000u: { // sumop4a_za_zz_b1x2
                         Instruction result(Mnemonic::SUMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80308010u: { // sumop4s_za_zz_b1x2
                         Instruction result(Mnemonic::SUMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80308200u: { // sumop4a_za_zz_b2x2
                         Instruction result(Mnemonic::SUMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80308210u: { // sumop4s_za_zz_b2x2
                         Instruction result(Mnemonic::SUMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81000000u: { // bfmop4a_za32_zz_h1x1
                         Instruction result(Mnemonic::BFMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81000010u: { // bfmop4s_za32_zz_h1x1
                         Instruction result(Mnemonic::BFMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81000200u: { // bfmop4a_za32_zz_h2x1
                         Instruction result(Mnemonic::BFMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81000210u: { // bfmop4s_za32_zz_h2x1
                         Instruction result(Mnemonic::BFMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81008000u: { // usmop4a_za_zz_b1x1
                         Instruction result(Mnemonic::USMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81008008u: { // umop4a_za32_zz_h1x1
                         Instruction result(Mnemonic::UMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81008010u: { // usmop4s_za_zz_b1x1
                         Instruction result(Mnemonic::USMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81008018u: { // umop4s_za32_zz_h1x1
                         Instruction result(Mnemonic::UMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81008200u: { // usmop4a_za_zz_b2x1
                         Instruction result(Mnemonic::USMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81008208u: { // umop4a_za32_zz_h2x1
                         Instruction result(Mnemonic::UMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81008210u: { // usmop4s_za_zz_b2x1
                         Instruction result(Mnemonic::USMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81008218u: { // umop4s_za32_zz_h2x1
                         Instruction result(Mnemonic::UMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81100000u: { // bfmop4a_za32_zz_h1x2
                         Instruction result(Mnemonic::BFMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81100010u: { // bfmop4s_za32_zz_h1x2
                         Instruction result(Mnemonic::BFMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81100200u: { // bfmop4a_za32_zz_h2x2
                         Instruction result(Mnemonic::BFMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81100210u: { // bfmop4s_za32_zz_h2x2
                         Instruction result(Mnemonic::BFMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81108000u: { // usmop4a_za_zz_b1x2
                         Instruction result(Mnemonic::USMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81108008u: { // umop4a_za32_zz_h1x2
                         Instruction result(Mnemonic::UMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81108010u: { // usmop4s_za_zz_b1x2
                         Instruction result(Mnemonic::USMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81108018u: { // umop4s_za32_zz_h1x2
                         Instruction result(Mnemonic::UMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81108200u: { // usmop4a_za_zz_b2x2
                         Instruction result(Mnemonic::USMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81108208u: { // umop4a_za32_zz_h2x2
                         Instruction result(Mnemonic::UMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81108210u: { // usmop4s_za_zz_b2x2
                         Instruction result(Mnemonic::USMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81108218u: { // umop4s_za32_zz_h2x2
                         Instruction result(Mnemonic::UMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81200000u: { // fmop4a_za32_zz_h1x1
                         Instruction result(Mnemonic::FMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81200010u: { // fmop4s_za32_zz_h1x1
                         Instruction result(Mnemonic::FMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81200200u: { // fmop4a_za32_zz_h2x1
                         Instruction result(Mnemonic::FMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81200210u: { // fmop4s_za32_zz_h2x1
                         Instruction result(Mnemonic::FMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81208000u: { // umop4a_za_zz_b1x1
                         Instruction result(Mnemonic::UMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81208010u: { // umop4s_za_zz_b1x1
                         Instruction result(Mnemonic::UMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81208200u: { // umop4a_za_zz_b2x1
                         Instruction result(Mnemonic::UMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81208210u: { // umop4s_za_zz_b2x1
                         Instruction result(Mnemonic::UMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81300000u: { // fmop4a_za32_zz_h1x2
                         Instruction result(Mnemonic::FMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81300010u: { // fmop4s_za32_zz_h1x2
                         Instruction result(Mnemonic::FMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81300200u: { // fmop4a_za32_zz_h2x2
                         Instruction result(Mnemonic::FMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81300210u: { // fmop4s_za32_zz_h2x2
                         Instruction result(Mnemonic::FMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81308000u: { // umop4a_za_zz_b1x2
                         Instruction result(Mnemonic::UMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81308010u: { // umop4s_za_zz_b1x2
                         Instruction result(Mnemonic::UMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81308200u: { // umop4a_za_zz_b2x2
                         Instruction result(Mnemonic::UMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81308210u: { // umop4s_za_zz_b2x2
                         Instruction result(Mnemonic::UMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -39092,280 +38868,240 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80C00018u: { // fmop4s_za_zz_d1x1
                         Instruction result(Mnemonic::FMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80C00208u: { // fmop4a_za_zz_d2x1
                         Instruction result(Mnemonic::FMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80C00218u: { // fmop4s_za_zz_d2x1
                         Instruction result(Mnemonic::FMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80D00008u: { // fmop4a_za_zz_d1x2
                         Instruction result(Mnemonic::FMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80D00018u: { // fmop4s_za_zz_d1x2
                         Instruction result(Mnemonic::FMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80D00208u: { // fmop4a_za_zz_d2x2
                         Instruction result(Mnemonic::FMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80D00218u: { // fmop4s_za_zz_d2x2
                         Instruction result(Mnemonic::FMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0C00008u: { // smop4a_za_zz_h1x1
                         Instruction result(Mnemonic::SMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0C00018u: { // smop4s_za_zz_h1x1
                         Instruction result(Mnemonic::SMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0C00208u: { // smop4a_za_zz_h2x1
                         Instruction result(Mnemonic::SMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0C00218u: { // smop4s_za_zz_h2x1
                         Instruction result(Mnemonic::SMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0D00008u: { // smop4a_za_zz_h1x2
                         Instruction result(Mnemonic::SMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0D00018u: { // smop4s_za_zz_h1x2
                         Instruction result(Mnemonic::SMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0D00208u: { // smop4a_za_zz_h2x2
                         Instruction result(Mnemonic::SMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0D00218u: { // smop4s_za_zz_h2x2
                         Instruction result(Mnemonic::SMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0E00008u: { // sumop4a_za_zz_h1x1
                         Instruction result(Mnemonic::SUMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0E00018u: { // sumop4s_za_zz_h1x1
                         Instruction result(Mnemonic::SUMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0E00208u: { // sumop4a_za_zz_h2x1
                         Instruction result(Mnemonic::SUMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0E00218u: { // sumop4s_za_zz_h2x1
                         Instruction result(Mnemonic::SUMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0F00008u: { // sumop4a_za_zz_h1x2
                         Instruction result(Mnemonic::SUMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0F00018u: { // sumop4s_za_zz_h1x2
                         Instruction result(Mnemonic::SUMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0F00208u: { // sumop4a_za_zz_h2x2
                         Instruction result(Mnemonic::SUMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0F00218u: { // sumop4s_za_zz_h2x2
                         Instruction result(Mnemonic::SUMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1C00008u: { // usmop4a_za_zz_h1x1
                         Instruction result(Mnemonic::USMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1C00018u: { // usmop4s_za_zz_h1x1
                         Instruction result(Mnemonic::USMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1C00208u: { // usmop4a_za_zz_h2x1
                         Instruction result(Mnemonic::USMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1C00218u: { // usmop4s_za_zz_h2x1
                         Instruction result(Mnemonic::USMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1D00008u: { // usmop4a_za_zz_h1x2
                         Instruction result(Mnemonic::USMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1D00018u: { // usmop4s_za_zz_h1x2
                         Instruction result(Mnemonic::USMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1D00208u: { // usmop4a_za_zz_h2x2
                         Instruction result(Mnemonic::USMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1D00218u: { // usmop4s_za_zz_h2x2
                         Instruction result(Mnemonic::USMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1E00008u: { // umop4a_za_zz_h1x1
                         Instruction result(Mnemonic::UMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1E00018u: { // umop4s_za_zz_h1x1
                         Instruction result(Mnemonic::UMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1E00208u: { // umop4a_za_zz_h2x1
                         Instruction result(Mnemonic::UMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1E00218u: { // umop4s_za_zz_h2x1
                         Instruction result(Mnemonic::UMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1F00008u: { // umop4a_za_zz_h1x2
                         Instruction result(Mnemonic::UMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1F00018u: { // umop4s_za_zz_h1x2
                         Instruction result(Mnemonic::UMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1F00208u: { // umop4a_za_zz_h2x2
                         Instruction result(Mnemonic::UMOP4A, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1F00218u: { // umop4s_za_zz_h2x2
                         Instruction result(Mnemonic::UMOP4S, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -39378,7 +39114,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFMAX, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120A901u: { // bfmin_mz_zzv_4x1
@@ -39386,7 +39121,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFMIN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120A920u: { // bfmaxnm_mz_zzv_4x1
@@ -39394,7 +39128,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFMAXNM, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120A921u: { // bfminnm_mz_zzv_4x1
@@ -39402,7 +39135,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFMINNM, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120A980u: { // bfscale_mz_zzv_4x1
@@ -39410,7 +39142,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFSCALE, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -39423,7 +39154,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFMAX, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120A101u: { // bfmin_mz_zzv_2x1
@@ -39431,7 +39161,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFMIN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120A120u: { // bfmaxnm_mz_zzv_2x1
@@ -39439,7 +39168,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFMAXNM, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120A121u: { // bfminnm_mz_zzv_2x1
@@ -39447,7 +39175,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFMINNM, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120A180u: { // bfscale_mz_zzv_2x1
@@ -39455,7 +39182,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFSCALE, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -39467,21 +39193,18 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SQRSHR, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1E0D420u: { // uqrshr_z_mz2_
                         Instruction result(Mnemonic::UQRSHR, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1F0D400u: { // sqrshru_z_mz2_
                         Instruction result(Mnemonic::SQRSHRU, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -39493,7 +39216,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1b_mzx_pbi4x4.Rn, is_64bit));
                         return result;
@@ -39502,7 +39224,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1b_mzx_pbi4x4.Rn, is_64bit));
                         return result;
@@ -39511,7 +39232,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1b_mzx_pbi4x4.Rn, is_64bit));
                         return result;
@@ -39520,7 +39240,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1b_mzx_pbi4x4.Rn, is_64bit));
                         return result;
@@ -39534,7 +39253,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1b_mzx_pbi2x8.Rn, is_64bit));
                         return result;
@@ -39543,7 +39261,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1b_mzx_pbi2x8.Rn, is_64bit));
                         return result;
@@ -39552,7 +39269,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1b_mzx_pbi2x8.Rn, is_64bit));
                         return result;
@@ -39561,7 +39277,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1b_mzx_pbi2x8.Rn, is_64bit));
                         return result;
@@ -39575,7 +39290,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1h_mzx_pbi4x4.Rn, is_64bit));
                         return result;
@@ -39584,7 +39298,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1h_mzx_pbi4x4.Rn, is_64bit));
                         return result;
@@ -39593,7 +39306,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_mzx_pbi4x4.Rn, is_64bit));
                         return result;
@@ -39602,7 +39314,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1w_mzx_pbi4x4.Rn, is_64bit));
                         return result;
@@ -39611,7 +39322,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_mzx_pbi4x4.Rn, is_64bit));
                         return result;
@@ -39620,7 +39330,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1d_mzx_pbi4x4.Rn, is_64bit));
                         return result;
@@ -39629,7 +39338,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1h_mzx_pbi4x4.Rn, is_64bit));
                         return result;
@@ -39638,7 +39346,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1h_mzx_pbi4x4.Rn, is_64bit));
                         return result;
@@ -39647,7 +39354,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_mzx_pbi4x4.Rn, is_64bit));
                         return result;
@@ -39656,7 +39362,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1w_mzx_pbi4x4.Rn, is_64bit));
                         return result;
@@ -39665,7 +39370,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_mzx_pbi4x4.Rn, is_64bit));
                         return result;
@@ -39674,7 +39378,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1d_mzx_pbi4x4.Rn, is_64bit));
                         return result;
@@ -39688,7 +39391,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1h_mzx_pbi2x8.Rn, is_64bit));
                         return result;
@@ -39697,7 +39399,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1h_mzx_pbi2x8.Rn, is_64bit));
                         return result;
@@ -39706,7 +39407,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_mzx_pbi2x8.Rn, is_64bit));
                         return result;
@@ -39715,7 +39415,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1w_mzx_pbi2x8.Rn, is_64bit));
                         return result;
@@ -39724,7 +39423,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_mzx_pbi2x8.Rn, is_64bit));
                         return result;
@@ -39733,7 +39431,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1d_mzx_pbi2x8.Rn, is_64bit));
                         return result;
@@ -39742,7 +39439,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1h_mzx_pbi2x8.Rn, is_64bit));
                         return result;
@@ -39751,7 +39447,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1h_mzx_pbi2x8.Rn, is_64bit));
                         return result;
@@ -39760,7 +39455,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_mzx_pbi2x8.Rn, is_64bit));
                         return result;
@@ -39769,7 +39463,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1w_mzx_pbi2x8.Rn, is_64bit));
                         return result;
@@ -39778,7 +39471,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_mzx_pbi2x8.Rn, is_64bit));
                         return result;
@@ -39787,7 +39479,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1d_mzx_pbi2x8.Rn, is_64bit));
                         return result;
@@ -39801,7 +39492,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1b_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -39810,7 +39500,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1b_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -39819,7 +39508,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1h_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -39828,7 +39516,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1h_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -39837,7 +39524,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -39846,7 +39532,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1w_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -39855,7 +39540,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -39864,7 +39548,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1d_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -39873,7 +39556,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1b_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -39882,7 +39564,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1b_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -39891,7 +39572,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1h_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -39900,7 +39580,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1h_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -39909,7 +39588,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -39918,7 +39596,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1w_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -39927,7 +39604,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -39936,7 +39612,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1d_mz_pbi4.Rn, is_64bit));
                         return result;
@@ -39950,7 +39625,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1b_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -39959,7 +39633,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1b_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -39968,7 +39641,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1h_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -39977,7 +39649,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1h_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -39986,7 +39657,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -39995,7 +39665,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1w_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -40004,7 +39673,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -40013,7 +39681,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1d_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -40022,7 +39689,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1b_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -40031,7 +39697,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1b_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -40040,7 +39705,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1h_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -40049,7 +39713,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1h_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -40058,7 +39721,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -40067,7 +39729,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1w_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -40076,7 +39737,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -40085,7 +39745,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1d_mz_pbi2.Rn, is_64bit));
                         return result;
@@ -40099,42 +39758,36 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1200004u: { // usmlall_za_zzv_s2x1
                         Instruction result(Mnemonic::USMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1200014u: { // sumlall_za_zzv_s2x1
                         Instruction result(Mnemonic::SUMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1300002u: { // fmlall_za32_z8z8v_4x1
                         Instruction result(Mnemonic::FMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1300004u: { // usmlall_za_zzv_s4x1
                         Instruction result(Mnemonic::USMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1300014u: { // sumlall_za_zzv_s4x1
                         Instruction result(Mnemonic::SUMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -40146,140 +39799,120 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::USMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1200800u: { // fmlal_za_zzv_2x1
                         Instruction result(Mnemonic::FMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1200804u: { // fmlal_za_z8z8v_2x1
                         Instruction result(Mnemonic::FMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1200808u: { // fmlsl_za_zzv_2x1
                         Instruction result(Mnemonic::FMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1200810u: { // bfmlal_za_zzv_2x1
                         Instruction result(Mnemonic::BFMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1200818u: { // bfmlsl_za_zzv_2x1
                         Instruction result(Mnemonic::BFMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1300400u: { // fmlall_za32_z8z8v_1
                         Instruction result(Mnemonic::FMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1300800u: { // fmlal_za_zzv_4x1
                         Instruction result(Mnemonic::FMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1300804u: { // fmlal_za_z8z8v_4x1
                         Instruction result(Mnemonic::FMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1300808u: { // fmlsl_za_zzv_4x1
                         Instruction result(Mnemonic::FMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1300810u: { // bfmlal_za_zzv_4x1
                         Instruction result(Mnemonic::BFMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1300818u: { // bfmlsl_za_zzv_4x1
                         Instruction result(Mnemonic::BFMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1600800u: { // smlal_za_zzv_2x1
                         Instruction result(Mnemonic::SMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1600808u: { // smlsl_za_zzv_2x1
                         Instruction result(Mnemonic::SMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1600810u: { // umlal_za_zzv_2x1
                         Instruction result(Mnemonic::UMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1600818u: { // umlsl_za_zzv_2x1
                         Instruction result(Mnemonic::UMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1700800u: { // smlal_za_zzv_4x1
                         Instruction result(Mnemonic::SMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1700808u: { // smlsl_za_zzv_4x1
                         Instruction result(Mnemonic::SMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1700810u: { // umlal_za_zzv_4x1
                         Instruction result(Mnemonic::UMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1700818u: { // umlsl_za_zzv_4x1
                         Instruction result(Mnemonic::UMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -40291,231 +39924,198 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1200C08u: { // fmlsl_za_zzv_1
                         Instruction result(Mnemonic::FMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1200C10u: { // bfmlal_za_zzv_1
                         Instruction result(Mnemonic::BFMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1200C18u: { // bfmlsl_za_zzv_1
                         Instruction result(Mnemonic::BFMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1201000u: { // fdot_za_zzv_2x1
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1201008u: { // fdot_za_z8z8v_2x1
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1201010u: { // bfdot_za_zzv_2x1
                         Instruction result(Mnemonic::BFDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1201018u: { // fdot_za32_z8z8v_2x1
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1201408u: { // usdot_za_zzv_s2x1
                         Instruction result(Mnemonic::USDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1201418u: { // sudot_za_zzv_s2x1
                         Instruction result(Mnemonic::SUDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1201C00u: { // fmla_za_zzv_2x1_16
                         Instruction result(Mnemonic::FMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1201C08u: { // fmls_za_zzv_2x1_16
                         Instruction result(Mnemonic::FMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1300C00u: { // fmlal_za_z8z8v_1
                         Instruction result(Mnemonic::FMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1301000u: { // fdot_za_zzv_4x1
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1301008u: { // fdot_za_z8z8v_4x1
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1301010u: { // bfdot_za_zzv_4x1
                         Instruction result(Mnemonic::BFDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1301018u: { // fdot_za32_z8z8v_4x1
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1301408u: { // usdot_za_zzv_s4x1
                         Instruction result(Mnemonic::USDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1301418u: { // sudot_za_zzv_s4x1
                         Instruction result(Mnemonic::SUDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1301C00u: { // fmla_za_zzv_4x1_16
                         Instruction result(Mnemonic::FMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1301C08u: { // fmls_za_zzv_4x1_16
                         Instruction result(Mnemonic::FMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1600C00u: { // smlal_za_zzv_1
                         Instruction result(Mnemonic::SMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1600C08u: { // smlsl_za_zzv_1
                         Instruction result(Mnemonic::SMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1600C10u: { // umlal_za_zzv_1
                         Instruction result(Mnemonic::UMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1600C18u: { // umlsl_za_zzv_1
                         Instruction result(Mnemonic::UMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1601408u: { // sdot_za32_zzv_2x1
                         Instruction result(Mnemonic::SDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1601418u: { // udot_za32_zzv_2x1
                         Instruction result(Mnemonic::UDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1601C00u: { // bfmla_za_zzv_2x1_16
                         Instruction result(Mnemonic::BFMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1601C08u: { // bfmls_za_zzv_2x1_16
                         Instruction result(Mnemonic::BFMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1701408u: { // sdot_za32_zzv_4x1
                         Instruction result(Mnemonic::SDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1701418u: { // udot_za32_zzv_4x1
                         Instruction result(Mnemonic::UDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1701C00u: { // bfmla_za_zzv_4x1_16
                         Instruction result(Mnemonic::BFMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1701C08u: { // bfmls_za_zzv_4x1_16
                         Instruction result(Mnemonic::BFMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -40527,70 +40127,60 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1908008u: { // smlsll_za_zzi_d4xi
                         Instruction result(Mnemonic::SMLSLL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1908010u: { // umlall_za_zzi_d4xi
                         Instruction result(Mnemonic::UMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1908018u: { // umlsll_za_zzi_d4xi
                         Instruction result(Mnemonic::UMLSLL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1D08000u: { // fmla_za_zzi_d4xi
                         Instruction result(Mnemonic::FMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1D08008u: { // sdot_za_zzi_d4xi
                         Instruction result(Mnemonic::SDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1D08010u: { // fmls_za_zzi_d4xi
                         Instruction result(Mnemonic::FMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1D08018u: { // udot_za_zzi_d4xi
                         Instruction result(Mnemonic::UDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1D08808u: { // svdot_za_zzi_d4xi
                         Instruction result(Mnemonic::SVDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1D08818u: { // uvdot_za_zzi_d4xi
                         Instruction result(Mnemonic::UVDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -40602,56 +40192,48 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1900008u: { // smlsll_za_zzi_d2xi
                         Instruction result(Mnemonic::SMLSLL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1900010u: { // umlall_za_zzi_d2xi
                         Instruction result(Mnemonic::UMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1900018u: { // umlsll_za_zzi_d2xi
                         Instruction result(Mnemonic::UMLSLL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1D00000u: { // fmla_za_zzi_d2xi
                         Instruction result(Mnemonic::FMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1D00008u: { // sdot_za_zzi_d2xi
                         Instruction result(Mnemonic::SDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1D00010u: { // fmls_za_zzi_d2xi
                         Instruction result(Mnemonic::FMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1D00018u: { // udot_za_zzi_d2xi
                         Instruction result(Mnemonic::UDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -40663,14 +40245,12 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FVDOTB, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1D00810u: { // fvdott_za32_z8z8i_2xi
                         Instruction result(Mnemonic::FVDOTT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -40682,210 +40262,180 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1108008u: { // smlsll_za_zzi_s4xi
                         Instruction result(Mnemonic::SMLSLL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1108010u: { // umlall_za_zzi_s4xi
                         Instruction result(Mnemonic::UMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1108018u: { // umlsll_za_zzi_s4xi
                         Instruction result(Mnemonic::UMLSLL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1108020u: { // usmlall_za_zzi_s4xi
                         Instruction result(Mnemonic::USMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1108030u: { // sumlall_za_zzi_s4xi
                         Instruction result(Mnemonic::SUMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1108040u: { // fmlall_za32_z8z8i_4xi
                         Instruction result(Mnemonic::FMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1508000u: { // fmla_za_zzi_s4xi
                         Instruction result(Mnemonic::FMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1508008u: { // fdot_za32_z8z8i_4xi
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1508010u: { // fmls_za_zzi_s4xi
                         Instruction result(Mnemonic::FMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1508020u: { // svdot_za_zzi_s4xi
                         Instruction result(Mnemonic::SVDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1508028u: { // usvdot_za_zzi_s4xi
                         Instruction result(Mnemonic::USVDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1508030u: { // uvdot_za_zzi_s4xi
                         Instruction result(Mnemonic::UVDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1508038u: { // suvdot_za_zzi_s4xi
                         Instruction result(Mnemonic::SUVDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1509000u: { // sdot_za32_zzi_4xi
                         Instruction result(Mnemonic::SDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1509008u: { // fdot_za_zzi_4xi
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1509010u: { // udot_za32_zzi_4xi
                         Instruction result(Mnemonic::UDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1509018u: { // bfdot_za_zzi_4xi
                         Instruction result(Mnemonic::BFDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1509020u: { // sdot_za_zzi_s4xi
                         Instruction result(Mnemonic::SDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1509028u: { // usdot_za_zzi_s4xi
                         Instruction result(Mnemonic::USDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1509030u: { // udot_za_zzi_s4xi
                         Instruction result(Mnemonic::UDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1509038u: { // sudot_za_zzi_s4xi
                         Instruction result(Mnemonic::SUDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1909000u: { // fmlal_za_zzi_4xi
                         Instruction result(Mnemonic::FMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1909008u: { // fmlsl_za_zzi_4xi
                         Instruction result(Mnemonic::FMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1909010u: { // bfmlal_za_zzi_4xi
                         Instruction result(Mnemonic::BFMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1909018u: { // bfmlsl_za_zzi_4xi
                         Instruction result(Mnemonic::BFMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1D09000u: { // smlal_za_zzi_4xi
                         Instruction result(Mnemonic::SMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1D09008u: { // smlsl_za_zzi_4xi
                         Instruction result(Mnemonic::SMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1D09010u: { // umlal_za_zzi_4xi
                         Instruction result(Mnemonic::UMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1D09018u: { // umlsl_za_zzi_4xi
                         Instruction result(Mnemonic::UMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -40897,42 +40447,36 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1109010u: { // fmls_za_zzi_h4xi
                         Instruction result(Mnemonic::FMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1109020u: { // bfmla_za_zzi_h4xi
                         Instruction result(Mnemonic::BFMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1109030u: { // bfmls_za_zzi_h4xi
                         Instruction result(Mnemonic::BFMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1109040u: { // fdot_za_z8z8i_4xi
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1909020u: { // fmlal_za_z8z8i_4xi
                         Instruction result(Mnemonic::FMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -40944,210 +40488,180 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1100008u: { // smlsll_za_zzi_s2xi
                         Instruction result(Mnemonic::SMLSLL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1100010u: { // umlall_za_zzi_s2xi
                         Instruction result(Mnemonic::UMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1100018u: { // umlsll_za_zzi_s2xi
                         Instruction result(Mnemonic::UMLSLL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1100020u: { // usmlall_za_zzi_s2xi
                         Instruction result(Mnemonic::USMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1100030u: { // sumlall_za_zzi_s2xi
                         Instruction result(Mnemonic::SUMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1500000u: { // fmla_za_zzi_s2xi
                         Instruction result(Mnemonic::FMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1500008u: { // fvdot_za_zzi_2xi
                         Instruction result(Mnemonic::FVDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1500010u: { // fmls_za_zzi_s2xi
                         Instruction result(Mnemonic::FMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1500018u: { // bfvdot_za_zzi_2xi
                         Instruction result(Mnemonic::BFVDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1500020u: { // svdot_za32_zzi_2xi
                         Instruction result(Mnemonic::SVDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1500030u: { // uvdot_za32_zzi_2xi
                         Instruction result(Mnemonic::UVDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1500038u: { // fdot_za32_z8z8i_2xi
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1501000u: { // sdot_za32_zzi_2xi
                         Instruction result(Mnemonic::SDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1501008u: { // fdot_za_zzi_2xi
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1501010u: { // udot_za32_zzi_2xi
                         Instruction result(Mnemonic::UDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1501018u: { // bfdot_za_zzi_2xi
                         Instruction result(Mnemonic::BFDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1501020u: { // sdot_za_zzi_s2xi
                         Instruction result(Mnemonic::SDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1501028u: { // usdot_za_zzi_s2xi
                         Instruction result(Mnemonic::USDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1501030u: { // udot_za_zzi_s2xi
                         Instruction result(Mnemonic::UDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1501038u: { // sudot_za_zzi_s2xi
                         Instruction result(Mnemonic::SUDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1900020u: { // fmlall_za32_z8z8i_2xi
                         Instruction result(Mnemonic::FMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1901000u: { // fmlal_za_zzi_2xi
                         Instruction result(Mnemonic::FMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1901008u: { // fmlsl_za_zzi_2xi
                         Instruction result(Mnemonic::FMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1901010u: { // bfmlal_za_zzi_2xi
                         Instruction result(Mnemonic::BFMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1901018u: { // bfmlsl_za_zzi_2xi
                         Instruction result(Mnemonic::BFMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1D01000u: { // smlal_za_zzi_2xi
                         Instruction result(Mnemonic::SMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1D01008u: { // smlsl_za_zzi_2xi
                         Instruction result(Mnemonic::SMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1D01010u: { // umlal_za_zzi_2xi
                         Instruction result(Mnemonic::UMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1D01018u: { // umlsl_za_zzi_2xi
                         Instruction result(Mnemonic::UMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -41159,49 +40673,42 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1101010u: { // fmls_za_zzi_h2xi
                         Instruction result(Mnemonic::FMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1101020u: { // bfmla_za_zzi_h2xi
                         Instruction result(Mnemonic::BFMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1101030u: { // bfmls_za_zzi_h2xi
                         Instruction result(Mnemonic::BFMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1901030u: { // fmlal_za_z8z8i_2xi
                         Instruction result(Mnemonic::FMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1D00020u: { // fdot_za_z8z8i_2xi
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1D01020u: { // fvdot_za_z8z8i_2xi
                         Instruction result(Mnemonic::FVDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -41213,28 +40720,24 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1800008u: { // smlsll_za_zzi_d
                         Instruction result(Mnemonic::SMLSLL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1800010u: { // umlall_za_zzi_d
                         Instruction result(Mnemonic::UMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1800018u: { // umlsll_za_zzi_d
                         Instruction result(Mnemonic::UMLSLL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -41246,56 +40749,48 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1801008u: { // fmlsl_za_zzi_1
                         Instruction result(Mnemonic::FMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1801010u: { // bfmlal_za_zzi_1
                         Instruction result(Mnemonic::BFMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1801018u: { // bfmlsl_za_zzi_1
                         Instruction result(Mnemonic::BFMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1C01000u: { // smlal_za_zzi_1
                         Instruction result(Mnemonic::SMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1C01008u: { // smlsl_za_zzi_1
                         Instruction result(Mnemonic::SMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1C01010u: { // umlal_za_zzi_1
                         Instruction result(Mnemonic::UMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1C01018u: { // umlsl_za_zzi_1
                         Instruction result(Mnemonic::UMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -41307,7 +40802,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -41319,49 +40813,42 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1000004u: { // usmlall_za_zzi_s
                         Instruction result(Mnemonic::USMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1000008u: { // smlsll_za_zzi_s
                         Instruction result(Mnemonic::SMLSLL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1000010u: { // umlall_za_zzi_s
                         Instruction result(Mnemonic::UMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1000014u: { // sumlall_za_zzi_s
                         Instruction result(Mnemonic::SUMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1000018u: { // umlsll_za_zzi_s
                         Instruction result(Mnemonic::UMLSLL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1400000u: { // fmlall_za32_z8z8i_1
                         Instruction result(Mnemonic::FMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -41374,7 +40861,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFMAX, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120B901u: { // bfmin_mz_zzw_4x4
@@ -41382,7 +40868,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFMIN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120B920u: { // bfmaxnm_mz_zzw_4x4
@@ -41390,7 +40875,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFMAXNM, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120B921u: { // bfminnm_mz_zzw_4x4
@@ -41398,7 +40882,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFMINNM, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120B980u: { // bfscale_mz_zzw_4x4
@@ -41406,7 +40889,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFSCALE, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -41419,7 +40901,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFMUL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -41431,14 +40912,12 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::USMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A10020u: { // fmlall_za32_z8z8w_4x4
                         Instruction result(Mnemonic::FMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -41450,63 +40929,54 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A10808u: { // fmlsl_za_zzw_4x4
                         Instruction result(Mnemonic::FMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A10810u: { // bfmlal_za_zzw_4x4
                         Instruction result(Mnemonic::BFMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A10818u: { // bfmlsl_za_zzw_4x4
                         Instruction result(Mnemonic::BFMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A10820u: { // fmlal_za_z8z8w_4x4
                         Instruction result(Mnemonic::FMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1E10800u: { // smlal_za_zzw_4x4
                         Instruction result(Mnemonic::SMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1E10808u: { // smlsl_za_zzw_4x4
                         Instruction result(Mnemonic::SMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1E10810u: { // umlal_za_zzw_4x4
                         Instruction result(Mnemonic::UMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1E10818u: { // umlsl_za_zzw_4x4
                         Instruction result(Mnemonic::UMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -41518,77 +40988,66 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A11008u: { // fmla_za_zzw_4x4_16
                         Instruction result(Mnemonic::FMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A11010u: { // bfdot_za_zzw_4x4
                         Instruction result(Mnemonic::BFDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A11018u: { // fmls_za_zzw_4x4_16
                         Instruction result(Mnemonic::FMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A11020u: { // fdot_za_z8z8w_4x4
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A11030u: { // fdot_za32_z8z8w_4x4
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A11408u: { // usdot_za_zzw_s4x4
                         Instruction result(Mnemonic::USDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1E11008u: { // bfmla_za_zzw_4x4_16
                         Instruction result(Mnemonic::BFMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1E11018u: { // bfmls_za_zzw_4x4_16
                         Instruction result(Mnemonic::BFMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1E11408u: { // sdot_za32_zzw_4x4
                         Instruction result(Mnemonic::SDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1E11418u: { // udot_za32_zzw_4x4
                         Instruction result(Mnemonic::UDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -41601,7 +41060,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFMAX, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120B101u: { // bfmin_mz_zzw_2x2
@@ -41609,7 +41067,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFMIN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120B120u: { // bfmaxnm_mz_zzw_2x2
@@ -41617,7 +41074,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFMAXNM, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120B121u: { // bfminnm_mz_zzw_2x2
@@ -41625,7 +41081,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFMINNM, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120B180u: { // bfscale_mz_zzw_2x2
@@ -41633,7 +41088,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFSCALE, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -41646,7 +41100,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFMUL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -41659,7 +41112,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFMUL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120E800u: { // bfmul_mz_zzv_2x1
@@ -41667,7 +41119,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFMUL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -41679,14 +41130,12 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::USMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A00020u: { // fmlall_za32_z8z8w_2x2
                         Instruction result(Mnemonic::FMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -41698,63 +41147,54 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A00808u: { // fmlsl_za_zzw_2x2
                         Instruction result(Mnemonic::FMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A00810u: { // bfmlal_za_zzw_2x2
                         Instruction result(Mnemonic::BFMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A00818u: { // bfmlsl_za_zzw_2x2
                         Instruction result(Mnemonic::BFMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A00820u: { // fmlal_za_z8z8w_2x2
                         Instruction result(Mnemonic::FMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1E00800u: { // smlal_za_zzw_2x2
                         Instruction result(Mnemonic::SMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1E00808u: { // smlsl_za_zzw_2x2
                         Instruction result(Mnemonic::SMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1E00810u: { // umlal_za_zzw_2x2
                         Instruction result(Mnemonic::UMLAL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1E00818u: { // umlsl_za_zzw_2x2
                         Instruction result(Mnemonic::UMLSL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -41766,77 +41206,66 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A01008u: { // fmla_za_zzw_2x2_16
                         Instruction result(Mnemonic::FMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A01010u: { // bfdot_za_zzw_2x2
                         Instruction result(Mnemonic::BFDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A01018u: { // fmls_za_zzw_2x2_16
                         Instruction result(Mnemonic::FMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A01020u: { // fdot_za_z8z8w_2x2
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A01030u: { // fdot_za32_z8z8w_2x2
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A01408u: { // usdot_za_zzw_s2x2
                         Instruction result(Mnemonic::USDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1E01008u: { // bfmla_za_zzw_2x2_16
                         Instruction result(Mnemonic::BFMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1E01018u: { // bfmls_za_zzw_2x2_16
                         Instruction result(Mnemonic::BFMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1E01408u: { // sdot_za32_zzw_2x2
                         Instruction result(Mnemonic::SDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1E01418u: { // udot_za32_zzw_2x2
                         Instruction result(Mnemonic::UDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -41849,7 +41278,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFCLAMP, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -41862,21 +41290,18 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFCLAMP, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120D400u: { // zip_mz_zz_2q
                         Instruction result(Mnemonic::ZIP, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120D401u: { // uzp_mz_zz_2q
                         Instruction result(Mnemonic::UZP, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -41888,7 +41313,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1b_mzx_pbr4x4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1b_mzx_pbr4x4.Rm, is_64bit));
@@ -41898,7 +41322,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1b_mzx_pbr4x4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1b_mzx_pbr4x4.Rm, is_64bit));
@@ -41908,7 +41331,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1b_mzx_pbr4x4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1b_mzx_pbr4x4.Rm, is_64bit));
@@ -41918,7 +41340,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1b_mzx_pbr4x4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1b_mzx_pbr4x4.Rm, is_64bit));
@@ -41933,7 +41354,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1b_mzx_pbr2x8.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1b_mzx_pbr2x8.Rm, is_64bit));
@@ -41943,7 +41363,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1b_mzx_pbr2x8.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1b_mzx_pbr2x8.Rm, is_64bit));
@@ -41953,7 +41372,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1b_mzx_pbr2x8.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1b_mzx_pbr2x8.Rm, is_64bit));
@@ -41963,7 +41381,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1b_mzx_pbr2x8.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1b_mzx_pbr2x8.Rm, is_64bit));
@@ -41978,21 +41395,18 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FTMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81400008u: { // ftmopa_za_zzzi_h2x1
                         Instruction result(Mnemonic::FTMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81600008u: { // bftmopa_za_zzzi_h2x1
                         Instruction result(Mnemonic::BFTMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -42004,77 +41418,66 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FTMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80408000u: { // stmopa_za_zzzi_b2x1
                         Instruction result(Mnemonic::STMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80408008u: { // stmopa_za32_zzzi_h2x1
                         Instruction result(Mnemonic::STMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80600000u: { // ftmopa_za32_z8z8zi_b2x1
                         Instruction result(Mnemonic::FTMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80608000u: { // sutmopa_za_zzzi_b2x1
                         Instruction result(Mnemonic::SUTMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81400000u: { // bftmopa_za32_zzzi_h2x1
                         Instruction result(Mnemonic::BFTMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81408000u: { // ustmopa_za_zzzi_b2x1
                         Instruction result(Mnemonic::USTMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81408008u: { // utmopa_za32_zzzi_h2x1
                         Instruction result(Mnemonic::UTMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81600000u: { // ftmopa_za32_zzzi_h2x1
                         Instruction result(Mnemonic::FTMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81608000u: { // utmopa_za_zzzi_b2x1
                         Instruction result(Mnemonic::UTMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA100A000u: { // ld1h_mzx_p_br_4x4
                         Instruction result(Mnemonic::LD1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1h_mzx_pbr4x4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1h_mzx_pbr4x4.Rm, is_64bit));
@@ -42084,7 +41487,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1h_mzx_pbr4x4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1h_mzx_pbr4x4.Rm, is_64bit));
@@ -42094,7 +41496,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_mzx_pbr4x4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_mzx_pbr4x4.Rm, is_64bit));
@@ -42104,7 +41505,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1w_mzx_pbr4x4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1w_mzx_pbr4x4.Rm, is_64bit));
@@ -42114,7 +41514,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_mzx_pbr4x4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_mzx_pbr4x4.Rm, is_64bit));
@@ -42124,7 +41523,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1d_mzx_pbr4x4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1d_mzx_pbr4x4.Rm, is_64bit));
@@ -42134,7 +41532,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1h_mzx_pbr4x4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1h_mzx_pbr4x4.Rm, is_64bit));
@@ -42144,7 +41541,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1h_mzx_pbr4x4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1h_mzx_pbr4x4.Rm, is_64bit));
@@ -42154,7 +41550,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_mzx_pbr4x4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_mzx_pbr4x4.Rm, is_64bit));
@@ -42164,7 +41559,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1w_mzx_pbr4x4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1w_mzx_pbr4x4.Rm, is_64bit));
@@ -42174,7 +41568,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_mzx_pbr4x4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_mzx_pbr4x4.Rm, is_64bit));
@@ -42184,7 +41577,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1d_mzx_pbr4x4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1d_mzx_pbr4x4.Rm, is_64bit));
@@ -42199,7 +41591,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1h_mzx_pbr2x8.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1h_mzx_pbr2x8.Rm, is_64bit));
@@ -42209,7 +41600,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1h_mzx_pbr2x8.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1h_mzx_pbr2x8.Rm, is_64bit));
@@ -42219,7 +41609,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_mzx_pbr2x8.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_mzx_pbr2x8.Rm, is_64bit));
@@ -42229,7 +41618,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1w_mzx_pbr2x8.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1w_mzx_pbr2x8.Rm, is_64bit));
@@ -42239,7 +41627,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_mzx_pbr2x8.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_mzx_pbr2x8.Rm, is_64bit));
@@ -42249,7 +41636,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1d_mzx_pbr2x8.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1d_mzx_pbr2x8.Rm, is_64bit));
@@ -42259,7 +41645,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1h_mzx_pbr2x8.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1h_mzx_pbr2x8.Rm, is_64bit));
@@ -42269,7 +41654,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1h_mzx_pbr2x8.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1h_mzx_pbr2x8.Rm, is_64bit));
@@ -42279,7 +41663,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_mzx_pbr2x8.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_mzx_pbr2x8.Rm, is_64bit));
@@ -42289,7 +41672,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1w_mzx_pbr2x8.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1w_mzx_pbr2x8.Rm, is_64bit));
@@ -42299,7 +41681,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_mzx_pbr2x8.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_mzx_pbr2x8.Rm, is_64bit));
@@ -42309,7 +41690,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1d_mzx_pbr2x8.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1d_mzx_pbr2x8.Rm, is_64bit));
@@ -42324,7 +41704,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1b_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1b_mz_pbr4.Rm, is_64bit));
@@ -42334,7 +41713,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1b_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1b_mz_pbr4.Rm, is_64bit));
@@ -42344,7 +41722,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1h_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1h_mz_pbr4.Rm, is_64bit));
@@ -42354,7 +41731,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1h_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1h_mz_pbr4.Rm, is_64bit));
@@ -42364,7 +41740,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_mz_pbr4.Rm, is_64bit));
@@ -42374,7 +41749,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1w_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1w_mz_pbr4.Rm, is_64bit));
@@ -42384,7 +41758,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_mz_pbr4.Rm, is_64bit));
@@ -42394,7 +41767,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1d_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1d_mz_pbr4.Rm, is_64bit));
@@ -42404,7 +41776,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1b_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1b_mz_pbr4.Rm, is_64bit));
@@ -42414,7 +41785,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1b_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1b_mz_pbr4.Rm, is_64bit));
@@ -42424,7 +41794,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1h_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1h_mz_pbr4.Rm, is_64bit));
@@ -42434,7 +41803,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1h_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1h_mz_pbr4.Rm, is_64bit));
@@ -42444,7 +41812,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_mz_pbr4.Rm, is_64bit));
@@ -42454,7 +41821,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1w_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1w_mz_pbr4.Rm, is_64bit));
@@ -42464,7 +41830,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_mz_pbr4.Rm, is_64bit));
@@ -42474,7 +41839,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1d_mz_pbr4.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1d_mz_pbr4.Rm, is_64bit));
@@ -42489,7 +41853,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1b_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1b_mz_pbr2.Rm, is_64bit));
@@ -42499,7 +41862,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1b_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1b_mz_pbr2.Rm, is_64bit));
@@ -42509,7 +41871,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1h_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1h_mz_pbr2.Rm, is_64bit));
@@ -42519,7 +41880,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1h_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1h_mz_pbr2.Rm, is_64bit));
@@ -42529,7 +41889,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_mz_pbr2.Rm, is_64bit));
@@ -42539,7 +41898,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1w_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1w_mz_pbr2.Rm, is_64bit));
@@ -42549,7 +41907,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_mz_pbr2.Rm, is_64bit));
@@ -42559,7 +41916,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1d_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldnt1d_mz_pbr2.Rm, is_64bit));
@@ -42569,7 +41925,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1b_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1b_mz_pbr2.Rm, is_64bit));
@@ -42579,7 +41934,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1b_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1b_mz_pbr2.Rm, is_64bit));
@@ -42589,7 +41943,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1h_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1h_mz_pbr2.Rm, is_64bit));
@@ -42599,7 +41952,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1h_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1h_mz_pbr2.Rm, is_64bit));
@@ -42609,7 +41961,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_mz_pbr2.Rm, is_64bit));
@@ -42619,7 +41970,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1w_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1w_mz_pbr2.Rm, is_64bit));
@@ -42629,7 +41979,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_mz_pbr2.Rm, is_64bit));
@@ -42639,7 +41988,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1d_mz_pbr2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1d_mz_pbr2.Rm, is_64bit));
@@ -42654,35 +42002,30 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81800008u: { // fmopa_za_pp_zz_16
                         Instruction result(Mnemonic::FMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81800018u: { // fmops_za_pp_zz_16
                         Instruction result(Mnemonic::FMOPS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81A00008u: { // bfmopa_za_pp_zz_16
                         Instruction result(Mnemonic::BFMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81A00018u: { // bfmops_za_pp_zz_16
                         Instruction result(Mnemonic::BFMOPS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -42694,147 +42037,126 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80800008u: { // bmopa_za_pp_zz_32
                         Instruction result(Mnemonic::BMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80800010u: { // fmops_za_pp_zz_32
                         Instruction result(Mnemonic::FMOPS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80800018u: { // bmops_za_pp_zz_32
                         Instruction result(Mnemonic::BMOPS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80A00000u: { // fmopa_za32_pp_z8z8_8
                         Instruction result(Mnemonic::FMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81800000u: { // bfmopa_za32_pp_zz_
                         Instruction result(Mnemonic::BFMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81800010u: { // bfmops_za32_pp_zz_
                         Instruction result(Mnemonic::BFMOPS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81A00000u: { // fmopa_za32_pp_zz_16
                         Instruction result(Mnemonic::FMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x81A00010u: { // fmops_za32_pp_zz_16
                         Instruction result(Mnemonic::FMOPS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0800000u: { // smopa_za_pp_zz_32
                         Instruction result(Mnemonic::SMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0800008u: { // smopa_za32_pp_zz_16
                         Instruction result(Mnemonic::SMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0800010u: { // smops_za_pp_zz_32
                         Instruction result(Mnemonic::SMOPS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0800018u: { // smops_za32_pp_zz_16
                         Instruction result(Mnemonic::SMOPS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0A00000u: { // sumopa_za_pp_zz_32
                         Instruction result(Mnemonic::SUMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0A00010u: { // sumops_za_pp_zz_32
                         Instruction result(Mnemonic::SUMOPS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1800000u: { // usmopa_za_pp_zz_32
                         Instruction result(Mnemonic::USMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1800008u: { // umopa_za32_pp_zz_16
                         Instruction result(Mnemonic::UMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1800010u: { // usmops_za_pp_zz_32
                         Instruction result(Mnemonic::USMOPS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1800018u: { // umops_za32_pp_zz_16
                         Instruction result(Mnemonic::UMOPS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1A00000u: { // umopa_za_pp_zz_32
                         Instruction result(Mnemonic::UMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1A00010u: { // umops_za_pp_zz_32
                         Instruction result(Mnemonic::UMOPS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -42846,70 +42168,60 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0x80C00010u: { // fmops_za_pp_zz_64
                         Instruction result(Mnemonic::FMOPS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0C00000u: { // smopa_za_pp_zz_64
                         Instruction result(Mnemonic::SMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0C00010u: { // smops_za_pp_zz_64
                         Instruction result(Mnemonic::SMOPS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0E00000u: { // sumopa_za_pp_zz_64
                         Instruction result(Mnemonic::SUMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA0E00010u: { // sumops_za_pp_zz_64
                         Instruction result(Mnemonic::SUMOPS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1C00000u: { // usmopa_za_pp_zz_64
                         Instruction result(Mnemonic::USMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1C00010u: { // usmops_za_pp_zz_64
                         Instruction result(Mnemonic::USMOPS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1E00000u: { // umopa_za_pp_zz_64
                         Instruction result(Mnemonic::UMOPA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xA1E00010u: { // umops_za_pp_zz_64
                         Instruction result(Mnemonic::UMOPS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -42921,7 +42233,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1b_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1b_za_prrr.Rm, is_64bit));
@@ -42932,7 +42243,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1B, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1b_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1b_za_prrr.Rm, is_64bit));
@@ -42943,7 +42253,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1h_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1h_za_prrr.Rm, is_64bit));
@@ -42954,7 +42263,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1H, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1h_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1h_za_prrr.Rm, is_64bit));
@@ -42965,7 +42273,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_za_prrr.Rm, is_64bit));
@@ -42976,7 +42283,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1W, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_za_prrr.Rm, is_64bit));
@@ -42987,7 +42293,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_za_prrr.Rm, is_64bit));
@@ -42998,7 +42303,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1D, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_za_prrr.Rm, is_64bit));
@@ -43009,7 +42313,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LD1Q, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1q_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1q_za_prrr.Rm, is_64bit));
@@ -43020,7 +42323,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ST1Q, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1q_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1q_za_prrr.Rm, is_64bit));
@@ -43036,28 +42338,24 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FADD, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A11C08u: { // fsub_za_zw_4x4
                         Instruction result(Mnemonic::FSUB, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A11C10u: { // add_za_zw_4x4
                         Instruction result(Mnemonic::ADD, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A11C18u: { // sub_za_zw_4x4
                         Instruction result(Mnemonic::SUB, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -43069,28 +42367,24 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FADD, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A01C08u: { // fsub_za_zw_2x2
                         Instruction result(Mnemonic::FSUB, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A01C10u: { // add_za_zw_2x2
                         Instruction result(Mnemonic::ADD, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A01C18u: { // sub_za_zw_2x2
                         Instruction result(Mnemonic::SUB, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -43102,56 +42396,48 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1200008u: { // smlsll_za_zzv_2x1
                         Instruction result(Mnemonic::SMLSLL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1200010u: { // umlall_za_zzv_2x1
                         Instruction result(Mnemonic::UMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1200018u: { // umlsll_za_zzv_2x1
                         Instruction result(Mnemonic::UMLSLL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1300000u: { // smlall_za_zzv_4x1
                         Instruction result(Mnemonic::SMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1300008u: { // smlsll_za_zzv_4x1
                         Instruction result(Mnemonic::SMLSLL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1300010u: { // umlall_za_zzv_4x1
                         Instruction result(Mnemonic::UMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1300018u: { // umlsll_za_zzv_4x1
                         Instruction result(Mnemonic::UMLSLL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -43163,28 +42449,24 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1200408u: { // smlsll_za_zzv_1
                         Instruction result(Mnemonic::SMLSLL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1200410u: { // umlall_za_zzv_1
                         Instruction result(Mnemonic::UMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1200418u: { // umlsll_za_zzv_1
                         Instruction result(Mnemonic::UMLSLL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -43196,84 +42478,72 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1201410u: { // udot_za_zzv_2x1
                         Instruction result(Mnemonic::UDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1201800u: { // fmla_za_zzv_2x1
                         Instruction result(Mnemonic::FMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1201808u: { // fmls_za_zzv_2x1
                         Instruction result(Mnemonic::FMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1201810u: { // add_za_zzv_2x1
                         Instruction result(Mnemonic::ADD, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1201818u: { // sub_za_zzv_2x1
                         Instruction result(Mnemonic::SUB, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1301400u: { // sdot_za_zzv_4x1
                         Instruction result(Mnemonic::SDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1301410u: { // udot_za_zzv_4x1
                         Instruction result(Mnemonic::UDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1301800u: { // fmla_za_zzv_4x1
                         Instruction result(Mnemonic::FMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1301808u: { // fmls_za_zzv_4x1
                         Instruction result(Mnemonic::FMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1301810u: { // add_za_zzv_4x1
                         Instruction result(Mnemonic::ADD, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1301818u: { // sub_za_zzv_4x1
                         Instruction result(Mnemonic::SUB, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -43285,28 +42555,24 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A10008u: { // smlsll_za_zzw_4x4
                         Instruction result(Mnemonic::SMLSLL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A10010u: { // umlall_za_zzw_4x4
                         Instruction result(Mnemonic::UMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A10018u: { // umlsll_za_zzw_4x4
                         Instruction result(Mnemonic::UMLSLL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -43318,42 +42584,36 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A11410u: { // udot_za_zzw_4x4
                         Instruction result(Mnemonic::UDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A11800u: { // fmla_za_zzw_4x4
                         Instruction result(Mnemonic::FMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A11808u: { // fmls_za_zzw_4x4
                         Instruction result(Mnemonic::FMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A11810u: { // add_za_zzw_4x4
                         Instruction result(Mnemonic::ADD, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A11818u: { // sub_za_zzw_4x4
                         Instruction result(Mnemonic::SUB, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -43365,28 +42625,24 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A00008u: { // smlsll_za_zzw_2x2
                         Instruction result(Mnemonic::SMLSLL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A00010u: { // umlall_za_zzw_2x2
                         Instruction result(Mnemonic::UMLALL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A00018u: { // umlsll_za_zzw_2x2
                         Instruction result(Mnemonic::UMLSLL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -43398,42 +42654,36 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A01410u: { // udot_za_zzw_2x2
                         Instruction result(Mnemonic::UDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A01800u: { // fmla_za_zzw_2x2
                         Instruction result(Mnemonic::FMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A01808u: { // fmls_za_zzw_2x2
                         Instruction result(Mnemonic::FMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A01810u: { // add_za_zzw_2x2
                         Instruction result(Mnemonic::ADD, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC1A01818u: { // sub_za_zzw_2x2
                         Instruction result(Mnemonic::SUB, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -43445,7 +42695,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI6, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -43457,7 +42706,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI6, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -43469,42 +42717,36 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SQCVT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC133E020u: { // uqcvt_z_mz4_
                         Instruction result(Mnemonic::UQCVT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC133E040u: { // sqcvtn_z_mz4_
                         Instruction result(Mnemonic::SQCVTN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC133E060u: { // uqcvtn_z_mz4_
                         Instruction result(Mnemonic::UQCVTN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC173E000u: { // sqcvtu_z_mz4_
                         Instruction result(Mnemonic::SQCVTU, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC173E040u: { // sqcvtun_z_mz4_
                         Instruction result(Mnemonic::SQCVTUN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -43516,14 +42758,12 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::ZIP, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC136E002u: { // uzp_mz_z_4
                         Instruction result(Mnemonic::UZP, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -43535,14 +42775,12 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SUNPK, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC135E001u: { // uunpk_mz_z_4
                         Instruction result(Mnemonic::UUNPK, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -43554,14 +42792,12 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SUNPK, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC125E001u: { // uunpk_mz_z_2
                         Instruction result(Mnemonic::UUNPK, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -43573,56 +42809,48 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SMAX, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120A801u: { // umax_mz_zzv_4x1
                         Instruction result(Mnemonic::UMAX, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120A820u: { // smin_mz_zzv_4x1
                         Instruction result(Mnemonic::SMIN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120A821u: { // umin_mz_zzv_4x1
                         Instruction result(Mnemonic::UMIN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120AA20u: { // srshl_mz_zzv_4x1
                         Instruction result(Mnemonic::SRSHL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120AA21u: { // urshl_mz_zzv_4x1
                         Instruction result(Mnemonic::URSHL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120AB00u: { // add_mz_zzv_4x1
                         Instruction result(Mnemonic::ADD, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120AC00u: { // sqdmulh_mz_zzv_4x1
                         Instruction result(Mnemonic::SQDMULH, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -43634,56 +42862,48 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SMAX, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120A001u: { // umax_mz_zzv_2x1
                         Instruction result(Mnemonic::UMAX, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120A020u: { // smin_mz_zzv_2x1
                         Instruction result(Mnemonic::SMIN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120A021u: { // umin_mz_zzv_2x1
                         Instruction result(Mnemonic::UMIN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120A220u: { // srshl_mz_zzv_2x1
                         Instruction result(Mnemonic::SRSHL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120A221u: { // urshl_mz_zzv_2x1
                         Instruction result(Mnemonic::URSHL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120A300u: { // add_mz_zzv_2x1
                         Instruction result(Mnemonic::ADD, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120A400u: { // sqdmulh_mz_zzv_2x1
                         Instruction result(Mnemonic::SQDMULH, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -43695,63 +42915,54 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SMAX, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120B801u: { // umax_mz_zzw_4x4
                         Instruction result(Mnemonic::UMAX, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120B820u: { // smin_mz_zzw_4x4
                         Instruction result(Mnemonic::SMIN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120B821u: { // umin_mz_zzw_4x4
                         Instruction result(Mnemonic::UMIN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120B940u: { // famax_mz_zzw_4x4
                         Instruction result(Mnemonic::FAMAX, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120B941u: { // famin_mz_zzw_4x4
                         Instruction result(Mnemonic::FAMIN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120BA20u: { // srshl_mz_zzw_4x4
                         Instruction result(Mnemonic::SRSHL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120BA21u: { // urshl_mz_zzw_4x4
                         Instruction result(Mnemonic::URSHL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120BC00u: { // sqdmulh_mz_zzw_4x4
                         Instruction result(Mnemonic::SQDMULH, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -43763,7 +42974,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SEL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -43775,63 +42985,54 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SMAX, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120B001u: { // umax_mz_zzw_2x2
                         Instruction result(Mnemonic::UMAX, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120B020u: { // smin_mz_zzw_2x2
                         Instruction result(Mnemonic::SMIN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120B021u: { // umin_mz_zzw_2x2
                         Instruction result(Mnemonic::UMIN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120B140u: { // famax_mz_zzw_2x2
                         Instruction result(Mnemonic::FAMAX, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120B141u: { // famin_mz_zzw_2x2
                         Instruction result(Mnemonic::FAMIN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120B220u: { // srshl_mz_zzw_2x2
                         Instruction result(Mnemonic::SRSHL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120B221u: { // urshl_mz_zzw_2x2
                         Instruction result(Mnemonic::URSHL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120B400u: { // sqdmulh_mz_zzw_2x2
                         Instruction result(Mnemonic::SQDMULH, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -43843,7 +43044,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SEL, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -43855,7 +43055,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SQRSHR, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqrshr_zmz4.imm5, true));
                         return result;
         }
@@ -43863,7 +43062,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::UQRSHR, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.uqrshr_zmz4.imm5, true));
                         return result;
         }
@@ -43871,7 +43069,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SQRSHRU, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqrshru_zmz4.imm5, true));
                         return result;
         }
@@ -43879,7 +43076,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SQRSHRN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqrshrn_zmz4.imm5, true));
                         return result;
         }
@@ -43887,7 +43083,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::UQRSHRN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.uqrshrn_zmz4.imm5, true));
                         return result;
         }
@@ -43895,7 +43090,6 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SQRSHRUN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqrshrun_zmz4.imm5, true));
                         return result;
         }
@@ -43908,14 +43102,12 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SCLAMP, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120CC01u: { // uclamp_mz_zz_4
                         Instruction result(Mnemonic::UCLAMP, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;
@@ -43927,28 +43119,24 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SCLAMP, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120C401u: { // uclamp_mz_zz_2
                         Instruction result(Mnemonic::UCLAMP, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120D000u: { // zip_mz_zz_2
                         Instruction result(Mnemonic::ZIP, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         case 0xC120D001u: { // uzp_mz_zz_2
                         Instruction result(Mnemonic::UZP, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        (void)enc;  // Suppress unused warning
                         return result;
         }
         default: break;

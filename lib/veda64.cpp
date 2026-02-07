@@ -1059,9 +1059,17 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
         }
     }
 
-    if (insn.mnemonic == Mnemonic::ORR && insn.operands.size() >= 3) {
-        if (insn.operands[1].value == insn.operands[2].value) {
+    if (insn.mnemonic == Mnemonic::ORR && insn.operands.size() >= 2) {
+        // MOV Rd, Rm = ORR Rd, XZR/WZR, Rm (no shift)
+        if (insn.operands.size() == 2 && insn.operands[1].type == OperandType::Register) {
+            // 2-operand form: MOV alias encoding (Rn=XZR is implicit)
             return std::string("mov ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string();
+        }
+        if (insn.operands.size() >= 3 && insn.operands[1].value == 31 && insn.operands[1].type == OperandType::Register) {
+            bool no_shift = insn.operands.size() < 4 || insn.operands[3].type != OperandType::Shift || insn.operands[3].value == 0;
+            if (no_shift) {
+                return std::string("mov ") + insn.operands[0].to_string() + ", " + insn.operands[2].to_string();
+            }
         }
     }
 
@@ -1113,15 +1121,15 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
         }
     }
 
-    // NEG Aliases: SUB/SUBS with Rn==31
+    // NEG Aliases: SUB/SUBS with Rn==31 (register form only, not immediate)
     if (insn.mnemonic == Mnemonic::SUB && insn.operands.size() >= 3) {
-        if (insn.operands[1].value == 31) {
+        if (insn.operands[1].value == 31 && insn.operands[2].type == OperandType::Register) {
             return std::string("neg ") + insn.operands[0].to_string() + ", " + insn.operands[2].to_string();
         }
     }
 
     if (insn.mnemonic == Mnemonic::SUBS && insn.operands.size() >= 3) {
-        if (insn.operands[1].value == 31 && insn.operands[0].value != 31) {
+        if (insn.operands[1].value == 31 && insn.operands[0].value != 31 && insn.operands[2].type == OperandType::Register) {
             return std::string("negs ") + insn.operands[0].to_string() + ", " + insn.operands[2].to_string();
         }
     }
@@ -1175,12 +1183,6 @@ std::string Instruction::to_string() const {
 std::string Operand::to_string() const {
     switch (type) {
         case OperandType::Register: {
-            // Use is_64bit field to determine register size
-            bool is_sp = false;
-            if (value == 31) {  // Register 31 is SP/WSP depending on context
-                is_sp = is_64bit;  // SP in 64-bit, WSP in 32-bit
-            }
-
             return format_register(value, is_64bit, is_sp);
         }
 
@@ -1204,6 +1206,8 @@ std::string Operand::to_string() const {
             }
 
         case OperandType::VectorRegister:
+            // is_64bit used to select Q prefix for 128-bit context (STP/LDP Q)
+            if (is_64bit) return "q" + std::to_string(value);
             return format_vector_register(value, "");
 
         case OperandType::SVERegister:
@@ -1287,11 +1291,12 @@ std::string Operand::to_string() const {
 
         case OperandType::Shift:
             {
-                // Use value to encode both shift type and amount
-                // Lower bits = amount, shift type stored separately or inferred
+                // value encodes shift_type in bits [9:8] and amount in bits [7:0]
                 const char* shifts[] = {"lsl", "lsr", "asr", "ror"};
-                if (value < 4) return shifts[value];
-                return "lsl #" + std::to_string(value);
+                uint32_t shift_type = (value >> 8) & 0x3;
+                uint32_t shift_amount = value & 0xFF;
+                if (value < 4) return shifts[value];  // Legacy: bare shift type
+                return std::string(shifts[shift_type]) + " #" + std::to_string(shift_amount);
             }
 
         case OperandType::Extend:
