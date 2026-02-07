@@ -733,66 +733,74 @@ class ARM64XMLParser:
             code.append(f"#include \"format/{group_name}.hpp\"")
         code.append("")
 
-        # Add unified decode function
+        # Add unified decode function using switch/case on 5-bit key
+        # key = (op0 << 4) | op1 where op0 = bit[31], op1 = bits[28:25]
+        # All 32 values are enumerated for a compiler jump table.
         code.append("namespace veda64 {")
         code.append("")
         code.append("// Unified decode function that dispatches to appropriate group decoder")
+        code.append("// Uses switch/case on 5-bit key = (op0 << 4) | op1 for jump table optimization")
         code.append("inline std::optional<Instruction> decode_format(uint32_t insn) {")
-        code.append("    // Extract op0 (bit 31) and op1 (bits [28:25])")
-        code.append("    uint32_t op0 = (insn >> 31) & 0x1;")
-        code.append("    uint32_t op1 = (insn >> 25) & 0xF;")
+        code.append("    // Combine op0 (bit 31) and op1 (bits [28:25]) into 5-bit dispatch key")
+        code.append("    uint32_t key = ((insn >> 27) & 0x10) | ((insn >> 25) & 0xF);")
         code.append("")
-        code.append("    // Dispatch based on ARM64 decode table (encodingindex.xml)")
-        code.append("    if (op0 == 0 && op1 == 0b0000) {")
-        if 'reserved' in by_group:
-            code.append(f"        return Format::{self._group_namespace_name('reserved')}::decode_{self._sanitize_function_name('reserved')}(insn);")
-        else:
-            code.append("        return std::nullopt; // Reserved")
+        code.append("    switch (key) {")
+
+        # Build dispatch calls for each group, with fallback to nullopt
+        def call(group):
+            if group in by_group:
+                return f"return Format::{self._group_namespace_name(group)}::decode_{self._sanitize_function_name(group)}(insn);"
+            return "return std::nullopt;"
+
+        # key 0: op0=0, op1=0000 -> Reserved
+        code.append("    case 0:  // op0=0, op1=0000: Reserved")
+        code.append(f"        {call('reserved')}")
+        # key 16: op0=1, op1=0000 -> SME
+        code.append("    case 16: // op0=1, op1=0000: SME")
+        code.append(f"        {call('sme')}")
+        # keys 2,18: op1=0010 -> SVE
+        code.append("    case 2:  // op0=0, op1=0010: SVE")
+        code.append("    case 18: // op0=1, op1=0010: SVE")
+        code.append(f"        {call('sve')}")
+        # keys 8,9,24,25: op1=100x -> Dpimm
+        code.append("    case 8:  // op0=0, op1=1000: Data Processing - Immediate")
+        code.append("    case 9:  // op0=0, op1=1001")
+        code.append("    case 24: // op0=1, op1=1000")
+        code.append("    case 25: // op0=1, op1=1001")
+        code.append(f"        {call('dpimm')}")
+        # keys 10,11,26,27: op1=101x -> Control
+        code.append("    case 10: // op0=0, op1=1010: Branches, Exception & System")
+        code.append("    case 11: // op0=0, op1=1011")
+        code.append("    case 26: // op0=1, op1=1010")
+        code.append("    case 27: // op0=1, op1=1011")
+        code.append(f"        {call('control')}")
+        # keys 5,13,21,29: op1=x101 -> Dpreg
+        code.append("    case 5:  // op0=0, op1=0101: Data Processing - Register")
+        code.append("    case 13: // op0=0, op1=1101")
+        code.append("    case 21: // op0=1, op1=0101")
+        code.append("    case 29: // op0=1, op1=1101")
+        code.append(f"        {call('dpreg')}")
+        # keys 7,15,23,31: op1=x111 -> SimdDp
+        code.append("    case 7:  // op0=0, op1=0111: Scalar FP & Advanced SIMD")
+        code.append("    case 15: // op0=0, op1=1111")
+        code.append("    case 23: // op0=1, op1=0111")
+        code.append("    case 31: // op0=1, op1=1111")
+        code.append(f"        {call('simd_dp')}")
+        # keys 4,6,12,14,20,22,28,30: op1=x1x0 -> Ldst
+        code.append("    case 4:  // op0=0, op1=0100: Loads and Stores")
+        code.append("    case 6:  // op0=0, op1=0110")
+        code.append("    case 12: // op0=0, op1=1100")
+        code.append("    case 14: // op0=0, op1=1110")
+        code.append("    case 20: // op0=1, op1=0100")
+        code.append("    case 22: // op0=1, op1=0110")
+        code.append("    case 28: // op0=1, op1=1100")
+        code.append("    case 30: // op0=1, op1=1110")
+        code.append(f"        {call('ldst')}")
+        # default: unallocated (keys 1,3,17,19)
+        code.append("    default: // Unallocated (op1=0001 or op1=0011)")
+        code.append("        return std::nullopt;")
+
         code.append("    }")
-        code.append("    if (op0 == 1 && op1 == 0b0000) {")
-        if 'sme' in by_group:
-            code.append(f"        return Format::{self._group_namespace_name('sme')}::decode_{self._sanitize_function_name('sme')}(insn);")
-        else:
-            code.append("        return std::nullopt; // SME not available")
-        code.append("    }")
-        code.append("    if (op1 == 0b0010) {")
-        if 'sve' in by_group:
-            code.append(f"        return Format::{self._group_namespace_name('sve')}::decode_{self._sanitize_function_name('sve')}(insn);")
-        else:
-            code.append("        return std::nullopt; // SVE not available")
-        code.append("    }")
-        code.append("    if ((op1 >> 1) == 0b100) {")
-        if 'dpimm' in by_group:
-            code.append(f"        return Format::{self._group_namespace_name('dpimm')}::decode_{self._sanitize_function_name('dpimm')}(insn);")
-        else:
-            code.append("        return std::nullopt;")
-        code.append("    }")
-        code.append("    if ((op1 >> 1) == 0b101) {")
-        if 'control' in by_group:
-            code.append(f"        return Format::{self._group_namespace_name('control')}::decode_{self._sanitize_function_name('control')}(insn);")
-        else:
-            code.append("        return std::nullopt;")
-        code.append("    }")
-        code.append("    if ((op1 & 0b0111) == 0b0101) {")
-        if 'dpreg' in by_group:
-            code.append(f"        return Format::{self._group_namespace_name('dpreg')}::decode_{self._sanitize_function_name('dpreg')}(insn);")
-        else:
-            code.append("        return std::nullopt;")
-        code.append("    }")
-        code.append("    if ((op1 & 0b0111) == 0b0111) {")
-        if 'simd_dp' in by_group:
-            code.append(f"        return Format::{self._group_namespace_name('simd_dp')}::decode_{self._sanitize_function_name('simd_dp')}(insn);")
-        else:
-            code.append("        return std::nullopt;")
-        code.append("    }")
-        code.append("    if ((op1 & 0b0101) == 0b0100) {")
-        if 'ldst' in by_group:
-            code.append(f"        return Format::{self._group_namespace_name('ldst')}::decode_{self._sanitize_function_name('ldst')}(insn);")
-        else:
-            code.append("        return std::nullopt;")
-        code.append("    }")
-        code.append("")
-        code.append("    return std::nullopt;")
         code.append("}")
         code.append("")
         code.append("} // namespace veda64")
