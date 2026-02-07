@@ -1652,7 +1652,7 @@ public:
 #endif
 };
 
-// Unified decode function declaration (tries all instruction classes)
+// Unified decode function declaration (dispatches to format-based group decoders)
 std::optional<Instruction> decode(uint32_t insn);
 
 // Decode from 4 bytes in memory order
@@ -1661,15 +1661,3 @@ inline std::optional<Instruction> decode(const uint8_t* bytes) {
 }
 
 } // namespace veda64
-
-// Include all instruction class headers
-#include "class/advsimd.hpp"
-#include "class/float.hpp"
-#include "class/fpsimd.hpp"
-#include "class/general.hpp"
-#include "class/mortlach.hpp"
-#include "class/mortlach2.hpp"
-#include "class/sve.hpp"
-#include "class/sve2.hpp"
-#include "class/system.hpp"
-#include "class/unknown.hpp"

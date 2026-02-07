@@ -23,7 +23,6 @@ struct AddMzZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(AddMzZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // ADD: Multi-vector add by vector to multi-vector
 // Encoding: add_mz_zzv_4x1
@@ -45,7 +44,6 @@ struct AddMzZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(AddMzZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // ADD: Multi-vector accumulate to ZA array vectors
 // Encoding: add_za_zw_2x2
@@ -69,7 +67,6 @@ struct AddZaZw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(AddZaZw2x2) == 4, "Encoding struct must be 32 bits");
 
 // ADD: Multi-vector accumulate to ZA array vectors
 // Encoding: add_za_zw_4x4
@@ -93,7 +90,6 @@ struct AddZaZw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(AddZaZw4x4) == 4, "Encoding struct must be 32 bits");
 
 // ADD: Multi-vector add by vector to ZA array vectors
 // Encoding: add_za_zzv_2x1
@@ -115,7 +111,6 @@ struct AddZaZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(AddZaZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // ADD: Multi-vector add by vector to ZA array vectors
 // Encoding: add_za_zzv_4x1
@@ -137,7 +132,6 @@ struct AddZaZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(AddZaZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // ADD: Multi-vector add to ZA array vectors
 // Encoding: add_za_zzw_2x2
@@ -160,7 +154,6 @@ struct AddZaZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(AddZaZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // ADD: Multi-vector add to ZA array vectors
 // Encoding: add_za_zzw_4x4
@@ -184,7 +177,6 @@ struct AddZaZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(AddZaZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // : Multi-vector 8-bit floating-point convert to BFloat16
 // Encoding: bf1cvt_mz2_z8_
@@ -204,7 +196,6 @@ struct Bf1cvtMz2Z8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Bf1cvtMz2Z8) == 4, "Encoding struct must be 32 bits");
 
 // : Multi-vector 8-bit floating-point convert to BFloat16
 // Encoding: bf2cvt_mz2_z8_
@@ -224,7 +215,6 @@ struct Bf2cvtMz2Z8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Bf2cvtMz2Z8) == 4, "Encoding struct must be 32 bits");
 
 // : Multi-vector 8-bit floating-point convert to deinterleaved BFloat16
 // Encoding: bf1cvtl_mz2_z8_
@@ -244,7 +234,6 @@ struct Bf1cvtlMz2Z8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Bf1cvtlMz2Z8) == 4, "Encoding struct must be 32 bits");
 
 // : Multi-vector 8-bit floating-point convert to deinterleaved BFloat16
 // Encoding: bf2cvtl_mz2_z8_
@@ -264,7 +253,6 @@ struct Bf2cvtlMz2Z8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Bf2cvtlMz2Z8) == 4, "Encoding struct must be 32 bits");
 
 // BFADD: Multi-vector BFloat16 accumulate to ZA array vectors
 // Encoding: bfadd_za_zw_2x2_16
@@ -288,7 +276,6 @@ struct BfaddZaZw2x216 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfaddZaZw2x216) == 4, "Encoding struct must be 32 bits");
 
 // BFADD: Multi-vector BFloat16 accumulate to ZA array vectors
 // Encoding: bfadd_za_zw_4x4_16
@@ -312,7 +299,6 @@ struct BfaddZaZw4x416 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfaddZaZw4x416) == 4, "Encoding struct must be 32 bits");
 
 // BFCLAMP: Multi-vector BFloat16 clamp to minimum/maximum number
 // Encoding: bfclamp_mz_zz_2
@@ -332,7 +318,6 @@ struct BfclampMzZz2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfclampMzZz2) == 4, "Encoding struct must be 32 bits");
 
 // BFCLAMP: Multi-vector BFloat16 clamp to minimum/maximum number
 // Encoding: bfclamp_mz_zz_4
@@ -353,7 +338,6 @@ struct BfclampMzZz4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfclampMzZz4) == 4, "Encoding struct must be 32 bits");
 
 // BFCVT: Multi-vector BFloat16 convert to 8-bit floating-point
 // Encoding: bfcvt_z8_mz2_
@@ -374,7 +358,6 @@ struct BfcvtZ8Mz2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfcvtZ8Mz2) == 4, "Encoding struct must be 32 bits");
 
 // BFCVT: Multi-vector single-precision convert to BFloat16
 // Encoding: bfcvt_z_mz2_
@@ -395,7 +378,6 @@ struct BfcvtZMz2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfcvtZMz2) == 4, "Encoding struct must be 32 bits");
 
 // BFCVTN: Multi-vector single-precision convert to interleaved BFloat16
 // Encoding: bfcvtn_z_mz2_
@@ -416,7 +398,6 @@ struct BfcvtnZMz2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfcvtnZMz2) == 4, "Encoding struct must be 32 bits");
 
 // BFDOT: Multi-vector BFloat16 dot product by indexed element to single-precision
 // Encoding: bfdot_za_zzi_2xi
@@ -438,7 +419,6 @@ struct BfdotZaZzi2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfdotZaZzi2xi) == 4, "Encoding struct must be 32 bits");
 
 // BFDOT: Multi-vector BFloat16 dot product by indexed element to single-precision
 // Encoding: bfdot_za_zzi_4xi
@@ -461,7 +441,6 @@ struct BfdotZaZzi4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfdotZaZzi4xi) == 4, "Encoding struct must be 32 bits");
 
 // BFDOT: Multi-vector BFloat16 dot product by vector to single-precision
 // Encoding: bfdot_za_zzv_2x1
@@ -482,7 +461,6 @@ struct BfdotZaZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfdotZaZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // BFDOT: Multi-vector BFloat16 dot product by vector to single-precision
 // Encoding: bfdot_za_zzv_4x1
@@ -503,7 +481,6 @@ struct BfdotZaZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfdotZaZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // BFDOT: Multi-vector BFloat16 dot product to single-precision
 // Encoding: bfdot_za_zzw_2x2
@@ -525,7 +502,6 @@ struct BfdotZaZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfdotZaZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // BFDOT: Multi-vector BFloat16 dot product to single-precision
 // Encoding: bfdot_za_zzw_4x4
@@ -549,7 +525,6 @@ struct BfdotZaZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfdotZaZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // BFMAX: Multi-vector BFloat16 maximum by vector
 // Encoding: bfmax_mz_zzv_2x1
@@ -571,7 +546,6 @@ struct BfmaxMzZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmaxMzZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // BFMAX: Multi-vector BFloat16 maximum by vector
 // Encoding: bfmax_mz_zzv_4x1
@@ -594,7 +568,6 @@ struct BfmaxMzZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmaxMzZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // BFMAX: Multi-vector BFloat16 maximum
 // Encoding: bfmax_mz_zzw_2x2
@@ -614,7 +587,6 @@ struct BfmaxMzZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmaxMzZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // BFMAX: Multi-vector BFloat16 maximum
 // Encoding: bfmax_mz_zzw_4x4
@@ -635,7 +607,6 @@ struct BfmaxMzZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmaxMzZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // BFMAXNM: Multi-vector BFloat16 maximum number by vector
 // Encoding: bfmaxnm_mz_zzv_2x1
@@ -657,7 +628,6 @@ struct BfmaxnmMzZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmaxnmMzZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // BFMAXNM: Multi-vector BFloat16 maximum number by vector
 // Encoding: bfmaxnm_mz_zzv_4x1
@@ -680,7 +650,6 @@ struct BfmaxnmMzZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmaxnmMzZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // BFMAXNM: Multi-vector BFloat16 maximum number
 // Encoding: bfmaxnm_mz_zzw_2x2
@@ -700,7 +669,6 @@ struct BfmaxnmMzZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmaxnmMzZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // BFMAXNM: Multi-vector BFloat16 maximum number
 // Encoding: bfmaxnm_mz_zzw_4x4
@@ -721,7 +689,6 @@ struct BfmaxnmMzZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmaxnmMzZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // BFMIN: Multi-vector BFloat16 minimum by vector
 // Encoding: bfmin_mz_zzv_2x1
@@ -743,7 +710,6 @@ struct BfminMzZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfminMzZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // BFMIN: Multi-vector BFloat16 minimum by vector
 // Encoding: bfmin_mz_zzv_4x1
@@ -766,7 +732,6 @@ struct BfminMzZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfminMzZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // BFMIN: Multi-vector BFloat16 minimum
 // Encoding: bfmin_mz_zzw_2x2
@@ -786,7 +751,6 @@ struct BfminMzZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfminMzZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // BFMIN: Multi-vector BFloat16 minimum
 // Encoding: bfmin_mz_zzw_4x4
@@ -807,7 +771,6 @@ struct BfminMzZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfminMzZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // BFMINNM: Multi-vector BFloat16 minimum number by vector
 // Encoding: bfminnm_mz_zzv_2x1
@@ -829,7 +792,6 @@ struct BfminnmMzZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfminnmMzZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // BFMINNM: Multi-vector BFloat16 minimum number by vector
 // Encoding: bfminnm_mz_zzv_4x1
@@ -852,7 +814,6 @@ struct BfminnmMzZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfminnmMzZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // BFMINNM: Multi-vector BFloat16 minimum number
 // Encoding: bfminnm_mz_zzw_2x2
@@ -872,7 +833,6 @@ struct BfminnmMzZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfminnmMzZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // BFMINNM: Multi-vector BFloat16 minimum number
 // Encoding: bfminnm_mz_zzw_4x4
@@ -893,7 +853,6 @@ struct BfminnmMzZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfminnmMzZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // BFMLA: Multi-vector BFloat16 fused multiply-add by indexed element
 // Encoding: bfmla_za_zzi_h2xi
@@ -917,7 +876,6 @@ struct BfmlaZaZziH2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlaZaZziH2xi) == 4, "Encoding struct must be 32 bits");
 
 // BFMLA: Multi-vector BFloat16 fused multiply-add by indexed element
 // Encoding: bfmla_za_zzi_h4xi
@@ -942,7 +900,6 @@ struct BfmlaZaZziH4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlaZaZziH4xi) == 4, "Encoding struct must be 32 bits");
 
 // BFMLA: Multi-vector BFloat16 fused multiply-add by vector
 // Encoding: bfmla_za_zzv_2x1_16
@@ -964,7 +921,6 @@ struct BfmlaZaZzv2x116 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlaZaZzv2x116) == 4, "Encoding struct must be 32 bits");
 
 // BFMLA: Multi-vector BFloat16 fused multiply-add by vector
 // Encoding: bfmla_za_zzv_4x1_16
@@ -986,7 +942,6 @@ struct BfmlaZaZzv4x116 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlaZaZzv4x116) == 4, "Encoding struct must be 32 bits");
 
 // BFMLA: Multi-vector BFloat16 fused multiply-add
 // Encoding: bfmla_za_zzw_2x2_16
@@ -1009,7 +964,6 @@ struct BfmlaZaZzw2x216 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlaZaZzw2x216) == 4, "Encoding struct must be 32 bits");
 
 // BFMLA: Multi-vector BFloat16 fused multiply-add
 // Encoding: bfmla_za_zzw_4x4_16
@@ -1033,7 +987,6 @@ struct BfmlaZaZzw4x416 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlaZaZzw4x416) == 4, "Encoding struct must be 32 bits");
 
 // BFMLAL: Multi-vector BFloat16 multiply-add by indexed element to single-precision
 // Encoding: bfmlal_za_zzi_1
@@ -1056,7 +1009,6 @@ struct BfmlalZaZzi1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlalZaZzi1) == 4, "Encoding struct must be 32 bits");
 
 // BFMLAL: Multi-vector BFloat16 multiply-add by indexed element to single-precision
 // Encoding: bfmlal_za_zzi_2xi
@@ -1081,7 +1033,6 @@ struct BfmlalZaZzi2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlalZaZzi2xi) == 4, "Encoding struct must be 32 bits");
 
 // BFMLAL: Multi-vector BFloat16 multiply-add by indexed element to single-precision
 // Encoding: bfmlal_za_zzi_4xi
@@ -1106,7 +1057,6 @@ struct BfmlalZaZzi4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlalZaZzi4xi) == 4, "Encoding struct must be 32 bits");
 
 // BFMLAL: Multi-vector BFloat16 multiply-add by vector to single-precision
 // Encoding: bfmlal_za_zzv_1
@@ -1128,7 +1078,6 @@ struct BfmlalZaZzv1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlalZaZzv1) == 4, "Encoding struct must be 32 bits");
 
 // BFMLAL: Multi-vector BFloat16 multiply-add by vector to single-precision
 // Encoding: bfmlal_za_zzv_2x1
@@ -1151,7 +1100,6 @@ struct BfmlalZaZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlalZaZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // BFMLAL: Multi-vector BFloat16 multiply-add by vector to single-precision
 // Encoding: bfmlal_za_zzv_4x1
@@ -1174,7 +1122,6 @@ struct BfmlalZaZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlalZaZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // BFMLAL: Multi-vector BFloat16 multiply-add to single-precision
 // Encoding: bfmlal_za_zzw_2x2
@@ -1198,7 +1145,6 @@ struct BfmlalZaZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlalZaZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // BFMLAL: Multi-vector BFloat16 multiply-add to single-precision
 // Encoding: bfmlal_za_zzw_4x4
@@ -1223,7 +1169,6 @@ struct BfmlalZaZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlalZaZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // BFMLS: Multi-vector BFloat16 fused multiply-subtract by indexed element
 // Encoding: bfmls_za_zzi_h2xi
@@ -1247,7 +1192,6 @@ struct BfmlsZaZziH2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlsZaZziH2xi) == 4, "Encoding struct must be 32 bits");
 
 // BFMLS: Multi-vector BFloat16 fused multiply-subtract by indexed element
 // Encoding: bfmls_za_zzi_h4xi
@@ -1272,7 +1216,6 @@ struct BfmlsZaZziH4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlsZaZziH4xi) == 4, "Encoding struct must be 32 bits");
 
 // BFMLS: Multi-vector BFloat16 fused multiply-subtract by vector
 // Encoding: bfmls_za_zzv_2x1_16
@@ -1294,7 +1237,6 @@ struct BfmlsZaZzv2x116 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlsZaZzv2x116) == 4, "Encoding struct must be 32 bits");
 
 // BFMLS: Multi-vector BFloat16 fused multiply-subtract by vector
 // Encoding: bfmls_za_zzv_4x1_16
@@ -1316,7 +1258,6 @@ struct BfmlsZaZzv4x116 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlsZaZzv4x116) == 4, "Encoding struct must be 32 bits");
 
 // BFMLS: Multi-vector BFloat16 fused multiply-subtract
 // Encoding: bfmls_za_zzw_2x2_16
@@ -1339,7 +1280,6 @@ struct BfmlsZaZzw2x216 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlsZaZzw2x216) == 4, "Encoding struct must be 32 bits");
 
 // BFMLS: Multi-vector BFloat16 fused multiply-subtract
 // Encoding: bfmls_za_zzw_4x4_16
@@ -1363,7 +1303,6 @@ struct BfmlsZaZzw4x416 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlsZaZzw4x416) == 4, "Encoding struct must be 32 bits");
 
 // BFMLSL: Multi-vector BFloat16 multiply-subtract by indexed element from single-precision
 // Encoding: bfmlsl_za_zzi_1
@@ -1386,7 +1325,6 @@ struct BfmlslZaZzi1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlslZaZzi1) == 4, "Encoding struct must be 32 bits");
 
 // BFMLSL: Multi-vector BFloat16 multiply-subtract by indexed element from single-precision
 // Encoding: bfmlsl_za_zzi_2xi
@@ -1411,7 +1349,6 @@ struct BfmlslZaZzi2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlslZaZzi2xi) == 4, "Encoding struct must be 32 bits");
 
 // BFMLSL: Multi-vector BFloat16 multiply-subtract by indexed element from single-precision
 // Encoding: bfmlsl_za_zzi_4xi
@@ -1436,7 +1373,6 @@ struct BfmlslZaZzi4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlslZaZzi4xi) == 4, "Encoding struct must be 32 bits");
 
 // BFMLSL: Multi-vector BFloat16 multiply-subtract by vector from single-precision
 // Encoding: bfmlsl_za_zzv_1
@@ -1458,7 +1394,6 @@ struct BfmlslZaZzv1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlslZaZzv1) == 4, "Encoding struct must be 32 bits");
 
 // BFMLSL: Multi-vector BFloat16 multiply-subtract by vector from single-precision
 // Encoding: bfmlsl_za_zzv_2x1
@@ -1481,7 +1416,6 @@ struct BfmlslZaZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlslZaZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // BFMLSL: Multi-vector BFloat16 multiply-subtract by vector from single-precision
 // Encoding: bfmlsl_za_zzv_4x1
@@ -1504,7 +1438,6 @@ struct BfmlslZaZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlslZaZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // BFMLSL: Multi-vector BFloat16 multiply-subtract from single-precision
 // Encoding: bfmlsl_za_zzw_2x2
@@ -1528,7 +1461,6 @@ struct BfmlslZaZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlslZaZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // BFMLSL: Multi-vector BFloat16 multiply-subtract from single-precision
 // Encoding: bfmlsl_za_zzw_4x4
@@ -1553,7 +1485,6 @@ struct BfmlslZaZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmlslZaZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // BFMOP4A: BFloat16 quarter-tile sum of outer products to single-precision, accumulating
 // Encoding: bfmop4a_za32_zz_h1x2
@@ -1579,7 +1510,6 @@ struct Bfmop4aZa32ZzH1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Bfmop4aZa32ZzH1x2) == 4, "Encoding struct must be 32 bits");
 
 // BFMOP4A: BFloat16 quarter-tile sum of outer products to single-precision, accumulating
 // Encoding: bfmop4a_za32_zz_h1x1
@@ -1605,7 +1535,6 @@ struct Bfmop4aZa32ZzH1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Bfmop4aZa32ZzH1x1) == 4, "Encoding struct must be 32 bits");
 
 // BFMOP4A: BFloat16 quarter-tile sum of outer products to single-precision, accumulating
 // Encoding: bfmop4a_za32_zz_h2x1
@@ -1631,7 +1560,6 @@ struct Bfmop4aZa32ZzH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Bfmop4aZa32ZzH2x1) == 4, "Encoding struct must be 32 bits");
 
 // BFMOP4A: BFloat16 quarter-tile sum of outer products to single-precision, accumulating
 // Encoding: bfmop4a_za32_zz_h2x2
@@ -1657,7 +1585,6 @@ struct Bfmop4aZa32ZzH2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Bfmop4aZa32ZzH2x2) == 4, "Encoding struct must be 32 bits");
 
 // BFMOP4A: BFloat16 quarter-tile outer product, accumulating
 // Encoding: bfmop4a_za_zz_h1x2
@@ -1684,7 +1611,6 @@ struct Bfmop4aZaZzH1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Bfmop4aZaZzH1x2) == 4, "Encoding struct must be 32 bits");
 
 // BFMOP4A: BFloat16 quarter-tile outer product, accumulating
 // Encoding: bfmop4a_za_zz_h1x1
@@ -1711,7 +1637,6 @@ struct Bfmop4aZaZzH1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Bfmop4aZaZzH1x1) == 4, "Encoding struct must be 32 bits");
 
 // BFMOP4A: BFloat16 quarter-tile outer product, accumulating
 // Encoding: bfmop4a_za_zz_h2x1
@@ -1738,7 +1663,6 @@ struct Bfmop4aZaZzH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Bfmop4aZaZzH2x1) == 4, "Encoding struct must be 32 bits");
 
 // BFMOP4A: BFloat16 quarter-tile outer product, accumulating
 // Encoding: bfmop4a_za_zz_h2x2
@@ -1765,7 +1689,6 @@ struct Bfmop4aZaZzH2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Bfmop4aZaZzH2x2) == 4, "Encoding struct must be 32 bits");
 
 // BFMOP4S: BFloat16 quarter-tile sum of outer products to single-precision, subtracting
 // Encoding: bfmop4s_za32_zz_h1x2
@@ -1791,7 +1714,6 @@ struct Bfmop4sZa32ZzH1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Bfmop4sZa32ZzH1x2) == 4, "Encoding struct must be 32 bits");
 
 // BFMOP4S: BFloat16 quarter-tile sum of outer products to single-precision, subtracting
 // Encoding: bfmop4s_za32_zz_h1x1
@@ -1817,7 +1739,6 @@ struct Bfmop4sZa32ZzH1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Bfmop4sZa32ZzH1x1) == 4, "Encoding struct must be 32 bits");
 
 // BFMOP4S: BFloat16 quarter-tile sum of outer products to single-precision, subtracting
 // Encoding: bfmop4s_za32_zz_h2x1
@@ -1843,7 +1764,6 @@ struct Bfmop4sZa32ZzH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Bfmop4sZa32ZzH2x1) == 4, "Encoding struct must be 32 bits");
 
 // BFMOP4S: BFloat16 quarter-tile sum of outer products to single-precision, subtracting
 // Encoding: bfmop4s_za32_zz_h2x2
@@ -1869,7 +1789,6 @@ struct Bfmop4sZa32ZzH2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Bfmop4sZa32ZzH2x2) == 4, "Encoding struct must be 32 bits");
 
 // BFMOP4S: BFloat16 quarter-tile outer product, subtracting
 // Encoding: bfmop4s_za_zz_h1x2
@@ -1896,7 +1815,6 @@ struct Bfmop4sZaZzH1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Bfmop4sZaZzH1x2) == 4, "Encoding struct must be 32 bits");
 
 // BFMOP4S: BFloat16 quarter-tile outer product, subtracting
 // Encoding: bfmop4s_za_zz_h1x1
@@ -1923,7 +1841,6 @@ struct Bfmop4sZaZzH1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Bfmop4sZaZzH1x1) == 4, "Encoding struct must be 32 bits");
 
 // BFMOP4S: BFloat16 quarter-tile outer product, subtracting
 // Encoding: bfmop4s_za_zz_h2x1
@@ -1950,7 +1867,6 @@ struct Bfmop4sZaZzH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Bfmop4sZaZzH2x1) == 4, "Encoding struct must be 32 bits");
 
 // BFMOP4S: BFloat16 quarter-tile outer product, subtracting
 // Encoding: bfmop4s_za_zz_h2x2
@@ -1977,7 +1893,6 @@ struct Bfmop4sZaZzH2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Bfmop4sZaZzH2x2) == 4, "Encoding struct must be 32 bits");
 
 // BFMOPA: BFloat16 outer product, accumulating
 // Encoding: bfmopa_za_pp_zz_16
@@ -1999,7 +1914,6 @@ struct BfmopaZaPpZz16 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmopaZaPpZz16) == 4, "Encoding struct must be 32 bits");
 
 // BFMOPS: BFloat16 outer product, subtracting
 // Encoding: bfmops_za_pp_zz_16
@@ -2021,7 +1935,6 @@ struct BfmopsZaPpZz16 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmopsZaPpZz16) == 4, "Encoding struct must be 32 bits");
 
 // BFMUL: Multi-vector BFloat16 multiply by vector
 // Encoding: bfmul_mz_zzv_2x1
@@ -2042,7 +1955,6 @@ struct BfmulMzZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmulMzZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // BFMUL: Multi-vector BFloat16 multiply by vector
 // Encoding: bfmul_mz_zzv_4x1
@@ -2065,7 +1977,6 @@ struct BfmulMzZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmulMzZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // BFMUL: Multi-vector BFloat16 multiply
 // Encoding: bfmul_mz_zzw_2x2
@@ -2086,7 +1997,6 @@ struct BfmulMzZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmulMzZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // BFMUL: Multi-vector BFloat16 multiply
 // Encoding: bfmul_mz_zzw_4x4
@@ -2109,7 +2019,6 @@ struct BfmulMzZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmulMzZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // BFSCALE: Multi-vector BFloat16 adjust exponent by vector
 // Encoding: bfscale_mz_zzv_2x1
@@ -2130,7 +2039,6 @@ struct BfscaleMzZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfscaleMzZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // BFSCALE: Multi-vector BFloat16 adjust exponent by vector
 // Encoding: bfscale_mz_zzv_4x1
@@ -2152,7 +2060,6 @@ struct BfscaleMzZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfscaleMzZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // BFSCALE: Multi-vector BFloat16 adjust exponent
 // Encoding: bfscale_mz_zzw_2x2
@@ -2172,7 +2079,6 @@ struct BfscaleMzZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfscaleMzZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // BFSCALE: Multi-vector BFloat16 adjust exponent
 // Encoding: bfscale_mz_zzw_4x4
@@ -2193,7 +2099,6 @@ struct BfscaleMzZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfscaleMzZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // BFSUB: Multi-vector BFloat16 subtract from ZA array vectors
 // Encoding: bfsub_za_zw_2x2_16
@@ -2217,7 +2122,6 @@ struct BfsubZaZw2x216 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfsubZaZw2x216) == 4, "Encoding struct must be 32 bits");
 
 // BFSUB: Multi-vector BFloat16 subtract from ZA array vectors
 // Encoding: bfsub_za_zw_4x4_16
@@ -2241,7 +2145,6 @@ struct BfsubZaZw4x416 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfsubZaZw4x416) == 4, "Encoding struct must be 32 bits");
 
 // BFTMOPA: BFloat16 sparse sum of outer products to single-precision, accumulating
 // Encoding: bftmopa_za32_zzzi_h2x1
@@ -2266,7 +2169,6 @@ struct BftmopaZa32ZzziH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BftmopaZa32ZzziH2x1) == 4, "Encoding struct must be 32 bits");
 
 // BFTMOPA: BFloat16 sparse outer product, accumulating
 // Encoding: bftmopa_za_zzzi_h2x1
@@ -2292,7 +2194,6 @@ struct BftmopaZaZzziH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BftmopaZaZzziH2x1) == 4, "Encoding struct must be 32 bits");
 
 // BFVDOT: Multi-vector BFloat16 vertical dot product by indexed element to single-precision
 // Encoding: bfvdot_za_zzi_2xi
@@ -2314,7 +2215,6 @@ struct BfvdotZaZzi2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfvdotZaZzi2xi) == 4, "Encoding struct must be 32 bits");
 
 // BMOPA: Bitwise exclusive NOR population count outer product, accumulating
 // Encoding: bmopa_za_pp_zz_32
@@ -2335,7 +2235,6 @@ struct BmopaZaPpZz32 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BmopaZaPpZz32) == 4, "Encoding struct must be 32 bits");
 
 // BMOPS: Bitwise exclusive NOR population count outer product, subtracting
 // Encoding: bmops_za_pp_zz_32
@@ -2356,7 +2255,6 @@ struct BmopsZaPpZz32 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BmopsZaPpZz32) == 4, "Encoding struct must be 32 bits");
 
 // : Multi-vector 8-bit floating-point convert to half-precision
 // Encoding: f1cvt_mz2_z8_
@@ -2376,7 +2274,6 @@ struct F1cvtMz2Z8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(F1cvtMz2Z8) == 4, "Encoding struct must be 32 bits");
 
 // : Multi-vector 8-bit floating-point convert to half-precision
 // Encoding: f2cvt_mz2_z8_
@@ -2396,7 +2293,6 @@ struct F2cvtMz2Z8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(F2cvtMz2Z8) == 4, "Encoding struct must be 32 bits");
 
 // : Multi-vector 8-bit floating-point convert to deinterleaved half-precision
 // Encoding: f1cvtl_mz2_z8_
@@ -2416,7 +2312,6 @@ struct F1cvtlMz2Z8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(F1cvtlMz2Z8) == 4, "Encoding struct must be 32 bits");
 
 // : Multi-vector 8-bit floating-point convert to deinterleaved half-precision
 // Encoding: f2cvtl_mz2_z8_
@@ -2436,7 +2331,6 @@ struct F2cvtlMz2Z8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(F2cvtlMz2Z8) == 4, "Encoding struct must be 32 bits");
 
 // FADD: Multi-vector floating-point accumulate to ZA array vectors
 // Encoding: fadd_za_zw_2x2
@@ -2460,7 +2354,6 @@ struct FaddZaZw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FaddZaZw2x2) == 4, "Encoding struct must be 32 bits");
 
 // FADD: Multi-vector floating-point accumulate to ZA array vectors
 // Encoding: fadd_za_zw_2x2_16
@@ -2484,7 +2377,6 @@ struct FaddZaZw2x216 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FaddZaZw2x216) == 4, "Encoding struct must be 32 bits");
 
 // FADD: Multi-vector floating-point accumulate to ZA array vectors
 // Encoding: fadd_za_zw_4x4
@@ -2508,7 +2400,6 @@ struct FaddZaZw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FaddZaZw4x4) == 4, "Encoding struct must be 32 bits");
 
 // FADD: Multi-vector floating-point accumulate to ZA array vectors
 // Encoding: fadd_za_zw_4x4_16
@@ -2532,7 +2423,6 @@ struct FaddZaZw4x416 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FaddZaZw4x416) == 4, "Encoding struct must be 32 bits");
 
 // FAMAX: Multi-vector floating-point absolute maximum
 // Encoding: famax_mz_zzw_2x2
@@ -2552,7 +2442,6 @@ struct FamaxMzZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FamaxMzZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // FAMAX: Multi-vector floating-point absolute maximum
 // Encoding: famax_mz_zzw_4x4
@@ -2573,7 +2462,6 @@ struct FamaxMzZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FamaxMzZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // FAMIN: Multi-vector floating-point absolute minimum
 // Encoding: famin_mz_zzw_2x2
@@ -2593,7 +2481,6 @@ struct FaminMzZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FaminMzZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // FAMIN: Multi-vector floating-point absolute minimum
 // Encoding: famin_mz_zzw_4x4
@@ -2614,7 +2501,6 @@ struct FaminMzZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FaminMzZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // FCLAMP: Multi-vector floating-point clamp to minimum/maximum number
 // Encoding: fclamp_mz_zz_2
@@ -2634,7 +2520,6 @@ struct FclampMzZz2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FclampMzZz2) == 4, "Encoding struct must be 32 bits");
 
 // FCLAMP: Multi-vector floating-point clamp to minimum/maximum number
 // Encoding: fclamp_mz_zz_4
@@ -2655,7 +2540,6 @@ struct FclampMzZz4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FclampMzZz4) == 4, "Encoding struct must be 32 bits");
 
 // FCVT: Multi-vector half-precision convert to single-precision
 // Encoding: fcvt_mz2_z_
@@ -2675,7 +2559,6 @@ struct FcvtMz2Z {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtMz2Z) == 4, "Encoding struct must be 32 bits");
 
 // FCVT: Multi-vector half-precision convert to 8-bit floating-point
 // Encoding: fcvt_z8_mz2_
@@ -2696,7 +2579,6 @@ struct FcvtZ8Mz2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtZ8Mz2) == 4, "Encoding struct must be 32 bits");
 
 // FCVT: Multi-vector single-precision convert to 8-bit floating-point
 // Encoding: fcvt_z8_mz4_
@@ -2717,7 +2599,6 @@ struct FcvtZ8Mz4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtZ8Mz4) == 4, "Encoding struct must be 32 bits");
 
 // FCVT: Multi-vector single-precision convert to half-precision
 // Encoding: fcvt_z_mz2_
@@ -2738,7 +2619,6 @@ struct FcvtZMz2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtZMz2) == 4, "Encoding struct must be 32 bits");
 
 // FCVTL: Multi-vector half-precision convert to deinterleaved single-precision
 // Encoding: fcvtl_mz2_z_
@@ -2758,7 +2638,6 @@ struct FcvtlMz2Z {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtlMz2Z) == 4, "Encoding struct must be 32 bits");
 
 // FCVTN: Multi-vector single-precision convert to interleaved 8-bit floating-point
 // Encoding: fcvtn_z8_mz4_
@@ -2779,7 +2658,6 @@ struct FcvtnZ8Mz4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtnZ8Mz4) == 4, "Encoding struct must be 32 bits");
 
 // FCVTN: Multi-vector single-precision convert to interleaved half-precision
 // Encoding: fcvtn_z_mz2_
@@ -2800,7 +2678,6 @@ struct FcvtnZMz2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtnZMz2) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZS: Multi-vector single-precision convert to signed 32-bit integer, rounding toward zero
 // Encoding: fcvtzs_mz_z_2
@@ -2821,7 +2698,6 @@ struct FcvtzsMzZ2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtzsMzZ2) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZS: Multi-vector single-precision convert to signed 32-bit integer, rounding toward zero
 // Encoding: fcvtzs_mz_z_4
@@ -2843,7 +2719,6 @@ struct FcvtzsMzZ4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtzsMzZ4) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZU: Multi-vector single-precision convert to unsigned 32-bit integer, rounding toward zero
 // Encoding: fcvtzu_mz_z_2
@@ -2864,7 +2739,6 @@ struct FcvtzuMzZ2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtzuMzZ2) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZU: Multi-vector single-precision convert to unsigned 32-bit integer, rounding toward zero
 // Encoding: fcvtzu_mz_z_4
@@ -2886,7 +2760,6 @@ struct FcvtzuMzZ4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtzuMzZ4) == 4, "Encoding struct must be 32 bits");
 
 // FDOT: Multi-vector 8-bit floating-point dot product by indexed element to single-precision
 // Encoding: fdot_za32_z8z8i_2xi
@@ -2908,7 +2781,6 @@ struct FdotZa32Z8z8i2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FdotZa32Z8z8i2xi) == 4, "Encoding struct must be 32 bits");
 
 // FDOT: Multi-vector 8-bit floating-point dot product by indexed element to single-precision
 // Encoding: fdot_za32_z8z8i_4xi
@@ -2931,7 +2803,6 @@ struct FdotZa32Z8z8i4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FdotZa32Z8z8i4xi) == 4, "Encoding struct must be 32 bits");
 
 // FDOT: Multi-vector 8-bit floating-point dot product by vector to single-precision
 // Encoding: fdot_za32_z8z8v_2x1
@@ -2952,7 +2823,6 @@ struct FdotZa32Z8z8v2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FdotZa32Z8z8v2x1) == 4, "Encoding struct must be 32 bits");
 
 // FDOT: Multi-vector 8-bit floating-point dot product by vector to single-precision
 // Encoding: fdot_za32_z8z8v_4x1
@@ -2973,7 +2843,6 @@ struct FdotZa32Z8z8v4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FdotZa32Z8z8v4x1) == 4, "Encoding struct must be 32 bits");
 
 // FDOT: Multi-vector 8-bit floating-point dot product to single-precision
 // Encoding: fdot_za32_z8z8w_2x2
@@ -2995,7 +2864,6 @@ struct FdotZa32Z8z8w2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FdotZa32Z8z8w2x2) == 4, "Encoding struct must be 32 bits");
 
 // FDOT: Multi-vector 8-bit floating-point dot product to single-precision
 // Encoding: fdot_za32_z8z8w_4x4
@@ -3019,7 +2887,6 @@ struct FdotZa32Z8z8w4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FdotZa32Z8z8w4x4) == 4, "Encoding struct must be 32 bits");
 
 // FDOT: Multi-vector 8-bit floating-point dot product by indexed element to half-precision
 // Encoding: fdot_za_z8z8i_2xi
@@ -3043,7 +2910,6 @@ struct FdotZaZ8z8i2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FdotZaZ8z8i2xi) == 4, "Encoding struct must be 32 bits");
 
 // FDOT: Multi-vector 8-bit floating-point dot product by indexed element to half-precision
 // Encoding: fdot_za_z8z8i_4xi
@@ -3066,7 +2932,6 @@ struct FdotZaZ8z8i4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FdotZaZ8z8i4xi) == 4, "Encoding struct must be 32 bits");
 
 // FDOT: Multi-vector 8-bit floating-point dot product by vector to half-precision
 // Encoding: fdot_za_z8z8v_2x1
@@ -3087,7 +2952,6 @@ struct FdotZaZ8z8v2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FdotZaZ8z8v2x1) == 4, "Encoding struct must be 32 bits");
 
 // FDOT: Multi-vector 8-bit floating-point dot product by vector to half-precision
 // Encoding: fdot_za_z8z8v_4x1
@@ -3108,7 +2972,6 @@ struct FdotZaZ8z8v4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FdotZaZ8z8v4x1) == 4, "Encoding struct must be 32 bits");
 
 // FDOT: Multi-vector 8-bit floating-point dot product to half-precision
 // Encoding: fdot_za_z8z8w_2x2
@@ -3130,7 +2993,6 @@ struct FdotZaZ8z8w2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FdotZaZ8z8w2x2) == 4, "Encoding struct must be 32 bits");
 
 // FDOT: Multi-vector 8-bit floating-point dot product to half-precision
 // Encoding: fdot_za_z8z8w_4x4
@@ -3154,7 +3016,6 @@ struct FdotZaZ8z8w4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FdotZaZ8z8w4x4) == 4, "Encoding struct must be 32 bits");
 
 // FDOT: Multi-vector half-precision dot product by indexed element to single-precision
 // Encoding: fdot_za_zzi_2xi
@@ -3176,7 +3037,6 @@ struct FdotZaZzi2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FdotZaZzi2xi) == 4, "Encoding struct must be 32 bits");
 
 // FDOT: Multi-vector half-precision dot product by indexed element to single-precision
 // Encoding: fdot_za_zzi_4xi
@@ -3199,7 +3059,6 @@ struct FdotZaZzi4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FdotZaZzi4xi) == 4, "Encoding struct must be 32 bits");
 
 // FDOT: Multi-vector half-precision dot product by vector to single-precision
 // Encoding: fdot_za_zzv_2x1
@@ -3220,7 +3079,6 @@ struct FdotZaZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FdotZaZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // FDOT: Multi-vector half-precision dot product by vector to single-precision
 // Encoding: fdot_za_zzv_4x1
@@ -3241,7 +3099,6 @@ struct FdotZaZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FdotZaZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // FDOT: Multi-vector half-precision dot product to single-precision
 // Encoding: fdot_za_zzw_2x2
@@ -3263,7 +3120,6 @@ struct FdotZaZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FdotZaZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // FDOT: Multi-vector half-precision dot product to single-precision
 // Encoding: fdot_za_zzw_4x4
@@ -3287,7 +3143,6 @@ struct FdotZaZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FdotZaZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // FMAX: Multi-vector floating-point maximum by vector
 // Encoding: fmax_mz_zzv_2x1
@@ -3309,7 +3164,6 @@ struct FmaxMzZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmaxMzZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // FMAX: Multi-vector floating-point maximum by vector
 // Encoding: fmax_mz_zzv_4x1
@@ -3332,7 +3186,6 @@ struct FmaxMzZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmaxMzZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // FMAX: Multi-vector floating-point maximum
 // Encoding: fmax_mz_zzw_2x2
@@ -3352,7 +3205,6 @@ struct FmaxMzZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmaxMzZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // FMAX: Multi-vector floating-point maximum
 // Encoding: fmax_mz_zzw_4x4
@@ -3373,7 +3225,6 @@ struct FmaxMzZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmaxMzZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // FMAXNM: Multi-vector floating-point maximum number by vector
 // Encoding: fmaxnm_mz_zzv_2x1
@@ -3395,7 +3246,6 @@ struct FmaxnmMzZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmaxnmMzZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // FMAXNM: Multi-vector floating-point maximum number by vector
 // Encoding: fmaxnm_mz_zzv_4x1
@@ -3418,7 +3268,6 @@ struct FmaxnmMzZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmaxnmMzZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // FMAXNM: Multi-vector floating-point maximum number
 // Encoding: fmaxnm_mz_zzw_2x2
@@ -3438,7 +3287,6 @@ struct FmaxnmMzZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmaxnmMzZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // FMAXNM: Multi-vector floating-point maximum number
 // Encoding: fmaxnm_mz_zzw_4x4
@@ -3459,7 +3307,6 @@ struct FmaxnmMzZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmaxnmMzZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // FMIN: Multi-vector floating-point minimum by vector
 // Encoding: fmin_mz_zzv_2x1
@@ -3481,7 +3328,6 @@ struct FminMzZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FminMzZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // FMIN: Multi-vector floating-point minimum by vector
 // Encoding: fmin_mz_zzv_4x1
@@ -3504,7 +3350,6 @@ struct FminMzZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FminMzZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // FMIN: Multi-vector floating-point minimum
 // Encoding: fmin_mz_zzw_2x2
@@ -3524,7 +3369,6 @@ struct FminMzZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FminMzZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // FMIN: Multi-vector floating-point minimum
 // Encoding: fmin_mz_zzw_4x4
@@ -3545,7 +3389,6 @@ struct FminMzZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FminMzZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // FMINNM: Multi-vector floating-point minimum number by vector
 // Encoding: fminnm_mz_zzv_2x1
@@ -3567,7 +3410,6 @@ struct FminnmMzZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FminnmMzZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // FMINNM: Multi-vector floating-point minimum number by vector
 // Encoding: fminnm_mz_zzv_4x1
@@ -3590,7 +3432,6 @@ struct FminnmMzZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FminnmMzZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // FMINNM: Multi-vector floating-point minimum number
 // Encoding: fminnm_mz_zzw_2x2
@@ -3610,7 +3451,6 @@ struct FminnmMzZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FminnmMzZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // FMINNM: Multi-vector floating-point minimum number
 // Encoding: fminnm_mz_zzw_4x4
@@ -3631,7 +3471,6 @@ struct FminnmMzZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FminnmMzZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // FMLA: Multi-vector floating-point fused multiply-add by indexed element
 // Encoding: fmla_za_zzi_h2xi
@@ -3655,7 +3494,6 @@ struct FmlaZaZziH2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlaZaZziH2xi) == 4, "Encoding struct must be 32 bits");
 
 // FMLA: Multi-vector floating-point fused multiply-add by indexed element
 // Encoding: fmla_za_zzi_s2xi
@@ -3679,7 +3517,6 @@ struct FmlaZaZziS2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlaZaZziS2xi) == 4, "Encoding struct must be 32 bits");
 
 // FMLA: Multi-vector floating-point fused multiply-add by indexed element
 // Encoding: fmla_za_zzi_d2xi
@@ -3703,7 +3540,6 @@ struct FmlaZaZziD2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlaZaZziD2xi) == 4, "Encoding struct must be 32 bits");
 
 // FMLA: Multi-vector floating-point fused multiply-add by indexed element
 // Encoding: fmla_za_zzi_h4xi
@@ -3728,7 +3564,6 @@ struct FmlaZaZziH4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlaZaZziH4xi) == 4, "Encoding struct must be 32 bits");
 
 // FMLA: Multi-vector floating-point fused multiply-add by indexed element
 // Encoding: fmla_za_zzi_s4xi
@@ -3753,7 +3588,6 @@ struct FmlaZaZziS4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlaZaZziS4xi) == 4, "Encoding struct must be 32 bits");
 
 // FMLA: Multi-vector floating-point fused multiply-add by indexed element
 // Encoding: fmla_za_zzi_d4xi
@@ -3778,7 +3612,6 @@ struct FmlaZaZziD4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlaZaZziD4xi) == 4, "Encoding struct must be 32 bits");
 
 // FMLA: Multi-vector floating-point fused multiply-add by vector
 // Encoding: fmla_za_zzv_2x1
@@ -3800,7 +3633,6 @@ struct FmlaZaZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlaZaZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // FMLA: Multi-vector floating-point fused multiply-add by vector
 // Encoding: fmla_za_zzv_2x1_16
@@ -3822,7 +3654,6 @@ struct FmlaZaZzv2x116 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlaZaZzv2x116) == 4, "Encoding struct must be 32 bits");
 
 // FMLA: Multi-vector floating-point fused multiply-add by vector
 // Encoding: fmla_za_zzv_4x1
@@ -3844,7 +3675,6 @@ struct FmlaZaZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlaZaZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // FMLA: Multi-vector floating-point fused multiply-add by vector
 // Encoding: fmla_za_zzv_4x1_16
@@ -3866,7 +3696,6 @@ struct FmlaZaZzv4x116 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlaZaZzv4x116) == 4, "Encoding struct must be 32 bits");
 
 // FMLA: Multi-vector floating-point fused multiply-add
 // Encoding: fmla_za_zzw_2x2
@@ -3889,7 +3718,6 @@ struct FmlaZaZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlaZaZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // FMLA: Multi-vector floating-point fused multiply-add
 // Encoding: fmla_za_zzw_2x2_16
@@ -3912,7 +3740,6 @@ struct FmlaZaZzw2x216 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlaZaZzw2x216) == 4, "Encoding struct must be 32 bits");
 
 // FMLA: Multi-vector floating-point fused multiply-add
 // Encoding: fmla_za_zzw_4x4
@@ -3936,7 +3763,6 @@ struct FmlaZaZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlaZaZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // FMLA: Multi-vector floating-point fused multiply-add
 // Encoding: fmla_za_zzw_4x4_16
@@ -3960,7 +3786,6 @@ struct FmlaZaZzw4x416 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlaZaZzw4x416) == 4, "Encoding struct must be 32 bits");
 
 // FMLAL: Multi-vector 8-bit floating-point multiply-add by indexed element to half-precision
 // Encoding: fmlal_za_z8z8i_1
@@ -3983,7 +3808,6 @@ struct FmlalZaZ8z8i1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlalZaZ8z8i1) == 4, "Encoding struct must be 32 bits");
 
 // FMLAL: Multi-vector 8-bit floating-point multiply-add by indexed element to half-precision
 // Encoding: fmlal_za_z8z8i_2xi
@@ -4007,7 +3831,6 @@ struct FmlalZaZ8z8i2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlalZaZ8z8i2xi) == 4, "Encoding struct must be 32 bits");
 
 // FMLAL: Multi-vector 8-bit floating-point multiply-add by indexed element to half-precision
 // Encoding: fmlal_za_z8z8i_4xi
@@ -4030,7 +3853,6 @@ struct FmlalZaZ8z8i4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlalZaZ8z8i4xi) == 4, "Encoding struct must be 32 bits");
 
 // FMLAL: Multi-vector 8-bit floating-point multiply-add by vector to half-precision
 // Encoding: fmlal_za_z8z8v_1
@@ -4051,7 +3873,6 @@ struct FmlalZaZ8z8v1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlalZaZ8z8v1) == 4, "Encoding struct must be 32 bits");
 
 // FMLAL: Multi-vector 8-bit floating-point multiply-add by vector to half-precision
 // Encoding: fmlal_za_z8z8v_2x1
@@ -4074,7 +3895,6 @@ struct FmlalZaZ8z8v2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlalZaZ8z8v2x1) == 4, "Encoding struct must be 32 bits");
 
 // FMLAL: Multi-vector 8-bit floating-point multiply-add by vector to half-precision
 // Encoding: fmlal_za_z8z8v_4x1
@@ -4097,7 +3917,6 @@ struct FmlalZaZ8z8v4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlalZaZ8z8v4x1) == 4, "Encoding struct must be 32 bits");
 
 // FMLAL: Multi-vector 8-bit floating-point multiply-add to half-precision
 // Encoding: fmlal_za_z8z8w_2x2
@@ -4119,7 +3938,6 @@ struct FmlalZaZ8z8w2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlalZaZ8z8w2x2) == 4, "Encoding struct must be 32 bits");
 
 // FMLAL: Multi-vector 8-bit floating-point multiply-add to half-precision
 // Encoding: fmlal_za_z8z8w_4x4
@@ -4142,7 +3960,6 @@ struct FmlalZaZ8z8w4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlalZaZ8z8w4x4) == 4, "Encoding struct must be 32 bits");
 
 // FMLAL: Multi-vector half-precision multiply-add by indexed element to single-precision
 // Encoding: fmlal_za_zzi_1
@@ -4165,7 +3982,6 @@ struct FmlalZaZzi1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlalZaZzi1) == 4, "Encoding struct must be 32 bits");
 
 // FMLAL: Multi-vector half-precision multiply-add by indexed element to single-precision
 // Encoding: fmlal_za_zzi_2xi
@@ -4190,7 +4006,6 @@ struct FmlalZaZzi2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlalZaZzi2xi) == 4, "Encoding struct must be 32 bits");
 
 // FMLAL: Multi-vector half-precision multiply-add by indexed element to single-precision
 // Encoding: fmlal_za_zzi_4xi
@@ -4215,7 +4030,6 @@ struct FmlalZaZzi4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlalZaZzi4xi) == 4, "Encoding struct must be 32 bits");
 
 // FMLAL: Multi-vector half-precision multiply-add by vector to single-precision
 // Encoding: fmlal_za_zzv_1
@@ -4237,7 +4051,6 @@ struct FmlalZaZzv1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlalZaZzv1) == 4, "Encoding struct must be 32 bits");
 
 // FMLAL: Multi-vector half-precision multiply-add by vector to single-precision
 // Encoding: fmlal_za_zzv_2x1
@@ -4260,7 +4073,6 @@ struct FmlalZaZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlalZaZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // FMLAL: Multi-vector half-precision multiply-add by vector to single-precision
 // Encoding: fmlal_za_zzv_4x1
@@ -4283,7 +4095,6 @@ struct FmlalZaZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlalZaZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // FMLAL: Multi-vector half-precision multiply-add to single-precision
 // Encoding: fmlal_za_zzw_2x2
@@ -4307,7 +4118,6 @@ struct FmlalZaZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlalZaZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // FMLAL: Multi-vector half-precision multiply-add to single-precision
 // Encoding: fmlal_za_zzw_4x4
@@ -4332,7 +4142,6 @@ struct FmlalZaZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlalZaZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // FMLALL: Multi-vector 8-bit floating-point multiply-add by indexed element to single-precision
 // Encoding: fmlall_za32_z8z8i_1
@@ -4353,7 +4162,6 @@ struct FmlallZa32Z8z8i1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlallZa32Z8z8i1) == 4, "Encoding struct must be 32 bits");
 
 // FMLALL: Multi-vector 8-bit floating-point multiply-add by indexed element to single-precision
 // Encoding: fmlall_za32_z8z8i_2xi
@@ -4377,7 +4185,6 @@ struct FmlallZa32Z8z8i2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlallZa32Z8z8i2xi) == 4, "Encoding struct must be 32 bits");
 
 // FMLALL: Multi-vector 8-bit floating-point multiply-add by indexed element to single-precision
 // Encoding: fmlall_za32_z8z8i_4xi
@@ -4401,7 +4208,6 @@ struct FmlallZa32Z8z8i4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlallZa32Z8z8i4xi) == 4, "Encoding struct must be 32 bits");
 
 // FMLALL: Multi-vector 8-bit floating-point multiply-add by vector to single-precision
 // Encoding: fmlall_za32_z8z8v_1
@@ -4422,7 +4228,6 @@ struct FmlallZa32Z8z8v1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlallZa32Z8z8v1) == 4, "Encoding struct must be 32 bits");
 
 // FMLALL: Multi-vector 8-bit floating-point multiply-add by vector to single-precision
 // Encoding: fmlall_za32_z8z8v_2x1
@@ -4444,7 +4249,6 @@ struct FmlallZa32Z8z8v2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlallZa32Z8z8v2x1) == 4, "Encoding struct must be 32 bits");
 
 // FMLALL: Multi-vector 8-bit floating-point multiply-add by vector to single-precision
 // Encoding: fmlall_za32_z8z8v_4x1
@@ -4466,7 +4270,6 @@ struct FmlallZa32Z8z8v4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlallZa32Z8z8v4x1) == 4, "Encoding struct must be 32 bits");
 
 // FMLALL: Multi-vector 8-bit floating-point multiply-add to single-precision
 // Encoding: fmlall_za32_z8z8w_2x2
@@ -4489,7 +4292,6 @@ struct FmlallZa32Z8z8w2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlallZa32Z8z8w2x2) == 4, "Encoding struct must be 32 bits");
 
 // FMLALL: Multi-vector 8-bit floating-point multiply-add to single-precision
 // Encoding: fmlall_za32_z8z8w_4x4
@@ -4513,7 +4315,6 @@ struct FmlallZa32Z8z8w4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlallZa32Z8z8w4x4) == 4, "Encoding struct must be 32 bits");
 
 // FMLS: Multi-vector floating-point fused multiply-subtract by indexed element
 // Encoding: fmls_za_zzi_h2xi
@@ -4537,7 +4338,6 @@ struct FmlsZaZziH2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlsZaZziH2xi) == 4, "Encoding struct must be 32 bits");
 
 // FMLS: Multi-vector floating-point fused multiply-subtract by indexed element
 // Encoding: fmls_za_zzi_s2xi
@@ -4561,7 +4361,6 @@ struct FmlsZaZziS2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlsZaZziS2xi) == 4, "Encoding struct must be 32 bits");
 
 // FMLS: Multi-vector floating-point fused multiply-subtract by indexed element
 // Encoding: fmls_za_zzi_d2xi
@@ -4585,7 +4384,6 @@ struct FmlsZaZziD2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlsZaZziD2xi) == 4, "Encoding struct must be 32 bits");
 
 // FMLS: Multi-vector floating-point fused multiply-subtract by indexed element
 // Encoding: fmls_za_zzi_h4xi
@@ -4610,7 +4408,6 @@ struct FmlsZaZziH4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlsZaZziH4xi) == 4, "Encoding struct must be 32 bits");
 
 // FMLS: Multi-vector floating-point fused multiply-subtract by indexed element
 // Encoding: fmls_za_zzi_s4xi
@@ -4635,7 +4432,6 @@ struct FmlsZaZziS4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlsZaZziS4xi) == 4, "Encoding struct must be 32 bits");
 
 // FMLS: Multi-vector floating-point fused multiply-subtract by indexed element
 // Encoding: fmls_za_zzi_d4xi
@@ -4660,7 +4456,6 @@ struct FmlsZaZziD4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlsZaZziD4xi) == 4, "Encoding struct must be 32 bits");
 
 // FMLS: Multi-vector floating-point fused multiply-subtract by vector
 // Encoding: fmls_za_zzv_2x1
@@ -4682,7 +4477,6 @@ struct FmlsZaZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlsZaZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // FMLS: Multi-vector floating-point fused multiply-subtract by vector
 // Encoding: fmls_za_zzv_2x1_16
@@ -4704,7 +4498,6 @@ struct FmlsZaZzv2x116 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlsZaZzv2x116) == 4, "Encoding struct must be 32 bits");
 
 // FMLS: Multi-vector floating-point fused multiply-subtract by vector
 // Encoding: fmls_za_zzv_4x1
@@ -4726,7 +4519,6 @@ struct FmlsZaZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlsZaZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // FMLS: Multi-vector floating-point fused multiply-subtract by vector
 // Encoding: fmls_za_zzv_4x1_16
@@ -4748,7 +4540,6 @@ struct FmlsZaZzv4x116 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlsZaZzv4x116) == 4, "Encoding struct must be 32 bits");
 
 // FMLS: Multi-vector floating-point fused multiply-subtract
 // Encoding: fmls_za_zzw_2x2
@@ -4771,7 +4562,6 @@ struct FmlsZaZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlsZaZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // FMLS: Multi-vector floating-point fused multiply-subtract
 // Encoding: fmls_za_zzw_2x2_16
@@ -4794,7 +4584,6 @@ struct FmlsZaZzw2x216 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlsZaZzw2x216) == 4, "Encoding struct must be 32 bits");
 
 // FMLS: Multi-vector floating-point fused multiply-subtract
 // Encoding: fmls_za_zzw_4x4
@@ -4818,7 +4607,6 @@ struct FmlsZaZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlsZaZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // FMLS: Multi-vector floating-point fused multiply-subtract
 // Encoding: fmls_za_zzw_4x4_16
@@ -4842,7 +4630,6 @@ struct FmlsZaZzw4x416 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlsZaZzw4x416) == 4, "Encoding struct must be 32 bits");
 
 // FMLSL: Multi-vector half-precision multiply-subtract by indexed element from single-precision
 // Encoding: fmlsl_za_zzi_1
@@ -4865,7 +4652,6 @@ struct FmlslZaZzi1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlslZaZzi1) == 4, "Encoding struct must be 32 bits");
 
 // FMLSL: Multi-vector half-precision multiply-subtract by indexed element from single-precision
 // Encoding: fmlsl_za_zzi_2xi
@@ -4890,7 +4676,6 @@ struct FmlslZaZzi2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlslZaZzi2xi) == 4, "Encoding struct must be 32 bits");
 
 // FMLSL: Multi-vector half-precision multiply-subtract by indexed element from single-precision
 // Encoding: fmlsl_za_zzi_4xi
@@ -4915,7 +4700,6 @@ struct FmlslZaZzi4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlslZaZzi4xi) == 4, "Encoding struct must be 32 bits");
 
 // FMLSL: Multi-vector half-precision multiply-subtract by vector from single-precision
 // Encoding: fmlsl_za_zzv_1
@@ -4937,7 +4721,6 @@ struct FmlslZaZzv1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlslZaZzv1) == 4, "Encoding struct must be 32 bits");
 
 // FMLSL: Multi-vector half-precision multiply-subtract by vector from single-precision
 // Encoding: fmlsl_za_zzv_2x1
@@ -4960,7 +4743,6 @@ struct FmlslZaZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlslZaZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // FMLSL: Multi-vector half-precision multiply-subtract by vector from single-precision
 // Encoding: fmlsl_za_zzv_4x1
@@ -4983,7 +4765,6 @@ struct FmlslZaZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlslZaZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // FMLSL: Multi-vector half-precision multiply-subtract from single-precision
 // Encoding: fmlsl_za_zzw_2x2
@@ -5007,7 +4788,6 @@ struct FmlslZaZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlslZaZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // FMLSL: Multi-vector half-precision multiply-subtract from single-precision
 // Encoding: fmlsl_za_zzw_4x4
@@ -5032,7 +4812,6 @@ struct FmlslZaZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmlslZaZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4A: 8-bit floating-point quarter-tile sum of outer products to half-precision, accumulating
 // Encoding: fmop4a_za16_z8z8_b1x2
@@ -5058,7 +4837,6 @@ struct Fmop4aZa16Z8z8B1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4aZa16Z8z8B1x2) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4A: 8-bit floating-point quarter-tile sum of outer products to half-precision, accumulating
 // Encoding: fmop4a_za16_z8z8_b1x1
@@ -5084,7 +4862,6 @@ struct Fmop4aZa16Z8z8B1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4aZa16Z8z8B1x1) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4A: 8-bit floating-point quarter-tile sum of outer products to half-precision, accumulating
 // Encoding: fmop4a_za16_z8z8_b2x1
@@ -5110,7 +4887,6 @@ struct Fmop4aZa16Z8z8B2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4aZa16Z8z8B2x1) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4A: 8-bit floating-point quarter-tile sum of outer products to half-precision, accumulating
 // Encoding: fmop4a_za16_z8z8_b2x2
@@ -5136,7 +4912,6 @@ struct Fmop4aZa16Z8z8B2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4aZa16Z8z8B2x2) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4A: 8-bit floating-point quarter-tile sum of outer products to single-precision, accumulating
 // Encoding: fmop4a_za32_z8z8_b1x2
@@ -5161,7 +4936,6 @@ struct Fmop4aZa32Z8z8B1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4aZa32Z8z8B1x2) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4A: 8-bit floating-point quarter-tile sum of outer products to single-precision, accumulating
 // Encoding: fmop4a_za32_z8z8_b1x1
@@ -5186,7 +4960,6 @@ struct Fmop4aZa32Z8z8B1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4aZa32Z8z8B1x1) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4A: 8-bit floating-point quarter-tile sum of outer products to single-precision, accumulating
 // Encoding: fmop4a_za32_z8z8_b2x1
@@ -5211,7 +4984,6 @@ struct Fmop4aZa32Z8z8B2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4aZa32Z8z8B2x1) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4A: 8-bit floating-point quarter-tile sum of outer products to single-precision, accumulating
 // Encoding: fmop4a_za32_z8z8_b2x2
@@ -5236,7 +5008,6 @@ struct Fmop4aZa32Z8z8B2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4aZa32Z8z8B2x2) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4A: Half-precision quarter-tile sum of outer products to single-precision, accumulating
 // Encoding: fmop4a_za32_zz_h1x2
@@ -5262,7 +5033,6 @@ struct Fmop4aZa32ZzH1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4aZa32ZzH1x2) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4A: Half-precision quarter-tile sum of outer products to single-precision, accumulating
 // Encoding: fmop4a_za32_zz_h1x1
@@ -5288,7 +5058,6 @@ struct Fmop4aZa32ZzH1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4aZa32ZzH1x1) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4A: Half-precision quarter-tile sum of outer products to single-precision, accumulating
 // Encoding: fmop4a_za32_zz_h2x1
@@ -5314,7 +5083,6 @@ struct Fmop4aZa32ZzH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4aZa32ZzH2x1) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4A: Half-precision quarter-tile sum of outer products to single-precision, accumulating
 // Encoding: fmop4a_za32_zz_h2x2
@@ -5340,7 +5108,6 @@ struct Fmop4aZa32ZzH2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4aZa32ZzH2x2) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4A: Floating-point quarter-tile outer product, accumulating
 // Encoding: fmop4a_za_zz_h1x2
@@ -5367,7 +5134,6 @@ struct Fmop4aZaZzH1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4aZaZzH1x2) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4A: Floating-point quarter-tile outer product, accumulating
 // Encoding: fmop4a_za_zz_h1x1
@@ -5394,7 +5160,6 @@ struct Fmop4aZaZzH1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4aZaZzH1x1) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4A: Floating-point quarter-tile outer product, accumulating
 // Encoding: fmop4a_za_zz_h2x1
@@ -5421,7 +5186,6 @@ struct Fmop4aZaZzH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4aZaZzH2x1) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4A: Floating-point quarter-tile outer product, accumulating
 // Encoding: fmop4a_za_zz_h2x2
@@ -5448,7 +5212,6 @@ struct Fmop4aZaZzH2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4aZaZzH2x2) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4A: Floating-point quarter-tile outer product, accumulating
 // Encoding: fmop4a_za_zz_s1x2
@@ -5474,7 +5237,6 @@ struct Fmop4aZaZzS1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4aZaZzS1x2) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4A: Floating-point quarter-tile outer product, accumulating
 // Encoding: fmop4a_za_zz_s1x1
@@ -5500,7 +5262,6 @@ struct Fmop4aZaZzS1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4aZaZzS1x1) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4A: Floating-point quarter-tile outer product, accumulating
 // Encoding: fmop4a_za_zz_s2x1
@@ -5526,7 +5287,6 @@ struct Fmop4aZaZzS2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4aZaZzS2x1) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4A: Floating-point quarter-tile outer product, accumulating
 // Encoding: fmop4a_za_zz_s2x2
@@ -5552,7 +5312,6 @@ struct Fmop4aZaZzS2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4aZaZzS2x2) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4A: Floating-point quarter-tile outer product, accumulating
 // Encoding: fmop4a_za_zz_d1x2
@@ -5576,7 +5335,6 @@ struct Fmop4aZaZzD1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4aZaZzD1x2) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4A: Floating-point quarter-tile outer product, accumulating
 // Encoding: fmop4a_za_zz_d1x1
@@ -5600,7 +5358,6 @@ struct Fmop4aZaZzD1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4aZaZzD1x1) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4A: Floating-point quarter-tile outer product, accumulating
 // Encoding: fmop4a_za_zz_d2x1
@@ -5624,7 +5381,6 @@ struct Fmop4aZaZzD2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4aZaZzD2x1) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4A: Floating-point quarter-tile outer product, accumulating
 // Encoding: fmop4a_za_zz_d2x2
@@ -5648,7 +5404,6 @@ struct Fmop4aZaZzD2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4aZaZzD2x2) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4S: Half-precision quarter-tile sum of outer products to single-precision, subtracting
 // Encoding: fmop4s_za32_zz_h1x2
@@ -5674,7 +5429,6 @@ struct Fmop4sZa32ZzH1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4sZa32ZzH1x2) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4S: Half-precision quarter-tile sum of outer products to single-precision, subtracting
 // Encoding: fmop4s_za32_zz_h1x1
@@ -5700,7 +5454,6 @@ struct Fmop4sZa32ZzH1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4sZa32ZzH1x1) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4S: Half-precision quarter-tile sum of outer products to single-precision, subtracting
 // Encoding: fmop4s_za32_zz_h2x1
@@ -5726,7 +5479,6 @@ struct Fmop4sZa32ZzH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4sZa32ZzH2x1) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4S: Half-precision quarter-tile sum of outer products to single-precision, subtracting
 // Encoding: fmop4s_za32_zz_h2x2
@@ -5752,7 +5504,6 @@ struct Fmop4sZa32ZzH2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4sZa32ZzH2x2) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4S: Floating-point quarter-tile outer product, subtracting
 // Encoding: fmop4s_za_zz_h1x2
@@ -5779,7 +5530,6 @@ struct Fmop4sZaZzH1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4sZaZzH1x2) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4S: Floating-point quarter-tile outer product, subtracting
 // Encoding: fmop4s_za_zz_h1x1
@@ -5806,7 +5556,6 @@ struct Fmop4sZaZzH1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4sZaZzH1x1) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4S: Floating-point quarter-tile outer product, subtracting
 // Encoding: fmop4s_za_zz_h2x1
@@ -5833,7 +5582,6 @@ struct Fmop4sZaZzH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4sZaZzH2x1) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4S: Floating-point quarter-tile outer product, subtracting
 // Encoding: fmop4s_za_zz_h2x2
@@ -5860,7 +5608,6 @@ struct Fmop4sZaZzH2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4sZaZzH2x2) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4S: Floating-point quarter-tile outer product, subtracting
 // Encoding: fmop4s_za_zz_s1x2
@@ -5886,7 +5633,6 @@ struct Fmop4sZaZzS1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4sZaZzS1x2) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4S: Floating-point quarter-tile outer product, subtracting
 // Encoding: fmop4s_za_zz_s1x1
@@ -5912,7 +5658,6 @@ struct Fmop4sZaZzS1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4sZaZzS1x1) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4S: Floating-point quarter-tile outer product, subtracting
 // Encoding: fmop4s_za_zz_s2x1
@@ -5938,7 +5683,6 @@ struct Fmop4sZaZzS2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4sZaZzS2x1) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4S: Floating-point quarter-tile outer product, subtracting
 // Encoding: fmop4s_za_zz_s2x2
@@ -5964,7 +5708,6 @@ struct Fmop4sZaZzS2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4sZaZzS2x2) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4S: Floating-point quarter-tile outer product, subtracting
 // Encoding: fmop4s_za_zz_d1x2
@@ -5988,7 +5731,6 @@ struct Fmop4sZaZzD1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4sZaZzD1x2) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4S: Floating-point quarter-tile outer product, subtracting
 // Encoding: fmop4s_za_zz_d1x1
@@ -6012,7 +5754,6 @@ struct Fmop4sZaZzD1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4sZaZzD1x1) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4S: Floating-point quarter-tile outer product, subtracting
 // Encoding: fmop4s_za_zz_d2x1
@@ -6036,7 +5777,6 @@ struct Fmop4sZaZzD2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4sZaZzD2x1) == 4, "Encoding struct must be 32 bits");
 
 // FMOP4S: Floating-point quarter-tile outer product, subtracting
 // Encoding: fmop4s_za_zz_d2x2
@@ -6060,7 +5800,6 @@ struct Fmop4sZaZzD2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmop4sZaZzD2x2) == 4, "Encoding struct must be 32 bits");
 
 // FMOPA: 8-bit floating-point sum of outer products to half-precision, accumulating
 // Encoding: fmopa_za16_pp_z8z8_8
@@ -6082,7 +5821,6 @@ struct FmopaZa16PpZ8z88 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmopaZa16PpZ8z88) == 4, "Encoding struct must be 32 bits");
 
 // FMOPA: 8-bit floating-point sum of outer products to single-precision, accumulating
 // Encoding: fmopa_za32_pp_z8z8_8
@@ -6103,7 +5841,6 @@ struct FmopaZa32PpZ8z88 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmopaZa32PpZ8z88) == 4, "Encoding struct must be 32 bits");
 
 // FMUL: Multi-vector floating-point multiply by vector
 // Encoding: fmul_mz_zzv_2x1
@@ -6124,7 +5861,6 @@ struct FmulMzZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmulMzZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // FMUL: Multi-vector floating-point multiply by vector
 // Encoding: fmul_mz_zzv_4x1
@@ -6147,7 +5883,6 @@ struct FmulMzZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmulMzZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // FMUL: Multi-vector floating-point multiply
 // Encoding: fmul_mz_zzw_2x2
@@ -6168,7 +5903,6 @@ struct FmulMzZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmulMzZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // FMUL: Multi-vector floating-point multiply
 // Encoding: fmul_mz_zzw_4x4
@@ -6191,7 +5925,6 @@ struct FmulMzZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmulMzZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // FRINTA: Multi-vector single-precision round to integral value, to nearest with ties away from zero
 // Encoding: frinta_mz_z_2
@@ -6212,7 +5945,6 @@ struct FrintaMzZ2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FrintaMzZ2) == 4, "Encoding struct must be 32 bits");
 
 // FRINTA: Multi-vector single-precision round to integral value, to nearest with ties away from zero
 // Encoding: frinta_mz_z_4
@@ -6233,7 +5965,6 @@ struct FrintaMzZ4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FrintaMzZ4) == 4, "Encoding struct must be 32 bits");
 
 // FRINTM: Multi-vector single-precision round to integral value, toward minus Infinity
 // Encoding: frintm_mz_z_2
@@ -6254,7 +5985,6 @@ struct FrintmMzZ2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FrintmMzZ2) == 4, "Encoding struct must be 32 bits");
 
 // FRINTM: Multi-vector single-precision round to integral value, toward minus Infinity
 // Encoding: frintm_mz_z_4
@@ -6275,7 +6005,6 @@ struct FrintmMzZ4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FrintmMzZ4) == 4, "Encoding struct must be 32 bits");
 
 // FRINTN: Multi-vector single-precision round to integral value, to nearest with ties to even
 // Encoding: frintn_mz_z_2
@@ -6296,7 +6025,6 @@ struct FrintnMzZ2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FrintnMzZ2) == 4, "Encoding struct must be 32 bits");
 
 // FRINTN: Multi-vector single-precision round to integral value, to nearest with ties to even
 // Encoding: frintn_mz_z_4
@@ -6317,7 +6045,6 @@ struct FrintnMzZ4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FrintnMzZ4) == 4, "Encoding struct must be 32 bits");
 
 // FRINTP: Multi-vector single-precision round to integral value, toward plus Infinity
 // Encoding: frintp_mz_z_2
@@ -6338,7 +6065,6 @@ struct FrintpMzZ2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FrintpMzZ2) == 4, "Encoding struct must be 32 bits");
 
 // FRINTP: Multi-vector single-precision round to integral value, toward plus Infinity
 // Encoding: frintp_mz_z_4
@@ -6359,7 +6085,6 @@ struct FrintpMzZ4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FrintpMzZ4) == 4, "Encoding struct must be 32 bits");
 
 // FSCALE: Multi-vector floating-point adjust exponent by vector
 // Encoding: fscale_mz_zzv_2x1
@@ -6380,7 +6105,6 @@ struct FscaleMzZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FscaleMzZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // FSCALE: Multi-vector floating-point adjust exponent by vector
 // Encoding: fscale_mz_zzv_4x1
@@ -6402,7 +6126,6 @@ struct FscaleMzZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FscaleMzZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // FSCALE: Multi-vector floating-point adjust exponent
 // Encoding: fscale_mz_zzw_2x2
@@ -6422,7 +6145,6 @@ struct FscaleMzZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FscaleMzZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // FSCALE: Multi-vector floating-point adjust exponent
 // Encoding: fscale_mz_zzw_4x4
@@ -6443,7 +6165,6 @@ struct FscaleMzZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FscaleMzZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // FSUB: Multi-vector floating-point subtract from ZA array vectors
 // Encoding: fsub_za_zw_2x2
@@ -6467,7 +6188,6 @@ struct FsubZaZw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FsubZaZw2x2) == 4, "Encoding struct must be 32 bits");
 
 // FSUB: Multi-vector floating-point subtract from ZA array vectors
 // Encoding: fsub_za_zw_2x2_16
@@ -6491,7 +6211,6 @@ struct FsubZaZw2x216 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FsubZaZw2x216) == 4, "Encoding struct must be 32 bits");
 
 // FSUB: Multi-vector floating-point subtract from ZA array vectors
 // Encoding: fsub_za_zw_4x4
@@ -6515,7 +6234,6 @@ struct FsubZaZw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FsubZaZw4x4) == 4, "Encoding struct must be 32 bits");
 
 // FSUB: Multi-vector floating-point subtract from ZA array vectors
 // Encoding: fsub_za_zw_4x4_16
@@ -6539,7 +6257,6 @@ struct FsubZaZw4x416 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FsubZaZw4x416) == 4, "Encoding struct must be 32 bits");
 
 // FTMOPA: 8-bit floating-point sparse sum of outer products to half-precision, accumulating
 // Encoding: ftmopa_za16_z8z8zi_b2x1
@@ -6565,7 +6282,6 @@ struct FtmopaZa16Z8z8ziB2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FtmopaZa16Z8z8ziB2x1) == 4, "Encoding struct must be 32 bits");
 
 // FTMOPA: 8-bit floating-point sparse sum of outer products to single-precision, accumulating
 // Encoding: ftmopa_za32_z8z8zi_b2x1
@@ -6590,7 +6306,6 @@ struct FtmopaZa32Z8z8ziB2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FtmopaZa32Z8z8ziB2x1) == 4, "Encoding struct must be 32 bits");
 
 // FTMOPA: Half-precision sparse sum of outer products to single-precision, accumulating
 // Encoding: ftmopa_za32_zzzi_h2x1
@@ -6615,7 +6330,6 @@ struct FtmopaZa32ZzziH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FtmopaZa32ZzziH2x1) == 4, "Encoding struct must be 32 bits");
 
 // FTMOPA: Floating-point sparse outer product, accumulating
 // Encoding: ftmopa_za_zzzi_h2x1
@@ -6641,7 +6355,6 @@ struct FtmopaZaZzziH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FtmopaZaZzziH2x1) == 4, "Encoding struct must be 32 bits");
 
 // FTMOPA: Floating-point sparse outer product, accumulating
 // Encoding: ftmopa_za_zzzi_s2x1
@@ -6666,7 +6379,6 @@ struct FtmopaZaZzziS2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FtmopaZaZzziS2x1) == 4, "Encoding struct must be 32 bits");
 
 // FVDOT: Multi-vector 8-bit floating-point vertical dot product by indexed element to half-precision
 // Encoding: fvdot_za_z8z8i_2xi
@@ -6690,7 +6402,6 @@ struct FvdotZaZ8z8i2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FvdotZaZ8z8i2xi) == 4, "Encoding struct must be 32 bits");
 
 // FVDOT: Multi-vector half-precision vertical dot product by indexed element to single-precision
 // Encoding: fvdot_za_zzi_2xi
@@ -6712,7 +6423,6 @@ struct FvdotZaZzi2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FvdotZaZzi2xi) == 4, "Encoding struct must be 32 bits");
 
 // FVDOTB: Multi-vector 8-bit floating-point vertical dot product by indexed element to single-precision (bottom)
 // Encoding: fvdotb_za32_z8z8i_2xi
@@ -6736,7 +6446,6 @@ struct FvdotbZa32Z8z8i2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FvdotbZa32Z8z8i2xi) == 4, "Encoding struct must be 32 bits");
 
 // FVDOTT: Multi-vector 8-bit floating-point vertical dot product by indexed element to single-precision (top)
 // Encoding: fvdott_za32_z8z8i_2xi
@@ -6760,7 +6469,6 @@ struct FvdottZa32Z8z8i2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FvdottZa32Z8z8i2xi) == 4, "Encoding struct must be 32 bits");
 
 // LD1B: Contiguous load of bytes to multiple strided vectors (immediate index)
 // Encoding: ld1b_mzx_p_bi_2x8
@@ -6781,7 +6489,6 @@ struct Ld1bMzxPBi2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ld1bMzxPBi2x8) == 4, "Encoding struct must be 32 bits");
 
 // LD1B: Contiguous load of bytes to multiple strided vectors (immediate index)
 // Encoding: ld1b_mzx_p_bi_4x4
@@ -6803,7 +6510,6 @@ struct Ld1bMzxPBi4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ld1bMzxPBi4x4) == 4, "Encoding struct must be 32 bits");
 
 // LD1B: Contiguous load of bytes to multiple strided vectors (scalar index)
 // Encoding: ld1b_mzx_p_br_2x8
@@ -6824,7 +6530,6 @@ struct Ld1bMzxPBr2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ld1bMzxPBr2x8) == 4, "Encoding struct must be 32 bits");
 
 // LD1B: Contiguous load of bytes to multiple strided vectors (scalar index)
 // Encoding: ld1b_mzx_p_br_4x4
@@ -6846,7 +6551,6 @@ struct Ld1bMzxPBr4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ld1bMzxPBr4x4) == 4, "Encoding struct must be 32 bits");
 
 // LD1D: Contiguous load of doublewords to multiple strided vectors (immediate index)
 // Encoding: ld1d_mzx_p_bi_2x8
@@ -6867,7 +6571,6 @@ struct Ld1dMzxPBi2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ld1dMzxPBi2x8) == 4, "Encoding struct must be 32 bits");
 
 // LD1D: Contiguous load of doublewords to multiple strided vectors (immediate index)
 // Encoding: ld1d_mzx_p_bi_4x4
@@ -6889,7 +6592,6 @@ struct Ld1dMzxPBi4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ld1dMzxPBi4x4) == 4, "Encoding struct must be 32 bits");
 
 // LD1D: Contiguous load of doublewords to multiple strided vectors (scalar index)
 // Encoding: ld1d_mzx_p_br_2x8
@@ -6910,7 +6612,6 @@ struct Ld1dMzxPBr2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ld1dMzxPBr2x8) == 4, "Encoding struct must be 32 bits");
 
 // LD1D: Contiguous load of doublewords to multiple strided vectors (scalar index)
 // Encoding: ld1d_mzx_p_br_4x4
@@ -6932,7 +6633,6 @@ struct Ld1dMzxPBr4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ld1dMzxPBr4x4) == 4, "Encoding struct must be 32 bits");
 
 // LD1H: Contiguous load of halfwords to multiple strided vectors (immediate index)
 // Encoding: ld1h_mzx_p_bi_2x8
@@ -6953,7 +6653,6 @@ struct Ld1hMzxPBi2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ld1hMzxPBi2x8) == 4, "Encoding struct must be 32 bits");
 
 // LD1H: Contiguous load of halfwords to multiple strided vectors (immediate index)
 // Encoding: ld1h_mzx_p_bi_4x4
@@ -6975,7 +6674,6 @@ struct Ld1hMzxPBi4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ld1hMzxPBi4x4) == 4, "Encoding struct must be 32 bits");
 
 // LD1H: Contiguous load of halfwords to multiple strided vectors (scalar index)
 // Encoding: ld1h_mzx_p_br_2x8
@@ -6996,7 +6694,6 @@ struct Ld1hMzxPBr2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ld1hMzxPBr2x8) == 4, "Encoding struct must be 32 bits");
 
 // LD1H: Contiguous load of halfwords to multiple strided vectors (scalar index)
 // Encoding: ld1h_mzx_p_br_4x4
@@ -7018,7 +6715,6 @@ struct Ld1hMzxPBr4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ld1hMzxPBr4x4) == 4, "Encoding struct must be 32 bits");
 
 // LD1W: Contiguous load of words to multiple strided vectors (immediate index)
 // Encoding: ld1w_mzx_p_bi_2x8
@@ -7039,7 +6735,6 @@ struct Ld1wMzxPBi2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ld1wMzxPBi2x8) == 4, "Encoding struct must be 32 bits");
 
 // LD1W: Contiguous load of words to multiple strided vectors (immediate index)
 // Encoding: ld1w_mzx_p_bi_4x4
@@ -7061,7 +6756,6 @@ struct Ld1wMzxPBi4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ld1wMzxPBi4x4) == 4, "Encoding struct must be 32 bits");
 
 // LD1W: Contiguous load of words to multiple strided vectors (scalar index)
 // Encoding: ld1w_mzx_p_br_2x8
@@ -7082,7 +6776,6 @@ struct Ld1wMzxPBr2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ld1wMzxPBr2x8) == 4, "Encoding struct must be 32 bits");
 
 // LD1W: Contiguous load of words to multiple strided vectors (scalar index)
 // Encoding: ld1w_mzx_p_br_4x4
@@ -7104,7 +6797,6 @@ struct Ld1wMzxPBr4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ld1wMzxPBr4x4) == 4, "Encoding struct must be 32 bits");
 
 // LDNT1B: Contiguous load non-temporal of bytes to multiple strided vectors (immediate index)
 // Encoding: ldnt1b_mzx_p_bi_2x8
@@ -7125,7 +6817,6 @@ struct Ldnt1bMzxPBi2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ldnt1bMzxPBi2x8) == 4, "Encoding struct must be 32 bits");
 
 // LDNT1B: Contiguous load non-temporal of bytes to multiple strided vectors (immediate index)
 // Encoding: ldnt1b_mzx_p_bi_4x4
@@ -7147,7 +6838,6 @@ struct Ldnt1bMzxPBi4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ldnt1bMzxPBi4x4) == 4, "Encoding struct must be 32 bits");
 
 // LDNT1B: Contiguous load non-temporal of bytes to multiple strided vectors (scalar index)
 // Encoding: ldnt1b_mzx_p_br_2x8
@@ -7168,7 +6858,6 @@ struct Ldnt1bMzxPBr2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ldnt1bMzxPBr2x8) == 4, "Encoding struct must be 32 bits");
 
 // LDNT1B: Contiguous load non-temporal of bytes to multiple strided vectors (scalar index)
 // Encoding: ldnt1b_mzx_p_br_4x4
@@ -7190,7 +6879,6 @@ struct Ldnt1bMzxPBr4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ldnt1bMzxPBr4x4) == 4, "Encoding struct must be 32 bits");
 
 // LDNT1D: Contiguous load non-temporal of doublewords to multiple strided vectors (immediate index)
 // Encoding: ldnt1d_mzx_p_bi_2x8
@@ -7211,7 +6899,6 @@ struct Ldnt1dMzxPBi2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ldnt1dMzxPBi2x8) == 4, "Encoding struct must be 32 bits");
 
 // LDNT1D: Contiguous load non-temporal of doublewords to multiple strided vectors (immediate index)
 // Encoding: ldnt1d_mzx_p_bi_4x4
@@ -7233,7 +6920,6 @@ struct Ldnt1dMzxPBi4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ldnt1dMzxPBi4x4) == 4, "Encoding struct must be 32 bits");
 
 // LDNT1D: Contiguous load non-temporal of doublewords to multiple strided vectors (scalar index)
 // Encoding: ldnt1d_mzx_p_br_2x8
@@ -7254,7 +6940,6 @@ struct Ldnt1dMzxPBr2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ldnt1dMzxPBr2x8) == 4, "Encoding struct must be 32 bits");
 
 // LDNT1D: Contiguous load non-temporal of doublewords to multiple strided vectors (scalar index)
 // Encoding: ldnt1d_mzx_p_br_4x4
@@ -7276,7 +6961,6 @@ struct Ldnt1dMzxPBr4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ldnt1dMzxPBr4x4) == 4, "Encoding struct must be 32 bits");
 
 // LDNT1H: Contiguous load non-temporal of halfwords to multiple strided vectors (immediate index)
 // Encoding: ldnt1h_mzx_p_bi_2x8
@@ -7297,7 +6981,6 @@ struct Ldnt1hMzxPBi2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ldnt1hMzxPBi2x8) == 4, "Encoding struct must be 32 bits");
 
 // LDNT1H: Contiguous load non-temporal of halfwords to multiple strided vectors (immediate index)
 // Encoding: ldnt1h_mzx_p_bi_4x4
@@ -7319,7 +7002,6 @@ struct Ldnt1hMzxPBi4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ldnt1hMzxPBi4x4) == 4, "Encoding struct must be 32 bits");
 
 // LDNT1H: Contiguous load non-temporal of halfwords to multiple strided vectors (scalar index)
 // Encoding: ldnt1h_mzx_p_br_2x8
@@ -7340,7 +7022,6 @@ struct Ldnt1hMzxPBr2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ldnt1hMzxPBr2x8) == 4, "Encoding struct must be 32 bits");
 
 // LDNT1H: Contiguous load non-temporal of halfwords to multiple strided vectors (scalar index)
 // Encoding: ldnt1h_mzx_p_br_4x4
@@ -7362,7 +7043,6 @@ struct Ldnt1hMzxPBr4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ldnt1hMzxPBr4x4) == 4, "Encoding struct must be 32 bits");
 
 // LDNT1W: Contiguous load non-temporal of words to multiple strided vectors (immediate index)
 // Encoding: ldnt1w_mzx_p_bi_2x8
@@ -7383,7 +7063,6 @@ struct Ldnt1wMzxPBi2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ldnt1wMzxPBi2x8) == 4, "Encoding struct must be 32 bits");
 
 // LDNT1W: Contiguous load non-temporal of words to multiple strided vectors (immediate index)
 // Encoding: ldnt1w_mzx_p_bi_4x4
@@ -7405,7 +7084,6 @@ struct Ldnt1wMzxPBi4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ldnt1wMzxPBi4x4) == 4, "Encoding struct must be 32 bits");
 
 // LDNT1W: Contiguous load non-temporal of words to multiple strided vectors (scalar index)
 // Encoding: ldnt1w_mzx_p_br_2x8
@@ -7426,7 +7104,6 @@ struct Ldnt1wMzxPBr2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ldnt1wMzxPBr2x8) == 4, "Encoding struct must be 32 bits");
 
 // LDNT1W: Contiguous load non-temporal of words to multiple strided vectors (scalar index)
 // Encoding: ldnt1w_mzx_p_br_4x4
@@ -7448,7 +7125,6 @@ struct Ldnt1wMzxPBr4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ldnt1wMzxPBr4x4) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load ZT0 register
 // Encoding: ldr_zt_br_
@@ -7466,7 +7142,6 @@ struct LdrZtBr {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(LdrZtBr) == 4, "Encoding struct must be 32 bits");
 
 // LUTI2: Lookup table read with 2-bit indexes (two registers)
 // Encoding: luti2_mz2_ztz_1
@@ -7488,7 +7163,6 @@ struct Luti2Mz2Ztz1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Luti2Mz2Ztz1) == 4, "Encoding struct must be 32 bits");
 
 // LUTI2: Lookup table read with 2-bit indexes (two registers)
 // Encoding: luti2_mz2_ztz_8
@@ -7509,7 +7183,6 @@ struct Luti2Mz2Ztz8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Luti2Mz2Ztz8) == 4, "Encoding struct must be 32 bits");
 
 // LUTI2: Lookup table read with 2-bit indexes (four registers)
 // Encoding: luti2_mz4_ztz_1
@@ -7531,7 +7204,6 @@ struct Luti2Mz4Ztz1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Luti2Mz4Ztz1) == 4, "Encoding struct must be 32 bits");
 
 // LUTI2: Lookup table read with 2-bit indexes (four registers)
 // Encoding: luti2_mz4_ztz_4
@@ -7552,7 +7224,6 @@ struct Luti2Mz4Ztz4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Luti2Mz4Ztz4) == 4, "Encoding struct must be 32 bits");
 
 // LUTI2: Lookup table read with 2-bit indexes (single)
 // Encoding: luti2_z_ztz_
@@ -7572,7 +7243,6 @@ struct Luti2ZZtz {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Luti2ZZtz) == 4, "Encoding struct must be 32 bits");
 
 // LUTI4: Lookup table read with 4-bit indexes (two registers)
 // Encoding: luti4_mz2_ztz_1
@@ -7594,7 +7264,6 @@ struct Luti4Mz2Ztz1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Luti4Mz2Ztz1) == 4, "Encoding struct must be 32 bits");
 
 // LUTI4: Lookup table read with 4-bit indexes (two registers)
 // Encoding: luti4_mz2_ztz_8
@@ -7615,7 +7284,6 @@ struct Luti4Mz2Ztz8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Luti4Mz2Ztz8) == 4, "Encoding struct must be 32 bits");
 
 // LUTI4: Lookup table read with 4-bit indexes and 8-bit elements (four registers)
 // Encoding: luti4_mz4_ztmz2_1
@@ -7636,7 +7304,6 @@ struct Luti4Mz4Ztmz21 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Luti4Mz4Ztmz21) == 4, "Encoding struct must be 32 bits");
 
 // LUTI4: Lookup table read with 4-bit indexes and 8-bit elements (four registers)
 // Encoding: luti4_mz4_ztmz2_4
@@ -7657,7 +7324,6 @@ struct Luti4Mz4Ztmz24 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Luti4Mz4Ztmz24) == 4, "Encoding struct must be 32 bits");
 
 // LUTI4: Lookup table read with 4-bit indexes (four registers)
 // Encoding: luti4_mz4_ztz_1
@@ -7679,7 +7345,6 @@ struct Luti4Mz4Ztz1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Luti4Mz4Ztz1) == 4, "Encoding struct must be 32 bits");
 
 // LUTI4: Lookup table read with 4-bit indexes (four registers)
 // Encoding: luti4_mz4_ztz_4
@@ -7700,7 +7365,6 @@ struct Luti4Mz4Ztz4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Luti4Mz4Ztz4) == 4, "Encoding struct must be 32 bits");
 
 // LUTI4: Lookup table read with 4-bit indexes (single)
 // Encoding: luti4_z_ztz_
@@ -7720,7 +7384,6 @@ struct Luti4ZZtz {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Luti4ZZtz) == 4, "Encoding struct must be 32 bits");
 
 // LUTI6: Lookup table read with 6-bit indices (16-bit)
 // Encoding: luti6_mz4_zmz2_1
@@ -7740,7 +7403,6 @@ struct Luti6Mz4Zmz21 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Luti6Mz4Zmz21) == 4, "Encoding struct must be 32 bits");
 
 // LUTI6: Lookup table read with 6-bit indices (16-bit)
 // Encoding: luti6_mz4_zmz2_4
@@ -7761,7 +7423,6 @@ struct Luti6Mz4Zmz24 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Luti6Mz4Zmz24) == 4, "Encoding struct must be 32 bits");
 
 // LUTI6: Lookup table read with 6-bit indices (8-bit)
 // Encoding: luti6_mz4_ztmz3_1
@@ -7783,7 +7444,6 @@ struct Luti6Mz4Ztmz31 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Luti6Mz4Ztmz31) == 4, "Encoding struct must be 32 bits");
 
 // LUTI6: Lookup table read with 6-bit indices (8-bit)
 // Encoding: luti6_mz4_ztmz3_4
@@ -7805,7 +7465,6 @@ struct Luti6Mz4Ztmz34 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Luti6Mz4Ztmz34) == 4, "Encoding struct must be 32 bits");
 
 // LUTI6: Lookup table read with 6-bit indices (single)
 // Encoding: luti6_z_ztz_
@@ -7824,7 +7483,6 @@ struct Luti6ZZtz {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Luti6ZZtz) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA two-slice operand to Z two-vector operand
 // Encoding: mov_mz2_za_b1_mova_mz2_za_b1
@@ -7848,7 +7506,6 @@ struct MovMz2ZaB1MovaMz2ZaB1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovMz2ZaB1MovaMz2ZaB1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA two-slice operand to Z two-vector operand
 // Encoding: mov_mz2_za_h1_mova_mz2_za_h1
@@ -7873,7 +7530,6 @@ struct MovMz2ZaH1MovaMz2ZaH1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovMz2ZaH1MovaMz2ZaH1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA two-slice operand to Z two-vector operand
 // Encoding: mov_mz2_za_w1_mova_mz2_za_w1
@@ -7898,7 +7554,6 @@ struct MovMz2ZaW1MovaMz2ZaW1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovMz2ZaW1MovaMz2ZaW1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA two-slice operand to Z two-vector operand
 // Encoding: mov_mz2_za_d1_mova_mz2_za_d1
@@ -7922,7 +7577,6 @@ struct MovMz2ZaD1MovaMz2ZaD1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovMz2ZaD1MovaMz2ZaD1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA four-slice operand to Z four-vector operand
 // Encoding: mov_mz4_za_b1_mova_mz4_za_b1
@@ -7947,7 +7601,6 @@ struct MovMz4ZaB1MovaMz4ZaB1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovMz4ZaB1MovaMz4ZaB1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA four-slice operand to Z four-vector operand
 // Encoding: mov_mz4_za_h1_mova_mz4_za_h1
@@ -7973,7 +7626,6 @@ struct MovMz4ZaH1MovaMz4ZaH1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovMz4ZaH1MovaMz4ZaH1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA four-slice operand to Z four-vector operand
 // Encoding: mov_mz4_za_w1_mova_mz4_za_w1
@@ -7998,7 +7650,6 @@ struct MovMz4ZaW1MovaMz4ZaW1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovMz4ZaW1MovaMz4ZaW1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA four-slice operand to Z four-vector operand
 // Encoding: mov_mz4_za_d1_mova_mz4_za_d1
@@ -8022,7 +7673,6 @@ struct MovMz4ZaD1MovaMz4ZaD1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovMz4ZaD1MovaMz4ZaD1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move two ZA single-vector groups to Z two-vector operand
 // Encoding: mov_mz_za2_1_mova_mz_za2_1
@@ -8045,7 +7695,6 @@ struct MovMzZa21MovaMzZa21 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovMzZa21MovaMzZa21) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move four ZA single-vector groups to Z four-vector operand
 // Encoding: mov_mz_za4_1_mova_mz_za4_1
@@ -8068,7 +7717,6 @@ struct MovMzZa41MovaMzZa41 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovMzZa41MovaMzZa41) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z two-vector operand to ZA two-slice operand
 // Encoding: mov_za2_z_b1_mova_za2_z_b1
@@ -8093,7 +7741,6 @@ struct MovZa2ZB1MovaZa2ZB1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovZa2ZB1MovaZa2ZB1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z two-vector operand to ZA two-slice operand
 // Encoding: mov_za2_z_h1_mova_za2_z_h1
@@ -8119,7 +7766,6 @@ struct MovZa2ZH1MovaZa2ZH1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovZa2ZH1MovaZa2ZH1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z two-vector operand to ZA two-slice operand
 // Encoding: mov_za2_z_w1_mova_za2_z_w1
@@ -8145,7 +7791,6 @@ struct MovZa2ZW1MovaZa2ZW1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovZa2ZW1MovaZa2ZW1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z two-vector operand to ZA two-slice operand
 // Encoding: mov_za2_z_d1_mova_za2_z_d1
@@ -8170,7 +7815,6 @@ struct MovZa2ZD1MovaZa2ZD1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovZa2ZD1MovaZa2ZD1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z four-vector operand to ZA four-slice operand
 // Encoding: mov_za4_z_b1_mova_za4_z_b1
@@ -8196,7 +7840,6 @@ struct MovZa4ZB1MovaZa4ZB1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovZa4ZB1MovaZa4ZB1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z four-vector operand to ZA four-slice operand
 // Encoding: mov_za4_z_h1_mova_za4_z_h1
@@ -8223,7 +7866,6 @@ struct MovZa4ZH1MovaZa4ZH1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovZa4ZH1MovaZa4ZH1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z four-vector operand to ZA four-slice operand
 // Encoding: mov_za4_z_w1_mova_za4_z_w1
@@ -8249,7 +7891,6 @@ struct MovZa4ZW1MovaZa4ZW1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovZa4ZW1MovaZa4ZW1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z four-vector operand to ZA four-slice operand
 // Encoding: mov_za4_z_d1_mova_za4_z_d1
@@ -8274,7 +7915,6 @@ struct MovZa4ZD1MovaZa4ZD1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovZa4ZD1MovaZa4ZD1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z two-vector operand to two ZA single-vector groups
 // Encoding: mov_za_mz2_1_mova_za_mz2_1
@@ -8298,7 +7938,6 @@ struct MovZaMz21MovaZaMz21 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovZaMz21MovaZaMz21) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z four-vector operand to four ZA single-vector groups
 // Encoding: mov_za_mz4_1_mova_za_mz4_1
@@ -8322,7 +7961,6 @@ struct MovZaMz41MovaZaMz41 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovZaMz41MovaZaMz41) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA two-slice operand to Z two-vector operand
 // Encoding: mova_mz2_za_b1
@@ -8346,7 +7984,6 @@ struct MovaMz2ZaB1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaMz2ZaB1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA two-slice operand to Z two-vector operand
 // Encoding: mova_mz2_za_h1
@@ -8371,7 +8008,6 @@ struct MovaMz2ZaH1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaMz2ZaH1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA two-slice operand to Z two-vector operand
 // Encoding: mova_mz2_za_w1
@@ -8396,7 +8032,6 @@ struct MovaMz2ZaW1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaMz2ZaW1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA two-slice operand to Z two-vector operand
 // Encoding: mova_mz2_za_d1
@@ -8420,7 +8055,6 @@ struct MovaMz2ZaD1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaMz2ZaD1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA four-slice operand to Z four-vector operand
 // Encoding: mova_mz4_za_b1
@@ -8445,7 +8079,6 @@ struct MovaMz4ZaB1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaMz4ZaB1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA four-slice operand to Z four-vector operand
 // Encoding: mova_mz4_za_h1
@@ -8471,7 +8104,6 @@ struct MovaMz4ZaH1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaMz4ZaH1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA four-slice operand to Z four-vector operand
 // Encoding: mova_mz4_za_w1
@@ -8496,7 +8128,6 @@ struct MovaMz4ZaW1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaMz4ZaW1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA four-slice operand to Z four-vector operand
 // Encoding: mova_mz4_za_d1
@@ -8520,7 +8151,6 @@ struct MovaMz4ZaD1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaMz4ZaD1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move two ZA single-vector groups to Z two-vector operand
 // Encoding: mova_mz_za2_1
@@ -8543,7 +8173,6 @@ struct MovaMzZa21 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaMzZa21) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move four ZA single-vector groups to Z four-vector operand
 // Encoding: mova_mz_za4_1
@@ -8566,7 +8195,6 @@ struct MovaMzZa41 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaMzZa41) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z two-vector operand to ZA two-slice operand
 // Encoding: mova_za2_z_b1
@@ -8591,7 +8219,6 @@ struct MovaZa2ZB1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaZa2ZB1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z two-vector operand to ZA two-slice operand
 // Encoding: mova_za2_z_h1
@@ -8617,7 +8244,6 @@ struct MovaZa2ZH1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaZa2ZH1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z two-vector operand to ZA two-slice operand
 // Encoding: mova_za2_z_w1
@@ -8643,7 +8269,6 @@ struct MovaZa2ZW1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaZa2ZW1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z two-vector operand to ZA two-slice operand
 // Encoding: mova_za2_z_d1
@@ -8668,7 +8293,6 @@ struct MovaZa2ZD1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaZa2ZD1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z four-vector operand to ZA four-slice operand
 // Encoding: mova_za4_z_b1
@@ -8694,7 +8318,6 @@ struct MovaZa4ZB1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaZa4ZB1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z four-vector operand to ZA four-slice operand
 // Encoding: mova_za4_z_h1
@@ -8721,7 +8344,6 @@ struct MovaZa4ZH1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaZa4ZH1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z four-vector operand to ZA four-slice operand
 // Encoding: mova_za4_z_w1
@@ -8747,7 +8369,6 @@ struct MovaZa4ZW1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaZa4ZW1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z four-vector operand to ZA four-slice operand
 // Encoding: mova_za4_z_d1
@@ -8772,7 +8393,6 @@ struct MovaZa4ZD1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaZa4ZD1) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z two-vector operand to two ZA single-vector groups
 // Encoding: mova_za_mz2_1
@@ -8796,7 +8416,6 @@ struct MovaZaMz21 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaZaMz21) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z four-vector operand to four ZA single-vector groups
 // Encoding: mova_za_mz4_1
@@ -8820,7 +8439,6 @@ struct MovaZaMz41 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaZaMz41) == 4, "Encoding struct must be 32 bits");
 
 // MOVAZ: Move and zero ZA two-slice operand to Z two-vector operand
 // Encoding: movaz_mz2_za_b1
@@ -8844,7 +8462,6 @@ struct MovazMz2ZaB1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovazMz2ZaB1) == 4, "Encoding struct must be 32 bits");
 
 // MOVAZ: Move and zero ZA two-slice operand to Z two-vector operand
 // Encoding: movaz_mz2_za_h1
@@ -8869,7 +8486,6 @@ struct MovazMz2ZaH1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovazMz2ZaH1) == 4, "Encoding struct must be 32 bits");
 
 // MOVAZ: Move and zero ZA two-slice operand to Z two-vector operand
 // Encoding: movaz_mz2_za_w1
@@ -8894,7 +8510,6 @@ struct MovazMz2ZaW1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovazMz2ZaW1) == 4, "Encoding struct must be 32 bits");
 
 // MOVAZ: Move and zero ZA two-slice operand to Z two-vector operand
 // Encoding: movaz_mz2_za_d1
@@ -8918,7 +8533,6 @@ struct MovazMz2ZaD1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovazMz2ZaD1) == 4, "Encoding struct must be 32 bits");
 
 // MOVAZ: Move and zero ZA four-slice operand to Z four-vector operand
 // Encoding: movaz_mz4_za_b1
@@ -8943,7 +8557,6 @@ struct MovazMz4ZaB1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovazMz4ZaB1) == 4, "Encoding struct must be 32 bits");
 
 // MOVAZ: Move and zero ZA four-slice operand to Z four-vector operand
 // Encoding: movaz_mz4_za_h1
@@ -8969,7 +8582,6 @@ struct MovazMz4ZaH1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovazMz4ZaH1) == 4, "Encoding struct must be 32 bits");
 
 // MOVAZ: Move and zero ZA four-slice operand to Z four-vector operand
 // Encoding: movaz_mz4_za_w1
@@ -8994,7 +8606,6 @@ struct MovazMz4ZaW1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovazMz4ZaW1) == 4, "Encoding struct must be 32 bits");
 
 // MOVAZ: Move and zero ZA four-slice operand to Z four-vector operand
 // Encoding: movaz_mz4_za_d1
@@ -9018,7 +8629,6 @@ struct MovazMz4ZaD1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovazMz4ZaD1) == 4, "Encoding struct must be 32 bits");
 
 // MOVAZ: Move and zero two ZA single-vector groups to Z two-vector operand
 // Encoding: movaz_mz_za2_1
@@ -9041,7 +8651,6 @@ struct MovazMzZa21 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovazMzZa21) == 4, "Encoding struct must be 32 bits");
 
 // MOVAZ: Move and zero four ZA single-vector groups to Z four-vector operand
 // Encoding: movaz_mz_za4_1
@@ -9064,7 +8673,6 @@ struct MovazMzZa41 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovazMzZa41) == 4, "Encoding struct must be 32 bits");
 
 // MOVAZ: Move and zero ZA tile slice to Z vector
 // Encoding: movaz_z_rza_b
@@ -9087,7 +8695,6 @@ struct MovazZRzaB {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovazZRzaB) == 4, "Encoding struct must be 32 bits");
 
 // MOVAZ: Move and zero ZA tile slice to Z vector
 // Encoding: movaz_z_rza_h
@@ -9111,7 +8718,6 @@ struct MovazZRzaH {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovazZRzaH) == 4, "Encoding struct must be 32 bits");
 
 // MOVAZ: Move and zero ZA tile slice to Z vector
 // Encoding: movaz_z_rza_w
@@ -9135,7 +8741,6 @@ struct MovazZRzaW {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovazZRzaW) == 4, "Encoding struct must be 32 bits");
 
 // MOVAZ: Move and zero ZA tile slice to Z vector
 // Encoding: movaz_z_rza_d
@@ -9159,7 +8764,6 @@ struct MovazZRzaD {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovazZRzaD) == 4, "Encoding struct must be 32 bits");
 
 // MOVAZ: Move and zero ZA tile slice to Z vector
 // Encoding: movaz_z_rza_q
@@ -9182,7 +8786,6 @@ struct MovazZRzaQ {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovazZRzaQ) == 4, "Encoding struct must be 32 bits");
 
 // MOVT: Move 8 bytes from ZT0 to general-purpose register
 // Encoding: movt_r_zt_
@@ -9199,7 +8802,6 @@ struct MovtRZt {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovtRZt) == 4, "Encoding struct must be 32 bits");
 
 // MOVT: Move 8 bytes from general-purpose register to ZT0
 // Encoding: movt_zt_r_
@@ -9216,7 +8818,6 @@ struct MovtZtR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovtZtR) == 4, "Encoding struct must be 32 bits");
 
 // MOVT: Move vector register to ZT0
 // Encoding: movt_zt_z_
@@ -9234,7 +8835,6 @@ struct MovtZtZ {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovtZtZ) == 4, "Encoding struct must be 32 bits");
 
 // SCLAMP: Multi-vector signed clamp to minimum/maximum
 // Encoding: sclamp_mz_zz_2
@@ -9254,7 +8854,6 @@ struct SclampMzZz2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SclampMzZz2) == 4, "Encoding struct must be 32 bits");
 
 // SCLAMP: Multi-vector signed clamp to minimum/maximum
 // Encoding: sclamp_mz_zz_4
@@ -9275,7 +8874,6 @@ struct SclampMzZz4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SclampMzZz4) == 4, "Encoding struct must be 32 bits");
 
 // SCVTF: Multi-vector signed 32-bit integer convert to single-precision
 // Encoding: scvtf_mz_z_2
@@ -9296,7 +8894,6 @@ struct ScvtfMzZ2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(ScvtfMzZ2) == 4, "Encoding struct must be 32 bits");
 
 // SCVTF: Multi-vector signed 32-bit integer convert to single-precision
 // Encoding: scvtf_mz_z_4
@@ -9318,7 +8915,6 @@ struct ScvtfMzZ4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(ScvtfMzZ4) == 4, "Encoding struct must be 32 bits");
 
 // SDOT: Multi-vector signed 16-bit integer dot product by indexed element to 32-bit integer
 // Encoding: sdot_za32_zzi_2xi
@@ -9342,7 +8938,6 @@ struct SdotZa32Zzi2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SdotZa32Zzi2xi) == 4, "Encoding struct must be 32 bits");
 
 // SDOT: Multi-vector signed 16-bit integer dot product by indexed element to 32-bit integer
 // Encoding: sdot_za32_zzi_4xi
@@ -9367,7 +8962,6 @@ struct SdotZa32Zzi4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SdotZa32Zzi4xi) == 4, "Encoding struct must be 32 bits");
 
 // SDOT: Multi-vector signed 16-bit integer dot product by vector to 32-bit integer
 // Encoding: sdot_za32_zzv_2x1
@@ -9389,7 +8983,6 @@ struct SdotZa32Zzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SdotZa32Zzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // SDOT: Multi-vector signed 16-bit integer dot product by vector to 32-bit integer
 // Encoding: sdot_za32_zzv_4x1
@@ -9411,7 +9004,6 @@ struct SdotZa32Zzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SdotZa32Zzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // SDOT: Multi-vector signed 16-bit integer dot product to 32-bit integer
 // Encoding: sdot_za32_zzw_2x2
@@ -9434,7 +9026,6 @@ struct SdotZa32Zzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SdotZa32Zzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // SDOT: Multi-vector signed 16-bit integer dot product to 32-bit integer
 // Encoding: sdot_za32_zzw_4x4
@@ -9458,7 +9049,6 @@ struct SdotZa32Zzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SdotZa32Zzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // SDOT: Multi-vector signed integer dot product by indexed element
 // Encoding: sdot_za_zzi_s2xi
@@ -9482,7 +9072,6 @@ struct SdotZaZziS2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SdotZaZziS2xi) == 4, "Encoding struct must be 32 bits");
 
 // SDOT: Multi-vector signed integer dot product by indexed element
 // Encoding: sdot_za_zzi_d2xi
@@ -9506,7 +9095,6 @@ struct SdotZaZziD2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SdotZaZziD2xi) == 4, "Encoding struct must be 32 bits");
 
 // SDOT: Multi-vector signed integer dot product by indexed element
 // Encoding: sdot_za_zzi_s4xi
@@ -9531,7 +9119,6 @@ struct SdotZaZziS4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SdotZaZziS4xi) == 4, "Encoding struct must be 32 bits");
 
 // SDOT: Multi-vector signed integer dot product by indexed element
 // Encoding: sdot_za_zzi_d4xi
@@ -9556,7 +9143,6 @@ struct SdotZaZziD4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SdotZaZziD4xi) == 4, "Encoding struct must be 32 bits");
 
 // SDOT: Multi-vector signed integer dot product by vector
 // Encoding: sdot_za_zzv_2x1
@@ -9578,7 +9164,6 @@ struct SdotZaZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SdotZaZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // SDOT: Multi-vector signed integer dot product by vector
 // Encoding: sdot_za_zzv_4x1
@@ -9600,7 +9185,6 @@ struct SdotZaZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SdotZaZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // SDOT: Multi-vector signed integer dot product
 // Encoding: sdot_za_zzw_2x2
@@ -9623,7 +9207,6 @@ struct SdotZaZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SdotZaZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // SDOT: Multi-vector signed integer dot product
 // Encoding: sdot_za_zzw_4x4
@@ -9647,7 +9230,6 @@ struct SdotZaZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SdotZaZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // SEL: Multi-vector conditional select
 // Encoding: sel_mz_p_zz_2
@@ -9669,7 +9251,6 @@ struct SelMzPZz2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SelMzPZz2) == 4, "Encoding struct must be 32 bits");
 
 // SEL: Multi-vector conditional select
 // Encoding: sel_mz_p_zz_4
@@ -9691,7 +9272,6 @@ struct SelMzPZz4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SelMzPZz4) == 4, "Encoding struct must be 32 bits");
 
 // SMAX: Multi-vector signed maximum by vector
 // Encoding: smax_mz_zzv_2x1
@@ -9713,7 +9293,6 @@ struct SmaxMzZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmaxMzZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // SMAX: Multi-vector signed maximum by vector
 // Encoding: smax_mz_zzv_4x1
@@ -9736,7 +9315,6 @@ struct SmaxMzZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmaxMzZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // SMAX: Multi-vector signed maximum
 // Encoding: smax_mz_zzw_2x2
@@ -9756,7 +9334,6 @@ struct SmaxMzZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmaxMzZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // SMAX: Multi-vector signed maximum
 // Encoding: smax_mz_zzw_4x4
@@ -9777,7 +9354,6 @@ struct SmaxMzZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmaxMzZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // SMIN: Multi-vector signed minimum by vector
 // Encoding: smin_mz_zzv_2x1
@@ -9799,7 +9375,6 @@ struct SminMzZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SminMzZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // SMIN: Multi-vector signed minimum by vector
 // Encoding: smin_mz_zzv_4x1
@@ -9822,7 +9397,6 @@ struct SminMzZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SminMzZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // SMIN: Multi-vector signed minimum
 // Encoding: smin_mz_zzw_2x2
@@ -9842,7 +9416,6 @@ struct SminMzZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SminMzZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // SMIN: Multi-vector signed minimum
 // Encoding: smin_mz_zzw_4x4
@@ -9863,7 +9436,6 @@ struct SminMzZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SminMzZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // SMLAL: Multi-vector signed 16-bit integer multiply-add by indexed element to 32-bit integer
 // Encoding: smlal_za_zzi_1
@@ -9886,7 +9458,6 @@ struct SmlalZaZzi1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlalZaZzi1) == 4, "Encoding struct must be 32 bits");
 
 // SMLAL: Multi-vector signed 16-bit integer multiply-add by indexed element to 32-bit integer
 // Encoding: smlal_za_zzi_2xi
@@ -9911,7 +9482,6 @@ struct SmlalZaZzi2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlalZaZzi2xi) == 4, "Encoding struct must be 32 bits");
 
 // SMLAL: Multi-vector signed 16-bit integer multiply-add by indexed element to 32-bit integer
 // Encoding: smlal_za_zzi_4xi
@@ -9936,7 +9506,6 @@ struct SmlalZaZzi4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlalZaZzi4xi) == 4, "Encoding struct must be 32 bits");
 
 // SMLAL: Multi-vector signed 16-bit integer multiply-add by vector to 32-bit integer
 // Encoding: smlal_za_zzv_1
@@ -9958,7 +9527,6 @@ struct SmlalZaZzv1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlalZaZzv1) == 4, "Encoding struct must be 32 bits");
 
 // SMLAL: Multi-vector signed 16-bit integer multiply-add by vector to 32-bit integer
 // Encoding: smlal_za_zzv_2x1
@@ -9981,7 +9549,6 @@ struct SmlalZaZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlalZaZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // SMLAL: Multi-vector signed 16-bit integer multiply-add by vector to 32-bit integer
 // Encoding: smlal_za_zzv_4x1
@@ -10004,7 +9571,6 @@ struct SmlalZaZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlalZaZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // SMLAL: Multi-vector signed 16-bit integer multiply-add to 32-bit integer
 // Encoding: smlal_za_zzw_2x2
@@ -10028,7 +9594,6 @@ struct SmlalZaZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlalZaZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // SMLAL: Multi-vector signed 16-bit integer multiply-add to 32-bit integer
 // Encoding: smlal_za_zzw_4x4
@@ -10053,7 +9618,6 @@ struct SmlalZaZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlalZaZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // SMLALL: Multi-vector signed integer multiply-add long long by indexed element
 // Encoding: smlall_za_zzi_s
@@ -10076,7 +9640,6 @@ struct SmlallZaZziS {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlallZaZziS) == 4, "Encoding struct must be 32 bits");
 
 // SMLALL: Multi-vector signed integer multiply-add long long by indexed element
 // Encoding: smlall_za_zzi_d
@@ -10100,7 +9663,6 @@ struct SmlallZaZziD {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlallZaZziD) == 4, "Encoding struct must be 32 bits");
 
 // SMLALL: Multi-vector signed integer multiply-add long long by indexed element
 // Encoding: smlall_za_zzi_s2xi
@@ -10125,7 +9687,6 @@ struct SmlallZaZziS2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlallZaZziS2xi) == 4, "Encoding struct must be 32 bits");
 
 // SMLALL: Multi-vector signed integer multiply-add long long by indexed element
 // Encoding: smlall_za_zzi_d2xi
@@ -10150,7 +9711,6 @@ struct SmlallZaZziD2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlallZaZziD2xi) == 4, "Encoding struct must be 32 bits");
 
 // SMLALL: Multi-vector signed integer multiply-add long long by indexed element
 // Encoding: smlall_za_zzi_s4xi
@@ -10176,7 +9736,6 @@ struct SmlallZaZziS4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlallZaZziS4xi) == 4, "Encoding struct must be 32 bits");
 
 // SMLALL: Multi-vector signed integer multiply-add long long by indexed element
 // Encoding: smlall_za_zzi_d4xi
@@ -10201,7 +9760,6 @@ struct SmlallZaZziD4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlallZaZziD4xi) == 4, "Encoding struct must be 32 bits");
 
 // SMLALL: Multi-vector signed integer multiply-add long long by vector
 // Encoding: smlall_za_zzv_1
@@ -10224,7 +9782,6 @@ struct SmlallZaZzv1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlallZaZzv1) == 4, "Encoding struct must be 32 bits");
 
 // SMLALL: Multi-vector signed integer multiply-add long long by vector
 // Encoding: smlall_za_zzv_2x1
@@ -10248,7 +9805,6 @@ struct SmlallZaZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlallZaZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // SMLALL: Multi-vector signed integer multiply-add long long by vector
 // Encoding: smlall_za_zzv_4x1
@@ -10272,7 +9828,6 @@ struct SmlallZaZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlallZaZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // SMLALL: Multi-vector signed integer multiply-add long long
 // Encoding: smlall_za_zzw_2x2
@@ -10297,7 +9852,6 @@ struct SmlallZaZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlallZaZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // SMLALL: Multi-vector signed integer multiply-add long long
 // Encoding: smlall_za_zzw_4x4
@@ -10323,7 +9877,6 @@ struct SmlallZaZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlallZaZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // SMLSL: Multi-vector signed 16-bit integer multiply-subtract by indexed element from 32-bit integer
 // Encoding: smlsl_za_zzi_1
@@ -10346,7 +9899,6 @@ struct SmlslZaZzi1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlslZaZzi1) == 4, "Encoding struct must be 32 bits");
 
 // SMLSL: Multi-vector signed 16-bit integer multiply-subtract by indexed element from 32-bit integer
 // Encoding: smlsl_za_zzi_2xi
@@ -10371,7 +9923,6 @@ struct SmlslZaZzi2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlslZaZzi2xi) == 4, "Encoding struct must be 32 bits");
 
 // SMLSL: Multi-vector signed 16-bit integer multiply-subtract by indexed element from 32-bit integer
 // Encoding: smlsl_za_zzi_4xi
@@ -10396,7 +9947,6 @@ struct SmlslZaZzi4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlslZaZzi4xi) == 4, "Encoding struct must be 32 bits");
 
 // SMLSL: Multi-vector signed 16-bit integer multiply-subtract by vector from 32-bit integer
 // Encoding: smlsl_za_zzv_1
@@ -10418,7 +9968,6 @@ struct SmlslZaZzv1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlslZaZzv1) == 4, "Encoding struct must be 32 bits");
 
 // SMLSL: Multi-vector signed 16-bit integer multiply-subtract by vector from 32-bit integer
 // Encoding: smlsl_za_zzv_2x1
@@ -10441,7 +9990,6 @@ struct SmlslZaZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlslZaZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // SMLSL: Multi-vector signed 16-bit integer multiply-subtract by vector from 32-bit integer
 // Encoding: smlsl_za_zzv_4x1
@@ -10464,7 +10012,6 @@ struct SmlslZaZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlslZaZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // SMLSL: Multi-vector signed 16-bit integer multiply-subtract from 32-bit integer
 // Encoding: smlsl_za_zzw_2x2
@@ -10488,7 +10035,6 @@ struct SmlslZaZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlslZaZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // SMLSL: Multi-vector signed 16-bit integer multiply-subtract from 32-bit integer
 // Encoding: smlsl_za_zzw_4x4
@@ -10513,7 +10059,6 @@ struct SmlslZaZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlslZaZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // SMLSLL: Multi-vector signed integer multiply-subtract long long by indexed element
 // Encoding: smlsll_za_zzi_s
@@ -10536,7 +10081,6 @@ struct SmlsllZaZziS {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlsllZaZziS) == 4, "Encoding struct must be 32 bits");
 
 // SMLSLL: Multi-vector signed integer multiply-subtract long long by indexed element
 // Encoding: smlsll_za_zzi_d
@@ -10560,7 +10104,6 @@ struct SmlsllZaZziD {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlsllZaZziD) == 4, "Encoding struct must be 32 bits");
 
 // SMLSLL: Multi-vector signed integer multiply-subtract long long by indexed element
 // Encoding: smlsll_za_zzi_s2xi
@@ -10585,7 +10128,6 @@ struct SmlsllZaZziS2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlsllZaZziS2xi) == 4, "Encoding struct must be 32 bits");
 
 // SMLSLL: Multi-vector signed integer multiply-subtract long long by indexed element
 // Encoding: smlsll_za_zzi_d2xi
@@ -10610,7 +10152,6 @@ struct SmlsllZaZziD2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlsllZaZziD2xi) == 4, "Encoding struct must be 32 bits");
 
 // SMLSLL: Multi-vector signed integer multiply-subtract long long by indexed element
 // Encoding: smlsll_za_zzi_s4xi
@@ -10636,7 +10177,6 @@ struct SmlsllZaZziS4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlsllZaZziS4xi) == 4, "Encoding struct must be 32 bits");
 
 // SMLSLL: Multi-vector signed integer multiply-subtract long long by indexed element
 // Encoding: smlsll_za_zzi_d4xi
@@ -10661,7 +10201,6 @@ struct SmlsllZaZziD4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlsllZaZziD4xi) == 4, "Encoding struct must be 32 bits");
 
 // SMLSLL: Multi-vector signed integer multiply-subtract long long by vector
 // Encoding: smlsll_za_zzv_1
@@ -10684,7 +10223,6 @@ struct SmlsllZaZzv1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlsllZaZzv1) == 4, "Encoding struct must be 32 bits");
 
 // SMLSLL: Multi-vector signed integer multiply-subtract long long by vector
 // Encoding: smlsll_za_zzv_2x1
@@ -10708,7 +10246,6 @@ struct SmlsllZaZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlsllZaZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // SMLSLL: Multi-vector signed integer multiply-subtract long long by vector
 // Encoding: smlsll_za_zzv_4x1
@@ -10732,7 +10269,6 @@ struct SmlsllZaZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlsllZaZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // SMLSLL: Multi-vector signed integer multiply-subtract long long
 // Encoding: smlsll_za_zzw_2x2
@@ -10757,7 +10293,6 @@ struct SmlsllZaZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlsllZaZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // SMLSLL: Multi-vector signed integer multiply-subtract long long
 // Encoding: smlsll_za_zzw_4x4
@@ -10783,7 +10318,6 @@ struct SmlsllZaZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmlsllZaZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // SMOP4A: Signed 16-bit integer quarter-tile sum of outer products to 32-bit integer, accumulating
 // Encoding: smop4a_za32_zz_h1x2
@@ -10809,7 +10343,6 @@ struct Smop4aZa32ZzH1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Smop4aZa32ZzH1x2) == 4, "Encoding struct must be 32 bits");
 
 // SMOP4A: Signed 16-bit integer quarter-tile sum of outer products to 32-bit integer, accumulating
 // Encoding: smop4a_za32_zz_h1x1
@@ -10835,7 +10368,6 @@ struct Smop4aZa32ZzH1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Smop4aZa32ZzH1x1) == 4, "Encoding struct must be 32 bits");
 
 // SMOP4A: Signed 16-bit integer quarter-tile sum of outer products to 32-bit integer, accumulating
 // Encoding: smop4a_za32_zz_h2x1
@@ -10861,7 +10393,6 @@ struct Smop4aZa32ZzH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Smop4aZa32ZzH2x1) == 4, "Encoding struct must be 32 bits");
 
 // SMOP4A: Signed 16-bit integer quarter-tile sum of outer products to 32-bit integer, accumulating
 // Encoding: smop4a_za32_zz_h2x2
@@ -10887,7 +10418,6 @@ struct Smop4aZa32ZzH2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Smop4aZa32ZzH2x2) == 4, "Encoding struct must be 32 bits");
 
 // SMOP4A: Signed integer quarter-tile sum of outer products, accumulating
 // Encoding: smop4a_za_zz_b1x2
@@ -10913,7 +10443,6 @@ struct Smop4aZaZzB1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Smop4aZaZzB1x2) == 4, "Encoding struct must be 32 bits");
 
 // SMOP4A: Signed integer quarter-tile sum of outer products, accumulating
 // Encoding: smop4a_za_zz_b1x1
@@ -10939,7 +10468,6 @@ struct Smop4aZaZzB1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Smop4aZaZzB1x1) == 4, "Encoding struct must be 32 bits");
 
 // SMOP4A: Signed integer quarter-tile sum of outer products, accumulating
 // Encoding: smop4a_za_zz_b2x1
@@ -10965,7 +10493,6 @@ struct Smop4aZaZzB2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Smop4aZaZzB2x1) == 4, "Encoding struct must be 32 bits");
 
 // SMOP4A: Signed integer quarter-tile sum of outer products, accumulating
 // Encoding: smop4a_za_zz_b2x2
@@ -10991,7 +10518,6 @@ struct Smop4aZaZzB2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Smop4aZaZzB2x2) == 4, "Encoding struct must be 32 bits");
 
 // SMOP4A: Signed integer quarter-tile sum of outer products, accumulating
 // Encoding: smop4a_za_zz_h1x2
@@ -11015,7 +10541,6 @@ struct Smop4aZaZzH1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Smop4aZaZzH1x2) == 4, "Encoding struct must be 32 bits");
 
 // SMOP4A: Signed integer quarter-tile sum of outer products, accumulating
 // Encoding: smop4a_za_zz_h1x1
@@ -11039,7 +10564,6 @@ struct Smop4aZaZzH1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Smop4aZaZzH1x1) == 4, "Encoding struct must be 32 bits");
 
 // SMOP4A: Signed integer quarter-tile sum of outer products, accumulating
 // Encoding: smop4a_za_zz_h2x1
@@ -11063,7 +10587,6 @@ struct Smop4aZaZzH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Smop4aZaZzH2x1) == 4, "Encoding struct must be 32 bits");
 
 // SMOP4A: Signed integer quarter-tile sum of outer products, accumulating
 // Encoding: smop4a_za_zz_h2x2
@@ -11087,7 +10610,6 @@ struct Smop4aZaZzH2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Smop4aZaZzH2x2) == 4, "Encoding struct must be 32 bits");
 
 // SMOP4S: Signed 16-bit integer quarter-tile sum of outer products to 32-bit integer, subtracting
 // Encoding: smop4s_za32_zz_h1x2
@@ -11113,7 +10635,6 @@ struct Smop4sZa32ZzH1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Smop4sZa32ZzH1x2) == 4, "Encoding struct must be 32 bits");
 
 // SMOP4S: Signed 16-bit integer quarter-tile sum of outer products to 32-bit integer, subtracting
 // Encoding: smop4s_za32_zz_h1x1
@@ -11139,7 +10660,6 @@ struct Smop4sZa32ZzH1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Smop4sZa32ZzH1x1) == 4, "Encoding struct must be 32 bits");
 
 // SMOP4S: Signed 16-bit integer quarter-tile sum of outer products to 32-bit integer, subtracting
 // Encoding: smop4s_za32_zz_h2x1
@@ -11165,7 +10685,6 @@ struct Smop4sZa32ZzH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Smop4sZa32ZzH2x1) == 4, "Encoding struct must be 32 bits");
 
 // SMOP4S: Signed 16-bit integer quarter-tile sum of outer products to 32-bit integer, subtracting
 // Encoding: smop4s_za32_zz_h2x2
@@ -11191,7 +10710,6 @@ struct Smop4sZa32ZzH2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Smop4sZa32ZzH2x2) == 4, "Encoding struct must be 32 bits");
 
 // SMOP4S: Signed integer quarter-tile sum of outer products, subtracting
 // Encoding: smop4s_za_zz_b1x2
@@ -11217,7 +10735,6 @@ struct Smop4sZaZzB1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Smop4sZaZzB1x2) == 4, "Encoding struct must be 32 bits");
 
 // SMOP4S: Signed integer quarter-tile sum of outer products, subtracting
 // Encoding: smop4s_za_zz_b1x1
@@ -11243,7 +10760,6 @@ struct Smop4sZaZzB1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Smop4sZaZzB1x1) == 4, "Encoding struct must be 32 bits");
 
 // SMOP4S: Signed integer quarter-tile sum of outer products, subtracting
 // Encoding: smop4s_za_zz_b2x1
@@ -11269,7 +10785,6 @@ struct Smop4sZaZzB2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Smop4sZaZzB2x1) == 4, "Encoding struct must be 32 bits");
 
 // SMOP4S: Signed integer quarter-tile sum of outer products, subtracting
 // Encoding: smop4s_za_zz_b2x2
@@ -11295,7 +10810,6 @@ struct Smop4sZaZzB2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Smop4sZaZzB2x2) == 4, "Encoding struct must be 32 bits");
 
 // SMOP4S: Signed integer quarter-tile sum of outer products, subtracting
 // Encoding: smop4s_za_zz_h1x2
@@ -11319,7 +10833,6 @@ struct Smop4sZaZzH1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Smop4sZaZzH1x2) == 4, "Encoding struct must be 32 bits");
 
 // SMOP4S: Signed integer quarter-tile sum of outer products, subtracting
 // Encoding: smop4s_za_zz_h1x1
@@ -11343,7 +10856,6 @@ struct Smop4sZaZzH1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Smop4sZaZzH1x1) == 4, "Encoding struct must be 32 bits");
 
 // SMOP4S: Signed integer quarter-tile sum of outer products, subtracting
 // Encoding: smop4s_za_zz_h2x1
@@ -11367,7 +10879,6 @@ struct Smop4sZaZzH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Smop4sZaZzH2x1) == 4, "Encoding struct must be 32 bits");
 
 // SMOP4S: Signed integer quarter-tile sum of outer products, subtracting
 // Encoding: smop4s_za_zz_h2x2
@@ -11391,7 +10902,6 @@ struct Smop4sZaZzH2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Smop4sZaZzH2x2) == 4, "Encoding struct must be 32 bits");
 
 // SMOPA: Signed 16-bit integer sum of outer products to 32-bit integer, accumulating
 // Encoding: smopa_za32_pp_zz_16
@@ -11413,7 +10923,6 @@ struct SmopaZa32PpZz16 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmopaZa32PpZz16) == 4, "Encoding struct must be 32 bits");
 
 // SMOPS: Signed 16-bit integer sum of outer products to 32-bit integer, subtracting
 // Encoding: smops_za32_pp_zz_16
@@ -11435,7 +10944,6 @@ struct SmopsZa32PpZz16 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmopsZa32PpZz16) == 4, "Encoding struct must be 32 bits");
 
 // SQCVT: Multi-vector signed 32-bit integer saturating extract narrow to 16-bit integer
 // Encoding: sqcvt_z_mz2_
@@ -11456,7 +10964,6 @@ struct SqcvtZMz2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SqcvtZMz2) == 4, "Encoding struct must be 32 bits");
 
 // SQCVT: Multi-vector signed saturating extract narrow
 // Encoding: sqcvt_z_mz4_
@@ -11478,7 +10985,6 @@ struct SqcvtZMz4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SqcvtZMz4) == 4, "Encoding struct must be 32 bits");
 
 // SQCVTN: Multi-vector signed saturating extract narrow to interleaved integer
 // Encoding: sqcvtn_z_mz4_
@@ -11500,7 +11006,6 @@ struct SqcvtnZMz4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SqcvtnZMz4) == 4, "Encoding struct must be 32 bits");
 
 // SQCVTU: Multi-vector signed 32-bit integer saturating extract narrow to unsigned 16-bit integer
 // Encoding: sqcvtu_z_mz2_
@@ -11521,7 +11026,6 @@ struct SqcvtuZMz2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SqcvtuZMz2) == 4, "Encoding struct must be 32 bits");
 
 // SQCVTU: Multi-vector signed saturating extract narrow to unsigned integer
 // Encoding: sqcvtu_z_mz4_
@@ -11543,7 +11047,6 @@ struct SqcvtuZMz4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SqcvtuZMz4) == 4, "Encoding struct must be 32 bits");
 
 // SQCVTUN: Multi-vector signed saturating extract narrow to interleaved unsigned integer
 // Encoding: sqcvtun_z_mz4_
@@ -11565,7 +11068,6 @@ struct SqcvtunZMz4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SqcvtunZMz4) == 4, "Encoding struct must be 32 bits");
 
 // SQDMULH: Multi-vector signed saturating doubling multiply high by vector
 // Encoding: sqdmulh_mz_zzv_2x1
@@ -11586,7 +11088,6 @@ struct SqdmulhMzZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SqdmulhMzZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // SQDMULH: Multi-vector signed saturating doubling multiply high by vector
 // Encoding: sqdmulh_mz_zzv_4x1
@@ -11608,7 +11109,6 @@ struct SqdmulhMzZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SqdmulhMzZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // SQDMULH: Multi-vector signed saturating doubling multiply high
 // Encoding: sqdmulh_mz_zzw_2x2
@@ -11627,7 +11127,6 @@ struct SqdmulhMzZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SqdmulhMzZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // SQDMULH: Multi-vector signed saturating doubling multiply high
 // Encoding: sqdmulh_mz_zzw_4x4
@@ -11647,7 +11146,6 @@ struct SqdmulhMzZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SqdmulhMzZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // SQRSHR: Multi-vector signed 32-bit integer saturating rounding shift right narrow by immediate to 16-bit integer
 // Encoding: sqrshr_z_mz2_
@@ -11668,7 +11166,6 @@ struct SqrshrZMz2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SqrshrZMz2) == 4, "Encoding struct must be 32 bits");
 
 // SQRSHR: Multi-vector signed saturating rounding shift right narrow by immediate
 // Encoding: sqrshr_z_mz4_
@@ -11690,7 +11187,6 @@ struct SqrshrZMz4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SqrshrZMz4) == 4, "Encoding struct must be 32 bits");
 
 // SQRSHRN: Multi-vector signed saturating rounding shift right narrow by immediate to interleaved integer
 // Encoding: sqrshrn_z_mz4_
@@ -11712,7 +11208,6 @@ struct SqrshrnZMz4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SqrshrnZMz4) == 4, "Encoding struct must be 32 bits");
 
 // SQRSHRU: Multi-vector signed 32-bit integer saturating rounding shift right narrow by immediate to unsigned 16-bit integer
 // Encoding: sqrshru_z_mz2_
@@ -11733,7 +11228,6 @@ struct SqrshruZMz2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SqrshruZMz2) == 4, "Encoding struct must be 32 bits");
 
 // SQRSHRU: Multi-vector signed saturating rounding shift right narrow by immediate to unsigned integer
 // Encoding: sqrshru_z_mz4_
@@ -11755,7 +11249,6 @@ struct SqrshruZMz4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SqrshruZMz4) == 4, "Encoding struct must be 32 bits");
 
 // SQRSHRUN: Multi-vector signed saturating rounding shift right narrow by immediate to interleaved unsigned integer
 // Encoding: sqrshrun_z_mz4_
@@ -11777,7 +11270,6 @@ struct SqrshrunZMz4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SqrshrunZMz4) == 4, "Encoding struct must be 32 bits");
 
 // SRSHL: Multi-vector signed rounding shift left by vector
 // Encoding: srshl_mz_zzv_2x1
@@ -11798,7 +11290,6 @@ struct SrshlMzZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SrshlMzZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // SRSHL: Multi-vector signed rounding shift left by vector
 // Encoding: srshl_mz_zzv_4x1
@@ -11820,7 +11311,6 @@ struct SrshlMzZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SrshlMzZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // SRSHL: Multi-vector signed rounding shift left
 // Encoding: srshl_mz_zzw_2x2
@@ -11840,7 +11330,6 @@ struct SrshlMzZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SrshlMzZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // SRSHL: Multi-vector signed rounding shift left
 // Encoding: srshl_mz_zzw_4x4
@@ -11861,7 +11350,6 @@ struct SrshlMzZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SrshlMzZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // ST1B: Contiguous store of bytes from multiple strided vectors (immediate index)
 // Encoding: st1b_mzx_p_bi_2x8
@@ -11882,7 +11370,6 @@ struct St1bMzxPBi2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(St1bMzxPBi2x8) == 4, "Encoding struct must be 32 bits");
 
 // ST1B: Contiguous store of bytes from multiple strided vectors (immediate index)
 // Encoding: st1b_mzx_p_bi_4x4
@@ -11904,7 +11391,6 @@ struct St1bMzxPBi4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(St1bMzxPBi4x4) == 4, "Encoding struct must be 32 bits");
 
 // ST1B: Contiguous store of bytes from multiple strided vectors (scalar index)
 // Encoding: st1b_mzx_p_br_2x8
@@ -11925,7 +11411,6 @@ struct St1bMzxPBr2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(St1bMzxPBr2x8) == 4, "Encoding struct must be 32 bits");
 
 // ST1B: Contiguous store of bytes from multiple strided vectors (scalar index)
 // Encoding: st1b_mzx_p_br_4x4
@@ -11947,7 +11432,6 @@ struct St1bMzxPBr4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(St1bMzxPBr4x4) == 4, "Encoding struct must be 32 bits");
 
 // ST1D: Contiguous store of doublewords from multiple strided vectors (immediate index)
 // Encoding: st1d_mzx_p_bi_2x8
@@ -11968,7 +11452,6 @@ struct St1dMzxPBi2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(St1dMzxPBi2x8) == 4, "Encoding struct must be 32 bits");
 
 // ST1D: Contiguous store of doublewords from multiple strided vectors (immediate index)
 // Encoding: st1d_mzx_p_bi_4x4
@@ -11990,7 +11473,6 @@ struct St1dMzxPBi4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(St1dMzxPBi4x4) == 4, "Encoding struct must be 32 bits");
 
 // ST1D: Contiguous store of doublewords from multiple strided vectors (scalar index)
 // Encoding: st1d_mzx_p_br_2x8
@@ -12011,7 +11493,6 @@ struct St1dMzxPBr2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(St1dMzxPBr2x8) == 4, "Encoding struct must be 32 bits");
 
 // ST1D: Contiguous store of doublewords from multiple strided vectors (scalar index)
 // Encoding: st1d_mzx_p_br_4x4
@@ -12033,7 +11514,6 @@ struct St1dMzxPBr4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(St1dMzxPBr4x4) == 4, "Encoding struct must be 32 bits");
 
 // ST1H: Contiguous store of halfwords from multiple strided vectors (immediate index)
 // Encoding: st1h_mzx_p_bi_2x8
@@ -12054,7 +11534,6 @@ struct St1hMzxPBi2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(St1hMzxPBi2x8) == 4, "Encoding struct must be 32 bits");
 
 // ST1H: Contiguous store of halfwords from multiple strided vectors (immediate index)
 // Encoding: st1h_mzx_p_bi_4x4
@@ -12076,7 +11555,6 @@ struct St1hMzxPBi4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(St1hMzxPBi4x4) == 4, "Encoding struct must be 32 bits");
 
 // ST1H: Contiguous store of halfwords from multiple strided vectors (scalar index)
 // Encoding: st1h_mzx_p_br_2x8
@@ -12097,7 +11575,6 @@ struct St1hMzxPBr2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(St1hMzxPBr2x8) == 4, "Encoding struct must be 32 bits");
 
 // ST1H: Contiguous store of halfwords from multiple strided vectors (scalar index)
 // Encoding: st1h_mzx_p_br_4x4
@@ -12119,7 +11596,6 @@ struct St1hMzxPBr4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(St1hMzxPBr4x4) == 4, "Encoding struct must be 32 bits");
 
 // ST1W: Contiguous store of words from multiple strided vectors (immediate index)
 // Encoding: st1w_mzx_p_bi_2x8
@@ -12140,7 +11616,6 @@ struct St1wMzxPBi2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(St1wMzxPBi2x8) == 4, "Encoding struct must be 32 bits");
 
 // ST1W: Contiguous store of words from multiple strided vectors (immediate index)
 // Encoding: st1w_mzx_p_bi_4x4
@@ -12162,7 +11637,6 @@ struct St1wMzxPBi4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(St1wMzxPBi4x4) == 4, "Encoding struct must be 32 bits");
 
 // ST1W: Contiguous store of words from multiple strided vectors (scalar index)
 // Encoding: st1w_mzx_p_br_2x8
@@ -12183,7 +11657,6 @@ struct St1wMzxPBr2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(St1wMzxPBr2x8) == 4, "Encoding struct must be 32 bits");
 
 // ST1W: Contiguous store of words from multiple strided vectors (scalar index)
 // Encoding: st1w_mzx_p_br_4x4
@@ -12205,7 +11678,6 @@ struct St1wMzxPBr4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(St1wMzxPBr4x4) == 4, "Encoding struct must be 32 bits");
 
 // STMOPA: Signed 16-bit integer sparse sum of outer products to 32-bit integer, accumulating
 // Encoding: stmopa_za32_zzzi_h2x1
@@ -12230,7 +11702,6 @@ struct StmopaZa32ZzziH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(StmopaZa32ZzziH2x1) == 4, "Encoding struct must be 32 bits");
 
 // STMOPA: Signed 8-bit integer sparse sum of outer products to 32-bit integer, accumulating
 // Encoding: stmopa_za_zzzi_b2x1
@@ -12255,7 +11726,6 @@ struct StmopaZaZzziB2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(StmopaZaZzziB2x1) == 4, "Encoding struct must be 32 bits");
 
 // STNT1B: Contiguous store non-temporal of bytes from multiple strided vectors (immediate index)
 // Encoding: stnt1b_mzx_p_bi_2x8
@@ -12276,7 +11746,6 @@ struct Stnt1bMzxPBi2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Stnt1bMzxPBi2x8) == 4, "Encoding struct must be 32 bits");
 
 // STNT1B: Contiguous store non-temporal of bytes from multiple strided vectors (immediate index)
 // Encoding: stnt1b_mzx_p_bi_4x4
@@ -12298,7 +11767,6 @@ struct Stnt1bMzxPBi4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Stnt1bMzxPBi4x4) == 4, "Encoding struct must be 32 bits");
 
 // STNT1B: Contiguous store non-temporal of bytes from multiple strided vectors (scalar index)
 // Encoding: stnt1b_mzx_p_br_2x8
@@ -12319,7 +11787,6 @@ struct Stnt1bMzxPBr2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Stnt1bMzxPBr2x8) == 4, "Encoding struct must be 32 bits");
 
 // STNT1B: Contiguous store non-temporal of bytes from multiple strided vectors (scalar index)
 // Encoding: stnt1b_mzx_p_br_4x4
@@ -12341,7 +11808,6 @@ struct Stnt1bMzxPBr4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Stnt1bMzxPBr4x4) == 4, "Encoding struct must be 32 bits");
 
 // STNT1D: Contiguous store non-temporal of doublewords from multiple strided vectors (immediate index)
 // Encoding: stnt1d_mzx_p_bi_2x8
@@ -12362,7 +11828,6 @@ struct Stnt1dMzxPBi2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Stnt1dMzxPBi2x8) == 4, "Encoding struct must be 32 bits");
 
 // STNT1D: Contiguous store non-temporal of doublewords from multiple strided vectors (immediate index)
 // Encoding: stnt1d_mzx_p_bi_4x4
@@ -12384,7 +11849,6 @@ struct Stnt1dMzxPBi4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Stnt1dMzxPBi4x4) == 4, "Encoding struct must be 32 bits");
 
 // STNT1D: Contiguous store non-temporal of doublewords from multiple strided vectors (scalar index)
 // Encoding: stnt1d_mzx_p_br_2x8
@@ -12405,7 +11869,6 @@ struct Stnt1dMzxPBr2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Stnt1dMzxPBr2x8) == 4, "Encoding struct must be 32 bits");
 
 // STNT1D: Contiguous store non-temporal of doublewords from multiple strided vectors (scalar index)
 // Encoding: stnt1d_mzx_p_br_4x4
@@ -12427,7 +11890,6 @@ struct Stnt1dMzxPBr4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Stnt1dMzxPBr4x4) == 4, "Encoding struct must be 32 bits");
 
 // STNT1H: Contiguous store non-temporal of halfwords from multiple strided vectors (immediate index)
 // Encoding: stnt1h_mzx_p_bi_2x8
@@ -12448,7 +11910,6 @@ struct Stnt1hMzxPBi2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Stnt1hMzxPBi2x8) == 4, "Encoding struct must be 32 bits");
 
 // STNT1H: Contiguous store non-temporal of halfwords from multiple strided vectors (immediate index)
 // Encoding: stnt1h_mzx_p_bi_4x4
@@ -12470,7 +11931,6 @@ struct Stnt1hMzxPBi4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Stnt1hMzxPBi4x4) == 4, "Encoding struct must be 32 bits");
 
 // STNT1H: Contiguous store non-temporal of halfwords from multiple strided vectors (scalar index)
 // Encoding: stnt1h_mzx_p_br_2x8
@@ -12491,7 +11951,6 @@ struct Stnt1hMzxPBr2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Stnt1hMzxPBr2x8) == 4, "Encoding struct must be 32 bits");
 
 // STNT1H: Contiguous store non-temporal of halfwords from multiple strided vectors (scalar index)
 // Encoding: stnt1h_mzx_p_br_4x4
@@ -12513,7 +11972,6 @@ struct Stnt1hMzxPBr4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Stnt1hMzxPBr4x4) == 4, "Encoding struct must be 32 bits");
 
 // STNT1W: Contiguous store non-temporal of words from multiple strided vectors (immediate index)
 // Encoding: stnt1w_mzx_p_bi_2x8
@@ -12534,7 +11992,6 @@ struct Stnt1wMzxPBi2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Stnt1wMzxPBi2x8) == 4, "Encoding struct must be 32 bits");
 
 // STNT1W: Contiguous store non-temporal of words from multiple strided vectors (immediate index)
 // Encoding: stnt1w_mzx_p_bi_4x4
@@ -12556,7 +12013,6 @@ struct Stnt1wMzxPBi4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Stnt1wMzxPBi4x4) == 4, "Encoding struct must be 32 bits");
 
 // STNT1W: Contiguous store non-temporal of words from multiple strided vectors (scalar index)
 // Encoding: stnt1w_mzx_p_br_2x8
@@ -12577,7 +12033,6 @@ struct Stnt1wMzxPBr2x8 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Stnt1wMzxPBr2x8) == 4, "Encoding struct must be 32 bits");
 
 // STNT1W: Contiguous store non-temporal of words from multiple strided vectors (scalar index)
 // Encoding: stnt1w_mzx_p_br_4x4
@@ -12599,7 +12054,6 @@ struct Stnt1wMzxPBr4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Stnt1wMzxPBr4x4) == 4, "Encoding struct must be 32 bits");
 
 // STR: Store ZT0 register
 // Encoding: str_zt_br_
@@ -12617,7 +12071,6 @@ struct StrZtBr {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(StrZtBr) == 4, "Encoding struct must be 32 bits");
 
 // SUB: Multi-vector subtract from ZA array vectors
 // Encoding: sub_za_zw_2x2
@@ -12641,7 +12094,6 @@ struct SubZaZw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SubZaZw2x2) == 4, "Encoding struct must be 32 bits");
 
 // SUB: Multi-vector subtract from ZA array vectors
 // Encoding: sub_za_zw_4x4
@@ -12665,7 +12117,6 @@ struct SubZaZw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SubZaZw4x4) == 4, "Encoding struct must be 32 bits");
 
 // SUB: Multi-vector subtract by vector to ZA array vectors
 // Encoding: sub_za_zzv_2x1
@@ -12687,7 +12138,6 @@ struct SubZaZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SubZaZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // SUB: Multi-vector subtract by vector to ZA array vectors
 // Encoding: sub_za_zzv_4x1
@@ -12709,7 +12159,6 @@ struct SubZaZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SubZaZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // SUB: Multi-vector subtract to ZA array vectors
 // Encoding: sub_za_zzw_2x2
@@ -12732,7 +12181,6 @@ struct SubZaZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SubZaZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // SUB: Multi-vector subtract to ZA array vectors
 // Encoding: sub_za_zzw_4x4
@@ -12756,7 +12204,6 @@ struct SubZaZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SubZaZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // SUDOT: Multi-vector signed by unsigned 8-bit integer dot product by indexed elements to 32-bit integer
 // Encoding: sudot_za_zzi_s2xi
@@ -12780,7 +12227,6 @@ struct SudotZaZziS2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SudotZaZziS2xi) == 4, "Encoding struct must be 32 bits");
 
 // SUDOT: Multi-vector signed by unsigned 8-bit integer dot product by indexed elements to 32-bit integer
 // Encoding: sudot_za_zzi_s4xi
@@ -12805,7 +12251,6 @@ struct SudotZaZziS4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SudotZaZziS4xi) == 4, "Encoding struct must be 32 bits");
 
 // SUDOT: Multi-vector signed by unsigned 8-bit integer dot product by vector to 32-bit integer
 // Encoding: sudot_za_zzv_s2x1
@@ -12827,7 +12272,6 @@ struct SudotZaZzvS2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SudotZaZzvS2x1) == 4, "Encoding struct must be 32 bits");
 
 // SUDOT: Multi-vector signed by unsigned 8-bit integer dot product by vector to 32-bit integer
 // Encoding: sudot_za_zzv_s4x1
@@ -12849,7 +12293,6 @@ struct SudotZaZzvS4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SudotZaZzvS4x1) == 4, "Encoding struct must be 32 bits");
 
 // SUMLALL: Multi-vector signed by unsigned 8-bit integer multiply-add by indexed element to 32-bit integer
 // Encoding: sumlall_za_zzi_s
@@ -12872,7 +12315,6 @@ struct SumlallZaZziS {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SumlallZaZziS) == 4, "Encoding struct must be 32 bits");
 
 // SUMLALL: Multi-vector signed by unsigned 8-bit integer multiply-add by indexed element to 32-bit integer
 // Encoding: sumlall_za_zzi_s2xi
@@ -12897,7 +12339,6 @@ struct SumlallZaZziS2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SumlallZaZziS2xi) == 4, "Encoding struct must be 32 bits");
 
 // SUMLALL: Multi-vector signed by unsigned 8-bit integer multiply-add by indexed element to 32-bit integer
 // Encoding: sumlall_za_zzi_s4xi
@@ -12923,7 +12364,6 @@ struct SumlallZaZziS4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SumlallZaZziS4xi) == 4, "Encoding struct must be 32 bits");
 
 // SUMLALL: Multi-vector signed by unsigned 8-bit integer multiply-add by vector to 32-bit integer
 // Encoding: sumlall_za_zzv_s2x1
@@ -12947,7 +12387,6 @@ struct SumlallZaZzvS2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SumlallZaZzvS2x1) == 4, "Encoding struct must be 32 bits");
 
 // SUMLALL: Multi-vector signed by unsigned 8-bit integer multiply-add by vector to 32-bit integer
 // Encoding: sumlall_za_zzv_s4x1
@@ -12971,7 +12410,6 @@ struct SumlallZaZzvS4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SumlallZaZzvS4x1) == 4, "Encoding struct must be 32 bits");
 
 // SUMOP4A: Signed by unsigned integer quarter-tile sum of outer products, accumulating
 // Encoding: sumop4a_za_zz_b1x2
@@ -12997,7 +12435,6 @@ struct Sumop4aZaZzB1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Sumop4aZaZzB1x2) == 4, "Encoding struct must be 32 bits");
 
 // SUMOP4A: Signed by unsigned integer quarter-tile sum of outer products, accumulating
 // Encoding: sumop4a_za_zz_b1x1
@@ -13023,7 +12460,6 @@ struct Sumop4aZaZzB1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Sumop4aZaZzB1x1) == 4, "Encoding struct must be 32 bits");
 
 // SUMOP4A: Signed by unsigned integer quarter-tile sum of outer products, accumulating
 // Encoding: sumop4a_za_zz_b2x1
@@ -13049,7 +12485,6 @@ struct Sumop4aZaZzB2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Sumop4aZaZzB2x1) == 4, "Encoding struct must be 32 bits");
 
 // SUMOP4A: Signed by unsigned integer quarter-tile sum of outer products, accumulating
 // Encoding: sumop4a_za_zz_b2x2
@@ -13075,7 +12510,6 @@ struct Sumop4aZaZzB2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Sumop4aZaZzB2x2) == 4, "Encoding struct must be 32 bits");
 
 // SUMOP4A: Signed by unsigned integer quarter-tile sum of outer products, accumulating
 // Encoding: sumop4a_za_zz_h1x2
@@ -13099,7 +12533,6 @@ struct Sumop4aZaZzH1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Sumop4aZaZzH1x2) == 4, "Encoding struct must be 32 bits");
 
 // SUMOP4A: Signed by unsigned integer quarter-tile sum of outer products, accumulating
 // Encoding: sumop4a_za_zz_h1x1
@@ -13123,7 +12556,6 @@ struct Sumop4aZaZzH1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Sumop4aZaZzH1x1) == 4, "Encoding struct must be 32 bits");
 
 // SUMOP4A: Signed by unsigned integer quarter-tile sum of outer products, accumulating
 // Encoding: sumop4a_za_zz_h2x1
@@ -13147,7 +12579,6 @@ struct Sumop4aZaZzH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Sumop4aZaZzH2x1) == 4, "Encoding struct must be 32 bits");
 
 // SUMOP4A: Signed by unsigned integer quarter-tile sum of outer products, accumulating
 // Encoding: sumop4a_za_zz_h2x2
@@ -13171,7 +12602,6 @@ struct Sumop4aZaZzH2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Sumop4aZaZzH2x2) == 4, "Encoding struct must be 32 bits");
 
 // SUMOP4S: Signed by unsigned integer quarter-tile sum of outer products, subtracting
 // Encoding: sumop4s_za_zz_b1x2
@@ -13197,7 +12627,6 @@ struct Sumop4sZaZzB1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Sumop4sZaZzB1x2) == 4, "Encoding struct must be 32 bits");
 
 // SUMOP4S: Signed by unsigned integer quarter-tile sum of outer products, subtracting
 // Encoding: sumop4s_za_zz_b1x1
@@ -13223,7 +12652,6 @@ struct Sumop4sZaZzB1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Sumop4sZaZzB1x1) == 4, "Encoding struct must be 32 bits");
 
 // SUMOP4S: Signed by unsigned integer quarter-tile sum of outer products, subtracting
 // Encoding: sumop4s_za_zz_b2x1
@@ -13249,7 +12677,6 @@ struct Sumop4sZaZzB2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Sumop4sZaZzB2x1) == 4, "Encoding struct must be 32 bits");
 
 // SUMOP4S: Signed by unsigned integer quarter-tile sum of outer products, subtracting
 // Encoding: sumop4s_za_zz_b2x2
@@ -13275,7 +12702,6 @@ struct Sumop4sZaZzB2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Sumop4sZaZzB2x2) == 4, "Encoding struct must be 32 bits");
 
 // SUMOP4S: Signed by unsigned integer quarter-tile sum of outer products, subtracting
 // Encoding: sumop4s_za_zz_h1x2
@@ -13299,7 +12725,6 @@ struct Sumop4sZaZzH1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Sumop4sZaZzH1x2) == 4, "Encoding struct must be 32 bits");
 
 // SUMOP4S: Signed by unsigned integer quarter-tile sum of outer products, subtracting
 // Encoding: sumop4s_za_zz_h1x1
@@ -13323,7 +12748,6 @@ struct Sumop4sZaZzH1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Sumop4sZaZzH1x1) == 4, "Encoding struct must be 32 bits");
 
 // SUMOP4S: Signed by unsigned integer quarter-tile sum of outer products, subtracting
 // Encoding: sumop4s_za_zz_h2x1
@@ -13347,7 +12771,6 @@ struct Sumop4sZaZzH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Sumop4sZaZzH2x1) == 4, "Encoding struct must be 32 bits");
 
 // SUMOP4S: Signed by unsigned integer quarter-tile sum of outer products, subtracting
 // Encoding: sumop4s_za_zz_h2x2
@@ -13371,7 +12794,6 @@ struct Sumop4sZaZzH2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Sumop4sZaZzH2x2) == 4, "Encoding struct must be 32 bits");
 
 // SUNPK: Unpack and sign-extend multi-vector elements
 // Encoding: sunpk_mz_z_2
@@ -13391,7 +12813,6 @@ struct SunpkMzZ2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SunpkMzZ2) == 4, "Encoding struct must be 32 bits");
 
 // SUNPK: Unpack and sign-extend multi-vector elements
 // Encoding: sunpk_mz_z_4
@@ -13413,7 +12834,6 @@ struct SunpkMzZ4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SunpkMzZ4) == 4, "Encoding struct must be 32 bits");
 
 // SUTMOPA: Signed by unsigned 8-bit integer sparse sum of outer products to 32-bit integer, accumulating
 // Encoding: sutmopa_za_zzzi_b2x1
@@ -13438,7 +12858,6 @@ struct SutmopaZaZzziB2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SutmopaZaZzziB2x1) == 4, "Encoding struct must be 32 bits");
 
 // SUVDOT: Multi-vector signed by unsigned 8-bit integer vertical dot product by indexed element to 32-bit integer
 // Encoding: suvdot_za_zzi_s4xi
@@ -13463,7 +12882,6 @@ struct SuvdotZaZziS4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SuvdotZaZziS4xi) == 4, "Encoding struct must be 32 bits");
 
 // SVDOT: Multi-vector signed 16-bit integer vertical dot product by indexed element to 32-bit integer
 // Encoding: svdot_za32_zzi_2xi
@@ -13487,7 +12905,6 @@ struct SvdotZa32Zzi2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SvdotZa32Zzi2xi) == 4, "Encoding struct must be 32 bits");
 
 // SVDOT: Multi-vector signed integer vertical dot product by indexed element
 // Encoding: svdot_za_zzi_s4xi
@@ -13512,7 +12929,6 @@ struct SvdotZaZziS4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SvdotZaZziS4xi) == 4, "Encoding struct must be 32 bits");
 
 // SVDOT: Multi-vector signed integer vertical dot product by indexed element
 // Encoding: svdot_za_zzi_d4xi
@@ -13537,7 +12953,6 @@ struct SvdotZaZziD4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SvdotZaZziD4xi) == 4, "Encoding struct must be 32 bits");
 
 // UCLAMP: Multi-vector unsigned clamp to minimum/maximum
 // Encoding: uclamp_mz_zz_2
@@ -13557,7 +12972,6 @@ struct UclampMzZz2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UclampMzZz2) == 4, "Encoding struct must be 32 bits");
 
 // UCLAMP: Multi-vector unsigned clamp to minimum/maximum
 // Encoding: uclamp_mz_zz_4
@@ -13578,7 +12992,6 @@ struct UclampMzZz4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UclampMzZz4) == 4, "Encoding struct must be 32 bits");
 
 // UCVTF: Multi-vector unsigned 32-bit integer convert to single-precision
 // Encoding: ucvtf_mz_z_2
@@ -13599,7 +13012,6 @@ struct UcvtfMzZ2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UcvtfMzZ2) == 4, "Encoding struct must be 32 bits");
 
 // UCVTF: Multi-vector unsigned 32-bit integer convert to single-precision
 // Encoding: ucvtf_mz_z_4
@@ -13621,7 +13033,6 @@ struct UcvtfMzZ4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UcvtfMzZ4) == 4, "Encoding struct must be 32 bits");
 
 // UDOT: Multi-vector unsigned 16-bit integer dot product by indexed element to 32-bit integer
 // Encoding: udot_za32_zzi_2xi
@@ -13645,7 +13056,6 @@ struct UdotZa32Zzi2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UdotZa32Zzi2xi) == 4, "Encoding struct must be 32 bits");
 
 // UDOT: Multi-vector unsigned 16-bit integer dot product by indexed element to 32-bit integer
 // Encoding: udot_za32_zzi_4xi
@@ -13670,7 +13080,6 @@ struct UdotZa32Zzi4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UdotZa32Zzi4xi) == 4, "Encoding struct must be 32 bits");
 
 // UDOT: Multi-vector unsigned 16-bit integer dot product by vector to 32-bit integer
 // Encoding: udot_za32_zzv_2x1
@@ -13692,7 +13101,6 @@ struct UdotZa32Zzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UdotZa32Zzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // UDOT: Multi-vector unsigned 16-bit integer dot product by vector to 32-bit integer
 // Encoding: udot_za32_zzv_4x1
@@ -13714,7 +13122,6 @@ struct UdotZa32Zzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UdotZa32Zzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // UDOT: Multi-vector unsigned 16-bit integer dot product to 32-bit integer
 // Encoding: udot_za32_zzw_2x2
@@ -13737,7 +13144,6 @@ struct UdotZa32Zzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UdotZa32Zzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // UDOT: Multi-vector unsigned 16-bit integer dot product to 32-bit integer
 // Encoding: udot_za32_zzw_4x4
@@ -13761,7 +13167,6 @@ struct UdotZa32Zzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UdotZa32Zzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // UDOT: Multi-vector unsigned integer dot product by indexed element
 // Encoding: udot_za_zzi_s2xi
@@ -13785,7 +13190,6 @@ struct UdotZaZziS2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UdotZaZziS2xi) == 4, "Encoding struct must be 32 bits");
 
 // UDOT: Multi-vector unsigned integer dot product by indexed element
 // Encoding: udot_za_zzi_d2xi
@@ -13809,7 +13213,6 @@ struct UdotZaZziD2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UdotZaZziD2xi) == 4, "Encoding struct must be 32 bits");
 
 // UDOT: Multi-vector unsigned integer dot product by indexed element
 // Encoding: udot_za_zzi_s4xi
@@ -13834,7 +13237,6 @@ struct UdotZaZziS4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UdotZaZziS4xi) == 4, "Encoding struct must be 32 bits");
 
 // UDOT: Multi-vector unsigned integer dot product by indexed element
 // Encoding: udot_za_zzi_d4xi
@@ -13859,7 +13261,6 @@ struct UdotZaZziD4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UdotZaZziD4xi) == 4, "Encoding struct must be 32 bits");
 
 // UDOT: Multi-vector unsigned integer dot product by vector
 // Encoding: udot_za_zzv_2x1
@@ -13881,7 +13282,6 @@ struct UdotZaZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UdotZaZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // UDOT: Multi-vector unsigned integer dot product by vector
 // Encoding: udot_za_zzv_4x1
@@ -13903,7 +13303,6 @@ struct UdotZaZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UdotZaZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // UDOT: Multi-vector unsigned integer dot product
 // Encoding: udot_za_zzw_2x2
@@ -13926,7 +13325,6 @@ struct UdotZaZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UdotZaZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // UDOT: Multi-vector unsigned integer dot product
 // Encoding: udot_za_zzw_4x4
@@ -13950,7 +13348,6 @@ struct UdotZaZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UdotZaZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // UMAX: Multi-vector unsigned maximum by vector
 // Encoding: umax_mz_zzv_2x1
@@ -13972,7 +13369,6 @@ struct UmaxMzZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmaxMzZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // UMAX: Multi-vector unsigned maximum by vector
 // Encoding: umax_mz_zzv_4x1
@@ -13995,7 +13391,6 @@ struct UmaxMzZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmaxMzZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // UMAX: Multi-vector unsigned maximum
 // Encoding: umax_mz_zzw_2x2
@@ -14015,7 +13410,6 @@ struct UmaxMzZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmaxMzZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // UMAX: Multi-vector unsigned maximum
 // Encoding: umax_mz_zzw_4x4
@@ -14036,7 +13430,6 @@ struct UmaxMzZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmaxMzZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // UMIN: Multi-vector unsigned minimum by vector
 // Encoding: umin_mz_zzv_2x1
@@ -14058,7 +13451,6 @@ struct UminMzZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UminMzZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // UMIN: Multi-vector unsigned minimum by vector
 // Encoding: umin_mz_zzv_4x1
@@ -14081,7 +13473,6 @@ struct UminMzZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UminMzZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // UMIN: Multi-vector unsigned minimum
 // Encoding: umin_mz_zzw_2x2
@@ -14101,7 +13492,6 @@ struct UminMzZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UminMzZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // UMIN: Multi-vector unsigned minimum
 // Encoding: umin_mz_zzw_4x4
@@ -14122,7 +13512,6 @@ struct UminMzZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UminMzZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // UMLAL: Multi-vector unsigned 16-bit integer multiply-add by indexed element to 32-bit integer
 // Encoding: umlal_za_zzi_1
@@ -14145,7 +13534,6 @@ struct UmlalZaZzi1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlalZaZzi1) == 4, "Encoding struct must be 32 bits");
 
 // UMLAL: Multi-vector unsigned 16-bit integer multiply-add by indexed element to 32-bit integer
 // Encoding: umlal_za_zzi_2xi
@@ -14170,7 +13558,6 @@ struct UmlalZaZzi2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlalZaZzi2xi) == 4, "Encoding struct must be 32 bits");
 
 // UMLAL: Multi-vector unsigned 16-bit integer multiply-add by indexed element to 32-bit integer
 // Encoding: umlal_za_zzi_4xi
@@ -14195,7 +13582,6 @@ struct UmlalZaZzi4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlalZaZzi4xi) == 4, "Encoding struct must be 32 bits");
 
 // UMLAL: Multi-vector unsigned 16-bit integer multiply-add by vector to 32-bit integer
 // Encoding: umlal_za_zzv_1
@@ -14217,7 +13603,6 @@ struct UmlalZaZzv1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlalZaZzv1) == 4, "Encoding struct must be 32 bits");
 
 // UMLAL: Multi-vector unsigned 16-bit integer multiply-add by vector to 32-bit integer
 // Encoding: umlal_za_zzv_2x1
@@ -14240,7 +13625,6 @@ struct UmlalZaZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlalZaZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // UMLAL: Multi-vector unsigned 16-bit integer multiply-add by vector to 32-bit integer
 // Encoding: umlal_za_zzv_4x1
@@ -14263,7 +13647,6 @@ struct UmlalZaZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlalZaZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // UMLAL: Multi-vector unsigned 16-bit integer multiply-add to 32-bit integer
 // Encoding: umlal_za_zzw_2x2
@@ -14287,7 +13670,6 @@ struct UmlalZaZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlalZaZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // UMLAL: Multi-vector unsigned 16-bit integer multiply-add to 32-bit integer
 // Encoding: umlal_za_zzw_4x4
@@ -14312,7 +13694,6 @@ struct UmlalZaZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlalZaZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // UMLALL: Multi-vector unsigned integer multiply-add long long by indexed element
 // Encoding: umlall_za_zzi_s
@@ -14335,7 +13716,6 @@ struct UmlallZaZziS {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlallZaZziS) == 4, "Encoding struct must be 32 bits");
 
 // UMLALL: Multi-vector unsigned integer multiply-add long long by indexed element
 // Encoding: umlall_za_zzi_d
@@ -14359,7 +13739,6 @@ struct UmlallZaZziD {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlallZaZziD) == 4, "Encoding struct must be 32 bits");
 
 // UMLALL: Multi-vector unsigned integer multiply-add long long by indexed element
 // Encoding: umlall_za_zzi_s2xi
@@ -14384,7 +13763,6 @@ struct UmlallZaZziS2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlallZaZziS2xi) == 4, "Encoding struct must be 32 bits");
 
 // UMLALL: Multi-vector unsigned integer multiply-add long long by indexed element
 // Encoding: umlall_za_zzi_d2xi
@@ -14409,7 +13787,6 @@ struct UmlallZaZziD2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlallZaZziD2xi) == 4, "Encoding struct must be 32 bits");
 
 // UMLALL: Multi-vector unsigned integer multiply-add long long by indexed element
 // Encoding: umlall_za_zzi_s4xi
@@ -14435,7 +13812,6 @@ struct UmlallZaZziS4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlallZaZziS4xi) == 4, "Encoding struct must be 32 bits");
 
 // UMLALL: Multi-vector unsigned integer multiply-add long long by indexed element
 // Encoding: umlall_za_zzi_d4xi
@@ -14460,7 +13836,6 @@ struct UmlallZaZziD4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlallZaZziD4xi) == 4, "Encoding struct must be 32 bits");
 
 // UMLALL: Multi-vector unsigned integer multiply-add long long by vector
 // Encoding: umlall_za_zzv_1
@@ -14483,7 +13858,6 @@ struct UmlallZaZzv1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlallZaZzv1) == 4, "Encoding struct must be 32 bits");
 
 // UMLALL: Multi-vector unsigned integer multiply-add long long by vector
 // Encoding: umlall_za_zzv_2x1
@@ -14507,7 +13881,6 @@ struct UmlallZaZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlallZaZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // UMLALL: Multi-vector unsigned integer multiply-add long long by vector
 // Encoding: umlall_za_zzv_4x1
@@ -14531,7 +13904,6 @@ struct UmlallZaZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlallZaZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // UMLALL: Multi-vector unsigned integer multiply-add long long
 // Encoding: umlall_za_zzw_2x2
@@ -14556,7 +13928,6 @@ struct UmlallZaZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlallZaZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // UMLALL: Multi-vector unsigned integer multiply-add long long
 // Encoding: umlall_za_zzw_4x4
@@ -14582,7 +13953,6 @@ struct UmlallZaZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlallZaZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // UMLSL: Multi-vector unsigned 16-bit integer multiply-subtract by indexed element from 32-bit integer
 // Encoding: umlsl_za_zzi_1
@@ -14605,7 +13975,6 @@ struct UmlslZaZzi1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlslZaZzi1) == 4, "Encoding struct must be 32 bits");
 
 // UMLSL: Multi-vector unsigned 16-bit integer multiply-subtract by indexed element from 32-bit integer
 // Encoding: umlsl_za_zzi_2xi
@@ -14630,7 +13999,6 @@ struct UmlslZaZzi2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlslZaZzi2xi) == 4, "Encoding struct must be 32 bits");
 
 // UMLSL: Multi-vector unsigned 16-bit integer multiply-subtract by indexed element from 32-bit integer
 // Encoding: umlsl_za_zzi_4xi
@@ -14655,7 +14023,6 @@ struct UmlslZaZzi4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlslZaZzi4xi) == 4, "Encoding struct must be 32 bits");
 
 // UMLSL: Multi-vector unsigned 16-bit integer multiply-subtract by vector from 32-bit integer
 // Encoding: umlsl_za_zzv_1
@@ -14677,7 +14044,6 @@ struct UmlslZaZzv1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlslZaZzv1) == 4, "Encoding struct must be 32 bits");
 
 // UMLSL: Multi-vector unsigned 16-bit integer multiply-subtract by vector from 32-bit integer
 // Encoding: umlsl_za_zzv_2x1
@@ -14700,7 +14066,6 @@ struct UmlslZaZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlslZaZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // UMLSL: Multi-vector unsigned 16-bit integer multiply-subtract by vector from 32-bit integer
 // Encoding: umlsl_za_zzv_4x1
@@ -14723,7 +14088,6 @@ struct UmlslZaZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlslZaZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // UMLSL: Multi-vector unsigned 16-bit integer multiply-subtract from 32-bit integer
 // Encoding: umlsl_za_zzw_2x2
@@ -14747,7 +14111,6 @@ struct UmlslZaZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlslZaZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // UMLSL: Multi-vector unsigned 16-bit integer multiply-subtract from 32-bit integer
 // Encoding: umlsl_za_zzw_4x4
@@ -14772,7 +14135,6 @@ struct UmlslZaZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlslZaZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // UMLSLL: Multi-vector unsigned integer multiply-subtract long long by indexed element
 // Encoding: umlsll_za_zzi_s
@@ -14795,7 +14157,6 @@ struct UmlsllZaZziS {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlsllZaZziS) == 4, "Encoding struct must be 32 bits");
 
 // UMLSLL: Multi-vector unsigned integer multiply-subtract long long by indexed element
 // Encoding: umlsll_za_zzi_d
@@ -14819,7 +14180,6 @@ struct UmlsllZaZziD {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlsllZaZziD) == 4, "Encoding struct must be 32 bits");
 
 // UMLSLL: Multi-vector unsigned integer multiply-subtract long long by indexed element
 // Encoding: umlsll_za_zzi_s2xi
@@ -14844,7 +14204,6 @@ struct UmlsllZaZziS2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlsllZaZziS2xi) == 4, "Encoding struct must be 32 bits");
 
 // UMLSLL: Multi-vector unsigned integer multiply-subtract long long by indexed element
 // Encoding: umlsll_za_zzi_d2xi
@@ -14869,7 +14228,6 @@ struct UmlsllZaZziD2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlsllZaZziD2xi) == 4, "Encoding struct must be 32 bits");
 
 // UMLSLL: Multi-vector unsigned integer multiply-subtract long long by indexed element
 // Encoding: umlsll_za_zzi_s4xi
@@ -14895,7 +14253,6 @@ struct UmlsllZaZziS4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlsllZaZziS4xi) == 4, "Encoding struct must be 32 bits");
 
 // UMLSLL: Multi-vector unsigned integer multiply-subtract long long by indexed element
 // Encoding: umlsll_za_zzi_d4xi
@@ -14920,7 +14277,6 @@ struct UmlsllZaZziD4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlsllZaZziD4xi) == 4, "Encoding struct must be 32 bits");
 
 // UMLSLL: Multi-vector unsigned integer multiply-subtract long long by vector
 // Encoding: umlsll_za_zzv_1
@@ -14943,7 +14299,6 @@ struct UmlsllZaZzv1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlsllZaZzv1) == 4, "Encoding struct must be 32 bits");
 
 // UMLSLL: Multi-vector unsigned integer multiply-subtract long long by vector
 // Encoding: umlsll_za_zzv_2x1
@@ -14967,7 +14322,6 @@ struct UmlsllZaZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlsllZaZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // UMLSLL: Multi-vector unsigned integer multiply-subtract long long by vector
 // Encoding: umlsll_za_zzv_4x1
@@ -14991,7 +14345,6 @@ struct UmlsllZaZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlsllZaZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // UMLSLL: Multi-vector unsigned integer multiply-subtract long long
 // Encoding: umlsll_za_zzw_2x2
@@ -15016,7 +14369,6 @@ struct UmlsllZaZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlsllZaZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // UMLSLL: Multi-vector unsigned integer multiply-subtract long long
 // Encoding: umlsll_za_zzw_4x4
@@ -15042,7 +14394,6 @@ struct UmlsllZaZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmlsllZaZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // UMOP4A: Unsigned 16-bit integer quarter-tile sum of outer products to 32-bit integer, accumulating
 // Encoding: umop4a_za32_zz_h1x2
@@ -15068,7 +14419,6 @@ struct Umop4aZa32ZzH1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Umop4aZa32ZzH1x2) == 4, "Encoding struct must be 32 bits");
 
 // UMOP4A: Unsigned 16-bit integer quarter-tile sum of outer products to 32-bit integer, accumulating
 // Encoding: umop4a_za32_zz_h1x1
@@ -15094,7 +14444,6 @@ struct Umop4aZa32ZzH1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Umop4aZa32ZzH1x1) == 4, "Encoding struct must be 32 bits");
 
 // UMOP4A: Unsigned 16-bit integer quarter-tile sum of outer products to 32-bit integer, accumulating
 // Encoding: umop4a_za32_zz_h2x1
@@ -15120,7 +14469,6 @@ struct Umop4aZa32ZzH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Umop4aZa32ZzH2x1) == 4, "Encoding struct must be 32 bits");
 
 // UMOP4A: Unsigned 16-bit integer quarter-tile sum of outer products to 32-bit integer, accumulating
 // Encoding: umop4a_za32_zz_h2x2
@@ -15146,7 +14494,6 @@ struct Umop4aZa32ZzH2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Umop4aZa32ZzH2x2) == 4, "Encoding struct must be 32 bits");
 
 // UMOP4A: Unsigned integer quarter-tile sum of outer products, accumulating
 // Encoding: umop4a_za_zz_b1x2
@@ -15172,7 +14519,6 @@ struct Umop4aZaZzB1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Umop4aZaZzB1x2) == 4, "Encoding struct must be 32 bits");
 
 // UMOP4A: Unsigned integer quarter-tile sum of outer products, accumulating
 // Encoding: umop4a_za_zz_b1x1
@@ -15198,7 +14544,6 @@ struct Umop4aZaZzB1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Umop4aZaZzB1x1) == 4, "Encoding struct must be 32 bits");
 
 // UMOP4A: Unsigned integer quarter-tile sum of outer products, accumulating
 // Encoding: umop4a_za_zz_b2x1
@@ -15224,7 +14569,6 @@ struct Umop4aZaZzB2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Umop4aZaZzB2x1) == 4, "Encoding struct must be 32 bits");
 
 // UMOP4A: Unsigned integer quarter-tile sum of outer products, accumulating
 // Encoding: umop4a_za_zz_b2x2
@@ -15250,7 +14594,6 @@ struct Umop4aZaZzB2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Umop4aZaZzB2x2) == 4, "Encoding struct must be 32 bits");
 
 // UMOP4A: Unsigned integer quarter-tile sum of outer products, accumulating
 // Encoding: umop4a_za_zz_h1x2
@@ -15274,7 +14617,6 @@ struct Umop4aZaZzH1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Umop4aZaZzH1x2) == 4, "Encoding struct must be 32 bits");
 
 // UMOP4A: Unsigned integer quarter-tile sum of outer products, accumulating
 // Encoding: umop4a_za_zz_h1x1
@@ -15298,7 +14640,6 @@ struct Umop4aZaZzH1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Umop4aZaZzH1x1) == 4, "Encoding struct must be 32 bits");
 
 // UMOP4A: Unsigned integer quarter-tile sum of outer products, accumulating
 // Encoding: umop4a_za_zz_h2x1
@@ -15322,7 +14663,6 @@ struct Umop4aZaZzH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Umop4aZaZzH2x1) == 4, "Encoding struct must be 32 bits");
 
 // UMOP4A: Unsigned integer quarter-tile sum of outer products, accumulating
 // Encoding: umop4a_za_zz_h2x2
@@ -15346,7 +14686,6 @@ struct Umop4aZaZzH2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Umop4aZaZzH2x2) == 4, "Encoding struct must be 32 bits");
 
 // UMOP4S: Unsigned 16-bit integer quarter-tile sum of outer products to 32-bit integer, subtracting
 // Encoding: umop4s_za32_zz_h1x2
@@ -15372,7 +14711,6 @@ struct Umop4sZa32ZzH1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Umop4sZa32ZzH1x2) == 4, "Encoding struct must be 32 bits");
 
 // UMOP4S: Unsigned 16-bit integer quarter-tile sum of outer products to 32-bit integer, subtracting
 // Encoding: umop4s_za32_zz_h1x1
@@ -15398,7 +14736,6 @@ struct Umop4sZa32ZzH1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Umop4sZa32ZzH1x1) == 4, "Encoding struct must be 32 bits");
 
 // UMOP4S: Unsigned 16-bit integer quarter-tile sum of outer products to 32-bit integer, subtracting
 // Encoding: umop4s_za32_zz_h2x1
@@ -15424,7 +14761,6 @@ struct Umop4sZa32ZzH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Umop4sZa32ZzH2x1) == 4, "Encoding struct must be 32 bits");
 
 // UMOP4S: Unsigned 16-bit integer quarter-tile sum of outer products to 32-bit integer, subtracting
 // Encoding: umop4s_za32_zz_h2x2
@@ -15450,7 +14786,6 @@ struct Umop4sZa32ZzH2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Umop4sZa32ZzH2x2) == 4, "Encoding struct must be 32 bits");
 
 // UMOP4S: Unsigned integer quarter-tile sum of outer products, subtracting
 // Encoding: umop4s_za_zz_b1x2
@@ -15476,7 +14811,6 @@ struct Umop4sZaZzB1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Umop4sZaZzB1x2) == 4, "Encoding struct must be 32 bits");
 
 // UMOP4S: Unsigned integer quarter-tile sum of outer products, subtracting
 // Encoding: umop4s_za_zz_b1x1
@@ -15502,7 +14836,6 @@ struct Umop4sZaZzB1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Umop4sZaZzB1x1) == 4, "Encoding struct must be 32 bits");
 
 // UMOP4S: Unsigned integer quarter-tile sum of outer products, subtracting
 // Encoding: umop4s_za_zz_b2x1
@@ -15528,7 +14861,6 @@ struct Umop4sZaZzB2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Umop4sZaZzB2x1) == 4, "Encoding struct must be 32 bits");
 
 // UMOP4S: Unsigned integer quarter-tile sum of outer products, subtracting
 // Encoding: umop4s_za_zz_b2x2
@@ -15554,7 +14886,6 @@ struct Umop4sZaZzB2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Umop4sZaZzB2x2) == 4, "Encoding struct must be 32 bits");
 
 // UMOP4S: Unsigned integer quarter-tile sum of outer products, subtracting
 // Encoding: umop4s_za_zz_h1x2
@@ -15578,7 +14909,6 @@ struct Umop4sZaZzH1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Umop4sZaZzH1x2) == 4, "Encoding struct must be 32 bits");
 
 // UMOP4S: Unsigned integer quarter-tile sum of outer products, subtracting
 // Encoding: umop4s_za_zz_h1x1
@@ -15602,7 +14932,6 @@ struct Umop4sZaZzH1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Umop4sZaZzH1x1) == 4, "Encoding struct must be 32 bits");
 
 // UMOP4S: Unsigned integer quarter-tile sum of outer products, subtracting
 // Encoding: umop4s_za_zz_h2x1
@@ -15626,7 +14955,6 @@ struct Umop4sZaZzH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Umop4sZaZzH2x1) == 4, "Encoding struct must be 32 bits");
 
 // UMOP4S: Unsigned integer quarter-tile sum of outer products, subtracting
 // Encoding: umop4s_za_zz_h2x2
@@ -15650,7 +14978,6 @@ struct Umop4sZaZzH2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Umop4sZaZzH2x2) == 4, "Encoding struct must be 32 bits");
 
 // UMOPA: Unsigned 16-bit integer sum of outer products to 32-bit integer, accumulating
 // Encoding: umopa_za32_pp_zz_16
@@ -15672,7 +14999,6 @@ struct UmopaZa32PpZz16 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmopaZa32PpZz16) == 4, "Encoding struct must be 32 bits");
 
 // UMOPS: Unsigned 16-bit integer sum of outer products to 32-bit integer, subtracting
 // Encoding: umops_za32_pp_zz_16
@@ -15694,7 +15020,6 @@ struct UmopsZa32PpZz16 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmopsZa32PpZz16) == 4, "Encoding struct must be 32 bits");
 
 // UQCVT: Multi-vector unsigned 32-bit integer saturating extract narrow to 16-bit integer
 // Encoding: uqcvt_z_mz2_
@@ -15715,7 +15040,6 @@ struct UqcvtZMz2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UqcvtZMz2) == 4, "Encoding struct must be 32 bits");
 
 // UQCVT: Multi-vector unsigned saturating extract narrow
 // Encoding: uqcvt_z_mz4_
@@ -15737,7 +15061,6 @@ struct UqcvtZMz4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UqcvtZMz4) == 4, "Encoding struct must be 32 bits");
 
 // UQCVTN: Multi-vector unsigned saturating extract narrow to interleaved integer
 // Encoding: uqcvtn_z_mz4_
@@ -15759,7 +15082,6 @@ struct UqcvtnZMz4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UqcvtnZMz4) == 4, "Encoding struct must be 32 bits");
 
 // UQRSHR: Multi-vector unsigned 32-bit integer saturating rounding shift right narrow by immediate to 16-bit integer
 // Encoding: uqrshr_z_mz2_
@@ -15780,7 +15102,6 @@ struct UqrshrZMz2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UqrshrZMz2) == 4, "Encoding struct must be 32 bits");
 
 // UQRSHR: Multi-vector unsigned saturating rounding shift right narrow by immediate
 // Encoding: uqrshr_z_mz4_
@@ -15802,7 +15123,6 @@ struct UqrshrZMz4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UqrshrZMz4) == 4, "Encoding struct must be 32 bits");
 
 // UQRSHRN: Multi-vector unsigned saturating rounding shift right narrow by immediate to interleaved integer
 // Encoding: uqrshrn_z_mz4_
@@ -15824,7 +15144,6 @@ struct UqrshrnZMz4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UqrshrnZMz4) == 4, "Encoding struct must be 32 bits");
 
 // URSHL: Multi-vector unsigned rounding shift left by vector
 // Encoding: urshl_mz_zzv_2x1
@@ -15845,7 +15164,6 @@ struct UrshlMzZzv2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UrshlMzZzv2x1) == 4, "Encoding struct must be 32 bits");
 
 // URSHL: Multi-vector unsigned rounding shift left by vector
 // Encoding: urshl_mz_zzv_4x1
@@ -15867,7 +15185,6 @@ struct UrshlMzZzv4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UrshlMzZzv4x1) == 4, "Encoding struct must be 32 bits");
 
 // URSHL: Multi-vector unsigned rounding shift left
 // Encoding: urshl_mz_zzw_2x2
@@ -15887,7 +15204,6 @@ struct UrshlMzZzw2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UrshlMzZzw2x2) == 4, "Encoding struct must be 32 bits");
 
 // URSHL: Multi-vector unsigned rounding shift left
 // Encoding: urshl_mz_zzw_4x4
@@ -15908,7 +15224,6 @@ struct UrshlMzZzw4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UrshlMzZzw4x4) == 4, "Encoding struct must be 32 bits");
 
 // USDOT: Multi-vector unsigned by signed 8-bit integer dot product by indexed element to 32-bit integer
 // Encoding: usdot_za_zzi_s2xi
@@ -15932,7 +15247,6 @@ struct UsdotZaZziS2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UsdotZaZziS2xi) == 4, "Encoding struct must be 32 bits");
 
 // USDOT: Multi-vector unsigned by signed 8-bit integer dot product by indexed element to 32-bit integer
 // Encoding: usdot_za_zzi_s4xi
@@ -15957,7 +15271,6 @@ struct UsdotZaZziS4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UsdotZaZziS4xi) == 4, "Encoding struct must be 32 bits");
 
 // USDOT: Multi-vector unsigned by signed 8-bit integer dot product by vector to 32-bit integer
 // Encoding: usdot_za_zzv_s2x1
@@ -15979,7 +15292,6 @@ struct UsdotZaZzvS2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UsdotZaZzvS2x1) == 4, "Encoding struct must be 32 bits");
 
 // USDOT: Multi-vector unsigned by signed 8-bit integer dot product by vector to 32-bit integer
 // Encoding: usdot_za_zzv_s4x1
@@ -16001,7 +15313,6 @@ struct UsdotZaZzvS4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UsdotZaZzvS4x1) == 4, "Encoding struct must be 32 bits");
 
 // USDOT: Multi-vector unsigned by signed 8-bit integer dot product to 32-bit integer
 // Encoding: usdot_za_zzw_s2x2
@@ -16023,7 +15334,6 @@ struct UsdotZaZzwS2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UsdotZaZzwS2x2) == 4, "Encoding struct must be 32 bits");
 
 // USDOT: Multi-vector unsigned by signed 8-bit integer dot product to 32-bit integer
 // Encoding: usdot_za_zzw_s4x4
@@ -16046,7 +15356,6 @@ struct UsdotZaZzwS4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UsdotZaZzwS4x4) == 4, "Encoding struct must be 32 bits");
 
 // USMLALL: Multi-vector unsigned by signed 8-bit integer multiply-add by indexed element to 32-bit integer
 // Encoding: usmlall_za_zzi_s
@@ -16069,7 +15378,6 @@ struct UsmlallZaZziS {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UsmlallZaZziS) == 4, "Encoding struct must be 32 bits");
 
 // USMLALL: Multi-vector unsigned by signed 8-bit integer multiply-add by indexed element to 32-bit integer
 // Encoding: usmlall_za_zzi_s2xi
@@ -16094,7 +15402,6 @@ struct UsmlallZaZziS2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UsmlallZaZziS2xi) == 4, "Encoding struct must be 32 bits");
 
 // USMLALL: Multi-vector unsigned by signed 8-bit integer multiply-add by indexed element to 32-bit integer
 // Encoding: usmlall_za_zzi_s4xi
@@ -16120,7 +15427,6 @@ struct UsmlallZaZziS4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UsmlallZaZziS4xi) == 4, "Encoding struct must be 32 bits");
 
 // USMLALL: Multi-vector unsigned by signed 8-bit integer multiply-add by vector to 32-bit integer
 // Encoding: usmlall_za_zzv_s
@@ -16143,7 +15449,6 @@ struct UsmlallZaZzvS {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UsmlallZaZzvS) == 4, "Encoding struct must be 32 bits");
 
 // USMLALL: Multi-vector unsigned by signed 8-bit integer multiply-add by vector to 32-bit integer
 // Encoding: usmlall_za_zzv_s2x1
@@ -16167,7 +15472,6 @@ struct UsmlallZaZzvS2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UsmlallZaZzvS2x1) == 4, "Encoding struct must be 32 bits");
 
 // USMLALL: Multi-vector unsigned by signed 8-bit integer multiply-add by vector to 32-bit integer
 // Encoding: usmlall_za_zzv_s4x1
@@ -16191,7 +15495,6 @@ struct UsmlallZaZzvS4x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UsmlallZaZzvS4x1) == 4, "Encoding struct must be 32 bits");
 
 // USMLALL: Multi-vector unsigned by signed 8-bit integer multiply-add to 32-bit integer
 // Encoding: usmlall_za_zzw_s2x2
@@ -16216,7 +15519,6 @@ struct UsmlallZaZzwS2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UsmlallZaZzwS2x2) == 4, "Encoding struct must be 32 bits");
 
 // USMLALL: Multi-vector unsigned by signed 8-bit integer multiply-add to 32-bit integer
 // Encoding: usmlall_za_zzw_s4x4
@@ -16242,7 +15544,6 @@ struct UsmlallZaZzwS4x4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UsmlallZaZzwS4x4) == 4, "Encoding struct must be 32 bits");
 
 // USMOP4A: Unsigned by signed integer quarter-tile sum of outer products, accumulating
 // Encoding: usmop4a_za_zz_b1x2
@@ -16268,7 +15569,6 @@ struct Usmop4aZaZzB1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Usmop4aZaZzB1x2) == 4, "Encoding struct must be 32 bits");
 
 // USMOP4A: Unsigned by signed integer quarter-tile sum of outer products, accumulating
 // Encoding: usmop4a_za_zz_b1x1
@@ -16294,7 +15594,6 @@ struct Usmop4aZaZzB1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Usmop4aZaZzB1x1) == 4, "Encoding struct must be 32 bits");
 
 // USMOP4A: Unsigned by signed integer quarter-tile sum of outer products, accumulating
 // Encoding: usmop4a_za_zz_b2x1
@@ -16320,7 +15619,6 @@ struct Usmop4aZaZzB2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Usmop4aZaZzB2x1) == 4, "Encoding struct must be 32 bits");
 
 // USMOP4A: Unsigned by signed integer quarter-tile sum of outer products, accumulating
 // Encoding: usmop4a_za_zz_b2x2
@@ -16346,7 +15644,6 @@ struct Usmop4aZaZzB2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Usmop4aZaZzB2x2) == 4, "Encoding struct must be 32 bits");
 
 // USMOP4A: Unsigned by signed integer quarter-tile sum of outer products, accumulating
 // Encoding: usmop4a_za_zz_h1x2
@@ -16370,7 +15667,6 @@ struct Usmop4aZaZzH1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Usmop4aZaZzH1x2) == 4, "Encoding struct must be 32 bits");
 
 // USMOP4A: Unsigned by signed integer quarter-tile sum of outer products, accumulating
 // Encoding: usmop4a_za_zz_h1x1
@@ -16394,7 +15690,6 @@ struct Usmop4aZaZzH1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Usmop4aZaZzH1x1) == 4, "Encoding struct must be 32 bits");
 
 // USMOP4A: Unsigned by signed integer quarter-tile sum of outer products, accumulating
 // Encoding: usmop4a_za_zz_h2x1
@@ -16418,7 +15713,6 @@ struct Usmop4aZaZzH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Usmop4aZaZzH2x1) == 4, "Encoding struct must be 32 bits");
 
 // USMOP4A: Unsigned by signed integer quarter-tile sum of outer products, accumulating
 // Encoding: usmop4a_za_zz_h2x2
@@ -16442,7 +15736,6 @@ struct Usmop4aZaZzH2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Usmop4aZaZzH2x2) == 4, "Encoding struct must be 32 bits");
 
 // USMOP4S: Unsigned by signed integer quarter-tile sum of outer products, subtracting
 // Encoding: usmop4s_za_zz_b1x2
@@ -16468,7 +15761,6 @@ struct Usmop4sZaZzB1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Usmop4sZaZzB1x2) == 4, "Encoding struct must be 32 bits");
 
 // USMOP4S: Unsigned by signed integer quarter-tile sum of outer products, subtracting
 // Encoding: usmop4s_za_zz_b1x1
@@ -16494,7 +15786,6 @@ struct Usmop4sZaZzB1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Usmop4sZaZzB1x1) == 4, "Encoding struct must be 32 bits");
 
 // USMOP4S: Unsigned by signed integer quarter-tile sum of outer products, subtracting
 // Encoding: usmop4s_za_zz_b2x1
@@ -16520,7 +15811,6 @@ struct Usmop4sZaZzB2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Usmop4sZaZzB2x1) == 4, "Encoding struct must be 32 bits");
 
 // USMOP4S: Unsigned by signed integer quarter-tile sum of outer products, subtracting
 // Encoding: usmop4s_za_zz_b2x2
@@ -16546,7 +15836,6 @@ struct Usmop4sZaZzB2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Usmop4sZaZzB2x2) == 4, "Encoding struct must be 32 bits");
 
 // USMOP4S: Unsigned by signed integer quarter-tile sum of outer products, subtracting
 // Encoding: usmop4s_za_zz_h1x2
@@ -16570,7 +15859,6 @@ struct Usmop4sZaZzH1x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Usmop4sZaZzH1x2) == 4, "Encoding struct must be 32 bits");
 
 // USMOP4S: Unsigned by signed integer quarter-tile sum of outer products, subtracting
 // Encoding: usmop4s_za_zz_h1x1
@@ -16594,7 +15882,6 @@ struct Usmop4sZaZzH1x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Usmop4sZaZzH1x1) == 4, "Encoding struct must be 32 bits");
 
 // USMOP4S: Unsigned by signed integer quarter-tile sum of outer products, subtracting
 // Encoding: usmop4s_za_zz_h2x1
@@ -16618,7 +15905,6 @@ struct Usmop4sZaZzH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Usmop4sZaZzH2x1) == 4, "Encoding struct must be 32 bits");
 
 // USMOP4S: Unsigned by signed integer quarter-tile sum of outer products, subtracting
 // Encoding: usmop4s_za_zz_h2x2
@@ -16642,7 +15928,6 @@ struct Usmop4sZaZzH2x2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Usmop4sZaZzH2x2) == 4, "Encoding struct must be 32 bits");
 
 // USTMOPA: Unsigned by signed 8-bit integer sparse sum of outer products to 32-bit integer, accumulating
 // Encoding: ustmopa_za_zzzi_b2x1
@@ -16667,7 +15952,6 @@ struct UstmopaZaZzziB2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UstmopaZaZzziB2x1) == 4, "Encoding struct must be 32 bits");
 
 // USVDOT: Multi-vector unsigned by signed 8-bit integer vertical dot product by indexed element to 32-bit integer
 // Encoding: usvdot_za_zzi_s4xi
@@ -16692,7 +15976,6 @@ struct UsvdotZaZziS4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UsvdotZaZziS4xi) == 4, "Encoding struct must be 32 bits");
 
 // UTMOPA: Unsigned 16-bit integer sparse sum of outer products to 32-bit integer, accumulating
 // Encoding: utmopa_za32_zzzi_h2x1
@@ -16717,7 +16000,6 @@ struct UtmopaZa32ZzziH2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UtmopaZa32ZzziH2x1) == 4, "Encoding struct must be 32 bits");
 
 // UTMOPA: Unsigned 8-bit integer sparse sum of outer products to 32-bit integer, accumulating
 // Encoding: utmopa_za_zzzi_b2x1
@@ -16742,7 +16024,6 @@ struct UtmopaZaZzziB2x1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UtmopaZaZzziB2x1) == 4, "Encoding struct must be 32 bits");
 
 // UUNPK: Unpack and zero-extend multi-vector elements
 // Encoding: uunpk_mz_z_2
@@ -16762,7 +16043,6 @@ struct UunpkMzZ2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UunpkMzZ2) == 4, "Encoding struct must be 32 bits");
 
 // UUNPK: Unpack and zero-extend multi-vector elements
 // Encoding: uunpk_mz_z_4
@@ -16784,7 +16064,6 @@ struct UunpkMzZ4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UunpkMzZ4) == 4, "Encoding struct must be 32 bits");
 
 // UVDOT: Multi-vector unsigned 16-bit integer vertical dot product by indexed element to 32-bit integer
 // Encoding: uvdot_za32_zzi_2xi
@@ -16808,7 +16087,6 @@ struct UvdotZa32Zzi2xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UvdotZa32Zzi2xi) == 4, "Encoding struct must be 32 bits");
 
 // UVDOT: Multi-vector unsigned integer vertical dot product by indexed element
 // Encoding: uvdot_za_zzi_s4xi
@@ -16833,7 +16111,6 @@ struct UvdotZaZziS4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UvdotZaZziS4xi) == 4, "Encoding struct must be 32 bits");
 
 // UVDOT: Multi-vector unsigned integer vertical dot product by indexed element
 // Encoding: uvdot_za_zzi_d4xi
@@ -16858,7 +16135,6 @@ struct UvdotZaZziD4xi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UvdotZaZziD4xi) == 4, "Encoding struct must be 32 bits");
 
 // UZP: Concatenate elements from four vectors
 // Encoding: uzp_mz_z_4
@@ -16880,7 +16156,6 @@ struct UzpMzZ4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UzpMzZ4) == 4, "Encoding struct must be 32 bits");
 
 // UZP: Concatenate elements from four vectors
 // Encoding: uzp_mz_z_4q
@@ -16902,7 +16177,6 @@ struct UzpMzZ4q {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UzpMzZ4q) == 4, "Encoding struct must be 32 bits");
 
 // UZP: Concatenate elements from two vectors
 // Encoding: uzp_mz_zz_2
@@ -16922,7 +16196,6 @@ struct UzpMzZz2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UzpMzZz2) == 4, "Encoding struct must be 32 bits");
 
 // UZP: Concatenate elements from two vectors
 // Encoding: uzp_mz_zz_2q
@@ -16942,7 +16215,6 @@ struct UzpMzZz2q {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UzpMzZz2q) == 4, "Encoding struct must be 32 bits");
 
 // ZERO: Zero ZA single-vector groups
 // Encoding: zero_za1_ri_2
@@ -16958,7 +16230,6 @@ struct ZeroZa1Ri2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(ZeroZa1Ri2) == 4, "Encoding struct must be 32 bits");
 
 // ZERO: Zero ZA single-vector groups
 // Encoding: zero_za1_ri_4
@@ -16974,7 +16245,6 @@ struct ZeroZa1Ri4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(ZeroZa1Ri4) == 4, "Encoding struct must be 32 bits");
 
 // ZERO: Zero ZA double-vector groups
 // Encoding: zero_za2_ri_1
@@ -16990,7 +16260,6 @@ struct ZeroZa2Ri1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(ZeroZa2Ri1) == 4, "Encoding struct must be 32 bits");
 
 // ZERO: Zero ZA double-vector groups
 // Encoding: zero_za2_ri_2
@@ -17007,7 +16276,6 @@ struct ZeroZa2Ri2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(ZeroZa2Ri2) == 4, "Encoding struct must be 32 bits");
 
 // ZERO: Zero ZA double-vector groups
 // Encoding: zero_za2_ri_4
@@ -17024,7 +16292,6 @@ struct ZeroZa2Ri4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(ZeroZa2Ri4) == 4, "Encoding struct must be 32 bits");
 
 // ZERO: Zero ZA quad-vector groups
 // Encoding: zero_za4_ri_1
@@ -17041,7 +16308,6 @@ struct ZeroZa4Ri1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(ZeroZa4Ri1) == 4, "Encoding struct must be 32 bits");
 
 // ZERO: Zero ZA quad-vector groups
 // Encoding: zero_za4_ri_2
@@ -17058,7 +16324,6 @@ struct ZeroZa4Ri2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(ZeroZa4Ri2) == 4, "Encoding struct must be 32 bits");
 
 // ZERO: Zero ZA quad-vector groups
 // Encoding: zero_za4_ri_4
@@ -17075,7 +16340,6 @@ struct ZeroZa4Ri4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(ZeroZa4Ri4) == 4, "Encoding struct must be 32 bits");
 
 // ZERO: Zero ZT0
 // Encoding: zero_zt_i_
@@ -17089,7 +16353,6 @@ struct ZeroZtI {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(ZeroZtI) == 4, "Encoding struct must be 32 bits");
 
 // ZIP: Interleave elements from four vectors
 // Encoding: zip_mz_z_4
@@ -17111,7 +16374,6 @@ struct ZipMzZ4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(ZipMzZ4) == 4, "Encoding struct must be 32 bits");
 
 // ZIP: Interleave elements from four vectors
 // Encoding: zip_mz_z_4q
@@ -17133,7 +16395,6 @@ struct ZipMzZ4q {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(ZipMzZ4q) == 4, "Encoding struct must be 32 bits");
 
 // ZIP: Interleave elements from two vectors
 // Encoding: zip_mz_zz_2
@@ -17153,7 +16414,6 @@ struct ZipMzZz2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(ZipMzZz2) == 4, "Encoding struct must be 32 bits");
 
 // ZIP: Interleave elements from two vectors
 // Encoding: zip_mz_zz_2q
@@ -17173,7 +16433,6 @@ struct ZipMzZz2q {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(ZipMzZz2q) == 4, "Encoding struct must be 32 bits");
 
 // Union for mortlach2 instruction class
 union Mortlach2Encoding {
@@ -17920,6 +17179,7 @@ union Mortlach2Encoding {
     ZipMzZz2q zip_mz_zz2q;
     uint32_t raw;
 };
+static_assert(sizeof(Mortlach2Encoding) == 4, "Encoding union must be 32 bits");
 
 // Encode function implementations
 uint32_t encode_add_mz_zzv_2x1(uint32_t Zdn, uint32_t Zm, uint32_t size) {
@@ -32874,25 +32134,31 @@ uint32_t encode_zip_mz_zz_2q(uint32_t Zd, uint32_t Zn, uint32_t Zm) {
 // Decode a mortlach2 instruction
 // Input is in native ARM64 format (as read from memory)
 std::optional<Instruction> decode_mortlach2(uint32_t insn) {
-    // zero_zt_i_
-    if ((insn & 0xFFFFFFFFu) == 0xC0480001u) {
-        Instruction result(Mnemonic::ZERO, insn);
-        Mortlach2Encoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFFFFFFFFu (1 pattern, 1 encoding)
+    switch (insn & 0xFFFFFFFFu) {
+        case 0xC0480001u: { // zero_zt_i_
+                        Instruction result(Mnemonic::ZERO, insn);
+                        Mortlach2Encoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // luti6_mz4_ztmz3_4
-    if ((insn & 0xFFFFFC6Cu) == 0xC09A0000u) {
-        Instruction result(Mnemonic::LUTI6, insn);
-        Mortlach2Encoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFFFFFC6Cu (1 pattern, 1 encoding)
+    switch (insn & 0xFFFFFC6Cu) {
+        case 0xC09A0000u: { // luti6_mz4_ztmz3_4
+                        Instruction result(Mnemonic::LUTI6, insn);
+                        Mortlach2Encoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFFFC63u (11 unique patterns, 11 encodings)
+    // Switch for mask 0xFFFFFC63u (11 patterns, 11 encodings)
     switch (insn & 0xFFFFFC63u) {
         case 0xC08A0000u: { // luti6_mz4_ztmz3_1
                         Instruction result(Mnemonic::LUTI6, insn);
@@ -32971,9 +32237,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFFFC60u (2 unique patterns, 2 encodings)
+    // Switch for mask 0xFFFFFC60u (2 patterns, 2 encodings)
     switch (insn & 0xFFFFFC60u) {
         case 0xC134E000u: { // fcvt_z8_mz4_
                         Instruction result(Mnemonic::FCVT, insn);
@@ -32989,9 +32256,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFFFC21u (8 unique patterns, 8 encodings)
+    // Switch for mask 0xFFFFFC21u (8 patterns, 8 encodings)
     switch (insn & 0xFFFFFC21u) {
         case 0xC121E000u: { // fcvtzs_mz_z_2
                         Instruction result(Mnemonic::FCVTZS, insn);
@@ -33049,9 +32317,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFFFC20u (9 unique patterns, 9 encodings)
+    // Switch for mask 0xFFFFFC20u (9 patterns, 9 encodings)
     switch (insn & 0xFFFFFC20u) {
         case 0xC120E000u: { // fcvt_z_mz2_
                         Instruction result(Mnemonic::FCVT, insn);
@@ -33116,9 +32385,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFFFC1Fu (2 unique patterns, 2 encodings)
+    // Switch for mask 0xFFFFFC1Fu (2 patterns, 2 encodings)
     switch (insn & 0xFFFFFC1Fu) {
         case 0xE11F8000u: { // ldr_zt_br_
                         Instruction result(Mnemonic::LDR, insn);
@@ -33138,9 +32408,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.str_zt_br.Rn, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFFFC01u (10 unique patterns, 10 encodings)
+    // Switch for mask 0xFFFFFC01u (10 patterns, 10 encodings)
     switch (insn & 0xFFFFFC01u) {
         case 0xC126E000u: { // f1cvt_mz2_z8_
                         Instruction result(Mnemonic::F1CVT, insn);
@@ -33212,45 +32483,58 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // luti6_z_ztz_
-    if ((insn & 0xFFFFFC00u) == 0xC0C84000u) {
-        Instruction result(Mnemonic::LUTI6, insn);
-        Mortlach2Encoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFFFFFC00u (1 pattern, 1 encoding)
+    switch (insn & 0xFFFFFC00u) {
+        case 0xC0C84000u: { // luti6_z_ztz_
+                        Instruction result(Mnemonic::LUTI6, insn);
+                        Mortlach2Encoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // movt_zt_z_
-    if ((insn & 0xFFFFCFE0u) == 0xC04F03E0u) {
-        Instruction result(Mnemonic::MOVT, insn);
-        Mortlach2Encoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFFFFCFE0u (1 pattern, 1 encoding)
+    switch (insn & 0xFFFFCFE0u) {
+        case 0xC04F03E0u: { // movt_zt_z_
+                        Instruction result(Mnemonic::MOVT, insn);
+                        Mortlach2Encoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // luti4_mz4_ztmz2_4
-    if ((insn & 0xFFFFCC2Cu) == 0xC09B0000u) {
-        Instruction result(Mnemonic::LUTI4, insn);
-        Mortlach2Encoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFFFFCC2Cu (1 pattern, 1 encoding)
+    switch (insn & 0xFFFFCC2Cu) {
+        case 0xC09B0000u: { // luti4_mz4_ztmz2_4
+                        Instruction result(Mnemonic::LUTI4, insn);
+                        Mortlach2Encoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // luti4_mz4_ztmz2_1
-    if ((insn & 0xFFFFCC23u) == 0xC08B0000u) {
-        Instruction result(Mnemonic::LUTI4, insn);
-        Mortlach2Encoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFFFFCC23u (1 pattern, 1 encoding)
+    switch (insn & 0xFFFFCC23u) {
+        case 0xC08B0000u: { // luti4_mz4_ztmz2_1
+                        Instruction result(Mnemonic::LUTI4, insn);
+                        Mortlach2Encoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFF9FFEu (2 unique patterns, 2 encodings)
+    // Switch for mask 0xFFFF9FFEu (2 patterns, 2 encodings)
     switch (insn & 0xFFFF9FFEu) {
         case 0xC00F0000u: { // zero_za4_ri_2
                         Instruction result(Mnemonic::ZERO, insn);
@@ -33266,9 +32550,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFF9FFCu (3 unique patterns, 3 encodings)
+    // Switch for mask 0xFFFF9FFCu (3 patterns, 3 encodings)
     switch (insn & 0xFFFF9FFCu) {
         case 0xC00D0000u: { // zero_za2_ri_2
                         Instruction result(Mnemonic::ZERO, insn);
@@ -33291,9 +32576,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFF9FF8u (3 unique patterns, 3 encodings)
+    // Switch for mask 0xFFFF9FF8u (3 patterns, 3 encodings)
     switch (insn & 0xFFFF9FF8u) {
         case 0xC00C0000u: { // zero_za1_ri_2
                         Instruction result(Mnemonic::ZERO, insn);
@@ -33316,9 +32602,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFF9F03u (2 unique patterns, 3 encodings)
+    // Switch for mask 0xFFFF9F03u (2 patterns, 3 encodings)
     switch (insn & 0xFFFF9F03u) {
         case 0xC0060C00u: { // mov_mz_za4_1_mova_mz_za4_1
             // Also matches: mova_mz_za4_1 (MOVA)
@@ -33335,9 +32622,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFF9F01u (2 unique patterns, 3 encodings)
+    // Switch for mask 0xFFFF9F01u (2 patterns, 3 encodings)
     switch (insn & 0xFFFF9F01u) {
         case 0xC0060800u: { // mov_mz_za2_1_mova_mz_za2_1
             // Also matches: mova_mz_za2_1 (MOVA)
@@ -33354,9 +32642,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFF9C78u (5 unique patterns, 6 encodings)
+    // Switch for mask 0xFFFF9C78u (5 patterns, 6 encodings)
     switch (insn & 0xFFFF9C78u) {
         case 0xC0040C00u: { // mov_za_mz4_1_mova_za_mz4_1
             // Also matches: mova_za_mz4_1 (MOVA)
@@ -33394,9 +32683,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFF9C38u (5 unique patterns, 6 encodings)
+    // Switch for mask 0xFFFF9C38u (5 patterns, 6 encodings)
     switch (insn & 0xFFFF9C38u) {
         case 0xC0040800u: { // mov_za_mz2_1_mova_za_mz2_1
             // Also matches: mova_za_mz2_1 (MOVA)
@@ -33434,9 +32724,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFF8FE0u (2 unique patterns, 2 encodings)
+    // Switch for mask 0xFFFF8FE0u (2 patterns, 2 encodings)
     switch (insn & 0xFFFF8FE0u) {
         case 0xC04C03E0u: { // movt_r_zt_
                         Instruction result(Mnemonic::MOVT, insn);
@@ -33456,9 +32747,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.movt_zt_r.Rt, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFF1F83u (6 unique patterns, 9 encodings)
+    // Switch for mask 0xFFFF1F83u (6 patterns, 9 encodings)
     switch (insn & 0xFFFF1F83u) {
         case 0xC0060400u: { // mov_mz4_za_b1_mova_mz4_za_b1
             // Also matches: mova_mz4_za_b1 (MOVA)
@@ -33517,9 +32809,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.movaz_mz4za_w1.Rs, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFF1F03u (2 unique patterns, 3 encodings)
+    // Switch for mask 0xFFFF1F03u (2 patterns, 3 encodings)
     switch (insn & 0xFFFF1F03u) {
         case 0xC0C60400u: { // mov_mz4_za_d1_mova_mz4_za_d1
             // Also matches: mova_mz4_za_d1 (MOVA)
@@ -33540,9 +32833,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.movaz_mz4za_d1.Rs, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFF1F01u (8 unique patterns, 12 encodings)
+    // Switch for mask 0xFFFF1F01u (8 patterns, 12 encodings)
     switch (insn & 0xFFFF1F01u) {
         case 0xC0060000u: { // mov_mz2_za_b1_mova_mz2_za_b1
             // Also matches: mova_mz2_za_b1 (MOVA)
@@ -33620,9 +32914,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.movaz_mz2za_d1.Rs, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFF1E00u (5 unique patterns, 5 encodings)
+    // Switch for mask 0xFFFF1E00u (5 patterns, 5 encodings)
     switch (insn & 0xFFFF1E00u) {
         case 0xC0020200u: { // movaz_z_rza_b
                         Instruction result(Mnemonic::MOVAZ, insn);
@@ -33669,9 +32964,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.movaz_zrza_q.Rs, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFF1C7Cu (3 unique patterns, 6 encodings)
+    // Switch for mask 0xFFFF1C7Cu (3 patterns, 6 encodings)
     switch (insn & 0xFFFF1C7Cu) {
         case 0xC0040400u: { // mov_za4_z_b1_mova_za4_z_b1
             // Also matches: mova_za4_z_b1 (MOVA)
@@ -33703,21 +32999,25 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za4zw1mova_za4zw1.Rs, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // mov_za4_z_d1_mova_za4_z_d1
-    // Also matches: mova_za4_z_d1 (MOVA)
-    if ((insn & 0xFFFF1C78u) == 0xC0C40400u) {
-        Instruction result(Mnemonic::MOVA, insn);
-        Mortlach2Encoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        bool is_64bit = true;
-        result.operands.push_back(Operand(OperandType::Register, enc.mov_za4zd1mova_za4zd1.Rs, is_64bit));
-        return result;
+    // Switch for mask 0xFFFF1C78u (1 pattern, 2 encodings)
+    switch (insn & 0xFFFF1C78u) {
+        case 0xC0C40400u: { // mov_za4_z_d1_mova_za4_z_d1
+            // Also matches: mova_za4_z_d1 (MOVA)
+                        Instruction result(Mnemonic::MOVA, insn);
+                        Mortlach2Encoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.mov_za4zd1mova_za4zd1.Rs, is_64bit));
+                        return result;
+        }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFF1C38u (4 unique patterns, 8 encodings)
+    // Switch for mask 0xFFFF1C38u (4 patterns, 8 encodings)
     switch (insn & 0xFFFF1C38u) {
         case 0xC0040000u: { // mov_za2_z_b1_mova_za2_z_b1
             // Also matches: mova_za2_z_b1 (MOVA)
@@ -33759,99 +33059,130 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za2zd1mova_za2zd1.Rs, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // luti4_mz4_ztz_4
-    if ((insn & 0xFFFECC0Cu) == 0xC09A8000u) {
-        Instruction result(Mnemonic::LUTI4, insn);
-        Mortlach2Encoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFFFECC0Cu (1 pattern, 1 encoding)
+    switch (insn & 0xFFFECC0Cu) {
+        case 0xC09A8000u: { // luti4_mz4_ztz_4
+                        Instruction result(Mnemonic::LUTI4, insn);
+                        Mortlach2Encoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // luti4_mz4_ztz_1
-    if ((insn & 0xFFFECC03u) == 0xC08A8000u) {
-        Instruction result(Mnemonic::LUTI4, insn);
-        Mortlach2Encoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFFFECC03u (1 pattern, 1 encoding)
+    switch (insn & 0xFFFECC03u) {
+        case 0xC08A8000u: { // luti4_mz4_ztz_1
+                        Instruction result(Mnemonic::LUTI4, insn);
+                        Mortlach2Encoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // luti4_mz2_ztz_8
-    if ((insn & 0xFFFE4C08u) == 0xC09A4000u) {
-        Instruction result(Mnemonic::LUTI4, insn);
-        Mortlach2Encoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFFFE4C08u (1 pattern, 1 encoding)
+    switch (insn & 0xFFFE4C08u) {
+        case 0xC09A4000u: { // luti4_mz2_ztz_8
+                        Instruction result(Mnemonic::LUTI4, insn);
+                        Mortlach2Encoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // luti4_mz2_ztz_1
-    if ((insn & 0xFFFE4C01u) == 0xC08A4000u) {
-        Instruction result(Mnemonic::LUTI4, insn);
-        Mortlach2Encoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFFFE4C01u (1 pattern, 1 encoding)
+    switch (insn & 0xFFFE4C01u) {
+        case 0xC08A4000u: { // luti4_mz2_ztz_1
+                        Instruction result(Mnemonic::LUTI4, insn);
+                        Mortlach2Encoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // luti4_z_ztz_
-    if ((insn & 0xFFFE0C00u) == 0xC0CA0000u) {
-        Instruction result(Mnemonic::LUTI4, insn);
-        Mortlach2Encoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFFFE0C00u (1 pattern, 1 encoding)
+    switch (insn & 0xFFFE0C00u) {
+        case 0xC0CA0000u: { // luti4_z_ztz_
+                        Instruction result(Mnemonic::LUTI4, insn);
+                        Mortlach2Encoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // luti2_mz4_ztz_4
-    if ((insn & 0xFFFCCC0Cu) == 0xC09C8000u) {
-        Instruction result(Mnemonic::LUTI2, insn);
-        Mortlach2Encoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFFFCCC0Cu (1 pattern, 1 encoding)
+    switch (insn & 0xFFFCCC0Cu) {
+        case 0xC09C8000u: { // luti2_mz4_ztz_4
+                        Instruction result(Mnemonic::LUTI2, insn);
+                        Mortlach2Encoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // luti2_mz4_ztz_1
-    if ((insn & 0xFFFCCC03u) == 0xC08C8000u) {
-        Instruction result(Mnemonic::LUTI2, insn);
-        Mortlach2Encoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFFFCCC03u (1 pattern, 1 encoding)
+    switch (insn & 0xFFFCCC03u) {
+        case 0xC08C8000u: { // luti2_mz4_ztz_1
+                        Instruction result(Mnemonic::LUTI2, insn);
+                        Mortlach2Encoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // luti2_mz2_ztz_8
-    if ((insn & 0xFFFC4C08u) == 0xC09C4000u) {
-        Instruction result(Mnemonic::LUTI2, insn);
-        Mortlach2Encoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFFFC4C08u (1 pattern, 1 encoding)
+    switch (insn & 0xFFFC4C08u) {
+        case 0xC09C4000u: { // luti2_mz2_ztz_8
+                        Instruction result(Mnemonic::LUTI2, insn);
+                        Mortlach2Encoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // luti2_mz2_ztz_1
-    if ((insn & 0xFFFC4C01u) == 0xC08C4000u) {
-        Instruction result(Mnemonic::LUTI2, insn);
-        Mortlach2Encoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFFFC4C01u (1 pattern, 1 encoding)
+    switch (insn & 0xFFFC4C01u) {
+        case 0xC08C4000u: { // luti2_mz2_ztz_1
+                        Instruction result(Mnemonic::LUTI2, insn);
+                        Mortlach2Encoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // luti2_z_ztz_
-    if ((insn & 0xFFFC0C00u) == 0xC0CC0000u) {
-        Instruction result(Mnemonic::LUTI2, insn);
-        Mortlach2Encoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFFFC0C00u (1 pattern, 1 encoding)
+    switch (insn & 0xFFFC0C00u) {
+        case 0xC0CC0000u: { // luti2_z_ztz_
+                        Instruction result(Mnemonic::LUTI2, insn);
+                        Mortlach2Encoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF1FE3Eu (20 unique patterns, 20 encodings)
+    // Switch for mask 0xFFF1FE3Eu (20 patterns, 20 encodings)
     switch (insn & 0xFFF1FE3Eu) {
         case 0x80200008u: { // fmop4a_za16_z8z8_b1x1
                         Instruction result(Mnemonic::FMOP4A, insn);
@@ -33993,9 +33324,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF1FE3Cu (76 unique patterns, 76 encodings)
+    // Switch for mask 0xFFF1FE3Cu (76 patterns, 76 encodings)
     switch (insn & 0xFFF1FE3Cu) {
         case 0x80000000u: { // fmop4a_za_zz_s1x1
                         Instruction result(Mnemonic::FMOP4A, insn);
@@ -34529,9 +33861,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF1FE38u (40 unique patterns, 40 encodings)
+    // Switch for mask 0xFFF1FE38u (40 patterns, 40 encodings)
     switch (insn & 0xFFF1FE38u) {
         case 0x80C00008u: { // fmop4a_za_zz_d1x1
                         Instruction result(Mnemonic::FMOP4A, insn);
@@ -34813,9 +34146,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF0FFE3u (5 unique patterns, 10 encodings)
+    // Switch for mask 0xFFF0FFE3u (5 patterns, 10 encodings)
     switch (insn & 0xFFF0FFE3u) {
         case 0xC120A900u: { // bfmax_mz_zzv_4x1
             // Also matches: fmax_mz_zzv_4x1 (FMAX)
@@ -34857,9 +34191,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF0FFE1u (5 unique patterns, 10 encodings)
+    // Switch for mask 0xFFF0FFE1u (5 patterns, 10 encodings)
     switch (insn & 0xFFF0FFE1u) {
         case 0xC120A100u: { // bfmax_mz_zzv_2x1
             // Also matches: fmax_mz_zzv_2x1 (FMAX)
@@ -34901,9 +34236,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF0FC20u (3 unique patterns, 3 encodings)
+    // Switch for mask 0xFFF0FC20u (3 patterns, 3 encodings)
     switch (insn & 0xFFF0FC20u) {
         case 0xC1E0D400u: { // sqrshr_z_mz2_
                         Instruction result(Mnemonic::SQRSHR, insn);
@@ -34926,9 +34262,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF0E01Cu (4 unique patterns, 4 encodings)
+    // Switch for mask 0xFFF0E01Cu (4 patterns, 4 encodings)
     switch (insn & 0xFFF0E01Cu) {
         case 0xA1408000u: { // ld1b_mzx_p_bi_4x4
                         Instruction result(Mnemonic::LD1B, insn);
@@ -34966,9 +34303,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1b_mzx_pbi4x4.Rn, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF0E018u (4 unique patterns, 4 encodings)
+    // Switch for mask 0xFFF0E018u (4 patterns, 4 encodings)
     switch (insn & 0xFFF0E018u) {
         case 0xA1400000u: { // ld1b_mzx_p_bi_2x8
                         Instruction result(Mnemonic::LD1B, insn);
@@ -35006,9 +34344,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1b_mzx_pbi2x8.Rn, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF0E00Cu (12 unique patterns, 12 encodings)
+    // Switch for mask 0xFFF0E00Cu (12 patterns, 12 encodings)
     switch (insn & 0xFFF0E00Cu) {
         case 0xA140A000u: { // ld1h_mzx_p_bi_4x4
                         Instruction result(Mnemonic::LD1H, insn);
@@ -35118,9 +34457,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1d_mzx_pbi4x4.Rn, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF0E008u (12 unique patterns, 12 encodings)
+    // Switch for mask 0xFFF0E008u (12 patterns, 12 encodings)
     switch (insn & 0xFFF0E008u) {
         case 0xA1402000u: { // ld1h_mzx_p_bi_2x8
                         Instruction result(Mnemonic::LD1H, insn);
@@ -35230,9 +34570,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1d_mzx_pbi2x8.Rn, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF09C1Eu (6 unique patterns, 6 encodings)
+    // Switch for mask 0xFFF09C1Eu (6 patterns, 6 encodings)
     switch (insn & 0xFFF09C1Eu) {
         case 0xC1200002u: { // fmlall_za32_z8z8v_2x1
                         Instruction result(Mnemonic::FMLALL, insn);
@@ -35276,9 +34617,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF09C1Cu (20 unique patterns, 20 encodings)
+    // Switch for mask 0xFFF09C1Cu (20 patterns, 20 encodings)
     switch (insn & 0xFFF09C1Cu) {
         case 0xC1200404u: { // usmlall_za_zzv_s
                         Instruction result(Mnemonic::USMLALL, insn);
@@ -35420,9 +34762,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF09C18u (33 unique patterns, 33 encodings)
+    // Switch for mask 0xFFF09C18u (33 patterns, 33 encodings)
     switch (insn & 0xFFF09C18u) {
         case 0xC1200C00u: { // fmlal_za_zzv_1
                         Instruction result(Mnemonic::FMLAL, insn);
@@ -35655,9 +34998,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF09878u (10 unique patterns, 10 encodings)
+    // Switch for mask 0xFFF09878u (10 patterns, 10 encodings)
     switch (insn & 0xFFF09878u) {
         case 0xC1908000u: { // smlall_za_zzi_d4xi
                         Instruction result(Mnemonic::SMLALL, insn);
@@ -35729,9 +35073,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF09838u (8 unique patterns, 8 encodings)
+    // Switch for mask 0xFFF09838u (8 patterns, 8 encodings)
     switch (insn & 0xFFF09838u) {
         case 0xC1900000u: { // smlall_za_zzi_d2xi
                         Instruction result(Mnemonic::SMLALL, insn);
@@ -35789,9 +35134,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF09830u (2 unique patterns, 2 encodings)
+    // Switch for mask 0xFFF09830u (2 patterns, 2 encodings)
     switch (insn & 0xFFF09830u) {
         case 0xC1D00800u: { // fvdotb_za32_z8z8i_2xi
                         Instruction result(Mnemonic::FVDOTB, insn);
@@ -35807,9 +35153,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF09078u (30 unique patterns, 30 encodings)
+    // Switch for mask 0xFFF09078u (30 patterns, 30 encodings)
     switch (insn & 0xFFF09078u) {
         case 0xC1108000u: { // smlall_za_zzi_s4xi
                         Instruction result(Mnemonic::SMLALL, insn);
@@ -36021,9 +35368,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF09070u (6 unique patterns, 6 encodings)
+    // Switch for mask 0xFFF09070u (6 patterns, 6 encodings)
     switch (insn & 0xFFF09070u) {
         case 0xC1109000u: { // fmla_za_zzi_h4xi
                         Instruction result(Mnemonic::FMLA, insn);
@@ -36067,9 +35415,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF09038u (30 unique patterns, 30 encodings)
+    // Switch for mask 0xFFF09038u (30 patterns, 30 encodings)
     switch (insn & 0xFFF09038u) {
         case 0xC1100000u: { // smlall_za_zzi_s2xi
                         Instruction result(Mnemonic::SMLALL, insn);
@@ -36281,9 +35630,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF09030u (7 unique patterns, 7 encodings)
+    // Switch for mask 0xFFF09030u (7 patterns, 7 encodings)
     switch (insn & 0xFFF09030u) {
         case 0xC1101000u: { // fmla_za_zzi_h2xi
                         Instruction result(Mnemonic::FMLA, insn);
@@ -36334,9 +35684,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF0101Cu (4 unique patterns, 4 encodings)
+    // Switch for mask 0xFFF0101Cu (4 patterns, 4 encodings)
     switch (insn & 0xFFF0101Cu) {
         case 0xC1800000u: { // smlall_za_zzi_d
                         Instruction result(Mnemonic::SMLALL, insn);
@@ -36366,9 +35717,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF01018u (8 unique patterns, 8 encodings)
+    // Switch for mask 0xFFF01018u (8 patterns, 8 encodings)
     switch (insn & 0xFFF01018u) {
         case 0xC1801000u: { // fmlal_za_zzi_1
                         Instruction result(Mnemonic::FMLAL, insn);
@@ -36426,18 +35778,22 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // fmlal_za_z8z8i_1
-    if ((insn & 0xFFF01010u) == 0xC1C00000u) {
-        Instruction result(Mnemonic::FMLAL, insn);
-        Mortlach2Encoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFFF01010u (1 pattern, 1 encoding)
+    switch (insn & 0xFFF01010u) {
+        case 0xC1C00000u: { // fmlal_za_z8z8i_1
+                        Instruction result(Mnemonic::FMLAL, insn);
+                        Mortlach2Encoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF0001Cu (7 unique patterns, 7 encodings)
+    // Switch for mask 0xFFF0001Cu (7 patterns, 7 encodings)
     switch (insn & 0xFFF0001Cu) {
         case 0xC1000000u: { // smlall_za_zzi_s
                         Instruction result(Mnemonic::SMLALL, insn);
@@ -36488,9 +35844,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE3FFE3u (5 unique patterns, 10 encodings)
+    // Switch for mask 0xFFE3FFE3u (5 patterns, 10 encodings)
     switch (insn & 0xFFE3FFE3u) {
         case 0xC120B900u: { // bfmax_mz_zzw_4x4
             // Also matches: fmax_mz_zzw_4x4 (FMAX)
@@ -36532,19 +35889,23 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // bfmul_mz_zzw_4x4
-    // Also matches: fmul_mz_zzw_4x4 (FMUL)
-    if ((insn & 0xFFE3FC63u) == 0xC121E400u) {
-        Instruction result(Mnemonic::BFMUL, insn);
-        Mortlach2Encoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFFE3FC63u (1 pattern, 2 encodings)
+    switch (insn & 0xFFE3FC63u) {
+        case 0xC121E400u: { // bfmul_mz_zzw_4x4
+            // Also matches: fmul_mz_zzw_4x4 (FMUL)
+                        Instruction result(Mnemonic::BFMUL, insn);
+                        Mortlach2Encoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE39C7Eu (2 unique patterns, 2 encodings)
+    // Switch for mask 0xFFE39C7Eu (2 patterns, 2 encodings)
     switch (insn & 0xFFE39C7Eu) {
         case 0xC1A10004u: { // usmlall_za_zzw_s4x4
                         Instruction result(Mnemonic::USMLALL, insn);
@@ -36560,9 +35921,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE39C7Cu (9 unique patterns, 9 encodings)
+    // Switch for mask 0xFFE39C7Cu (9 patterns, 9 encodings)
     switch (insn & 0xFFE39C7Cu) {
         case 0xC1A10800u: { // fmlal_za_zzw_4x4
                         Instruction result(Mnemonic::FMLAL, insn);
@@ -36627,9 +35989,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE39C78u (11 unique patterns, 11 encodings)
+    // Switch for mask 0xFFE39C78u (11 patterns, 11 encodings)
     switch (insn & 0xFFE39C78u) {
         case 0xC1A11000u: { // fdot_za_zzw_4x4
                         Instruction result(Mnemonic::FDOT, insn);
@@ -36708,9 +36071,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE1FFE1u (5 unique patterns, 10 encodings)
+    // Switch for mask 0xFFE1FFE1u (5 patterns, 10 encodings)
     switch (insn & 0xFFE1FFE1u) {
         case 0xC120B100u: { // bfmax_mz_zzw_2x2
             // Also matches: fmax_mz_zzw_2x2 (FMAX)
@@ -36752,19 +36116,23 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // bfmul_mz_zzv_4x1
-    // Also matches: fmul_mz_zzv_4x1 (FMUL)
-    if ((insn & 0xFFE1FC63u) == 0xC121E800u) {
-        Instruction result(Mnemonic::BFMUL, insn);
-        Mortlach2Encoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFFE1FC63u (1 pattern, 2 encodings)
+    switch (insn & 0xFFE1FC63u) {
+        case 0xC121E800u: { // bfmul_mz_zzv_4x1
+            // Also matches: fmul_mz_zzv_4x1 (FMUL)
+                        Instruction result(Mnemonic::BFMUL, insn);
+                        Mortlach2Encoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE1FC21u (2 unique patterns, 4 encodings)
+    // Switch for mask 0xFFE1FC21u (2 patterns, 4 encodings)
     switch (insn & 0xFFE1FC21u) {
         case 0xC120E400u: { // bfmul_mz_zzw_2x2
             // Also matches: fmul_mz_zzw_2x2 (FMUL)
@@ -36782,9 +36150,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE19C3Eu (2 unique patterns, 2 encodings)
+    // Switch for mask 0xFFE19C3Eu (2 patterns, 2 encodings)
     switch (insn & 0xFFE19C3Eu) {
         case 0xC1A00004u: { // usmlall_za_zzw_s2x2
                         Instruction result(Mnemonic::USMLALL, insn);
@@ -36800,9 +36169,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE19C3Cu (9 unique patterns, 9 encodings)
+    // Switch for mask 0xFFE19C3Cu (9 patterns, 9 encodings)
     switch (insn & 0xFFE19C3Cu) {
         case 0xC1A00800u: { // fmlal_za_zzw_2x2
                         Instruction result(Mnemonic::FMLAL, insn);
@@ -36867,9 +36237,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE19C38u (11 unique patterns, 11 encodings)
+    // Switch for mask 0xFFE19C38u (11 patterns, 11 encodings)
     switch (insn & 0xFFE19C38u) {
         case 0xC1A01000u: { // fdot_za_zzw_2x2
                         Instruction result(Mnemonic::FDOT, insn);
@@ -36948,19 +36319,23 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // bfclamp_mz_zz_4
-    // Also matches: fclamp_mz_zz_4 (FCLAMP)
-    if ((insn & 0xFFE0FC03u) == 0xC120C800u) {
-        Instruction result(Mnemonic::BFCLAMP, insn);
-        Mortlach2Encoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFFE0FC03u (1 pattern, 2 encodings)
+    switch (insn & 0xFFE0FC03u) {
+        case 0xC120C800u: { // bfclamp_mz_zz_4
+            // Also matches: fclamp_mz_zz_4 (FCLAMP)
+                        Instruction result(Mnemonic::BFCLAMP, insn);
+                        Mortlach2Encoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE0FC01u (3 unique patterns, 4 encodings)
+    // Switch for mask 0xFFE0FC01u (3 patterns, 4 encodings)
     switch (insn & 0xFFE0FC01u) {
         case 0xC120C000u: { // bfclamp_mz_zz_2
             // Also matches: fclamp_mz_zz_2 (FCLAMP)
@@ -36984,9 +36359,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE0E01Cu (4 unique patterns, 4 encodings)
+    // Switch for mask 0xFFE0E01Cu (4 patterns, 4 encodings)
     switch (insn & 0xFFE0E01Cu) {
         case 0xA1008000u: { // ld1b_mzx_p_br_4x4
                         Instruction result(Mnemonic::LD1B, insn);
@@ -37028,9 +36404,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1b_mzx_pbr4x4.Rm, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE0E018u (4 unique patterns, 4 encodings)
+    // Switch for mask 0xFFE0E018u (4 patterns, 4 encodings)
     switch (insn & 0xFFE0E018u) {
         case 0xA1000000u: { // ld1b_mzx_p_br_2x8
                         Instruction result(Mnemonic::LD1B, insn);
@@ -37072,9 +36449,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1b_mzx_pbr2x8.Rm, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE0E00Eu (3 unique patterns, 3 encodings)
+    // Switch for mask 0xFFE0E00Eu (3 patterns, 3 encodings)
     switch (insn & 0xFFE0E00Eu) {
         case 0x80600008u: { // ftmopa_za16_z8z8zi_b2x1
                         Instruction result(Mnemonic::FTMOPA, insn);
@@ -37097,9 +36475,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE0E00Cu (22 unique patterns, 22 encodings)
+    // Switch for mask 0xFFE0E00Cu (22 patterns, 22 encodings)
     switch (insn & 0xFFE0E00Cu) {
         case 0x80400000u: { // ftmopa_za_zzzi_s2x1
                         Instruction result(Mnemonic::FTMOPA, insn);
@@ -37291,9 +36670,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1d_mzx_pbr4x4.Rm, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE0E008u (12 unique patterns, 12 encodings)
+    // Switch for mask 0xFFE0E008u (12 patterns, 12 encodings)
     switch (insn & 0xFFE0E008u) {
         case 0xA1002000u: { // ld1h_mzx_p_br_2x8
                         Instruction result(Mnemonic::LD1H, insn);
@@ -37415,9 +36795,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.stnt1d_mzx_pbr2x8.Rm, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE0001Eu (3 unique patterns, 3 encodings)
+    // Switch for mask 0xFFE0001Eu (3 patterns, 3 encodings)
     switch (insn & 0xFFE0001Eu) {
         case 0x80A00008u: { // fmopa_za16_pp_z8z8_8
                         Instruction result(Mnemonic::FMOPA, insn);
@@ -37440,9 +36821,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE0001Cu (7 unique patterns, 7 encodings)
+    // Switch for mask 0xFFE0001Cu (7 patterns, 7 encodings)
     switch (insn & 0xFFE0001Cu) {
         case 0x80800008u: { // bmopa_za_pp_zz_32
                         Instruction result(Mnemonic::BMOPA, insn);
@@ -37493,9 +36875,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFBF9C78u (4 unique patterns, 4 encodings)
+    // Switch for mask 0xFFBF9C78u (4 patterns, 4 encodings)
     switch (insn & 0xFFBF9C78u) {
         case 0xC1A11C00u: { // fadd_za_zw_4x4
                         Instruction result(Mnemonic::FADD, insn);
@@ -37525,9 +36908,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFBF9C38u (4 unique patterns, 4 encodings)
+    // Switch for mask 0xFFBF9C38u (4 patterns, 4 encodings)
     switch (insn & 0xFFBF9C38u) {
         case 0xC1A01C00u: { // fadd_za_zw_2x2
                         Instruction result(Mnemonic::FADD, insn);
@@ -37557,9 +36941,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFB09C1Eu (8 unique patterns, 8 encodings)
+    // Switch for mask 0xFFB09C1Eu (8 patterns, 8 encodings)
     switch (insn & 0xFFB09C1Eu) {
         case 0xC1200000u: { // smlall_za_zzv_2x1
                         Instruction result(Mnemonic::SMLALL, insn);
@@ -37617,9 +37002,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFB09C1Cu (4 unique patterns, 4 encodings)
+    // Switch for mask 0xFFB09C1Cu (4 patterns, 4 encodings)
     switch (insn & 0xFFB09C1Cu) {
         case 0xC1200400u: { // smlall_za_zzv_1
                         Instruction result(Mnemonic::SMLALL, insn);
@@ -37649,9 +37035,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFB09C18u (12 unique patterns, 12 encodings)
+    // Switch for mask 0xFFB09C18u (12 patterns, 12 encodings)
     switch (insn & 0xFFB09C18u) {
         case 0xC1201400u: { // sdot_za_zzv_2x1
                         Instruction result(Mnemonic::SDOT, insn);
@@ -37737,9 +37124,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFA39C7Eu (4 unique patterns, 4 encodings)
+    // Switch for mask 0xFFA39C7Eu (4 patterns, 4 encodings)
     switch (insn & 0xFFA39C7Eu) {
         case 0xC1A10000u: { // smlall_za_zzw_4x4
                         Instruction result(Mnemonic::SMLALL, insn);
@@ -37769,9 +37157,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFA39C78u (6 unique patterns, 6 encodings)
+    // Switch for mask 0xFFA39C78u (6 patterns, 6 encodings)
     switch (insn & 0xFFA39C78u) {
         case 0xC1A11400u: { // sdot_za_zzw_4x4
                         Instruction result(Mnemonic::SDOT, insn);
@@ -37815,9 +37204,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFA19C3Eu (4 unique patterns, 4 encodings)
+    // Switch for mask 0xFFA19C3Eu (4 patterns, 4 encodings)
     switch (insn & 0xFFA19C3Eu) {
         case 0xC1A00000u: { // smlall_za_zzw_2x2
                         Instruction result(Mnemonic::SMLALL, insn);
@@ -37847,9 +37237,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFA19C38u (6 unique patterns, 6 encodings)
+    // Switch for mask 0xFFA19C38u (6 patterns, 6 encodings)
     switch (insn & 0xFFA19C38u) {
         case 0xC1A01400u: { // sdot_za_zzw_2x2
                         Instruction result(Mnemonic::SDOT, insn);
@@ -37893,27 +37284,34 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // luti6_mz4_zmz2_4
-    if ((insn & 0xFFA0FC0Cu) == 0xC120FC00u) {
-        Instruction result(Mnemonic::LUTI6, insn);
-        Mortlach2Encoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFFA0FC0Cu (1 pattern, 1 encoding)
+    switch (insn & 0xFFA0FC0Cu) {
+        case 0xC120FC00u: { // luti6_mz4_zmz2_4
+                        Instruction result(Mnemonic::LUTI6, insn);
+                        Mortlach2Encoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // luti6_mz4_zmz2_1
-    if ((insn & 0xFFA0FC03u) == 0xC120F400u) {
-        Instruction result(Mnemonic::LUTI6, insn);
-        Mortlach2Encoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFFA0FC03u (1 pattern, 1 encoding)
+    switch (insn & 0xFFA0FC03u) {
+        case 0xC120F400u: { // luti6_mz4_zmz2_1
+                        Instruction result(Mnemonic::LUTI6, insn);
+                        Mortlach2Encoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFF7FFC60u (6 unique patterns, 6 encodings)
+    // Switch for mask 0xFF7FFC60u (6 patterns, 6 encodings)
     switch (insn & 0xFF7FFC60u) {
         case 0xC133E000u: { // sqcvt_z_mz4_
                         Instruction result(Mnemonic::SQCVT, insn);
@@ -37957,9 +37355,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFF3FFC63u (2 unique patterns, 2 encodings)
+    // Switch for mask 0xFF3FFC63u (2 patterns, 2 encodings)
     switch (insn & 0xFF3FFC63u) {
         case 0xC136E000u: { // zip_mz_z_4
                         Instruction result(Mnemonic::ZIP, insn);
@@ -37975,9 +37374,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFF3FFC23u (2 unique patterns, 2 encodings)
+    // Switch for mask 0xFF3FFC23u (2 patterns, 2 encodings)
     switch (insn & 0xFF3FFC23u) {
         case 0xC135E000u: { // sunpk_mz_z_4
                         Instruction result(Mnemonic::SUNPK, insn);
@@ -37993,9 +37393,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFF3FFC01u (2 unique patterns, 2 encodings)
+    // Switch for mask 0xFF3FFC01u (2 patterns, 2 encodings)
     switch (insn & 0xFF3FFC01u) {
         case 0xC125E000u: { // sunpk_mz_z_2
                         Instruction result(Mnemonic::SUNPK, insn);
@@ -38011,9 +37412,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFF30FFE3u (8 unique patterns, 8 encodings)
+    // Switch for mask 0xFF30FFE3u (8 patterns, 8 encodings)
     switch (insn & 0xFF30FFE3u) {
         case 0xC120A800u: { // smax_mz_zzv_4x1
                         Instruction result(Mnemonic::SMAX, insn);
@@ -38071,9 +37473,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFF30FFE1u (8 unique patterns, 8 encodings)
+    // Switch for mask 0xFF30FFE1u (8 patterns, 8 encodings)
     switch (insn & 0xFF30FFE1u) {
         case 0xC120A000u: { // smax_mz_zzv_2x1
                         Instruction result(Mnemonic::SMAX, insn);
@@ -38131,9 +37534,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFF23FFE3u (9 unique patterns, 9 encodings)
+    // Switch for mask 0xFF23FFE3u (9 patterns, 9 encodings)
     switch (insn & 0xFF23FFE3u) {
         case 0xC120B800u: { // smax_mz_zzw_4x4
                         Instruction result(Mnemonic::SMAX, insn);
@@ -38198,18 +37602,22 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // sel_mz_p_zz_4
-    if ((insn & 0xFF23E063u) == 0xC1218000u) {
-        Instruction result(Mnemonic::SEL, insn);
-        Mortlach2Encoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFF23E063u (1 pattern, 1 encoding)
+    switch (insn & 0xFF23E063u) {
+        case 0xC1218000u: { // sel_mz_p_zz_4
+                        Instruction result(Mnemonic::SEL, insn);
+                        Mortlach2Encoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFF21FFE1u (9 unique patterns, 9 encodings)
+    // Switch for mask 0xFF21FFE1u (9 patterns, 9 encodings)
     switch (insn & 0xFF21FFE1u) {
         case 0xC120B000u: { // smax_mz_zzw_2x2
                         Instruction result(Mnemonic::SMAX, insn);
@@ -38274,18 +37682,22 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // sel_mz_p_zz_2
-    if ((insn & 0xFF21E021u) == 0xC1208000u) {
-        Instruction result(Mnemonic::SEL, insn);
-        Mortlach2Encoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFF21E021u (1 pattern, 1 encoding)
+    switch (insn & 0xFF21E021u) {
+        case 0xC1208000u: { // sel_mz_p_zz_2
+                        Instruction result(Mnemonic::SEL, insn);
+                        Mortlach2Encoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFF20FC60u (6 unique patterns, 6 encodings)
+    // Switch for mask 0xFF20FC60u (6 patterns, 6 encodings)
     switch (insn & 0xFF20FC60u) {
         case 0xC120D800u: { // sqrshr_z_mz4_
                         Instruction result(Mnemonic::SQRSHR, insn);
@@ -38335,9 +37747,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqrshrun_zmz4.imm5, true));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFF20FC03u (2 unique patterns, 2 encodings)
+    // Switch for mask 0xFF20FC03u (2 patterns, 2 encodings)
     switch (insn & 0xFF20FC03u) {
         case 0xC120CC00u: { // sclamp_mz_zz_4
                         Instruction result(Mnemonic::SCLAMP, insn);
@@ -38353,9 +37766,10 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFF20FC01u (4 unique patterns, 4 encodings)
+    // Switch for mask 0xFF20FC01u (4 patterns, 4 encodings)
     switch (insn & 0xFF20FC01u) {
         case 0xC120C400u: { // sclamp_mz_zz_2
                         Instruction result(Mnemonic::SCLAMP, insn);
@@ -38385,6 +37799,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
     // No matching encoding found

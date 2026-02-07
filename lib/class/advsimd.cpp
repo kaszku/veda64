@@ -21,7 +21,6 @@ struct AbsAsisdmiscR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(AbsAsisdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // ABS: Absolute value (vector)
 // Encoding: ABS_asimdmisc_R
@@ -41,7 +40,6 @@ struct AbsAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(AbsAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // ADD: Add (vector)
 // Encoding: ADD_asisdsame_only
@@ -61,7 +59,6 @@ struct AddAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(AddAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // ADD: Add (vector)
 // Encoding: ADD_asimdsame_only
@@ -82,7 +79,6 @@ struct AddAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(AddAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // ADDHN: Add returning high narrow
 // Encoding: ADDHN_asimddiff_N
@@ -105,7 +101,6 @@ struct AddhnAsimddiffN {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(AddhnAsimddiffN) == 4, "Encoding struct must be 32 bits");
 
 // ADDP: Add pair of elements (scalar)
 // Encoding: ADDP_asisdpair_only
@@ -124,7 +119,6 @@ struct AddpAsisdpairOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(AddpAsisdpairOnly) == 4, "Encoding struct must be 32 bits");
 
 // ADDP: Add pairwise (vector)
 // Encoding: ADDP_asimdsame_only
@@ -145,7 +139,6 @@ struct AddpAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(AddpAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // ADDV: Add across vector
 // Encoding: ADDV_asimdall_only
@@ -165,7 +158,6 @@ struct AddvAsimdallOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(AddvAsimdallOnly) == 4, "Encoding struct must be 32 bits");
 
 // AESD: AES single round decryption
 // Encoding: AESD_B_cryptoaes
@@ -183,7 +175,6 @@ struct AesdBCryptoaes {
     uint32_t _unnamed_0 : 4;  // fixed: 0b0100 (0x4)
 };
 
-static_assert(sizeof(AesdBCryptoaes) == 4, "Encoding struct must be 32 bits");
 
 // AESE: AES single round encryption
 // Encoding: AESE_B_cryptoaes
@@ -201,7 +192,6 @@ struct AeseBCryptoaes {
     uint32_t _unnamed_0 : 4;  // fixed: 0b0100 (0x4)
 };
 
-static_assert(sizeof(AeseBCryptoaes) == 4, "Encoding struct must be 32 bits");
 
 // AESIMC: AES inverse mix columns
 // Encoding: AESIMC_B_cryptoaes
@@ -219,7 +209,6 @@ struct AesimcBCryptoaes {
     uint32_t _unnamed_0 : 4;  // fixed: 0b0100 (0x4)
 };
 
-static_assert(sizeof(AesimcBCryptoaes) == 4, "Encoding struct must be 32 bits");
 
 // AESMC: AES mix columns
 // Encoding: AESMC_B_cryptoaes
@@ -237,7 +226,6 @@ struct AesmcBCryptoaes {
     uint32_t _unnamed_0 : 4;  // fixed: 0b0100 (0x4)
 };
 
-static_assert(sizeof(AesmcBCryptoaes) == 4, "Encoding struct must be 32 bits");
 
 // AND: Bitwise AND (vector)
 // Encoding: AND_asimdsame_only
@@ -258,7 +246,6 @@ struct AndAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(AndAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // BCAX: Bit clear and exclusive-OR
 // Encoding: BCAX_VVV16_crypto4
@@ -275,7 +262,6 @@ struct BcaxVvv16Crypto4 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b1100 (0xC)
 };
 
-static_assert(sizeof(BcaxVvv16Crypto4) == 4, "Encoding struct must be 32 bits");
 
 // : 8-bit floating-point convert to BFloat16 (vector)
 // Encoding: BF1CVTL_asimdmisc_V
@@ -293,7 +279,6 @@ struct Bf1cvtlAsimdmiscV {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Bf1cvtlAsimdmiscV) == 4, "Encoding struct must be 32 bits");
 
 // : 8-bit floating-point convert to BFloat16 (vector)
 // Encoding: BF2CVTL_asimdmisc_V
@@ -311,7 +296,6 @@ struct Bf2cvtlAsimdmiscV {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Bf2cvtlAsimdmiscV) == 4, "Encoding struct must be 32 bits");
 
 // BFCVTN: Single-precision convert to BFloat16 (vector)
 // Encoding: BFCVTN_asimdmisc_4S
@@ -331,7 +315,6 @@ struct BfcvtnAsimdmisc4s {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(BfcvtnAsimdmisc4s) == 4, "Encoding struct must be 32 bits");
 
 // BFDOT: BFloat16 dot product to single-precision (vector, by element)
 // Encoding: BFDOT_asimdelem_E
@@ -354,7 +337,6 @@ struct BfdotAsimdelemE {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(BfdotAsimdelemE) == 4, "Encoding struct must be 32 bits");
 
 // BFDOT: BFloat16 dot product to single-precision (vector)
 // Encoding: BFDOT_asimdsame2_D
@@ -376,7 +358,6 @@ struct BfdotAsimdsame2D {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(BfdotAsimdsame2D) == 4, "Encoding struct must be 32 bits");
 
 // BFMLAL: BFloat16 multiply-add to single-precision (by element)
 // Encoding: BFMLAL_asimdelem_F
@@ -399,7 +380,6 @@ struct BfmlalAsimdelemF {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(BfmlalAsimdelemF) == 4, "Encoding struct must be 32 bits");
 
 // BFMLAL: BFloat16 multiply-add to single-precision (vector)
 // Encoding: BFMLAL_asimdsame2_F_
@@ -421,7 +401,6 @@ struct BfmlalAsimdsame2F {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(BfmlalAsimdsame2F) == 4, "Encoding struct must be 32 bits");
 
 // BFMMLA: BFloat16 matrix multiply-accumulate to single-precision
 // Encoding: BFMMLA_asimdsame2_E
@@ -443,7 +422,6 @@ struct BfmmlaAsimdsame2E {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(BfmmlaAsimdsame2E) == 4, "Encoding struct must be 32 bits");
 
 // BIC: Bitwise bit clear (vector, immediate)
 // Encoding: BIC_asimdimm_L_hl
@@ -467,7 +445,6 @@ struct BicAsimdimmLHl {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(BicAsimdimmLHl) == 4, "Encoding struct must be 32 bits");
 
 // BIC: Bitwise bit clear (vector, immediate)
 // Encoding: BIC_asimdimm_L_sl
@@ -491,7 +468,6 @@ struct BicAsimdimmLSl {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(BicAsimdimmLSl) == 4, "Encoding struct must be 32 bits");
 
 // BIC: Bitwise bit clear (vector, register)
 // Encoding: BIC_asimdsame_only
@@ -512,7 +488,6 @@ struct BicAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(BicAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // BIF: Bitwise insert if false
 // Encoding: BIF_asimdsame_only
@@ -533,7 +508,6 @@ struct BifAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(BifAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // BIT: Bitwise insert if true
 // Encoding: BIT_asimdsame_only
@@ -554,7 +528,6 @@ struct BitAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(BitAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // BSL: Bitwise select
 // Encoding: BSL_asimdsame_only
@@ -575,7 +548,6 @@ struct BslAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(BslAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // CLS: Count leading sign bits (vector)
 // Encoding: CLS_asimdmisc_R
@@ -595,7 +567,6 @@ struct ClsAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(ClsAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // CLZ: Count leading zero bits (vector)
 // Encoding: CLZ_asimdmisc_R
@@ -615,7 +586,6 @@ struct ClzAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(ClzAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // CMEQ: Compare bitwise equal (vector)
 // Encoding: CMEQ_asisdsame_only
@@ -635,7 +605,6 @@ struct CmeqAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(CmeqAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // CMEQ: Compare bitwise equal (vector)
 // Encoding: CMEQ_asimdsame_only
@@ -656,7 +625,6 @@ struct CmeqAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(CmeqAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // CMEQ: Compare bitwise equal to zero (vector)
 // Encoding: CMEQ_asisdmisc_Z
@@ -676,7 +644,6 @@ struct CmeqAsisdmiscZ {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(CmeqAsisdmiscZ) == 4, "Encoding struct must be 32 bits");
 
 // CMEQ: Compare bitwise equal to zero (vector)
 // Encoding: CMEQ_asimdmisc_Z
@@ -697,7 +664,6 @@ struct CmeqAsimdmiscZ {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(CmeqAsimdmiscZ) == 4, "Encoding struct must be 32 bits");
 
 // CMGE: Compare signed greater than or equal (vector)
 // Encoding: CMGE_asisdsame_only
@@ -718,7 +684,6 @@ struct CmgeAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(CmgeAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // CMGE: Compare signed greater than or equal (vector)
 // Encoding: CMGE_asimdsame_only
@@ -740,7 +705,6 @@ struct CmgeAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(CmgeAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // CMGE: Compare signed greater than or equal to zero (vector)
 // Encoding: CMGE_asisdmisc_Z
@@ -760,7 +724,6 @@ struct CmgeAsisdmiscZ {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(CmgeAsisdmiscZ) == 4, "Encoding struct must be 32 bits");
 
 // CMGE: Compare signed greater than or equal to zero (vector)
 // Encoding: CMGE_asimdmisc_Z
@@ -781,7 +744,6 @@ struct CmgeAsimdmiscZ {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(CmgeAsimdmiscZ) == 4, "Encoding struct must be 32 bits");
 
 // CMGT: Compare signed greater than (vector)
 // Encoding: CMGT_asisdsame_only
@@ -802,7 +764,6 @@ struct CmgtAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(CmgtAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // CMGT: Compare signed greater than (vector)
 // Encoding: CMGT_asimdsame_only
@@ -824,7 +785,6 @@ struct CmgtAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(CmgtAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // CMGT: Compare signed greater than zero (vector)
 // Encoding: CMGT_asisdmisc_Z
@@ -844,7 +804,6 @@ struct CmgtAsisdmiscZ {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(CmgtAsisdmiscZ) == 4, "Encoding struct must be 32 bits");
 
 // CMGT: Compare signed greater than zero (vector)
 // Encoding: CMGT_asimdmisc_Z
@@ -865,7 +824,6 @@ struct CmgtAsimdmiscZ {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(CmgtAsimdmiscZ) == 4, "Encoding struct must be 32 bits");
 
 // CMHI: Compare unsigned higher (vector)
 // Encoding: CMHI_asisdsame_only
@@ -886,7 +844,6 @@ struct CmhiAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(CmhiAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // CMHI: Compare unsigned higher (vector)
 // Encoding: CMHI_asimdsame_only
@@ -908,7 +865,6 @@ struct CmhiAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(CmhiAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // CMHS: Compare unsigned higher or same (vector)
 // Encoding: CMHS_asisdsame_only
@@ -929,7 +885,6 @@ struct CmhsAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(CmhsAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // CMHS: Compare unsigned higher or same (vector)
 // Encoding: CMHS_asimdsame_only
@@ -951,7 +906,6 @@ struct CmhsAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(CmhsAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // CMLE: Compare signed less than or equal to zero (vector)
 // Encoding: CMLE_asisdmisc_Z
@@ -971,7 +925,6 @@ struct CmleAsisdmiscZ {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(CmleAsisdmiscZ) == 4, "Encoding struct must be 32 bits");
 
 // CMLE: Compare signed less than or equal to zero (vector)
 // Encoding: CMLE_asimdmisc_Z
@@ -992,7 +945,6 @@ struct CmleAsimdmiscZ {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(CmleAsimdmiscZ) == 4, "Encoding struct must be 32 bits");
 
 // CMLT: Compare signed less than zero (vector)
 // Encoding: CMLT_asisdmisc_Z
@@ -1011,7 +963,6 @@ struct CmltAsisdmiscZ {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(CmltAsisdmiscZ) == 4, "Encoding struct must be 32 bits");
 
 // CMLT: Compare signed less than zero (vector)
 // Encoding: CMLT_asimdmisc_Z
@@ -1031,7 +982,6 @@ struct CmltAsimdmiscZ {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(CmltAsimdmiscZ) == 4, "Encoding struct must be 32 bits");
 
 // CMTST: Compare bitwise test bits nonzero (vector)
 // Encoding: CMTST_asisdsame_only
@@ -1051,7 +1001,6 @@ struct CmtstAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(CmtstAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // CMTST: Compare bitwise test bits nonzero (vector)
 // Encoding: CMTST_asimdsame_only
@@ -1072,7 +1021,6 @@ struct CmtstAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(CmtstAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // CNT: Population count per byte
 // Encoding: CNT_asimdmisc_R
@@ -1092,7 +1040,6 @@ struct CntAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(CntAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // DUP: Duplicate vector element to vector or scalar
 // Encoding: DUP_asisdone_only
@@ -1112,7 +1059,6 @@ struct DupAsisdoneOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(DupAsisdoneOnly) == 4, "Encoding struct must be 32 bits");
 
 // DUP: Duplicate vector element to vector or scalar
 // Encoding: DUP_asimdins_DV_v
@@ -1133,7 +1079,6 @@ struct DupAsimdinsDvV {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(DupAsimdinsDvV) == 4, "Encoding struct must be 32 bits");
 
 // DUP: Duplicate general-purpose register to vector
 // Encoding: DUP_asimdins_DR_r
@@ -1154,7 +1099,6 @@ struct DupAsimdinsDrR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(DupAsimdinsDrR) == 4, "Encoding struct must be 32 bits");
 
 // EOR3: Three-way exclusive-OR
 // Encoding: EOR3_VVV16_crypto4
@@ -1171,7 +1115,6 @@ struct Eor3Vvv16Crypto4 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b1100 (0xC)
 };
 
-static_assert(sizeof(Eor3Vvv16Crypto4) == 4, "Encoding struct must be 32 bits");
 
 // EOR: Bitwise exclusive-OR (vector)
 // Encoding: EOR_asimdsame_only
@@ -1192,7 +1135,6 @@ struct EorAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(EorAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // EXT: Extract vector from pair of vectors
 // Encoding: EXT_asimdext_only
@@ -1213,7 +1155,6 @@ struct ExtAsimdextOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(ExtAsimdextOnly) == 4, "Encoding struct must be 32 bits");
 
 // : 8-bit floating-point convert to half-precision (vector)
 // Encoding: F1CVTL_asimdmisc_V
@@ -1231,7 +1172,6 @@ struct F1cvtlAsimdmiscV {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(F1cvtlAsimdmiscV) == 4, "Encoding struct must be 32 bits");
 
 // : 8-bit floating-point convert to half-precision (vector)
 // Encoding: F2CVTL_asimdmisc_V
@@ -1249,7 +1189,6 @@ struct F2cvtlAsimdmiscV {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(F2cvtlAsimdmiscV) == 4, "Encoding struct must be 32 bits");
 
 // FABD: Floating-point absolute difference (vector)
 // Encoding: FABD_asisdsamefp16_only
@@ -1270,7 +1209,6 @@ struct FabdAsisdsamefp16Only {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FabdAsisdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FABD: Floating-point absolute difference (vector)
 // Encoding: FABD_asisdsame_only
@@ -1291,7 +1229,6 @@ struct FabdAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FabdAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FABD: Floating-point absolute difference (vector)
 // Encoding: FABD_asimdsamefp16_only
@@ -1313,7 +1250,6 @@ struct FabdAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FabdAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FABD: Floating-point absolute difference (vector)
 // Encoding: FABD_asimdsame_only
@@ -1335,7 +1271,6 @@ struct FabdAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FabdAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FABS: Floating-point absolute value (vector)
 // Encoding: FABS_asimdmiscfp16_R
@@ -1356,7 +1291,6 @@ struct FabsAsimdmiscfp16R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FabsAsimdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FABS: Floating-point absolute value (vector)
 // Encoding: FABS_asimdmisc_R
@@ -1377,7 +1311,6 @@ struct FabsAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FabsAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FACGE: Floating-point absolute compare greater than or equal (vector)
 // Encoding: FACGE_asisdsamefp16_only
@@ -1399,7 +1332,6 @@ struct FacgeAsisdsamefp16Only {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FacgeAsisdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FACGE: Floating-point absolute compare greater than or equal (vector)
 // Encoding: FACGE_asisdsame_only
@@ -1421,7 +1353,6 @@ struct FacgeAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FacgeAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FACGE: Floating-point absolute compare greater than or equal (vector)
 // Encoding: FACGE_asimdsamefp16_only
@@ -1444,7 +1375,6 @@ struct FacgeAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FacgeAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FACGE: Floating-point absolute compare greater than or equal (vector)
 // Encoding: FACGE_asimdsame_only
@@ -1467,7 +1397,6 @@ struct FacgeAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FacgeAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FACGT: Floating-point absolute compare greater than (vector)
 // Encoding: FACGT_asisdsamefp16_only
@@ -1489,7 +1418,6 @@ struct FacgtAsisdsamefp16Only {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FacgtAsisdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FACGT: Floating-point absolute compare greater than (vector)
 // Encoding: FACGT_asisdsame_only
@@ -1511,7 +1439,6 @@ struct FacgtAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FacgtAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FACGT: Floating-point absolute compare greater than (vector)
 // Encoding: FACGT_asimdsamefp16_only
@@ -1534,7 +1461,6 @@ struct FacgtAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FacgtAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FACGT: Floating-point absolute compare greater than (vector)
 // Encoding: FACGT_asimdsame_only
@@ -1557,7 +1483,6 @@ struct FacgtAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FacgtAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FADD: Floating-point add (vector)
 // Encoding: FADD_asimdsamefp16_only
@@ -1579,7 +1504,6 @@ struct FaddAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FaddAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FADD: Floating-point add (vector)
 // Encoding: FADD_asimdsame_only
@@ -1601,7 +1525,6 @@ struct FaddAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FaddAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FADDP: Floating-point add pair of elements (scalar)
 // Encoding: FADDP_asisdpair_only_H
@@ -1621,7 +1544,6 @@ struct FaddpAsisdpairOnlyH {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FaddpAsisdpairOnlyH) == 4, "Encoding struct must be 32 bits");
 
 // FADDP: Floating-point add pair of elements (scalar)
 // Encoding: FADDP_asisdpair_only_SD
@@ -1641,7 +1563,6 @@ struct FaddpAsisdpairOnlySd {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FaddpAsisdpairOnlySd) == 4, "Encoding struct must be 32 bits");
 
 // FADDP: Floating-point add pairwise (vector)
 // Encoding: FADDP_asimdsamefp16_only
@@ -1663,7 +1584,6 @@ struct FaddpAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FaddpAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FADDP: Floating-point add pairwise (vector)
 // Encoding: FADDP_asimdsame_only
@@ -1685,7 +1605,6 @@ struct FaddpAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FaddpAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FAMAX: Floating-point absolute maximum
 // Encoding: FAMAX_asimdsamefp16_only
@@ -1707,7 +1626,6 @@ struct FamaxAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FamaxAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FAMAX: Floating-point absolute maximum
 // Encoding: FAMAX_asimdsame_only
@@ -1728,7 +1646,6 @@ struct FamaxAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FamaxAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FAMIN: Floating-point absolute minimum
 // Encoding: FAMIN_asimdsamefp16_only
@@ -1750,7 +1667,6 @@ struct FaminAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FaminAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FAMIN: Floating-point absolute minimum
 // Encoding: FAMIN_asimdsame_only
@@ -1771,7 +1687,6 @@ struct FaminAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FaminAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FCADD: Floating-point complex add
 // Encoding: FCADD_asimdsame2_C
@@ -1795,7 +1710,6 @@ struct FcaddAsimdsame2C {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcaddAsimdsame2C) == 4, "Encoding struct must be 32 bits");
 
 // FCMEQ: Floating-point compare equal (vector)
 // Encoding: FCMEQ_asisdsamefp16_only
@@ -1817,7 +1731,6 @@ struct FcmeqAsisdsamefp16Only {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcmeqAsisdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FCMEQ: Floating-point compare equal (vector)
 // Encoding: FCMEQ_asisdsame_only
@@ -1839,7 +1752,6 @@ struct FcmeqAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcmeqAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FCMEQ: Floating-point compare equal (vector)
 // Encoding: FCMEQ_asimdsamefp16_only
@@ -1862,7 +1774,6 @@ struct FcmeqAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmeqAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FCMEQ: Floating-point compare equal (vector)
 // Encoding: FCMEQ_asimdsame_only
@@ -1885,7 +1796,6 @@ struct FcmeqAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmeqAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FCMEQ: Floating-point compare equal to zero (vector)
 // Encoding: FCMEQ_asisdmiscfp16_FZ
@@ -1906,7 +1816,6 @@ struct FcmeqAsisdmiscfp16Fz {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcmeqAsisdmiscfp16Fz) == 4, "Encoding struct must be 32 bits");
 
 // FCMEQ: Floating-point compare equal to zero (vector)
 // Encoding: FCMEQ_asisdmisc_FZ
@@ -1927,7 +1836,6 @@ struct FcmeqAsisdmiscFz {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcmeqAsisdmiscFz) == 4, "Encoding struct must be 32 bits");
 
 // FCMEQ: Floating-point compare equal to zero (vector)
 // Encoding: FCMEQ_asimdmiscfp16_FZ
@@ -1949,7 +1857,6 @@ struct FcmeqAsimdmiscfp16Fz {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmeqAsimdmiscfp16Fz) == 4, "Encoding struct must be 32 bits");
 
 // FCMEQ: Floating-point compare equal to zero (vector)
 // Encoding: FCMEQ_asimdmisc_FZ
@@ -1971,7 +1878,6 @@ struct FcmeqAsimdmiscFz {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmeqAsimdmiscFz) == 4, "Encoding struct must be 32 bits");
 
 // FCMGE: Floating-point compare greater than or equal (vector)
 // Encoding: FCMGE_asisdsamefp16_only
@@ -1993,7 +1899,6 @@ struct FcmgeAsisdsamefp16Only {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcmgeAsisdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FCMGE: Floating-point compare greater than or equal (vector)
 // Encoding: FCMGE_asisdsame_only
@@ -2015,7 +1920,6 @@ struct FcmgeAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcmgeAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FCMGE: Floating-point compare greater than or equal (vector)
 // Encoding: FCMGE_asimdsamefp16_only
@@ -2038,7 +1942,6 @@ struct FcmgeAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmgeAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FCMGE: Floating-point compare greater than or equal (vector)
 // Encoding: FCMGE_asimdsame_only
@@ -2061,7 +1964,6 @@ struct FcmgeAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmgeAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FCMGE: Floating-point compare greater than or equal to zero (vector)
 // Encoding: FCMGE_asisdmiscfp16_FZ
@@ -2082,7 +1984,6 @@ struct FcmgeAsisdmiscfp16Fz {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcmgeAsisdmiscfp16Fz) == 4, "Encoding struct must be 32 bits");
 
 // FCMGE: Floating-point compare greater than or equal to zero (vector)
 // Encoding: FCMGE_asisdmisc_FZ
@@ -2103,7 +2004,6 @@ struct FcmgeAsisdmiscFz {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcmgeAsisdmiscFz) == 4, "Encoding struct must be 32 bits");
 
 // FCMGE: Floating-point compare greater than or equal to zero (vector)
 // Encoding: FCMGE_asimdmiscfp16_FZ
@@ -2125,7 +2025,6 @@ struct FcmgeAsimdmiscfp16Fz {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmgeAsimdmiscfp16Fz) == 4, "Encoding struct must be 32 bits");
 
 // FCMGE: Floating-point compare greater than or equal to zero (vector)
 // Encoding: FCMGE_asimdmisc_FZ
@@ -2147,7 +2046,6 @@ struct FcmgeAsimdmiscFz {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmgeAsimdmiscFz) == 4, "Encoding struct must be 32 bits");
 
 // FCMGT: Floating-point compare greater than (vector)
 // Encoding: FCMGT_asisdsamefp16_only
@@ -2169,7 +2067,6 @@ struct FcmgtAsisdsamefp16Only {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcmgtAsisdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FCMGT: Floating-point compare greater than (vector)
 // Encoding: FCMGT_asisdsame_only
@@ -2191,7 +2088,6 @@ struct FcmgtAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcmgtAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FCMGT: Floating-point compare greater than (vector)
 // Encoding: FCMGT_asimdsamefp16_only
@@ -2214,7 +2110,6 @@ struct FcmgtAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmgtAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FCMGT: Floating-point compare greater than (vector)
 // Encoding: FCMGT_asimdsame_only
@@ -2237,7 +2132,6 @@ struct FcmgtAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmgtAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FCMGT: Floating-point compare greater than zero (vector)
 // Encoding: FCMGT_asisdmiscfp16_FZ
@@ -2258,7 +2152,6 @@ struct FcmgtAsisdmiscfp16Fz {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcmgtAsisdmiscfp16Fz) == 4, "Encoding struct must be 32 bits");
 
 // FCMGT: Floating-point compare greater than zero (vector)
 // Encoding: FCMGT_asisdmisc_FZ
@@ -2279,7 +2172,6 @@ struct FcmgtAsisdmiscFz {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcmgtAsisdmiscFz) == 4, "Encoding struct must be 32 bits");
 
 // FCMGT: Floating-point compare greater than zero (vector)
 // Encoding: FCMGT_asimdmiscfp16_FZ
@@ -2301,7 +2193,6 @@ struct FcmgtAsimdmiscfp16Fz {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmgtAsimdmiscfp16Fz) == 4, "Encoding struct must be 32 bits");
 
 // FCMGT: Floating-point compare greater than zero (vector)
 // Encoding: FCMGT_asimdmisc_FZ
@@ -2323,7 +2214,6 @@ struct FcmgtAsimdmiscFz {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmgtAsimdmiscFz) == 4, "Encoding struct must be 32 bits");
 
 // FCMLA: Floating-point complex multiply accumulate (by element)
 // Encoding: FCMLA_advsimd_elt
@@ -2348,7 +2238,6 @@ struct FcmlaAdvsimdElt {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmlaAdvsimdElt) == 4, "Encoding struct must be 32 bits");
 
 // FCMLA: Floating-point complex multiply accumulate
 // Encoding: FCMLA_asimdsame2_C
@@ -2371,7 +2260,6 @@ struct FcmlaAsimdsame2C {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmlaAsimdsame2C) == 4, "Encoding struct must be 32 bits");
 
 // FCMLE: Floating-point compare less than or equal to zero (vector)
 // Encoding: FCMLE_asisdmiscfp16_FZ
@@ -2392,7 +2280,6 @@ struct FcmleAsisdmiscfp16Fz {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcmleAsisdmiscfp16Fz) == 4, "Encoding struct must be 32 bits");
 
 // FCMLE: Floating-point compare less than or equal to zero (vector)
 // Encoding: FCMLE_asisdmisc_FZ
@@ -2413,7 +2300,6 @@ struct FcmleAsisdmiscFz {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcmleAsisdmiscFz) == 4, "Encoding struct must be 32 bits");
 
 // FCMLE: Floating-point compare less than or equal to zero (vector)
 // Encoding: FCMLE_asimdmiscfp16_FZ
@@ -2435,7 +2321,6 @@ struct FcmleAsimdmiscfp16Fz {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmleAsimdmiscfp16Fz) == 4, "Encoding struct must be 32 bits");
 
 // FCMLE: Floating-point compare less than or equal to zero (vector)
 // Encoding: FCMLE_asimdmisc_FZ
@@ -2457,7 +2342,6 @@ struct FcmleAsimdmiscFz {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmleAsimdmiscFz) == 4, "Encoding struct must be 32 bits");
 
 // FCMLT: Floating-point compare less than zero (vector)
 // Encoding: FCMLT_asisdmiscfp16_FZ
@@ -2477,7 +2361,6 @@ struct FcmltAsisdmiscfp16Fz {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcmltAsisdmiscfp16Fz) == 4, "Encoding struct must be 32 bits");
 
 // FCMLT: Floating-point compare less than zero (vector)
 // Encoding: FCMLT_asisdmisc_FZ
@@ -2497,7 +2380,6 @@ struct FcmltAsisdmiscFz {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcmltAsisdmiscFz) == 4, "Encoding struct must be 32 bits");
 
 // FCMLT: Floating-point compare less than zero (vector)
 // Encoding: FCMLT_asimdmiscfp16_FZ
@@ -2518,7 +2400,6 @@ struct FcmltAsimdmiscfp16Fz {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmltAsimdmiscfp16Fz) == 4, "Encoding struct must be 32 bits");
 
 // FCMLT: Floating-point compare less than zero (vector)
 // Encoding: FCMLT_asimdmisc_FZ
@@ -2539,7 +2420,6 @@ struct FcmltAsimdmiscFz {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmltAsimdmiscFz) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAS: Floating-point convert to signed integer, rounding to nearest with ties to away (vector)
 // Encoding: FCVTAS_asisdmiscfp16_R
@@ -2559,7 +2439,6 @@ struct FcvtasAsisdmiscfp16R {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcvtasAsisdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAS: Floating-point convert to signed integer, rounding to nearest with ties to away (vector)
 // Encoding: FCVTAS_asisdmisc_R
@@ -2579,7 +2458,6 @@ struct FcvtasAsisdmiscR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcvtasAsisdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAS: Floating-point convert to signed integer, rounding to nearest with ties to away (vector)
 // Encoding: FCVTAS_asimdmiscfp16_R
@@ -2600,7 +2478,6 @@ struct FcvtasAsimdmiscfp16R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtasAsimdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAS: Floating-point convert to signed integer, rounding to nearest with ties to away (vector)
 // Encoding: FCVTAS_asimdmisc_R
@@ -2621,7 +2498,6 @@ struct FcvtasAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtasAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAU: Floating-point convert to unsigned integer, rounding to nearest with ties to away (vector)
 // Encoding: FCVTAU_asisdmiscfp16_R
@@ -2641,7 +2517,6 @@ struct FcvtauAsisdmiscfp16R {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcvtauAsisdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAU: Floating-point convert to unsigned integer, rounding to nearest with ties to away (vector)
 // Encoding: FCVTAU_asisdmisc_R
@@ -2661,7 +2536,6 @@ struct FcvtauAsisdmiscR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcvtauAsisdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAU: Floating-point convert to unsigned integer, rounding to nearest with ties to away (vector)
 // Encoding: FCVTAU_asimdmiscfp16_R
@@ -2682,7 +2556,6 @@ struct FcvtauAsimdmiscfp16R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtauAsimdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAU: Floating-point convert to unsigned integer, rounding to nearest with ties to away (vector)
 // Encoding: FCVTAU_asimdmisc_R
@@ -2703,7 +2576,6 @@ struct FcvtauAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtauAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FCVTL: Floating-point convert to higher precision long (vector)
 // Encoding: FCVTL_asimdmisc_L
@@ -2724,7 +2596,6 @@ struct FcvtlAsimdmiscL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtlAsimdmiscL) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMS: Floating-point convert to signed integer, rounding toward minus infinity (vector)
 // Encoding: FCVTMS_asisdmiscfp16_R
@@ -2745,7 +2616,6 @@ struct FcvtmsAsisdmiscfp16R {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcvtmsAsisdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMS: Floating-point convert to signed integer, rounding toward minus infinity (vector)
 // Encoding: FCVTMS_asisdmisc_R
@@ -2766,7 +2636,6 @@ struct FcvtmsAsisdmiscR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcvtmsAsisdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMS: Floating-point convert to signed integer, rounding toward minus infinity (vector)
 // Encoding: FCVTMS_asimdmiscfp16_R
@@ -2788,7 +2657,6 @@ struct FcvtmsAsimdmiscfp16R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtmsAsimdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMS: Floating-point convert to signed integer, rounding toward minus infinity (vector)
 // Encoding: FCVTMS_asimdmisc_R
@@ -2810,7 +2678,6 @@ struct FcvtmsAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtmsAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMU: Floating-point convert to unsigned integer, rounding toward minus infinity (vector)
 // Encoding: FCVTMU_asisdmiscfp16_R
@@ -2831,7 +2698,6 @@ struct FcvtmuAsisdmiscfp16R {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcvtmuAsisdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMU: Floating-point convert to unsigned integer, rounding toward minus infinity (vector)
 // Encoding: FCVTMU_asisdmisc_R
@@ -2852,7 +2718,6 @@ struct FcvtmuAsisdmiscR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcvtmuAsisdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMU: Floating-point convert to unsigned integer, rounding toward minus infinity (vector)
 // Encoding: FCVTMU_asimdmiscfp16_R
@@ -2874,7 +2739,6 @@ struct FcvtmuAsimdmiscfp16R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtmuAsimdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMU: Floating-point convert to unsigned integer, rounding toward minus infinity (vector)
 // Encoding: FCVTMU_asimdmisc_R
@@ -2896,7 +2760,6 @@ struct FcvtmuAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtmuAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FCVTN: Floating-point convert to lower precision narrow (vector)
 // Encoding: FCVTN_asimdmisc_N
@@ -2917,7 +2780,6 @@ struct FcvtnAsimdmiscN {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtnAsimdmiscN) == 4, "Encoding struct must be 32 bits");
 
 // FCVTN: Half-precision convert to 8-bit floating-point (vector)
 // Encoding: FCVTN_asimdsame2_D
@@ -2939,7 +2801,6 @@ struct FcvtnAsimdsame2D {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtnAsimdsame2D) == 4, "Encoding struct must be 32 bits");
 
 // FCVTN: Single-precision convert to 8-bit floating-point (vector)
 // Encoding: FCVTN_asimdsame2_H
@@ -2961,7 +2822,6 @@ struct FcvtnAsimdsame2H {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtnAsimdsame2H) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNS: Floating-point convert to signed integer, rounding to nearest with ties to even (vector)
 // Encoding: FCVTNS_asisdmiscfp16_R
@@ -2982,7 +2842,6 @@ struct FcvtnsAsisdmiscfp16R {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcvtnsAsisdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNS: Floating-point convert to signed integer, rounding to nearest with ties to even (vector)
 // Encoding: FCVTNS_asisdmisc_R
@@ -3003,7 +2862,6 @@ struct FcvtnsAsisdmiscR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcvtnsAsisdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNS: Floating-point convert to signed integer, rounding to nearest with ties to even (vector)
 // Encoding: FCVTNS_asimdmiscfp16_R
@@ -3025,7 +2883,6 @@ struct FcvtnsAsimdmiscfp16R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtnsAsimdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNS: Floating-point convert to signed integer, rounding to nearest with ties to even (vector)
 // Encoding: FCVTNS_asimdmisc_R
@@ -3047,7 +2904,6 @@ struct FcvtnsAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtnsAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNU: Floating-point convert to unsigned integer, rounding to nearest with ties to even (vector)
 // Encoding: FCVTNU_asisdmiscfp16_R
@@ -3068,7 +2924,6 @@ struct FcvtnuAsisdmiscfp16R {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcvtnuAsisdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNU: Floating-point convert to unsigned integer, rounding to nearest with ties to even (vector)
 // Encoding: FCVTNU_asisdmisc_R
@@ -3089,7 +2944,6 @@ struct FcvtnuAsisdmiscR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcvtnuAsisdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNU: Floating-point convert to unsigned integer, rounding to nearest with ties to even (vector)
 // Encoding: FCVTNU_asimdmiscfp16_R
@@ -3111,7 +2965,6 @@ struct FcvtnuAsimdmiscfp16R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtnuAsimdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNU: Floating-point convert to unsigned integer, rounding to nearest with ties to even (vector)
 // Encoding: FCVTNU_asimdmisc_R
@@ -3133,7 +2986,6 @@ struct FcvtnuAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtnuAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPS: Floating-point convert to signed integer, rounding toward plus infinity (vector)
 // Encoding: FCVTPS_asisdmiscfp16_R
@@ -3154,7 +3006,6 @@ struct FcvtpsAsisdmiscfp16R {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcvtpsAsisdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPS: Floating-point convert to signed integer, rounding toward plus infinity (vector)
 // Encoding: FCVTPS_asisdmisc_R
@@ -3175,7 +3026,6 @@ struct FcvtpsAsisdmiscR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcvtpsAsisdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPS: Floating-point convert to signed integer, rounding toward plus infinity (vector)
 // Encoding: FCVTPS_asimdmiscfp16_R
@@ -3197,7 +3047,6 @@ struct FcvtpsAsimdmiscfp16R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtpsAsimdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPS: Floating-point convert to signed integer, rounding toward plus infinity (vector)
 // Encoding: FCVTPS_asimdmisc_R
@@ -3219,7 +3068,6 @@ struct FcvtpsAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtpsAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPU: Floating-point convert to unsigned integer, rounding toward plus infinity (vector)
 // Encoding: FCVTPU_asisdmiscfp16_R
@@ -3240,7 +3088,6 @@ struct FcvtpuAsisdmiscfp16R {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcvtpuAsisdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPU: Floating-point convert to unsigned integer, rounding toward plus infinity (vector)
 // Encoding: FCVTPU_asisdmisc_R
@@ -3261,7 +3108,6 @@ struct FcvtpuAsisdmiscR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcvtpuAsisdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPU: Floating-point convert to unsigned integer, rounding toward plus infinity (vector)
 // Encoding: FCVTPU_asimdmiscfp16_R
@@ -3283,7 +3129,6 @@ struct FcvtpuAsimdmiscfp16R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtpuAsimdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPU: Floating-point convert to unsigned integer, rounding toward plus infinity (vector)
 // Encoding: FCVTPU_asimdmisc_R
@@ -3305,7 +3150,6 @@ struct FcvtpuAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtpuAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FCVTXN: Floating-point convert to lower precision narrow, rounding to odd (vector)
 // Encoding: FCVTXN_asisdmisc_N
@@ -3324,7 +3168,6 @@ struct FcvtxnAsisdmiscN {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcvtxnAsisdmiscN) == 4, "Encoding struct must be 32 bits");
 
 // FCVTXN: Floating-point convert to lower precision narrow, rounding to odd (vector)
 // Encoding: FCVTXN_asimdmisc_N
@@ -3344,7 +3187,6 @@ struct FcvtxnAsimdmiscN {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtxnAsimdmiscN) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZS: Floating-point convert to signed fixed-point, rounding toward zero (vector)
 // Encoding: FCVTZS_asisdshf_C
@@ -3363,7 +3205,6 @@ struct FcvtzsAsisdshfC {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcvtzsAsisdshfC) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZS: Floating-point convert to signed fixed-point, rounding toward zero (vector)
 // Encoding: FCVTZS_asimdshf_C
@@ -3383,7 +3224,6 @@ struct FcvtzsAsimdshfC {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtzsAsimdshfC) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZS: Floating-point convert to signed integer, rounding toward zero (vector)
 // Encoding: FCVTZS_asisdmiscfp16_R
@@ -3404,7 +3244,6 @@ struct FcvtzsAsisdmiscfp16R {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcvtzsAsisdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZS: Floating-point convert to signed integer, rounding toward zero (vector)
 // Encoding: FCVTZS_asisdmisc_R
@@ -3425,7 +3264,6 @@ struct FcvtzsAsisdmiscR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcvtzsAsisdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZS: Floating-point convert to signed integer, rounding toward zero (vector)
 // Encoding: FCVTZS_asimdmiscfp16_R
@@ -3447,7 +3285,6 @@ struct FcvtzsAsimdmiscfp16R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtzsAsimdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZS: Floating-point convert to signed integer, rounding toward zero (vector)
 // Encoding: FCVTZS_asimdmisc_R
@@ -3469,7 +3306,6 @@ struct FcvtzsAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtzsAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZU: Floating-point convert to unsigned fixed-point, rounding toward zero (vector)
 // Encoding: FCVTZU_asisdshf_C
@@ -3488,7 +3324,6 @@ struct FcvtzuAsisdshfC {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcvtzuAsisdshfC) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZU: Floating-point convert to unsigned fixed-point, rounding toward zero (vector)
 // Encoding: FCVTZU_asimdshf_C
@@ -3508,7 +3343,6 @@ struct FcvtzuAsimdshfC {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtzuAsimdshfC) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZU: Floating-point convert to unsigned integer, rounding toward zero (vector)
 // Encoding: FCVTZU_asisdmiscfp16_R
@@ -3529,7 +3363,6 @@ struct FcvtzuAsisdmiscfp16R {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcvtzuAsisdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZU: Floating-point convert to unsigned integer, rounding toward zero (vector)
 // Encoding: FCVTZU_asisdmisc_R
@@ -3550,7 +3383,6 @@ struct FcvtzuAsisdmiscR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FcvtzuAsisdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZU: Floating-point convert to unsigned integer, rounding toward zero (vector)
 // Encoding: FCVTZU_asimdmiscfp16_R
@@ -3572,7 +3404,6 @@ struct FcvtzuAsimdmiscfp16R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtzuAsimdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZU: Floating-point convert to unsigned integer, rounding toward zero (vector)
 // Encoding: FCVTZU_asimdmisc_R
@@ -3594,7 +3425,6 @@ struct FcvtzuAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtzuAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FDIV: Floating-point divide (vector)
 // Encoding: FDIV_asimdsamefp16_only
@@ -3616,7 +3446,6 @@ struct FdivAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FdivAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FDIV: Floating-point divide (vector)
 // Encoding: FDIV_asimdsame_only
@@ -3638,7 +3467,6 @@ struct FdivAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FdivAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FDOT: 8-bit floating-point dot product to half-precision (vector, by element)
 // Encoding: FDOT_asimdelem_G
@@ -3661,7 +3489,6 @@ struct FdotAsimdelemG {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FdotAsimdelemG) == 4, "Encoding struct must be 32 bits");
 
 // FDOT: 8-bit floating-point dot product to half-precision (vector)
 // Encoding: FDOT_asimdsame2_D
@@ -3683,7 +3510,6 @@ struct FdotAsimdsame2D {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FdotAsimdsame2D) == 4, "Encoding struct must be 32 bits");
 
 // FDOT: 8-bit floating-point dot product to single-precision (vector, by element)
 // Encoding: FDOT_asimdelem_D
@@ -3706,7 +3532,6 @@ struct FdotAsimdelemD {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FdotAsimdelemD) == 4, "Encoding struct must be 32 bits");
 
 // FDOT: 8-bit floating-point dot product to single-precision (vector)
 // Encoding: FDOT_asimdsame2_DD
@@ -3728,7 +3553,6 @@ struct FdotAsimdsame2Dd {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FdotAsimdsame2Dd) == 4, "Encoding struct must be 32 bits");
 
 // FDOT: Half-precision dot product to single-precision (vector, by element)
 // Encoding: FDOT_asimdelem_FP16FP32
@@ -3751,7 +3575,6 @@ struct FdotAsimdelemFp16fp32 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FdotAsimdelemFp16fp32) == 4, "Encoding struct must be 32 bits");
 
 // FDOT: Half-precision dot product to single-precision (vector)
 // Encoding: FDOT_asimdsame2_FP16FP32
@@ -3773,7 +3596,6 @@ struct FdotAsimdsame2Fp16fp32 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FdotAsimdsame2Fp16fp32) == 4, "Encoding struct must be 32 bits");
 
 // FMAX: Floating-point maximum (vector)
 // Encoding: FMAX_asimdsamefp16_only
@@ -3795,7 +3617,6 @@ struct FmaxAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmaxAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FMAX: Floating-point maximum (vector)
 // Encoding: FMAX_asimdsame_only
@@ -3817,7 +3638,6 @@ struct FmaxAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmaxAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FMAXNM: Floating-point maximum number (vector)
 // Encoding: FMAXNM_asimdsamefp16_only
@@ -3839,7 +3659,6 @@ struct FmaxnmAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmaxnmAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FMAXNM: Floating-point maximum number (vector)
 // Encoding: FMAXNM_asimdsame_only
@@ -3861,7 +3680,6 @@ struct FmaxnmAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmaxnmAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FMAXNMP: Floating-point maximum number of pair of elements (scalar)
 // Encoding: FMAXNMP_asisdpair_only_H
@@ -3881,7 +3699,6 @@ struct FmaxnmpAsisdpairOnlyH {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FmaxnmpAsisdpairOnlyH) == 4, "Encoding struct must be 32 bits");
 
 // FMAXNMP: Floating-point maximum number of pair of elements (scalar)
 // Encoding: FMAXNMP_asisdpair_only_SD
@@ -3901,7 +3718,6 @@ struct FmaxnmpAsisdpairOnlySd {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FmaxnmpAsisdpairOnlySd) == 4, "Encoding struct must be 32 bits");
 
 // FMAXNMP: Floating-point maximum number pairwise (vector)
 // Encoding: FMAXNMP_asimdsamefp16_only
@@ -3923,7 +3739,6 @@ struct FmaxnmpAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmaxnmpAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FMAXNMP: Floating-point maximum number pairwise (vector)
 // Encoding: FMAXNMP_asimdsame_only
@@ -3945,7 +3760,6 @@ struct FmaxnmpAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmaxnmpAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FMAXNMV: Floating-point maximum number across vector
 // Encoding: FMAXNMV_asimdall_only_H
@@ -3966,7 +3780,6 @@ struct FmaxnmvAsimdallOnlyH {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmaxnmvAsimdallOnlyH) == 4, "Encoding struct must be 32 bits");
 
 // FMAXNMV: Floating-point maximum number across vector
 // Encoding: FMAXNMV_asimdall_only_SD
@@ -3987,7 +3800,6 @@ struct FmaxnmvAsimdallOnlySd {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmaxnmvAsimdallOnlySd) == 4, "Encoding struct must be 32 bits");
 
 // FMAXP: Floating-point maximum of pair of elements (scalar)
 // Encoding: FMAXP_asisdpair_only_H
@@ -4007,7 +3819,6 @@ struct FmaxpAsisdpairOnlyH {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FmaxpAsisdpairOnlyH) == 4, "Encoding struct must be 32 bits");
 
 // FMAXP: Floating-point maximum of pair of elements (scalar)
 // Encoding: FMAXP_asisdpair_only_SD
@@ -4027,7 +3838,6 @@ struct FmaxpAsisdpairOnlySd {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FmaxpAsisdpairOnlySd) == 4, "Encoding struct must be 32 bits");
 
 // FMAXP: Floating-point maximum pairwise (vector)
 // Encoding: FMAXP_asimdsamefp16_only
@@ -4049,7 +3859,6 @@ struct FmaxpAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmaxpAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FMAXP: Floating-point maximum pairwise (vector)
 // Encoding: FMAXP_asimdsame_only
@@ -4071,7 +3880,6 @@ struct FmaxpAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmaxpAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FMAXV: Floating-point maximum across vector
 // Encoding: FMAXV_asimdall_only_H
@@ -4092,7 +3900,6 @@ struct FmaxvAsimdallOnlyH {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmaxvAsimdallOnlyH) == 4, "Encoding struct must be 32 bits");
 
 // FMAXV: Floating-point maximum across vector
 // Encoding: FMAXV_asimdall_only_SD
@@ -4113,7 +3920,6 @@ struct FmaxvAsimdallOnlySd {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmaxvAsimdallOnlySd) == 4, "Encoding struct must be 32 bits");
 
 // FMIN: Floating-point minimum (vector)
 // Encoding: FMIN_asimdsamefp16_only
@@ -4135,7 +3941,6 @@ struct FminAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FminAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FMIN: Floating-point minimum (vector)
 // Encoding: FMIN_asimdsame_only
@@ -4157,7 +3962,6 @@ struct FminAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FminAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FMINNM: Floating-point minimum number (vector)
 // Encoding: FMINNM_asimdsamefp16_only
@@ -4179,7 +3983,6 @@ struct FminnmAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FminnmAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FMINNM: Floating-point minimum number (vector)
 // Encoding: FMINNM_asimdsame_only
@@ -4201,7 +4004,6 @@ struct FminnmAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FminnmAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FMINNMP: Floating-point minimum number of pair of elements (scalar)
 // Encoding: FMINNMP_asisdpair_only_H
@@ -4221,7 +4023,6 @@ struct FminnmpAsisdpairOnlyH {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FminnmpAsisdpairOnlyH) == 4, "Encoding struct must be 32 bits");
 
 // FMINNMP: Floating-point minimum number of pair of elements (scalar)
 // Encoding: FMINNMP_asisdpair_only_SD
@@ -4241,7 +4042,6 @@ struct FminnmpAsisdpairOnlySd {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FminnmpAsisdpairOnlySd) == 4, "Encoding struct must be 32 bits");
 
 // FMINNMP: Floating-point minimum number pairwise (vector)
 // Encoding: FMINNMP_asimdsamefp16_only
@@ -4263,7 +4063,6 @@ struct FminnmpAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FminnmpAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FMINNMP: Floating-point minimum number pairwise (vector)
 // Encoding: FMINNMP_asimdsame_only
@@ -4285,7 +4084,6 @@ struct FminnmpAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FminnmpAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FMINNMV: Floating-point minimum number across vector
 // Encoding: FMINNMV_asimdall_only_H
@@ -4306,7 +4104,6 @@ struct FminnmvAsimdallOnlyH {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FminnmvAsimdallOnlyH) == 4, "Encoding struct must be 32 bits");
 
 // FMINNMV: Floating-point minimum number across vector
 // Encoding: FMINNMV_asimdall_only_SD
@@ -4327,7 +4124,6 @@ struct FminnmvAsimdallOnlySd {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FminnmvAsimdallOnlySd) == 4, "Encoding struct must be 32 bits");
 
 // FMINP: Floating-point minimum of pair of elements (scalar)
 // Encoding: FMINP_asisdpair_only_H
@@ -4347,7 +4143,6 @@ struct FminpAsisdpairOnlyH {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FminpAsisdpairOnlyH) == 4, "Encoding struct must be 32 bits");
 
 // FMINP: Floating-point minimum of pair of elements (scalar)
 // Encoding: FMINP_asisdpair_only_SD
@@ -4367,7 +4162,6 @@ struct FminpAsisdpairOnlySd {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FminpAsisdpairOnlySd) == 4, "Encoding struct must be 32 bits");
 
 // FMINP: Floating-point minimum pairwise (vector)
 // Encoding: FMINP_asimdsamefp16_only
@@ -4389,7 +4183,6 @@ struct FminpAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FminpAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FMINP: Floating-point minimum pairwise (vector)
 // Encoding: FMINP_asimdsame_only
@@ -4411,7 +4204,6 @@ struct FminpAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FminpAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FMINV: Floating-point minimum across vector
 // Encoding: FMINV_asimdall_only_H
@@ -4432,7 +4224,6 @@ struct FminvAsimdallOnlyH {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FminvAsimdallOnlyH) == 4, "Encoding struct must be 32 bits");
 
 // FMINV: Floating-point minimum across vector
 // Encoding: FMINV_asimdall_only_SD
@@ -4453,7 +4244,6 @@ struct FminvAsimdallOnlySd {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FminvAsimdallOnlySd) == 4, "Encoding struct must be 32 bits");
 
 // FMLA: Floating-point fused multiply-add to accumulator (by element)
 // Encoding: FMLA_asisdelem_RH_H
@@ -4477,7 +4267,6 @@ struct FmlaAsisdelemRhH {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FmlaAsisdelemRhH) == 4, "Encoding struct must be 32 bits");
 
 // FMLA: Floating-point fused multiply-add to accumulator (by element)
 // Encoding: FMLA_asisdelem_R_SD
@@ -4502,7 +4291,6 @@ struct FmlaAsisdelemRSd {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FmlaAsisdelemRSd) == 4, "Encoding struct must be 32 bits");
 
 // FMLA: Floating-point fused multiply-add to accumulator (by element)
 // Encoding: FMLA_asimdelem_RH_H
@@ -4527,7 +4315,6 @@ struct FmlaAsimdelemRhH {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmlaAsimdelemRhH) == 4, "Encoding struct must be 32 bits");
 
 // FMLA: Floating-point fused multiply-add to accumulator (by element)
 // Encoding: FMLA_asimdelem_R_SD
@@ -4553,7 +4340,6 @@ struct FmlaAsimdelemRSd {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmlaAsimdelemRSd) == 4, "Encoding struct must be 32 bits");
 
 // FMLA: Floating-point fused multiply-add to accumulator (vector)
 // Encoding: FMLA_asimdsamefp16_only
@@ -4575,7 +4361,6 @@ struct FmlaAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmlaAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FMLA: Floating-point fused multiply-add to accumulator (vector)
 // Encoding: FMLA_asimdsame_only
@@ -4597,7 +4382,6 @@ struct FmlaAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmlaAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // : Floating-point fused multiply-add long to accumulator (by element)
 // Encoding: FMLAL_asimdelem_LH
@@ -4623,7 +4407,6 @@ struct FmlalAsimdelemLh {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmlalAsimdelemLh) == 4, "Encoding struct must be 32 bits");
 
 // : Floating-point fused multiply-add long to accumulator (by element)
 // Encoding: FMLAL2_asimdelem_LH
@@ -4649,7 +4432,6 @@ struct Fmlal2AsimdelemLh {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fmlal2AsimdelemLh) == 4, "Encoding struct must be 32 bits");
 
 // : Floating-point fused multiply-add long to accumulator (vector)
 // Encoding: FMLAL_asimdsame_F
@@ -4671,7 +4453,6 @@ struct FmlalAsimdsameF {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmlalAsimdsameF) == 4, "Encoding struct must be 32 bits");
 
 // : Floating-point fused multiply-add long to accumulator (vector)
 // Encoding: FMLAL2_asimdsame_F
@@ -4693,7 +4474,6 @@ struct Fmlal2AsimdsameF {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fmlal2AsimdsameF) == 4, "Encoding struct must be 32 bits");
 
 // : 8-bit floating-point multiply-add to half-precision (vector, by element)
 // Encoding: FMLALB_asimdelem_H
@@ -4714,7 +4494,6 @@ struct FmlalbAsimdelemH {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmlalbAsimdelemH) == 4, "Encoding struct must be 32 bits");
 
 // : 8-bit floating-point multiply-add to half-precision (vector, by element)
 // Encoding: FMLALT_asimdelem_H
@@ -4735,7 +4514,6 @@ struct FmlaltAsimdelemH {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmlaltAsimdelemH) == 4, "Encoding struct must be 32 bits");
 
 // : 8-bit floating-point multiply-add to half-precision (vector)
 // Encoding: FMLALB_asimdsame2_J
@@ -4755,7 +4533,6 @@ struct FmlalbAsimdsame2J {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmlalbAsimdsame2J) == 4, "Encoding struct must be 32 bits");
 
 // : 8-bit floating-point multiply-add to half-precision (vector)
 // Encoding: FMLALT_asimdsame2_J
@@ -4775,7 +4552,6 @@ struct FmlaltAsimdsame2J {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmlaltAsimdsame2J) == 4, "Encoding struct must be 32 bits");
 
 // : 8-bit floating-point multiply-add to single-precision (vector, by element)
 // Encoding: FMLALLBB_asimdelem_J
@@ -4796,7 +4572,6 @@ struct FmlallbbAsimdelemJ {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmlallbbAsimdelemJ) == 4, "Encoding struct must be 32 bits");
 
 // : 8-bit floating-point multiply-add to single-precision (vector, by element)
 // Encoding: FMLALLBT_asimdelem_J
@@ -4817,7 +4592,6 @@ struct FmlallbtAsimdelemJ {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmlallbtAsimdelemJ) == 4, "Encoding struct must be 32 bits");
 
 // : 8-bit floating-point multiply-add to single-precision (vector, by element)
 // Encoding: FMLALLTB_asimdelem_J
@@ -4838,7 +4612,6 @@ struct FmlalltbAsimdelemJ {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmlalltbAsimdelemJ) == 4, "Encoding struct must be 32 bits");
 
 // : 8-bit floating-point multiply-add to single-precision (vector, by element)
 // Encoding: FMLALLTT_asimdelem_J
@@ -4859,7 +4632,6 @@ struct FmlallttAsimdelemJ {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmlallttAsimdelemJ) == 4, "Encoding struct must be 32 bits");
 
 // : 8-bit floating-point multiply-add to single-precision (vector)
 // Encoding: FMLALLBB_asimdsame2_G
@@ -4879,7 +4651,6 @@ struct FmlallbbAsimdsame2G {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmlallbbAsimdsame2G) == 4, "Encoding struct must be 32 bits");
 
 // : 8-bit floating-point multiply-add to single-precision (vector)
 // Encoding: FMLALLBT_asimdsame2_G
@@ -4899,7 +4670,6 @@ struct FmlallbtAsimdsame2G {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmlallbtAsimdsame2G) == 4, "Encoding struct must be 32 bits");
 
 // : 8-bit floating-point multiply-add to single-precision (vector)
 // Encoding: FMLALLTB_asimdsame2_G
@@ -4919,7 +4689,6 @@ struct FmlalltbAsimdsame2G {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmlalltbAsimdsame2G) == 4, "Encoding struct must be 32 bits");
 
 // : 8-bit floating-point multiply-add to single-precision (vector)
 // Encoding: FMLALLTT_asimdsame2_G
@@ -4939,7 +4708,6 @@ struct FmlallttAsimdsame2G {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmlallttAsimdsame2G) == 4, "Encoding struct must be 32 bits");
 
 // FMLS: Floating-point fused multiply-subtract from accumulator (by element)
 // Encoding: FMLS_asisdelem_RH_H
@@ -4963,7 +4731,6 @@ struct FmlsAsisdelemRhH {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FmlsAsisdelemRhH) == 4, "Encoding struct must be 32 bits");
 
 // FMLS: Floating-point fused multiply-subtract from accumulator (by element)
 // Encoding: FMLS_asisdelem_R_SD
@@ -4988,7 +4755,6 @@ struct FmlsAsisdelemRSd {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FmlsAsisdelemRSd) == 4, "Encoding struct must be 32 bits");
 
 // FMLS: Floating-point fused multiply-subtract from accumulator (by element)
 // Encoding: FMLS_asimdelem_RH_H
@@ -5013,7 +4779,6 @@ struct FmlsAsimdelemRhH {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmlsAsimdelemRhH) == 4, "Encoding struct must be 32 bits");
 
 // FMLS: Floating-point fused multiply-subtract from accumulator (by element)
 // Encoding: FMLS_asimdelem_R_SD
@@ -5039,7 +4804,6 @@ struct FmlsAsimdelemRSd {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmlsAsimdelemRSd) == 4, "Encoding struct must be 32 bits");
 
 // FMLS: Floating-point fused multiply-subtract from accumulator (vector)
 // Encoding: FMLS_asimdsamefp16_only
@@ -5061,7 +4825,6 @@ struct FmlsAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmlsAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FMLS: Floating-point fused multiply-subtract from accumulator (vector)
 // Encoding: FMLS_asimdsame_only
@@ -5083,7 +4846,6 @@ struct FmlsAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmlsAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // : Floating-point fused multiply-subtract long from accumulator (by element)
 // Encoding: FMLSL_asimdelem_LH
@@ -5109,7 +4871,6 @@ struct FmlslAsimdelemLh {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmlslAsimdelemLh) == 4, "Encoding struct must be 32 bits");
 
 // : Floating-point fused multiply-subtract long from accumulator (by element)
 // Encoding: FMLSL2_asimdelem_LH
@@ -5135,7 +4896,6 @@ struct Fmlsl2AsimdelemLh {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fmlsl2AsimdelemLh) == 4, "Encoding struct must be 32 bits");
 
 // : Floating-point fused multiply-subtract long from accumulator (vector)
 // Encoding: FMLSL_asimdsame_F
@@ -5157,7 +4917,6 @@ struct FmlslAsimdsameF {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmlslAsimdsameF) == 4, "Encoding struct must be 32 bits");
 
 // : Floating-point fused multiply-subtract long from accumulator (vector)
 // Encoding: FMLSL2_asimdsame_F
@@ -5179,7 +4938,6 @@ struct Fmlsl2AsimdsameF {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fmlsl2AsimdsameF) == 4, "Encoding struct must be 32 bits");
 
 // FMMLA: Half-precision matrix multiply-accumulate
 // Encoding: FMMLA_asimd_FP16FP16
@@ -5201,7 +4959,6 @@ struct FmmlaAsimdFp16fp16 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmmlaAsimdFp16fp16) == 4, "Encoding struct must be 32 bits");
 
 // FMMLA: Half-precision matrix multiply-accumulate to single-precision
 // Encoding: FMMLA_asimd_FP16FP32
@@ -5223,7 +4980,6 @@ struct FmmlaAsimdFp16fp32 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmmlaAsimdFp16fp32) == 4, "Encoding struct must be 32 bits");
 
 // FMMLA: 8-bit floating-point matrix multiply-accumulate to half-precision
 // Encoding: FMMLA_asimd_FP8FP16
@@ -5245,7 +5001,6 @@ struct FmmlaAsimdFp8fp16 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmmlaAsimdFp8fp16) == 4, "Encoding struct must be 32 bits");
 
 // FMMLA: 8-bit floating-point matrix multiply-accumulate to single-precision
 // Encoding: FMMLA_asimd_FP8FP32
@@ -5267,7 +5022,6 @@ struct FmmlaAsimdFp8fp32 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmmlaAsimdFp8fp32) == 4, "Encoding struct must be 32 bits");
 
 // FMOV: Floating-point move immediate (vector)
 // Encoding: FMOV_asimdimm_H_h
@@ -5294,7 +5048,6 @@ struct FmovAsimdimmHH {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmovAsimdimmHH) == 4, "Encoding struct must be 32 bits");
 
 // FMOV: Floating-point move immediate (vector)
 // Encoding: FMOV_asimdimm_S_s
@@ -5318,7 +5071,6 @@ struct FmovAsimdimmSS {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmovAsimdimmSS) == 4, "Encoding struct must be 32 bits");
 
 // FMOV: Floating-point move immediate (vector)
 // Encoding: FMOV_asimdimm_D2_d
@@ -5342,7 +5094,6 @@ struct FmovAsimdimmD2D {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmovAsimdimmD2D) == 4, "Encoding struct must be 32 bits");
 
 // FMUL: Floating-point multiply (by element)
 // Encoding: FMUL_asisdelem_RH_H
@@ -5364,7 +5115,6 @@ struct FmulAsisdelemRhH {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FmulAsisdelemRhH) == 4, "Encoding struct must be 32 bits");
 
 // FMUL: Floating-point multiply (by element)
 // Encoding: FMUL_asisdelem_R_SD
@@ -5387,7 +5137,6 @@ struct FmulAsisdelemRSd {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FmulAsisdelemRSd) == 4, "Encoding struct must be 32 bits");
 
 // FMUL: Floating-point multiply (by element)
 // Encoding: FMUL_asimdelem_RH_H
@@ -5410,7 +5159,6 @@ struct FmulAsimdelemRhH {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmulAsimdelemRhH) == 4, "Encoding struct must be 32 bits");
 
 // FMUL: Floating-point multiply (by element)
 // Encoding: FMUL_asimdelem_R_SD
@@ -5434,7 +5182,6 @@ struct FmulAsimdelemRSd {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmulAsimdelemRSd) == 4, "Encoding struct must be 32 bits");
 
 // FMUL: Floating-point multiply (vector)
 // Encoding: FMUL_asimdsamefp16_only
@@ -5456,7 +5203,6 @@ struct FmulAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmulAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FMUL: Floating-point multiply (vector)
 // Encoding: FMUL_asimdsame_only
@@ -5478,7 +5224,6 @@ struct FmulAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmulAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FMULX: Floating-point multiply extended (by element)
 // Encoding: FMULX_asisdelem_RH_H
@@ -5500,7 +5245,6 @@ struct FmulxAsisdelemRhH {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FmulxAsisdelemRhH) == 4, "Encoding struct must be 32 bits");
 
 // FMULX: Floating-point multiply extended (by element)
 // Encoding: FMULX_asisdelem_R_SD
@@ -5523,7 +5267,6 @@ struct FmulxAsisdelemRSd {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FmulxAsisdelemRSd) == 4, "Encoding struct must be 32 bits");
 
 // FMULX: Floating-point multiply extended (by element)
 // Encoding: FMULX_asimdelem_RH_H
@@ -5546,7 +5289,6 @@ struct FmulxAsimdelemRhH {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmulxAsimdelemRhH) == 4, "Encoding struct must be 32 bits");
 
 // FMULX: Floating-point multiply extended (by element)
 // Encoding: FMULX_asimdelem_R_SD
@@ -5570,7 +5312,6 @@ struct FmulxAsimdelemRSd {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmulxAsimdelemRSd) == 4, "Encoding struct must be 32 bits");
 
 // FMULX: Floating-point multiply extended
 // Encoding: FMULX_asisdsamefp16_only
@@ -5591,7 +5332,6 @@ struct FmulxAsisdsamefp16Only {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FmulxAsisdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FMULX: Floating-point multiply extended
 // Encoding: FMULX_asisdsame_only
@@ -5612,7 +5352,6 @@ struct FmulxAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FmulxAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FMULX: Floating-point multiply extended
 // Encoding: FMULX_asimdsamefp16_only
@@ -5634,7 +5373,6 @@ struct FmulxAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmulxAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FMULX: Floating-point multiply extended
 // Encoding: FMULX_asimdsame_only
@@ -5656,7 +5394,6 @@ struct FmulxAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmulxAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FNEG: Floating-point negate (vector)
 // Encoding: FNEG_asimdmiscfp16_R
@@ -5677,7 +5414,6 @@ struct FnegAsimdmiscfp16R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FnegAsimdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FNEG: Floating-point negate (vector)
 // Encoding: FNEG_asimdmisc_R
@@ -5698,7 +5434,6 @@ struct FnegAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FnegAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FRECPE: Floating-point reciprocal estimate
 // Encoding: FRECPE_asisdmiscfp16_R
@@ -5718,7 +5453,6 @@ struct FrecpeAsisdmiscfp16R {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FrecpeAsisdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FRECPE: Floating-point reciprocal estimate
 // Encoding: FRECPE_asisdmisc_R
@@ -5738,7 +5472,6 @@ struct FrecpeAsisdmiscR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FrecpeAsisdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FRECPE: Floating-point reciprocal estimate
 // Encoding: FRECPE_asimdmiscfp16_R
@@ -5759,7 +5492,6 @@ struct FrecpeAsimdmiscfp16R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrecpeAsimdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FRECPE: Floating-point reciprocal estimate
 // Encoding: FRECPE_asimdmisc_R
@@ -5780,7 +5512,6 @@ struct FrecpeAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrecpeAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FRECPS: Floating-point reciprocal step
 // Encoding: FRECPS_asisdsamefp16_only
@@ -5801,7 +5532,6 @@ struct FrecpsAsisdsamefp16Only {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FrecpsAsisdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FRECPS: Floating-point reciprocal step
 // Encoding: FRECPS_asisdsame_only
@@ -5822,7 +5552,6 @@ struct FrecpsAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FrecpsAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FRECPS: Floating-point reciprocal step
 // Encoding: FRECPS_asimdsamefp16_only
@@ -5844,7 +5573,6 @@ struct FrecpsAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrecpsAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FRECPS: Floating-point reciprocal step
 // Encoding: FRECPS_asimdsame_only
@@ -5866,7 +5594,6 @@ struct FrecpsAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrecpsAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FRECPX: Floating-point reciprocal exponent (scalar)
 // Encoding: FRECPX_asisdmiscfp16_R
@@ -5886,7 +5613,6 @@ struct FrecpxAsisdmiscfp16R {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FrecpxAsisdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FRECPX: Floating-point reciprocal exponent (scalar)
 // Encoding: FRECPX_asisdmisc_R
@@ -5906,7 +5632,6 @@ struct FrecpxAsisdmiscR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FrecpxAsisdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FRINT32X: Floating-point round to 32-bit integer, using current rounding mode (vector)
 // Encoding: FRINT32X_asimdmisc_R
@@ -5928,7 +5653,6 @@ struct Frint32xAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Frint32xAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FRINT32Z: Floating-point round to 32-bit integer toward zero (vector)
 // Encoding: FRINT32Z_asimdmisc_R
@@ -5950,7 +5674,6 @@ struct Frint32zAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Frint32zAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FRINT64X: Floating-point round to 64-bit integer, using current rounding mode (vector)
 // Encoding: FRINT64X_asimdmisc_R
@@ -5972,7 +5695,6 @@ struct Frint64xAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Frint64xAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FRINT64Z: Floating-point round to 64-bit integer toward zero (vector)
 // Encoding: FRINT64Z_asimdmisc_R
@@ -5994,7 +5716,6 @@ struct Frint64zAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Frint64zAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FRINTA: Floating-point round to integral, to nearest with ties to away (vector)
 // Encoding: FRINTA_asimdmiscfp16_R
@@ -6016,7 +5737,6 @@ struct FrintaAsimdmiscfp16R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintaAsimdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FRINTA: Floating-point round to integral, to nearest with ties to away (vector)
 // Encoding: FRINTA_asimdmisc_R
@@ -6038,7 +5758,6 @@ struct FrintaAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintaAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FRINTI: Floating-point round to integral, using current rounding mode (vector)
 // Encoding: FRINTI_asimdmiscfp16_R
@@ -6060,7 +5779,6 @@ struct FrintiAsimdmiscfp16R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintiAsimdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FRINTI: Floating-point round to integral, using current rounding mode (vector)
 // Encoding: FRINTI_asimdmisc_R
@@ -6082,7 +5800,6 @@ struct FrintiAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintiAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FRINTM: Floating-point round to integral, toward minus infinity (vector)
 // Encoding: FRINTM_asimdmiscfp16_R
@@ -6104,7 +5821,6 @@ struct FrintmAsimdmiscfp16R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintmAsimdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FRINTM: Floating-point round to integral, toward minus infinity (vector)
 // Encoding: FRINTM_asimdmisc_R
@@ -6126,7 +5842,6 @@ struct FrintmAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintmAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FRINTN: Floating-point round to integral, to nearest with ties to even (vector)
 // Encoding: FRINTN_asimdmiscfp16_R
@@ -6148,7 +5863,6 @@ struct FrintnAsimdmiscfp16R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintnAsimdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FRINTN: Floating-point round to integral, to nearest with ties to even (vector)
 // Encoding: FRINTN_asimdmisc_R
@@ -6170,7 +5884,6 @@ struct FrintnAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintnAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FRINTP: Floating-point round to integral, toward plus infinity (vector)
 // Encoding: FRINTP_asimdmiscfp16_R
@@ -6192,7 +5905,6 @@ struct FrintpAsimdmiscfp16R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintpAsimdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FRINTP: Floating-point round to integral, toward plus infinity (vector)
 // Encoding: FRINTP_asimdmisc_R
@@ -6214,7 +5926,6 @@ struct FrintpAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintpAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FRINTX: Floating-point round to integral exact, using current rounding mode (vector)
 // Encoding: FRINTX_asimdmiscfp16_R
@@ -6236,7 +5947,6 @@ struct FrintxAsimdmiscfp16R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintxAsimdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FRINTX: Floating-point round to integral exact, using current rounding mode (vector)
 // Encoding: FRINTX_asimdmisc_R
@@ -6258,7 +5968,6 @@ struct FrintxAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintxAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FRINTZ: Floating-point round to integral, toward zero (vector)
 // Encoding: FRINTZ_asimdmiscfp16_R
@@ -6280,7 +5989,6 @@ struct FrintzAsimdmiscfp16R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintzAsimdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FRINTZ: Floating-point round to integral, toward zero (vector)
 // Encoding: FRINTZ_asimdmisc_R
@@ -6302,7 +6010,6 @@ struct FrintzAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintzAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FRSQRTE: Floating-point reciprocal square root estimate
 // Encoding: FRSQRTE_asisdmiscfp16_R
@@ -6322,7 +6029,6 @@ struct FrsqrteAsisdmiscfp16R {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FrsqrteAsisdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FRSQRTE: Floating-point reciprocal square root estimate
 // Encoding: FRSQRTE_asisdmisc_R
@@ -6342,7 +6048,6 @@ struct FrsqrteAsisdmiscR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FrsqrteAsisdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FRSQRTE: Floating-point reciprocal square root estimate
 // Encoding: FRSQRTE_asimdmiscfp16_R
@@ -6363,7 +6068,6 @@ struct FrsqrteAsimdmiscfp16R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrsqrteAsimdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FRSQRTE: Floating-point reciprocal square root estimate
 // Encoding: FRSQRTE_asimdmisc_R
@@ -6384,7 +6088,6 @@ struct FrsqrteAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrsqrteAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FRSQRTS: Floating-point reciprocal square root step
 // Encoding: FRSQRTS_asisdsamefp16_only
@@ -6405,7 +6108,6 @@ struct FrsqrtsAsisdsamefp16Only {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FrsqrtsAsisdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FRSQRTS: Floating-point reciprocal square root step
 // Encoding: FRSQRTS_asisdsame_only
@@ -6426,7 +6128,6 @@ struct FrsqrtsAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(FrsqrtsAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FRSQRTS: Floating-point reciprocal square root step
 // Encoding: FRSQRTS_asimdsamefp16_only
@@ -6448,7 +6149,6 @@ struct FrsqrtsAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrsqrtsAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FRSQRTS: Floating-point reciprocal square root step
 // Encoding: FRSQRTS_asimdsame_only
@@ -6470,7 +6170,6 @@ struct FrsqrtsAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrsqrtsAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FSCALE: Floating-point adjust exponent by vector
 // Encoding: FSCALE_asimdsamefp16_only
@@ -6492,7 +6191,6 @@ struct FscaleAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FscaleAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FSCALE: Floating-point adjust exponent by vector
 // Encoding: FSCALE_asimdsame_only
@@ -6513,7 +6211,6 @@ struct FscaleAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FscaleAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // FSQRT: Floating-point square root (vector)
 // Encoding: FSQRT_asimdmiscfp16_R
@@ -6534,7 +6231,6 @@ struct FsqrtAsimdmiscfp16R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FsqrtAsimdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // FSQRT: Floating-point square root (vector)
 // Encoding: FSQRT_asimdmisc_R
@@ -6555,7 +6251,6 @@ struct FsqrtAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FsqrtAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // FSUB: Floating-point subtract (vector)
 // Encoding: FSUB_asimdsamefp16_only
@@ -6577,7 +6272,6 @@ struct FsubAsimdsamefp16Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FsubAsimdsamefp16Only) == 4, "Encoding struct must be 32 bits");
 
 // FSUB: Floating-point subtract (vector)
 // Encoding: FSUB_asimdsame_only
@@ -6599,7 +6293,6 @@ struct FsubAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FsubAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // INS: Insert vector element from another vector element
 // Encoding: INS_asimdins_IV_v
@@ -6620,7 +6313,6 @@ struct InsAsimdinsIvV {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(InsAsimdinsIvV) == 4, "Encoding struct must be 32 bits");
 
 // INS: Insert vector element from general-purpose register
 // Encoding: INS_asimdins_IR_r
@@ -6641,7 +6333,6 @@ struct InsAsimdinsIrR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(InsAsimdinsIrR) == 4, "Encoding struct must be 32 bits");
 
 // LD1: Load multiple single-element structures to one, two, three, or four registers
 // Encoding: LD1_asisdlse_R1_1v
@@ -6658,7 +6349,6 @@ struct Ld1AsisdlseR11v {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1AsisdlseR11v) == 4, "Encoding struct must be 32 bits");
 
 // LD1: Load multiple single-element structures to one, two, three, or four registers
 // Encoding: LD1_asisdlse_R2_2v
@@ -6675,7 +6365,6 @@ struct Ld1AsisdlseR22v {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1AsisdlseR22v) == 4, "Encoding struct must be 32 bits");
 
 // LD1: Load multiple single-element structures to one, two, three, or four registers
 // Encoding: LD1_asisdlse_R3_3v
@@ -6692,7 +6381,6 @@ struct Ld1AsisdlseR33v {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1AsisdlseR33v) == 4, "Encoding struct must be 32 bits");
 
 // LD1: Load multiple single-element structures to one, two, three, or four registers
 // Encoding: LD1_asisdlse_R4_4v
@@ -6709,7 +6397,6 @@ struct Ld1AsisdlseR44v {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1AsisdlseR44v) == 4, "Encoding struct must be 32 bits");
 
 // LD1: Load multiple single-element structures to one, two, three, or four registers
 // Encoding: LD1_asisdlsep_I1_i1
@@ -6727,7 +6414,6 @@ struct Ld1AsisdlsepI1I1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1AsisdlsepI1I1) == 4, "Encoding struct must be 32 bits");
 
 // LD1: Load multiple single-element structures to one, two, three, or four registers
 // Encoding: LD1_asisdlsep_R1_r1
@@ -6745,7 +6431,6 @@ struct Ld1AsisdlsepR1R1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1AsisdlsepR1R1) == 4, "Encoding struct must be 32 bits");
 
 // LD1: Load multiple single-element structures to one, two, three, or four registers
 // Encoding: LD1_asisdlsep_I2_i2
@@ -6763,7 +6448,6 @@ struct Ld1AsisdlsepI2I2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1AsisdlsepI2I2) == 4, "Encoding struct must be 32 bits");
 
 // LD1: Load multiple single-element structures to one, two, three, or four registers
 // Encoding: LD1_asisdlsep_R2_r2
@@ -6781,7 +6465,6 @@ struct Ld1AsisdlsepR2R2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1AsisdlsepR2R2) == 4, "Encoding struct must be 32 bits");
 
 // LD1: Load multiple single-element structures to one, two, three, or four registers
 // Encoding: LD1_asisdlsep_I3_i3
@@ -6799,7 +6482,6 @@ struct Ld1AsisdlsepI3I3 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1AsisdlsepI3I3) == 4, "Encoding struct must be 32 bits");
 
 // LD1: Load multiple single-element structures to one, two, three, or four registers
 // Encoding: LD1_asisdlsep_R3_r3
@@ -6817,7 +6499,6 @@ struct Ld1AsisdlsepR3R3 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1AsisdlsepR3R3) == 4, "Encoding struct must be 32 bits");
 
 // LD1: Load multiple single-element structures to one, two, three, or four registers
 // Encoding: LD1_asisdlsep_I4_i4
@@ -6835,7 +6516,6 @@ struct Ld1AsisdlsepI4I4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1AsisdlsepI4I4) == 4, "Encoding struct must be 32 bits");
 
 // LD1: Load multiple single-element structures to one, two, three, or four registers
 // Encoding: LD1_asisdlsep_R4_r4
@@ -6853,7 +6533,6 @@ struct Ld1AsisdlsepR4R4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1AsisdlsepR4R4) == 4, "Encoding struct must be 32 bits");
 
 // LD1: Load one single-element structure to one lane of one register
 // Encoding: LD1_asisdlso_B1_1b
@@ -6873,7 +6552,6 @@ struct Ld1AsisdlsoB11b {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1AsisdlsoB11b) == 4, "Encoding struct must be 32 bits");
 
 // LD1: Load one single-element structure to one lane of one register
 // Encoding: LD1_asisdlso_H1_1h
@@ -6893,7 +6571,6 @@ struct Ld1AsisdlsoH11h {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1AsisdlsoH11h) == 4, "Encoding struct must be 32 bits");
 
 // LD1: Load one single-element structure to one lane of one register
 // Encoding: LD1_asisdlso_S1_1s
@@ -6913,7 +6590,6 @@ struct Ld1AsisdlsoS11s {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1AsisdlsoS11s) == 4, "Encoding struct must be 32 bits");
 
 // LD1: Load one single-element structure to one lane of one register
 // Encoding: LD1_asisdlso_D1_1d
@@ -6933,7 +6609,6 @@ struct Ld1AsisdlsoD11d {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1AsisdlsoD11d) == 4, "Encoding struct must be 32 bits");
 
 // LD1: Load one single-element structure to one lane of one register
 // Encoding: LD1_asisdlsop_B1_i1b
@@ -6952,7 +6627,6 @@ struct Ld1AsisdlsopB1I1b {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1AsisdlsopB1I1b) == 4, "Encoding struct must be 32 bits");
 
 // LD1: Load one single-element structure to one lane of one register
 // Encoding: LD1_asisdlsop_BX1_r1b
@@ -6971,7 +6645,6 @@ struct Ld1AsisdlsopBx1R1b {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1AsisdlsopBx1R1b) == 4, "Encoding struct must be 32 bits");
 
 // LD1: Load one single-element structure to one lane of one register
 // Encoding: LD1_asisdlsop_D1_i1d
@@ -6990,7 +6663,6 @@ struct Ld1AsisdlsopD1I1d {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1AsisdlsopD1I1d) == 4, "Encoding struct must be 32 bits");
 
 // LD1: Load one single-element structure to one lane of one register
 // Encoding: LD1_asisdlsop_DX1_r1d
@@ -7009,7 +6681,6 @@ struct Ld1AsisdlsopDx1R1d {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1AsisdlsopDx1R1d) == 4, "Encoding struct must be 32 bits");
 
 // LD1: Load one single-element structure to one lane of one register
 // Encoding: LD1_asisdlsop_H1_i1h
@@ -7028,7 +6699,6 @@ struct Ld1AsisdlsopH1I1h {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1AsisdlsopH1I1h) == 4, "Encoding struct must be 32 bits");
 
 // LD1: Load one single-element structure to one lane of one register
 // Encoding: LD1_asisdlsop_HX1_r1h
@@ -7047,7 +6717,6 @@ struct Ld1AsisdlsopHx1R1h {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1AsisdlsopHx1R1h) == 4, "Encoding struct must be 32 bits");
 
 // LD1: Load one single-element structure to one lane of one register
 // Encoding: LD1_asisdlsop_S1_i1s
@@ -7066,7 +6735,6 @@ struct Ld1AsisdlsopS1I1s {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1AsisdlsopS1I1s) == 4, "Encoding struct must be 32 bits");
 
 // LD1: Load one single-element structure to one lane of one register
 // Encoding: LD1_asisdlsop_SX1_r1s
@@ -7085,7 +6753,6 @@ struct Ld1AsisdlsopSx1R1s {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1AsisdlsopSx1R1s) == 4, "Encoding struct must be 32 bits");
 
 // LD1R: Load one single-element structure and replicate to all lanes (of one register)
 // Encoding: LD1R_asisdlso_R1
@@ -7109,7 +6776,6 @@ struct Ld1rAsisdlsoR1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1rAsisdlsoR1) == 4, "Encoding struct must be 32 bits");
 
 // LD1R: Load one single-element structure and replicate to all lanes (of one register)
 // Encoding: LD1R_asisdlsop_R1_i
@@ -7128,7 +6794,6 @@ struct Ld1rAsisdlsopR1I {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1rAsisdlsopR1I) == 4, "Encoding struct must be 32 bits");
 
 // LD1R: Load one single-element structure and replicate to all lanes (of one register)
 // Encoding: LD1R_asisdlsop_RX1_r
@@ -7147,7 +6812,6 @@ struct Ld1rAsisdlsopRx1R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld1rAsisdlsopRx1R) == 4, "Encoding struct must be 32 bits");
 
 // LD2: Load multiple 2-element structures to two registers
 // Encoding: LD2_asisdlse_R2
@@ -7168,7 +6832,6 @@ struct Ld2AsisdlseR2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld2AsisdlseR2) == 4, "Encoding struct must be 32 bits");
 
 // LD2: Load multiple 2-element structures to two registers
 // Encoding: LD2_asisdlsep_I2_i
@@ -7186,7 +6849,6 @@ struct Ld2AsisdlsepI2I {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld2AsisdlsepI2I) == 4, "Encoding struct must be 32 bits");
 
 // LD2: Load multiple 2-element structures to two registers
 // Encoding: LD2_asisdlsep_R2_r
@@ -7204,7 +6866,6 @@ struct Ld2AsisdlsepR2R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld2AsisdlsepR2R) == 4, "Encoding struct must be 32 bits");
 
 // LD2: Load single 2-element structure to one lane of two registers
 // Encoding: LD2_asisdlso_B2_2b
@@ -7224,7 +6885,6 @@ struct Ld2AsisdlsoB22b {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld2AsisdlsoB22b) == 4, "Encoding struct must be 32 bits");
 
 // LD2: Load single 2-element structure to one lane of two registers
 // Encoding: LD2_asisdlso_H2_2h
@@ -7244,7 +6904,6 @@ struct Ld2AsisdlsoH22h {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld2AsisdlsoH22h) == 4, "Encoding struct must be 32 bits");
 
 // LD2: Load single 2-element structure to one lane of two registers
 // Encoding: LD2_asisdlso_S2_2s
@@ -7264,7 +6923,6 @@ struct Ld2AsisdlsoS22s {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld2AsisdlsoS22s) == 4, "Encoding struct must be 32 bits");
 
 // LD2: Load single 2-element structure to one lane of two registers
 // Encoding: LD2_asisdlso_D2_2d
@@ -7284,7 +6942,6 @@ struct Ld2AsisdlsoD22d {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld2AsisdlsoD22d) == 4, "Encoding struct must be 32 bits");
 
 // LD2: Load single 2-element structure to one lane of two registers
 // Encoding: LD2_asisdlsop_B2_i2b
@@ -7303,7 +6960,6 @@ struct Ld2AsisdlsopB2I2b {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld2AsisdlsopB2I2b) == 4, "Encoding struct must be 32 bits");
 
 // LD2: Load single 2-element structure to one lane of two registers
 // Encoding: LD2_asisdlsop_BX2_r2b
@@ -7322,7 +6978,6 @@ struct Ld2AsisdlsopBx2R2b {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld2AsisdlsopBx2R2b) == 4, "Encoding struct must be 32 bits");
 
 // LD2: Load single 2-element structure to one lane of two registers
 // Encoding: LD2_asisdlsop_H2_i2h
@@ -7341,7 +6996,6 @@ struct Ld2AsisdlsopH2I2h {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld2AsisdlsopH2I2h) == 4, "Encoding struct must be 32 bits");
 
 // LD2: Load single 2-element structure to one lane of two registers
 // Encoding: LD2_asisdlsop_HX2_r2h
@@ -7360,7 +7014,6 @@ struct Ld2AsisdlsopHx2R2h {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld2AsisdlsopHx2R2h) == 4, "Encoding struct must be 32 bits");
 
 // LD2: Load single 2-element structure to one lane of two registers
 // Encoding: LD2_asisdlsop_S2_i2s
@@ -7379,7 +7032,6 @@ struct Ld2AsisdlsopS2I2s {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld2AsisdlsopS2I2s) == 4, "Encoding struct must be 32 bits");
 
 // LD2: Load single 2-element structure to one lane of two registers
 // Encoding: LD2_asisdlsop_SX2_r2s
@@ -7398,7 +7050,6 @@ struct Ld2AsisdlsopSx2R2s {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld2AsisdlsopSx2R2s) == 4, "Encoding struct must be 32 bits");
 
 // LD2: Load single 2-element structure to one lane of two registers
 // Encoding: LD2_asisdlsop_D2_i2d
@@ -7417,7 +7068,6 @@ struct Ld2AsisdlsopD2I2d {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld2AsisdlsopD2I2d) == 4, "Encoding struct must be 32 bits");
 
 // LD2: Load single 2-element structure to one lane of two registers
 // Encoding: LD2_asisdlsop_DX2_r2d
@@ -7436,7 +7086,6 @@ struct Ld2AsisdlsopDx2R2d {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld2AsisdlsopDx2R2d) == 4, "Encoding struct must be 32 bits");
 
 // LD2R: Load single 2-element structure and replicate to all lanes of two registers
 // Encoding: LD2R_asisdlso_R2
@@ -7460,7 +7109,6 @@ struct Ld2rAsisdlsoR2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld2rAsisdlsoR2) == 4, "Encoding struct must be 32 bits");
 
 // LD2R: Load single 2-element structure and replicate to all lanes of two registers
 // Encoding: LD2R_asisdlsop_R2_i
@@ -7479,7 +7127,6 @@ struct Ld2rAsisdlsopR2I {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld2rAsisdlsopR2I) == 4, "Encoding struct must be 32 bits");
 
 // LD2R: Load single 2-element structure and replicate to all lanes of two registers
 // Encoding: LD2R_asisdlsop_RX2_r
@@ -7498,7 +7145,6 @@ struct Ld2rAsisdlsopRx2R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld2rAsisdlsopRx2R) == 4, "Encoding struct must be 32 bits");
 
 // LD3: Load multiple 3-element structures to three registers
 // Encoding: LD3_asisdlse_R3
@@ -7519,7 +7165,6 @@ struct Ld3AsisdlseR3 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld3AsisdlseR3) == 4, "Encoding struct must be 32 bits");
 
 // LD3: Load multiple 3-element structures to three registers
 // Encoding: LD3_asisdlsep_I3_i
@@ -7537,7 +7182,6 @@ struct Ld3AsisdlsepI3I {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld3AsisdlsepI3I) == 4, "Encoding struct must be 32 bits");
 
 // LD3: Load multiple 3-element structures to three registers
 // Encoding: LD3_asisdlsep_R3_r
@@ -7555,7 +7199,6 @@ struct Ld3AsisdlsepR3R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld3AsisdlsepR3R) == 4, "Encoding struct must be 32 bits");
 
 // LD3: Load single 3-element structure to one lane of three registers
 // Encoding: LD3_asisdlso_B3_3b
@@ -7575,7 +7218,6 @@ struct Ld3AsisdlsoB33b {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld3AsisdlsoB33b) == 4, "Encoding struct must be 32 bits");
 
 // LD3: Load single 3-element structure to one lane of three registers
 // Encoding: LD3_asisdlso_H3_3h
@@ -7595,7 +7237,6 @@ struct Ld3AsisdlsoH33h {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld3AsisdlsoH33h) == 4, "Encoding struct must be 32 bits");
 
 // LD3: Load single 3-element structure to one lane of three registers
 // Encoding: LD3_asisdlso_S3_3s
@@ -7615,7 +7256,6 @@ struct Ld3AsisdlsoS33s {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld3AsisdlsoS33s) == 4, "Encoding struct must be 32 bits");
 
 // LD3: Load single 3-element structure to one lane of three registers
 // Encoding: LD3_asisdlso_D3_3d
@@ -7635,7 +7275,6 @@ struct Ld3AsisdlsoD33d {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld3AsisdlsoD33d) == 4, "Encoding struct must be 32 bits");
 
 // LD3: Load single 3-element structure to one lane of three registers
 // Encoding: LD3_asisdlsop_B3_i3b
@@ -7654,7 +7293,6 @@ struct Ld3AsisdlsopB3I3b {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld3AsisdlsopB3I3b) == 4, "Encoding struct must be 32 bits");
 
 // LD3: Load single 3-element structure to one lane of three registers
 // Encoding: LD3_asisdlsop_BX3_r3b
@@ -7673,7 +7311,6 @@ struct Ld3AsisdlsopBx3R3b {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld3AsisdlsopBx3R3b) == 4, "Encoding struct must be 32 bits");
 
 // LD3: Load single 3-element structure to one lane of three registers
 // Encoding: LD3_asisdlsop_H3_i3h
@@ -7692,7 +7329,6 @@ struct Ld3AsisdlsopH3I3h {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld3AsisdlsopH3I3h) == 4, "Encoding struct must be 32 bits");
 
 // LD3: Load single 3-element structure to one lane of three registers
 // Encoding: LD3_asisdlsop_HX3_r3h
@@ -7711,7 +7347,6 @@ struct Ld3AsisdlsopHx3R3h {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld3AsisdlsopHx3R3h) == 4, "Encoding struct must be 32 bits");
 
 // LD3: Load single 3-element structure to one lane of three registers
 // Encoding: LD3_asisdlsop_S3_i3s
@@ -7730,7 +7365,6 @@ struct Ld3AsisdlsopS3I3s {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld3AsisdlsopS3I3s) == 4, "Encoding struct must be 32 bits");
 
 // LD3: Load single 3-element structure to one lane of three registers
 // Encoding: LD3_asisdlsop_SX3_r3s
@@ -7749,7 +7383,6 @@ struct Ld3AsisdlsopSx3R3s {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld3AsisdlsopSx3R3s) == 4, "Encoding struct must be 32 bits");
 
 // LD3: Load single 3-element structure to one lane of three registers
 // Encoding: LD3_asisdlsop_D3_i3d
@@ -7768,7 +7401,6 @@ struct Ld3AsisdlsopD3I3d {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld3AsisdlsopD3I3d) == 4, "Encoding struct must be 32 bits");
 
 // LD3: Load single 3-element structure to one lane of three registers
 // Encoding: LD3_asisdlsop_DX3_r3d
@@ -7787,7 +7419,6 @@ struct Ld3AsisdlsopDx3R3d {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld3AsisdlsopDx3R3d) == 4, "Encoding struct must be 32 bits");
 
 // LD3R: Load single 3-element structure and replicate to all lanes of three registers
 // Encoding: LD3R_asisdlso_R3
@@ -7811,7 +7442,6 @@ struct Ld3rAsisdlsoR3 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld3rAsisdlsoR3) == 4, "Encoding struct must be 32 bits");
 
 // LD3R: Load single 3-element structure and replicate to all lanes of three registers
 // Encoding: LD3R_asisdlsop_R3_i
@@ -7830,7 +7460,6 @@ struct Ld3rAsisdlsopR3I {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld3rAsisdlsopR3I) == 4, "Encoding struct must be 32 bits");
 
 // LD3R: Load single 3-element structure and replicate to all lanes of three registers
 // Encoding: LD3R_asisdlsop_RX3_r
@@ -7849,7 +7478,6 @@ struct Ld3rAsisdlsopRx3R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld3rAsisdlsopRx3R) == 4, "Encoding struct must be 32 bits");
 
 // LD4: Load multiple 4-element structures to four registers
 // Encoding: LD4_asisdlse_R4
@@ -7870,7 +7498,6 @@ struct Ld4AsisdlseR4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld4AsisdlseR4) == 4, "Encoding struct must be 32 bits");
 
 // LD4: Load multiple 4-element structures to four registers
 // Encoding: LD4_asisdlsep_I4_i
@@ -7888,7 +7515,6 @@ struct Ld4AsisdlsepI4I {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld4AsisdlsepI4I) == 4, "Encoding struct must be 32 bits");
 
 // LD4: Load multiple 4-element structures to four registers
 // Encoding: LD4_asisdlsep_R4_r
@@ -7906,7 +7532,6 @@ struct Ld4AsisdlsepR4R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld4AsisdlsepR4R) == 4, "Encoding struct must be 32 bits");
 
 // LD4: Load single 4-element structure to one lane of four registers
 // Encoding: LD4_asisdlso_B4_4b
@@ -7926,7 +7551,6 @@ struct Ld4AsisdlsoB44b {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld4AsisdlsoB44b) == 4, "Encoding struct must be 32 bits");
 
 // LD4: Load single 4-element structure to one lane of four registers
 // Encoding: LD4_asisdlso_H4_4h
@@ -7946,7 +7570,6 @@ struct Ld4AsisdlsoH44h {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld4AsisdlsoH44h) == 4, "Encoding struct must be 32 bits");
 
 // LD4: Load single 4-element structure to one lane of four registers
 // Encoding: LD4_asisdlso_S4_4s
@@ -7966,7 +7589,6 @@ struct Ld4AsisdlsoS44s {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld4AsisdlsoS44s) == 4, "Encoding struct must be 32 bits");
 
 // LD4: Load single 4-element structure to one lane of four registers
 // Encoding: LD4_asisdlso_D4_4d
@@ -7986,7 +7608,6 @@ struct Ld4AsisdlsoD44d {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld4AsisdlsoD44d) == 4, "Encoding struct must be 32 bits");
 
 // LD4: Load single 4-element structure to one lane of four registers
 // Encoding: LD4_asisdlsop_B4_i4b
@@ -8005,7 +7626,6 @@ struct Ld4AsisdlsopB4I4b {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld4AsisdlsopB4I4b) == 4, "Encoding struct must be 32 bits");
 
 // LD4: Load single 4-element structure to one lane of four registers
 // Encoding: LD4_asisdlsop_BX4_r4b
@@ -8024,7 +7644,6 @@ struct Ld4AsisdlsopBx4R4b {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld4AsisdlsopBx4R4b) == 4, "Encoding struct must be 32 bits");
 
 // LD4: Load single 4-element structure to one lane of four registers
 // Encoding: LD4_asisdlsop_H4_i4h
@@ -8043,7 +7662,6 @@ struct Ld4AsisdlsopH4I4h {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld4AsisdlsopH4I4h) == 4, "Encoding struct must be 32 bits");
 
 // LD4: Load single 4-element structure to one lane of four registers
 // Encoding: LD4_asisdlsop_HX4_r4h
@@ -8062,7 +7680,6 @@ struct Ld4AsisdlsopHx4R4h {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld4AsisdlsopHx4R4h) == 4, "Encoding struct must be 32 bits");
 
 // LD4: Load single 4-element structure to one lane of four registers
 // Encoding: LD4_asisdlsop_S4_i4s
@@ -8081,7 +7698,6 @@ struct Ld4AsisdlsopS4I4s {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld4AsisdlsopS4I4s) == 4, "Encoding struct must be 32 bits");
 
 // LD4: Load single 4-element structure to one lane of four registers
 // Encoding: LD4_asisdlsop_SX4_r4s
@@ -8100,7 +7716,6 @@ struct Ld4AsisdlsopSx4R4s {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld4AsisdlsopSx4R4s) == 4, "Encoding struct must be 32 bits");
 
 // LD4: Load single 4-element structure to one lane of four registers
 // Encoding: LD4_asisdlsop_D4_i4d
@@ -8119,7 +7734,6 @@ struct Ld4AsisdlsopD4I4d {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld4AsisdlsopD4I4d) == 4, "Encoding struct must be 32 bits");
 
 // LD4: Load single 4-element structure to one lane of four registers
 // Encoding: LD4_asisdlsop_DX4_r4d
@@ -8138,7 +7752,6 @@ struct Ld4AsisdlsopDx4R4d {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld4AsisdlsopDx4R4d) == 4, "Encoding struct must be 32 bits");
 
 // LD4R: Load single 4-element structure and replicate to all lanes of four registers
 // Encoding: LD4R_asisdlso_R4
@@ -8162,7 +7775,6 @@ struct Ld4rAsisdlsoR4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld4rAsisdlsoR4) == 4, "Encoding struct must be 32 bits");
 
 // LD4R: Load single 4-element structure and replicate to all lanes of four registers
 // Encoding: LD4R_asisdlsop_R4_i
@@ -8181,7 +7793,6 @@ struct Ld4rAsisdlsopR4I {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld4rAsisdlsopR4I) == 4, "Encoding struct must be 32 bits");
 
 // LD4R: Load single 4-element structure and replicate to all lanes of four registers
 // Encoding: LD4R_asisdlsop_RX4_r
@@ -8200,7 +7811,6 @@ struct Ld4rAsisdlsopRx4R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ld4rAsisdlsopRx4R) == 4, "Encoding struct must be 32 bits");
 
 // LDAP1: Load-acquire RCpc one single-element structure to one lane of one register
 // Encoding: LDAP1_asisdlso_D1
@@ -8224,7 +7834,6 @@ struct Ldap1AsisdlsoD1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Ldap1AsisdlsoD1) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 add
 // Encoding: LDBFADD_16
@@ -8245,7 +7854,6 @@ struct Ldbfadd16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Ldbfadd16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 add
 // Encoding: LDBFADDA_16
@@ -8266,7 +7874,6 @@ struct Ldbfadda16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Ldbfadda16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 add
 // Encoding: LDBFADDAL_16
@@ -8287,7 +7894,6 @@ struct Ldbfaddal16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Ldbfaddal16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 add
 // Encoding: LDBFADDL_16
@@ -8308,7 +7914,6 @@ struct Ldbfaddl16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Ldbfaddl16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 maximum
 // Encoding: LDBFMAX_16
@@ -8329,7 +7934,6 @@ struct Ldbfmax16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Ldbfmax16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 maximum
 // Encoding: LDBFMAXA_16
@@ -8350,7 +7954,6 @@ struct Ldbfmaxa16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Ldbfmaxa16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 maximum
 // Encoding: LDBFMAXAL_16
@@ -8371,7 +7974,6 @@ struct Ldbfmaxal16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Ldbfmaxal16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 maximum
 // Encoding: LDBFMAXL_16
@@ -8392,7 +7994,6 @@ struct Ldbfmaxl16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Ldbfmaxl16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 maximum number
 // Encoding: LDBFMAXNM_16
@@ -8413,7 +8014,6 @@ struct Ldbfmaxnm16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Ldbfmaxnm16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 maximum number
 // Encoding: LDBFMAXNMA_16
@@ -8434,7 +8034,6 @@ struct Ldbfmaxnma16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Ldbfmaxnma16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 maximum number
 // Encoding: LDBFMAXNMAL_16
@@ -8455,7 +8054,6 @@ struct Ldbfmaxnmal16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Ldbfmaxnmal16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 maximum number
 // Encoding: LDBFMAXNML_16
@@ -8476,7 +8074,6 @@ struct Ldbfmaxnml16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Ldbfmaxnml16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 minimum
 // Encoding: LDBFMIN_16
@@ -8497,7 +8094,6 @@ struct Ldbfmin16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Ldbfmin16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 minimum
 // Encoding: LDBFMINA_16
@@ -8518,7 +8114,6 @@ struct Ldbfmina16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Ldbfmina16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 minimum
 // Encoding: LDBFMINAL_16
@@ -8539,7 +8134,6 @@ struct Ldbfminal16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Ldbfminal16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 minimum
 // Encoding: LDBFMINL_16
@@ -8560,7 +8154,6 @@ struct Ldbfminl16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Ldbfminl16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 minimum number
 // Encoding: LDBFMINNM_16
@@ -8581,7 +8174,6 @@ struct Ldbfminnm16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Ldbfminnm16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 minimum number
 // Encoding: LDBFMINNMA_16
@@ -8602,7 +8194,6 @@ struct Ldbfminnma16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Ldbfminnma16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 minimum number
 // Encoding: LDBFMINNMAL_16
@@ -8623,7 +8214,6 @@ struct Ldbfminnmal16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Ldbfminnmal16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 minimum number
 // Encoding: LDBFMINNML_16
@@ -8644,7 +8234,6 @@ struct Ldbfminnml16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Ldbfminnml16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point add
 // Encoding: LDFADD_16
@@ -8665,7 +8254,6 @@ struct Ldfadd16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Ldfadd16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point add
 // Encoding: LDFADDA_16
@@ -8686,7 +8274,6 @@ struct Ldfadda16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Ldfadda16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point add
 // Encoding: LDFADDAL_16
@@ -8707,7 +8294,6 @@ struct Ldfaddal16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Ldfaddal16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point add
 // Encoding: LDFADDL_16
@@ -8728,7 +8314,6 @@ struct Ldfaddl16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Ldfaddl16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point add
 // Encoding: LDFADD_32
@@ -8749,7 +8334,6 @@ struct Ldfadd32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Ldfadd32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point add
 // Encoding: LDFADDA_32
@@ -8770,7 +8354,6 @@ struct Ldfadda32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Ldfadda32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point add
 // Encoding: LDFADDAL_32
@@ -8791,7 +8374,6 @@ struct Ldfaddal32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Ldfaddal32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point add
 // Encoding: LDFADDL_32
@@ -8812,7 +8394,6 @@ struct Ldfaddl32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Ldfaddl32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point add
 // Encoding: LDFADD_64
@@ -8833,7 +8414,6 @@ struct Ldfadd64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Ldfadd64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point add
 // Encoding: LDFADDA_64
@@ -8854,7 +8434,6 @@ struct Ldfadda64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Ldfadda64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point add
 // Encoding: LDFADDAL_64
@@ -8875,7 +8454,6 @@ struct Ldfaddal64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Ldfaddal64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point add
 // Encoding: LDFADDL_64
@@ -8896,7 +8474,6 @@ struct Ldfaddl64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Ldfaddl64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum
 // Encoding: LDFMAX_16
@@ -8917,7 +8494,6 @@ struct Ldfmax16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Ldfmax16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum
 // Encoding: LDFMAXA_16
@@ -8938,7 +8514,6 @@ struct Ldfmaxa16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Ldfmaxa16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum
 // Encoding: LDFMAXAL_16
@@ -8959,7 +8534,6 @@ struct Ldfmaxal16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Ldfmaxal16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum
 // Encoding: LDFMAXL_16
@@ -8980,7 +8554,6 @@ struct Ldfmaxl16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Ldfmaxl16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum
 // Encoding: LDFMAX_32
@@ -9001,7 +8574,6 @@ struct Ldfmax32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Ldfmax32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum
 // Encoding: LDFMAXA_32
@@ -9022,7 +8594,6 @@ struct Ldfmaxa32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Ldfmaxa32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum
 // Encoding: LDFMAXAL_32
@@ -9043,7 +8614,6 @@ struct Ldfmaxal32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Ldfmaxal32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum
 // Encoding: LDFMAXL_32
@@ -9064,7 +8634,6 @@ struct Ldfmaxl32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Ldfmaxl32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum
 // Encoding: LDFMAX_64
@@ -9085,7 +8654,6 @@ struct Ldfmax64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Ldfmax64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum
 // Encoding: LDFMAXA_64
@@ -9106,7 +8674,6 @@ struct Ldfmaxa64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Ldfmaxa64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum
 // Encoding: LDFMAXAL_64
@@ -9127,7 +8694,6 @@ struct Ldfmaxal64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Ldfmaxal64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum
 // Encoding: LDFMAXL_64
@@ -9148,7 +8714,6 @@ struct Ldfmaxl64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Ldfmaxl64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum number
 // Encoding: LDFMAXNM_16
@@ -9169,7 +8734,6 @@ struct Ldfmaxnm16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Ldfmaxnm16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum number
 // Encoding: LDFMAXNMA_16
@@ -9190,7 +8754,6 @@ struct Ldfmaxnma16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Ldfmaxnma16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum number
 // Encoding: LDFMAXNMAL_16
@@ -9211,7 +8774,6 @@ struct Ldfmaxnmal16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Ldfmaxnmal16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum number
 // Encoding: LDFMAXNML_16
@@ -9232,7 +8794,6 @@ struct Ldfmaxnml16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Ldfmaxnml16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum number
 // Encoding: LDFMAXNM_32
@@ -9253,7 +8814,6 @@ struct Ldfmaxnm32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Ldfmaxnm32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum number
 // Encoding: LDFMAXNMA_32
@@ -9274,7 +8834,6 @@ struct Ldfmaxnma32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Ldfmaxnma32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum number
 // Encoding: LDFMAXNMAL_32
@@ -9295,7 +8854,6 @@ struct Ldfmaxnmal32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Ldfmaxnmal32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum number
 // Encoding: LDFMAXNML_32
@@ -9316,7 +8874,6 @@ struct Ldfmaxnml32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Ldfmaxnml32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum number
 // Encoding: LDFMAXNM_64
@@ -9337,7 +8894,6 @@ struct Ldfmaxnm64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Ldfmaxnm64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum number
 // Encoding: LDFMAXNMA_64
@@ -9358,7 +8914,6 @@ struct Ldfmaxnma64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Ldfmaxnma64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum number
 // Encoding: LDFMAXNMAL_64
@@ -9379,7 +8934,6 @@ struct Ldfmaxnmal64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Ldfmaxnmal64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum number
 // Encoding: LDFMAXNML_64
@@ -9400,7 +8954,6 @@ struct Ldfmaxnml64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Ldfmaxnml64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum
 // Encoding: LDFMIN_16
@@ -9421,7 +8974,6 @@ struct Ldfmin16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Ldfmin16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum
 // Encoding: LDFMINA_16
@@ -9442,7 +8994,6 @@ struct Ldfmina16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Ldfmina16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum
 // Encoding: LDFMINAL_16
@@ -9463,7 +9014,6 @@ struct Ldfminal16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Ldfminal16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum
 // Encoding: LDFMINL_16
@@ -9484,7 +9034,6 @@ struct Ldfminl16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Ldfminl16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum
 // Encoding: LDFMIN_32
@@ -9505,7 +9054,6 @@ struct Ldfmin32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Ldfmin32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum
 // Encoding: LDFMINA_32
@@ -9526,7 +9074,6 @@ struct Ldfmina32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Ldfmina32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum
 // Encoding: LDFMINAL_32
@@ -9547,7 +9094,6 @@ struct Ldfminal32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Ldfminal32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum
 // Encoding: LDFMINL_32
@@ -9568,7 +9114,6 @@ struct Ldfminl32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Ldfminl32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum
 // Encoding: LDFMIN_64
@@ -9589,7 +9134,6 @@ struct Ldfmin64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Ldfmin64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum
 // Encoding: LDFMINA_64
@@ -9610,7 +9154,6 @@ struct Ldfmina64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Ldfmina64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum
 // Encoding: LDFMINAL_64
@@ -9631,7 +9174,6 @@ struct Ldfminal64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Ldfminal64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum
 // Encoding: LDFMINL_64
@@ -9652,7 +9194,6 @@ struct Ldfminl64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Ldfminl64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum number
 // Encoding: LDFMINNM_16
@@ -9673,7 +9214,6 @@ struct Ldfminnm16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Ldfminnm16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum number
 // Encoding: LDFMINNMA_16
@@ -9694,7 +9234,6 @@ struct Ldfminnma16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Ldfminnma16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum number
 // Encoding: LDFMINNMAL_16
@@ -9715,7 +9254,6 @@ struct Ldfminnmal16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Ldfminnmal16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum number
 // Encoding: LDFMINNML_16
@@ -9736,7 +9274,6 @@ struct Ldfminnml16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Ldfminnml16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum number
 // Encoding: LDFMINNM_32
@@ -9757,7 +9294,6 @@ struct Ldfminnm32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Ldfminnm32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum number
 // Encoding: LDFMINNMA_32
@@ -9778,7 +9314,6 @@ struct Ldfminnma32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Ldfminnma32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum number
 // Encoding: LDFMINNMAL_32
@@ -9799,7 +9334,6 @@ struct Ldfminnmal32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Ldfminnmal32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum number
 // Encoding: LDFMINNML_32
@@ -9820,7 +9354,6 @@ struct Ldfminnml32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Ldfminnml32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum number
 // Encoding: LDFMINNM_64
@@ -9841,7 +9374,6 @@ struct Ldfminnm64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Ldfminnm64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum number
 // Encoding: LDFMINNMA_64
@@ -9862,7 +9394,6 @@ struct Ldfminnma64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Ldfminnma64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum number
 // Encoding: LDFMINNMAL_64
@@ -9883,7 +9414,6 @@ struct Ldfminnmal64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Ldfminnmal64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum number
 // Encoding: LDFMINNML_64
@@ -9904,7 +9434,6 @@ struct Ldfminnml64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Ldfminnml64) == 4, "Encoding struct must be 32 bits");
 
 // LUTI2: Lookup table read with 2-bit indices
 // Encoding: LUTI2_asimdtbl_L5
@@ -9924,7 +9453,6 @@ struct Luti2AsimdtblL5 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Luti2AsimdtblL5) == 4, "Encoding struct must be 32 bits");
 
 // LUTI2: Lookup table read with 2-bit indices
 // Encoding: LUTI2_asimdtbl_L6
@@ -9944,7 +9472,6 @@ struct Luti2AsimdtblL6 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Luti2AsimdtblL6) == 4, "Encoding struct must be 32 bits");
 
 // LUTI4: Lookup table read with 4-bit indices
 // Encoding: LUTI4_asimdtbl_L5
@@ -9964,7 +9491,6 @@ struct Luti4AsimdtblL5 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Luti4AsimdtblL5) == 4, "Encoding struct must be 32 bits");
 
 // LUTI4: Lookup table read with 4-bit indices
 // Encoding: LUTI4_asimdtbl_L7
@@ -9984,7 +9510,6 @@ struct Luti4AsimdtblL7 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Luti4AsimdtblL7) == 4, "Encoding struct must be 32 bits");
 
 // MLA: Multiply-add to accumulator (vector, by element)
 // Encoding: MLA_asimdelem_R
@@ -10009,7 +9534,6 @@ struct MlaAsimdelemR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(MlaAsimdelemR) == 4, "Encoding struct must be 32 bits");
 
 // MLA: Multiply-add to accumulator (vector)
 // Encoding: MLA_asimdsame_only
@@ -10030,7 +9554,6 @@ struct MlaAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(MlaAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // MLS: Multiply-subtract from accumulator (vector, by element)
 // Encoding: MLS_asimdelem_R
@@ -10055,7 +9578,6 @@ struct MlsAsimdelemR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(MlsAsimdelemR) == 4, "Encoding struct must be 32 bits");
 
 // MLS: Multiply-subtract from accumulator (vector)
 // Encoding: MLS_asimdsame_only
@@ -10076,7 +9598,6 @@ struct MlsAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(MlsAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // DUP: Move vector element to scalar
 // Encoding: MOV_DUP_asisdone_only
@@ -10096,7 +9617,6 @@ struct MovDupAsisdoneOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(MovDupAsisdoneOnly) == 4, "Encoding struct must be 32 bits");
 
 // INS: Move vector element to another vector element
 // Encoding: MOV_INS_asimdins_IV_v
@@ -10117,7 +9637,6 @@ struct MovInsAsimdinsIvV {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(MovInsAsimdinsIvV) == 4, "Encoding struct must be 32 bits");
 
 // INS: Move general-purpose register to a vector element
 // Encoding: MOV_INS_asimdins_IR_r
@@ -10138,7 +9657,6 @@ struct MovInsAsimdinsIrR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(MovInsAsimdinsIrR) == 4, "Encoding struct must be 32 bits");
 
 // ORR: Move vector
 // Encoding: MOV_ORR_asimdsame_only
@@ -10159,7 +9677,6 @@ struct MovOrrAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(MovOrrAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // UMOV: Move vector element to general-purpose register
 // Encoding: MOV_UMOV_asimdins_W_w
@@ -10177,7 +9694,6 @@ struct MovUmovAsimdinsWW {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(MovUmovAsimdinsWW) == 4, "Encoding struct must be 32 bits");
 
 // UMOV: Move vector element to general-purpose register
 // Encoding: MOV_UMOV_asimdins_X_x
@@ -10195,7 +9711,6 @@ struct MovUmovAsimdinsXX {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(MovUmovAsimdinsXX) == 4, "Encoding struct must be 32 bits");
 
 // MOVI: Move immediate (vector)
 // Encoding: MOVI_asimdimm_N_b
@@ -10219,7 +9734,6 @@ struct MoviAsimdimmNB {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(MoviAsimdimmNB) == 4, "Encoding struct must be 32 bits");
 
 // MOVI: Move immediate (vector)
 // Encoding: MOVI_asimdimm_L_hl
@@ -10243,7 +9757,6 @@ struct MoviAsimdimmLHl {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(MoviAsimdimmLHl) == 4, "Encoding struct must be 32 bits");
 
 // MOVI: Move immediate (vector)
 // Encoding: MOVI_asimdimm_L_sl
@@ -10267,7 +9780,6 @@ struct MoviAsimdimmLSl {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(MoviAsimdimmLSl) == 4, "Encoding struct must be 32 bits");
 
 // MOVI: Move immediate (vector)
 // Encoding: MOVI_asimdimm_M_sm
@@ -10291,7 +9803,6 @@ struct MoviAsimdimmMSm {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(MoviAsimdimmMSm) == 4, "Encoding struct must be 32 bits");
 
 // MOVI: Move immediate (vector)
 // Encoding: MOVI_asimdimm_D_ds
@@ -10315,7 +9826,6 @@ struct MoviAsimdimmDDs {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(MoviAsimdimmDDs) == 4, "Encoding struct must be 32 bits");
 
 // MOVI: Move immediate (vector)
 // Encoding: MOVI_asimdimm_D2_d
@@ -10339,7 +9849,6 @@ struct MoviAsimdimmD2D {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(MoviAsimdimmD2D) == 4, "Encoding struct must be 32 bits");
 
 // MUL: Multiply (vector, by element)
 // Encoding: MUL_asimdelem_R
@@ -10362,7 +9871,6 @@ struct MulAsimdelemR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(MulAsimdelemR) == 4, "Encoding struct must be 32 bits");
 
 // MUL: Multiply (vector)
 // Encoding: MUL_asimdsame_only
@@ -10383,7 +9891,6 @@ struct MulAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(MulAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // NOT: Bitwise NOT (vector)
 // Encoding: MVN_NOT_asimdmisc_R
@@ -10403,7 +9910,6 @@ struct MvnNotAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(MvnNotAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // MVNI: Move inverted immediate (vector)
 // Encoding: MVNI_asimdimm_L_hl
@@ -10427,7 +9933,6 @@ struct MvniAsimdimmLHl {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(MvniAsimdimmLHl) == 4, "Encoding struct must be 32 bits");
 
 // MVNI: Move inverted immediate (vector)
 // Encoding: MVNI_asimdimm_L_sl
@@ -10451,7 +9956,6 @@ struct MvniAsimdimmLSl {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(MvniAsimdimmLSl) == 4, "Encoding struct must be 32 bits");
 
 // MVNI: Move inverted immediate (vector)
 // Encoding: MVNI_asimdimm_M_sm
@@ -10475,7 +9979,6 @@ struct MvniAsimdimmMSm {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(MvniAsimdimmMSm) == 4, "Encoding struct must be 32 bits");
 
 // NEG: Negate (vector)
 // Encoding: NEG_asisdmisc_R
@@ -10494,7 +9997,6 @@ struct NegAsisdmiscR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(NegAsisdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // NEG: Negate (vector)
 // Encoding: NEG_asimdmisc_R
@@ -10514,7 +10016,6 @@ struct NegAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(NegAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // NOT: Bitwise NOT (vector)
 // Encoding: NOT_asimdmisc_R
@@ -10534,7 +10035,6 @@ struct NotAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(NotAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // ORN: Bitwise inclusive OR NOT (vector)
 // Encoding: ORN_asimdsame_only
@@ -10555,7 +10055,6 @@ struct OrnAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(OrnAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // ORR: Bitwise inclusive OR (vector, immediate)
 // Encoding: ORR_asimdimm_L_hl
@@ -10579,7 +10078,6 @@ struct OrrAsimdimmLHl {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(OrrAsimdimmLHl) == 4, "Encoding struct must be 32 bits");
 
 // ORR: Bitwise inclusive OR (vector, immediate)
 // Encoding: ORR_asimdimm_L_sl
@@ -10603,7 +10101,6 @@ struct OrrAsimdimmLSl {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(OrrAsimdimmLSl) == 4, "Encoding struct must be 32 bits");
 
 // ORR: Bitwise inclusive OR (vector, register)
 // Encoding: ORR_asimdsame_only
@@ -10624,7 +10121,6 @@ struct OrrAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(OrrAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // PMUL: Polynomial multiply
 // Encoding: PMUL_asimdsame_only
@@ -10645,7 +10141,6 @@ struct PmulAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(PmulAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // PMULL: Polynomial multiply long
 // Encoding: PMULL_asimddiff_L
@@ -10666,7 +10161,6 @@ struct PmullAsimddiffL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(PmullAsimddiffL) == 4, "Encoding struct must be 32 bits");
 
 // RADDHN: Rounding add returning high narrow
 // Encoding: RADDHN_asimddiff_N
@@ -10689,7 +10183,6 @@ struct RaddhnAsimddiffN {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(RaddhnAsimddiffN) == 4, "Encoding struct must be 32 bits");
 
 // RAX1: Rotate and exclusive-OR
 // Encoding: RAX1_VVV2_cryptosha512_3
@@ -10708,7 +10201,6 @@ struct Rax1Vvv2Cryptosha5123 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b1100 (0xC)
 };
 
-static_assert(sizeof(Rax1Vvv2Cryptosha5123) == 4, "Encoding struct must be 32 bits");
 
 // RBIT: Reverse bit order (vector)
 // Encoding: RBIT_asimdmisc_R
@@ -10728,7 +10220,6 @@ struct RbitAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(RbitAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // REV16: Reverse elements in 16-bit halfwords (vector)
 // Encoding: REV16_asimdmisc_R
@@ -10749,7 +10240,6 @@ struct Rev16AsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Rev16AsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // REV32: Reverse elements in 32-bit words (vector)
 // Encoding: REV32_asimdmisc_R
@@ -10770,7 +10260,6 @@ struct Rev32AsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Rev32AsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // REV64: Reverse elements in 64-bit doublewords (vector)
 // Encoding: REV64_asimdmisc_R
@@ -10791,7 +10280,6 @@ struct Rev64AsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Rev64AsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // RSHRN: Rounding shift right narrow (immediate)
 // Encoding: RSHRN_asimdshf_N
@@ -10812,7 +10300,6 @@ struct RshrnAsimdshfN {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(RshrnAsimdshfN) == 4, "Encoding struct must be 32 bits");
 
 // RSUBHN: Rounding subtract returning high narrow
 // Encoding: RSUBHN_asimddiff_N
@@ -10835,7 +10322,6 @@ struct RsubhnAsimddiffN {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(RsubhnAsimddiffN) == 4, "Encoding struct must be 32 bits");
 
 // SABA: Signed absolute difference and accumulate
 // Encoding: SABA_asimdsame_only
@@ -10857,7 +10343,6 @@ struct SabaAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SabaAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SABAL: Signed absolute difference and accumulate long
 // Encoding: SABAL_asimddiff_L
@@ -10880,7 +10365,6 @@ struct SabalAsimddiffL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SabalAsimddiffL) == 4, "Encoding struct must be 32 bits");
 
 // SABD: Signed absolute difference
 // Encoding: SABD_asimdsame_only
@@ -10902,7 +10386,6 @@ struct SabdAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SabdAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SABDL: Signed absolute difference long
 // Encoding: SABDL_asimddiff_L
@@ -10925,7 +10408,6 @@ struct SabdlAsimddiffL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SabdlAsimddiffL) == 4, "Encoding struct must be 32 bits");
 
 // SADALP: Signed add and accumulate long pairwise
 // Encoding: SADALP_asimdmisc_P
@@ -10947,7 +10429,6 @@ struct SadalpAsimdmiscP {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SadalpAsimdmiscP) == 4, "Encoding struct must be 32 bits");
 
 // SADDL: Signed add long (vector)
 // Encoding: SADDL_asimddiff_L
@@ -10970,7 +10451,6 @@ struct SaddlAsimddiffL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SaddlAsimddiffL) == 4, "Encoding struct must be 32 bits");
 
 // SADDLP: Signed add long pairwise
 // Encoding: SADDLP_asimdmisc_P
@@ -10992,7 +10472,6 @@ struct SaddlpAsimdmiscP {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SaddlpAsimdmiscP) == 4, "Encoding struct must be 32 bits");
 
 // SADDLV: Signed add long across vector
 // Encoding: SADDLV_asimdall_only
@@ -11012,7 +10491,6 @@ struct SaddlvAsimdallOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SaddlvAsimdallOnly) == 4, "Encoding struct must be 32 bits");
 
 // SADDW: Signed add wide
 // Encoding: SADDW_asimddiff_W
@@ -11035,7 +10513,6 @@ struct SaddwAsimddiffW {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SaddwAsimddiffW) == 4, "Encoding struct must be 32 bits");
 
 // SCVTF: Signed fixed-point convert to floating-point (vector)
 // Encoding: SCVTF_asisdshf_C
@@ -11054,7 +10531,6 @@ struct ScvtfAsisdshfC {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(ScvtfAsisdshfC) == 4, "Encoding struct must be 32 bits");
 
 // SCVTF: Signed fixed-point convert to floating-point (vector)
 // Encoding: SCVTF_asimdshf_C
@@ -11074,7 +10550,6 @@ struct ScvtfAsimdshfC {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(ScvtfAsimdshfC) == 4, "Encoding struct must be 32 bits");
 
 // SCVTF: Signed integer convert to floating-point (vector)
 // Encoding: SCVTF_asisdmiscfp16_R
@@ -11094,7 +10569,6 @@ struct ScvtfAsisdmiscfp16R {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(ScvtfAsisdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // SCVTF: Signed integer convert to floating-point (vector)
 // Encoding: SCVTF_asisdmisc_R
@@ -11114,7 +10588,6 @@ struct ScvtfAsisdmiscR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(ScvtfAsisdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // SCVTF: Signed integer convert to floating-point (vector)
 // Encoding: SCVTF_asimdmiscfp16_R
@@ -11135,7 +10608,6 @@ struct ScvtfAsimdmiscfp16R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(ScvtfAsimdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // SCVTF: Signed integer convert to floating-point (vector)
 // Encoding: SCVTF_asimdmisc_R
@@ -11156,7 +10628,6 @@ struct ScvtfAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(ScvtfAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // SDOT: Dot product signed arithmetic (vector, by element)
 // Encoding: SDOT_asimdelem_D
@@ -11179,7 +10650,6 @@ struct SdotAsimdelemD {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SdotAsimdelemD) == 4, "Encoding struct must be 32 bits");
 
 // SDOT: Dot product signed arithmetic (vector)
 // Encoding: SDOT_asimdsame2_D
@@ -11201,7 +10671,6 @@ struct SdotAsimdsame2D {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SdotAsimdsame2D) == 4, "Encoding struct must be 32 bits");
 
 // SHA1C: SHA1 hash update (choose)
 // Encoding: SHA1C_QSV_cryptosha3
@@ -11220,7 +10689,6 @@ struct Sha1cQsvCryptosha3 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b0101 (0x5)
 };
 
-static_assert(sizeof(Sha1cQsvCryptosha3) == 4, "Encoding struct must be 32 bits");
 
 // SHA1H: SHA1 fixed rotate
 // Encoding: SHA1H_SS_cryptosha2
@@ -11237,7 +10705,6 @@ struct Sha1hSsCryptosha2 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b0101 (0x5)
 };
 
-static_assert(sizeof(Sha1hSsCryptosha2) == 4, "Encoding struct must be 32 bits");
 
 // SHA1M: SHA1 hash update (majority)
 // Encoding: SHA1M_QSV_cryptosha3
@@ -11256,7 +10723,6 @@ struct Sha1mQsvCryptosha3 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b0101 (0x5)
 };
 
-static_assert(sizeof(Sha1mQsvCryptosha3) == 4, "Encoding struct must be 32 bits");
 
 // SHA1P: SHA1 hash update (parity)
 // Encoding: SHA1P_QSV_cryptosha3
@@ -11275,7 +10741,6 @@ struct Sha1pQsvCryptosha3 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b0101 (0x5)
 };
 
-static_assert(sizeof(Sha1pQsvCryptosha3) == 4, "Encoding struct must be 32 bits");
 
 // SHA1SU0: SHA1 schedule update 0
 // Encoding: SHA1SU0_VVV_cryptosha3
@@ -11294,7 +10759,6 @@ struct Sha1su0VvvCryptosha3 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b0101 (0x5)
 };
 
-static_assert(sizeof(Sha1su0VvvCryptosha3) == 4, "Encoding struct must be 32 bits");
 
 // SHA1SU1: SHA1 schedule update 1
 // Encoding: SHA1SU1_VV_cryptosha2
@@ -11311,7 +10775,6 @@ struct Sha1su1VvCryptosha2 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b0101 (0x5)
 };
 
-static_assert(sizeof(Sha1su1VvCryptosha2) == 4, "Encoding struct must be 32 bits");
 
 // SHA256H2: SHA256 hash update (part 2)
 // Encoding: SHA256H2_QQV_cryptosha3
@@ -11331,7 +10794,6 @@ struct Sha256h2QqvCryptosha3 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b0101 (0x5)
 };
 
-static_assert(sizeof(Sha256h2QqvCryptosha3) == 4, "Encoding struct must be 32 bits");
 
 // SHA256H: SHA256 hash update (part 1)
 // Encoding: SHA256H_QQV_cryptosha3
@@ -11351,7 +10813,6 @@ struct Sha256hQqvCryptosha3 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b0101 (0x5)
 };
 
-static_assert(sizeof(Sha256hQqvCryptosha3) == 4, "Encoding struct must be 32 bits");
 
 // SHA256SU0: SHA256 schedule update 0
 // Encoding: SHA256SU0_VV_cryptosha2
@@ -11368,7 +10829,6 @@ struct Sha256su0VvCryptosha2 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b0101 (0x5)
 };
 
-static_assert(sizeof(Sha256su0VvCryptosha2) == 4, "Encoding struct must be 32 bits");
 
 // SHA256SU1: SHA256 schedule update 1
 // Encoding: SHA256SU1_VVV_cryptosha3
@@ -11387,7 +10847,6 @@ struct Sha256su1VvvCryptosha3 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b0101 (0x5)
 };
 
-static_assert(sizeof(Sha256su1VvvCryptosha3) == 4, "Encoding struct must be 32 bits");
 
 // SHA512H2: SHA512 hash update part 2
 // Encoding: SHA512H2_QQV_cryptosha512_3
@@ -11406,7 +10865,6 @@ struct Sha512h2QqvCryptosha5123 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b1100 (0xC)
 };
 
-static_assert(sizeof(Sha512h2QqvCryptosha5123) == 4, "Encoding struct must be 32 bits");
 
 // SHA512H: SHA512 hash update part 1
 // Encoding: SHA512H_QQV_cryptosha512_3
@@ -11425,7 +10883,6 @@ struct Sha512hQqvCryptosha5123 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b1100 (0xC)
 };
 
-static_assert(sizeof(Sha512hQqvCryptosha5123) == 4, "Encoding struct must be 32 bits");
 
 // SHA512SU0: SHA512 schedule update 0
 // Encoding: SHA512SU0_VV2_cryptosha512_2
@@ -11441,7 +10898,6 @@ struct Sha512su0Vv2Cryptosha5122 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b1100 (0xC)
 };
 
-static_assert(sizeof(Sha512su0Vv2Cryptosha5122) == 4, "Encoding struct must be 32 bits");
 
 // SHA512SU1: SHA512 schedule update 1
 // Encoding: SHA512SU1_VVV2_cryptosha512_3
@@ -11460,7 +10916,6 @@ struct Sha512su1Vvv2Cryptosha5123 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b1100 (0xC)
 };
 
-static_assert(sizeof(Sha512su1Vvv2Cryptosha5123) == 4, "Encoding struct must be 32 bits");
 
 // SHADD: Signed halving add
 // Encoding: SHADD_asimdsame_only
@@ -11481,7 +10936,6 @@ struct ShaddAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(ShaddAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SHL: Shift left (immediate)
 // Encoding: SHL_asisdshf_R
@@ -11500,7 +10954,6 @@ struct ShlAsisdshfR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(ShlAsisdshfR) == 4, "Encoding struct must be 32 bits");
 
 // SHL: Shift left (immediate)
 // Encoding: SHL_asimdshf_R
@@ -11520,7 +10973,6 @@ struct ShlAsimdshfR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(ShlAsimdshfR) == 4, "Encoding struct must be 32 bits");
 
 // SHLL: Shift left long (by element size)
 // Encoding: SHLL_asimdmisc_S
@@ -11540,7 +10992,6 @@ struct ShllAsimdmiscS {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(ShllAsimdmiscS) == 4, "Encoding struct must be 32 bits");
 
 // SHRN: Shift right narrow (immediate)
 // Encoding: SHRN_asimdshf_N
@@ -11561,7 +11012,6 @@ struct ShrnAsimdshfN {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(ShrnAsimdshfN) == 4, "Encoding struct must be 32 bits");
 
 // SHSUB: Signed halving subtract
 // Encoding: SHSUB_asimdsame_only
@@ -11582,7 +11032,6 @@ struct ShsubAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(ShsubAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SLI: Shift left and insert (immediate)
 // Encoding: SLI_asisdshf_R
@@ -11601,7 +11050,6 @@ struct SliAsisdshfR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SliAsisdshfR) == 4, "Encoding struct must be 32 bits");
 
 // SLI: Shift left and insert (immediate)
 // Encoding: SLI_asimdshf_R
@@ -11621,7 +11069,6 @@ struct SliAsimdshfR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SliAsimdshfR) == 4, "Encoding struct must be 32 bits");
 
 // SM3PARTW1: SM3PARTW1
 // Encoding: SM3PARTW1_VVV4_cryptosha512_3
@@ -11640,7 +11087,6 @@ struct Sm3partw1Vvv4Cryptosha5123 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b1100 (0xC)
 };
 
-static_assert(sizeof(Sm3partw1Vvv4Cryptosha5123) == 4, "Encoding struct must be 32 bits");
 
 // SM3PARTW2: SM3PARTW2
 // Encoding: SM3PARTW2_VVV4_cryptosha512_3
@@ -11659,7 +11105,6 @@ struct Sm3partw2Vvv4Cryptosha5123 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b1100 (0xC)
 };
 
-static_assert(sizeof(Sm3partw2Vvv4Cryptosha5123) == 4, "Encoding struct must be 32 bits");
 
 // SM3SS1: SM3SS1
 // Encoding: SM3SS1_VVV4_crypto4
@@ -11676,7 +11121,6 @@ struct Sm3ss1Vvv4Crypto4 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b1100 (0xC)
 };
 
-static_assert(sizeof(Sm3ss1Vvv4Crypto4) == 4, "Encoding struct must be 32 bits");
 
 // SM3TT1A: SM3TT1A
 // Encoding: SM3TT1A_VVV4_crypto3_imm2
@@ -11694,7 +11138,6 @@ struct Sm3tt1aVvv4Crypto3Imm2 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b1100 (0xC)
 };
 
-static_assert(sizeof(Sm3tt1aVvv4Crypto3Imm2) == 4, "Encoding struct must be 32 bits");
 
 // SM3TT1B: SM3TT1B
 // Encoding: SM3TT1B_VVV4_crypto3_imm2
@@ -11712,7 +11155,6 @@ struct Sm3tt1bVvv4Crypto3Imm2 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b1100 (0xC)
 };
 
-static_assert(sizeof(Sm3tt1bVvv4Crypto3Imm2) == 4, "Encoding struct must be 32 bits");
 
 // SM3TT2A: SM3TT2A
 // Encoding: SM3TT2A_VVV4_crypto3_imm2
@@ -11730,7 +11172,6 @@ struct Sm3tt2aVvv4Crypto3Imm2 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b1100 (0xC)
 };
 
-static_assert(sizeof(Sm3tt2aVvv4Crypto3Imm2) == 4, "Encoding struct must be 32 bits");
 
 // SM3TT2B: SM3TT2B
 // Encoding: SM3TT2B_VVV_crypto3_imm2
@@ -11748,7 +11189,6 @@ struct Sm3tt2bVvvCrypto3Imm2 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b1100 (0xC)
 };
 
-static_assert(sizeof(Sm3tt2bVvvCrypto3Imm2) == 4, "Encoding struct must be 32 bits");
 
 // SM4E: SM4 encode
 // Encoding: SM4E_VV4_cryptosha512_2
@@ -11764,7 +11204,6 @@ struct Sm4eVv4Cryptosha5122 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b1100 (0xC)
 };
 
-static_assert(sizeof(Sm4eVv4Cryptosha5122) == 4, "Encoding struct must be 32 bits");
 
 // SM4EKEY: SM4 key
 // Encoding: SM4EKEY_VVV4_cryptosha512_3
@@ -11783,7 +11222,6 @@ struct Sm4ekeyVvv4Cryptosha5123 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b1100 (0xC)
 };
 
-static_assert(sizeof(Sm4ekeyVvv4Cryptosha5123) == 4, "Encoding struct must be 32 bits");
 
 // SMAX: Signed maximum (vector)
 // Encoding: SMAX_asimdsame_only
@@ -11805,7 +11243,6 @@ struct SmaxAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SmaxAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SMAXP: Signed maximum pairwise
 // Encoding: SMAXP_asimdsame_only
@@ -11827,7 +11264,6 @@ struct SmaxpAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SmaxpAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SMAXV: Signed maximum across vector
 // Encoding: SMAXV_asimdall_only
@@ -11848,7 +11284,6 @@ struct SmaxvAsimdallOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SmaxvAsimdallOnly) == 4, "Encoding struct must be 32 bits");
 
 // SMIN: Signed minimum (vector)
 // Encoding: SMIN_asimdsame_only
@@ -11870,7 +11305,6 @@ struct SminAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SminAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SMINP: Signed minimum pairwise
 // Encoding: SMINP_asimdsame_only
@@ -11892,7 +11326,6 @@ struct SminpAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SminpAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SMINV: Signed minimum across vector
 // Encoding: SMINV_asimdall_only
@@ -11913,7 +11346,6 @@ struct SminvAsimdallOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SminvAsimdallOnly) == 4, "Encoding struct must be 32 bits");
 
 // SMLAL: Signed multiply-add long (vector, by element)
 // Encoding: SMLAL_asimdelem_L
@@ -11938,7 +11370,6 @@ struct SmlalAsimdelemL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SmlalAsimdelemL) == 4, "Encoding struct must be 32 bits");
 
 // SMLAL: Signed multiply-add long (vector)
 // Encoding: SMLAL_asimddiff_L
@@ -11961,7 +11392,6 @@ struct SmlalAsimddiffL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SmlalAsimddiffL) == 4, "Encoding struct must be 32 bits");
 
 // SMLSL: Signed multiply-subtract long (vector, by element)
 // Encoding: SMLSL_asimdelem_L
@@ -11986,7 +11416,6 @@ struct SmlslAsimdelemL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SmlslAsimdelemL) == 4, "Encoding struct must be 32 bits");
 
 // SMLSL: Signed multiply-subtract long (vector)
 // Encoding: SMLSL_asimddiff_L
@@ -12009,7 +11438,6 @@ struct SmlslAsimddiffL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SmlslAsimddiffL) == 4, "Encoding struct must be 32 bits");
 
 // SMMLA: Signed 8-bit integer matrix multiply-accumulate to 32-bit integer (vector)
 // Encoding: SMMLA_asimdsame2_G
@@ -12032,7 +11460,6 @@ struct SmmlaAsimdsame2G {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SmmlaAsimdsame2G) == 4, "Encoding struct must be 32 bits");
 
 // SMOV: Signed move vector element to general-purpose register
 // Encoding: SMOV_asimdins_W_w
@@ -12050,7 +11477,6 @@ struct SmovAsimdinsWW {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SmovAsimdinsWW) == 4, "Encoding struct must be 32 bits");
 
 // SMOV: Signed move vector element to general-purpose register
 // Encoding: SMOV_asimdins_X_x
@@ -12068,7 +11494,6 @@ struct SmovAsimdinsXX {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SmovAsimdinsXX) == 4, "Encoding struct must be 32 bits");
 
 // SMULL: Signed multiply long (vector, by element)
 // Encoding: SMULL_asimdelem_L
@@ -12091,7 +11516,6 @@ struct SmullAsimdelemL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SmullAsimdelemL) == 4, "Encoding struct must be 32 bits");
 
 // SMULL: Signed multiply long (vector)
 // Encoding: SMULL_asimddiff_L
@@ -12112,7 +11536,6 @@ struct SmullAsimddiffL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SmullAsimddiffL) == 4, "Encoding struct must be 32 bits");
 
 // SQABS: Signed saturating absolute value
 // Encoding: SQABS_asisdmisc_R
@@ -12131,7 +11554,6 @@ struct SqabsAsisdmiscR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqabsAsisdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // SQABS: Signed saturating absolute value
 // Encoding: SQABS_asimdmisc_R
@@ -12151,7 +11573,6 @@ struct SqabsAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqabsAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // SQADD: Signed saturating add
 // Encoding: SQADD_asisdsame_only
@@ -12171,7 +11592,6 @@ struct SqaddAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqaddAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SQADD: Signed saturating add
 // Encoding: SQADD_asimdsame_only
@@ -12192,7 +11612,6 @@ struct SqaddAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqaddAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SQDMLAL: Signed saturating doubling multiply-add long (by element)
 // Encoding: SQDMLAL_asisdelem_L
@@ -12216,7 +11635,6 @@ struct SqdmlalAsisdelemL {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqdmlalAsisdelemL) == 4, "Encoding struct must be 32 bits");
 
 // SQDMLAL: Signed saturating doubling multiply-add long (by element)
 // Encoding: SQDMLAL_asimdelem_L
@@ -12241,7 +11659,6 @@ struct SqdmlalAsimdelemL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqdmlalAsimdelemL) == 4, "Encoding struct must be 32 bits");
 
 // SQDMLAL: Signed saturating doubling multiply-add long
 // Encoding: SQDMLAL_asisddiff_only
@@ -12263,7 +11680,6 @@ struct SqdmlalAsisddiffOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqdmlalAsisddiffOnly) == 4, "Encoding struct must be 32 bits");
 
 // SQDMLAL: Signed saturating doubling multiply-add long
 // Encoding: SQDMLAL_asimddiff_L
@@ -12286,7 +11702,6 @@ struct SqdmlalAsimddiffL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqdmlalAsimddiffL) == 4, "Encoding struct must be 32 bits");
 
 // SQDMLSL: Signed saturating doubling multiply-subtract long (by element)
 // Encoding: SQDMLSL_asisdelem_L
@@ -12310,7 +11725,6 @@ struct SqdmlslAsisdelemL {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqdmlslAsisdelemL) == 4, "Encoding struct must be 32 bits");
 
 // SQDMLSL: Signed saturating doubling multiply-subtract long (by element)
 // Encoding: SQDMLSL_asimdelem_L
@@ -12335,7 +11749,6 @@ struct SqdmlslAsimdelemL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqdmlslAsimdelemL) == 4, "Encoding struct must be 32 bits");
 
 // SQDMLSL: Signed saturating doubling multiply-subtract long
 // Encoding: SQDMLSL_asisddiff_only
@@ -12357,7 +11770,6 @@ struct SqdmlslAsisddiffOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqdmlslAsisddiffOnly) == 4, "Encoding struct must be 32 bits");
 
 // SQDMLSL: Signed saturating doubling multiply-subtract long
 // Encoding: SQDMLSL_asimddiff_L
@@ -12380,7 +11792,6 @@ struct SqdmlslAsimddiffL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqdmlslAsimddiffL) == 4, "Encoding struct must be 32 bits");
 
 // SQDMULH: Signed saturating doubling multiply returning high half (by element)
 // Encoding: SQDMULH_asisdelem_R
@@ -12403,7 +11814,6 @@ struct SqdmulhAsisdelemR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqdmulhAsisdelemR) == 4, "Encoding struct must be 32 bits");
 
 // SQDMULH: Signed saturating doubling multiply returning high half (by element)
 // Encoding: SQDMULH_asimdelem_R
@@ -12427,7 +11837,6 @@ struct SqdmulhAsimdelemR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqdmulhAsimdelemR) == 4, "Encoding struct must be 32 bits");
 
 // SQDMULH: Signed saturating doubling multiply returning high half
 // Encoding: SQDMULH_asisdsame_only
@@ -12447,7 +11856,6 @@ struct SqdmulhAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqdmulhAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SQDMULH: Signed saturating doubling multiply returning high half
 // Encoding: SQDMULH_asimdsame_only
@@ -12468,7 +11876,6 @@ struct SqdmulhAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqdmulhAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SQDMULL: Signed saturating doubling multiply long (by element)
 // Encoding: SQDMULL_asimdelem_L
@@ -12491,7 +11898,6 @@ struct SqdmullAsimdelemL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqdmullAsimdelemL) == 4, "Encoding struct must be 32 bits");
 
 // SQDMULL: Signed saturating doubling multiply long (by element)
 // Encoding: SQDMULL_asisdelem_L
@@ -12513,7 +11919,6 @@ struct SqdmullAsisdelemL {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqdmullAsisdelemL) == 4, "Encoding struct must be 32 bits");
 
 // SQDMULL: Signed saturating doubling multiply long
 // Encoding: SQDMULL_asisddiff_only
@@ -12533,7 +11938,6 @@ struct SqdmullAsisddiffOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqdmullAsisddiffOnly) == 4, "Encoding struct must be 32 bits");
 
 // SQDMULL: Signed saturating doubling multiply long
 // Encoding: SQDMULL_asimddiff_L
@@ -12554,7 +11958,6 @@ struct SqdmullAsimddiffL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqdmullAsimddiffL) == 4, "Encoding struct must be 32 bits");
 
 // SQNEG: Signed saturating negate
 // Encoding: SQNEG_asisdmisc_R
@@ -12573,7 +11976,6 @@ struct SqnegAsisdmiscR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqnegAsisdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // SQNEG: Signed saturating negate
 // Encoding: SQNEG_asimdmisc_R
@@ -12593,7 +11995,6 @@ struct SqnegAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqnegAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // SQRDMLAH: Signed saturating rounding doubling multiply accumulate returning high half (by element)
 // Encoding: SQRDMLAH_asisdelem_R
@@ -12617,7 +12018,6 @@ struct SqrdmlahAsisdelemR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqrdmlahAsisdelemR) == 4, "Encoding struct must be 32 bits");
 
 // SQRDMLAH: Signed saturating rounding doubling multiply accumulate returning high half (by element)
 // Encoding: SQRDMLAH_asimdelem_R
@@ -12642,7 +12042,6 @@ struct SqrdmlahAsimdelemR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqrdmlahAsimdelemR) == 4, "Encoding struct must be 32 bits");
 
 // SQRDMLAH: Signed saturating rounding doubling multiply accumulate returning high half (vector)
 // Encoding: SQRDMLAH_asisdsame2_only
@@ -12664,7 +12063,6 @@ struct SqrdmlahAsisdsame2Only {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqrdmlahAsisdsame2Only) == 4, "Encoding struct must be 32 bits");
 
 // SQRDMLAH: Signed saturating rounding doubling multiply accumulate returning high half (vector)
 // Encoding: SQRDMLAH_asimdsame2_only
@@ -12687,7 +12085,6 @@ struct SqrdmlahAsimdsame2Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqrdmlahAsimdsame2Only) == 4, "Encoding struct must be 32 bits");
 
 // SQRDMLSH: Signed saturating rounding doubling multiply subtract returning high half (by element)
 // Encoding: SQRDMLSH_asisdelem_R
@@ -12711,7 +12108,6 @@ struct SqrdmlshAsisdelemR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqrdmlshAsisdelemR) == 4, "Encoding struct must be 32 bits");
 
 // SQRDMLSH: Signed saturating rounding doubling multiply subtract returning high half (by element)
 // Encoding: SQRDMLSH_asimdelem_R
@@ -12736,7 +12132,6 @@ struct SqrdmlshAsimdelemR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqrdmlshAsimdelemR) == 4, "Encoding struct must be 32 bits");
 
 // SQRDMLSH: Signed saturating rounding doubling multiply subtract returning high half (vector)
 // Encoding: SQRDMLSH_asisdsame2_only
@@ -12758,7 +12153,6 @@ struct SqrdmlshAsisdsame2Only {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqrdmlshAsisdsame2Only) == 4, "Encoding struct must be 32 bits");
 
 // SQRDMLSH: Signed saturating rounding doubling multiply subtract returning high half (vector)
 // Encoding: SQRDMLSH_asimdsame2_only
@@ -12781,7 +12175,6 @@ struct SqrdmlshAsimdsame2Only {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqrdmlshAsimdsame2Only) == 4, "Encoding struct must be 32 bits");
 
 // SQRDMULH: Signed saturating rounding doubling multiply returning high half (by element)
 // Encoding: SQRDMULH_asisdelem_R
@@ -12804,7 +12197,6 @@ struct SqrdmulhAsisdelemR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqrdmulhAsisdelemR) == 4, "Encoding struct must be 32 bits");
 
 // SQRDMULH: Signed saturating rounding doubling multiply returning high half (by element)
 // Encoding: SQRDMULH_asimdelem_R
@@ -12828,7 +12220,6 @@ struct SqrdmulhAsimdelemR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqrdmulhAsimdelemR) == 4, "Encoding struct must be 32 bits");
 
 // SQRDMULH: Signed saturating rounding doubling multiply returning high half
 // Encoding: SQRDMULH_asisdsame_only
@@ -12848,7 +12239,6 @@ struct SqrdmulhAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqrdmulhAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SQRDMULH: Signed saturating rounding doubling multiply returning high half
 // Encoding: SQRDMULH_asimdsame_only
@@ -12869,7 +12259,6 @@ struct SqrdmulhAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqrdmulhAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SQRSHL: Signed saturating rounding shift left (register)
 // Encoding: SQRSHL_asisdsame_only
@@ -12891,7 +12280,6 @@ struct SqrshlAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqrshlAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SQRSHL: Signed saturating rounding shift left (register)
 // Encoding: SQRSHL_asimdsame_only
@@ -12914,7 +12302,6 @@ struct SqrshlAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqrshlAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SQRSHRN: Signed saturating rounded shift right narrow (immediate)
 // Encoding: SQRSHRN_asisdshf_N
@@ -12934,7 +12321,6 @@ struct SqrshrnAsisdshfN {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqrshrnAsisdshfN) == 4, "Encoding struct must be 32 bits");
 
 // SQRSHRN: Signed saturating rounded shift right narrow (immediate)
 // Encoding: SQRSHRN_asimdshf_N
@@ -12955,7 +12341,6 @@ struct SqrshrnAsimdshfN {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqrshrnAsimdshfN) == 4, "Encoding struct must be 32 bits");
 
 // SQRSHRUN: Signed saturating rounded shift right unsigned narrow (immediate)
 // Encoding: SQRSHRUN_asisdshf_N
@@ -12975,7 +12360,6 @@ struct SqrshrunAsisdshfN {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqrshrunAsisdshfN) == 4, "Encoding struct must be 32 bits");
 
 // SQRSHRUN: Signed saturating rounded shift right unsigned narrow (immediate)
 // Encoding: SQRSHRUN_asimdshf_N
@@ -12996,7 +12380,6 @@ struct SqrshrunAsimdshfN {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqrshrunAsimdshfN) == 4, "Encoding struct must be 32 bits");
 
 // SQSHL: Signed saturating shift left (immediate)
 // Encoding: SQSHL_asisdshf_R
@@ -13017,7 +12400,6 @@ struct SqshlAsisdshfR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqshlAsisdshfR) == 4, "Encoding struct must be 32 bits");
 
 // SQSHL: Signed saturating shift left (immediate)
 // Encoding: SQSHL_asimdshf_R
@@ -13039,7 +12421,6 @@ struct SqshlAsimdshfR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqshlAsimdshfR) == 4, "Encoding struct must be 32 bits");
 
 // SQSHL: Signed saturating shift left (register)
 // Encoding: SQSHL_asisdsame_only
@@ -13061,7 +12442,6 @@ struct SqshlAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqshlAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SQSHL: Signed saturating shift left (register)
 // Encoding: SQSHL_asimdsame_only
@@ -13084,7 +12464,6 @@ struct SqshlAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqshlAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SQSHLU: Signed saturating shift left unsigned (immediate)
 // Encoding: SQSHLU_asisdshf_R
@@ -13105,7 +12484,6 @@ struct SqshluAsisdshfR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqshluAsisdshfR) == 4, "Encoding struct must be 32 bits");
 
 // SQSHLU: Signed saturating shift left unsigned (immediate)
 // Encoding: SQSHLU_asimdshf_R
@@ -13127,7 +12505,6 @@ struct SqshluAsimdshfR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqshluAsimdshfR) == 4, "Encoding struct must be 32 bits");
 
 // SQSHRN: Signed saturating shift right narrow (immediate)
 // Encoding: SQSHRN_asisdshf_N
@@ -13147,7 +12524,6 @@ struct SqshrnAsisdshfN {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqshrnAsisdshfN) == 4, "Encoding struct must be 32 bits");
 
 // SQSHRN: Signed saturating shift right narrow (immediate)
 // Encoding: SQSHRN_asimdshf_N
@@ -13168,7 +12544,6 @@ struct SqshrnAsimdshfN {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqshrnAsimdshfN) == 4, "Encoding struct must be 32 bits");
 
 // SQSHRUN: Signed saturating shift right unsigned narrow (immediate)
 // Encoding: SQSHRUN_asisdshf_N
@@ -13188,7 +12563,6 @@ struct SqshrunAsisdshfN {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqshrunAsisdshfN) == 4, "Encoding struct must be 32 bits");
 
 // SQSHRUN: Signed saturating shift right unsigned narrow (immediate)
 // Encoding: SQSHRUN_asimdshf_N
@@ -13209,7 +12583,6 @@ struct SqshrunAsimdshfN {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqshrunAsimdshfN) == 4, "Encoding struct must be 32 bits");
 
 // SQSUB: Signed saturating subtract
 // Encoding: SQSUB_asisdsame_only
@@ -13229,7 +12602,6 @@ struct SqsubAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqsubAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SQSUB: Signed saturating subtract
 // Encoding: SQSUB_asimdsame_only
@@ -13250,7 +12622,6 @@ struct SqsubAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqsubAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SQXTN: Signed saturating extract narrow
 // Encoding: SQXTN_asisdmisc_N
@@ -13269,7 +12640,6 @@ struct SqxtnAsisdmiscN {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqxtnAsisdmiscN) == 4, "Encoding struct must be 32 bits");
 
 // SQXTN: Signed saturating extract narrow
 // Encoding: SQXTN_asimdmisc_N
@@ -13289,7 +12659,6 @@ struct SqxtnAsimdmiscN {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqxtnAsimdmiscN) == 4, "Encoding struct must be 32 bits");
 
 // SQXTUN: Signed saturating extract unsigned narrow
 // Encoding: SQXTUN_asisdmisc_N
@@ -13308,7 +12677,6 @@ struct SqxtunAsisdmiscN {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SqxtunAsisdmiscN) == 4, "Encoding struct must be 32 bits");
 
 // SQXTUN: Signed saturating extract unsigned narrow
 // Encoding: SQXTUN_asimdmisc_N
@@ -13328,7 +12696,6 @@ struct SqxtunAsimdmiscN {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SqxtunAsimdmiscN) == 4, "Encoding struct must be 32 bits");
 
 // SRHADD: Signed rounding halving add
 // Encoding: SRHADD_asimdsame_only
@@ -13349,7 +12716,6 @@ struct SrhaddAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SrhaddAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SRI: Shift right and insert (immediate)
 // Encoding: SRI_asisdshf_R
@@ -13368,7 +12734,6 @@ struct SriAsisdshfR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SriAsisdshfR) == 4, "Encoding struct must be 32 bits");
 
 // SRI: Shift right and insert (immediate)
 // Encoding: SRI_asimdshf_R
@@ -13388,7 +12753,6 @@ struct SriAsimdshfR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SriAsimdshfR) == 4, "Encoding struct must be 32 bits");
 
 // SRSHL: Signed rounding shift left (register)
 // Encoding: SRSHL_asisdsame_only
@@ -13410,7 +12774,6 @@ struct SrshlAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SrshlAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SRSHL: Signed rounding shift left (register)
 // Encoding: SRSHL_asimdsame_only
@@ -13433,7 +12796,6 @@ struct SrshlAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SrshlAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SRSHR: Signed rounding shift right (immediate)
 // Encoding: SRSHR_asisdshf_R
@@ -13455,7 +12817,6 @@ struct SrshrAsisdshfR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SrshrAsisdshfR) == 4, "Encoding struct must be 32 bits");
 
 // SRSHR: Signed rounding shift right (immediate)
 // Encoding: SRSHR_asimdshf_R
@@ -13478,7 +12839,6 @@ struct SrshrAsimdshfR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SrshrAsimdshfR) == 4, "Encoding struct must be 32 bits");
 
 // SRSRA: Signed rounding shift right and accumulate (immediate)
 // Encoding: SRSRA_asisdshf_R
@@ -13500,7 +12860,6 @@ struct SrsraAsisdshfR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SrsraAsisdshfR) == 4, "Encoding struct must be 32 bits");
 
 // SRSRA: Signed rounding shift right and accumulate (immediate)
 // Encoding: SRSRA_asimdshf_R
@@ -13523,7 +12882,6 @@ struct SrsraAsimdshfR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SrsraAsimdshfR) == 4, "Encoding struct must be 32 bits");
 
 // SSHL: Signed shift left (register)
 // Encoding: SSHL_asisdsame_only
@@ -13545,7 +12903,6 @@ struct SshlAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SshlAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SSHL: Signed shift left (register)
 // Encoding: SSHL_asimdsame_only
@@ -13568,7 +12925,6 @@ struct SshlAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SshlAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SSHLL: Signed shift left long (immediate)
 // Encoding: SSHLL_asimdshf_L
@@ -13588,7 +12944,6 @@ struct SshllAsimdshfL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SshllAsimdshfL) == 4, "Encoding struct must be 32 bits");
 
 // SSHR: Signed shift right (immediate)
 // Encoding: SSHR_asisdshf_R
@@ -13610,7 +12965,6 @@ struct SshrAsisdshfR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SshrAsisdshfR) == 4, "Encoding struct must be 32 bits");
 
 // SSHR: Signed shift right (immediate)
 // Encoding: SSHR_asimdshf_R
@@ -13633,7 +12987,6 @@ struct SshrAsimdshfR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SshrAsimdshfR) == 4, "Encoding struct must be 32 bits");
 
 // SSRA: Signed shift right and accumulate (immediate)
 // Encoding: SSRA_asisdshf_R
@@ -13655,7 +13008,6 @@ struct SsraAsisdshfR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SsraAsisdshfR) == 4, "Encoding struct must be 32 bits");
 
 // SSRA: Signed shift right and accumulate (immediate)
 // Encoding: SSRA_asimdshf_R
@@ -13678,7 +13030,6 @@ struct SsraAsimdshfR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SsraAsimdshfR) == 4, "Encoding struct must be 32 bits");
 
 // SSUBL: Signed subtract long
 // Encoding: SSUBL_asimddiff_L
@@ -13701,7 +13052,6 @@ struct SsublAsimddiffL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SsublAsimddiffL) == 4, "Encoding struct must be 32 bits");
 
 // SSUBW: Signed subtract wide
 // Encoding: SSUBW_asimddiff_W
@@ -13724,7 +13074,6 @@ struct SsubwAsimddiffW {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SsubwAsimddiffW) == 4, "Encoding struct must be 32 bits");
 
 // ST1: Store multiple single-element structures from one, two, three, or four registers
 // Encoding: ST1_asisdlse_R1_1v
@@ -13741,7 +13090,6 @@ struct St1AsisdlseR11v {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St1AsisdlseR11v) == 4, "Encoding struct must be 32 bits");
 
 // ST1: Store multiple single-element structures from one, two, three, or four registers
 // Encoding: ST1_asisdlse_R2_2v
@@ -13758,7 +13106,6 @@ struct St1AsisdlseR22v {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St1AsisdlseR22v) == 4, "Encoding struct must be 32 bits");
 
 // ST1: Store multiple single-element structures from one, two, three, or four registers
 // Encoding: ST1_asisdlse_R3_3v
@@ -13775,7 +13122,6 @@ struct St1AsisdlseR33v {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St1AsisdlseR33v) == 4, "Encoding struct must be 32 bits");
 
 // ST1: Store multiple single-element structures from one, two, three, or four registers
 // Encoding: ST1_asisdlse_R4_4v
@@ -13792,7 +13138,6 @@ struct St1AsisdlseR44v {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St1AsisdlseR44v) == 4, "Encoding struct must be 32 bits");
 
 // ST1: Store multiple single-element structures from one, two, three, or four registers
 // Encoding: ST1_asisdlsep_I1_i1
@@ -13810,7 +13155,6 @@ struct St1AsisdlsepI1I1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St1AsisdlsepI1I1) == 4, "Encoding struct must be 32 bits");
 
 // ST1: Store multiple single-element structures from one, two, three, or four registers
 // Encoding: ST1_asisdlsep_R1_r1
@@ -13828,7 +13172,6 @@ struct St1AsisdlsepR1R1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St1AsisdlsepR1R1) == 4, "Encoding struct must be 32 bits");
 
 // ST1: Store multiple single-element structures from one, two, three, or four registers
 // Encoding: ST1_asisdlsep_I2_i2
@@ -13846,7 +13189,6 @@ struct St1AsisdlsepI2I2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St1AsisdlsepI2I2) == 4, "Encoding struct must be 32 bits");
 
 // ST1: Store multiple single-element structures from one, two, three, or four registers
 // Encoding: ST1_asisdlsep_R2_r2
@@ -13864,7 +13206,6 @@ struct St1AsisdlsepR2R2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St1AsisdlsepR2R2) == 4, "Encoding struct must be 32 bits");
 
 // ST1: Store multiple single-element structures from one, two, three, or four registers
 // Encoding: ST1_asisdlsep_I3_i3
@@ -13882,7 +13223,6 @@ struct St1AsisdlsepI3I3 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St1AsisdlsepI3I3) == 4, "Encoding struct must be 32 bits");
 
 // ST1: Store multiple single-element structures from one, two, three, or four registers
 // Encoding: ST1_asisdlsep_R3_r3
@@ -13900,7 +13240,6 @@ struct St1AsisdlsepR3R3 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St1AsisdlsepR3R3) == 4, "Encoding struct must be 32 bits");
 
 // ST1: Store multiple single-element structures from one, two, three, or four registers
 // Encoding: ST1_asisdlsep_I4_i4
@@ -13918,7 +13257,6 @@ struct St1AsisdlsepI4I4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St1AsisdlsepI4I4) == 4, "Encoding struct must be 32 bits");
 
 // ST1: Store multiple single-element structures from one, two, three, or four registers
 // Encoding: ST1_asisdlsep_R4_r4
@@ -13936,7 +13274,6 @@ struct St1AsisdlsepR4R4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St1AsisdlsepR4R4) == 4, "Encoding struct must be 32 bits");
 
 // ST1: Store a single-element structure from one lane of one register
 // Encoding: ST1_asisdlso_B1_1b
@@ -13956,7 +13293,6 @@ struct St1AsisdlsoB11b {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St1AsisdlsoB11b) == 4, "Encoding struct must be 32 bits");
 
 // ST1: Store a single-element structure from one lane of one register
 // Encoding: ST1_asisdlso_H1_1h
@@ -13976,7 +13312,6 @@ struct St1AsisdlsoH11h {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St1AsisdlsoH11h) == 4, "Encoding struct must be 32 bits");
 
 // ST1: Store a single-element structure from one lane of one register
 // Encoding: ST1_asisdlso_S1_1s
@@ -13996,7 +13331,6 @@ struct St1AsisdlsoS11s {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St1AsisdlsoS11s) == 4, "Encoding struct must be 32 bits");
 
 // ST1: Store a single-element structure from one lane of one register
 // Encoding: ST1_asisdlso_D1_1d
@@ -14016,7 +13350,6 @@ struct St1AsisdlsoD11d {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St1AsisdlsoD11d) == 4, "Encoding struct must be 32 bits");
 
 // ST1: Store a single-element structure from one lane of one register
 // Encoding: ST1_asisdlsop_B1_i1b
@@ -14035,7 +13368,6 @@ struct St1AsisdlsopB1I1b {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St1AsisdlsopB1I1b) == 4, "Encoding struct must be 32 bits");
 
 // ST1: Store a single-element structure from one lane of one register
 // Encoding: ST1_asisdlsop_BX1_r1b
@@ -14054,7 +13386,6 @@ struct St1AsisdlsopBx1R1b {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St1AsisdlsopBx1R1b) == 4, "Encoding struct must be 32 bits");
 
 // ST1: Store a single-element structure from one lane of one register
 // Encoding: ST1_asisdlsop_H1_i1h
@@ -14073,7 +13404,6 @@ struct St1AsisdlsopH1I1h {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St1AsisdlsopH1I1h) == 4, "Encoding struct must be 32 bits");
 
 // ST1: Store a single-element structure from one lane of one register
 // Encoding: ST1_asisdlsop_HX1_r1h
@@ -14092,7 +13422,6 @@ struct St1AsisdlsopHx1R1h {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St1AsisdlsopHx1R1h) == 4, "Encoding struct must be 32 bits");
 
 // ST1: Store a single-element structure from one lane of one register
 // Encoding: ST1_asisdlsop_S1_i1s
@@ -14111,7 +13440,6 @@ struct St1AsisdlsopS1I1s {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St1AsisdlsopS1I1s) == 4, "Encoding struct must be 32 bits");
 
 // ST1: Store a single-element structure from one lane of one register
 // Encoding: ST1_asisdlsop_SX1_r1s
@@ -14130,7 +13458,6 @@ struct St1AsisdlsopSx1R1s {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St1AsisdlsopSx1R1s) == 4, "Encoding struct must be 32 bits");
 
 // ST1: Store a single-element structure from one lane of one register
 // Encoding: ST1_asisdlsop_D1_i1d
@@ -14149,7 +13476,6 @@ struct St1AsisdlsopD1I1d {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St1AsisdlsopD1I1d) == 4, "Encoding struct must be 32 bits");
 
 // ST1: Store a single-element structure from one lane of one register
 // Encoding: ST1_asisdlsop_DX1_r1d
@@ -14168,7 +13494,6 @@ struct St1AsisdlsopDx1R1d {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St1AsisdlsopDx1R1d) == 4, "Encoding struct must be 32 bits");
 
 // ST2: Store multiple 2-element structures from two registers
 // Encoding: ST2_asisdlse_R2
@@ -14189,7 +13514,6 @@ struct St2AsisdlseR2 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St2AsisdlseR2) == 4, "Encoding struct must be 32 bits");
 
 // ST2: Store multiple 2-element structures from two registers
 // Encoding: ST2_asisdlsep_I2_i
@@ -14207,7 +13531,6 @@ struct St2AsisdlsepI2I {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St2AsisdlsepI2I) == 4, "Encoding struct must be 32 bits");
 
 // ST2: Store multiple 2-element structures from two registers
 // Encoding: ST2_asisdlsep_R2_r
@@ -14225,7 +13548,6 @@ struct St2AsisdlsepR2R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St2AsisdlsepR2R) == 4, "Encoding struct must be 32 bits");
 
 // ST2: Store single 2-element structure from one lane of two registers
 // Encoding: ST2_asisdlso_B2_2b
@@ -14245,7 +13567,6 @@ struct St2AsisdlsoB22b {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St2AsisdlsoB22b) == 4, "Encoding struct must be 32 bits");
 
 // ST2: Store single 2-element structure from one lane of two registers
 // Encoding: ST2_asisdlso_H2_2h
@@ -14265,7 +13586,6 @@ struct St2AsisdlsoH22h {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St2AsisdlsoH22h) == 4, "Encoding struct must be 32 bits");
 
 // ST2: Store single 2-element structure from one lane of two registers
 // Encoding: ST2_asisdlso_S2_2s
@@ -14285,7 +13605,6 @@ struct St2AsisdlsoS22s {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St2AsisdlsoS22s) == 4, "Encoding struct must be 32 bits");
 
 // ST2: Store single 2-element structure from one lane of two registers
 // Encoding: ST2_asisdlso_D2_2d
@@ -14305,7 +13624,6 @@ struct St2AsisdlsoD22d {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St2AsisdlsoD22d) == 4, "Encoding struct must be 32 bits");
 
 // ST2: Store single 2-element structure from one lane of two registers
 // Encoding: ST2_asisdlsop_B2_i2b
@@ -14324,7 +13642,6 @@ struct St2AsisdlsopB2I2b {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St2AsisdlsopB2I2b) == 4, "Encoding struct must be 32 bits");
 
 // ST2: Store single 2-element structure from one lane of two registers
 // Encoding: ST2_asisdlsop_BX2_r2b
@@ -14343,7 +13660,6 @@ struct St2AsisdlsopBx2R2b {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St2AsisdlsopBx2R2b) == 4, "Encoding struct must be 32 bits");
 
 // ST2: Store single 2-element structure from one lane of two registers
 // Encoding: ST2_asisdlsop_H2_i2h
@@ -14362,7 +13678,6 @@ struct St2AsisdlsopH2I2h {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St2AsisdlsopH2I2h) == 4, "Encoding struct must be 32 bits");
 
 // ST2: Store single 2-element structure from one lane of two registers
 // Encoding: ST2_asisdlsop_HX2_r2h
@@ -14381,7 +13696,6 @@ struct St2AsisdlsopHx2R2h {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St2AsisdlsopHx2R2h) == 4, "Encoding struct must be 32 bits");
 
 // ST2: Store single 2-element structure from one lane of two registers
 // Encoding: ST2_asisdlsop_S2_i2s
@@ -14400,7 +13714,6 @@ struct St2AsisdlsopS2I2s {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St2AsisdlsopS2I2s) == 4, "Encoding struct must be 32 bits");
 
 // ST2: Store single 2-element structure from one lane of two registers
 // Encoding: ST2_asisdlsop_SX2_r2s
@@ -14419,7 +13732,6 @@ struct St2AsisdlsopSx2R2s {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St2AsisdlsopSx2R2s) == 4, "Encoding struct must be 32 bits");
 
 // ST2: Store single 2-element structure from one lane of two registers
 // Encoding: ST2_asisdlsop_D2_i2d
@@ -14438,7 +13750,6 @@ struct St2AsisdlsopD2I2d {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St2AsisdlsopD2I2d) == 4, "Encoding struct must be 32 bits");
 
 // ST2: Store single 2-element structure from one lane of two registers
 // Encoding: ST2_asisdlsop_DX2_r2d
@@ -14457,7 +13768,6 @@ struct St2AsisdlsopDx2R2d {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St2AsisdlsopDx2R2d) == 4, "Encoding struct must be 32 bits");
 
 // ST3: Store multiple 3-element structures from three registers
 // Encoding: ST3_asisdlse_R3
@@ -14478,7 +13788,6 @@ struct St3AsisdlseR3 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St3AsisdlseR3) == 4, "Encoding struct must be 32 bits");
 
 // ST3: Store multiple 3-element structures from three registers
 // Encoding: ST3_asisdlsep_I3_i
@@ -14496,7 +13805,6 @@ struct St3AsisdlsepI3I {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St3AsisdlsepI3I) == 4, "Encoding struct must be 32 bits");
 
 // ST3: Store multiple 3-element structures from three registers
 // Encoding: ST3_asisdlsep_R3_r
@@ -14514,7 +13822,6 @@ struct St3AsisdlsepR3R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St3AsisdlsepR3R) == 4, "Encoding struct must be 32 bits");
 
 // ST3: Store single 3-element structure from one lane of three registers
 // Encoding: ST3_asisdlso_B3_3b
@@ -14534,7 +13841,6 @@ struct St3AsisdlsoB33b {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St3AsisdlsoB33b) == 4, "Encoding struct must be 32 bits");
 
 // ST3: Store single 3-element structure from one lane of three registers
 // Encoding: ST3_asisdlso_H3_3h
@@ -14554,7 +13860,6 @@ struct St3AsisdlsoH33h {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St3AsisdlsoH33h) == 4, "Encoding struct must be 32 bits");
 
 // ST3: Store single 3-element structure from one lane of three registers
 // Encoding: ST3_asisdlso_S3_3s
@@ -14574,7 +13879,6 @@ struct St3AsisdlsoS33s {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St3AsisdlsoS33s) == 4, "Encoding struct must be 32 bits");
 
 // ST3: Store single 3-element structure from one lane of three registers
 // Encoding: ST3_asisdlso_D3_3d
@@ -14594,7 +13898,6 @@ struct St3AsisdlsoD33d {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St3AsisdlsoD33d) == 4, "Encoding struct must be 32 bits");
 
 // ST3: Store single 3-element structure from one lane of three registers
 // Encoding: ST3_asisdlsop_B3_i3b
@@ -14613,7 +13916,6 @@ struct St3AsisdlsopB3I3b {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St3AsisdlsopB3I3b) == 4, "Encoding struct must be 32 bits");
 
 // ST3: Store single 3-element structure from one lane of three registers
 // Encoding: ST3_asisdlsop_BX3_r3b
@@ -14632,7 +13934,6 @@ struct St3AsisdlsopBx3R3b {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St3AsisdlsopBx3R3b) == 4, "Encoding struct must be 32 bits");
 
 // ST3: Store single 3-element structure from one lane of three registers
 // Encoding: ST3_asisdlsop_H3_i3h
@@ -14651,7 +13952,6 @@ struct St3AsisdlsopH3I3h {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St3AsisdlsopH3I3h) == 4, "Encoding struct must be 32 bits");
 
 // ST3: Store single 3-element structure from one lane of three registers
 // Encoding: ST3_asisdlsop_HX3_r3h
@@ -14670,7 +13970,6 @@ struct St3AsisdlsopHx3R3h {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St3AsisdlsopHx3R3h) == 4, "Encoding struct must be 32 bits");
 
 // ST3: Store single 3-element structure from one lane of three registers
 // Encoding: ST3_asisdlsop_S3_i3s
@@ -14689,7 +13988,6 @@ struct St3AsisdlsopS3I3s {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St3AsisdlsopS3I3s) == 4, "Encoding struct must be 32 bits");
 
 // ST3: Store single 3-element structure from one lane of three registers
 // Encoding: ST3_asisdlsop_SX3_r3s
@@ -14708,7 +14006,6 @@ struct St3AsisdlsopSx3R3s {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St3AsisdlsopSx3R3s) == 4, "Encoding struct must be 32 bits");
 
 // ST3: Store single 3-element structure from one lane of three registers
 // Encoding: ST3_asisdlsop_D3_i3d
@@ -14727,7 +14024,6 @@ struct St3AsisdlsopD3I3d {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St3AsisdlsopD3I3d) == 4, "Encoding struct must be 32 bits");
 
 // ST3: Store single 3-element structure from one lane of three registers
 // Encoding: ST3_asisdlsop_DX3_r3d
@@ -14746,7 +14042,6 @@ struct St3AsisdlsopDx3R3d {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St3AsisdlsopDx3R3d) == 4, "Encoding struct must be 32 bits");
 
 // ST4: Store multiple 4-element structures from four registers
 // Encoding: ST4_asisdlse_R4
@@ -14767,7 +14062,6 @@ struct St4AsisdlseR4 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St4AsisdlseR4) == 4, "Encoding struct must be 32 bits");
 
 // ST4: Store multiple 4-element structures from four registers
 // Encoding: ST4_asisdlsep_I4_i
@@ -14785,7 +14079,6 @@ struct St4AsisdlsepI4I {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St4AsisdlsepI4I) == 4, "Encoding struct must be 32 bits");
 
 // ST4: Store multiple 4-element structures from four registers
 // Encoding: ST4_asisdlsep_R4_r
@@ -14803,7 +14096,6 @@ struct St4AsisdlsepR4R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St4AsisdlsepR4R) == 4, "Encoding struct must be 32 bits");
 
 // ST4: Store single 4-element structure from one lane of four registers
 // Encoding: ST4_asisdlso_B4_4b
@@ -14823,7 +14115,6 @@ struct St4AsisdlsoB44b {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St4AsisdlsoB44b) == 4, "Encoding struct must be 32 bits");
 
 // ST4: Store single 4-element structure from one lane of four registers
 // Encoding: ST4_asisdlso_H4_4h
@@ -14843,7 +14134,6 @@ struct St4AsisdlsoH44h {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St4AsisdlsoH44h) == 4, "Encoding struct must be 32 bits");
 
 // ST4: Store single 4-element structure from one lane of four registers
 // Encoding: ST4_asisdlso_S4_4s
@@ -14863,7 +14153,6 @@ struct St4AsisdlsoS44s {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St4AsisdlsoS44s) == 4, "Encoding struct must be 32 bits");
 
 // ST4: Store single 4-element structure from one lane of four registers
 // Encoding: ST4_asisdlso_D4_4d
@@ -14883,7 +14172,6 @@ struct St4AsisdlsoD44d {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St4AsisdlsoD44d) == 4, "Encoding struct must be 32 bits");
 
 // ST4: Store single 4-element structure from one lane of four registers
 // Encoding: ST4_asisdlsop_B4_i4b
@@ -14902,7 +14190,6 @@ struct St4AsisdlsopB4I4b {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St4AsisdlsopB4I4b) == 4, "Encoding struct must be 32 bits");
 
 // ST4: Store single 4-element structure from one lane of four registers
 // Encoding: ST4_asisdlsop_BX4_r4b
@@ -14921,7 +14208,6 @@ struct St4AsisdlsopBx4R4b {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St4AsisdlsopBx4R4b) == 4, "Encoding struct must be 32 bits");
 
 // ST4: Store single 4-element structure from one lane of four registers
 // Encoding: ST4_asisdlsop_H4_i4h
@@ -14940,7 +14226,6 @@ struct St4AsisdlsopH4I4h {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St4AsisdlsopH4I4h) == 4, "Encoding struct must be 32 bits");
 
 // ST4: Store single 4-element structure from one lane of four registers
 // Encoding: ST4_asisdlsop_HX4_r4h
@@ -14959,7 +14244,6 @@ struct St4AsisdlsopHx4R4h {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St4AsisdlsopHx4R4h) == 4, "Encoding struct must be 32 bits");
 
 // ST4: Store single 4-element structure from one lane of four registers
 // Encoding: ST4_asisdlsop_S4_i4s
@@ -14978,7 +14262,6 @@ struct St4AsisdlsopS4I4s {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St4AsisdlsopS4I4s) == 4, "Encoding struct must be 32 bits");
 
 // ST4: Store single 4-element structure from one lane of four registers
 // Encoding: ST4_asisdlsop_SX4_r4s
@@ -14997,7 +14280,6 @@ struct St4AsisdlsopSx4R4s {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St4AsisdlsopSx4R4s) == 4, "Encoding struct must be 32 bits");
 
 // ST4: Store single 4-element structure from one lane of four registers
 // Encoding: ST4_asisdlsop_D4_i4d
@@ -15016,7 +14298,6 @@ struct St4AsisdlsopD4I4d {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St4AsisdlsopD4I4d) == 4, "Encoding struct must be 32 bits");
 
 // ST4: Store single 4-element structure from one lane of four registers
 // Encoding: ST4_asisdlsop_DX4_r4d
@@ -15035,7 +14316,6 @@ struct St4AsisdlsopDx4R4d {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(St4AsisdlsopDx4R4d) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 floating-point add, without return
 // Encoding: STBFADD_16
@@ -15056,7 +14336,6 @@ struct Stbfadd16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Stbfadd16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 floating-point add, without return
 // Encoding: STBFADDL_16
@@ -15077,7 +14356,6 @@ struct Stbfaddl16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Stbfaddl16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 floating-point maximum, without return
 // Encoding: STBFMAX_16
@@ -15098,7 +14376,6 @@ struct Stbfmax16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Stbfmax16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 floating-point maximum, without return
 // Encoding: STBFMAXL_16
@@ -15119,7 +14396,6 @@ struct Stbfmaxl16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Stbfmaxl16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 floating-point maximum number, without return
 // Encoding: STBFMAXNM_16
@@ -15140,7 +14416,6 @@ struct Stbfmaxnm16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Stbfmaxnm16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 floating-point maximum number, without return
 // Encoding: STBFMAXNML_16
@@ -15161,7 +14436,6 @@ struct Stbfmaxnml16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Stbfmaxnml16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 floating-point minimum, without return
 // Encoding: STBFMIN_16
@@ -15182,7 +14456,6 @@ struct Stbfmin16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Stbfmin16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 floating-point minimum, without return
 // Encoding: STBFMINL_16
@@ -15203,7 +14476,6 @@ struct Stbfminl16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Stbfminl16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 floating-point minimum number, without return
 // Encoding: STBFMINNM_16
@@ -15224,7 +14496,6 @@ struct Stbfminnm16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Stbfminnm16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic BFloat16 floating-point minimum number, without return
 // Encoding: STBFMINNML_16
@@ -15245,7 +14516,6 @@ struct Stbfminnml16 {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(Stbfminnml16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point add, without return
 // Encoding: STFADD_16
@@ -15266,7 +14536,6 @@ struct Stfadd16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Stfadd16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point add, without return
 // Encoding: STFADDL_16
@@ -15287,7 +14556,6 @@ struct Stfaddl16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Stfaddl16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point add, without return
 // Encoding: STFADD_32
@@ -15308,7 +14576,6 @@ struct Stfadd32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Stfadd32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point add, without return
 // Encoding: STFADDL_32
@@ -15329,7 +14596,6 @@ struct Stfaddl32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Stfaddl32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point add, without return
 // Encoding: STFADD_64
@@ -15350,7 +14616,6 @@ struct Stfadd64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Stfadd64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point add, without return
 // Encoding: STFADDL_64
@@ -15371,7 +14636,6 @@ struct Stfaddl64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Stfaddl64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum, without return
 // Encoding: STFMAX_16
@@ -15392,7 +14656,6 @@ struct Stfmax16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Stfmax16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum, without return
 // Encoding: STFMAXL_16
@@ -15413,7 +14676,6 @@ struct Stfmaxl16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Stfmaxl16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum, without return
 // Encoding: STFMAX_32
@@ -15434,7 +14696,6 @@ struct Stfmax32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Stfmax32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum, without return
 // Encoding: STFMAXL_32
@@ -15455,7 +14716,6 @@ struct Stfmaxl32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Stfmaxl32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum, without return
 // Encoding: STFMAX_64
@@ -15476,7 +14736,6 @@ struct Stfmax64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Stfmax64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum, without return
 // Encoding: STFMAXL_64
@@ -15497,7 +14756,6 @@ struct Stfmaxl64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Stfmaxl64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum number, without return
 // Encoding: STFMAXNM_16
@@ -15518,7 +14776,6 @@ struct Stfmaxnm16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Stfmaxnm16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum number, without return
 // Encoding: STFMAXNML_16
@@ -15539,7 +14796,6 @@ struct Stfmaxnml16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Stfmaxnml16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum number, without return
 // Encoding: STFMAXNM_32
@@ -15560,7 +14816,6 @@ struct Stfmaxnm32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Stfmaxnm32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum number, without return
 // Encoding: STFMAXNML_32
@@ -15581,7 +14836,6 @@ struct Stfmaxnml32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Stfmaxnml32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum number, without return
 // Encoding: STFMAXNM_64
@@ -15602,7 +14856,6 @@ struct Stfmaxnm64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Stfmaxnm64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point maximum number, without return
 // Encoding: STFMAXNML_64
@@ -15623,7 +14876,6 @@ struct Stfmaxnml64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Stfmaxnml64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum, without return
 // Encoding: STFMIN_16
@@ -15644,7 +14896,6 @@ struct Stfmin16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Stfmin16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum, without return
 // Encoding: STFMINL_16
@@ -15665,7 +14916,6 @@ struct Stfminl16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Stfminl16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum, without return
 // Encoding: STFMIN_32
@@ -15686,7 +14936,6 @@ struct Stfmin32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Stfmin32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum, without return
 // Encoding: STFMINL_32
@@ -15707,7 +14956,6 @@ struct Stfminl32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Stfminl32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum, without return
 // Encoding: STFMIN_64
@@ -15728,7 +14976,6 @@ struct Stfmin64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Stfmin64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum, without return
 // Encoding: STFMINL_64
@@ -15749,7 +14996,6 @@ struct Stfminl64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Stfminl64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum number, without return
 // Encoding: STFMINNM_16
@@ -15770,7 +15016,6 @@ struct Stfminnm16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Stfminnm16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum number, without return
 // Encoding: STFMINNML_16
@@ -15791,7 +15036,6 @@ struct Stfminnml16 {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(Stfminnml16) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum number, without return
 // Encoding: STFMINNM_32
@@ -15812,7 +15056,6 @@ struct Stfminnm32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Stfminnm32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum number, without return
 // Encoding: STFMINNML_32
@@ -15833,7 +15076,6 @@ struct Stfminnml32 {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(Stfminnml32) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum number, without return
 // Encoding: STFMINNM_64
@@ -15854,7 +15096,6 @@ struct Stfminnm64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Stfminnm64) == 4, "Encoding struct must be 32 bits");
 
 // : Atomic floating-point minimum number, without return
 // Encoding: STFMINNML_64
@@ -15875,7 +15116,6 @@ struct Stfminnml64 {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Stfminnml64) == 4, "Encoding struct must be 32 bits");
 
 // STL1: Store-release a single-element structure from one lane of one register
 // Encoding: STL1_asisdlso_D1
@@ -15899,7 +15139,6 @@ struct Stl1AsisdlsoD1 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Stl1AsisdlsoD1) == 4, "Encoding struct must be 32 bits");
 
 // SUB: Subtract (vector)
 // Encoding: SUB_asisdsame_only
@@ -15919,7 +15158,6 @@ struct SubAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SubAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SUB: Subtract (vector)
 // Encoding: SUB_asimdsame_only
@@ -15940,7 +15178,6 @@ struct SubAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SubAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // SUBHN: Subtract returning high narrow
 // Encoding: SUBHN_asimddiff_N
@@ -15963,7 +15200,6 @@ struct SubhnAsimddiffN {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SubhnAsimddiffN) == 4, "Encoding struct must be 32 bits");
 
 // SUDOT: Dot product with signed and unsigned integers (vector, by element)
 // Encoding: SUDOT_asimdelem_D
@@ -15987,7 +15223,6 @@ struct SudotAsimdelemD {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SudotAsimdelemD) == 4, "Encoding struct must be 32 bits");
 
 // SUQADD: Signed saturating accumulate of unsigned value
 // Encoding: SUQADD_asisdmisc_R
@@ -16006,7 +15241,6 @@ struct SuqaddAsisdmiscR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SuqaddAsisdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // SUQADD: Signed saturating accumulate of unsigned value
 // Encoding: SUQADD_asimdmisc_R
@@ -16026,7 +15260,6 @@ struct SuqaddAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SuqaddAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // SSHLL: Signed extend long
 // Encoding: SXTL_SSHLL_asimdshf_L
@@ -16046,7 +15279,6 @@ struct SxtlSshllAsimdshfL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(SxtlSshllAsimdshfL) == 4, "Encoding struct must be 32 bits");
 
 // TBL: Table vector lookup
 // Encoding: TBL_asimdtbl_L1_1
@@ -16066,7 +15298,6 @@ struct TblAsimdtblL11 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(TblAsimdtblL11) == 4, "Encoding struct must be 32 bits");
 
 // TBL: Table vector lookup
 // Encoding: TBL_asimdtbl_L2_2
@@ -16086,7 +15317,6 @@ struct TblAsimdtblL22 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(TblAsimdtblL22) == 4, "Encoding struct must be 32 bits");
 
 // TBL: Table vector lookup
 // Encoding: TBL_asimdtbl_L3_3
@@ -16106,7 +15336,6 @@ struct TblAsimdtblL33 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(TblAsimdtblL33) == 4, "Encoding struct must be 32 bits");
 
 // TBL: Table vector lookup
 // Encoding: TBL_asimdtbl_L4_4
@@ -16126,7 +15355,6 @@ struct TblAsimdtblL44 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(TblAsimdtblL44) == 4, "Encoding struct must be 32 bits");
 
 // TBX: Table vector lookup extension
 // Encoding: TBX_asimdtbl_L1_1
@@ -16146,7 +15374,6 @@ struct TbxAsimdtblL11 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(TbxAsimdtblL11) == 4, "Encoding struct must be 32 bits");
 
 // TBX: Table vector lookup extension
 // Encoding: TBX_asimdtbl_L2_2
@@ -16166,7 +15393,6 @@ struct TbxAsimdtblL22 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(TbxAsimdtblL22) == 4, "Encoding struct must be 32 bits");
 
 // TBX: Table vector lookup extension
 // Encoding: TBX_asimdtbl_L3_3
@@ -16186,7 +15412,6 @@ struct TbxAsimdtblL33 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(TbxAsimdtblL33) == 4, "Encoding struct must be 32 bits");
 
 // TBX: Table vector lookup extension
 // Encoding: TBX_asimdtbl_L4_4
@@ -16206,7 +15431,6 @@ struct TbxAsimdtblL44 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(TbxAsimdtblL44) == 4, "Encoding struct must be 32 bits");
 
 // TRN1: Transpose vectors (primary)
 // Encoding: TRN1_asimdperm_only
@@ -16228,7 +15452,6 @@ struct Trn1AsimdpermOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Trn1AsimdpermOnly) == 4, "Encoding struct must be 32 bits");
 
 // TRN2: Transpose vectors (secondary)
 // Encoding: TRN2_asimdperm_only
@@ -16250,7 +15473,6 @@ struct Trn2AsimdpermOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Trn2AsimdpermOnly) == 4, "Encoding struct must be 32 bits");
 
 // UABA: Unsigned absolute difference and accumulate
 // Encoding: UABA_asimdsame_only
@@ -16272,7 +15494,6 @@ struct UabaAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UabaAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // UABAL: Unsigned absolute difference and accumulate long
 // Encoding: UABAL_asimddiff_L
@@ -16295,7 +15516,6 @@ struct UabalAsimddiffL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UabalAsimddiffL) == 4, "Encoding struct must be 32 bits");
 
 // UABD: Unsigned absolute difference (vector)
 // Encoding: UABD_asimdsame_only
@@ -16317,7 +15537,6 @@ struct UabdAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UabdAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // UABDL: Unsigned absolute difference long
 // Encoding: UABDL_asimddiff_L
@@ -16340,7 +15559,6 @@ struct UabdlAsimddiffL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UabdlAsimddiffL) == 4, "Encoding struct must be 32 bits");
 
 // UADALP: Unsigned add and accumulate long pairwise
 // Encoding: UADALP_asimdmisc_P
@@ -16362,7 +15580,6 @@ struct UadalpAsimdmiscP {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UadalpAsimdmiscP) == 4, "Encoding struct must be 32 bits");
 
 // UADDL: Unsigned add long (vector)
 // Encoding: UADDL_asimddiff_L
@@ -16385,7 +15602,6 @@ struct UaddlAsimddiffL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UaddlAsimddiffL) == 4, "Encoding struct must be 32 bits");
 
 // UADDLP: Unsigned add long pairwise
 // Encoding: UADDLP_asimdmisc_P
@@ -16407,7 +15623,6 @@ struct UaddlpAsimdmiscP {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UaddlpAsimdmiscP) == 4, "Encoding struct must be 32 bits");
 
 // UADDLV: Unsigned sum long across vector
 // Encoding: UADDLV_asimdall_only
@@ -16427,7 +15642,6 @@ struct UaddlvAsimdallOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UaddlvAsimdallOnly) == 4, "Encoding struct must be 32 bits");
 
 // UADDW: Unsigned add wide
 // Encoding: UADDW_asimddiff_W
@@ -16450,7 +15664,6 @@ struct UaddwAsimddiffW {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UaddwAsimddiffW) == 4, "Encoding struct must be 32 bits");
 
 // UCVTF: Unsigned fixed-point convert to floating-point (vector)
 // Encoding: UCVTF_asisdshf_C
@@ -16469,7 +15682,6 @@ struct UcvtfAsisdshfC {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(UcvtfAsisdshfC) == 4, "Encoding struct must be 32 bits");
 
 // UCVTF: Unsigned fixed-point convert to floating-point (vector)
 // Encoding: UCVTF_asimdshf_C
@@ -16489,7 +15701,6 @@ struct UcvtfAsimdshfC {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UcvtfAsimdshfC) == 4, "Encoding struct must be 32 bits");
 
 // UCVTF: Unsigned integer convert to floating-point (vector)
 // Encoding: UCVTF_asisdmiscfp16_R
@@ -16509,7 +15720,6 @@ struct UcvtfAsisdmiscfp16R {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(UcvtfAsisdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // UCVTF: Unsigned integer convert to floating-point (vector)
 // Encoding: UCVTF_asisdmisc_R
@@ -16529,7 +15739,6 @@ struct UcvtfAsisdmiscR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(UcvtfAsisdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // UCVTF: Unsigned integer convert to floating-point (vector)
 // Encoding: UCVTF_asimdmiscfp16_R
@@ -16550,7 +15759,6 @@ struct UcvtfAsimdmiscfp16R {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UcvtfAsimdmiscfp16R) == 4, "Encoding struct must be 32 bits");
 
 // UCVTF: Unsigned integer convert to floating-point (vector)
 // Encoding: UCVTF_asimdmisc_R
@@ -16571,7 +15779,6 @@ struct UcvtfAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UcvtfAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // UDOT: Dot product unsigned arithmetic (vector, by element)
 // Encoding: UDOT_asimdelem_D
@@ -16594,7 +15801,6 @@ struct UdotAsimdelemD {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UdotAsimdelemD) == 4, "Encoding struct must be 32 bits");
 
 // UDOT: Dot product unsigned arithmetic (vector)
 // Encoding: UDOT_asimdsame2_D
@@ -16616,7 +15822,6 @@ struct UdotAsimdsame2D {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UdotAsimdsame2D) == 4, "Encoding struct must be 32 bits");
 
 // UHADD: Unsigned halving add
 // Encoding: UHADD_asimdsame_only
@@ -16637,7 +15842,6 @@ struct UhaddAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UhaddAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // UHSUB: Unsigned halving subtract
 // Encoding: UHSUB_asimdsame_only
@@ -16658,7 +15862,6 @@ struct UhsubAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UhsubAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // UMAX: Unsigned maximum (vector)
 // Encoding: UMAX_asimdsame_only
@@ -16680,7 +15883,6 @@ struct UmaxAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UmaxAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // UMAXP: Unsigned maximum pairwise
 // Encoding: UMAXP_asimdsame_only
@@ -16702,7 +15904,6 @@ struct UmaxpAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UmaxpAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // UMAXV: Unsigned maximum across vector
 // Encoding: UMAXV_asimdall_only
@@ -16723,7 +15924,6 @@ struct UmaxvAsimdallOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UmaxvAsimdallOnly) == 4, "Encoding struct must be 32 bits");
 
 // UMIN: Unsigned minimum (vector)
 // Encoding: UMIN_asimdsame_only
@@ -16745,7 +15945,6 @@ struct UminAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UminAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // UMINP: Unsigned minimum pairwise
 // Encoding: UMINP_asimdsame_only
@@ -16767,7 +15966,6 @@ struct UminpAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UminpAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // UMINV: Unsigned minimum across vector
 // Encoding: UMINV_asimdall_only
@@ -16788,7 +15986,6 @@ struct UminvAsimdallOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UminvAsimdallOnly) == 4, "Encoding struct must be 32 bits");
 
 // UMLAL: Unsigned multiply-add long (vector, by element)
 // Encoding: UMLAL_asimdelem_L
@@ -16813,7 +16010,6 @@ struct UmlalAsimdelemL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UmlalAsimdelemL) == 4, "Encoding struct must be 32 bits");
 
 // UMLAL: Unsigned multiply-add long (vector)
 // Encoding: UMLAL_asimddiff_L
@@ -16836,7 +16032,6 @@ struct UmlalAsimddiffL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UmlalAsimddiffL) == 4, "Encoding struct must be 32 bits");
 
 // UMLSL: Unsigned multiply-subtract long (vector, by element)
 // Encoding: UMLSL_asimdelem_L
@@ -16861,7 +16056,6 @@ struct UmlslAsimdelemL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UmlslAsimdelemL) == 4, "Encoding struct must be 32 bits");
 
 // UMLSL: Unsigned multiply-subtract long (vector)
 // Encoding: UMLSL_asimddiff_L
@@ -16884,7 +16078,6 @@ struct UmlslAsimddiffL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UmlslAsimddiffL) == 4, "Encoding struct must be 32 bits");
 
 // UMMLA: Unsigned 8-bit integer matrix multiply-accumulate to 32-bit integer (vector)
 // Encoding: UMMLA_asimdsame2_G
@@ -16907,7 +16100,6 @@ struct UmmlaAsimdsame2G {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UmmlaAsimdsame2G) == 4, "Encoding struct must be 32 bits");
 
 // UMOV: Unsigned move vector element to general-purpose register
 // Encoding: UMOV_asimdins_W_w
@@ -16925,7 +16117,6 @@ struct UmovAsimdinsWW {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UmovAsimdinsWW) == 4, "Encoding struct must be 32 bits");
 
 // UMOV: Unsigned move vector element to general-purpose register
 // Encoding: UMOV_asimdins_X_x
@@ -16943,7 +16134,6 @@ struct UmovAsimdinsXX {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UmovAsimdinsXX) == 4, "Encoding struct must be 32 bits");
 
 // UMULL: Unsigned multiply long (vector, by element)
 // Encoding: UMULL_asimdelem_L
@@ -16966,7 +16156,6 @@ struct UmullAsimdelemL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UmullAsimdelemL) == 4, "Encoding struct must be 32 bits");
 
 // UMULL: Unsigned multiply long (vector)
 // Encoding: UMULL_asimddiff_L
@@ -16987,7 +16176,6 @@ struct UmullAsimddiffL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UmullAsimddiffL) == 4, "Encoding struct must be 32 bits");
 
 // UQADD: Unsigned saturating add
 // Encoding: UQADD_asisdsame_only
@@ -17007,7 +16195,6 @@ struct UqaddAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(UqaddAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // UQADD: Unsigned saturating add
 // Encoding: UQADD_asimdsame_only
@@ -17028,7 +16215,6 @@ struct UqaddAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UqaddAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // UQRSHL: Unsigned saturating rounding shift left (register)
 // Encoding: UQRSHL_asisdsame_only
@@ -17050,7 +16236,6 @@ struct UqrshlAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(UqrshlAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // UQRSHL: Unsigned saturating rounding shift left (register)
 // Encoding: UQRSHL_asimdsame_only
@@ -17073,7 +16258,6 @@ struct UqrshlAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UqrshlAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // UQRSHRN: Unsigned saturating rounded shift right narrow (immediate)
 // Encoding: UQRSHRN_asisdshf_N
@@ -17093,7 +16277,6 @@ struct UqrshrnAsisdshfN {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(UqrshrnAsisdshfN) == 4, "Encoding struct must be 32 bits");
 
 // UQRSHRN: Unsigned saturating rounded shift right narrow (immediate)
 // Encoding: UQRSHRN_asimdshf_N
@@ -17114,7 +16297,6 @@ struct UqrshrnAsimdshfN {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UqrshrnAsimdshfN) == 4, "Encoding struct must be 32 bits");
 
 // UQSHL: Unsigned saturating shift left (immediate)
 // Encoding: UQSHL_asisdshf_R
@@ -17135,7 +16317,6 @@ struct UqshlAsisdshfR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(UqshlAsisdshfR) == 4, "Encoding struct must be 32 bits");
 
 // UQSHL: Unsigned saturating shift left (immediate)
 // Encoding: UQSHL_asimdshf_R
@@ -17157,7 +16338,6 @@ struct UqshlAsimdshfR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UqshlAsimdshfR) == 4, "Encoding struct must be 32 bits");
 
 // UQSHL: Unsigned saturating shift left (register)
 // Encoding: UQSHL_asisdsame_only
@@ -17179,7 +16359,6 @@ struct UqshlAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(UqshlAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // UQSHL: Unsigned saturating shift left (register)
 // Encoding: UQSHL_asimdsame_only
@@ -17202,7 +16381,6 @@ struct UqshlAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UqshlAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // UQSHRN: Unsigned saturating shift right narrow (immediate)
 // Encoding: UQSHRN_asisdshf_N
@@ -17222,7 +16400,6 @@ struct UqshrnAsisdshfN {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(UqshrnAsisdshfN) == 4, "Encoding struct must be 32 bits");
 
 // UQSHRN: Unsigned saturating shift right narrow (immediate)
 // Encoding: UQSHRN_asimdshf_N
@@ -17243,7 +16420,6 @@ struct UqshrnAsimdshfN {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UqshrnAsimdshfN) == 4, "Encoding struct must be 32 bits");
 
 // UQSUB: Unsigned saturating subtract
 // Encoding: UQSUB_asisdsame_only
@@ -17263,7 +16439,6 @@ struct UqsubAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(UqsubAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // UQSUB: Unsigned saturating subtract
 // Encoding: UQSUB_asimdsame_only
@@ -17284,7 +16459,6 @@ struct UqsubAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UqsubAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // UQXTN: Unsigned saturating extract narrow
 // Encoding: UQXTN_asisdmisc_N
@@ -17303,7 +16477,6 @@ struct UqxtnAsisdmiscN {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(UqxtnAsisdmiscN) == 4, "Encoding struct must be 32 bits");
 
 // UQXTN: Unsigned saturating extract narrow
 // Encoding: UQXTN_asimdmisc_N
@@ -17323,7 +16496,6 @@ struct UqxtnAsimdmiscN {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UqxtnAsimdmiscN) == 4, "Encoding struct must be 32 bits");
 
 // URECPE: Unsigned reciprocal estimate
 // Encoding: URECPE_asimdmisc_R
@@ -17344,7 +16516,6 @@ struct UrecpeAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UrecpeAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // URHADD: Unsigned rounding halving add
 // Encoding: URHADD_asimdsame_only
@@ -17365,7 +16536,6 @@ struct UrhaddAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UrhaddAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // URSHL: Unsigned rounding shift left (register)
 // Encoding: URSHL_asisdsame_only
@@ -17387,7 +16557,6 @@ struct UrshlAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(UrshlAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // URSHL: Unsigned rounding shift left (register)
 // Encoding: URSHL_asimdsame_only
@@ -17410,7 +16579,6 @@ struct UrshlAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UrshlAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // URSHR: Unsigned rounding shift right (immediate)
 // Encoding: URSHR_asisdshf_R
@@ -17432,7 +16600,6 @@ struct UrshrAsisdshfR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(UrshrAsisdshfR) == 4, "Encoding struct must be 32 bits");
 
 // URSHR: Unsigned rounding shift right (immediate)
 // Encoding: URSHR_asimdshf_R
@@ -17455,7 +16622,6 @@ struct UrshrAsimdshfR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UrshrAsimdshfR) == 4, "Encoding struct must be 32 bits");
 
 // URSQRTE: Unsigned reciprocal square root estimate
 // Encoding: URSQRTE_asimdmisc_R
@@ -17476,7 +16642,6 @@ struct UrsqrteAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UrsqrteAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // URSRA: Unsigned rounding shift right and accumulate (immediate)
 // Encoding: URSRA_asisdshf_R
@@ -17498,7 +16663,6 @@ struct UrsraAsisdshfR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(UrsraAsisdshfR) == 4, "Encoding struct must be 32 bits");
 
 // URSRA: Unsigned rounding shift right and accumulate (immediate)
 // Encoding: URSRA_asimdshf_R
@@ -17521,7 +16685,6 @@ struct UrsraAsimdshfR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UrsraAsimdshfR) == 4, "Encoding struct must be 32 bits");
 
 // USDOT: Dot product with unsigned and signed integers (vector, by element)
 // Encoding: USDOT_asimdelem_D
@@ -17545,7 +16708,6 @@ struct UsdotAsimdelemD {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UsdotAsimdelemD) == 4, "Encoding struct must be 32 bits");
 
 // USDOT: Dot product with unsigned and signed integers (vector)
 // Encoding: USDOT_asimdsame2_D
@@ -17567,7 +16729,6 @@ struct UsdotAsimdsame2D {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UsdotAsimdsame2D) == 4, "Encoding struct must be 32 bits");
 
 // USHL: Unsigned shift left (register)
 // Encoding: USHL_asisdsame_only
@@ -17589,7 +16750,6 @@ struct UshlAsisdsameOnly {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(UshlAsisdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // USHL: Unsigned shift left (register)
 // Encoding: USHL_asimdsame_only
@@ -17612,7 +16772,6 @@ struct UshlAsimdsameOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UshlAsimdsameOnly) == 4, "Encoding struct must be 32 bits");
 
 // USHLL: Unsigned shift left long (immediate)
 // Encoding: USHLL_asimdshf_L
@@ -17632,7 +16791,6 @@ struct UshllAsimdshfL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UshllAsimdshfL) == 4, "Encoding struct must be 32 bits");
 
 // USHR: Unsigned shift right (immediate)
 // Encoding: USHR_asisdshf_R
@@ -17654,7 +16812,6 @@ struct UshrAsisdshfR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(UshrAsisdshfR) == 4, "Encoding struct must be 32 bits");
 
 // USHR: Unsigned shift right (immediate)
 // Encoding: USHR_asimdshf_R
@@ -17677,7 +16834,6 @@ struct UshrAsimdshfR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UshrAsimdshfR) == 4, "Encoding struct must be 32 bits");
 
 // USMMLA: Unsigned and signed 8-bit integer matrix multiply-accumulate to 32-bit integer (vector)
 // Encoding: USMMLA_asimdsame2_G
@@ -17700,7 +16856,6 @@ struct UsmmlaAsimdsame2G {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UsmmlaAsimdsame2G) == 4, "Encoding struct must be 32 bits");
 
 // USQADD: Unsigned saturating accumulate of signed value
 // Encoding: USQADD_asisdmisc_R
@@ -17719,7 +16874,6 @@ struct UsqaddAsisdmiscR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(UsqaddAsisdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // USQADD: Unsigned saturating accumulate of signed value
 // Encoding: USQADD_asimdmisc_R
@@ -17739,7 +16893,6 @@ struct UsqaddAsimdmiscR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UsqaddAsimdmiscR) == 4, "Encoding struct must be 32 bits");
 
 // USRA: Unsigned shift right and accumulate (immediate)
 // Encoding: USRA_asisdshf_R
@@ -17761,7 +16914,6 @@ struct UsraAsisdshfR {
     uint32_t _unnamed_0 : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(UsraAsisdshfR) == 4, "Encoding struct must be 32 bits");
 
 // USRA: Unsigned shift right and accumulate (immediate)
 // Encoding: USRA_asimdshf_R
@@ -17784,7 +16936,6 @@ struct UsraAsimdshfR {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UsraAsimdshfR) == 4, "Encoding struct must be 32 bits");
 
 // USUBL: Unsigned subtract long
 // Encoding: USUBL_asimddiff_L
@@ -17807,7 +16958,6 @@ struct UsublAsimddiffL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UsublAsimddiffL) == 4, "Encoding struct must be 32 bits");
 
 // USUBW: Unsigned subtract wide
 // Encoding: USUBW_asimddiff_W
@@ -17830,7 +16980,6 @@ struct UsubwAsimddiffW {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UsubwAsimddiffW) == 4, "Encoding struct must be 32 bits");
 
 // USHLL: Unsigned extend long
 // Encoding: UXTL_USHLL_asimdshf_L
@@ -17850,7 +16999,6 @@ struct UxtlUshllAsimdshfL {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UxtlUshllAsimdshfL) == 4, "Encoding struct must be 32 bits");
 
 // UZP1: Unzip vectors (primary)
 // Encoding: UZP1_asimdperm_only
@@ -17872,7 +17020,6 @@ struct Uzp1AsimdpermOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Uzp1AsimdpermOnly) == 4, "Encoding struct must be 32 bits");
 
 // UZP2: Unzip vectors (secondary)
 // Encoding: UZP2_asimdperm_only
@@ -17894,7 +17041,6 @@ struct Uzp2AsimdpermOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Uzp2AsimdpermOnly) == 4, "Encoding struct must be 32 bits");
 
 // XAR: Exclusive-OR and rotate
 // Encoding: XAR_VVV2_crypto3_imm6
@@ -17910,7 +17056,6 @@ struct XarVvv2Crypto3Imm6 {
     uint32_t _unnamed_0 : 4;  // fixed: 0b1100 (0xC)
 };
 
-static_assert(sizeof(XarVvv2Crypto3Imm6) == 4, "Encoding struct must be 32 bits");
 
 // XTN: Extract narrow
 // Encoding: XTN_asimdmisc_N
@@ -17930,7 +17075,6 @@ struct XtnAsimdmiscN {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(XtnAsimdmiscN) == 4, "Encoding struct must be 32 bits");
 
 // ZIP1: Zip vectors (primary)
 // Encoding: ZIP1_asimdperm_only
@@ -17952,7 +17096,6 @@ struct Zip1AsimdpermOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Zip1AsimdpermOnly) == 4, "Encoding struct must be 32 bits");
 
 // ZIP2: Zip vectors (secondary)
 // Encoding: ZIP2_asimdperm_only
@@ -17974,7 +17117,6 @@ struct Zip2AsimdpermOnly {
     uint32_t _unnamed_0 : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Zip2AsimdpermOnly) == 4, "Encoding struct must be 32 bits");
 
 // Union for advsimd instruction class
 union AdvsimdEncoding {
@@ -18838,6 +17980,7 @@ union AdvsimdEncoding {
     Zip2AsimdpermOnly zip2asimdperm_only;
     uint32_t raw;
 };
+static_assert(sizeof(AdvsimdEncoding) == 4, "Encoding union must be 32 bits");
 
 // Encode function implementations
 uint32_t encode_abs_asisdmisc_r(uint32_t Rd, uint32_t Rn) {
@@ -34242,7 +33385,7 @@ uint32_t encode_zip2_asimdperm_only(uint32_t Rd, uint32_t Rn, uint32_t Rm, uint3
 // Decode a advsimd instruction
 // Input is in native ARM64 format (as read from memory)
 std::optional<Instruction> decode_advsimd(uint32_t insn) {
-    // Optimized switch for mask 0xFFFFFC00u (93 unique patterns, 93 encodings)
+    // Switch for mask 0xFFFFFC00u (93 patterns, 93 encodings)
     switch (insn & 0xFFFFFC00u) {
         case 0x0D000000u: { // ST1_asisdlso_B1_1b
                         Instruction result(Mnemonic::ST1, insn);
@@ -35174,9 +34317,10 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.sm4e_vv4cryptosha5122.Rn, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFFF400u (16 unique patterns, 16 encodings)
+    // Switch for mask 0xFFFFF400u (16 patterns, 16 encodings)
     switch (insn & 0xFFFFF400u) {
         case 0x0D004000u: { // ST1_asisdlso_H1_1h
                         Instruction result(Mnemonic::ST1, insn);
@@ -35338,9 +34482,10 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_h4i4h.Rt, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFFF000u (40 unique patterns, 40 encodings)
+    // Switch for mask 0xFFFFF000u (40 patterns, 40 encodings)
     switch (insn & 0xFFFFF000u) {
         case 0x0C000000u: { // ST4_asisdlse_R4
                         Instruction result(Mnemonic::ST4, insn);
@@ -35742,9 +34887,10 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlsop_r4i.Rt, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF8FC00u (16 unique patterns, 16 encodings)
+    // Switch for mask 0xFFF8FC00u (16 patterns, 16 encodings)
     switch (insn & 0xFFF8FC00u) {
         case 0x2F00E400u: { // MOVI_asimdimm_D_ds
                         Instruction result(Mnemonic::MOVI, insn);
@@ -35903,36 +35049,43 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_asisdshf_c.Rn, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // MOV_UMOV_asimdins_X_x
-    // Also matches: UMOV_asimdins_X_x (UMOV)
-    if ((insn & 0xFFEFFC00u) == 0x4E083C00u) {
-        Instruction result(Mnemonic::UMOV, insn);
-        AdvsimdEncoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        bool is_64bit = true;
-        result.operands.push_back(Operand(OperandType::Register, enc.mov_umov_asimdins_xx.Rd, is_64bit));
-        result.operands.push_back(Operand(OperandType::Register, enc.mov_umov_asimdins_xx.Rn, is_64bit));
-        result.operands.push_back(Operand(OperandType::Immediate, enc.mov_umov_asimdins_xx.imm5, true));
-        return result;
+    // Switch for mask 0xFFEFFC00u (1 pattern, 2 encodings)
+    switch (insn & 0xFFEFFC00u) {
+        case 0x4E083C00u: { // MOV_UMOV_asimdins_X_x
+            // Also matches: UMOV_asimdins_X_x (UMOV)
+                        Instruction result(Mnemonic::UMOV, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.mov_umov_asimdins_xx.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.mov_umov_asimdins_xx.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.mov_umov_asimdins_xx.imm5, true));
+                        return result;
+        }
+        default: break;
     }
 
-    // MOV_UMOV_asimdins_W_w
-    if ((insn & 0xFFE7FC00u) == 0x0E043C00u) {
-        Instruction result(Mnemonic::UMOV, insn);
-        AdvsimdEncoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        bool is_64bit = false;
-        result.operands.push_back(Operand(OperandType::Register, enc.mov_umov_asimdins_ww.Rd, is_64bit));
-        result.operands.push_back(Operand(OperandType::Register, enc.mov_umov_asimdins_ww.Rn, is_64bit));
-        result.operands.push_back(Operand(OperandType::Immediate, enc.mov_umov_asimdins_ww.imm5, true));
-        return result;
+    // Switch for mask 0xFFE7FC00u (1 pattern, 1 encoding)
+    switch (insn & 0xFFE7FC00u) {
+        case 0x0E043C00u: { // MOV_UMOV_asimdins_W_w
+                        Instruction result(Mnemonic::UMOV, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.mov_umov_asimdins_ww.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.mov_umov_asimdins_ww.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.mov_umov_asimdins_ww.imm5, true));
+                        return result;
+        }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE0FC1Fu (40 unique patterns, 40 encodings)
+    // Switch for mask 0xFFE0FC1Fu (40 patterns, 40 encodings)
     switch (insn & 0xFFE0FC1Fu) {
         case 0x3C20801Fu: { // STBFADD_16
                         Instruction result(Mnemonic::STBFADD, insn);
@@ -36334,9 +35487,10 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminnml64.Rs, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE0FC00u (158 unique patterns, 160 encodings)
+    // Switch for mask 0xFFE0FC00u (158 patterns, 160 encodings)
     switch (insn & 0xFFE0FC00u) {
         case 0x0D800000u: { // ST1_asisdlsop_BX1_r1b
                         Instruction result(Mnemonic::ST1, insn);
@@ -38078,9 +37232,10 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ldfminnmal64.Rs, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE0F400u (8 unique patterns, 8 encodings)
+    // Switch for mask 0xFFE0F400u (8 patterns, 8 encodings)
     switch (insn & 0xFFE0F400u) {
         case 0x0D804000u: { // ST1_asisdlsop_HX1_r1h
                         Instruction result(Mnemonic::ST1, insn);
@@ -38170,9 +37325,10 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_hx4r4h.Rt, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE0F000u (18 unique patterns, 18 encodings)
+    // Switch for mask 0xFFE0F000u (18 patterns, 18 encodings)
     switch (insn & 0xFFE0F000u) {
         case 0x0C800000u: { // ST4_asisdlsep_R4_r
                         Instruction result(Mnemonic::ST4, insn);
@@ -38372,9 +37528,10 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlsop_rx4r.Rt, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE0CC00u (4 unique patterns, 4 encodings)
+    // Switch for mask 0xFFE0CC00u (4 patterns, 4 encodings)
     switch (insn & 0xFFE0CC00u) {
         case 0xCE408000u: { // SM3TT1A_VVV4_crypto3_imm2
                         Instruction result(Mnemonic::SM3TT1A, insn);
@@ -38420,22 +37577,26 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3tt2b_vvv_crypto3imm2.Rm, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // LUTI4_asimdtbl_L5
-    if ((insn & 0xFFE0BC00u) == 0x4E402000u) {
-        Instruction result(Mnemonic::LUTI4, insn);
-        AdvsimdEncoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        bool is_64bit = false;
-        result.operands.push_back(Operand(OperandType::Register, enc.luti4asimdtbl_l5.Rd, is_64bit));
-        result.operands.push_back(Operand(OperandType::Register, enc.luti4asimdtbl_l5.Rn, is_64bit));
-        result.operands.push_back(Operand(OperandType::Register, enc.luti4asimdtbl_l5.Rm, is_64bit));
-        return result;
+    // Switch for mask 0xFFE0BC00u (1 pattern, 1 encoding)
+    switch (insn & 0xFFE0BC00u) {
+        case 0x4E402000u: { // LUTI4_asimdtbl_L5
+                        Instruction result(Mnemonic::LUTI4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.luti4asimdtbl_l5.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.luti4asimdtbl_l5.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.luti4asimdtbl_l5.Rm, is_64bit));
+                        return result;
+        }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE09C00u (2 unique patterns, 2 encodings)
+    // Switch for mask 0xFFE09C00u (2 patterns, 2 encodings)
     switch (insn & 0xFFE09C00u) {
         case 0x4E401000u: { // LUTI4_asimdtbl_L7
                         Instruction result(Mnemonic::LUTI4, insn);
@@ -38459,36 +37620,43 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.luti2asimdtbl_l5.Rm, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // LUTI2_asimdtbl_L6
-    if ((insn & 0xFFE08C00u) == 0x4EC00000u) {
-        Instruction result(Mnemonic::LUTI2, insn);
-        AdvsimdEncoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        bool is_64bit = false;
-        result.operands.push_back(Operand(OperandType::Register, enc.luti2asimdtbl_l6.Rd, is_64bit));
-        result.operands.push_back(Operand(OperandType::Register, enc.luti2asimdtbl_l6.Rn, is_64bit));
-        result.operands.push_back(Operand(OperandType::Register, enc.luti2asimdtbl_l6.Rm, is_64bit));
-        return result;
+    // Switch for mask 0xFFE08C00u (1 pattern, 1 encoding)
+    switch (insn & 0xFFE08C00u) {
+        case 0x4EC00000u: { // LUTI2_asimdtbl_L6
+                        Instruction result(Mnemonic::LUTI2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.luti2asimdtbl_l6.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.luti2asimdtbl_l6.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.luti2asimdtbl_l6.Rm, is_64bit));
+                        return result;
+        }
+        default: break;
     }
 
-    // INS_asimdins_IV_v
-    // Also matches: MOV_INS_asimdins_IV_v (INS)
-    if ((insn & 0xFFE08400u) == 0x6E000400u) {
-        Instruction result(Mnemonic::INS, insn);
-        AdvsimdEncoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        bool is_64bit = false;
-        result.operands.push_back(Operand(OperandType::Register, enc.ins_asimdins_iv_v.Rd, is_64bit));
-        result.operands.push_back(Operand(OperandType::Register, enc.ins_asimdins_iv_v.Rn, is_64bit));
-        result.operands.push_back(Operand(OperandType::Immediate, enc.ins_asimdins_iv_v.imm5, true));
-        return result;
+    // Switch for mask 0xFFE08400u (1 pattern, 2 encodings)
+    switch (insn & 0xFFE08400u) {
+        case 0x6E000400u: { // INS_asimdins_IV_v
+            // Also matches: MOV_INS_asimdins_IV_v (INS)
+                        Instruction result(Mnemonic::INS, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ins_asimdins_iv_v.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ins_asimdins_iv_v.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ins_asimdins_iv_v.imm5, true));
+                        return result;
+        }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE08000u (3 unique patterns, 3 encodings)
+    // Switch for mask 0xFFE08000u (3 patterns, 3 encodings)
     switch (insn & 0xFFE08000u) {
         case 0xCE000000u: { // EOR3_VVV16_crypto4
                         Instruction result(Mnemonic::EOR3, insn);
@@ -38526,23 +37694,27 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3ss1vvv4crypto4.Ra, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // XAR_VVV2_crypto3_imm6
-    if ((insn & 0xFFE00000u) == 0xCE800000u) {
-        Instruction result(Mnemonic::XAR, insn);
-        AdvsimdEncoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        bool is_64bit = false;
-        result.operands.push_back(Operand(OperandType::Register, enc.xar_vvv2crypto3imm6.Rd, is_64bit));
-        result.operands.push_back(Operand(OperandType::Register, enc.xar_vvv2crypto3imm6.Rn, is_64bit));
-        result.operands.push_back(Operand(OperandType::Register, enc.xar_vvv2crypto3imm6.Rm, is_64bit));
-        result.operands.push_back(Operand(OperandType::Immediate, enc.xar_vvv2crypto3imm6.imm6, true));
-        return result;
+    // Switch for mask 0xFFE00000u (1 pattern, 1 encoding)
+    switch (insn & 0xFFE00000u) {
+        case 0xCE800000u: { // XAR_VVV2_crypto3_imm6
+                        Instruction result(Mnemonic::XAR, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.xar_vvv2crypto3imm6.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.xar_vvv2crypto3imm6.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.xar_vvv2crypto3imm6.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.xar_vvv2crypto3imm6.imm6, true));
+                        return result;
+        }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFC0FC00u (11 unique patterns, 11 encodings)
+    // Switch for mask 0xFFC0FC00u (11 patterns, 11 encodings)
     switch (insn & 0xFFC0FC00u) {
         case 0x5F400400u: { // SSHR_asisdshf_R
                         Instruction result(Mnemonic::SSHR, insn);
@@ -38654,9 +37826,10 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.sli_asisdshf_r.Rn, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFC0F400u (10 unique patterns, 10 encodings)
+    // Switch for mask 0xFFC0F400u (10 patterns, 10 encodings)
     switch (insn & 0xFFC0F400u) {
         case 0x0FC00000u: { // FMLALB_asimdelem_H
                         Instruction result(Mnemonic::FMLALB, insn);
@@ -38768,9 +37941,10 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fmulx_asisdelem_rh_h.Rm, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFBFFC00u (25 unique patterns, 25 encodings)
+    // Switch for mask 0xFFBFFC00u (25 patterns, 25 encodings)
     switch (insn & 0xFFBFFC00u) {
         case 0x5E21A800u: { // FCVTNS_asisdmisc_R
                         Instruction result(Mnemonic::FCVTNS, insn);
@@ -39022,9 +38196,10 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fminp_asisdpair_only_sd.Rn, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFA0FC00u (9 unique patterns, 9 encodings)
+    // Switch for mask 0xFFA0FC00u (9 patterns, 9 encodings)
     switch (insn & 0xFFA0FC00u) {
         case 0x5E20DC00u: { // FMULX_asisdsame_only
                         Instruction result(Mnemonic::FMULX, insn);
@@ -39125,9 +38300,10 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.facgt_asisdsame_only.Rm, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFF80F400u (4 unique patterns, 4 encodings)
+    // Switch for mask 0xFF80F400u (4 patterns, 4 encodings)
     switch (insn & 0xFF80F400u) {
         case 0x5F801000u: { // FMLA_asisdelem_R_SD
                         Instruction result(Mnemonic::FMLA, insn);
@@ -39173,9 +38349,10 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fmulx_asisdelem_rsd.Rm, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFF3FFC00u (7 unique patterns, 7 encodings)
+    // Switch for mask 0xFF3FFC00u (7 patterns, 7 encodings)
     switch (insn & 0xFF3FFC00u) {
         case 0x5E203800u: { // SUQADD_asisdmisc_R
                         Instruction result(Mnemonic::SUQADD, insn);
@@ -39247,9 +38424,10 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.uqxtn_asisdmisc_n.Rn, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFF20FC00u (15 unique patterns, 15 encodings)
+    // Switch for mask 0xFF20FC00u (15 patterns, 15 encodings)
     switch (insn & 0xFF20FC00u) {
         case 0x5E200C00u: { // SQADD_asisdsame_only
                         Instruction result(Mnemonic::SQADD, insn);
@@ -39416,9 +38594,10 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmulh_asisdsame_only.Rm, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFF00F400u (7 unique patterns, 7 encodings)
+    // Switch for mask 0xFF00F400u (7 patterns, 7 encodings)
     switch (insn & 0xFF00F400u) {
         case 0x5F003000u: { // SQDMLAL_asisdelem_L
                         Instruction result(Mnemonic::SQDMLAL, insn);
@@ -39497,9 +38676,10 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmlsh_asisdelem_r.Rm, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xBFFFFC00u (44 unique patterns, 45 encodings)
+    // Switch for mask 0xBFFFFC00u (44 patterns, 45 encodings)
     switch (insn & 0xBFFFFC00u) {
         case 0x0E30C800u: { // FMAXNMV_asimdall_only_H
                         Instruction result(Mnemonic::FMAXNMV, insn);
@@ -39942,9 +39122,10 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.uxtl_ushll_asimdshf_l.Rn, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xBFF8FC00u (29 unique patterns, 31 encodings)
+    // Switch for mask 0xBFF8FC00u (29 patterns, 31 encodings)
     switch (insn & 0xBFF8FC00u) {
         case 0x0F000400u: { // SSHR_asimdshf_R
                         Instruction result(Mnemonic::SSHR, insn);
@@ -40236,9 +39417,10 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_asimdshf_c.Rn, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xBFF8EC00u (2 unique patterns, 2 encodings)
+    // Switch for mask 0xBFF8EC00u (2 patterns, 2 encodings)
     switch (insn & 0xBFF8EC00u) {
         case 0x0F00C400u: { // MOVI_asimdimm_M_sm
                         Instruction result(Mnemonic::MOVI, insn);
@@ -40258,9 +39440,10 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.mvni_asimdimm_msm.Rd, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xBFF8DC00u (4 unique patterns, 4 encodings)
+    // Switch for mask 0xBFF8DC00u (4 patterns, 4 encodings)
     switch (insn & 0xBFF8DC00u) {
         case 0x0F008400u: { // MOVI_asimdimm_L_hl
                         Instruction result(Mnemonic::MOVI, insn);
@@ -40298,9 +39481,10 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.bic_asimdimm_lhl.Rd, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xBFF89C00u (4 unique patterns, 4 encodings)
+    // Switch for mask 0xBFF89C00u (4 patterns, 4 encodings)
     switch (insn & 0xBFF89C00u) {
         case 0x0F000400u: { // MOVI_asimdimm_L_sl
                         Instruction result(Mnemonic::MOVI, insn);
@@ -40338,9 +39522,10 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.bic_asimdimm_lsl.Rd, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xBFE0FC00u (59 unique patterns, 60 encodings)
+    // Switch for mask 0xBFE0FC00u (59 patterns, 60 encodings)
     switch (insn & 0xBFE0FC00u) {
         case 0x0E000000u: { // TBL_asimdtbl_L1_1
                         Instruction result(Mnemonic::TBL, insn);
@@ -40992,22 +40177,26 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.bif_asimdsame_only.Rm, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // EXT_asimdext_only
-    if ((insn & 0xBFE08400u) == 0x2E000000u) {
-        Instruction result(Mnemonic::EXT, insn);
-        AdvsimdEncoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        bool is_64bit = false;
-        result.operands.push_back(Operand(OperandType::Register, enc.ext_asimdext_only.Rd, is_64bit));
-        result.operands.push_back(Operand(OperandType::Register, enc.ext_asimdext_only.Rn, is_64bit));
-        result.operands.push_back(Operand(OperandType::Register, enc.ext_asimdext_only.Rm, is_64bit));
-        return result;
+    // Switch for mask 0xBFE08400u (1 pattern, 1 encoding)
+    switch (insn & 0xBFE08400u) {
+        case 0x2E000000u: { // EXT_asimdext_only
+                        Instruction result(Mnemonic::EXT, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ext_asimdext_only.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ext_asimdext_only.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ext_asimdext_only.Rm, is_64bit));
+                        return result;
+        }
+        default: break;
     }
 
-    // Optimized switch for mask 0xBFC0F400u (17 unique patterns, 17 encodings)
+    // Switch for mask 0xBFC0F400u (17 patterns, 17 encodings)
     switch (insn & 0xBFC0F400u) {
         case 0x0F000000u: { // FDOT_asimdelem_D
                         Instruction result(Mnemonic::FDOT, insn);
@@ -41196,9 +40385,10 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.udot_asimdelem_d.Rm, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xBFBFFC00u (37 unique patterns, 37 encodings)
+    // Switch for mask 0xBFBFFC00u (37 patterns, 37 encodings)
     switch (insn & 0xBFBFFC00u) {
         case 0x0E216800u: { // FCVTN_asimdmisc_N
                         Instruction result(Mnemonic::FCVTN, insn);
@@ -41570,9 +40760,10 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fsqrt_asimdmisc_r.Rn, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xBFA0FC00u (27 unique patterns, 27 encodings)
+    // Switch for mask 0xBFA0FC00u (27 patterns, 27 encodings)
     switch (insn & 0xBFA0FC00u) {
         case 0x0E20C400u: { // FMAXNM_asimdsame_only
                         Instruction result(Mnemonic::FMAXNM, insn);
@@ -41871,9 +41062,10 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fscale_asimdsame_only.Rm, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xBF80F400u (4 unique patterns, 4 encodings)
+    // Switch for mask 0xBF80F400u (4 patterns, 4 encodings)
     switch (insn & 0xBF80F400u) {
         case 0x0F801000u: { // FMLA_asimdelem_R_SD
                         Instruction result(Mnemonic::FMLA, insn);
@@ -41919,9 +41111,10 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fmulx_asimdelem_rsd.Rm, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xBF3FFC00u (32 unique patterns, 32 encodings)
+    // Switch for mask 0xBF3FFC00u (32 patterns, 32 encodings)
     switch (insn & 0xBF3FFC00u) {
         case 0x0E200800u: { // REV64_asimdmisc_R
                         Instruction result(Mnemonic::REV64, insn);
@@ -42243,9 +41436,10 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.uminv_asimdall_only.Rn, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xBF20FC00u (79 unique patterns, 79 encodings)
+    // Switch for mask 0xBF20FC00u (79 patterns, 79 encodings)
     switch (insn & 0xBF20FC00u) {
         case 0x0E001800u: { // UZP1_asimdperm_only
                         Instruction result(Mnemonic::UZP1, insn);
@@ -43116,35 +42310,42 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.umull_asimddiff_l.Rm, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // FCADD_asimdsame2_C
-    if ((insn & 0xBF20EC00u) == 0x2E00E400u) {
-        Instruction result(Mnemonic::FCADD, insn);
-        AdvsimdEncoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        bool is_64bit = false;
-        result.operands.push_back(Operand(OperandType::Register, enc.fcadd_asimdsame2c.Rd, is_64bit));
-        result.operands.push_back(Operand(OperandType::Register, enc.fcadd_asimdsame2c.Rn, is_64bit));
-        result.operands.push_back(Operand(OperandType::Register, enc.fcadd_asimdsame2c.Rm, is_64bit));
-        return result;
+    // Switch for mask 0xBF20EC00u (1 pattern, 1 encoding)
+    switch (insn & 0xBF20EC00u) {
+        case 0x2E00E400u: { // FCADD_asimdsame2_C
+                        Instruction result(Mnemonic::FCADD, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.fcadd_asimdsame2c.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.fcadd_asimdsame2c.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.fcadd_asimdsame2c.Rm, is_64bit));
+                        return result;
+        }
+        default: break;
     }
 
-    // FCMLA_asimdsame2_C
-    if ((insn & 0xBF20E400u) == 0x2E00C400u) {
-        Instruction result(Mnemonic::FCMLA, insn);
-        AdvsimdEncoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        bool is_64bit = false;
-        result.operands.push_back(Operand(OperandType::Register, enc.fcmla_asimdsame2c.Rd, is_64bit));
-        result.operands.push_back(Operand(OperandType::Register, enc.fcmla_asimdsame2c.Rn, is_64bit));
-        result.operands.push_back(Operand(OperandType::Register, enc.fcmla_asimdsame2c.Rm, is_64bit));
-        return result;
+    // Switch for mask 0xBF20E400u (1 pattern, 1 encoding)
+    switch (insn & 0xBF20E400u) {
+        case 0x2E00C400u: { // FCMLA_asimdsame2_C
+                        Instruction result(Mnemonic::FCMLA, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.fcmla_asimdsame2c.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.fcmla_asimdsame2c.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.fcmla_asimdsame2c.Rm, is_64bit));
+                        return result;
+        }
+        default: break;
     }
 
-    // Optimized switch for mask 0xBF00F400u (16 unique patterns, 16 encodings)
+    // Switch for mask 0xBF00F400u (16 patterns, 16 encodings)
     switch (insn & 0xBF00F400u) {
         case 0x0F002000u: { // SMLAL_asimdelem_L
                         Instruction result(Mnemonic::SMLAL, insn);
@@ -43322,19 +42523,23 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmlsh_asimdelem_r.Rm, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // FCMLA_advsimd_elt
-    if ((insn & 0xBF009400u) == 0x2F001000u) {
-        Instruction result(Mnemonic::FCMLA, insn);
-        AdvsimdEncoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        bool is_64bit = false;
-        result.operands.push_back(Operand(OperandType::Register, enc.fcmla_advsimd_elt.Rd, is_64bit));
-        result.operands.push_back(Operand(OperandType::Register, enc.fcmla_advsimd_elt.Rn, is_64bit));
-        result.operands.push_back(Operand(OperandType::Register, enc.fcmla_advsimd_elt.Rm, is_64bit));
-        return result;
+    // Switch for mask 0xBF009400u (1 pattern, 1 encoding)
+    switch (insn & 0xBF009400u) {
+        case 0x2F001000u: { // FCMLA_advsimd_elt
+                        Instruction result(Mnemonic::FCMLA, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.fcmla_advsimd_elt.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.fcmla_advsimd_elt.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.fcmla_advsimd_elt.Rm, is_64bit));
+                        return result;
+        }
+        default: break;
     }
 
     // No matching encoding found

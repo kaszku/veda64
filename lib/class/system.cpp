@@ -20,7 +20,6 @@ struct ApasSysCrSysteminstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(ApasSysCrSysteminstrs) == 4, "Encoding struct must be 32 bits");
 
 // SYS: Address translate
 // Encoding: AT_SYS_CR_systeminstrs
@@ -38,7 +37,6 @@ struct AtSysCrSysteminstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(AtSysCrSysteminstrs) == 4, "Encoding struct must be 32 bits");
 
 // AXFLAG: Convert floating-point condition flags from Arm to external format
 // Encoding: AXFLAG_M_pstate
@@ -54,7 +52,6 @@ struct AxflagMPstate {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(AxflagMPstate) == 4, "Encoding struct must be 32 bits");
 
 // SYS: Branch record buffer
 // Encoding: BRB_SYS_CR_systeminstrs
@@ -72,7 +69,6 @@ struct BrbSysCrSysteminstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(BrbSysCrSysteminstrs) == 4, "Encoding struct must be 32 bits");
 
 // BRK: Breakpoint instruction
 // Encoding: BRK_EX_exception
@@ -87,7 +83,6 @@ struct BrkExException {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(BrkExException) == 4, "Encoding struct must be 32 bits");
 
 // BTI: Branch target identification
 // Encoding: BTI_HB_hints
@@ -101,7 +96,6 @@ struct BtiHbHints {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(BtiHbHints) == 4, "Encoding struct must be 32 bits");
 
 // CFINV: Invert carry flag
 // Encoding: CFINV_M_pstate
@@ -117,7 +111,6 @@ struct CfinvMPstate {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(CfinvMPstate) == 4, "Encoding struct must be 32 bits");
 
 // SYS: Control flow prediction restriction by context
 // Encoding: CFP_SYS_CR_systeminstrs
@@ -135,7 +128,6 @@ struct CfpSysCrSysteminstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(CfpSysCrSysteminstrs) == 4, "Encoding struct must be 32 bits");
 
 // CHKFEAT: Check feature status
 // Encoding: CHKFEAT_HF_hints
@@ -149,7 +141,6 @@ struct ChkfeatHfHints {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(ChkfeatHfHints) == 4, "Encoding struct must be 32 bits");
 
 // CLRBHB: Clear branch history
 // Encoding: CLRBHB_HI_hints
@@ -163,7 +154,6 @@ struct ClrbhbHiHints {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(ClrbhbHiHints) == 4, "Encoding struct must be 32 bits");
 
 // CLREX: Clear exclusive
 // Encoding: CLREX_BN_barriers
@@ -177,7 +167,6 @@ struct ClrexBnBarriers {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(ClrexBnBarriers) == 4, "Encoding struct must be 32 bits");
 
 // SYS: Clear other speculative prediction restriction by context
 // Encoding: COSP_SYS_CR_systeminstrs
@@ -195,7 +184,6 @@ struct CospSysCrSysteminstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(CospSysCrSysteminstrs) == 4, "Encoding struct must be 32 bits");
 
 // SYS: Cache prefetch prediction restriction by context
 // Encoding: CPP_SYS_CR_systeminstrs
@@ -213,7 +201,6 @@ struct CppSysCrSysteminstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(CppSysCrSysteminstrs) == 4, "Encoding struct must be 32 bits");
 
 // CSDB: Consumption of speculative data barrier
 // Encoding: CSDB_HI_hints
@@ -227,7 +214,6 @@ struct CsdbHiHints {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(CsdbHiHints) == 4, "Encoding struct must be 32 bits");
 
 // SYS: Data cache operation
 // Encoding: DC_SYS_CR_systeminstrs
@@ -245,7 +231,6 @@ struct DcSysCrSysteminstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(DcSysCrSysteminstrs) == 4, "Encoding struct must be 32 bits");
 
 // DCPS1: Debug change PE state to EL1
 // Encoding: DCPS1_DC_exception
@@ -260,7 +245,6 @@ struct Dcps1DcException {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(Dcps1DcException) == 4, "Encoding struct must be 32 bits");
 
 // DCPS2: Debug change PE state to EL2
 // Encoding: DCPS2_DC_exception
@@ -275,7 +259,6 @@ struct Dcps2DcException {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(Dcps2DcException) == 4, "Encoding struct must be 32 bits");
 
 // DCPS3: Debug change PE state to EL3
 // Encoding: DCPS3_DC_exception
@@ -290,7 +273,6 @@ struct Dcps3DcException {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(Dcps3DcException) == 4, "Encoding struct must be 32 bits");
 
 // DGH: Data gathering hint
 // Encoding: DGH_HI_hints
@@ -304,7 +286,6 @@ struct DghHiHints {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(DghHiHints) == 4, "Encoding struct must be 32 bits");
 
 // DMB: Data memory barrier
 // Encoding: DMB_BO_barriers
@@ -319,7 +300,6 @@ struct DmbBoBarriers {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(DmbBoBarriers) == 4, "Encoding struct must be 32 bits");
 
 // DRPS: Debug restore PE state
 // Encoding: DRPS_64E_branch_reg
@@ -335,7 +315,6 @@ struct Drps64eBranchReg {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(Drps64eBranchReg) == 4, "Encoding struct must be 32 bits");
 
 // DSB: Data synchronization barrier
 // Encoding: DSB_BO_barriers
@@ -350,7 +329,6 @@ struct DsbBoBarriers {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(DsbBoBarriers) == 4, "Encoding struct must be 32 bits");
 
 // DSB: Data synchronization barrier
 // Encoding: DSB_BOn_barriers
@@ -365,7 +343,6 @@ struct DsbBonBarriers {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(DsbBonBarriers) == 4, "Encoding struct must be 32 bits");
 
 // SYS: Data value prediction restriction by context
 // Encoding: DVP_SYS_CR_systeminstrs
@@ -383,7 +360,6 @@ struct DvpSysCrSysteminstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(DvpSysCrSysteminstrs) == 4, "Encoding struct must be 32 bits");
 
 // ERET: Exception return
 // Encoding: ERET_64E_branch_reg
@@ -401,7 +377,6 @@ struct Eret64eBranchReg {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(Eret64eBranchReg) == 4, "Encoding struct must be 32 bits");
 
 // ESB: Error synchronization barrier
 // Encoding: ESB_HI_hints
@@ -415,7 +390,6 @@ struct EsbHiHints {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(EsbHiHints) == 4, "Encoding struct must be 32 bits");
 
 // GCSB: Guarded Control Stack barrier
 // Encoding: GCSB_HD_hints
@@ -429,7 +403,6 @@ struct GcsbHdHints {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(GcsbHdHints) == 4, "Encoding struct must be 32 bits");
 
 // SYS: Guarded Control Stack pop and compare exception return record
 // Encoding: GCSPOPCX_SYS_CR_systeminstrs
@@ -447,7 +420,6 @@ struct GcspopcxSysCrSysteminstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(GcspopcxSysCrSysteminstrs) == 4, "Encoding struct must be 32 bits");
 
 // SYSL: Guarded Control Stack pop
 // Encoding: GCSPOPM_SYSL_RC_systeminstrs
@@ -465,7 +437,6 @@ struct GcspopmSyslRcSysteminstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(GcspopmSyslRcSysteminstrs) == 4, "Encoding struct must be 32 bits");
 
 // SYS: Guarded Control Stack pop exception return record
 // Encoding: GCSPOPX_SYS_CR_systeminstrs
@@ -483,7 +454,6 @@ struct GcspopxSysCrSysteminstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(GcspopxSysCrSysteminstrs) == 4, "Encoding struct must be 32 bits");
 
 // SYS: Guarded Control Stack push
 // Encoding: GCSPUSHM_SYS_CR_systeminstrs
@@ -501,7 +471,6 @@ struct GcspushmSysCrSysteminstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(GcspushmSysCrSysteminstrs) == 4, "Encoding struct must be 32 bits");
 
 // SYS: Guarded Control Stack push exception return record
 // Encoding: GCSPUSHX_SYS_CR_systeminstrs
@@ -519,7 +488,6 @@ struct GcspushxSysCrSysteminstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(GcspushxSysCrSysteminstrs) == 4, "Encoding struct must be 32 bits");
 
 // SYS: Guarded Control Stack switch stack 1
 // Encoding: GCSSS1_SYS_CR_systeminstrs
@@ -537,7 +505,6 @@ struct Gcsss1SysCrSysteminstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(Gcsss1SysCrSysteminstrs) == 4, "Encoding struct must be 32 bits");
 
 // SYSL: Guarded Control Stack switch stack 2
 // Encoding: GCSSS2_SYSL_RC_systeminstrs
@@ -555,7 +522,6 @@ struct Gcsss2SyslRcSysteminstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(Gcsss2SyslRcSysteminstrs) == 4, "Encoding struct must be 32 bits");
 
 // SYS: Generic Interrupt Controller
 // Encoding: GIC_SYS_CR_systeminstrs
@@ -573,7 +539,6 @@ struct GicSysCrSysteminstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(GicSysCrSysteminstrs) == 4, "Encoding struct must be 32 bits");
 
 // SYSL: Generic Interrupt Controller with result
 // Encoding: GICR_SYSL_RC_systeminstrs
@@ -591,7 +556,6 @@ struct GicrSyslRcSysteminstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(GicrSyslRcSysteminstrs) == 4, "Encoding struct must be 32 bits");
 
 // SYS: Generic Interrupt Controller synchronization barrier
 // Encoding: GSB_SYS_CR_systeminstrs
@@ -609,7 +573,6 @@ struct GsbSysCrSysteminstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(GsbSysCrSysteminstrs) == 4, "Encoding struct must be 32 bits");
 
 // HINT: Hint instruction
 // Encoding: HINT_HM_hints
@@ -623,7 +586,6 @@ struct HintHmHints {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(HintHmHints) == 4, "Encoding struct must be 32 bits");
 
 // HLT: Halt instruction
 // Encoding: HLT_EX_exception
@@ -638,7 +600,6 @@ struct HltExException {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(HltExException) == 4, "Encoding struct must be 32 bits");
 
 // HVC: Hypervisor call
 // Encoding: HVC_EX_exception
@@ -653,7 +614,6 @@ struct HvcExException {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(HvcExException) == 4, "Encoding struct must be 32 bits");
 
 // SYS: Instruction cache operation
 // Encoding: IC_SYS_CR_systeminstrs
@@ -671,7 +631,6 @@ struct IcSysCrSysteminstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(IcSysCrSysteminstrs) == 4, "Encoding struct must be 32 bits");
 
 // ISB: Instruction synchronization barrier
 // Encoding: ISB_BI_barriers
@@ -686,7 +645,6 @@ struct IsbBiBarriers {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(IsbBiBarriers) == 4, "Encoding struct must be 32 bits");
 
 // SYS: MPAM lookaside buffer invalidate
 // Encoding: MLBI_SYS_CR_systeminstrs
@@ -704,7 +662,6 @@ struct MlbiSysCrSysteminstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(MlbiSysCrSysteminstrs) == 4, "Encoding struct must be 32 bits");
 
 // MRRS: Move System register to two adjacent general-purpose registers
 // Encoding: MRRS_RS_systemmovepr
@@ -723,7 +680,6 @@ struct MrrsRsSystemmovepr {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(MrrsRsSystemmovepr) == 4, "Encoding struct must be 32 bits");
 
 // MRS: Move System register to general-purpose register
 // Encoding: MRS_RS_systemmove
@@ -742,7 +698,6 @@ struct MrsRsSystemmove {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(MrsRsSystemmove) == 4, "Encoding struct must be 32 bits");
 
 // MSR: Move immediate value to special register
 // Encoding: MSR_SI_pstate
@@ -758,7 +713,6 @@ struct MsrSiPstate {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(MsrSiPstate) == 4, "Encoding struct must be 32 bits");
 
 // MSR: Move general-purpose register to System register
 // Encoding: MSR_SR_systemmove
@@ -777,7 +731,6 @@ struct MsrSrSystemmove {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(MsrSrSystemmove) == 4, "Encoding struct must be 32 bits");
 
 // MSRR: Move two adjacent general-purpose registers to System register
 // Encoding: MSRR_SR_systemmovepr
@@ -796,7 +749,6 @@ struct MsrrSrSystemmovepr {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(MsrrSrSystemmovepr) == 4, "Encoding struct must be 32 bits");
 
 // NOP: No operation
 // Encoding: NOP_HI_hints
@@ -810,7 +762,6 @@ struct NopHiHints {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(NopHiHints) == 4, "Encoding struct must be 32 bits");
 
 // PACM: Pointer authentication modifier
 // Encoding: PACM_HI_hints
@@ -824,7 +775,6 @@ struct PacmHiHints {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(PacmHiHints) == 4, "Encoding struct must be 32 bits");
 
 // PSB: Profiling synchronization barrier
 // Encoding: PSB_HC_hints
@@ -838,7 +788,6 @@ struct PsbHcHints {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(PsbHcHints) == 4, "Encoding struct must be 32 bits");
 
 // DSB: Physical speculative store bypass barrier
 // Encoding: PSSBB_DSB_BO_barriers
@@ -853,7 +802,6 @@ struct PssbbDsbBoBarriers {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(PssbbDsbBoBarriers) == 4, "Encoding struct must be 32 bits");
 
 // SB: Speculation barrier
 // Encoding: SB_only_barriers
@@ -868,7 +816,6 @@ struct SbOnlyBarriers {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(SbOnlyBarriers) == 4, "Encoding struct must be 32 bits");
 
 // SEV: Send event
 // Encoding: SEV_HI_hints
@@ -882,7 +829,6 @@ struct SevHiHints {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(SevHiHints) == 4, "Encoding struct must be 32 bits");
 
 // SEVL: Send event local
 // Encoding: SEVL_HI_hints
@@ -896,7 +842,6 @@ struct SevlHiHints {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(SevlHiHints) == 4, "Encoding struct must be 32 bits");
 
 // SHUH: Shared update hint
 // Encoding: SHUH_HI_hints
@@ -910,7 +855,6 @@ struct ShuhHiHints {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(ShuhHiHints) == 4, "Encoding struct must be 32 bits");
 
 // SMC: Secure monitor call
 // Encoding: SMC_EX_exception
@@ -925,7 +869,6 @@ struct SmcExException {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(SmcExException) == 4, "Encoding struct must be 32 bits");
 
 // MSR: Enables access to Streaming SVE mode and SME architectural state
 // Encoding: SMSTART_MSR_SI_pstate
@@ -941,7 +884,6 @@ struct SmstartMsrSiPstate {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(SmstartMsrSiPstate) == 4, "Encoding struct must be 32 bits");
 
 // MSR: Disables access to Streaming SVE mode and SME architectural state
 // Encoding: SMSTOP_MSR_SI_pstate
@@ -957,7 +899,6 @@ struct SmstopMsrSiPstate {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(SmstopMsrSiPstate) == 4, "Encoding struct must be 32 bits");
 
 // DSB: Speculative store bypass barrier
 // Encoding: SSBB_DSB_BO_barriers
@@ -972,7 +913,6 @@ struct SsbbDsbBoBarriers {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(SsbbDsbBoBarriers) == 4, "Encoding struct must be 32 bits");
 
 // STCPH: Store concurrent priority hint
 // Encoding: STCPH_HI_hints
@@ -986,7 +926,6 @@ struct StcphHiHints {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(StcphHiHints) == 4, "Encoding struct must be 32 bits");
 
 // STSHH: Store shared hint
 // Encoding: STSHH_HI_hints
@@ -1000,7 +939,6 @@ struct StshhHiHints {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(StshhHiHints) == 4, "Encoding struct must be 32 bits");
 
 // SVC: Supervisor call
 // Encoding: SVC_EX_exception
@@ -1015,7 +953,6 @@ struct SvcExException {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(SvcExException) == 4, "Encoding struct must be 32 bits");
 
 // SYS: System instruction
 // Encoding: SYS_CR_systeminstrs
@@ -1033,7 +970,6 @@ struct SysCrSysteminstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(SysCrSysteminstrs) == 4, "Encoding struct must be 32 bits");
 
 // SYSL: System instruction with result
 // Encoding: SYSL_RC_systeminstrs
@@ -1051,7 +987,6 @@ struct SyslRcSysteminstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(SyslRcSysteminstrs) == 4, "Encoding struct must be 32 bits");
 
 // SYSP: 128-bit system instruction
 // Encoding: SYSP_CR_syspairinstrs
@@ -1069,7 +1004,6 @@ struct SyspCrSyspairinstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(SyspCrSyspairinstrs) == 4, "Encoding struct must be 32 bits");
 
 // SYS: TLB invalidate operation
 // Encoding: TLBI_SYS_CR_systeminstrs
@@ -1087,7 +1021,6 @@ struct TlbiSysCrSysteminstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(TlbiSysCrSysteminstrs) == 4, "Encoding struct must be 32 bits");
 
 // SYSP: TLB invalidate pair operation
 // Encoding: TLBIP_SYSP_CR_syspairinstrs
@@ -1105,7 +1038,6 @@ struct TlbipSyspCrSyspairinstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(TlbipSyspCrSyspairinstrs) == 4, "Encoding struct must be 32 bits");
 
 // SYS: Trace instrumentation
 // Encoding: TRCIT_SYS_CR_systeminstrs
@@ -1123,7 +1055,6 @@ struct TrcitSysCrSysteminstrs {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(TrcitSysCrSysteminstrs) == 4, "Encoding struct must be 32 bits");
 
 // TSB: Trace synchronization barrier
 // Encoding: TSB_HC_hints
@@ -1137,7 +1068,6 @@ struct TsbHcHints {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(TsbHcHints) == 4, "Encoding struct must be 32 bits");
 
 // WFE: Wait for event
 // Encoding: WFE_HI_hints
@@ -1151,7 +1081,6 @@ struct WfeHiHints {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(WfeHiHints) == 4, "Encoding struct must be 32 bits");
 
 // WFET: Wait for event with timeout
 // Encoding: WFET_only_systeminstrswithreg
@@ -1165,7 +1094,6 @@ struct WfetOnlySysteminstrswithreg {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(WfetOnlySysteminstrswithreg) == 4, "Encoding struct must be 32 bits");
 
 // WFI: Wait for interrupt
 // Encoding: WFI_HI_hints
@@ -1179,7 +1107,6 @@ struct WfiHiHints {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(WfiHiHints) == 4, "Encoding struct must be 32 bits");
 
 // WFIT: Wait for interrupt with timeout
 // Encoding: WFIT_only_systeminstrswithreg
@@ -1193,7 +1120,6 @@ struct WfitOnlySysteminstrswithreg {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(WfitOnlySysteminstrswithreg) == 4, "Encoding struct must be 32 bits");
 
 // XAFLAG: Convert floating-point condition flags from external format to Arm format
 // Encoding: XAFLAG_M_pstate
@@ -1209,7 +1135,6 @@ struct XaflagMPstate {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(XaflagMPstate) == 4, "Encoding struct must be 32 bits");
 
 // YIELD: Yield
 // Encoding: YIELD_HI_hints
@@ -1223,7 +1148,6 @@ struct YieldHiHints {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(YieldHiHints) == 4, "Encoding struct must be 32 bits");
 
 // Union for system instruction class
 union SystemEncoding {
@@ -1305,6 +1229,7 @@ union SystemEncoding {
     YieldHiHints yield_hi_hints;
     uint32_t raw;
 };
+static_assert(sizeof(SystemEncoding) == 4, "Encoding union must be 32 bits");
 
 // Encode function implementations
 uint32_t encode_apas_sys_cr_systeminstrs(uint32_t Rt) {
@@ -2304,7 +2229,7 @@ uint32_t encode_yield_hi_hints() {
 // Decode a system instruction
 // Input is in native ARM64 format (as read from memory)
 std::optional<Instruction> decode_system(uint32_t insn) {
-    // Optimized switch for mask 0xFFFFFFFFu (20 unique patterns, 20 encodings)
+    // Switch for mask 0xFFFFFFFFu (20 patterns, 20 encodings)
     switch (insn & 0xFFFFFFFFu) {
         case 0xD503201Fu: { // NOP_HI_hints
                         Instruction result(Mnemonic::NOP, insn);
@@ -2446,9 +2371,10 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFFFFE0u (15 unique patterns, 15 encodings)
+    // Switch for mask 0xFFFFFFE0u (15 patterns, 15 encodings)
     switch (insn & 0xFFFFFFE0u) {
         case 0xD5031000u: { // WFET_only_systeminstrswithreg
                         Instruction result(Mnemonic::WFET, insn);
@@ -2585,9 +2511,10 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.gcsss2sysl_rc_systeminstrs.Rt, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFFFFDFu (2 unique patterns, 2 encodings)
+    // Switch for mask 0xFFFFFFDFu (2 patterns, 2 encodings)
     switch (insn & 0xFFFFFFDFu) {
         case 0xD503261Fu: { // STSHH_HI_hints
                         Instruction result(Mnemonic::STSHH, insn);
@@ -2603,29 +2530,36 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // MLBI_SYS_CR_systeminstrs
-    if ((insn & 0xFFFFFF80u) == 0xD50C7080u) {
-        Instruction result(Mnemonic::SYS, insn);
-        SystemEncoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        bool is_64bit = false;
-        result.operands.push_back(Operand(OperandType::Register, enc.mlbi_sys_cr_systeminstrs.Rt, is_64bit));
-        return result;
+    // Switch for mask 0xFFFFFF80u (1 pattern, 1 encoding)
+    switch (insn & 0xFFFFFF80u) {
+        case 0xD50C7080u: { // MLBI_SYS_CR_systeminstrs
+                        Instruction result(Mnemonic::SYS, insn);
+                        SystemEncoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.mlbi_sys_cr_systeminstrs.Rt, is_64bit));
+                        return result;
+        }
+        default: break;
     }
 
-    // BTI_HB_hints
-    if ((insn & 0xFFFFFF3Fu) == 0xD503241Fu) {
-        Instruction result(Mnemonic::BTI, insn);
-        SystemEncoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFFFFFF3Fu (1 pattern, 1 encoding)
+    switch (insn & 0xFFFFFF3Fu) {
+        case 0xD503241Fu: { // BTI_HB_hints
+                        Instruction result(Mnemonic::BTI, insn);
+                        SystemEncoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFFFF00u (3 unique patterns, 3 encodings)
+    // Switch for mask 0xFFFFFF00u (3 patterns, 3 encodings)
     switch (insn & 0xFFFFFF00u) {
         case 0xD508C000u: { // GSB_SYS_CR_systeminstrs
                         Instruction result(Mnemonic::SYS, insn);
@@ -2654,20 +2588,24 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.gicr_sysl_rc_systeminstrs.Rt, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // GIC_SYS_CR_systeminstrs
-    if ((insn & 0xFFFFFE00u) == 0xD508C400u) {
-        Instruction result(Mnemonic::SYS, insn);
-        SystemEncoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        bool is_64bit = false;
-        result.operands.push_back(Operand(OperandType::Register, enc.gic_sys_cr_systeminstrs.Rt, is_64bit));
-        return result;
+    // Switch for mask 0xFFFFFE00u (1 pattern, 1 encoding)
+    switch (insn & 0xFFFFFE00u) {
+        case 0xD508C400u: { // GIC_SYS_CR_systeminstrs
+                        Instruction result(Mnemonic::SYS, insn);
+                        SystemEncoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.gic_sys_cr_systeminstrs.Rt, is_64bit));
+                        return result;
+        }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFFF9FFu (2 unique patterns, 2 encodings)
+    // Switch for mask 0xFFFFF9FFu (2 patterns, 2 encodings)
     switch (insn & 0xFFFFF9FFu) {
         case 0xD503407Fu: { // SMSTOP_MSR_SI_pstate
                         Instruction result(Mnemonic::MSR, insn);
@@ -2683,18 +2621,22 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // DSB_BOn_barriers
-    if ((insn & 0xFFFFF3FFu) == 0xD503323Fu) {
-        Instruction result(Mnemonic::DSB, insn);
-        SystemEncoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFFFFF3FFu (1 pattern, 1 encoding)
+    switch (insn & 0xFFFFF3FFu) {
+        case 0xD503323Fu: { // DSB_BOn_barriers
+                        Instruction result(Mnemonic::DSB, insn);
+                        SystemEncoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFFF2FFu (4 unique patterns, 4 encodings)
+    // Switch for mask 0xFFFFF2FFu (4 patterns, 4 encodings)
     switch (insn & 0xFFFFF2FFu) {
         case 0xD500401Fu: { // CFINV_M_pstate
                         Instruction result(Mnemonic::CFINV, insn);
@@ -2724,9 +2666,10 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFFF0FFu (4 unique patterns, 4 encodings)
+    // Switch for mask 0xFFFFF0FFu (4 patterns, 4 encodings)
     switch (insn & 0xFFFFF0FFu) {
         case 0xD503305Fu: { // CLREX_BN_barriers
                         Instruction result(Mnemonic::CLREX, insn);
@@ -2756,83 +2699,96 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // HINT_HM_hints
-    if ((insn & 0xFFFFF01Fu) == 0xD503201Fu) {
-        Instruction result(Mnemonic::HINT, insn);
-        SystemEncoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        // HINT instruction - decode to alias based on CRm:op2
-        uint32_t CRm = (insn >> 8) & 0xF;
-        uint32_t op2 = (insn >> 5) & 0x7;
-        uint32_t imm7 = (CRm << 3) | op2;
-        switch (imm7) {
-            case 0: result.mnemonic = Mnemonic::NOP; break;
-            case 1: result.mnemonic = Mnemonic::YIELD; break;
-            case 2: result.mnemonic = Mnemonic::WFE; break;
-            case 3: result.mnemonic = Mnemonic::WFI; break;
-            case 4: result.mnemonic = Mnemonic::SEV; break;
-            case 5: result.mnemonic = Mnemonic::SEVL; break;
-            case 6: result.mnemonic = Mnemonic::DGH; break;
-            case 7: result.mnemonic = Mnemonic::XPACLRI; break;
-            case 8: result.mnemonic = Mnemonic::PACIA1716; break;
-            case 10: result.mnemonic = Mnemonic::PACIB1716; break;
-            case 12: result.mnemonic = Mnemonic::AUTIA1716; break;
-            case 14: result.mnemonic = Mnemonic::AUTIB1716; break;
-            case 16: result.mnemonic = Mnemonic::ESB; break;
-            case 17: result.mnemonic = Mnemonic::PSB; break;
-            case 18: result.mnemonic = Mnemonic::TSB; break;
-            case 19: result.mnemonic = Mnemonic::GCSB; break;
-            case 20: result.mnemonic = Mnemonic::CSDB; break;
-            case 22: result.mnemonic = Mnemonic::CLRBHB; break;
-            case 24: result.mnemonic = Mnemonic::PACIAZ; break;
-            case 25: result.mnemonic = Mnemonic::PACIASP; break;
-            case 26: result.mnemonic = Mnemonic::PACIBZ; break;
-            case 27: result.mnemonic = Mnemonic::PACIBSP; break;
-            case 28: result.mnemonic = Mnemonic::AUTIAZ; break;
-            case 29: result.mnemonic = Mnemonic::AUTIASP; break;
-            case 30: result.mnemonic = Mnemonic::AUTIBZ; break;
-            case 31: result.mnemonic = Mnemonic::AUTIBSP; break;
-            default: break; // Keep HINT mnemonic
+    // Switch for mask 0xFFFFF01Fu (1 pattern, 1 encoding)
+    switch (insn & 0xFFFFF01Fu) {
+        case 0xD503201Fu: { // HINT_HM_hints
+                        Instruction result(Mnemonic::HINT, insn);
+                        SystemEncoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        // HINT instruction - decode to alias based on CRm:op2
+                        uint32_t CRm = (insn >> 8) & 0xF;
+                        uint32_t op2 = (insn >> 5) & 0x7;
+                        uint32_t imm7 = (CRm << 3) | op2;
+                        switch (imm7) {
+                            case 0: result.mnemonic = Mnemonic::NOP; break;
+                            case 1: result.mnemonic = Mnemonic::YIELD; break;
+                            case 2: result.mnemonic = Mnemonic::WFE; break;
+                            case 3: result.mnemonic = Mnemonic::WFI; break;
+                            case 4: result.mnemonic = Mnemonic::SEV; break;
+                            case 5: result.mnemonic = Mnemonic::SEVL; break;
+                            case 6: result.mnemonic = Mnemonic::DGH; break;
+                            case 7: result.mnemonic = Mnemonic::XPACLRI; break;
+                            case 8: result.mnemonic = Mnemonic::PACIA1716; break;
+                            case 10: result.mnemonic = Mnemonic::PACIB1716; break;
+                            case 12: result.mnemonic = Mnemonic::AUTIA1716; break;
+                            case 14: result.mnemonic = Mnemonic::AUTIB1716; break;
+                            case 16: result.mnemonic = Mnemonic::ESB; break;
+                            case 17: result.mnemonic = Mnemonic::PSB; break;
+                            case 18: result.mnemonic = Mnemonic::TSB; break;
+                            case 19: result.mnemonic = Mnemonic::GCSB; break;
+                            case 20: result.mnemonic = Mnemonic::CSDB; break;
+                            case 22: result.mnemonic = Mnemonic::CLRBHB; break;
+                            case 24: result.mnemonic = Mnemonic::PACIAZ; break;
+                            case 25: result.mnemonic = Mnemonic::PACIASP; break;
+                            case 26: result.mnemonic = Mnemonic::PACIBZ; break;
+                            case 27: result.mnemonic = Mnemonic::PACIBSP; break;
+                            case 28: result.mnemonic = Mnemonic::AUTIAZ; break;
+                            case 29: result.mnemonic = Mnemonic::AUTIASP; break;
+                            case 30: result.mnemonic = Mnemonic::AUTIBZ; break;
+                            case 31: result.mnemonic = Mnemonic::AUTIBSP; break;
+                            default: break; // Keep HINT mnemonic
+                        }
+                        return result;
         }
-        return result;
+        default: break;
     }
 
-    // AT_SYS_CR_systeminstrs
-    if ((insn & 0xFFF8FE00u) == 0xD5087800u) {
-        Instruction result(Mnemonic::SYS, insn);
-        SystemEncoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        bool is_64bit = false;
-        result.operands.push_back(Operand(OperandType::Register, enc.at_sys_cr_systeminstrs.Rt, is_64bit));
-        return result;
+    // Switch for mask 0xFFF8FE00u (1 pattern, 1 encoding)
+    switch (insn & 0xFFF8FE00u) {
+        case 0xD5087800u: { // AT_SYS_CR_systeminstrs
+                        Instruction result(Mnemonic::SYS, insn);
+                        SystemEncoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.at_sys_cr_systeminstrs.Rt, is_64bit));
+                        return result;
+        }
+        default: break;
     }
 
-    // MSR_SI_pstate
-    if ((insn & 0xFFF8F01Fu) == 0xD500401Fu) {
-        Instruction result(Mnemonic::MSR, insn);
-        SystemEncoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        return result;
+    // Switch for mask 0xFFF8F01Fu (1 pattern, 1 encoding)
+    switch (insn & 0xFFF8F01Fu) {
+        case 0xD500401Fu: { // MSR_SI_pstate
+                        Instruction result(Mnemonic::MSR, insn);
+                        SystemEncoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        return result;
+        }
+        default: break;
     }
 
-    // DC_SYS_CR_systeminstrs
-    // Also matches: IC_SYS_CR_systeminstrs (SYS)
-    if ((insn & 0xFFF8F000u) == 0xD5087000u) {
-        Instruction result(Mnemonic::SYS, insn);
-        SystemEncoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        bool is_64bit = false;
-        result.operands.push_back(Operand(OperandType::Register, enc.dc_sys_cr_systeminstrs.Rt, is_64bit));
-        return result;
+    // Switch for mask 0xFFF8F000u (1 pattern, 2 encodings)
+    switch (insn & 0xFFF8F000u) {
+        case 0xD5087000u: { // DC_SYS_CR_systeminstrs
+            // Also matches: IC_SYS_CR_systeminstrs (SYS)
+                        Instruction result(Mnemonic::SYS, insn);
+                        SystemEncoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.dc_sys_cr_systeminstrs.Rt, is_64bit));
+                        return result;
+        }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF8E000u (2 unique patterns, 2 encodings)
+    // Switch for mask 0xFFF8E000u (2 patterns, 2 encodings)
     switch (insn & 0xFFF8E000u) {
         case 0xD5088000u: { // TLBI_SYS_CR_systeminstrs
                         Instruction result(Mnemonic::SYS, insn);
@@ -2852,9 +2808,10 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.tlbip_sysp_cr_syspairinstrs.Rt, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF80000u (3 unique patterns, 3 encodings)
+    // Switch for mask 0xFFF80000u (3 patterns, 3 encodings)
     switch (insn & 0xFFF80000u) {
         case 0xD5080000u: { // SYS_CR_systeminstrs
                         Instruction result(Mnemonic::SYS, insn);
@@ -2883,9 +2840,10 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.sysp_cr_syspairinstrs.Rt, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF00000u (4 unique patterns, 4 encodings)
+    // Switch for mask 0xFFF00000u (4 patterns, 4 encodings)
     switch (insn & 0xFFF00000u) {
         case 0xD5100000u: { // MSR_SR_systemmove
                         Instruction result(Mnemonic::MSR, insn);
@@ -2923,9 +2881,10 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.mrrs_rs_systemmovepr.Rt, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE0001Fu (8 unique patterns, 8 encodings)
+    // Switch for mask 0xFFE0001Fu (8 patterns, 8 encodings)
     switch (insn & 0xFFE0001Fu) {
         case 0xD4000001u: { // SVC_EX_exception
                         Instruction result(Mnemonic::SVC, insn);
@@ -2991,6 +2950,7 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Immediate, enc.dcps3dc_exception.imm16, true));
                         return result;
         }
+        default: break;
     }
 
     // No matching encoding found

@@ -1,5 +1,6 @@
 // Test suite for mortlach2 instruction class
 #include "veda64.hpp"
+#include "class/mortlach2.hpp"
 #include <cassert>
 #include <iostream>
 #include <iomanip>

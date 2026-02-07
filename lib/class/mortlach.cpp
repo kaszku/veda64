@@ -26,7 +26,6 @@ struct AddhaZaPpZ32 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(AddhaZaPpZ32) == 4, "Encoding struct must be 32 bits");
 
 // ADDHA: Add horizontally vector elements to ZA tile
 // Encoding: addha_za_pp_z_64
@@ -49,7 +48,6 @@ struct AddhaZaPpZ64 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(AddhaZaPpZ64) == 4, "Encoding struct must be 32 bits");
 
 // ADDSPL: Add multiple of Streaming SVE predicate register size to scalar register
 // Encoding: addspl_r_ri_
@@ -68,7 +66,6 @@ struct AddsplRRi {
     uint32_t _unnamed_0 : 3;  // fixed: 0b000 (0x0)
 };
 
-static_assert(sizeof(AddsplRRi) == 4, "Encoding struct must be 32 bits");
 
 // ADDSVL: Add multiple of Streaming SVE vector register size to scalar register
 // Encoding: addsvl_r_ri_
@@ -87,7 +84,6 @@ struct AddsvlRRi {
     uint32_t _unnamed_0 : 3;  // fixed: 0b000 (0x0)
 };
 
-static_assert(sizeof(AddsvlRRi) == 4, "Encoding struct must be 32 bits");
 
 // ADDVA: Add vertically vector elements to ZA tile
 // Encoding: addva_za_pp_z_32
@@ -111,7 +107,6 @@ struct AddvaZaPpZ32 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(AddvaZaPpZ32) == 4, "Encoding struct must be 32 bits");
 
 // ADDVA: Add vertically vector elements to ZA tile
 // Encoding: addva_za_pp_z_64
@@ -134,7 +129,6 @@ struct AddvaZaPpZ64 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(AddvaZaPpZ64) == 4, "Encoding struct must be 32 bits");
 
 // BFMOPA: BFloat16 sum of outer products to single-precision, accumulating
 // Encoding: bfmopa_za32_pp_zz_
@@ -155,7 +149,6 @@ struct BfmopaZa32PpZz {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmopaZa32PpZz) == 4, "Encoding struct must be 32 bits");
 
 // BFMOPS: BFloat16 sum of outer products to single-precision, subtracting
 // Encoding: bfmops_za32_pp_zz_
@@ -176,7 +169,6 @@ struct BfmopsZa32PpZz {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(BfmopsZa32PpZz) == 4, "Encoding struct must be 32 bits");
 
 // FMOPA: Half-precision sum of outer products to single-precision, accumulating
 // Encoding: fmopa_za32_pp_zz_16
@@ -197,7 +189,6 @@ struct FmopaZa32PpZz16 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmopaZa32PpZz16) == 4, "Encoding struct must be 32 bits");
 
 // FMOPS: Half-precision sum of outer products to single-precision, subtracting
 // Encoding: fmops_za32_pp_zz_16
@@ -218,7 +209,6 @@ struct FmopsZa32PpZz16 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmopsZa32PpZz16) == 4, "Encoding struct must be 32 bits");
 
 // LD1B: Contiguous load of bytes to 8-bit element ZA tile slice
 // Encoding: ld1b_za_p_rrr_
@@ -239,7 +229,6 @@ struct Ld1bZaPRrr {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ld1bZaPRrr) == 4, "Encoding struct must be 32 bits");
 
 // LD1D: Contiguous load of doublewords to 64-bit element ZA tile slice
 // Encoding: ld1d_za_p_rrr_
@@ -261,7 +250,6 @@ struct Ld1dZaPRrr {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ld1dZaPRrr) == 4, "Encoding struct must be 32 bits");
 
 // LD1H: Contiguous load of halfwords to 16-bit element ZA tile slice
 // Encoding: ld1h_za_p_rrr_
@@ -283,7 +271,6 @@ struct Ld1hZaPRrr {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ld1hZaPRrr) == 4, "Encoding struct must be 32 bits");
 
 // LD1Q: Contiguous load of quadwords to 128-bit element ZA tile slice
 // Encoding: ld1q_za_p_rrr_
@@ -302,7 +289,6 @@ struct Ld1qZaPRrr {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ld1qZaPRrr) == 4, "Encoding struct must be 32 bits");
 
 // LD1W: Contiguous load of words to 32-bit element ZA tile slice
 // Encoding: ld1w_za_p_rrr_
@@ -324,7 +310,6 @@ struct Ld1wZaPRrr {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Ld1wZaPRrr) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load ZA array vector
 // Encoding: ldr_za_ri_
@@ -344,7 +329,6 @@ struct LdrZaRi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(LdrZaRi) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA tile slice to Z vector
 // Encoding: mov_z_p_rza_b_mova_z_p_rza_b
@@ -367,7 +351,6 @@ struct MovZPRzaBMovaZPRzaB {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovZPRzaBMovaZPRzaB) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA tile slice to Z vector
 // Encoding: mov_z_p_rza_h_mova_z_p_rza_h
@@ -391,7 +374,6 @@ struct MovZPRzaHMovaZPRzaH {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovZPRzaHMovaZPRzaH) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA tile slice to Z vector
 // Encoding: mov_z_p_rza_w_mova_z_p_rza_w
@@ -415,7 +397,6 @@ struct MovZPRzaWMovaZPRzaW {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovZPRzaWMovaZPRzaW) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA tile slice to Z vector
 // Encoding: mov_z_p_rza_d_mova_z_p_rza_d
@@ -439,7 +420,6 @@ struct MovZPRzaDMovaZPRzaD {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovZPRzaDMovaZPRzaD) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA tile slice to Z vector
 // Encoding: mov_z_p_rza_q_mova_z_p_rza_q
@@ -462,7 +442,6 @@ struct MovZPRzaQMovaZPRzaQ {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovZPRzaQMovaZPRzaQ) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z vector to ZA tile slice
 // Encoding: mov_za_p_rz_b_mova_za_p_rz_b
@@ -485,7 +464,6 @@ struct MovZaPRzBMovaZaPRzB {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovZaPRzBMovaZaPRzB) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z vector to ZA tile slice
 // Encoding: mov_za_p_rz_h_mova_za_p_rz_h
@@ -509,7 +487,6 @@ struct MovZaPRzHMovaZaPRzH {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovZaPRzHMovaZaPRzH) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z vector to ZA tile slice
 // Encoding: mov_za_p_rz_w_mova_za_p_rz_w
@@ -533,7 +510,6 @@ struct MovZaPRzWMovaZaPRzW {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovZaPRzWMovaZaPRzW) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z vector to ZA tile slice
 // Encoding: mov_za_p_rz_d_mova_za_p_rz_d
@@ -557,7 +533,6 @@ struct MovZaPRzDMovaZaPRzD {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovZaPRzDMovaZaPRzD) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z vector to ZA tile slice
 // Encoding: mov_za_p_rz_q_mova_za_p_rz_q
@@ -580,7 +555,6 @@ struct MovZaPRzQMovaZaPRzQ {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovZaPRzQMovaZaPRzQ) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA tile slice to Z vector
 // Encoding: mova_z_p_rza_b
@@ -603,7 +577,6 @@ struct MovaZPRzaB {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaZPRzaB) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA tile slice to Z vector
 // Encoding: mova_z_p_rza_h
@@ -627,7 +600,6 @@ struct MovaZPRzaH {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaZPRzaH) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA tile slice to Z vector
 // Encoding: mova_z_p_rza_w
@@ -651,7 +623,6 @@ struct MovaZPRzaW {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaZPRzaW) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA tile slice to Z vector
 // Encoding: mova_z_p_rza_d
@@ -675,7 +646,6 @@ struct MovaZPRzaD {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaZPRzaD) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move ZA tile slice to Z vector
 // Encoding: mova_z_p_rza_q
@@ -698,7 +668,6 @@ struct MovaZPRzaQ {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaZPRzaQ) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z vector to ZA tile slice
 // Encoding: mova_za_p_rz_b
@@ -721,7 +690,6 @@ struct MovaZaPRzB {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaZaPRzB) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z vector to ZA tile slice
 // Encoding: mova_za_p_rz_h
@@ -745,7 +713,6 @@ struct MovaZaPRzH {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaZaPRzH) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z vector to ZA tile slice
 // Encoding: mova_za_p_rz_w
@@ -769,7 +736,6 @@ struct MovaZaPRzW {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaZaPRzW) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z vector to ZA tile slice
 // Encoding: mova_za_p_rz_d
@@ -793,7 +759,6 @@ struct MovaZaPRzD {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaZaPRzD) == 4, "Encoding struct must be 32 bits");
 
 // MOVA: Move Z vector to ZA tile slice
 // Encoding: mova_za_p_rz_q
@@ -816,7 +781,6 @@ struct MovaZaPRzQ {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(MovaZaPRzQ) == 4, "Encoding struct must be 32 bits");
 
 // RDSVL: Read multiple of Streaming SVE vector register size to scalar register
 // Encoding: rdsvl_r_i_
@@ -835,7 +799,6 @@ struct RdsvlRI {
     uint32_t _unnamed_0 : 3;  // fixed: 0b000 (0x0)
 };
 
-static_assert(sizeof(RdsvlRI) == 4, "Encoding struct must be 32 bits");
 
 // SMOPA: Signed integer sum of outer products, accumulating
 // Encoding: smopa_za_pp_zz_32
@@ -857,7 +820,6 @@ struct SmopaZaPpZz32 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmopaZaPpZz32) == 4, "Encoding struct must be 32 bits");
 
 // SMOPA: Signed integer sum of outer products, accumulating
 // Encoding: smopa_za_pp_zz_64
@@ -879,7 +841,6 @@ struct SmopaZaPpZz64 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmopaZaPpZz64) == 4, "Encoding struct must be 32 bits");
 
 // SMOPS: Signed integer sum of outer products, subtracting
 // Encoding: smops_za_pp_zz_32
@@ -901,7 +862,6 @@ struct SmopsZaPpZz32 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmopsZaPpZz32) == 4, "Encoding struct must be 32 bits");
 
 // SMOPS: Signed integer sum of outer products, subtracting
 // Encoding: smops_za_pp_zz_64
@@ -923,7 +883,6 @@ struct SmopsZaPpZz64 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SmopsZaPpZz64) == 4, "Encoding struct must be 32 bits");
 
 // ST1B: Contiguous store of bytes from 8-bit element ZA tile slice
 // Encoding: st1b_za_p_rrr_
@@ -944,7 +903,6 @@ struct St1bZaPRrr {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(St1bZaPRrr) == 4, "Encoding struct must be 32 bits");
 
 // ST1D: Contiguous store of doublewords from 64-bit element ZA tile slice
 // Encoding: st1d_za_p_rrr_
@@ -966,7 +924,6 @@ struct St1dZaPRrr {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(St1dZaPRrr) == 4, "Encoding struct must be 32 bits");
 
 // ST1H: Contiguous store of halfwords from 16-bit element ZA tile slice
 // Encoding: st1h_za_p_rrr_
@@ -988,7 +945,6 @@ struct St1hZaPRrr {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(St1hZaPRrr) == 4, "Encoding struct must be 32 bits");
 
 // ST1Q: Contiguous store of quadwords from 128-bit element ZA tile slice
 // Encoding: st1q_za_p_rrr_
@@ -1007,7 +963,6 @@ struct St1qZaPRrr {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(St1qZaPRrr) == 4, "Encoding struct must be 32 bits");
 
 // ST1W: Contiguous store of words from 32-bit element ZA tile slice
 // Encoding: st1w_za_p_rrr_
@@ -1029,7 +984,6 @@ struct St1wZaPRrr {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(St1wZaPRrr) == 4, "Encoding struct must be 32 bits");
 
 // STR: Store ZA array vector
 // Encoding: str_za_ri_
@@ -1049,7 +1003,6 @@ struct StrZaRi {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(StrZaRi) == 4, "Encoding struct must be 32 bits");
 
 // SUMOPA: Signed by unsigned integer sum of outer products, accumulating
 // Encoding: sumopa_za_pp_zz_32
@@ -1071,7 +1024,6 @@ struct SumopaZaPpZz32 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SumopaZaPpZz32) == 4, "Encoding struct must be 32 bits");
 
 // SUMOPA: Signed by unsigned integer sum of outer products, accumulating
 // Encoding: sumopa_za_pp_zz_64
@@ -1093,7 +1045,6 @@ struct SumopaZaPpZz64 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SumopaZaPpZz64) == 4, "Encoding struct must be 32 bits");
 
 // SUMOPS: Signed by unsigned integer sum of outer products, subtracting
 // Encoding: sumops_za_pp_zz_32
@@ -1115,7 +1066,6 @@ struct SumopsZaPpZz32 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SumopsZaPpZz32) == 4, "Encoding struct must be 32 bits");
 
 // SUMOPS: Signed by unsigned integer sum of outer products, subtracting
 // Encoding: sumops_za_pp_zz_64
@@ -1137,7 +1087,6 @@ struct SumopsZaPpZz64 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(SumopsZaPpZz64) == 4, "Encoding struct must be 32 bits");
 
 // UMOPA: Unsigned integer sum of outer products, accumulating
 // Encoding: umopa_za_pp_zz_32
@@ -1159,7 +1108,6 @@ struct UmopaZaPpZz32 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmopaZaPpZz32) == 4, "Encoding struct must be 32 bits");
 
 // UMOPA: Unsigned integer sum of outer products, accumulating
 // Encoding: umopa_za_pp_zz_64
@@ -1181,7 +1129,6 @@ struct UmopaZaPpZz64 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmopaZaPpZz64) == 4, "Encoding struct must be 32 bits");
 
 // UMOPS: Unsigned integer sum of outer products, subtracting
 // Encoding: umops_za_pp_zz_32
@@ -1203,7 +1150,6 @@ struct UmopsZaPpZz32 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmopsZaPpZz32) == 4, "Encoding struct must be 32 bits");
 
 // UMOPS: Unsigned integer sum of outer products, subtracting
 // Encoding: umops_za_pp_zz_64
@@ -1225,7 +1171,6 @@ struct UmopsZaPpZz64 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UmopsZaPpZz64) == 4, "Encoding struct must be 32 bits");
 
 // USMOPA: Unsigned by signed integer sum of outer products, accumulating
 // Encoding: usmopa_za_pp_zz_32
@@ -1247,7 +1192,6 @@ struct UsmopaZaPpZz32 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UsmopaZaPpZz32) == 4, "Encoding struct must be 32 bits");
 
 // USMOPA: Unsigned by signed integer sum of outer products, accumulating
 // Encoding: usmopa_za_pp_zz_64
@@ -1269,7 +1213,6 @@ struct UsmopaZaPpZz64 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UsmopaZaPpZz64) == 4, "Encoding struct must be 32 bits");
 
 // USMOPS: Unsigned by signed integer sum of outer products, subtracting
 // Encoding: usmops_za_pp_zz_32
@@ -1291,7 +1234,6 @@ struct UsmopsZaPpZz32 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UsmopsZaPpZz32) == 4, "Encoding struct must be 32 bits");
 
 // USMOPS: Unsigned by signed integer sum of outer products, subtracting
 // Encoding: usmops_za_pp_zz_64
@@ -1313,7 +1255,6 @@ struct UsmopsZaPpZz64 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UsmopsZaPpZz64) == 4, "Encoding struct must be 32 bits");
 
 // ZERO: Zero a list of 64-bit element ZA tiles
 // Encoding: zero_za_i_
@@ -1327,7 +1268,6 @@ struct ZeroZaI {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(ZeroZaI) == 4, "Encoding struct must be 32 bits");
 
 // Union for mortlach instruction class
 union MortlachEncoding {
@@ -1393,6 +1333,7 @@ union MortlachEncoding {
     ZeroZaI zero_za_i;
     uint32_t raw;
 };
+static_assert(sizeof(MortlachEncoding) == 4, "Encoding union must be 32 bits");
 
 // Encode function implementations
 uint32_t encode_addha_za_pp_z_32(uint32_t ZAda, uint32_t Zn, uint32_t Pn, uint32_t Pm) {
@@ -2544,29 +2485,35 @@ uint32_t encode_zero_za_i_(uint32_t imm8) {
 // Decode a mortlach instruction
 // Input is in native ARM64 format (as read from memory)
 std::optional<Instruction> decode_mortlach(uint32_t insn) {
-    // zero_za_i_
-    if ((insn & 0xFFFFFF00u) == 0xC0080000u) {
-        Instruction result(Mnemonic::ZERO, insn);
-        MortlachEncoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        result.operands.push_back(Operand(OperandType::Immediate, enc.zero_za_i.imm8, true));
-        return result;
+    // Switch for mask 0xFFFFFF00u (1 pattern, 1 encoding)
+    switch (insn & 0xFFFFFF00u) {
+        case 0xC0080000u: { // zero_za_i_
+                        Instruction result(Mnemonic::ZERO, insn);
+                        MortlachEncoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.zero_za_i.imm8, true));
+                        return result;
+        }
+        default: break;
     }
 
-    // rdsvl_r_i_
-    if ((insn & 0xFFFFF800u) == 0x04BF5800u) {
-        Instruction result(Mnemonic::RDSVL, insn);
-        MortlachEncoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        bool is_64bit = false;
-        result.operands.push_back(Operand(OperandType::Register, enc.rdsvl_ri.Rd, is_64bit));
-        result.operands.push_back(Operand(OperandType::Immediate, enc.rdsvl_ri.imm6, true));
-        return result;
+    // Switch for mask 0xFFFFF800u (1 pattern, 1 encoding)
+    switch (insn & 0xFFFFF800u) {
+        case 0x04BF5800u: { // rdsvl_r_i_
+                        Instruction result(Mnemonic::RDSVL, insn);
+                        MortlachEncoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.rdsvl_ri.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.rdsvl_ri.imm6, true));
+                        return result;
+        }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFF9C10u (2 unique patterns, 2 encodings)
+    // Switch for mask 0xFFFF9C10u (2 patterns, 2 encodings)
     switch (insn & 0xFFFF9C10u) {
         case 0xE1000000u: { // ldr_za_ri_
                         Instruction result(Mnemonic::LDR, insn);
@@ -2586,9 +2533,10 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.str_za_ri.Rn, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFF0200u (5 unique patterns, 10 encodings)
+    // Switch for mask 0xFFFF0200u (5 patterns, 10 encodings)
     switch (insn & 0xFFFF0200u) {
         case 0xC0020000u: { // mov_z_p_rza_b_mova_z_p_rza_b
             // Also matches: mova_z_p_rza_b (MOVA)
@@ -2640,9 +2588,10 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_zprza_qmova_zprza_q.Rs, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFF001Cu (2 unique patterns, 2 encodings)
+    // Switch for mask 0xFFFF001Cu (2 patterns, 2 encodings)
     switch (insn & 0xFFFF001Cu) {
         case 0xC0900000u: { // addha_za_pp_z_32
                         Instruction result(Mnemonic::ADDHA, insn);
@@ -2658,9 +2607,10 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFF0018u (2 unique patterns, 2 encodings)
+    // Switch for mask 0xFFFF0018u (2 patterns, 2 encodings)
     switch (insn & 0xFFFF0018u) {
         case 0xC0D00000u: { // addha_za_pp_z_64
                         Instruction result(Mnemonic::ADDHA, insn);
@@ -2676,9 +2626,10 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFF0010u (5 unique patterns, 10 encodings)
+    // Switch for mask 0xFFFF0010u (5 patterns, 10 encodings)
     switch (insn & 0xFFFF0010u) {
         case 0xC0000000u: { // mov_za_p_rz_b_mova_za_p_rz_b
             // Also matches: mova_za_p_rz_b (MOVA)
@@ -2730,9 +2681,10 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za_prz_qmova_za_prz_q.Rs, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE0F800u (2 unique patterns, 2 encodings)
+    // Switch for mask 0xFFE0F800u (2 patterns, 2 encodings)
     switch (insn & 0xFFE0F800u) {
         case 0x04205800u: { // addsvl_r_ri_
                         Instruction result(Mnemonic::ADDSVL, insn);
@@ -2756,9 +2708,10 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Immediate, enc.addspl_rri.imm6, true));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE0001Cu (12 unique patterns, 12 encodings)
+    // Switch for mask 0xFFE0001Cu (12 patterns, 12 encodings)
     switch (insn & 0xFFE0001Cu) {
         case 0x81800000u: { // bfmopa_za32_pp_zz_
                         Instruction result(Mnemonic::BFMOPA, insn);
@@ -2844,9 +2797,10 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE00018u (8 unique patterns, 8 encodings)
+    // Switch for mask 0xFFE00018u (8 patterns, 8 encodings)
     switch (insn & 0xFFE00018u) {
         case 0xA0C00000u: { // smopa_za_pp_zz_64
                         Instruction result(Mnemonic::SMOPA, insn);
@@ -2904,9 +2858,10 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE00010u (10 unique patterns, 10 encodings)
+    // Switch for mask 0xFFE00010u (10 patterns, 10 encodings)
     switch (insn & 0xFFE00010u) {
         case 0xE0000000u: { // ld1b_za_p_rrr_
                         Instruction result(Mnemonic::LD1B, insn);
@@ -3018,6 +2973,7 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.st1q_za_prrr.Rs, is_64bit));
                         return result;
         }
+        default: break;
     }
 
     // No matching encoding found

@@ -20,7 +20,6 @@ struct Autia64pDp1src {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Autia64pDp1src) == 4, "Encoding struct must be 32 bits");
 
 // : Authenticate instruction address, using key A
 // Encoding: AUTIZA_64Z_dp_1src
@@ -38,7 +37,6 @@ struct Autiza64zDp1src {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Autiza64zDp1src) == 4, "Encoding struct must be 32 bits");
 
 // : Authenticate instruction address, using key A
 // Encoding: AUTIA1716_HI_hints
@@ -50,7 +48,6 @@ struct Autia1716HiHints {
     uint32_t _unnamed_0 : 20;  // fixed: 0b11010101000000110010 (0xD5032)
 };
 
-static_assert(sizeof(Autia1716HiHints) == 4, "Encoding struct must be 32 bits");
 
 // : Authenticate instruction address, using key A
 // Encoding: AUTIASP_HI_hints
@@ -62,7 +59,6 @@ struct AutiaspHiHints {
     uint32_t _unnamed_0 : 20;  // fixed: 0b11010101000000110010 (0xD5032)
 };
 
-static_assert(sizeof(AutiaspHiHints) == 4, "Encoding struct must be 32 bits");
 
 // : Authenticate instruction address, using key A
 // Encoding: AUTIAZ_HI_hints
@@ -74,7 +70,6 @@ struct AutiazHiHints {
     uint32_t _unnamed_0 : 20;  // fixed: 0b11010101000000110010 (0xD5032)
 };
 
-static_assert(sizeof(AutiazHiHints) == 4, "Encoding struct must be 32 bits");
 
 // : Authenticate instruction address, using key B
 // Encoding: AUTIB_64P_dp_1src
@@ -92,7 +87,6 @@ struct Autib64pDp1src {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Autib64pDp1src) == 4, "Encoding struct must be 32 bits");
 
 // : Authenticate instruction address, using key B
 // Encoding: AUTIZB_64Z_dp_1src
@@ -110,7 +104,6 @@ struct Autizb64zDp1src {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Autizb64zDp1src) == 4, "Encoding struct must be 32 bits");
 
 // : Authenticate instruction address, using key B
 // Encoding: AUTIB1716_HI_hints
@@ -122,7 +115,6 @@ struct Autib1716HiHints {
     uint32_t _unnamed_0 : 20;  // fixed: 0b11010101000000110010 (0xD5032)
 };
 
-static_assert(sizeof(Autib1716HiHints) == 4, "Encoding struct must be 32 bits");
 
 // : Authenticate instruction address, using key B
 // Encoding: AUTIBSP_HI_hints
@@ -134,7 +126,6 @@ struct AutibspHiHints {
     uint32_t _unnamed_0 : 20;  // fixed: 0b11010101000000110010 (0xD5032)
 };
 
-static_assert(sizeof(AutibspHiHints) == 4, "Encoding struct must be 32 bits");
 
 // : Authenticate instruction address, using key B
 // Encoding: AUTIBZ_HI_hints
@@ -146,7 +137,6 @@ struct AutibzHiHints {
     uint32_t _unnamed_0 : 20;  // fixed: 0b11010101000000110010 (0xD5032)
 };
 
-static_assert(sizeof(AutibzHiHints) == 4, "Encoding struct must be 32 bits");
 
 // FMOPA: Floating-point outer product, accumulating
 // Encoding: fmopa_za_pp_zz_16
@@ -168,7 +158,6 @@ struct FmopaZaPpZz16 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmopaZaPpZz16) == 4, "Encoding struct must be 32 bits");
 
 // FMOPA: Floating-point outer product, accumulating
 // Encoding: fmopa_za_pp_zz_32
@@ -189,7 +178,6 @@ struct FmopaZaPpZz32 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmopaZaPpZz32) == 4, "Encoding struct must be 32 bits");
 
 // FMOPA: Floating-point outer product, accumulating
 // Encoding: fmopa_za_pp_zz_64
@@ -211,7 +199,6 @@ struct FmopaZaPpZz64 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmopaZaPpZz64) == 4, "Encoding struct must be 32 bits");
 
 // FMOPS: Floating-point outer product, subtracting
 // Encoding: fmops_za_pp_zz_16
@@ -233,7 +220,6 @@ struct FmopsZaPpZz16 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmopsZaPpZz16) == 4, "Encoding struct must be 32 bits");
 
 // FMOPS: Floating-point outer product, subtracting
 // Encoding: fmops_za_pp_zz_32
@@ -254,7 +240,6 @@ struct FmopsZaPpZz32 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmopsZaPpZz32) == 4, "Encoding struct must be 32 bits");
 
 // FMOPS: Floating-point outer product, subtracting
 // Encoding: fmops_za_pp_zz_64
@@ -276,7 +261,6 @@ struct FmopsZaPpZz64 {
     uint32_t _unnamed_0 : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmopsZaPpZz64) == 4, "Encoding struct must be 32 bits");
 
 // LD1D: Contiguous load unsigned doublewords to vector (immediate index)
 // Encoding: ld1d_z_p_bi_u64
@@ -293,7 +277,6 @@ struct Ld1dZPBiU64 {
     uint32_t _unnamed_0 : 3;  // fixed: 0b101 (0x5)
 };
 
-static_assert(sizeof(Ld1dZPBiU64) == 4, "Encoding struct must be 32 bits");
 
 // LD1D: Contiguous load unsigned doublewords to vector (immediate index)
 // Encoding: ld1d_z_p_bi_u128
@@ -311,7 +294,6 @@ struct Ld1dZPBiU128 {
     uint32_t _unnamed_0 : 3;  // fixed: 0b101 (0x5)
 };
 
-static_assert(sizeof(Ld1dZPBiU128) == 4, "Encoding struct must be 32 bits");
 
 // LD1D: Contiguous load unsigned doublewords to vector (scalar index)
 // Encoding: ld1d_z_p_br_u64
@@ -327,7 +309,6 @@ struct Ld1dZPBrU64 {
     uint32_t _unnamed_0 : 3;  // fixed: 0b101 (0x5)
 };
 
-static_assert(sizeof(Ld1dZPBrU64) == 4, "Encoding struct must be 32 bits");
 
 // LD1D: Contiguous load unsigned doublewords to vector (scalar index)
 // Encoding: ld1d_z_p_br_u128
@@ -344,7 +325,6 @@ struct Ld1dZPBrU128 {
     uint32_t _unnamed_0 : 3;  // fixed: 0b101 (0x5)
 };
 
-static_assert(sizeof(Ld1dZPBrU128) == 4, "Encoding struct must be 32 bits");
 
 // LD1W: Contiguous load unsigned words to vector (immediate index)
 // Encoding: ld1w_z_p_bi_u32
@@ -361,7 +341,6 @@ struct Ld1wZPBiU32 {
     uint32_t _unnamed_0 : 3;  // fixed: 0b101 (0x5)
 };
 
-static_assert(sizeof(Ld1wZPBiU32) == 4, "Encoding struct must be 32 bits");
 
 // LD1W: Contiguous load unsigned words to vector (immediate index)
 // Encoding: ld1w_z_p_bi_u64
@@ -378,7 +357,6 @@ struct Ld1wZPBiU64 {
     uint32_t _unnamed_0 : 3;  // fixed: 0b101 (0x5)
 };
 
-static_assert(sizeof(Ld1wZPBiU64) == 4, "Encoding struct must be 32 bits");
 
 // LD1W: Contiguous load unsigned words to vector (immediate index)
 // Encoding: ld1w_z_p_bi_u128
@@ -396,7 +374,6 @@ struct Ld1wZPBiU128 {
     uint32_t _unnamed_0 : 3;  // fixed: 0b101 (0x5)
 };
 
-static_assert(sizeof(Ld1wZPBiU128) == 4, "Encoding struct must be 32 bits");
 
 // LD1W: Contiguous load unsigned words to vector (scalar index)
 // Encoding: ld1w_z_p_br_u32
@@ -412,7 +389,6 @@ struct Ld1wZPBrU32 {
     uint32_t _unnamed_0 : 3;  // fixed: 0b101 (0x5)
 };
 
-static_assert(sizeof(Ld1wZPBrU32) == 4, "Encoding struct must be 32 bits");
 
 // LD1W: Contiguous load unsigned words to vector (scalar index)
 // Encoding: ld1w_z_p_br_u64
@@ -428,7 +404,6 @@ struct Ld1wZPBrU64 {
     uint32_t _unnamed_0 : 3;  // fixed: 0b101 (0x5)
 };
 
-static_assert(sizeof(Ld1wZPBrU64) == 4, "Encoding struct must be 32 bits");
 
 // LD1W: Contiguous load unsigned words to vector (scalar index)
 // Encoding: ld1w_z_p_br_u128
@@ -445,7 +420,6 @@ struct Ld1wZPBrU128 {
     uint32_t _unnamed_0 : 3;  // fixed: 0b101 (0x5)
 };
 
-static_assert(sizeof(Ld1wZPBrU128) == 4, "Encoding struct must be 32 bits");
 
 // : Load register, with pointer authentication
 // Encoding: LDRAA_64_ldst_pac
@@ -465,7 +439,6 @@ struct Ldraa64LdstPac {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Ldraa64LdstPac) == 4, "Encoding struct must be 32 bits");
 
 // : Load register, with pointer authentication
 // Encoding: LDRAA_64W_ldst_pac
@@ -485,7 +458,6 @@ struct Ldraa64wLdstPac {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Ldraa64wLdstPac) == 4, "Encoding struct must be 32 bits");
 
 // : Load register, with pointer authentication
 // Encoding: LDRAB_64_ldst_pac
@@ -505,7 +477,6 @@ struct Ldrab64LdstPac {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Ldrab64LdstPac) == 4, "Encoding struct must be 32 bits");
 
 // : Load register, with pointer authentication
 // Encoding: LDRAB_64W_ldst_pac
@@ -525,7 +496,6 @@ struct Ldrab64wLdstPac {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(Ldrab64wLdstPac) == 4, "Encoding struct must be 32 bits");
 
 // : Pointer Authentication Code for instruction address, using key A
 // Encoding: PACIA_64P_dp_1src
@@ -543,7 +513,6 @@ struct Pacia64pDp1src {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Pacia64pDp1src) == 4, "Encoding struct must be 32 bits");
 
 // : Pointer Authentication Code for instruction address, using key A
 // Encoding: PACIZA_64Z_dp_1src
@@ -561,7 +530,6 @@ struct Paciza64zDp1src {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Paciza64zDp1src) == 4, "Encoding struct must be 32 bits");
 
 // : Pointer Authentication Code for instruction address, using key A
 // Encoding: PACIA1716_HI_hints
@@ -573,7 +541,6 @@ struct Pacia1716HiHints {
     uint32_t _unnamed_0 : 20;  // fixed: 0b11010101000000110010 (0xD5032)
 };
 
-static_assert(sizeof(Pacia1716HiHints) == 4, "Encoding struct must be 32 bits");
 
 // : Pointer Authentication Code for instruction address, using key A
 // Encoding: PACIASP_HI_hints
@@ -585,7 +552,6 @@ struct PaciaspHiHints {
     uint32_t _unnamed_0 : 20;  // fixed: 0b11010101000000110010 (0xD5032)
 };
 
-static_assert(sizeof(PaciaspHiHints) == 4, "Encoding struct must be 32 bits");
 
 // : Pointer Authentication Code for instruction address, using key A
 // Encoding: PACIAZ_HI_hints
@@ -597,7 +563,6 @@ struct PaciazHiHints {
     uint32_t _unnamed_0 : 20;  // fixed: 0b11010101000000110010 (0xD5032)
 };
 
-static_assert(sizeof(PaciazHiHints) == 4, "Encoding struct must be 32 bits");
 
 // : Pointer Authentication Code for instruction address, using key B
 // Encoding: PACIB_64P_dp_1src
@@ -615,7 +580,6 @@ struct Pacib64pDp1src {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Pacib64pDp1src) == 4, "Encoding struct must be 32 bits");
 
 // : Pointer Authentication Code for instruction address, using key B
 // Encoding: PACIZB_64Z_dp_1src
@@ -633,7 +597,6 @@ struct Pacizb64zDp1src {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Pacizb64zDp1src) == 4, "Encoding struct must be 32 bits");
 
 // : Pointer Authentication Code for instruction address, using key B
 // Encoding: PACIB1716_HI_hints
@@ -645,7 +608,6 @@ struct Pacib1716HiHints {
     uint32_t _unnamed_0 : 20;  // fixed: 0b11010101000000110010 (0xD5032)
 };
 
-static_assert(sizeof(Pacib1716HiHints) == 4, "Encoding struct must be 32 bits");
 
 // : Pointer Authentication Code for instruction address, using key B
 // Encoding: PACIBSP_HI_hints
@@ -657,7 +619,6 @@ struct PacibspHiHints {
     uint32_t _unnamed_0 : 20;  // fixed: 0b11010101000000110010 (0xD5032)
 };
 
-static_assert(sizeof(PacibspHiHints) == 4, "Encoding struct must be 32 bits");
 
 // : Pointer Authentication Code for instruction address, using key B
 // Encoding: PACIBZ_HI_hints
@@ -669,7 +630,6 @@ struct PacibzHiHints {
     uint32_t _unnamed_0 : 20;  // fixed: 0b11010101000000110010 (0xD5032)
 };
 
-static_assert(sizeof(PacibzHiHints) == 4, "Encoding struct must be 32 bits");
 
 // ST1D: Contiguous store doublewords from vector (immediate index)
 // Encoding: st1d_z_p_bi_
@@ -687,7 +647,6 @@ struct St1dZPBi {
     uint32_t _unnamed_0 : 3;  // fixed: 0b111 (0x7)
 };
 
-static_assert(sizeof(St1dZPBi) == 4, "Encoding struct must be 32 bits");
 
 // ST1D: Contiguous store doublewords from vector (immediate index)
 // Encoding: st1d_z_p_bi_u128
@@ -705,7 +664,6 @@ struct St1dZPBiU128 {
     uint32_t _unnamed_0 : 3;  // fixed: 0b111 (0x7)
 };
 
-static_assert(sizeof(St1dZPBiU128) == 4, "Encoding struct must be 32 bits");
 
 // ST1D: Contiguous store doublewords from vector (scalar index)
 // Encoding: st1d_z_p_br_
@@ -724,7 +682,6 @@ struct St1dZPBr {
     uint32_t _unnamed_0 : 3;  // fixed: 0b111 (0x7)
 };
 
-static_assert(sizeof(St1dZPBr) == 4, "Encoding struct must be 32 bits");
 
 // ST1D: Contiguous store doublewords from vector (scalar index)
 // Encoding: st1d_z_p_br_u128
@@ -743,7 +700,6 @@ struct St1dZPBrU128 {
     uint32_t _unnamed_0 : 3;  // fixed: 0b111 (0x7)
 };
 
-static_assert(sizeof(St1dZPBrU128) == 4, "Encoding struct must be 32 bits");
 
 // ST1W: Contiguous store words from vector (immediate index)
 // Encoding: st1w_z_p_bi_
@@ -762,7 +718,6 @@ struct St1wZPBi {
     uint32_t _unnamed_0 : 3;  // fixed: 0b111 (0x7)
 };
 
-static_assert(sizeof(St1wZPBi) == 4, "Encoding struct must be 32 bits");
 
 // ST1W: Contiguous store words from vector (immediate index)
 // Encoding: st1w_z_p_bi_u128
@@ -780,7 +735,6 @@ struct St1wZPBiU128 {
     uint32_t _unnamed_0 : 3;  // fixed: 0b111 (0x7)
 };
 
-static_assert(sizeof(St1wZPBiU128) == 4, "Encoding struct must be 32 bits");
 
 // ST1W: Contiguous store words from vector (scalar index)
 // Encoding: st1w_z_p_br_
@@ -799,7 +753,6 @@ struct St1wZPBr {
     uint32_t _unnamed_0 : 3;  // fixed: 0b111 (0x7)
 };
 
-static_assert(sizeof(St1wZPBr) == 4, "Encoding struct must be 32 bits");
 
 // ST1W: Contiguous store words from vector (scalar index)
 // Encoding: st1w_z_p_br_u128
@@ -818,7 +771,6 @@ struct St1wZPBrU128 {
     uint32_t _unnamed_0 : 3;  // fixed: 0b111 (0x7)
 };
 
-static_assert(sizeof(St1wZPBrU128) == 4, "Encoding struct must be 32 bits");
 
 // TBL: Programmable table lookup in one or two vector table (zeroing)
 // Encoding: tbl_z_zz_1
@@ -835,7 +787,6 @@ struct TblZZz1 {
     uint32_t _unnamed_0 : 3;  // fixed: 0b000 (0x0)
 };
 
-static_assert(sizeof(TblZZz1) == 4, "Encoding struct must be 32 bits");
 
 // TBL: Programmable table lookup in one or two vector table (zeroing)
 // Encoding: tbl_z_zz_2
@@ -853,7 +804,6 @@ struct TblZZz2 {
     uint32_t _unnamed_0 : 3;  // fixed: 0b000 (0x0)
 };
 
-static_assert(sizeof(TblZZz2) == 4, "Encoding struct must be 32 bits");
 
 // : Strip Pointer Authentication Code
 // Encoding: XPACD_64Z_dp_1src
@@ -870,7 +820,6 @@ struct Xpacd64zDp1src {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Xpacd64zDp1src) == 4, "Encoding struct must be 32 bits");
 
 // : Strip Pointer Authentication Code
 // Encoding: XPACI_64Z_dp_1src
@@ -887,7 +836,6 @@ struct Xpaci64zDp1src {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Xpaci64zDp1src) == 4, "Encoding struct must be 32 bits");
 
 // : Strip Pointer Authentication Code
 // Encoding: XPACLRI_HI_hints
@@ -901,7 +849,6 @@ struct XpaclriHiHints {
     uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
 };
 
-static_assert(sizeof(XpaclriHiHints) == 4, "Encoding struct must be 32 bits");
 
 // Union for unknown instruction class
 union UnknownEncoding {
@@ -960,6 +907,7 @@ union UnknownEncoding {
     XpaclriHiHints xpaclri_hi_hints;
     uint32_t raw;
 };
+static_assert(sizeof(UnknownEncoding) == 4, "Encoding union must be 32 bits");
 
 // Encode function implementations
 uint32_t encode_autia_64p_dp_1src(uint32_t Rd, uint32_t Rn) {
@@ -1706,7 +1654,7 @@ uint32_t encode_xpaclri_hi_hints() {
 // Decode a unknown instruction
 // Input is in native ARM64 format (as read from memory)
 std::optional<Instruction> decode_unknown(uint32_t insn) {
-    // Optimized switch for mask 0xFFFFFFFFu (13 unique patterns, 13 encodings)
+    // Switch for mask 0xFFFFFFFFu (13 patterns, 13 encodings)
     switch (insn & 0xFFFFFFFFu) {
         case 0xD50320FFu: { // XPACLRI_HI_hints
                         Instruction result(Mnemonic::XPACLRI, insn);
@@ -1799,9 +1747,10 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFFFFE0u (6 unique patterns, 6 encodings)
+    // Switch for mask 0xFFFFFFE0u (6 patterns, 6 encodings)
     switch (insn & 0xFFFFFFE0u) {
         case 0xDAC123E0u: { // PACIZA_64Z_dp_1src
                         Instruction result(Mnemonic::PACIZA, insn);
@@ -1857,9 +1806,10 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.xpacd64z_dp1src.Rd, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFFFC00u (4 unique patterns, 4 encodings)
+    // Switch for mask 0xFFFFFC00u (4 patterns, 4 encodings)
     switch (insn & 0xFFFFFC00u) {
         case 0xDAC10000u: { // PACIA_64P_dp_1src
                         Instruction result(Mnemonic::PACIA, insn);
@@ -1901,9 +1851,10 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.autib64p_dp1src.Rn, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFFE000u (8 unique patterns, 8 encodings)
+    // Switch for mask 0xFFFFE000u (8 patterns, 8 encodings)
     switch (insn & 0xFFFFE000u) {
         case 0xA51F8000u: { // ld1w_z_p_br_u128
                         Instruction result(Mnemonic::LD1W, insn);
@@ -1985,9 +1936,10 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_zpbr.Rm, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFF0E000u (8 unique patterns, 8 encodings)
+    // Switch for mask 0xFFF0E000u (8 patterns, 8 encodings)
     switch (insn & 0xFFF0E000u) {
         case 0xA5102000u: { // ld1w_z_p_bi_u128
                         Instruction result(Mnemonic::LD1W, insn);
@@ -2061,9 +2013,10 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_zpbi.Rn, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE00C00u (4 unique patterns, 4 encodings)
+    // Switch for mask 0xFFE00C00u (4 patterns, 4 encodings)
     switch (insn & 0xFFE00C00u) {
         case 0xF8200400u: { // LDRAA_64_ldst_pac
                         Instruction result(Mnemonic::LDRAA, insn);
@@ -2121,9 +2074,10 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         }
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE0001Eu (2 unique patterns, 2 encodings)
+    // Switch for mask 0xFFE0001Eu (2 patterns, 2 encodings)
     switch (insn & 0xFFE0001Eu) {
         case 0x81800008u: { // fmopa_za_pp_zz_16
                         Instruction result(Mnemonic::FMOPA, insn);
@@ -2139,9 +2093,10 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE0001Cu (2 unique patterns, 2 encodings)
+    // Switch for mask 0xFFE0001Cu (2 patterns, 2 encodings)
     switch (insn & 0xFFE0001Cu) {
         case 0x80800000u: { // fmopa_za_pp_zz_32
                         Instruction result(Mnemonic::FMOPA, insn);
@@ -2157,9 +2112,10 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE00018u (2 unique patterns, 2 encodings)
+    // Switch for mask 0xFFE00018u (2 patterns, 2 encodings)
     switch (insn & 0xFFE00018u) {
         case 0x80C00000u: { // fmopa_za_pp_zz_64
                         Instruction result(Mnemonic::FMOPA, insn);
@@ -2175,32 +2131,39 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
-    // st1w_z_p_br_
-    if ((insn & 0xFFDFE000u) == 0xE55F4000u) {
-        Instruction result(Mnemonic::ST1W, insn);
-        UnknownEncoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        bool is_64bit = false;
-        result.operands.push_back(Operand(OperandType::Register, enc.st1w_zpbr.Rn, is_64bit));
-        result.operands.push_back(Operand(OperandType::Register, enc.st1w_zpbr.Rm, is_64bit));
-        return result;
+    // Switch for mask 0xFFDFE000u (1 pattern, 1 encoding)
+    switch (insn & 0xFFDFE000u) {
+        case 0xE55F4000u: { // st1w_z_p_br_
+                        Instruction result(Mnemonic::ST1W, insn);
+                        UnknownEncoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1w_zpbr.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1w_zpbr.Rm, is_64bit));
+                        return result;
+        }
+        default: break;
     }
 
-    // st1w_z_p_bi_
-    if ((insn & 0xFFD0E000u) == 0xE540E000u) {
-        Instruction result(Mnemonic::ST1W, insn);
-        UnknownEncoding enc = {};
-        enc.raw = insn;
-        (void)enc;  // Suppress unused warning
-        bool is_64bit = false;
-        result.operands.push_back(Operand(OperandType::Register, enc.st1w_zpbi.Rn, is_64bit));
-        return result;
+    // Switch for mask 0xFFD0E000u (1 pattern, 1 encoding)
+    switch (insn & 0xFFD0E000u) {
+        case 0xE540E000u: { // st1w_z_p_bi_
+                        Instruction result(Mnemonic::ST1W, insn);
+                        UnknownEncoding enc = {};
+                        enc.raw = insn;
+                        (void)enc;  // Suppress unused warning
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1w_zpbi.Rn, is_64bit));
+                        return result;
+        }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFF20FC00u (2 unique patterns, 2 encodings)
+    // Switch for mask 0xFF20FC00u (2 patterns, 2 encodings)
     switch (insn & 0xFF20FC00u) {
         case 0x05202800u: { // tbl_z_zz_2
                         Instruction result(Mnemonic::TBL, insn);
@@ -2216,6 +2179,7 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         (void)enc;  // Suppress unused warning
                         return result;
         }
+        default: break;
     }
 
     // No matching encoding found

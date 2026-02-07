@@ -1,5 +1,6 @@
 // Test suite for general instruction class
 #include "veda64.hpp"
+#include "class/general.hpp"
 #include <cassert>
 #include <iostream>
 #include <iomanip>

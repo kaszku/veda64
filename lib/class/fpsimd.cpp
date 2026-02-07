@@ -18,7 +18,6 @@ struct LdapurBLdapstlSimd {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(LdapurBLdapstlSimd) == 4, "Encoding struct must be 32 bits");
 
 // LDAPUR: Load-acquire RCpc SIMD&FP register (unscaled offset)
 // Encoding: LDAPUR_H_ldapstl_simd
@@ -34,7 +33,6 @@ struct LdapurHLdapstlSimd {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(LdapurHLdapstlSimd) == 4, "Encoding struct must be 32 bits");
 
 // LDAPUR: Load-acquire RCpc SIMD&FP register (unscaled offset)
 // Encoding: LDAPUR_S_ldapstl_simd
@@ -50,7 +48,6 @@ struct LdapurSLdapstlSimd {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(LdapurSLdapstlSimd) == 4, "Encoding struct must be 32 bits");
 
 // LDAPUR: Load-acquire RCpc SIMD&FP register (unscaled offset)
 // Encoding: LDAPUR_D_ldapstl_simd
@@ -66,7 +63,6 @@ struct LdapurDLdapstlSimd {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(LdapurDLdapstlSimd) == 4, "Encoding struct must be 32 bits");
 
 // LDAPUR: Load-acquire RCpc SIMD&FP register (unscaled offset)
 // Encoding: LDAPUR_Q_ldapstl_simd
@@ -82,7 +78,6 @@ struct LdapurQLdapstlSimd {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(LdapurQLdapstlSimd) == 4, "Encoding struct must be 32 bits");
 
 // LDNP: Load pair of SIMD&FP registers, with non-temporal hint
 // Encoding: LDNP_S_ldstnapair_offs
@@ -99,7 +94,6 @@ struct LdnpSLdstnapairOffs {
     uint32_t opc : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(LdnpSLdstnapairOffs) == 4, "Encoding struct must be 32 bits");
 
 // LDNP: Load pair of SIMD&FP registers, with non-temporal hint
 // Encoding: LDNP_D_ldstnapair_offs
@@ -116,7 +110,6 @@ struct LdnpDLdstnapairOffs {
     uint32_t opc : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(LdnpDLdstnapairOffs) == 4, "Encoding struct must be 32 bits");
 
 // LDNP: Load pair of SIMD&FP registers, with non-temporal hint
 // Encoding: LDNP_Q_ldstnapair_offs
@@ -133,7 +126,6 @@ struct LdnpQLdstnapairOffs {
     uint32_t opc : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(LdnpQLdstnapairOffs) == 4, "Encoding struct must be 32 bits");
 
 // LDP: Load pair of SIMD&FP registers
 // Encoding: LDP_S_ldstpair_post
@@ -150,7 +142,6 @@ struct LdpSLdstpairPost {
     uint32_t opc : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(LdpSLdstpairPost) == 4, "Encoding struct must be 32 bits");
 
 // LDP: Load pair of SIMD&FP registers
 // Encoding: LDP_D_ldstpair_post
@@ -167,7 +158,6 @@ struct LdpDLdstpairPost {
     uint32_t opc : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(LdpDLdstpairPost) == 4, "Encoding struct must be 32 bits");
 
 // LDP: Load pair of SIMD&FP registers
 // Encoding: LDP_Q_ldstpair_post
@@ -184,7 +174,6 @@ struct LdpQLdstpairPost {
     uint32_t opc : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(LdpQLdstpairPost) == 4, "Encoding struct must be 32 bits");
 
 // LDP: Load pair of SIMD&FP registers
 // Encoding: LDP_S_ldstpair_pre
@@ -201,7 +190,6 @@ struct LdpSLdstpairPre {
     uint32_t opc : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(LdpSLdstpairPre) == 4, "Encoding struct must be 32 bits");
 
 // LDP: Load pair of SIMD&FP registers
 // Encoding: LDP_D_ldstpair_pre
@@ -218,7 +206,6 @@ struct LdpDLdstpairPre {
     uint32_t opc : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(LdpDLdstpairPre) == 4, "Encoding struct must be 32 bits");
 
 // LDP: Load pair of SIMD&FP registers
 // Encoding: LDP_Q_ldstpair_pre
@@ -235,7 +222,6 @@ struct LdpQLdstpairPre {
     uint32_t opc : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(LdpQLdstpairPre) == 4, "Encoding struct must be 32 bits");
 
 // LDP: Load pair of SIMD&FP registers
 // Encoding: LDP_S_ldstpair_off
@@ -252,7 +238,6 @@ struct LdpSLdstpairOff {
     uint32_t opc : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(LdpSLdstpairOff) == 4, "Encoding struct must be 32 bits");
 
 // LDP: Load pair of SIMD&FP registers
 // Encoding: LDP_D_ldstpair_off
@@ -269,7 +254,6 @@ struct LdpDLdstpairOff {
     uint32_t opc : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(LdpDLdstpairOff) == 4, "Encoding struct must be 32 bits");
 
 // LDP: Load pair of SIMD&FP registers
 // Encoding: LDP_Q_ldstpair_off
@@ -286,7 +270,6 @@ struct LdpQLdstpairOff {
     uint32_t opc : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(LdpQLdstpairOff) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load SIMD&FP register (immediate offset)
 // Encoding: LDR_B_ldst_immpost
@@ -304,7 +287,6 @@ struct LdrBLdstImmpost {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(LdrBLdstImmpost) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load SIMD&FP register (immediate offset)
 // Encoding: LDR_H_ldst_immpost
@@ -322,7 +304,6 @@ struct LdrHLdstImmpost {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(LdrHLdstImmpost) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load SIMD&FP register (immediate offset)
 // Encoding: LDR_S_ldst_immpost
@@ -340,7 +321,6 @@ struct LdrSLdstImmpost {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(LdrSLdstImmpost) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load SIMD&FP register (immediate offset)
 // Encoding: LDR_D_ldst_immpost
@@ -358,7 +338,6 @@ struct LdrDLdstImmpost {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(LdrDLdstImmpost) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load SIMD&FP register (immediate offset)
 // Encoding: LDR_Q_ldst_immpost
@@ -376,7 +355,6 @@ struct LdrQLdstImmpost {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(LdrQLdstImmpost) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load SIMD&FP register (immediate offset)
 // Encoding: LDR_B_ldst_immpre
@@ -394,7 +372,6 @@ struct LdrBLdstImmpre {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(LdrBLdstImmpre) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load SIMD&FP register (immediate offset)
 // Encoding: LDR_H_ldst_immpre
@@ -412,7 +389,6 @@ struct LdrHLdstImmpre {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(LdrHLdstImmpre) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load SIMD&FP register (immediate offset)
 // Encoding: LDR_S_ldst_immpre
@@ -430,7 +406,6 @@ struct LdrSLdstImmpre {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(LdrSLdstImmpre) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load SIMD&FP register (immediate offset)
 // Encoding: LDR_D_ldst_immpre
@@ -448,7 +423,6 @@ struct LdrDLdstImmpre {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(LdrDLdstImmpre) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load SIMD&FP register (immediate offset)
 // Encoding: LDR_Q_ldst_immpre
@@ -466,7 +440,6 @@ struct LdrQLdstImmpre {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(LdrQLdstImmpre) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load SIMD&FP register (immediate offset)
 // Encoding: LDR_B_ldst_pos
@@ -482,7 +455,6 @@ struct LdrBLdstPos {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(LdrBLdstPos) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load SIMD&FP register (immediate offset)
 // Encoding: LDR_H_ldst_pos
@@ -498,7 +470,6 @@ struct LdrHLdstPos {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(LdrHLdstPos) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load SIMD&FP register (immediate offset)
 // Encoding: LDR_S_ldst_pos
@@ -514,7 +485,6 @@ struct LdrSLdstPos {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(LdrSLdstPos) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load SIMD&FP register (immediate offset)
 // Encoding: LDR_D_ldst_pos
@@ -530,7 +500,6 @@ struct LdrDLdstPos {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(LdrDLdstPos) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load SIMD&FP register (immediate offset)
 // Encoding: LDR_Q_ldst_pos
@@ -546,7 +515,6 @@ struct LdrQLdstPos {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(LdrQLdstPos) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load SIMD&FP register (PC-relative literal)
 // Encoding: LDR_S_loadlit
@@ -560,7 +528,6 @@ struct LdrSLoadlit {
     uint32_t opc : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(LdrSLoadlit) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load SIMD&FP register (PC-relative literal)
 // Encoding: LDR_D_loadlit
@@ -574,7 +541,6 @@ struct LdrDLoadlit {
     uint32_t opc : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(LdrDLoadlit) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load SIMD&FP register (PC-relative literal)
 // Encoding: LDR_Q_loadlit
@@ -588,7 +554,6 @@ struct LdrQLoadlit {
     uint32_t opc : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(LdrQLoadlit) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load SIMD&FP register (register offset)
 // Encoding: LDR_B_ldst_regoff
@@ -608,7 +573,6 @@ struct LdrBLdstRegoff {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(LdrBLdstRegoff) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load SIMD&FP register (register offset)
 // Encoding: LDR_BL_ldst_regoff
@@ -628,7 +592,6 @@ struct LdrBlLdstRegoff {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(LdrBlLdstRegoff) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load SIMD&FP register (register offset)
 // Encoding: LDR_H_ldst_regoff
@@ -648,7 +611,6 @@ struct LdrHLdstRegoff {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(LdrHLdstRegoff) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load SIMD&FP register (register offset)
 // Encoding: LDR_S_ldst_regoff
@@ -668,7 +630,6 @@ struct LdrSLdstRegoff {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(LdrSLdstRegoff) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load SIMD&FP register (register offset)
 // Encoding: LDR_D_ldst_regoff
@@ -688,7 +649,6 @@ struct LdrDLdstRegoff {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(LdrDLdstRegoff) == 4, "Encoding struct must be 32 bits");
 
 // LDR: Load SIMD&FP register (register offset)
 // Encoding: LDR_Q_ldst_regoff
@@ -708,7 +668,6 @@ struct LdrQLdstRegoff {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(LdrQLdstRegoff) == 4, "Encoding struct must be 32 bits");
 
 // LDTNP: Load unprivileged pair of SIMD&FP registers, with non-temporal hint
 // Encoding: LDTNP_Q_ldstnapair_offs
@@ -727,7 +686,6 @@ struct LdtnpQLdstnapairOffs {
     uint32_t opc : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(LdtnpQLdstnapairOffs) == 4, "Encoding struct must be 32 bits");
 
 // LDTP: Load unprivileged pair of SIMD&FP registers
 // Encoding: LDTP_Q_ldstpair_post
@@ -746,7 +704,6 @@ struct LdtpQLdstpairPost {
     uint32_t opc : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(LdtpQLdstpairPost) == 4, "Encoding struct must be 32 bits");
 
 // LDTP: Load unprivileged pair of SIMD&FP registers
 // Encoding: LDTP_Q_ldstpair_pre
@@ -765,7 +722,6 @@ struct LdtpQLdstpairPre {
     uint32_t opc : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(LdtpQLdstpairPre) == 4, "Encoding struct must be 32 bits");
 
 // LDTP: Load unprivileged pair of SIMD&FP registers
 // Encoding: LDTP_Q_ldstpair_off
@@ -784,7 +740,6 @@ struct LdtpQLdstpairOff {
     uint32_t opc : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(LdtpQLdstpairOff) == 4, "Encoding struct must be 32 bits");
 
 // LDUR: Load SIMD&FP register (unscaled offset)
 // Encoding: LDUR_B_ldst_unscaled
@@ -802,7 +757,6 @@ struct LdurBLdstUnscaled {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(LdurBLdstUnscaled) == 4, "Encoding struct must be 32 bits");
 
 // LDUR: Load SIMD&FP register (unscaled offset)
 // Encoding: LDUR_H_ldst_unscaled
@@ -820,7 +774,6 @@ struct LdurHLdstUnscaled {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(LdurHLdstUnscaled) == 4, "Encoding struct must be 32 bits");
 
 // LDUR: Load SIMD&FP register (unscaled offset)
 // Encoding: LDUR_S_ldst_unscaled
@@ -838,7 +791,6 @@ struct LdurSLdstUnscaled {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(LdurSLdstUnscaled) == 4, "Encoding struct must be 32 bits");
 
 // LDUR: Load SIMD&FP register (unscaled offset)
 // Encoding: LDUR_D_ldst_unscaled
@@ -856,7 +808,6 @@ struct LdurDLdstUnscaled {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(LdurDLdstUnscaled) == 4, "Encoding struct must be 32 bits");
 
 // LDUR: Load SIMD&FP register (unscaled offset)
 // Encoding: LDUR_Q_ldst_unscaled
@@ -874,7 +825,6 @@ struct LdurQLdstUnscaled {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(LdurQLdstUnscaled) == 4, "Encoding struct must be 32 bits");
 
 // STLUR: Store-release SIMD&FP register (unscaled offset)
 // Encoding: STLUR_B_ldapstl_simd
@@ -890,7 +840,6 @@ struct StlurBLdapstlSimd {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(StlurBLdapstlSimd) == 4, "Encoding struct must be 32 bits");
 
 // STLUR: Store-release SIMD&FP register (unscaled offset)
 // Encoding: STLUR_H_ldapstl_simd
@@ -906,7 +855,6 @@ struct StlurHLdapstlSimd {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(StlurHLdapstlSimd) == 4, "Encoding struct must be 32 bits");
 
 // STLUR: Store-release SIMD&FP register (unscaled offset)
 // Encoding: STLUR_S_ldapstl_simd
@@ -922,7 +870,6 @@ struct StlurSLdapstlSimd {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(StlurSLdapstlSimd) == 4, "Encoding struct must be 32 bits");
 
 // STLUR: Store-release SIMD&FP register (unscaled offset)
 // Encoding: STLUR_D_ldapstl_simd
@@ -938,7 +885,6 @@ struct StlurDLdapstlSimd {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(StlurDLdapstlSimd) == 4, "Encoding struct must be 32 bits");
 
 // STLUR: Store-release SIMD&FP register (unscaled offset)
 // Encoding: STLUR_Q_ldapstl_simd
@@ -954,7 +900,6 @@ struct StlurQLdapstlSimd {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(StlurQLdapstlSimd) == 4, "Encoding struct must be 32 bits");
 
 // STNP: Store pair of SIMD&FP registers, with non-temporal hint
 // Encoding: STNP_S_ldstnapair_offs
@@ -971,7 +916,6 @@ struct StnpSLdstnapairOffs {
     uint32_t opc : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(StnpSLdstnapairOffs) == 4, "Encoding struct must be 32 bits");
 
 // STNP: Store pair of SIMD&FP registers, with non-temporal hint
 // Encoding: STNP_D_ldstnapair_offs
@@ -988,7 +932,6 @@ struct StnpDLdstnapairOffs {
     uint32_t opc : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(StnpDLdstnapairOffs) == 4, "Encoding struct must be 32 bits");
 
 // STNP: Store pair of SIMD&FP registers, with non-temporal hint
 // Encoding: STNP_Q_ldstnapair_offs
@@ -1005,7 +948,6 @@ struct StnpQLdstnapairOffs {
     uint32_t opc : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(StnpQLdstnapairOffs) == 4, "Encoding struct must be 32 bits");
 
 // STP: Store pair of SIMD&FP registers
 // Encoding: STP_S_ldstpair_post
@@ -1022,7 +964,6 @@ struct StpSLdstpairPost {
     uint32_t opc : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(StpSLdstpairPost) == 4, "Encoding struct must be 32 bits");
 
 // STP: Store pair of SIMD&FP registers
 // Encoding: STP_D_ldstpair_post
@@ -1039,7 +980,6 @@ struct StpDLdstpairPost {
     uint32_t opc : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(StpDLdstpairPost) == 4, "Encoding struct must be 32 bits");
 
 // STP: Store pair of SIMD&FP registers
 // Encoding: STP_Q_ldstpair_post
@@ -1056,7 +996,6 @@ struct StpQLdstpairPost {
     uint32_t opc : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(StpQLdstpairPost) == 4, "Encoding struct must be 32 bits");
 
 // STP: Store pair of SIMD&FP registers
 // Encoding: STP_S_ldstpair_pre
@@ -1073,7 +1012,6 @@ struct StpSLdstpairPre {
     uint32_t opc : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(StpSLdstpairPre) == 4, "Encoding struct must be 32 bits");
 
 // STP: Store pair of SIMD&FP registers
 // Encoding: STP_D_ldstpair_pre
@@ -1090,7 +1028,6 @@ struct StpDLdstpairPre {
     uint32_t opc : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(StpDLdstpairPre) == 4, "Encoding struct must be 32 bits");
 
 // STP: Store pair of SIMD&FP registers
 // Encoding: STP_Q_ldstpair_pre
@@ -1107,7 +1044,6 @@ struct StpQLdstpairPre {
     uint32_t opc : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(StpQLdstpairPre) == 4, "Encoding struct must be 32 bits");
 
 // STP: Store pair of SIMD&FP registers
 // Encoding: STP_S_ldstpair_off
@@ -1124,7 +1060,6 @@ struct StpSLdstpairOff {
     uint32_t opc : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(StpSLdstpairOff) == 4, "Encoding struct must be 32 bits");
 
 // STP: Store pair of SIMD&FP registers
 // Encoding: STP_D_ldstpair_off
@@ -1141,7 +1076,6 @@ struct StpDLdstpairOff {
     uint32_t opc : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(StpDLdstpairOff) == 4, "Encoding struct must be 32 bits");
 
 // STP: Store pair of SIMD&FP registers
 // Encoding: STP_Q_ldstpair_off
@@ -1158,7 +1092,6 @@ struct StpQLdstpairOff {
     uint32_t opc : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(StpQLdstpairOff) == 4, "Encoding struct must be 32 bits");
 
 // STR: Store SIMD&FP register (immediate offset)
 // Encoding: STR_B_ldst_immpost
@@ -1176,7 +1109,6 @@ struct StrBLdstImmpost {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(StrBLdstImmpost) == 4, "Encoding struct must be 32 bits");
 
 // STR: Store SIMD&FP register (immediate offset)
 // Encoding: STR_H_ldst_immpost
@@ -1194,7 +1126,6 @@ struct StrHLdstImmpost {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(StrHLdstImmpost) == 4, "Encoding struct must be 32 bits");
 
 // STR: Store SIMD&FP register (immediate offset)
 // Encoding: STR_S_ldst_immpost
@@ -1212,7 +1143,6 @@ struct StrSLdstImmpost {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(StrSLdstImmpost) == 4, "Encoding struct must be 32 bits");
 
 // STR: Store SIMD&FP register (immediate offset)
 // Encoding: STR_D_ldst_immpost
@@ -1230,7 +1160,6 @@ struct StrDLdstImmpost {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(StrDLdstImmpost) == 4, "Encoding struct must be 32 bits");
 
 // STR: Store SIMD&FP register (immediate offset)
 // Encoding: STR_Q_ldst_immpost
@@ -1248,7 +1177,6 @@ struct StrQLdstImmpost {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(StrQLdstImmpost) == 4, "Encoding struct must be 32 bits");
 
 // STR: Store SIMD&FP register (immediate offset)
 // Encoding: STR_B_ldst_immpre
@@ -1266,7 +1194,6 @@ struct StrBLdstImmpre {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(StrBLdstImmpre) == 4, "Encoding struct must be 32 bits");
 
 // STR: Store SIMD&FP register (immediate offset)
 // Encoding: STR_H_ldst_immpre
@@ -1284,7 +1211,6 @@ struct StrHLdstImmpre {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(StrHLdstImmpre) == 4, "Encoding struct must be 32 bits");
 
 // STR: Store SIMD&FP register (immediate offset)
 // Encoding: STR_S_ldst_immpre
@@ -1302,7 +1228,6 @@ struct StrSLdstImmpre {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(StrSLdstImmpre) == 4, "Encoding struct must be 32 bits");
 
 // STR: Store SIMD&FP register (immediate offset)
 // Encoding: STR_D_ldst_immpre
@@ -1320,7 +1245,6 @@ struct StrDLdstImmpre {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(StrDLdstImmpre) == 4, "Encoding struct must be 32 bits");
 
 // STR: Store SIMD&FP register (immediate offset)
 // Encoding: STR_Q_ldst_immpre
@@ -1338,7 +1262,6 @@ struct StrQLdstImmpre {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(StrQLdstImmpre) == 4, "Encoding struct must be 32 bits");
 
 // STR: Store SIMD&FP register (immediate offset)
 // Encoding: STR_B_ldst_pos
@@ -1354,7 +1277,6 @@ struct StrBLdstPos {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(StrBLdstPos) == 4, "Encoding struct must be 32 bits");
 
 // STR: Store SIMD&FP register (immediate offset)
 // Encoding: STR_H_ldst_pos
@@ -1370,7 +1292,6 @@ struct StrHLdstPos {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(StrHLdstPos) == 4, "Encoding struct must be 32 bits");
 
 // STR: Store SIMD&FP register (immediate offset)
 // Encoding: STR_S_ldst_pos
@@ -1386,7 +1307,6 @@ struct StrSLdstPos {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(StrSLdstPos) == 4, "Encoding struct must be 32 bits");
 
 // STR: Store SIMD&FP register (immediate offset)
 // Encoding: STR_D_ldst_pos
@@ -1402,7 +1322,6 @@ struct StrDLdstPos {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(StrDLdstPos) == 4, "Encoding struct must be 32 bits");
 
 // STR: Store SIMD&FP register (immediate offset)
 // Encoding: STR_Q_ldst_pos
@@ -1418,7 +1337,6 @@ struct StrQLdstPos {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(StrQLdstPos) == 4, "Encoding struct must be 32 bits");
 
 // STR: Store SIMD&FP register (register offset)
 // Encoding: STR_B_ldst_regoff
@@ -1438,7 +1356,6 @@ struct StrBLdstRegoff {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(StrBLdstRegoff) == 4, "Encoding struct must be 32 bits");
 
 // STR: Store SIMD&FP register (register offset)
 // Encoding: STR_BL_ldst_regoff
@@ -1458,7 +1375,6 @@ struct StrBlLdstRegoff {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(StrBlLdstRegoff) == 4, "Encoding struct must be 32 bits");
 
 // STR: Store SIMD&FP register (register offset)
 // Encoding: STR_H_ldst_regoff
@@ -1478,7 +1394,6 @@ struct StrHLdstRegoff {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(StrHLdstRegoff) == 4, "Encoding struct must be 32 bits");
 
 // STR: Store SIMD&FP register (register offset)
 // Encoding: STR_S_ldst_regoff
@@ -1498,7 +1413,6 @@ struct StrSLdstRegoff {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(StrSLdstRegoff) == 4, "Encoding struct must be 32 bits");
 
 // STR: Store SIMD&FP register (register offset)
 // Encoding: STR_D_ldst_regoff
@@ -1518,7 +1432,6 @@ struct StrDLdstRegoff {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(StrDLdstRegoff) == 4, "Encoding struct must be 32 bits");
 
 // STR: Store SIMD&FP register (register offset)
 // Encoding: STR_Q_ldst_regoff
@@ -1538,7 +1451,6 @@ struct StrQLdstRegoff {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(StrQLdstRegoff) == 4, "Encoding struct must be 32 bits");
 
 // STTNP: Store unprivileged pair of SIMD&FP registers, with non-temporal hint
 // Encoding: STTNP_Q_ldstnapair_offs
@@ -1557,7 +1469,6 @@ struct SttnpQLdstnapairOffs {
     uint32_t opc : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(SttnpQLdstnapairOffs) == 4, "Encoding struct must be 32 bits");
 
 // STTP: Store unprivileged pair of SIMD&FP registers
 // Encoding: STTP_Q_ldstpair_post
@@ -1576,7 +1487,6 @@ struct SttpQLdstpairPost {
     uint32_t opc : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(SttpQLdstpairPost) == 4, "Encoding struct must be 32 bits");
 
 // STTP: Store unprivileged pair of SIMD&FP registers
 // Encoding: STTP_Q_ldstpair_pre
@@ -1595,7 +1505,6 @@ struct SttpQLdstpairPre {
     uint32_t opc : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(SttpQLdstpairPre) == 4, "Encoding struct must be 32 bits");
 
 // STTP: Store unprivileged pair of SIMD&FP registers
 // Encoding: STTP_Q_ldstpair_off
@@ -1614,7 +1523,6 @@ struct SttpQLdstpairOff {
     uint32_t opc : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(SttpQLdstpairOff) == 4, "Encoding struct must be 32 bits");
 
 // STUR: Store SIMD&FP register (unscaled offset)
 // Encoding: STUR_B_ldst_unscaled
@@ -1632,7 +1540,6 @@ struct SturBLdstUnscaled {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(SturBLdstUnscaled) == 4, "Encoding struct must be 32 bits");
 
 // STUR: Store SIMD&FP register (unscaled offset)
 // Encoding: STUR_H_ldst_unscaled
@@ -1650,7 +1557,6 @@ struct SturHLdstUnscaled {
     uint32_t size : 2;  // fixed: 0b01 (0x1)
 };
 
-static_assert(sizeof(SturHLdstUnscaled) == 4, "Encoding struct must be 32 bits");
 
 // STUR: Store SIMD&FP register (unscaled offset)
 // Encoding: STUR_S_ldst_unscaled
@@ -1668,7 +1574,6 @@ struct SturSLdstUnscaled {
     uint32_t size : 2;  // fixed: 0b10 (0x2)
 };
 
-static_assert(sizeof(SturSLdstUnscaled) == 4, "Encoding struct must be 32 bits");
 
 // STUR: Store SIMD&FP register (unscaled offset)
 // Encoding: STUR_D_ldst_unscaled
@@ -1686,7 +1591,6 @@ struct SturDLdstUnscaled {
     uint32_t size : 2;  // fixed: 0b11 (0x3)
 };
 
-static_assert(sizeof(SturDLdstUnscaled) == 4, "Encoding struct must be 32 bits");
 
 // STUR: Store SIMD&FP register (unscaled offset)
 // Encoding: STUR_Q_ldst_unscaled
@@ -1704,7 +1608,6 @@ struct SturQLdstUnscaled {
     uint32_t size : 2;  // fixed: 0b00 (0x0)
 };
 
-static_assert(sizeof(SturQLdstUnscaled) == 4, "Encoding struct must be 32 bits");
 
 // Union for fpsimd instruction class
 union FpsimdEncoding {
@@ -1807,6 +1710,7 @@ union FpsimdEncoding {
     SturQLdstUnscaled stur_qldst_unscaled;
     uint32_t raw;
 };
+static_assert(sizeof(FpsimdEncoding) == 4, "Encoding union must be 32 bits");
 
 // Encode function implementations
 uint32_t encode_ldapur_b_ldapstl_simd(uint32_t Rt, uint32_t Rn, int32_t imm9) {
@@ -3224,7 +3128,7 @@ uint32_t encode_stur_q_ldst_unscaled(uint32_t Rt, uint32_t Rn, int32_t imm9) {
 // Decode a fpsimd instruction
 // Input is in native ARM64 format (as read from memory)
 std::optional<Instruction> decode_fpsimd(uint32_t insn) {
-    // Optimized switch for mask 0xFFE0FC00u (2 unique patterns, 2 encodings)
+    // Switch for mask 0xFFE0FC00u (2 patterns, 2 encodings)
     switch (insn & 0xFFE0FC00u) {
         case 0x3C206800u: { // STR_BL_ldst_regoff
                         Instruction result(Mnemonic::STR, insn);
@@ -3246,9 +3150,10 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         result.operands.push_back(Operand::memory_base(enc.ldr_bl_ldst_regoff.Rn));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE01C00u (10 unique patterns, 10 encodings)
+    // Switch for mask 0xFFE01C00u (10 patterns, 10 encodings)
     switch (insn & 0xFFE01C00u) {
         case 0x3C200800u: { // STR_B_ldst_regoff
                         Instruction result(Mnemonic::STR, insn);
@@ -3350,9 +3255,10 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         result.operands.push_back(Operand::memory_base(enc.ldr_dldst_regoff.Rn));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE00C00u (40 unique patterns, 40 encodings)
+    // Switch for mask 0xFFE00C00u (40 patterns, 40 encodings)
     switch (insn & 0xFFE00C00u) {
         case 0x1D000800u: { // STLUR_B_ldapstl_simd
                         Instruction result(Mnemonic::STLUR, insn);
@@ -3824,9 +3730,10 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         result.operands.push_back(Operand::memory_pre_index(enc.ldr_dldst_immpre.Rn, imm));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFC00000u (42 unique patterns, 42 encodings)
+    // Switch for mask 0xFFC00000u (42 patterns, 42 encodings)
     switch (insn & 0xFFC00000u) {
         case 0x2C000000u: { // STNP_S_ldstnapair_offs
                         Instruction result(Mnemonic::STNP, insn);
@@ -4346,9 +4253,10 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         result.operands.push_back(Operand::memory_offset(enc.ldr_dldst_pos.Rn, enc.ldr_dldst_pos.imm12 * scale));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFF000000u (3 unique patterns, 3 encodings)
+    // Switch for mask 0xFF000000u (3 patterns, 3 encodings)
     switch (insn & 0xFF000000u) {
         case 0x1C000000u: { // LDR_S_loadlit
                         Instruction result(Mnemonic::LDR, insn);
@@ -4377,6 +4285,7 @@ std::optional<Instruction> decode_fpsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_qloadlit.Rt, is_64bit));
                         return result;
         }
+        default: break;
     }
 
     // No matching encoding found

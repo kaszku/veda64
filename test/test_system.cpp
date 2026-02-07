@@ -1,5 +1,6 @@
 // Test suite for system instruction class
 #include "veda64.hpp"
+#include "class/system.hpp"
 #include <cassert>
 #include <iostream>
 #include <iomanip>

@@ -1,5 +1,6 @@
 // Test suite for advsimd instruction class
 #include "veda64.hpp"
+#include "class/advsimd.hpp"
 #include <cassert>
 #include <iostream>
 #include <iomanip>

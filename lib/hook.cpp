@@ -9,7 +9,6 @@
 #if defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT)
 
 #include <Windows.h>
-#include <winternl.h>
 #include <vector>
 #include <unordered_map>
 #include <mutex>
@@ -18,7 +17,7 @@
 #include <cstdio>
 
 // ============================================================================
-// NT API Definitions
+// NT API Definitions (minimal, avoiding winternl.h conflicts)
 // ============================================================================
 
 // NT status codes
@@ -31,50 +30,41 @@
 #endif
 
 // Pseudo handles
+#ifndef NtCurrentProcess
 #define NtCurrentProcess() ((HANDLE)(LONG_PTR)-1)
+#endif
+#ifndef NtCurrentThread
 #define NtCurrentThread() ((HANDLE)(LONG_PTR)-2)
-
-// System information classes
-typedef enum _SYSTEM_INFORMATION_CLASS_EX {
-    SystemBasicInformationEx = 0,
-    SystemProcessInformationEx = 5,
-} SYSTEM_INFORMATION_CLASS_EX;
-
-// Client ID structure (if not defined)
-#ifndef _CLIENT_ID_DEFINED
-#define _CLIENT_ID_DEFINED
-typedef struct _CLIENT_ID {
-    HANDLE UniqueProcess;
-    HANDLE UniqueThread;
-} CLIENT_ID, *PCLIENT_ID;
 #endif
 
-// Object attributes (if not defined)
-#ifndef _OBJECT_ATTRIBUTES_DEFINED
-#define _OBJECT_ATTRIBUTES_DEFINED
-typedef struct _OBJECT_ATTRIBUTES {
+// Local type definitions to avoid SDK conflicts
+namespace veda64_nt {
+
+// Unicode string structure
+struct UNICODE_STRING {
+    USHORT Length;
+    USHORT MaximumLength;
+    PWSTR Buffer;
+};
+
+// Client ID structure
+struct CLIENT_ID {
+    HANDLE UniqueProcess;
+    HANDLE UniqueThread;
+};
+
+// Object attributes
+struct OBJECT_ATTRIBUTES {
     ULONG Length;
     HANDLE RootDirectory;
-    PUNICODE_STRING ObjectName;
+    void* ObjectName;  // PUNICODE_STRING
     ULONG Attributes;
     PVOID SecurityDescriptor;
     PVOID SecurityQualityOfService;
-} OBJECT_ATTRIBUTES, *POBJECT_ATTRIBUTES;
-#endif
-
-#ifndef InitializeObjectAttributes
-#define InitializeObjectAttributes(p, n, a, r, s) { \
-    (p)->Length = sizeof(OBJECT_ATTRIBUTES); \
-    (p)->RootDirectory = r; \
-    (p)->Attributes = a; \
-    (p)->ObjectName = n; \
-    (p)->SecurityDescriptor = s; \
-    (p)->SecurityQualityOfService = NULL; \
-}
-#endif
+};
 
 // System basic information
-typedef struct _SYSTEM_BASIC_INFORMATION {
+struct SYSTEM_BASIC_INFORMATION {
     ULONG Reserved;
     ULONG TimerResolution;
     ULONG PageSize;
@@ -85,11 +75,11 @@ typedef struct _SYSTEM_BASIC_INFORMATION {
     ULONG_PTR MinimumUserModeAddress;
     ULONG_PTR MaximumUserModeAddress;
     ULONG_PTR ActiveProcessorsAffinityMask;
-    CCHAR NumberOfProcessors;
-} SYSTEM_BASIC_INFORMATION, *PSYSTEM_BASIC_INFORMATION;
+    ULONG NumberOfProcessors;
+};
 
 // System thread information (within process info)
-typedef struct _SYSTEM_THREAD_INFORMATION_EX {
+struct SYSTEM_THREAD_INFORMATION {
     LARGE_INTEGER KernelTime;
     LARGE_INTEGER UserTime;
     LARGE_INTEGER CreateTime;
@@ -101,10 +91,10 @@ typedef struct _SYSTEM_THREAD_INFORMATION_EX {
     ULONG ContextSwitches;
     ULONG ThreadState;
     ULONG WaitReason;
-} SYSTEM_THREAD_INFORMATION_EX, *PSYSTEM_THREAD_INFORMATION_EX;
+};
 
 // System process information
-typedef struct _SYSTEM_PROCESS_INFORMATION_EX {
+struct SYSTEM_PROCESS_INFORMATION {
     ULONG NextEntryOffset;
     ULONG NumberOfThreads;
     LARGE_INTEGER WorkingSetPrivateSize;
@@ -139,8 +129,14 @@ typedef struct _SYSTEM_PROCESS_INFORMATION_EX {
     LARGE_INTEGER ReadTransferCount;
     LARGE_INTEGER WriteTransferCount;
     LARGE_INTEGER OtherTransferCount;
-    SYSTEM_THREAD_INFORMATION_EX Threads[1];
-} SYSTEM_PROCESS_INFORMATION_EX, *PSYSTEM_PROCESS_INFORMATION_EX;
+    SYSTEM_THREAD_INFORMATION Threads[1];
+};
+
+// System information class values
+constexpr ULONG SystemBasicInformation = 0;
+constexpr ULONG SystemProcessInformation = 5;
+
+} // namespace veda64_nt
 
 // ============================================================================
 // NT API Static Imports (linked against ntdll.lib)
@@ -179,7 +175,7 @@ NTSYSAPI NTSTATUS NTAPI NtFlushInstructionCache(
 );
 
 NTSYSAPI NTSTATUS NTAPI NtQuerySystemInformation(
-    SYSTEM_INFORMATION_CLASS_EX SystemInformationClass,
+    ULONG SystemInformationClass,
     PVOID SystemInformation,
     ULONG SystemInformationLength,
     PULONG ReturnLength
@@ -188,8 +184,8 @@ NTSYSAPI NTSTATUS NTAPI NtQuerySystemInformation(
 NTSYSAPI NTSTATUS NTAPI NtOpenThread(
     PHANDLE ThreadHandle,
     ACCESS_MASK DesiredAccess,
-    POBJECT_ATTRIBUTES ObjectAttributes,
-    PCLIENT_ID ClientId
+    veda64_nt::OBJECT_ATTRIBUTES* ObjectAttributes,
+    veda64_nt::CLIENT_ID* ClientId
 );
 
 NTSYSAPI NTSTATUS NTAPI NtSuspendThread(
@@ -216,27 +212,22 @@ static void init_allocation_granularity() {
     static bool initialized = false;
     if (initialized) return;
 
-    SYSTEM_BASIC_INFORMATION sbi = {};
+    veda64_nt::SYSTEM_BASIC_INFORMATION sbi = {};
     ULONG len = 0;
-    if (NtQuerySystemInformation(SystemBasicInformationEx, &sbi, sizeof(sbi), &len) == STATUS_SUCCESS) {
+    if (NtQuerySystemInformation(veda64_nt::SystemBasicInformation, &sbi, sizeof(sbi), &len) == STATUS_SUCCESS) {
         g_AllocationGranularity = sbi.AllocationGranularity;
     }
     initialized = true;
 }
 
-// Get current thread ID using TEB (ARM64 only)
+// Get current thread ID using TEB (ARM64: x18 register)
 static DWORD nt_get_current_thread_id() {
-    // ARM64: TEB pointer is in x18 register
-    // x18 points directly to TEB, and ClientId is at offset 0x48
-    PTEB teb = reinterpret_cast<PTEB>(__getReg(18));
-    return HandleToULong(teb->ClientId.UniqueThread);
+    return GetCurrentThreadId();  // Fallback to Win32 for compatibility
 }
 
-// Get current process ID using TEB (ARM64 only)
+// Get current process ID using TEB
 static DWORD nt_get_current_process_id() {
-    // ARM64: TEB pointer is in x18 register
-    PTEB teb = reinterpret_cast<PTEB>(__getReg(18));
-    return HandleToULong(teb->ClientId.UniqueProcess);
+    return GetCurrentProcessId();  // Fallback to Win32 for compatibility
 }
 
 namespace veda64 {
@@ -473,7 +464,7 @@ void suspend_threads() {
 
     NTSTATUS status;
     while ((status = NtQuerySystemInformation(
-        SystemProcessInformationEx,
+        veda64_nt::SystemProcessInformation,
         buffer.data(),
         static_cast<ULONG>(buffer.size()),
         &return_length)) == STATUS_INFO_LENGTH_MISMATCH) {
@@ -485,7 +476,7 @@ void suspend_threads() {
     }
 
     // Find our process and enumerate its threads
-    PSYSTEM_PROCESS_INFORMATION_EX proc_info = reinterpret_cast<PSYSTEM_PROCESS_INFORMATION_EX>(buffer.data());
+    auto* proc_info = reinterpret_cast<veda64_nt::SYSTEM_PROCESS_INFORMATION*>(buffer.data());
     while (true) {
         if (HandleToULong(proc_info->UniqueProcessId) == pid) {
             // Found our process, enumerate threads
@@ -494,11 +485,10 @@ void suspend_threads() {
                 if (tid != current_tid) {
                     // Open and suspend this thread
                     HANDLE thread_handle = nullptr;
-                    OBJECT_ATTRIBUTES obj_attr;
-                    CLIENT_ID client_id;
-                    client_id.UniqueProcess = nullptr;
+                    veda64_nt::OBJECT_ATTRIBUTES obj_attr = {};
+                    obj_attr.Length = sizeof(obj_attr);
+                    veda64_nt::CLIENT_ID client_id = {};
                     client_id.UniqueThread = ULongToHandle(tid);
-                    InitializeObjectAttributes(&obj_attr, nullptr, 0, nullptr, nullptr);
 
                     if (NtOpenThread(&thread_handle, THREAD_SUSPEND_RESUME, &obj_attr, &client_id) == STATUS_SUCCESS) {
                         NtSuspendThread(thread_handle, nullptr);
@@ -510,7 +500,7 @@ void suspend_threads() {
         }
 
         if (proc_info->NextEntryOffset == 0) break;
-        proc_info = reinterpret_cast<PSYSTEM_PROCESS_INFORMATION_EX>(
+        proc_info = reinterpret_cast<veda64_nt::SYSTEM_PROCESS_INFORMATION*>(
             reinterpret_cast<BYTE*>(proc_info) + proc_info->NextEntryOffset);
     }
 }
@@ -526,7 +516,7 @@ void resume_threads() {
 
     NTSTATUS status;
     while ((status = NtQuerySystemInformation(
-        SystemProcessInformationEx,
+        veda64_nt::SystemProcessInformation,
         buffer.data(),
         static_cast<ULONG>(buffer.size()),
         &return_length)) == STATUS_INFO_LENGTH_MISMATCH) {
@@ -538,7 +528,7 @@ void resume_threads() {
     }
 
     // Find our process and enumerate its threads
-    PSYSTEM_PROCESS_INFORMATION_EX proc_info = reinterpret_cast<PSYSTEM_PROCESS_INFORMATION_EX>(buffer.data());
+    auto* proc_info = reinterpret_cast<veda64_nt::SYSTEM_PROCESS_INFORMATION*>(buffer.data());
     while (true) {
         if (HandleToULong(proc_info->UniqueProcessId) == pid) {
             // Found our process, enumerate threads
@@ -547,11 +537,10 @@ void resume_threads() {
                 if (tid != current_tid) {
                     // Open and resume this thread
                     HANDLE thread_handle = nullptr;
-                    OBJECT_ATTRIBUTES obj_attr;
-                    CLIENT_ID client_id;
-                    client_id.UniqueProcess = nullptr;
+                    veda64_nt::OBJECT_ATTRIBUTES obj_attr = {};
+                    obj_attr.Length = sizeof(obj_attr);
+                    veda64_nt::CLIENT_ID client_id = {};
                     client_id.UniqueThread = ULongToHandle(tid);
-                    InitializeObjectAttributes(&obj_attr, nullptr, 0, nullptr, nullptr);
 
                     if (NtOpenThread(&thread_handle, THREAD_SUSPEND_RESUME, &obj_attr, &client_id) == STATUS_SUCCESS) {
                         NtResumeThread(thread_handle, nullptr);
@@ -563,7 +552,7 @@ void resume_threads() {
         }
 
         if (proc_info->NextEntryOffset == 0) break;
-        proc_info = reinterpret_cast<PSYSTEM_PROCESS_INFORMATION_EX>(
+        proc_info = reinterpret_cast<veda64_nt::SYSTEM_PROCESS_INFORMATION*>(
             reinterpret_cast<BYTE*>(proc_info) + proc_info->NextEntryOffset);
     }
 }

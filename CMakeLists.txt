@@ -31,6 +31,11 @@ target_include_directories(veda64 PUBLIC
     $<INSTALL_INTERFACE:include>
 )
 
+# Link ntdll for NT syscalls on Windows
+if(WIN32)
+    target_link_libraries(veda64 PUBLIC ntdll)
+endif()
+
 # Tools
 add_executable(veda64-disasm tools/veda64-disasm.cpp)
 target_link_libraries(veda64-disasm PRIVATE veda64)

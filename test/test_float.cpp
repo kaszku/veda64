@@ -1,5 +1,6 @@
 // Test suite for float instruction class
 #include "veda64.hpp"
+#include "class/float.hpp"
 #include <cassert>
 #include <iostream>
 #include <iomanip>

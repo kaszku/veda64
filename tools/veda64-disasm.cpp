@@ -27,13 +27,13 @@ void print_usage(const char* progname) {
     std::cerr << "Disassemble one or more ARM64 instructions.\n";
     std::cerr << "\n";
     std::cerr << "Arguments:\n";
-    std::cerr << "  instruction  32-bit value in little-endian memory order\n";
+    std::cerr << "  instruction  32-bit native instruction value\n";
     std::cerr << "               (hex: 0x..., binary: 0b..., or decimal)\n";
     std::cerr << "\n";
     std::cerr << "Examples:\n";
-    std::cerr << "  " << progname << " 0x7f2303d5              # PACIBSP\n";
-    std::cerr << "  " << progname << " 0xc0035fd6              # RET\n";
-    std::cerr << "  " << progname << " 0x7f2303d5 0xc0035fd6   # Multiple instructions\n";
+    std::cerr << "  " << progname << " 0xd503237f              # PACIBSP\n";
+    std::cerr << "  " << progname << " 0xd65f03c0              # RET\n";
+    std::cerr << "  " << progname << " 0xd503237f 0xd65f03c0   # Multiple instructions\n";
 }
 
 int main(int argc, char* argv[]) {

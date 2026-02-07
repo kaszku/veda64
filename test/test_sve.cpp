@@ -1,5 +1,6 @@
 // Test suite for sve instruction class
 #include "veda64.hpp"
+#include "class/sve.hpp"
 #include <cassert>
 #include <iostream>
 #include <iomanip>

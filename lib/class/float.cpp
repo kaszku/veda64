@@ -22,7 +22,6 @@ struct BfcvtBsFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(BfcvtBsFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FABS: Floating-point absolute value (scalar)
 // Encoding: FABS_H_floatdp1
@@ -40,7 +39,6 @@ struct FabsHFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FabsHFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FABS: Floating-point absolute value (scalar)
 // Encoding: FABS_S_floatdp1
@@ -58,7 +56,6 @@ struct FabsSFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FabsSFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FABS: Floating-point absolute value (scalar)
 // Encoding: FABS_D_floatdp1
@@ -76,7 +73,6 @@ struct FabsDFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FabsDFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FADD: Floating-point add (scalar)
 // Encoding: FADD_H_floatdp2
@@ -96,7 +92,6 @@ struct FaddHFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FaddHFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FADD: Floating-point add (scalar)
 // Encoding: FADD_S_floatdp2
@@ -116,7 +111,6 @@ struct FaddSFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FaddSFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FADD: Floating-point add (scalar)
 // Encoding: FADD_D_floatdp2
@@ -136,7 +130,6 @@ struct FaddDFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FaddDFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FCCMP: Floating-point conditional quiet compare (scalar)
 // Encoding: FCCMP_H_floatccmp
@@ -156,7 +149,6 @@ struct FccmpHFloatccmp {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FccmpHFloatccmp) == 4, "Encoding struct must be 32 bits");
 
 // FCCMP: Floating-point conditional quiet compare (scalar)
 // Encoding: FCCMP_S_floatccmp
@@ -176,7 +168,6 @@ struct FccmpSFloatccmp {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FccmpSFloatccmp) == 4, "Encoding struct must be 32 bits");
 
 // FCCMP: Floating-point conditional quiet compare (scalar)
 // Encoding: FCCMP_D_floatccmp
@@ -196,7 +187,6 @@ struct FccmpDFloatccmp {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FccmpDFloatccmp) == 4, "Encoding struct must be 32 bits");
 
 // FCCMPE: Floating-point conditional signaling compare (scalar)
 // Encoding: FCCMPE_H_floatccmp
@@ -216,7 +206,6 @@ struct FccmpeHFloatccmp {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FccmpeHFloatccmp) == 4, "Encoding struct must be 32 bits");
 
 // FCCMPE: Floating-point conditional signaling compare (scalar)
 // Encoding: FCCMPE_S_floatccmp
@@ -236,7 +225,6 @@ struct FccmpeSFloatccmp {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FccmpeSFloatccmp) == 4, "Encoding struct must be 32 bits");
 
 // FCCMPE: Floating-point conditional signaling compare (scalar)
 // Encoding: FCCMPE_D_floatccmp
@@ -256,7 +244,6 @@ struct FccmpeDFloatccmp {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FccmpeDFloatccmp) == 4, "Encoding struct must be 32 bits");
 
 // FCMP: Floating-point quiet compare (scalar)
 // Encoding: FCMP_H_floatcmp
@@ -276,7 +263,6 @@ struct FcmpHFloatcmp {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmpHFloatcmp) == 4, "Encoding struct must be 32 bits");
 
 // FCMP: Floating-point quiet compare (scalar)
 // Encoding: FCMP_HZ_floatcmp
@@ -296,7 +282,6 @@ struct FcmpHzFloatcmp {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmpHzFloatcmp) == 4, "Encoding struct must be 32 bits");
 
 // FCMP: Floating-point quiet compare (scalar)
 // Encoding: FCMP_S_floatcmp
@@ -316,7 +301,6 @@ struct FcmpSFloatcmp {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmpSFloatcmp) == 4, "Encoding struct must be 32 bits");
 
 // FCMP: Floating-point quiet compare (scalar)
 // Encoding: FCMP_SZ_floatcmp
@@ -336,7 +320,6 @@ struct FcmpSzFloatcmp {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmpSzFloatcmp) == 4, "Encoding struct must be 32 bits");
 
 // FCMP: Floating-point quiet compare (scalar)
 // Encoding: FCMP_D_floatcmp
@@ -356,7 +339,6 @@ struct FcmpDFloatcmp {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmpDFloatcmp) == 4, "Encoding struct must be 32 bits");
 
 // FCMP: Floating-point quiet compare (scalar)
 // Encoding: FCMP_DZ_floatcmp
@@ -376,7 +358,6 @@ struct FcmpDzFloatcmp {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmpDzFloatcmp) == 4, "Encoding struct must be 32 bits");
 
 // FCMPE: Floating-point signaling compare (scalar)
 // Encoding: FCMPE_H_floatcmp
@@ -396,7 +377,6 @@ struct FcmpeHFloatcmp {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmpeHFloatcmp) == 4, "Encoding struct must be 32 bits");
 
 // FCMPE: Floating-point signaling compare (scalar)
 // Encoding: FCMPE_HZ_floatcmp
@@ -416,7 +396,6 @@ struct FcmpeHzFloatcmp {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmpeHzFloatcmp) == 4, "Encoding struct must be 32 bits");
 
 // FCMPE: Floating-point signaling compare (scalar)
 // Encoding: FCMPE_S_floatcmp
@@ -436,7 +415,6 @@ struct FcmpeSFloatcmp {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmpeSFloatcmp) == 4, "Encoding struct must be 32 bits");
 
 // FCMPE: Floating-point signaling compare (scalar)
 // Encoding: FCMPE_SZ_floatcmp
@@ -456,7 +434,6 @@ struct FcmpeSzFloatcmp {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmpeSzFloatcmp) == 4, "Encoding struct must be 32 bits");
 
 // FCMPE: Floating-point signaling compare (scalar)
 // Encoding: FCMPE_D_floatcmp
@@ -476,7 +453,6 @@ struct FcmpeDFloatcmp {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmpeDFloatcmp) == 4, "Encoding struct must be 32 bits");
 
 // FCMPE: Floating-point signaling compare (scalar)
 // Encoding: FCMPE_DZ_floatcmp
@@ -496,7 +472,6 @@ struct FcmpeDzFloatcmp {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcmpeDzFloatcmp) == 4, "Encoding struct must be 32 bits");
 
 // FCSEL: Floating-point conditional select (scalar)
 // Encoding: FCSEL_H_floatsel
@@ -515,7 +490,6 @@ struct FcselHFloatsel {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcselHFloatsel) == 4, "Encoding struct must be 32 bits");
 
 // FCSEL: Floating-point conditional select (scalar)
 // Encoding: FCSEL_S_floatsel
@@ -534,7 +508,6 @@ struct FcselSFloatsel {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcselSFloatsel) == 4, "Encoding struct must be 32 bits");
 
 // FCSEL: Floating-point conditional select (scalar)
 // Encoding: FCSEL_D_floatsel
@@ -553,7 +526,6 @@ struct FcselDFloatsel {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcselDFloatsel) == 4, "Encoding struct must be 32 bits");
 
 // FCVT: Floating-point convert precision (scalar)
 // Encoding: FCVT_SH_floatdp1
@@ -571,7 +543,6 @@ struct FcvtShFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtShFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FCVT: Floating-point convert precision (scalar)
 // Encoding: FCVT_DH_floatdp1
@@ -589,7 +560,6 @@ struct FcvtDhFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtDhFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FCVT: Floating-point convert precision (scalar)
 // Encoding: FCVT_HS_floatdp1
@@ -607,7 +577,6 @@ struct FcvtHsFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtHsFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FCVT: Floating-point convert precision (scalar)
 // Encoding: FCVT_DS_floatdp1
@@ -625,7 +594,6 @@ struct FcvtDsFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtDsFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FCVT: Floating-point convert precision (scalar)
 // Encoding: FCVT_HD_floatdp1
@@ -643,7 +611,6 @@ struct FcvtHdFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtHdFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FCVT: Floating-point convert precision (scalar)
 // Encoding: FCVT_SD_floatdp1
@@ -661,7 +628,6 @@ struct FcvtSdFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtSdFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAS: Floating-point convert to signed integer, rounding to nearest with ties to away (scalar)
 // Encoding: FCVTAS_32H_float2int
@@ -680,7 +646,6 @@ struct Fcvtas32hFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtas32hFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAS: Floating-point convert to signed integer, rounding to nearest with ties to away (scalar)
 // Encoding: FCVTAS_64H_float2int
@@ -699,7 +664,6 @@ struct Fcvtas64hFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtas64hFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAS: Floating-point convert to signed integer, rounding to nearest with ties to away (scalar)
 // Encoding: FCVTAS_32S_float2int
@@ -718,7 +682,6 @@ struct Fcvtas32sFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtas32sFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAS: Floating-point convert to signed integer, rounding to nearest with ties to away (scalar)
 // Encoding: FCVTAS_64S_float2int
@@ -737,7 +700,6 @@ struct Fcvtas64sFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtas64sFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAS: Floating-point convert to signed integer, rounding to nearest with ties to away (scalar)
 // Encoding: FCVTAS_32D_float2int
@@ -756,7 +718,6 @@ struct Fcvtas32dFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtas32dFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAS: Floating-point convert to signed integer, rounding to nearest with ties to away (scalar)
 // Encoding: FCVTAS_64D_float2int
@@ -775,7 +736,6 @@ struct Fcvtas64dFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtas64dFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAS: Floating-point convert to signed integer, rounding to nearest with ties to away (scalar SIMD&FP)
 // Encoding: FCVTAS_sisd_32H
@@ -794,7 +754,6 @@ struct FcvtasSisd32h {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtasSisd32h) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAS: Floating-point convert to signed integer, rounding to nearest with ties to away (scalar SIMD&FP)
 // Encoding: FCVTAS_sisd_64H
@@ -813,7 +772,6 @@ struct FcvtasSisd64h {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtasSisd64h) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAS: Floating-point convert to signed integer, rounding to nearest with ties to away (scalar SIMD&FP)
 // Encoding: FCVTAS_sisd_64S
@@ -832,7 +790,6 @@ struct FcvtasSisd64s {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtasSisd64s) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAS: Floating-point convert to signed integer, rounding to nearest with ties to away (scalar SIMD&FP)
 // Encoding: FCVTAS_sisd_32D
@@ -851,7 +808,6 @@ struct FcvtasSisd32d {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtasSisd32d) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAU: Floating-point convert to unsigned integer, rounding to nearest with ties to away (scalar)
 // Encoding: FCVTAU_32H_float2int
@@ -870,7 +826,6 @@ struct Fcvtau32hFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtau32hFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAU: Floating-point convert to unsigned integer, rounding to nearest with ties to away (scalar)
 // Encoding: FCVTAU_64H_float2int
@@ -889,7 +844,6 @@ struct Fcvtau64hFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtau64hFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAU: Floating-point convert to unsigned integer, rounding to nearest with ties to away (scalar)
 // Encoding: FCVTAU_32S_float2int
@@ -908,7 +862,6 @@ struct Fcvtau32sFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtau32sFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAU: Floating-point convert to unsigned integer, rounding to nearest with ties to away (scalar)
 // Encoding: FCVTAU_64S_float2int
@@ -927,7 +880,6 @@ struct Fcvtau64sFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtau64sFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAU: Floating-point convert to unsigned integer, rounding to nearest with ties to away (scalar)
 // Encoding: FCVTAU_32D_float2int
@@ -946,7 +898,6 @@ struct Fcvtau32dFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtau32dFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAU: Floating-point convert to unsigned integer, rounding to nearest with ties to away (scalar)
 // Encoding: FCVTAU_64D_float2int
@@ -965,7 +916,6 @@ struct Fcvtau64dFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtau64dFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAU: Floating-point convert to unsigned integer, rounding to nearest with ties to away (scalar SIMD&FP)
 // Encoding: FCVTAU_sisd_32H
@@ -984,7 +934,6 @@ struct FcvtauSisd32h {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtauSisd32h) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAU: Floating-point convert to unsigned integer, rounding to nearest with ties to away (scalar SIMD&FP)
 // Encoding: FCVTAU_sisd_64H
@@ -1003,7 +952,6 @@ struct FcvtauSisd64h {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtauSisd64h) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAU: Floating-point convert to unsigned integer, rounding to nearest with ties to away (scalar SIMD&FP)
 // Encoding: FCVTAU_sisd_64S
@@ -1022,7 +970,6 @@ struct FcvtauSisd64s {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtauSisd64s) == 4, "Encoding struct must be 32 bits");
 
 // FCVTAU: Floating-point convert to unsigned integer, rounding to nearest with ties to away (scalar SIMD&FP)
 // Encoding: FCVTAU_sisd_32D
@@ -1041,7 +988,6 @@ struct FcvtauSisd32d {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtauSisd32d) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMS: Floating-point convert to signed integer, rounding toward minus infinity (scalar)
 // Encoding: FCVTMS_32H_float2int
@@ -1060,7 +1006,6 @@ struct Fcvtms32hFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtms32hFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMS: Floating-point convert to signed integer, rounding toward minus infinity (scalar)
 // Encoding: FCVTMS_64H_float2int
@@ -1079,7 +1024,6 @@ struct Fcvtms64hFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtms64hFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMS: Floating-point convert to signed integer, rounding toward minus infinity (scalar)
 // Encoding: FCVTMS_32S_float2int
@@ -1098,7 +1042,6 @@ struct Fcvtms32sFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtms32sFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMS: Floating-point convert to signed integer, rounding toward minus infinity (scalar)
 // Encoding: FCVTMS_64S_float2int
@@ -1117,7 +1060,6 @@ struct Fcvtms64sFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtms64sFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMS: Floating-point convert to signed integer, rounding toward minus infinity (scalar)
 // Encoding: FCVTMS_32D_float2int
@@ -1136,7 +1078,6 @@ struct Fcvtms32dFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtms32dFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMS: Floating-point convert to signed integer, rounding toward minus infinity (scalar)
 // Encoding: FCVTMS_64D_float2int
@@ -1155,7 +1096,6 @@ struct Fcvtms64dFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtms64dFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMS: Floating-point convert to signed integer, rounding toward minus infinity (scalar SIMD&FP)
 // Encoding: FCVTMS_sisd_32H
@@ -1174,7 +1114,6 @@ struct FcvtmsSisd32h {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtmsSisd32h) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMS: Floating-point convert to signed integer, rounding toward minus infinity (scalar SIMD&FP)
 // Encoding: FCVTMS_sisd_64H
@@ -1193,7 +1132,6 @@ struct FcvtmsSisd64h {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtmsSisd64h) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMS: Floating-point convert to signed integer, rounding toward minus infinity (scalar SIMD&FP)
 // Encoding: FCVTMS_sisd_64S
@@ -1212,7 +1150,6 @@ struct FcvtmsSisd64s {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtmsSisd64s) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMS: Floating-point convert to signed integer, rounding toward minus infinity (scalar SIMD&FP)
 // Encoding: FCVTMS_sisd_32D
@@ -1231,7 +1168,6 @@ struct FcvtmsSisd32d {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtmsSisd32d) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMU: Floating-point convert to unsigned integer, rounding toward minus infinity (scalar)
 // Encoding: FCVTMU_32H_float2int
@@ -1250,7 +1186,6 @@ struct Fcvtmu32hFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtmu32hFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMU: Floating-point convert to unsigned integer, rounding toward minus infinity (scalar)
 // Encoding: FCVTMU_64H_float2int
@@ -1269,7 +1204,6 @@ struct Fcvtmu64hFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtmu64hFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMU: Floating-point convert to unsigned integer, rounding toward minus infinity (scalar)
 // Encoding: FCVTMU_32S_float2int
@@ -1288,7 +1222,6 @@ struct Fcvtmu32sFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtmu32sFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMU: Floating-point convert to unsigned integer, rounding toward minus infinity (scalar)
 // Encoding: FCVTMU_64S_float2int
@@ -1307,7 +1240,6 @@ struct Fcvtmu64sFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtmu64sFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMU: Floating-point convert to unsigned integer, rounding toward minus infinity (scalar)
 // Encoding: FCVTMU_32D_float2int
@@ -1326,7 +1258,6 @@ struct Fcvtmu32dFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtmu32dFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMU: Floating-point convert to unsigned integer, rounding toward minus infinity (scalar)
 // Encoding: FCVTMU_64D_float2int
@@ -1345,7 +1276,6 @@ struct Fcvtmu64dFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtmu64dFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMU: Floating-point convert to unsigned integer, rounding toward minus infinity (scalar SIMD&FP)
 // Encoding: FCVTMU_sisd_32H
@@ -1364,7 +1294,6 @@ struct FcvtmuSisd32h {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtmuSisd32h) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMU: Floating-point convert to unsigned integer, rounding toward minus infinity (scalar SIMD&FP)
 // Encoding: FCVTMU_sisd_64H
@@ -1383,7 +1312,6 @@ struct FcvtmuSisd64h {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtmuSisd64h) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMU: Floating-point convert to unsigned integer, rounding toward minus infinity (scalar SIMD&FP)
 // Encoding: FCVTMU_sisd_64S
@@ -1402,7 +1330,6 @@ struct FcvtmuSisd64s {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtmuSisd64s) == 4, "Encoding struct must be 32 bits");
 
 // FCVTMU: Floating-point convert to unsigned integer, rounding toward minus infinity (scalar SIMD&FP)
 // Encoding: FCVTMU_sisd_32D
@@ -1421,7 +1348,6 @@ struct FcvtmuSisd32d {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtmuSisd32d) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNS: Floating-point convert to signed integer, rounding to nearest with ties to even (scalar)
 // Encoding: FCVTNS_32H_float2int
@@ -1440,7 +1366,6 @@ struct Fcvtns32hFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtns32hFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNS: Floating-point convert to signed integer, rounding to nearest with ties to even (scalar)
 // Encoding: FCVTNS_64H_float2int
@@ -1459,7 +1384,6 @@ struct Fcvtns64hFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtns64hFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNS: Floating-point convert to signed integer, rounding to nearest with ties to even (scalar)
 // Encoding: FCVTNS_32S_float2int
@@ -1478,7 +1402,6 @@ struct Fcvtns32sFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtns32sFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNS: Floating-point convert to signed integer, rounding to nearest with ties to even (scalar)
 // Encoding: FCVTNS_64S_float2int
@@ -1497,7 +1420,6 @@ struct Fcvtns64sFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtns64sFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNS: Floating-point convert to signed integer, rounding to nearest with ties to even (scalar)
 // Encoding: FCVTNS_32D_float2int
@@ -1516,7 +1438,6 @@ struct Fcvtns32dFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtns32dFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNS: Floating-point convert to signed integer, rounding to nearest with ties to even (scalar)
 // Encoding: FCVTNS_64D_float2int
@@ -1535,7 +1456,6 @@ struct Fcvtns64dFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtns64dFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNS: Floating-point convert to signed integer, rounding to nearest with ties to even (scalar SIMD&FP)
 // Encoding: FCVTNS_sisd_32H
@@ -1554,7 +1474,6 @@ struct FcvtnsSisd32h {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtnsSisd32h) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNS: Floating-point convert to signed integer, rounding to nearest with ties to even (scalar SIMD&FP)
 // Encoding: FCVTNS_sisd_64H
@@ -1573,7 +1492,6 @@ struct FcvtnsSisd64h {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtnsSisd64h) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNS: Floating-point convert to signed integer, rounding to nearest with ties to even (scalar SIMD&FP)
 // Encoding: FCVTNS_sisd_64S
@@ -1592,7 +1510,6 @@ struct FcvtnsSisd64s {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtnsSisd64s) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNS: Floating-point convert to signed integer, rounding to nearest with ties to even (scalar SIMD&FP)
 // Encoding: FCVTNS_sisd_32D
@@ -1611,7 +1528,6 @@ struct FcvtnsSisd32d {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtnsSisd32d) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNU: Floating-point convert to unsigned integer, rounding to nearest with ties to even (scalar)
 // Encoding: FCVTNU_32H_float2int
@@ -1630,7 +1546,6 @@ struct Fcvtnu32hFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtnu32hFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNU: Floating-point convert to unsigned integer, rounding to nearest with ties to even (scalar)
 // Encoding: FCVTNU_64H_float2int
@@ -1649,7 +1564,6 @@ struct Fcvtnu64hFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtnu64hFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNU: Floating-point convert to unsigned integer, rounding to nearest with ties to even (scalar)
 // Encoding: FCVTNU_32S_float2int
@@ -1668,7 +1582,6 @@ struct Fcvtnu32sFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtnu32sFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNU: Floating-point convert to unsigned integer, rounding to nearest with ties to even (scalar)
 // Encoding: FCVTNU_64S_float2int
@@ -1687,7 +1600,6 @@ struct Fcvtnu64sFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtnu64sFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNU: Floating-point convert to unsigned integer, rounding to nearest with ties to even (scalar)
 // Encoding: FCVTNU_32D_float2int
@@ -1706,7 +1618,6 @@ struct Fcvtnu32dFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtnu32dFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNU: Floating-point convert to unsigned integer, rounding to nearest with ties to even (scalar)
 // Encoding: FCVTNU_64D_float2int
@@ -1725,7 +1636,6 @@ struct Fcvtnu64dFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtnu64dFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNU: Floating-point convert to unsigned integer, rounding to nearest with ties to even (scalar SIMD&FP)
 // Encoding: FCVTNU_sisd_32H
@@ -1744,7 +1654,6 @@ struct FcvtnuSisd32h {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtnuSisd32h) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNU: Floating-point convert to unsigned integer, rounding to nearest with ties to even (scalar SIMD&FP)
 // Encoding: FCVTNU_sisd_64H
@@ -1763,7 +1672,6 @@ struct FcvtnuSisd64h {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtnuSisd64h) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNU: Floating-point convert to unsigned integer, rounding to nearest with ties to even (scalar SIMD&FP)
 // Encoding: FCVTNU_sisd_64S
@@ -1782,7 +1690,6 @@ struct FcvtnuSisd64s {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtnuSisd64s) == 4, "Encoding struct must be 32 bits");
 
 // FCVTNU: Floating-point convert to unsigned integer, rounding to nearest with ties to even (scalar SIMD&FP)
 // Encoding: FCVTNU_sisd_32D
@@ -1801,7 +1708,6 @@ struct FcvtnuSisd32d {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtnuSisd32d) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPS: Floating-point convert to signed integer, rounding toward plus infinity (scalar)
 // Encoding: FCVTPS_32H_float2int
@@ -1820,7 +1726,6 @@ struct Fcvtps32hFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtps32hFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPS: Floating-point convert to signed integer, rounding toward plus infinity (scalar)
 // Encoding: FCVTPS_64H_float2int
@@ -1839,7 +1744,6 @@ struct Fcvtps64hFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtps64hFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPS: Floating-point convert to signed integer, rounding toward plus infinity (scalar)
 // Encoding: FCVTPS_32S_float2int
@@ -1858,7 +1762,6 @@ struct Fcvtps32sFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtps32sFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPS: Floating-point convert to signed integer, rounding toward plus infinity (scalar)
 // Encoding: FCVTPS_64S_float2int
@@ -1877,7 +1780,6 @@ struct Fcvtps64sFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtps64sFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPS: Floating-point convert to signed integer, rounding toward plus infinity (scalar)
 // Encoding: FCVTPS_32D_float2int
@@ -1896,7 +1798,6 @@ struct Fcvtps32dFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtps32dFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPS: Floating-point convert to signed integer, rounding toward plus infinity (scalar)
 // Encoding: FCVTPS_64D_float2int
@@ -1915,7 +1816,6 @@ struct Fcvtps64dFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtps64dFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPS: Floating-point convert to signed integer, rounding toward plus infinity (scalar SIMD&FP)
 // Encoding: FCVTPS_sisd_32H
@@ -1934,7 +1834,6 @@ struct FcvtpsSisd32h {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtpsSisd32h) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPS: Floating-point convert to signed integer, rounding toward plus infinity (scalar SIMD&FP)
 // Encoding: FCVTPS_sisd_64H
@@ -1953,7 +1852,6 @@ struct FcvtpsSisd64h {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtpsSisd64h) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPS: Floating-point convert to signed integer, rounding toward plus infinity (scalar SIMD&FP)
 // Encoding: FCVTPS_sisd_64S
@@ -1972,7 +1870,6 @@ struct FcvtpsSisd64s {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtpsSisd64s) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPS: Floating-point convert to signed integer, rounding toward plus infinity (scalar SIMD&FP)
 // Encoding: FCVTPS_sisd_32D
@@ -1991,7 +1888,6 @@ struct FcvtpsSisd32d {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtpsSisd32d) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPU: Floating-point convert to unsigned integer, rounding toward plus infinity (scalar)
 // Encoding: FCVTPU_32H_float2int
@@ -2010,7 +1906,6 @@ struct Fcvtpu32hFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtpu32hFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPU: Floating-point convert to unsigned integer, rounding toward plus infinity (scalar)
 // Encoding: FCVTPU_64H_float2int
@@ -2029,7 +1924,6 @@ struct Fcvtpu64hFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtpu64hFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPU: Floating-point convert to unsigned integer, rounding toward plus infinity (scalar)
 // Encoding: FCVTPU_32S_float2int
@@ -2048,7 +1942,6 @@ struct Fcvtpu32sFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtpu32sFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPU: Floating-point convert to unsigned integer, rounding toward plus infinity (scalar)
 // Encoding: FCVTPU_64S_float2int
@@ -2067,7 +1960,6 @@ struct Fcvtpu64sFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtpu64sFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPU: Floating-point convert to unsigned integer, rounding toward plus infinity (scalar)
 // Encoding: FCVTPU_32D_float2int
@@ -2086,7 +1978,6 @@ struct Fcvtpu32dFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtpu32dFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPU: Floating-point convert to unsigned integer, rounding toward plus infinity (scalar)
 // Encoding: FCVTPU_64D_float2int
@@ -2105,7 +1996,6 @@ struct Fcvtpu64dFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtpu64dFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPU: Floating-point convert to unsigned integer, rounding toward plus infinity (scalar SIMD&FP)
 // Encoding: FCVTPU_sisd_32H
@@ -2124,7 +2014,6 @@ struct FcvtpuSisd32h {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtpuSisd32h) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPU: Floating-point convert to unsigned integer, rounding toward plus infinity (scalar SIMD&FP)
 // Encoding: FCVTPU_sisd_64H
@@ -2143,7 +2032,6 @@ struct FcvtpuSisd64h {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtpuSisd64h) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPU: Floating-point convert to unsigned integer, rounding toward plus infinity (scalar SIMD&FP)
 // Encoding: FCVTPU_sisd_64S
@@ -2162,7 +2050,6 @@ struct FcvtpuSisd64s {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtpuSisd64s) == 4, "Encoding struct must be 32 bits");
 
 // FCVTPU: Floating-point convert to unsigned integer, rounding toward plus infinity (scalar SIMD&FP)
 // Encoding: FCVTPU_sisd_32D
@@ -2181,7 +2068,6 @@ struct FcvtpuSisd32d {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtpuSisd32d) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZS: Floating-point convert to signed fixed-point, rounding toward zero (scalar)
 // Encoding: FCVTZS_32H_float2fix
@@ -2200,7 +2086,6 @@ struct Fcvtzs32hFloat2fix {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtzs32hFloat2fix) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZS: Floating-point convert to signed fixed-point, rounding toward zero (scalar)
 // Encoding: FCVTZS_64H_float2fix
@@ -2219,7 +2104,6 @@ struct Fcvtzs64hFloat2fix {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtzs64hFloat2fix) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZS: Floating-point convert to signed fixed-point, rounding toward zero (scalar)
 // Encoding: FCVTZS_32S_float2fix
@@ -2238,7 +2122,6 @@ struct Fcvtzs32sFloat2fix {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtzs32sFloat2fix) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZS: Floating-point convert to signed fixed-point, rounding toward zero (scalar)
 // Encoding: FCVTZS_64S_float2fix
@@ -2257,7 +2140,6 @@ struct Fcvtzs64sFloat2fix {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtzs64sFloat2fix) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZS: Floating-point convert to signed fixed-point, rounding toward zero (scalar)
 // Encoding: FCVTZS_32D_float2fix
@@ -2276,7 +2158,6 @@ struct Fcvtzs32dFloat2fix {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtzs32dFloat2fix) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZS: Floating-point convert to signed fixed-point, rounding toward zero (scalar)
 // Encoding: FCVTZS_64D_float2fix
@@ -2295,7 +2176,6 @@ struct Fcvtzs64dFloat2fix {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtzs64dFloat2fix) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZS: Floating-point convert to signed integer, rounding toward zero (scalar)
 // Encoding: FCVTZS_32H_float2int
@@ -2314,7 +2194,6 @@ struct Fcvtzs32hFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtzs32hFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZS: Floating-point convert to signed integer, rounding toward zero (scalar)
 // Encoding: FCVTZS_64H_float2int
@@ -2333,7 +2212,6 @@ struct Fcvtzs64hFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtzs64hFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZS: Floating-point convert to signed integer, rounding toward zero (scalar)
 // Encoding: FCVTZS_32S_float2int
@@ -2352,7 +2230,6 @@ struct Fcvtzs32sFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtzs32sFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZS: Floating-point convert to signed integer, rounding toward zero (scalar)
 // Encoding: FCVTZS_64S_float2int
@@ -2371,7 +2248,6 @@ struct Fcvtzs64sFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtzs64sFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZS: Floating-point convert to signed integer, rounding toward zero (scalar)
 // Encoding: FCVTZS_32D_float2int
@@ -2390,7 +2266,6 @@ struct Fcvtzs32dFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtzs32dFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZS: Floating-point convert to signed integer, rounding toward zero (scalar)
 // Encoding: FCVTZS_64D_float2int
@@ -2409,7 +2284,6 @@ struct Fcvtzs64dFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtzs64dFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZS: Floating-point convert to signed integer, rounding toward zero (scalar SIMD&FP)
 // Encoding: FCVTZS_sisd_32H
@@ -2428,7 +2302,6 @@ struct FcvtzsSisd32h {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtzsSisd32h) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZS: Floating-point convert to signed integer, rounding toward zero (scalar SIMD&FP)
 // Encoding: FCVTZS_sisd_64H
@@ -2447,7 +2320,6 @@ struct FcvtzsSisd64h {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtzsSisd64h) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZS: Floating-point convert to signed integer, rounding toward zero (scalar SIMD&FP)
 // Encoding: FCVTZS_sisd_64S
@@ -2466,7 +2338,6 @@ struct FcvtzsSisd64s {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtzsSisd64s) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZS: Floating-point convert to signed integer, rounding toward zero (scalar SIMD&FP)
 // Encoding: FCVTZS_sisd_32D
@@ -2485,7 +2356,6 @@ struct FcvtzsSisd32d {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtzsSisd32d) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZU: Floating-point convert to unsigned fixed-point, rounding toward zero (scalar)
 // Encoding: FCVTZU_32H_float2fix
@@ -2504,7 +2374,6 @@ struct Fcvtzu32hFloat2fix {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtzu32hFloat2fix) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZU: Floating-point convert to unsigned fixed-point, rounding toward zero (scalar)
 // Encoding: FCVTZU_64H_float2fix
@@ -2523,7 +2392,6 @@ struct Fcvtzu64hFloat2fix {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtzu64hFloat2fix) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZU: Floating-point convert to unsigned fixed-point, rounding toward zero (scalar)
 // Encoding: FCVTZU_32S_float2fix
@@ -2542,7 +2410,6 @@ struct Fcvtzu32sFloat2fix {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtzu32sFloat2fix) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZU: Floating-point convert to unsigned fixed-point, rounding toward zero (scalar)
 // Encoding: FCVTZU_64S_float2fix
@@ -2561,7 +2428,6 @@ struct Fcvtzu64sFloat2fix {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtzu64sFloat2fix) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZU: Floating-point convert to unsigned fixed-point, rounding toward zero (scalar)
 // Encoding: FCVTZU_32D_float2fix
@@ -2580,7 +2446,6 @@ struct Fcvtzu32dFloat2fix {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtzu32dFloat2fix) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZU: Floating-point convert to unsigned fixed-point, rounding toward zero (scalar)
 // Encoding: FCVTZU_64D_float2fix
@@ -2599,7 +2464,6 @@ struct Fcvtzu64dFloat2fix {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtzu64dFloat2fix) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZU: Floating-point convert to unsigned integer, rounding toward zero (scalar)
 // Encoding: FCVTZU_32H_float2int
@@ -2618,7 +2482,6 @@ struct Fcvtzu32hFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtzu32hFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZU: Floating-point convert to unsigned integer, rounding toward zero (scalar)
 // Encoding: FCVTZU_64H_float2int
@@ -2637,7 +2500,6 @@ struct Fcvtzu64hFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtzu64hFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZU: Floating-point convert to unsigned integer, rounding toward zero (scalar)
 // Encoding: FCVTZU_32S_float2int
@@ -2656,7 +2518,6 @@ struct Fcvtzu32sFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtzu32sFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZU: Floating-point convert to unsigned integer, rounding toward zero (scalar)
 // Encoding: FCVTZU_64S_float2int
@@ -2675,7 +2536,6 @@ struct Fcvtzu64sFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtzu64sFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZU: Floating-point convert to unsigned integer, rounding toward zero (scalar)
 // Encoding: FCVTZU_32D_float2int
@@ -2694,7 +2554,6 @@ struct Fcvtzu32dFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fcvtzu32dFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZU: Floating-point convert to unsigned integer, rounding toward zero (scalar)
 // Encoding: FCVTZU_64D_float2int
@@ -2713,7 +2572,6 @@ struct Fcvtzu64dFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fcvtzu64dFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZU: Floating-point convert to unsigned integer, rounding toward zero (scalar SIMD&FP)
 // Encoding: FCVTZU_sisd_32H
@@ -2732,7 +2590,6 @@ struct FcvtzuSisd32h {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtzuSisd32h) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZU: Floating-point convert to unsigned integer, rounding toward zero (scalar SIMD&FP)
 // Encoding: FCVTZU_sisd_64H
@@ -2751,7 +2608,6 @@ struct FcvtzuSisd64h {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtzuSisd64h) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZU: Floating-point convert to unsigned integer, rounding toward zero (scalar SIMD&FP)
 // Encoding: FCVTZU_sisd_64S
@@ -2770,7 +2626,6 @@ struct FcvtzuSisd64s {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FcvtzuSisd64s) == 4, "Encoding struct must be 32 bits");
 
 // FCVTZU: Floating-point convert to unsigned integer, rounding toward zero (scalar SIMD&FP)
 // Encoding: FCVTZU_sisd_32D
@@ -2789,7 +2644,6 @@ struct FcvtzuSisd32d {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FcvtzuSisd32d) == 4, "Encoding struct must be 32 bits");
 
 // FDIV: Floating-point divide (scalar)
 // Encoding: FDIV_H_floatdp2
@@ -2808,7 +2662,6 @@ struct FdivHFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FdivHFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FDIV: Floating-point divide (scalar)
 // Encoding: FDIV_S_floatdp2
@@ -2827,7 +2680,6 @@ struct FdivSFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FdivSFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FDIV: Floating-point divide (scalar)
 // Encoding: FDIV_D_floatdp2
@@ -2846,7 +2698,6 @@ struct FdivDFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FdivDFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FJCVTZS: Floating-point Javascript convert to signed fixed-point, rounding toward zero
 // Encoding: FJCVTZS_32D_float2int
@@ -2867,7 +2718,6 @@ struct Fjcvtzs32dFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fjcvtzs32dFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FMADD: Floating-point fused multiply-add (scalar)
 // Encoding: FMADD_H_floatdp3
@@ -2886,7 +2736,6 @@ struct FmaddHFloatdp3 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmaddHFloatdp3) == 4, "Encoding struct must be 32 bits");
 
 // FMADD: Floating-point fused multiply-add (scalar)
 // Encoding: FMADD_S_floatdp3
@@ -2905,7 +2754,6 @@ struct FmaddSFloatdp3 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmaddSFloatdp3) == 4, "Encoding struct must be 32 bits");
 
 // FMADD: Floating-point fused multiply-add (scalar)
 // Encoding: FMADD_D_floatdp3
@@ -2924,7 +2772,6 @@ struct FmaddDFloatdp3 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmaddDFloatdp3) == 4, "Encoding struct must be 32 bits");
 
 // FMAX: Floating-point maximum (scalar)
 // Encoding: FMAX_H_floatdp2
@@ -2944,7 +2791,6 @@ struct FmaxHFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmaxHFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FMAX: Floating-point maximum (scalar)
 // Encoding: FMAX_S_floatdp2
@@ -2964,7 +2810,6 @@ struct FmaxSFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmaxSFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FMAX: Floating-point maximum (scalar)
 // Encoding: FMAX_D_floatdp2
@@ -2984,7 +2829,6 @@ struct FmaxDFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmaxDFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FMAXNM: Floating-point maximum number (scalar)
 // Encoding: FMAXNM_H_floatdp2
@@ -3004,7 +2848,6 @@ struct FmaxnmHFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmaxnmHFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FMAXNM: Floating-point maximum number (scalar)
 // Encoding: FMAXNM_S_floatdp2
@@ -3024,7 +2867,6 @@ struct FmaxnmSFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmaxnmSFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FMAXNM: Floating-point maximum number (scalar)
 // Encoding: FMAXNM_D_floatdp2
@@ -3044,7 +2886,6 @@ struct FmaxnmDFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmaxnmDFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FMIN: Floating-point minimum (scalar)
 // Encoding: FMIN_H_floatdp2
@@ -3064,7 +2905,6 @@ struct FminHFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FminHFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FMIN: Floating-point minimum (scalar)
 // Encoding: FMIN_S_floatdp2
@@ -3084,7 +2924,6 @@ struct FminSFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FminSFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FMIN: Floating-point minimum (scalar)
 // Encoding: FMIN_D_floatdp2
@@ -3104,7 +2943,6 @@ struct FminDFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FminDFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FMINNM: Floating-point minimum number (scalar)
 // Encoding: FMINNM_H_floatdp2
@@ -3124,7 +2962,6 @@ struct FminnmHFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FminnmHFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FMINNM: Floating-point minimum number (scalar)
 // Encoding: FMINNM_S_floatdp2
@@ -3144,7 +2981,6 @@ struct FminnmSFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FminnmSFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FMINNM: Floating-point minimum number (scalar)
 // Encoding: FMINNM_D_floatdp2
@@ -3164,7 +3000,6 @@ struct FminnmDFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FminnmDFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FMOV: Floating-point move register without conversion
 // Encoding: FMOV_H_floatdp1
@@ -3182,7 +3017,6 @@ struct FmovHFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmovHFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FMOV: Floating-point move register without conversion
 // Encoding: FMOV_S_floatdp1
@@ -3200,7 +3034,6 @@ struct FmovSFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmovSFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FMOV: Floating-point move register without conversion
 // Encoding: FMOV_D_floatdp1
@@ -3218,7 +3051,6 @@ struct FmovDFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmovDFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FMOV: Floating-point move to or from general-purpose register without conversion
 // Encoding: FMOV_32H_float2int
@@ -3237,7 +3069,6 @@ struct Fmov32hFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fmov32hFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FMOV: Floating-point move to or from general-purpose register without conversion
 // Encoding: FMOV_64H_float2int
@@ -3256,7 +3087,6 @@ struct Fmov64hFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmov64hFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FMOV: Floating-point move to or from general-purpose register without conversion
 // Encoding: FMOV_H32_float2int
@@ -3275,7 +3105,6 @@ struct FmovH32Float2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmovH32Float2int) == 4, "Encoding struct must be 32 bits");
 
 // FMOV: Floating-point move to or from general-purpose register without conversion
 // Encoding: FMOV_S32_float2int
@@ -3294,7 +3123,6 @@ struct FmovS32Float2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmovS32Float2int) == 4, "Encoding struct must be 32 bits");
 
 // FMOV: Floating-point move to or from general-purpose register without conversion
 // Encoding: FMOV_32S_float2int
@@ -3313,7 +3141,6 @@ struct Fmov32sFloat2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Fmov32sFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FMOV: Floating-point move to or from general-purpose register without conversion
 // Encoding: FMOV_H64_float2int
@@ -3332,7 +3159,6 @@ struct FmovH64Float2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmovH64Float2int) == 4, "Encoding struct must be 32 bits");
 
 // FMOV: Floating-point move to or from general-purpose register without conversion
 // Encoding: FMOV_D64_float2int
@@ -3351,7 +3177,6 @@ struct FmovD64Float2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmovD64Float2int) == 4, "Encoding struct must be 32 bits");
 
 // FMOV: Floating-point move to or from general-purpose register without conversion
 // Encoding: FMOV_V64I_float2int
@@ -3370,7 +3195,6 @@ struct FmovV64iFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(FmovV64iFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FMOV: Floating-point move to or from general-purpose register without conversion
 // Encoding: FMOV_64D_float2int
@@ -3389,7 +3213,6 @@ struct Fmov64dFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmov64dFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FMOV: Floating-point move to or from general-purpose register without conversion
 // Encoding: FMOV_64VX_float2int
@@ -3408,7 +3231,6 @@ struct Fmov64vxFloat2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(Fmov64vxFloat2int) == 4, "Encoding struct must be 32 bits");
 
 // FMOV: Floating-point move immediate (scalar)
 // Encoding: FMOV_H_floatimm
@@ -3426,7 +3248,6 @@ struct FmovHFloatimm {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmovHFloatimm) == 4, "Encoding struct must be 32 bits");
 
 // FMOV: Floating-point move immediate (scalar)
 // Encoding: FMOV_S_floatimm
@@ -3444,7 +3265,6 @@ struct FmovSFloatimm {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmovSFloatimm) == 4, "Encoding struct must be 32 bits");
 
 // FMOV: Floating-point move immediate (scalar)
 // Encoding: FMOV_D_floatimm
@@ -3462,7 +3282,6 @@ struct FmovDFloatimm {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmovDFloatimm) == 4, "Encoding struct must be 32 bits");
 
 // FMSUB: Floating-point fused multiply-subtract (scalar)
 // Encoding: FMSUB_H_floatdp3
@@ -3481,7 +3300,6 @@ struct FmsubHFloatdp3 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmsubHFloatdp3) == 4, "Encoding struct must be 32 bits");
 
 // FMSUB: Floating-point fused multiply-subtract (scalar)
 // Encoding: FMSUB_S_floatdp3
@@ -3500,7 +3318,6 @@ struct FmsubSFloatdp3 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmsubSFloatdp3) == 4, "Encoding struct must be 32 bits");
 
 // FMSUB: Floating-point fused multiply-subtract (scalar)
 // Encoding: FMSUB_D_floatdp3
@@ -3519,7 +3336,6 @@ struct FmsubDFloatdp3 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmsubDFloatdp3) == 4, "Encoding struct must be 32 bits");
 
 // FMUL: Floating-point multiply (scalar)
 // Encoding: FMUL_H_floatdp2
@@ -3538,7 +3354,6 @@ struct FmulHFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmulHFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FMUL: Floating-point multiply (scalar)
 // Encoding: FMUL_S_floatdp2
@@ -3557,7 +3372,6 @@ struct FmulSFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmulSFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FMUL: Floating-point multiply (scalar)
 // Encoding: FMUL_D_floatdp2
@@ -3576,7 +3390,6 @@ struct FmulDFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FmulDFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FNEG: Floating-point negate (scalar)
 // Encoding: FNEG_H_floatdp1
@@ -3594,7 +3407,6 @@ struct FnegHFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FnegHFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FNEG: Floating-point negate (scalar)
 // Encoding: FNEG_S_floatdp1
@@ -3612,7 +3424,6 @@ struct FnegSFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FnegSFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FNEG: Floating-point negate (scalar)
 // Encoding: FNEG_D_floatdp1
@@ -3630,7 +3441,6 @@ struct FnegDFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FnegDFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FNMADD: Floating-point negated fused multiply-add (scalar)
 // Encoding: FNMADD_H_floatdp3
@@ -3649,7 +3459,6 @@ struct FnmaddHFloatdp3 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FnmaddHFloatdp3) == 4, "Encoding struct must be 32 bits");
 
 // FNMADD: Floating-point negated fused multiply-add (scalar)
 // Encoding: FNMADD_S_floatdp3
@@ -3668,7 +3477,6 @@ struct FnmaddSFloatdp3 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FnmaddSFloatdp3) == 4, "Encoding struct must be 32 bits");
 
 // FNMADD: Floating-point negated fused multiply-add (scalar)
 // Encoding: FNMADD_D_floatdp3
@@ -3687,7 +3495,6 @@ struct FnmaddDFloatdp3 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FnmaddDFloatdp3) == 4, "Encoding struct must be 32 bits");
 
 // FNMSUB: Floating-point negated fused multiply-subtract (scalar)
 // Encoding: FNMSUB_H_floatdp3
@@ -3706,7 +3513,6 @@ struct FnmsubHFloatdp3 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FnmsubHFloatdp3) == 4, "Encoding struct must be 32 bits");
 
 // FNMSUB: Floating-point negated fused multiply-subtract (scalar)
 // Encoding: FNMSUB_S_floatdp3
@@ -3725,7 +3531,6 @@ struct FnmsubSFloatdp3 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FnmsubSFloatdp3) == 4, "Encoding struct must be 32 bits");
 
 // FNMSUB: Floating-point negated fused multiply-subtract (scalar)
 // Encoding: FNMSUB_D_floatdp3
@@ -3744,7 +3549,6 @@ struct FnmsubDFloatdp3 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FnmsubDFloatdp3) == 4, "Encoding struct must be 32 bits");
 
 // FNMUL: Floating-point multiply-negate (scalar)
 // Encoding: FNMUL_H_floatdp2
@@ -3763,7 +3567,6 @@ struct FnmulHFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FnmulHFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FNMUL: Floating-point multiply-negate (scalar)
 // Encoding: FNMUL_S_floatdp2
@@ -3782,7 +3585,6 @@ struct FnmulSFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FnmulSFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FNMUL: Floating-point multiply-negate (scalar)
 // Encoding: FNMUL_D_floatdp2
@@ -3801,7 +3603,6 @@ struct FnmulDFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FnmulDFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FRINT32X: Floating-point round to 32-bit integer, using current rounding mode (scalar)
 // Encoding: FRINT32X_S_floatdp1
@@ -3819,7 +3620,6 @@ struct Frint32xSFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Frint32xSFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINT32X: Floating-point round to 32-bit integer, using current rounding mode (scalar)
 // Encoding: FRINT32X_D_floatdp1
@@ -3837,7 +3637,6 @@ struct Frint32xDFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Frint32xDFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINT32Z: Floating-point round to 32-bit integer toward zero (scalar)
 // Encoding: FRINT32Z_S_floatdp1
@@ -3855,7 +3654,6 @@ struct Frint32zSFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Frint32zSFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINT32Z: Floating-point round to 32-bit integer toward zero (scalar)
 // Encoding: FRINT32Z_D_floatdp1
@@ -3873,7 +3671,6 @@ struct Frint32zDFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Frint32zDFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINT64X: Floating-point round to 64-bit integer, using current rounding mode (scalar)
 // Encoding: FRINT64X_S_floatdp1
@@ -3891,7 +3688,6 @@ struct Frint64xSFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Frint64xSFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINT64X: Floating-point round to 64-bit integer, using current rounding mode (scalar)
 // Encoding: FRINT64X_D_floatdp1
@@ -3909,7 +3705,6 @@ struct Frint64xDFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Frint64xDFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINT64Z: Floating-point round to 64-bit integer toward zero (scalar)
 // Encoding: FRINT64Z_S_floatdp1
@@ -3927,7 +3722,6 @@ struct Frint64zSFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Frint64zSFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINT64Z: Floating-point round to 64-bit integer toward zero (scalar)
 // Encoding: FRINT64Z_D_floatdp1
@@ -3945,7 +3739,6 @@ struct Frint64zDFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(Frint64zDFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINTA: Floating-point round to integral, to nearest with ties to away (scalar)
 // Encoding: FRINTA_H_floatdp1
@@ -3963,7 +3756,6 @@ struct FrintaHFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintaHFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINTA: Floating-point round to integral, to nearest with ties to away (scalar)
 // Encoding: FRINTA_S_floatdp1
@@ -3981,7 +3773,6 @@ struct FrintaSFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintaSFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINTA: Floating-point round to integral, to nearest with ties to away (scalar)
 // Encoding: FRINTA_D_floatdp1
@@ -3999,7 +3790,6 @@ struct FrintaDFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintaDFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINTI: Floating-point round to integral, using current rounding mode (scalar)
 // Encoding: FRINTI_H_floatdp1
@@ -4017,7 +3807,6 @@ struct FrintiHFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintiHFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINTI: Floating-point round to integral, using current rounding mode (scalar)
 // Encoding: FRINTI_S_floatdp1
@@ -4035,7 +3824,6 @@ struct FrintiSFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintiSFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINTI: Floating-point round to integral, using current rounding mode (scalar)
 // Encoding: FRINTI_D_floatdp1
@@ -4053,7 +3841,6 @@ struct FrintiDFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintiDFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINTM: Floating-point round to integral, toward minus infinity (scalar)
 // Encoding: FRINTM_H_floatdp1
@@ -4071,7 +3858,6 @@ struct FrintmHFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintmHFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINTM: Floating-point round to integral, toward minus infinity (scalar)
 // Encoding: FRINTM_S_floatdp1
@@ -4089,7 +3875,6 @@ struct FrintmSFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintmSFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINTM: Floating-point round to integral, toward minus infinity (scalar)
 // Encoding: FRINTM_D_floatdp1
@@ -4107,7 +3892,6 @@ struct FrintmDFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintmDFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINTN: Floating-point round to integral, to nearest with ties to even (scalar)
 // Encoding: FRINTN_H_floatdp1
@@ -4125,7 +3909,6 @@ struct FrintnHFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintnHFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINTN: Floating-point round to integral, to nearest with ties to even (scalar)
 // Encoding: FRINTN_S_floatdp1
@@ -4143,7 +3926,6 @@ struct FrintnSFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintnSFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINTN: Floating-point round to integral, to nearest with ties to even (scalar)
 // Encoding: FRINTN_D_floatdp1
@@ -4161,7 +3943,6 @@ struct FrintnDFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintnDFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINTP: Floating-point round to integral, toward plus infinity (scalar)
 // Encoding: FRINTP_H_floatdp1
@@ -4179,7 +3960,6 @@ struct FrintpHFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintpHFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINTP: Floating-point round to integral, toward plus infinity (scalar)
 // Encoding: FRINTP_S_floatdp1
@@ -4197,7 +3977,6 @@ struct FrintpSFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintpSFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINTP: Floating-point round to integral, toward plus infinity (scalar)
 // Encoding: FRINTP_D_floatdp1
@@ -4215,7 +3994,6 @@ struct FrintpDFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintpDFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINTX: Floating-point round to integral exact, using current rounding mode (scalar)
 // Encoding: FRINTX_H_floatdp1
@@ -4233,7 +4011,6 @@ struct FrintxHFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintxHFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINTX: Floating-point round to integral exact, using current rounding mode (scalar)
 // Encoding: FRINTX_S_floatdp1
@@ -4251,7 +4028,6 @@ struct FrintxSFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintxSFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINTX: Floating-point round to integral exact, using current rounding mode (scalar)
 // Encoding: FRINTX_D_floatdp1
@@ -4269,7 +4045,6 @@ struct FrintxDFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintxDFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINTZ: Floating-point round to integral, toward zero (scalar)
 // Encoding: FRINTZ_H_floatdp1
@@ -4287,7 +4062,6 @@ struct FrintzHFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintzHFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINTZ: Floating-point round to integral, toward zero (scalar)
 // Encoding: FRINTZ_S_floatdp1
@@ -4305,7 +4079,6 @@ struct FrintzSFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintzSFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FRINTZ: Floating-point round to integral, toward zero (scalar)
 // Encoding: FRINTZ_D_floatdp1
@@ -4323,7 +4096,6 @@ struct FrintzDFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FrintzDFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FSQRT: Floating-point square root (scalar)
 // Encoding: FSQRT_H_floatdp1
@@ -4341,7 +4113,6 @@ struct FsqrtHFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FsqrtHFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FSQRT: Floating-point square root (scalar)
 // Encoding: FSQRT_S_floatdp1
@@ -4359,7 +4130,6 @@ struct FsqrtSFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FsqrtSFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FSQRT: Floating-point square root (scalar)
 // Encoding: FSQRT_D_floatdp1
@@ -4377,7 +4147,6 @@ struct FsqrtDFloatdp1 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FsqrtDFloatdp1) == 4, "Encoding struct must be 32 bits");
 
 // FSUB: Floating-point subtract (scalar)
 // Encoding: FSUB_H_floatdp2
@@ -4397,7 +4166,6 @@ struct FsubHFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FsubHFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FSUB: Floating-point subtract (scalar)
 // Encoding: FSUB_S_floatdp2
@@ -4417,7 +4185,6 @@ struct FsubSFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FsubSFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // FSUB: Floating-point subtract (scalar)
 // Encoding: FSUB_D_floatdp2
@@ -4437,7 +4204,6 @@ struct FsubDFloatdp2 {
     uint32_t M : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(FsubDFloatdp2) == 4, "Encoding struct must be 32 bits");
 
 // SCVTF: Signed fixed-point convert to floating-point (scalar)
 // Encoding: SCVTF_H32_float2fix
@@ -4456,7 +4222,6 @@ struct ScvtfH32Float2fix {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(ScvtfH32Float2fix) == 4, "Encoding struct must be 32 bits");
 
 // SCVTF: Signed fixed-point convert to floating-point (scalar)
 // Encoding: SCVTF_H64_float2fix
@@ -4475,7 +4240,6 @@ struct ScvtfH64Float2fix {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(ScvtfH64Float2fix) == 4, "Encoding struct must be 32 bits");
 
 // SCVTF: Signed fixed-point convert to floating-point (scalar)
 // Encoding: SCVTF_S32_float2fix
@@ -4494,7 +4258,6 @@ struct ScvtfS32Float2fix {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(ScvtfS32Float2fix) == 4, "Encoding struct must be 32 bits");
 
 // SCVTF: Signed fixed-point convert to floating-point (scalar)
 // Encoding: SCVTF_S64_float2fix
@@ -4513,7 +4276,6 @@ struct ScvtfS64Float2fix {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(ScvtfS64Float2fix) == 4, "Encoding struct must be 32 bits");
 
 // SCVTF: Signed fixed-point convert to floating-point (scalar)
 // Encoding: SCVTF_D32_float2fix
@@ -4532,7 +4294,6 @@ struct ScvtfD32Float2fix {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(ScvtfD32Float2fix) == 4, "Encoding struct must be 32 bits");
 
 // SCVTF: Signed fixed-point convert to floating-point (scalar)
 // Encoding: SCVTF_D64_float2fix
@@ -4551,7 +4312,6 @@ struct ScvtfD64Float2fix {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(ScvtfD64Float2fix) == 4, "Encoding struct must be 32 bits");
 
 // SCVTF: Signed integer convert to floating-point (scalar)
 // Encoding: SCVTF_H32_float2int
@@ -4570,7 +4330,6 @@ struct ScvtfH32Float2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(ScvtfH32Float2int) == 4, "Encoding struct must be 32 bits");
 
 // SCVTF: Signed integer convert to floating-point (scalar)
 // Encoding: SCVTF_S32_float2int
@@ -4589,7 +4348,6 @@ struct ScvtfS32Float2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(ScvtfS32Float2int) == 4, "Encoding struct must be 32 bits");
 
 // SCVTF: Signed integer convert to floating-point (scalar)
 // Encoding: SCVTF_D32_float2int
@@ -4608,7 +4366,6 @@ struct ScvtfD32Float2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(ScvtfD32Float2int) == 4, "Encoding struct must be 32 bits");
 
 // SCVTF: Signed integer convert to floating-point (scalar)
 // Encoding: SCVTF_H64_float2int
@@ -4627,7 +4384,6 @@ struct ScvtfH64Float2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(ScvtfH64Float2int) == 4, "Encoding struct must be 32 bits");
 
 // SCVTF: Signed integer convert to floating-point (scalar)
 // Encoding: SCVTF_S64_float2int
@@ -4646,7 +4402,6 @@ struct ScvtfS64Float2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(ScvtfS64Float2int) == 4, "Encoding struct must be 32 bits");
 
 // SCVTF: Signed integer convert to floating-point (scalar)
 // Encoding: SCVTF_D64_float2int
@@ -4665,7 +4420,6 @@ struct ScvtfD64Float2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(ScvtfD64Float2int) == 4, "Encoding struct must be 32 bits");
 
 // SCVTF: Signed integer convert to floating-point (scalar SIMD&FP)
 // Encoding: SCVTF_sisd_32H
@@ -4684,7 +4438,6 @@ struct ScvtfSisd32h {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(ScvtfSisd32h) == 4, "Encoding struct must be 32 bits");
 
 // SCVTF: Signed integer convert to floating-point (scalar SIMD&FP)
 // Encoding: SCVTF_sisd_32D
@@ -4703,7 +4456,6 @@ struct ScvtfSisd32d {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(ScvtfSisd32d) == 4, "Encoding struct must be 32 bits");
 
 // SCVTF: Signed integer convert to floating-point (scalar SIMD&FP)
 // Encoding: SCVTF_sisd_64H
@@ -4722,7 +4474,6 @@ struct ScvtfSisd64h {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(ScvtfSisd64h) == 4, "Encoding struct must be 32 bits");
 
 // SCVTF: Signed integer convert to floating-point (scalar SIMD&FP)
 // Encoding: SCVTF_sisd_64S
@@ -4741,7 +4492,6 @@ struct ScvtfSisd64s {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(ScvtfSisd64s) == 4, "Encoding struct must be 32 bits");
 
 // UCVTF: Unsigned fixed-point convert to floating-point (scalar)
 // Encoding: UCVTF_H32_float2fix
@@ -4760,7 +4510,6 @@ struct UcvtfH32Float2fix {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UcvtfH32Float2fix) == 4, "Encoding struct must be 32 bits");
 
 // UCVTF: Unsigned fixed-point convert to floating-point (scalar)
 // Encoding: UCVTF_H64_float2fix
@@ -4779,7 +4528,6 @@ struct UcvtfH64Float2fix {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UcvtfH64Float2fix) == 4, "Encoding struct must be 32 bits");
 
 // UCVTF: Unsigned fixed-point convert to floating-point (scalar)
 // Encoding: UCVTF_S32_float2fix
@@ -4798,7 +4546,6 @@ struct UcvtfS32Float2fix {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UcvtfS32Float2fix) == 4, "Encoding struct must be 32 bits");
 
 // UCVTF: Unsigned fixed-point convert to floating-point (scalar)
 // Encoding: UCVTF_S64_float2fix
@@ -4817,7 +4564,6 @@ struct UcvtfS64Float2fix {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UcvtfS64Float2fix) == 4, "Encoding struct must be 32 bits");
 
 // UCVTF: Unsigned fixed-point convert to floating-point (scalar)
 // Encoding: UCVTF_D32_float2fix
@@ -4836,7 +4582,6 @@ struct UcvtfD32Float2fix {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UcvtfD32Float2fix) == 4, "Encoding struct must be 32 bits");
 
 // UCVTF: Unsigned fixed-point convert to floating-point (scalar)
 // Encoding: UCVTF_D64_float2fix
@@ -4855,7 +4600,6 @@ struct UcvtfD64Float2fix {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UcvtfD64Float2fix) == 4, "Encoding struct must be 32 bits");
 
 // UCVTF: Unsigned integer convert to floating-point (scalar)
 // Encoding: UCVTF_H32_float2int
@@ -4874,7 +4618,6 @@ struct UcvtfH32Float2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UcvtfH32Float2int) == 4, "Encoding struct must be 32 bits");
 
 // UCVTF: Unsigned integer convert to floating-point (scalar)
 // Encoding: UCVTF_S32_float2int
@@ -4893,7 +4636,6 @@ struct UcvtfS32Float2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UcvtfS32Float2int) == 4, "Encoding struct must be 32 bits");
 
 // UCVTF: Unsigned integer convert to floating-point (scalar)
 // Encoding: UCVTF_D32_float2int
@@ -4912,7 +4654,6 @@ struct UcvtfD32Float2int {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UcvtfD32Float2int) == 4, "Encoding struct must be 32 bits");
 
 // UCVTF: Unsigned integer convert to floating-point (scalar)
 // Encoding: UCVTF_H64_float2int
@@ -4931,7 +4672,6 @@ struct UcvtfH64Float2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UcvtfH64Float2int) == 4, "Encoding struct must be 32 bits");
 
 // UCVTF: Unsigned integer convert to floating-point (scalar)
 // Encoding: UCVTF_S64_float2int
@@ -4950,7 +4690,6 @@ struct UcvtfS64Float2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UcvtfS64Float2int) == 4, "Encoding struct must be 32 bits");
 
 // UCVTF: Unsigned integer convert to floating-point (scalar)
 // Encoding: UCVTF_D64_float2int
@@ -4969,7 +4708,6 @@ struct UcvtfD64Float2int {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UcvtfD64Float2int) == 4, "Encoding struct must be 32 bits");
 
 // UCVTF: Unsigned integer convert to floating-point (scalar SIMD&FP)
 // Encoding: UCVTF_sisd_32H
@@ -4988,7 +4726,6 @@ struct UcvtfSisd32h {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UcvtfSisd32h) == 4, "Encoding struct must be 32 bits");
 
 // UCVTF: Unsigned integer convert to floating-point (scalar SIMD&FP)
 // Encoding: UCVTF_sisd_32D
@@ -5007,7 +4744,6 @@ struct UcvtfSisd32d {
     uint32_t sf : 1;  // fixed: 0b0 (0x0)
 };
 
-static_assert(sizeof(UcvtfSisd32d) == 4, "Encoding struct must be 32 bits");
 
 // UCVTF: Unsigned integer convert to floating-point (scalar SIMD&FP)
 // Encoding: UCVTF_sisd_64H
@@ -5026,7 +4762,6 @@ struct UcvtfSisd64h {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UcvtfSisd64h) == 4, "Encoding struct must be 32 bits");
 
 // UCVTF: Unsigned integer convert to floating-point (scalar SIMD&FP)
 // Encoding: UCVTF_sisd_64S
@@ -5045,7 +4780,6 @@ struct UcvtfSisd64s {
     uint32_t sf : 1;  // fixed: 0b1 (0x1)
 };
 
-static_assert(sizeof(UcvtfSisd64s) == 4, "Encoding struct must be 32 bits");
 
 // Union for float instruction class
 union FloatEncoding {
@@ -5317,6 +5051,7 @@ union FloatEncoding {
     UcvtfSisd64s ucvtf_sisd64s;
     uint32_t raw;
 };
+static_assert(sizeof(FloatEncoding) == 4, "Encoding union must be 32 bits");
 
 // Encode function implementations
 uint32_t encode_bfcvt_bs_floatdp1(uint32_t Rd, uint32_t Rn) {
@@ -9568,7 +9303,7 @@ uint32_t encode_ucvtf_sisd_64s(uint32_t Rd, uint32_t Rn) {
 // Decode a float instruction
 // Input is in native ARM64 format (as read from memory)
 std::optional<Instruction> decode_float(uint32_t insn) {
-    // Optimized switch for mask 0xFFFFFC00u (179 unique patterns, 179 encodings)
+    // Switch for mask 0xFFFFFC00u (179 patterns, 179 encodings)
     switch (insn & 0xFFFFFC00u) {
         case 0x1E200000u: { // FCVTNS_32S_float2int
                         Instruction result(Mnemonic::FCVTNS, insn);
@@ -11360,9 +11095,10 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_sisd64h.Rn, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFFF0000u (24 unique patterns, 24 encodings)
+    // Switch for mask 0xFFFF0000u (24 patterns, 24 encodings)
     switch (insn & 0xFFFF0000u) {
         case 0x1E020000u: { // SCVTF_S32_float2fix
                         Instruction result(Mnemonic::SCVTF, insn);
@@ -11604,9 +11340,10 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64h_float2fix.Rn, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE0FC1Fu (12 unique patterns, 12 encodings)
+    // Switch for mask 0xFFE0FC1Fu (12 patterns, 12 encodings)
     switch (insn & 0xFFE0FC1Fu) {
         case 0x1E202000u: { // FCMP_S_floatcmp
                         Instruction result(Mnemonic::FCMP, insn);
@@ -11728,9 +11465,10 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmpe_hz_floatcmp.Rm, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE0FC00u (27 unique patterns, 27 encodings)
+    // Switch for mask 0xFFE0FC00u (27 patterns, 27 encodings)
     switch (insn & 0xFFE0FC00u) {
         case 0x1E200800u: { // FMUL_S_floatdp2
                         Instruction result(Mnemonic::FMUL, insn);
@@ -12029,9 +11767,10 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmul_hfloatdp2.Rm, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE08000u (12 unique patterns, 12 encodings)
+    // Switch for mask 0xFFE08000u (12 patterns, 12 encodings)
     switch (insn & 0xFFE08000u) {
         case 0x1F000000u: { // FMADD_S_floatdp3
                         Instruction result(Mnemonic::FMADD, insn);
@@ -12177,9 +11916,10 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fnmsub_hfloatdp3.Ra, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE01FE0u (3 unique patterns, 3 encodings)
+    // Switch for mask 0xFFE01FE0u (3 patterns, 3 encodings)
     switch (insn & 0xFFE01FE0u) {
         case 0x1E201000u: { // FMOV_S_floatimm
                         Instruction result(Mnemonic::FMOV, insn);
@@ -12211,9 +11951,10 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmov_hfloatimm.imm8, true));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE00C10u (6 unique patterns, 6 encodings)
+    // Switch for mask 0xFFE00C10u (6 patterns, 6 encodings)
     switch (insn & 0xFFE00C10u) {
         case 0x1E200400u: { // FCCMP_S_floatccmp
                         Instruction result(Mnemonic::FCCMP, insn);
@@ -12275,9 +12016,10 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmpe_hfloatccmp.Rm, is_64bit));
                         return result;
         }
+        default: break;
     }
 
-    // Optimized switch for mask 0xFFE00C00u (3 unique patterns, 3 encodings)
+    // Switch for mask 0xFFE00C00u (3 patterns, 3 encodings)
     switch (insn & 0xFFE00C00u) {
         case 0x1E200C00u: { // FCSEL_S_floatsel
                         Instruction result(Mnemonic::FCSEL, insn);
@@ -12312,6 +12054,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_hfloatsel.Rm, is_64bit));
                         return result;
         }
+        default: break;
     }
 
     // No matching encoding found

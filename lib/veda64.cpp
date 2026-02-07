@@ -1,4 +1,5 @@
 #include "veda64.hpp"
+#include "format/format.hpp"
 #include <cstring>
 #include <sstream>
 
@@ -1358,19 +1359,9 @@ std::string Operand::to_string() const {
 }
 #endif // !VEDA64_NO_STRINGS
 
-// Unified decode function - tries all instruction class decoders
+// Unified decode function - dispatches to format-based group decoders
 std::optional<Instruction> decode(uint32_t insn) {
-    if (auto result = Advsimd::decode_advsimd(insn); result) return result;
-    if (auto result = Float::decode_float(insn); result) return result;
-    if (auto result = Fpsimd::decode_fpsimd(insn); result) return result;
-    if (auto result = General::decode_general(insn); result) return result;
-    if (auto result = Mortlach::decode_mortlach(insn); result) return result;
-    if (auto result = Mortlach2::decode_mortlach2(insn); result) return result;
-    if (auto result = Sve::decode_sve(insn); result) return result;
-    if (auto result = Sve2::decode_sve2(insn); result) return result;
-    if (auto result = System::decode_system(insn); result) return result;
-    if (auto result = Unknown::decode_unknown(insn); result) return result;
-    return std::nullopt;
+    return decode_format(insn);
 }
 
 } // namespace veda64
