@@ -865,10 +865,10 @@ uint32_t encode_zip1_asimdperm_only(uint32_t Rd, uint32_t Rn, uint32_t Rm, uint3
 uint32_t encode_zip2_asimdperm_only(uint32_t Rd, uint32_t Rn, uint32_t Rm, uint32_t size, uint32_t Q);
 
 // Decode function
-// Decode a simd_dp instruction
+// Decode a simd_dp instruction from a uint32_t
 std::optional<Instruction> decode_simd_dp(uint32_t insn);
 
-// Decode from 4 bytes in native ARM64 memory order
+// Decode a simd_dp instruction from 4 bytes in memory (little-endian)
 inline std::optional<Instruction> decode_simd_dp(const uint8_t* bytes) {
     return decode_simd_dp(from_bytes(bytes));
 }

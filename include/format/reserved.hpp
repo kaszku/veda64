@@ -14,10 +14,10 @@ namespace Reserved {
 uint32_t encode_udf_only_perm_undef(uint32_t imm16);
 
 // Decode function
-// Decode a reserved instruction
+// Decode a reserved instruction from a uint32_t
 std::optional<Instruction> decode_reserved(uint32_t insn);
 
-// Decode from 4 bytes in native ARM64 memory order
+// Decode a reserved instruction from 4 bytes in memory (little-endian)
 inline std::optional<Instruction> decode_reserved(const uint8_t* bytes) {
     return decode_reserved(from_bytes(bytes));
 }

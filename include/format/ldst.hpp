@@ -1088,10 +1088,10 @@ uint32_t encode_swptal_64_memop_unpriv(uint32_t Rt, uint32_t Rn, uint32_t Rs);
 uint32_t encode_swptl_64_memop_unpriv(uint32_t Rt, uint32_t Rn, uint32_t Rs);
 
 // Decode function
-// Decode a ldst instruction
+// Decode a ldst instruction from a uint32_t
 std::optional<Instruction> decode_ldst(uint32_t insn);
 
-// Decode from 4 bytes in native ARM64 memory order
+// Decode a ldst instruction from 4 bytes in memory (little-endian)
 inline std::optional<Instruction> decode_ldst(const uint8_t* bytes) {
     return decode_ldst(from_bytes(bytes));
 }

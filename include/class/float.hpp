@@ -276,10 +276,10 @@ uint32_t encode_ucvtf_sisd_64h(uint32_t Rd, uint32_t Rn);
 uint32_t encode_ucvtf_sisd_64s(uint32_t Rd, uint32_t Rn);
 
 // Decode function
-// Decode a float instruction
+// Decode a float instruction from a uint32_t
 std::optional<Instruction> decode_float(uint32_t insn);
 
-// Decode from 4 bytes in native ARM64 memory order
+// Decode a float instruction from 4 bytes in memory (little-endian)
 inline std::optional<Instruction> decode_float(const uint8_t* bytes) {
     return decode_float(from_bytes(bytes));
 }

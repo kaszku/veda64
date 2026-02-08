@@ -63,10 +63,10 @@ uint32_t encode_xpaci_64z_dp_1src(uint32_t Rd);
 uint32_t encode_xpaclri_hi_hints();
 
 // Decode function
-// Decode a unknown instruction
+// Decode a unknown instruction from a uint32_t
 std::optional<Instruction> decode_unknown(uint32_t insn);
 
-// Decode from 4 bytes in native ARM64 memory order
+// Decode a unknown instruction from 4 bytes in memory (little-endian)
 inline std::optional<Instruction> decode_unknown(const uint8_t* bytes) {
     return decode_unknown(from_bytes(bytes));
 }

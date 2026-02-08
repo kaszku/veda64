@@ -881,10 +881,10 @@ uint32_t encode_zip_mz_zz_2(uint32_t Zd, uint32_t Zn, uint32_t Zm, uint32_t size
 uint32_t encode_zip_mz_zz_2q(uint32_t Zd, uint32_t Zn, uint32_t Zm);
 
 // Decode function
-// Decode a sme instruction
+// Decode a sme instruction from a uint32_t
 std::optional<Instruction> decode_sme(uint32_t insn);
 
-// Decode from 4 bytes in native ARM64 memory order
+// Decode a sme instruction from 4 bytes in memory (little-endian)
 inline std::optional<Instruction> decode_sme(const uint8_t* bytes) {
     return decode_sme(from_bytes(bytes));
 }

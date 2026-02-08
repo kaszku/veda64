@@ -70,10 +70,10 @@ uint32_t encode_usmops_za_pp_zz_64(uint32_t ZAda, uint32_t Zn, uint32_t Pn, uint
 uint32_t encode_zero_za_i_(uint32_t imm8);
 
 // Decode function
-// Decode a mortlach instruction
+// Decode a mortlach instruction from a uint32_t
 std::optional<Instruction> decode_mortlach(uint32_t insn);
 
-// Decode from 4 bytes in native ARM64 memory order
+// Decode a mortlach instruction from 4 bytes in memory (little-endian)
 inline std::optional<Instruction> decode_mortlach(const uint8_t* bytes) {
     return decode_mortlach(from_bytes(bytes));
 }

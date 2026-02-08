@@ -14,25 +14,25 @@ constexpr int VERSION_PATCH = 0;
 
 // Byte-order conversion utilities
 // ARM64 stores instructions in little-endian byte order
-// The decode functions accept values in memory order (as seen in hex dumps)
-// e.g., bytes {0x7f, 0x23, 0x03, 0xd5} in memory -> pass as 0x7f2303d5
+// These convert between raw memory bytes and the uint32_t used by decode()
+// e.g., PACIBSP in memory: {0x7f, 0x23, 0x03, 0xd5} -> 0xd503237f
 
-// Pack 4 bytes into uint32_t preserving visual order (for decode functions)
-// {0x7f, 0x23, 0x03, 0xd5} -> 0x7f2303d5
+// Read a little-endian uint32_t from 4 bytes in memory
+// {0x7f, 0x23, 0x03, 0xd5} -> 0xd503237f
 inline uint32_t from_bytes(const uint8_t* bytes) {
-    return (static_cast<uint32_t>(bytes[0]) << 24) |
-           (static_cast<uint32_t>(bytes[1]) << 16) |
-           (static_cast<uint32_t>(bytes[2]) << 8) |
-           static_cast<uint32_t>(bytes[3]);
+    return static_cast<uint32_t>(bytes[0]) |
+           (static_cast<uint32_t>(bytes[1]) << 8) |
+           (static_cast<uint32_t>(bytes[2]) << 16) |
+           (static_cast<uint32_t>(bytes[3]) << 24);
 }
 
-// Unpack uint32_t to 4 bytes preserving visual order
-// 0x7f2303d5 -> {0x7f, 0x23, 0x03, 0xd5}
+// Write a uint32_t as 4 little-endian bytes to memory
+// 0xd503237f -> {0x7f, 0x23, 0x03, 0xd5}
 inline void to_bytes(uint32_t insn, uint8_t* bytes) {
-    bytes[0] = static_cast<uint8_t>(insn >> 24);
-    bytes[1] = static_cast<uint8_t>(insn >> 16);
-    bytes[2] = static_cast<uint8_t>(insn >> 8);
-    bytes[3] = static_cast<uint8_t>(insn);
+    bytes[0] = static_cast<uint8_t>(insn);
+    bytes[1] = static_cast<uint8_t>(insn >> 8);
+    bytes[2] = static_cast<uint8_t>(insn >> 16);
+    bytes[3] = static_cast<uint8_t>(insn >> 24);
 }
 
 // ARM64 DecodeBitMasks - decodes N:imms:immr into a bitmask immediate
@@ -1677,10 +1677,10 @@ public:
 #endif
 };
 
-// Unified decode function declaration (dispatches to format-based group decoders)
+// Decode a single ARM64 instruction from a uint32_t (native little-endian value)
 std::optional<Instruction> decode(uint32_t insn);
 
-// Decode from 4 bytes in memory order
+// Decode a single ARM64 instruction from 4 bytes in memory (little-endian)
 inline std::optional<Instruction> decode(const uint8_t* bytes) {
     return decode(from_bytes(bytes));
 }

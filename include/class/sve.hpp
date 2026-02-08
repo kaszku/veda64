@@ -861,10 +861,10 @@ uint32_t encode_zip1_z_zz_(uint32_t Zd, uint32_t Zn, uint32_t Zm, uint32_t size)
 uint32_t encode_zip1_z_zz_q(uint32_t Zd, uint32_t Zn, uint32_t Zm);
 
 // Decode function
-// Decode a sve instruction
+// Decode a sve instruction from a uint32_t
 std::optional<Instruction> decode_sve(uint32_t insn);
 
-// Decode from 4 bytes in native ARM64 memory order
+// Decode a sve instruction from 4 bytes in memory (little-endian)
 inline std::optional<Instruction> decode_sve(const uint8_t* bytes) {
     return decode_sve(from_bytes(bytes));
 }

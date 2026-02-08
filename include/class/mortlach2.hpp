@@ -751,10 +751,10 @@ uint32_t encode_zip_mz_zz_2(uint32_t Zd, uint32_t Zn, uint32_t Zm, uint32_t size
 uint32_t encode_zip_mz_zz_2q(uint32_t Zd, uint32_t Zn, uint32_t Zm);
 
 // Decode function
-// Decode a mortlach2 instruction
+// Decode a mortlach2 instruction from a uint32_t
 std::optional<Instruction> decode_mortlach2(uint32_t insn);
 
-// Decode from 4 bytes in native ARM64 memory order
+// Decode a mortlach2 instruction from 4 bytes in memory (little-endian)
 inline std::optional<Instruction> decode_mortlach2(const uint8_t* bytes) {
     return decode_mortlach2(from_bytes(bytes));
 }

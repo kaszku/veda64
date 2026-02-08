@@ -100,10 +100,10 @@ uint32_t encode_uxtb_ubfm_32m_bitfield(uint32_t Rd, uint32_t Rn);
 uint32_t encode_uxth_ubfm_32m_bitfield(uint32_t Rd, uint32_t Rn);
 
 // Decode function
-// Decode a dpimm instruction
+// Decode a dpimm instruction from a uint32_t
 std::optional<Instruction> decode_dpimm(uint32_t insn);
 
-// Decode from 4 bytes in native ARM64 memory order
+// Decode a dpimm instruction from 4 bytes in memory (little-endian)
 inline std::optional<Instruction> decode_dpimm(const uint8_t* bytes) {
     return decode_dpimm(from_bytes(bytes));
 }

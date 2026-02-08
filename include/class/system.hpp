@@ -86,10 +86,10 @@ uint32_t encode_xaflag_m_pstate(uint32_t CRm);
 uint32_t encode_yield_hi_hints();
 
 // Decode function
-// Decode a system instruction
+// Decode a system instruction from a uint32_t
 std::optional<Instruction> decode_system(uint32_t insn);
 
-// Decode from 4 bytes in native ARM64 memory order
+// Decode a system instruction from 4 bytes in memory (little-endian)
 inline std::optional<Instruction> decode_system(const uint8_t* bytes) {
     return decode_system(from_bytes(bytes));
 }

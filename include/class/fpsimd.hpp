@@ -107,10 +107,10 @@ uint32_t encode_stur_d_ldst_unscaled(uint32_t Rt, uint32_t Rn, int32_t imm9);
 uint32_t encode_stur_q_ldst_unscaled(uint32_t Rt, uint32_t Rn, int32_t imm9);
 
 // Decode function
-// Decode a fpsimd instruction
+// Decode a fpsimd instruction from a uint32_t
 std::optional<Instruction> decode_fpsimd(uint32_t insn);
 
-// Decode from 4 bytes in native ARM64 memory order
+// Decode a fpsimd instruction from 4 bytes in memory (little-endian)
 inline std::optional<Instruction> decode_fpsimd(const uint8_t* bytes) {
     return decode_fpsimd(from_bytes(bytes));
 }

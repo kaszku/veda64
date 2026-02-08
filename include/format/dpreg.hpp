@@ -214,10 +214,10 @@ uint32_t encode_xpacd_64z_dp_1src(uint32_t Rd);
 uint32_t encode_xpaci_64z_dp_1src(uint32_t Rd);
 
 // Decode function
-// Decode a dpreg instruction
+// Decode a dpreg instruction from a uint32_t
 std::optional<Instruction> decode_dpreg(uint32_t insn);
 
-// Decode from 4 bytes in native ARM64 memory order
+// Decode a dpreg instruction from 4 bytes in memory (little-endian)
 inline std::optional<Instruction> decode_dpreg(const uint8_t* bytes) {
     return decode_dpreg(from_bytes(bytes));
 }

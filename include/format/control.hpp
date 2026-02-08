@@ -191,10 +191,10 @@ uint32_t encode_xpaclri_hi_hints();
 uint32_t encode_yield_hi_hints();
 
 // Decode function
-// Decode a control instruction
+// Decode a control instruction from a uint32_t
 std::optional<Instruction> decode_control(uint32_t insn);
 
-// Decode from 4 bytes in native ARM64 memory order
+// Decode a control instruction from 4 bytes in memory (little-endian)
 inline std::optional<Instruction> decode_control(const uint8_t* bytes) {
     return decode_control(from_bytes(bytes));
 }
