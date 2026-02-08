@@ -2585,6 +2585,7 @@ std::optional<Instruction> decode_system(uint32_t insn) {
                         Instruction result(Mnemonic::DSB, insn);
                         SystemEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.dsb_bon_barriers.imm2, true));
                         return result;
         }
         default: break;

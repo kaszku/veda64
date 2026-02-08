@@ -8,6 +8,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Option to reduce binary size and remove strings
 option(VEDA64_NO_STRINGS "Disable all string functions (to_string, mnemonic_to_string, status_to_string, dump_hook)" OFF)
+option(VEDA64_BUILD_TESTS "Build test executables" ON)
 
 # Compiler warnings
 if(MSVC)
@@ -41,8 +42,10 @@ add_executable(veda64-disasm tools/veda64-disasm.cpp)
 target_link_libraries(veda64-disasm PRIVATE veda64)
 
 # Enable testing
-enable_testing()
-add_subdirectory(test)
+if(VEDA64_BUILD_TESTS)
+    enable_testing()
+    add_subdirectory(test)
+endif()
 
 # Installation
 install(TARGETS veda64 veda64-disasm

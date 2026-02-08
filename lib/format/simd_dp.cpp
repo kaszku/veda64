@@ -35989,6 +35989,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3tt1a_vvv4crypto3imm2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3tt1a_vvv4crypto3imm2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3tt1a_vvv4crypto3imm2.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sm3tt1a_vvv4crypto3imm2.imm2, true));
                         return result;
         }
         case 0xCE408400u: { // SM3TT1B_VVV4_crypto3_imm2
@@ -35999,6 +36000,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3tt1b_vvv4crypto3imm2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3tt1b_vvv4crypto3imm2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3tt1b_vvv4crypto3imm2.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sm3tt1b_vvv4crypto3imm2.imm2, true));
                         return result;
         }
         case 0xCE408800u: { // SM3TT2A_VVV4_crypto3_imm2
@@ -36009,6 +36011,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3tt2a_vvv4crypto3imm2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3tt2a_vvv4crypto3imm2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3tt2a_vvv4crypto3imm2.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sm3tt2a_vvv4crypto3imm2.imm2, true));
                         return result;
         }
         case 0xCE408C00u: { // SM3TT2B_VVV_crypto3_imm2
@@ -36019,6 +36022,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3tt2b_vvv_crypto3imm2.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3tt2b_vvv_crypto3imm2.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sm3tt2b_vvv_crypto3imm2.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sm3tt2b_vvv_crypto3imm2.imm2, true));
                         return result;
         }
         default: break;
@@ -36090,6 +36094,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ins_asimdins_iv_v.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ins_asimdins_iv_v.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.ins_asimdins_iv_v.imm5, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ins_asimdins_iv_v.imm4, true));
                         return result;
         }
         default: break;
@@ -38662,6 +38667,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ext_asimdext_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ext_asimdext_only.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ext_asimdext_only.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ext_asimdext_only.imm4, true));
                         return result;
         }
         default: break;

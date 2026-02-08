@@ -2745,6 +2745,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.addg64addsub_immtags.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.addg64addsub_immtags.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.addg64addsub_immtags.imm6, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.addg64addsub_immtags.imm4, true));
                         return result;
         }
         case 0xD1800000u: { // SUBG_64_addsub_immtags
@@ -2755,6 +2756,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.subg64addsub_immtags.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.subg64addsub_immtags.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.subg64addsub_immtags.imm6, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.subg64addsub_immtags.imm4, true));
                         return result;
         }
         default: break;

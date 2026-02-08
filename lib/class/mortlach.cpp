@@ -2519,6 +2519,8 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_za_ri.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldr_za_ri.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ldr_za_ri.off4, true));
                         return result;
         }
         case 0xE1200000u: { // str_za_ri_
@@ -2527,6 +2529,8 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_za_ri.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.str_za_ri.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.str_za_ri.off4, true));
                         return result;
         }
         default: break;
@@ -2541,6 +2545,9 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_zprza_bmova_zprza_b.Rs, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.mov_zprza_bmova_zprza_b.Zd, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.mov_zprza_bmova_zprza_b.Pg, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.mov_zprza_bmova_zprza_b.off4, true));
                         return result;
         }
         case 0xC0420000u: { // mov_z_p_rza_h_mova_z_p_rza_h
@@ -2550,6 +2557,10 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_zprza_hmova_zprza_h.Rs, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.mov_zprza_hmova_zprza_h.Zd, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.mov_zprza_hmova_zprza_h.Pg, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.mov_zprza_hmova_zprza_h.ZAn, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.mov_zprza_hmova_zprza_h.off3, true));
                         return result;
         }
         case 0xC0820000u: { // mov_z_p_rza_w_mova_z_p_rza_w
@@ -2559,6 +2570,10 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_zprza_wmova_zprza_w.Rs, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.mov_zprza_wmova_zprza_w.Zd, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.mov_zprza_wmova_zprza_w.Pg, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.mov_zprza_wmova_zprza_w.ZAn, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.mov_zprza_wmova_zprza_w.off2, true));
                         return result;
         }
         case 0xC0C20000u: { // mov_z_p_rza_d_mova_z_p_rza_d
@@ -2568,6 +2583,9 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_zprza_dmova_zprza_d.Rs, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.mov_zprza_dmova_zprza_d.Zd, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.mov_zprza_dmova_zprza_d.Pg, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.mov_zprza_dmova_zprza_d.ZAn, true));
                         return result;
         }
         case 0xC0C30000u: { // mov_z_p_rza_q_mova_z_p_rza_q
@@ -2577,6 +2595,9 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_zprza_qmova_zprza_q.Rs, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.mov_zprza_qmova_zprza_q.Zd, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.mov_zprza_qmova_zprza_q.Pg, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.mov_zprza_qmova_zprza_q.ZAn, true));
                         return result;
         }
         default: break;
@@ -2588,12 +2609,20 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::ADDHA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.addha_za_pp_z32.Zn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.addha_za_pp_z32.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.addha_za_pp_z32.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.addha_za_pp_z32.ZAda, true));
                         return result;
         }
         case 0xC0910000u: { // addva_za_pp_z_32
                         Instruction result(Mnemonic::ADDVA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.addva_za_pp_z32.Zn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.addva_za_pp_z32.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.addva_za_pp_z32.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.addva_za_pp_z32.ZAda, true));
                         return result;
         }
         default: break;
@@ -2605,12 +2634,20 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::ADDHA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.addha_za_pp_z64.Zn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.addha_za_pp_z64.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.addha_za_pp_z64.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.addha_za_pp_z64.ZAda, true));
                         return result;
         }
         case 0xC0D10000u: { // addva_za_pp_z_64
                         Instruction result(Mnemonic::ADDVA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.addva_za_pp_z64.Zn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.addva_za_pp_z64.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.addva_za_pp_z64.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.addva_za_pp_z64.ZAda, true));
                         return result;
         }
         default: break;
@@ -2625,6 +2662,9 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za_prz_bmova_za_prz_b.Rs, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.mov_za_prz_bmova_za_prz_b.Zn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.mov_za_prz_bmova_za_prz_b.Pg, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.mov_za_prz_bmova_za_prz_b.off4, true));
                         return result;
         }
         case 0xC0400000u: { // mov_za_p_rz_h_mova_za_p_rz_h
@@ -2634,6 +2674,10 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za_prz_hmova_za_prz_h.Rs, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.mov_za_prz_hmova_za_prz_h.Zn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.mov_za_prz_hmova_za_prz_h.Pg, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.mov_za_prz_hmova_za_prz_h.ZAd, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.mov_za_prz_hmova_za_prz_h.off3, true));
                         return result;
         }
         case 0xC0800000u: { // mov_za_p_rz_w_mova_za_p_rz_w
@@ -2643,6 +2687,10 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za_prz_wmova_za_prz_w.Rs, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.mov_za_prz_wmova_za_prz_w.Zn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.mov_za_prz_wmova_za_prz_w.Pg, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.mov_za_prz_wmova_za_prz_w.ZAd, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.mov_za_prz_wmova_za_prz_w.off2, true));
                         return result;
         }
         case 0xC0C00000u: { // mov_za_p_rz_d_mova_za_p_rz_d
@@ -2652,6 +2700,9 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za_prz_dmova_za_prz_d.Rs, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.mov_za_prz_dmova_za_prz_d.Zn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.mov_za_prz_dmova_za_prz_d.Pg, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.mov_za_prz_dmova_za_prz_d.ZAd, true));
                         return result;
         }
         case 0xC0C10000u: { // mov_za_p_rz_q_mova_za_p_rz_q
@@ -2661,6 +2712,9 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za_prz_qmova_za_prz_q.Rs, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.mov_za_prz_qmova_za_prz_q.Zn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.mov_za_prz_qmova_za_prz_q.Pg, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.mov_za_prz_qmova_za_prz_q.ZAd, true));
                         return result;
         }
         default: break;
@@ -2697,72 +2751,132 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::BFMOPA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmopa_za32pp_zz.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmopa_za32pp_zz.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.bfmopa_za32pp_zz.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.bfmopa_za32pp_zz.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.bfmopa_za32pp_zz.ZAda, true));
                         return result;
         }
         case 0x81800010u: { // bfmops_za32_pp_zz_
                         Instruction result(Mnemonic::BFMOPS, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmops_za32pp_zz.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmops_za32pp_zz.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.bfmops_za32pp_zz.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.bfmops_za32pp_zz.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.bfmops_za32pp_zz.ZAda, true));
                         return result;
         }
         case 0x81A00000u: { // fmopa_za32_pp_zz_16
                         Instruction result(Mnemonic::FMOPA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmopa_za32pp_zz16.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmopa_za32pp_zz16.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.fmopa_za32pp_zz16.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.fmopa_za32pp_zz16.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.fmopa_za32pp_zz16.ZAda, true));
                         return result;
         }
         case 0x81A00010u: { // fmops_za32_pp_zz_16
                         Instruction result(Mnemonic::FMOPS, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmops_za32pp_zz16.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmops_za32pp_zz16.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.fmops_za32pp_zz16.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.fmops_za32pp_zz16.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.fmops_za32pp_zz16.ZAda, true));
                         return result;
         }
         case 0xA0800000u: { // smopa_za_pp_zz_32
                         Instruction result(Mnemonic::SMOPA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.smopa_za_pp_zz32.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.smopa_za_pp_zz32.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.smopa_za_pp_zz32.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.smopa_za_pp_zz32.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.smopa_za_pp_zz32.ZAda, true));
                         return result;
         }
         case 0xA0800010u: { // smops_za_pp_zz_32
                         Instruction result(Mnemonic::SMOPS, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.smops_za_pp_zz32.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.smops_za_pp_zz32.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.smops_za_pp_zz32.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.smops_za_pp_zz32.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.smops_za_pp_zz32.ZAda, true));
                         return result;
         }
         case 0xA0A00000u: { // sumopa_za_pp_zz_32
                         Instruction result(Mnemonic::SUMOPA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.sumopa_za_pp_zz32.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.sumopa_za_pp_zz32.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.sumopa_za_pp_zz32.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.sumopa_za_pp_zz32.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.sumopa_za_pp_zz32.ZAda, true));
                         return result;
         }
         case 0xA0A00010u: { // sumops_za_pp_zz_32
                         Instruction result(Mnemonic::SUMOPS, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.sumops_za_pp_zz32.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.sumops_za_pp_zz32.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.sumops_za_pp_zz32.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.sumops_za_pp_zz32.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.sumops_za_pp_zz32.ZAda, true));
                         return result;
         }
         case 0xA1800000u: { // usmopa_za_pp_zz_32
                         Instruction result(Mnemonic::USMOPA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.usmopa_za_pp_zz32.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.usmopa_za_pp_zz32.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.usmopa_za_pp_zz32.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.usmopa_za_pp_zz32.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.usmopa_za_pp_zz32.ZAda, true));
                         return result;
         }
         case 0xA1800010u: { // usmops_za_pp_zz_32
                         Instruction result(Mnemonic::USMOPS, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.usmops_za_pp_zz32.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.usmops_za_pp_zz32.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.usmops_za_pp_zz32.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.usmops_za_pp_zz32.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.usmops_za_pp_zz32.ZAda, true));
                         return result;
         }
         case 0xA1A00000u: { // umopa_za_pp_zz_32
                         Instruction result(Mnemonic::UMOPA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.umopa_za_pp_zz32.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.umopa_za_pp_zz32.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.umopa_za_pp_zz32.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.umopa_za_pp_zz32.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.umopa_za_pp_zz32.ZAda, true));
                         return result;
         }
         case 0xA1A00010u: { // umops_za_pp_zz_32
                         Instruction result(Mnemonic::UMOPS, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.umops_za_pp_zz32.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.umops_za_pp_zz32.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.umops_za_pp_zz32.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.umops_za_pp_zz32.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.umops_za_pp_zz32.ZAda, true));
                         return result;
         }
         default: break;
@@ -2774,48 +2888,88 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         Instruction result(Mnemonic::SMOPA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.smopa_za_pp_zz64.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.smopa_za_pp_zz64.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.smopa_za_pp_zz64.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.smopa_za_pp_zz64.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.smopa_za_pp_zz64.ZAda, true));
                         return result;
         }
         case 0xA0C00010u: { // smops_za_pp_zz_64
                         Instruction result(Mnemonic::SMOPS, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.smops_za_pp_zz64.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.smops_za_pp_zz64.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.smops_za_pp_zz64.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.smops_za_pp_zz64.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.smops_za_pp_zz64.ZAda, true));
                         return result;
         }
         case 0xA0E00000u: { // sumopa_za_pp_zz_64
                         Instruction result(Mnemonic::SUMOPA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.sumopa_za_pp_zz64.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.sumopa_za_pp_zz64.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.sumopa_za_pp_zz64.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.sumopa_za_pp_zz64.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.sumopa_za_pp_zz64.ZAda, true));
                         return result;
         }
         case 0xA0E00010u: { // sumops_za_pp_zz_64
                         Instruction result(Mnemonic::SUMOPS, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.sumops_za_pp_zz64.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.sumops_za_pp_zz64.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.sumops_za_pp_zz64.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.sumops_za_pp_zz64.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.sumops_za_pp_zz64.ZAda, true));
                         return result;
         }
         case 0xA1C00000u: { // usmopa_za_pp_zz_64
                         Instruction result(Mnemonic::USMOPA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.usmopa_za_pp_zz64.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.usmopa_za_pp_zz64.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.usmopa_za_pp_zz64.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.usmopa_za_pp_zz64.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.usmopa_za_pp_zz64.ZAda, true));
                         return result;
         }
         case 0xA1C00010u: { // usmops_za_pp_zz_64
                         Instruction result(Mnemonic::USMOPS, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.usmops_za_pp_zz64.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.usmops_za_pp_zz64.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.usmops_za_pp_zz64.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.usmops_za_pp_zz64.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.usmops_za_pp_zz64.ZAda, true));
                         return result;
         }
         case 0xA1E00000u: { // umopa_za_pp_zz_64
                         Instruction result(Mnemonic::UMOPA, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.umopa_za_pp_zz64.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.umopa_za_pp_zz64.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.umopa_za_pp_zz64.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.umopa_za_pp_zz64.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.umopa_za_pp_zz64.ZAda, true));
                         return result;
         }
         case 0xA1E00010u: { // umops_za_pp_zz_64
                         Instruction result(Mnemonic::UMOPS, insn);
                         MortlachEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.umops_za_pp_zz64.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.umops_za_pp_zz64.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.umops_za_pp_zz64.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.umops_za_pp_zz64.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.umops_za_pp_zz64.ZAda, true));
                         return result;
         }
         default: break;
@@ -2831,6 +2985,8 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1b_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1b_za_prrr.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1b_za_prrr.Rs, is_64bit));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.ld1b_za_prrr.Pg, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ld1b_za_prrr.off4, true));
                         return result;
         }
         case 0xE0200000u: { // st1b_za_p_rrr_
@@ -2841,6 +2997,8 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.st1b_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1b_za_prrr.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1b_za_prrr.Rs, is_64bit));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.st1b_za_prrr.Pg, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.st1b_za_prrr.off4, true));
                         return result;
         }
         case 0xE0400000u: { // ld1h_za_p_rrr_
@@ -2851,6 +3009,9 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1h_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1h_za_prrr.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1h_za_prrr.Rs, is_64bit));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.ld1h_za_prrr.Pg, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.ld1h_za_prrr.ZAt, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ld1h_za_prrr.off3, true));
                         return result;
         }
         case 0xE0600000u: { // st1h_za_p_rrr_
@@ -2861,6 +3022,9 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.st1h_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1h_za_prrr.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1h_za_prrr.Rs, is_64bit));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.st1h_za_prrr.Pg, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.st1h_za_prrr.ZAt, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.st1h_za_prrr.off3, true));
                         return result;
         }
         case 0xE0800000u: { // ld1w_za_p_rrr_
@@ -2871,6 +3035,9 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_za_prrr.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_za_prrr.Rs, is_64bit));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.ld1w_za_prrr.Pg, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.ld1w_za_prrr.ZAt, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ld1w_za_prrr.off2, true));
                         return result;
         }
         case 0xE0A00000u: { // st1w_za_p_rrr_
@@ -2881,6 +3048,9 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_za_prrr.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_za_prrr.Rs, is_64bit));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.st1w_za_prrr.Pg, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.st1w_za_prrr.ZAt, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.st1w_za_prrr.off2, true));
                         return result;
         }
         case 0xE0C00000u: { // ld1d_za_p_rrr_
@@ -2891,6 +3061,8 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_za_prrr.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_za_prrr.Rs, is_64bit));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.ld1d_za_prrr.Pg, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.ld1d_za_prrr.ZAt, true));
                         return result;
         }
         case 0xE0E00000u: { // st1d_za_p_rrr_
@@ -2901,6 +3073,8 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_za_prrr.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_za_prrr.Rs, is_64bit));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.st1d_za_prrr.Pg, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.st1d_za_prrr.ZAt, true));
                         return result;
         }
         case 0xE1C00000u: { // ld1q_za_p_rrr_
@@ -2911,6 +3085,8 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1q_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1q_za_prrr.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1q_za_prrr.Rs, is_64bit));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.ld1q_za_prrr.Pg, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.ld1q_za_prrr.ZAt, true));
                         return result;
         }
         case 0xE1E00000u: { // st1q_za_p_rrr_
@@ -2921,6 +3097,8 @@ std::optional<Instruction> decode_mortlach(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.st1q_za_prrr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1q_za_prrr.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1q_za_prrr.Rs, is_64bit));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.st1q_za_prrr.Pg, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.st1q_za_prrr.ZAt, true));
                         return result;
         }
         default: break;

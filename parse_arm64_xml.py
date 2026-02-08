@@ -2832,7 +2832,7 @@ class ARM64XMLParser:
 
         # Check if there are any register operands that need is_64bit
         has_reg_operands = any(reg_name in field_map and not field_map[reg_name]['is_fixed']
-                              for reg_name in ['Rd', 'Rn', 'Rm', 'Ra', 'Rt', 'Rs', 'Rt2'])
+                              for reg_name in ['Rd', 'Rn', 'Rm', 'Ra', 'Rt', 'Rs', 'Rt2', 'Rdn'])
 
         # Only determine register size if there are register operands
         if has_reg_operands:
@@ -2847,18 +2847,46 @@ class ARM64XMLParser:
             else:
                 code.append(f"{ind}bool is_64bit = false;")
 
-        # Extract all register operands - pass is_64bit as third parameter
-        for reg_name in ['Rd', 'Rn', 'Rm', 'Ra', 'Rt', 'Rs', 'Rt2']:
+        # Extract all GPR register operands - pass is_64bit as third parameter
+        for reg_name in ['Rd', 'Rn', 'Rm', 'Ra', 'Rt', 'Rs', 'Rt2', 'Rdn']:
             if reg_name in field_map and not field_map[reg_name]['is_fixed']:
                 field_cpp_name = field_map[reg_name]['name']
-                reg_letter = reg_mapping[reg_name]
-                # Pass is_64bit bool directly instead of name string
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{field_cpp_name}, is_64bit));")
+
+        # Extract SVE Z register operands
+        for reg_name in ['Zd', 'Zn', 'Zm', 'Za', 'Zk', 'Zt', 'Zda', 'Zdn']:
+            if reg_name in field_map and not field_map[reg_name]['is_fixed']:
+                field_cpp_name = field_map[reg_name]['name']
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::SVERegister, enc.{member_name}.{field_cpp_name}, true));")
+
+        # Extract SIMD V register operands
+        for reg_name in ['Vd', 'Vdn', 'Vn', 'Vm']:
+            if reg_name in field_map and not field_map[reg_name]['is_fixed']:
+                field_cpp_name = field_map[reg_name]['name']
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, true));")
+
+        # Extract SVE predicate register operands
+        for reg_name in ['Pd', 'Pn', 'Pm', 'Pg', 'Pt', 'Pv', 'Pdm', 'Pdn', 'PNd', 'PNn', 'PNg', 'PNv']:
+            if reg_name in field_map and not field_map[reg_name]['is_fixed']:
+                field_cpp_name = field_map[reg_name]['name']
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::PredicateRegister, enc.{member_name}.{field_cpp_name}, true));")
+
+        # Extract SME ZA tile register operands
+        for reg_name in ['ZAd', 'ZAda', 'ZAn', 'ZAt']:
+            if reg_name in field_map and not field_map[reg_name]['is_fixed']:
+                field_cpp_name = field_map[reg_name]['name']
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::SMETileRegister, enc.{member_name}.{field_cpp_name}, true));")
+
+        # Extract Rv index register (2-bit field encoding W8-W11)
+        if 'Rv' in field_map and not field_map['Rv']['is_fixed']:
+            rv_field = field_map['Rv']['name']
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rv_field} + 8, false));")
 
         # Extract ALL immediate operands (don't break after first)
         imm_patterns = [
             ('imm12', 12, True),   # (name, bits, is_unsigned)
             ('imm16', 16, True),
+            ('imm13', 13, True),   # SVE logical immediate
             ('imm6', 6, True),
             ('imm5', 5, True),
             ('imm8', 8, True),
@@ -2866,6 +2894,9 @@ class ARM64XMLParser:
             ('simm9', 9, False),   # Explicitly signed
             ('imm7', 7, False),    # Typically signed
             ('simm7', 7, False),   # Explicitly signed
+            ('imm4', 4, True),     # SVE/SME index, barrier CRm
+            ('imm3', 3, True),     # SVE/SME index
+            ('imm2', 2, True),     # SVE/SME index
         ]
 
         # Check if shift field exists (imm6 is then the shift amount, not standalone)
@@ -2887,6 +2918,18 @@ class ARM64XMLParser:
                     code.append(f"{ind}    int32_t val = static_cast<int32_t>(enc.{member_name}.{field_cpp_name} << {32-bits}) >> {32-bits};")
                     code.append(f"{ind}    result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));")
                     code.append(f"{ind}}}")
+
+        # Extract SVE/SME offset fields
+        for off_name in ['off4', 'off3', 'off2']:
+            if off_name in field_map and not field_map[off_name]['is_fixed']:
+                field_cpp_name = field_map[off_name]['name']
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.{field_cpp_name}, true));")
+
+        # Extract SVE/SME split index fields
+        for idx_name in ['i1', 'i2', 'i3', 'i4']:
+            if idx_name in field_map and not field_map[idx_name]['is_fixed']:
+                field_cpp_name = field_map[idx_name]['name']
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.{field_cpp_name}, true));")
 
         # Handle shift operands (shift + amount) - use Shift operand type with value
         if 'shift' in field_map and not field_map['shift']['is_fixed']:
@@ -3024,6 +3067,7 @@ class ARM64XMLParser:
         code.append("")
         code.append("# Option to reduce binary size and remove strings")
         code.append("option(VEDA64_NO_STRINGS \"Disable all string functions (to_string, mnemonic_to_string, status_to_string, dump_hook)\" OFF)")
+        code.append("option(VEDA64_BUILD_TESTS \"Build test executables\" ON)")
         code.append("")
         code.append("# Compiler warnings")
         code.append("if(MSVC)")
@@ -3057,8 +3101,10 @@ class ARM64XMLParser:
         code.append("target_link_libraries(veda64-disasm PRIVATE veda64)")
         code.append("")
         code.append("# Enable testing")
-        code.append("enable_testing()")
-        code.append("add_subdirectory(test)")
+        code.append("if(VEDA64_BUILD_TESTS)")
+        code.append("    enable_testing()")
+        code.append("    add_subdirectory(test)")
+        code.append("endif()")
         code.append("")
         code.append("# Installation")
         code.append("install(TARGETS veda64 veda64-disasm")

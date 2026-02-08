@@ -1840,6 +1840,8 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_zpbr_u128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_zpbr_u128.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.ld1w_zpbr_u128.Zt, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.ld1w_zpbr_u128.Pg, true));
                         return result;
         }
         case 0xA55F4000u: { // ld1w_z_p_br_u32
@@ -1849,6 +1851,8 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_zpbr_u32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_zpbr_u32.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.ld1w_zpbr_u32.Zt, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.ld1w_zpbr_u32.Pg, true));
                         return result;
         }
         case 0xA57F4000u: { // ld1w_z_p_br_u64
@@ -1858,6 +1862,8 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_zpbr_u64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_zpbr_u64.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.ld1w_zpbr_u64.Zt, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.ld1w_zpbr_u64.Pg, true));
                         return result;
         }
         case 0xA59F8000u: { // ld1d_z_p_br_u128
@@ -1867,6 +1873,8 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_zpbr_u128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_zpbr_u128.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.ld1d_zpbr_u128.Zt, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.ld1d_zpbr_u128.Pg, true));
                         return result;
         }
         case 0xA5FF4000u: { // ld1d_z_p_br_u64
@@ -1876,6 +1884,8 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_zpbr_u64.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_zpbr_u64.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.ld1d_zpbr_u64.Zt, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.ld1d_zpbr_u64.Pg, true));
                         return result;
         }
         case 0xE51F4000u: { // st1w_z_p_br_u128
@@ -1885,6 +1895,8 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_zpbr_u128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_zpbr_u128.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.st1w_zpbr_u128.Zt, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.st1w_zpbr_u128.Pg, true));
                         return result;
         }
         case 0xE5DF4000u: { // st1d_z_p_br_u128
@@ -1894,6 +1906,8 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_zpbr_u128.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_zpbr_u128.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.st1d_zpbr_u128.Zt, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.st1d_zpbr_u128.Pg, true));
                         return result;
         }
         case 0xE5FF4000u: { // st1d_z_p_br_
@@ -1903,6 +1917,8 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_zpbr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_zpbr.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.st1d_zpbr.Zt, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.st1d_zpbr.Pg, true));
                         return result;
         }
         default: break;
@@ -1916,6 +1932,9 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_zpbi_u128.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.ld1w_zpbi_u128.Zt, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.ld1w_zpbi_u128.Pg, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ld1w_zpbi_u128.imm4, true));
                         return result;
         }
         case 0xA540A000u: { // ld1w_z_p_bi_u32
@@ -1924,6 +1943,9 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_zpbi_u32.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.ld1w_zpbi_u32.Zt, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.ld1w_zpbi_u32.Pg, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ld1w_zpbi_u32.imm4, true));
                         return result;
         }
         case 0xA560A000u: { // ld1w_z_p_bi_u64
@@ -1932,6 +1954,9 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1w_zpbi_u64.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.ld1w_zpbi_u64.Zt, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.ld1w_zpbi_u64.Pg, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ld1w_zpbi_u64.imm4, true));
                         return result;
         }
         case 0xA5902000u: { // ld1d_z_p_bi_u128
@@ -1940,6 +1965,9 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_zpbi_u128.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.ld1d_zpbi_u128.Zt, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.ld1d_zpbi_u128.Pg, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ld1d_zpbi_u128.imm4, true));
                         return result;
         }
         case 0xA5E0A000u: { // ld1d_z_p_bi_u64
@@ -1948,6 +1976,9 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ld1d_zpbi_u64.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.ld1d_zpbi_u64.Zt, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.ld1d_zpbi_u64.Pg, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ld1d_zpbi_u64.imm4, true));
                         return result;
         }
         case 0xE500E000u: { // st1w_z_p_bi_u128
@@ -1956,6 +1987,9 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_zpbi_u128.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.st1w_zpbi_u128.Zt, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.st1w_zpbi_u128.Pg, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.st1w_zpbi_u128.imm4, true));
                         return result;
         }
         case 0xE5C0E000u: { // st1d_z_p_bi_u128
@@ -1964,6 +1998,9 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_zpbi_u128.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.st1d_zpbi_u128.Zt, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.st1d_zpbi_u128.Pg, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.st1d_zpbi_u128.imm4, true));
                         return result;
         }
         case 0xE5E0E000u: { // st1d_z_p_bi_
@@ -1972,6 +2009,9 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1d_zpbi.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.st1d_zpbi.Zt, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.st1d_zpbi.Pg, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.st1d_zpbi.imm4, true));
                         return result;
         }
         default: break;
@@ -2040,12 +2080,22 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::FMOPA, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmopa_za_pp_zz16.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmopa_za_pp_zz16.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.fmopa_za_pp_zz16.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.fmopa_za_pp_zz16.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.fmopa_za_pp_zz16.ZAda, true));
                         return result;
         }
         case 0x81800018u: { // fmops_za_pp_zz_16
                         Instruction result(Mnemonic::FMOPS, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmops_za_pp_zz16.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmops_za_pp_zz16.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.fmops_za_pp_zz16.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.fmops_za_pp_zz16.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.fmops_za_pp_zz16.ZAda, true));
                         return result;
         }
         default: break;
@@ -2057,12 +2107,22 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::FMOPA, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmopa_za_pp_zz32.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmopa_za_pp_zz32.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.fmopa_za_pp_zz32.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.fmopa_za_pp_zz32.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.fmopa_za_pp_zz32.ZAda, true));
                         return result;
         }
         case 0x80800010u: { // fmops_za_pp_zz_32
                         Instruction result(Mnemonic::FMOPS, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmops_za_pp_zz32.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmops_za_pp_zz32.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.fmops_za_pp_zz32.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.fmops_za_pp_zz32.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.fmops_za_pp_zz32.ZAda, true));
                         return result;
         }
         default: break;
@@ -2074,12 +2134,22 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::FMOPA, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmopa_za_pp_zz64.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmopa_za_pp_zz64.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.fmopa_za_pp_zz64.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.fmopa_za_pp_zz64.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.fmopa_za_pp_zz64.ZAda, true));
                         return result;
         }
         case 0x80C00010u: { // fmops_za_pp_zz_64
                         Instruction result(Mnemonic::FMOPS, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmops_za_pp_zz64.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmops_za_pp_zz64.Zm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.fmops_za_pp_zz64.Pn, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.fmops_za_pp_zz64.Pm, true));
+                        result.operands.push_back(Operand(OperandType::SMETileRegister, enc.fmops_za_pp_zz64.ZAda, true));
                         return result;
         }
         default: break;
@@ -2094,6 +2164,8 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_zpbr.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_zpbr.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.st1w_zpbr.Zt, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.st1w_zpbr.Pg, true));
                         return result;
         }
         default: break;
@@ -2107,6 +2179,9 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.st1w_zpbi.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.st1w_zpbi.Zt, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.st1w_zpbi.Pg, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.st1w_zpbi.imm4, true));
                         return result;
         }
         default: break;
@@ -2118,12 +2193,18 @@ std::optional<Instruction> decode_unknown(uint32_t insn) {
                         Instruction result(Mnemonic::TBL, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.tbl_zzz2.Zd, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.tbl_zzz2.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.tbl_zzz2.Zm, true));
                         return result;
         }
         case 0x05203000u: { // tbl_z_zz_1
                         Instruction result(Mnemonic::TBL, insn);
                         UnknownEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.tbl_zzz1.Zd, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.tbl_zzz1.Zn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.tbl_zzz1.Zm, true));
                         return result;
         }
         default: break;
