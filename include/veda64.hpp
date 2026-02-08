@@ -1590,7 +1590,7 @@ enum class OperandType {
     MemoryPostIndex,    // Memory operand [base], #offset (post-index writeback)
     MemoryRegOffset,    // Memory operand [base, Rm{, extend {#amount}}]
     Label,              // Branch target label/offset
-    Relative,          // PC-relative offset for branches
+    Relative,           // PC-relative offset for branches
     SystemRegister,     // System register
     Condition,          // Condition code (EQ, NE, etc.)
     Shift,              // Shift specifier (LSL, LSR, ASR, ROR)
