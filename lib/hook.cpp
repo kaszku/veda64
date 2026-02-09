@@ -713,7 +713,28 @@ bool relocate_instruction(
 
     // Handle PC-relative instructions
     switch (decoded->mnemonic) {
-        case Mnemonic::B:
+        case Mnemonic::B: {
+            // B.cond also decodes as Mnemonic::B; distinguish by encoding
+            // B.cond: bits [31:24]=0x54, bit4=0 -> mask 0xFF000010
+            if ((insn & 0xFF000010) == 0x54000000) {
+                // B.cond imm19 - 19-bit signed offset * 4
+                int32_t imm19 = static_cast<int32_t>((insn >> 5) & 0x7FFFF);
+                if (imm19 & 0x40000) { imm19 |= 0xFFF80000; }
+                int64_t offset = static_cast<int64_t>(imm19) * 4;
+                uint64_t target = old_pc + offset;
+                int64_t new_offset = static_cast<int64_t>(target - new_pc);
+                if (new_offset >= -1048576 && new_offset <= 1048572 && (new_offset & 3) == 0) {
+                    uint32_t new_imm19 = static_cast<uint32_t>((new_offset / 4) & 0x7FFFF);
+                    out_insn[0] = (insn & 0xFF00001F) | (new_imm19 << 5);
+                    *out_count = 1;
+                    return true;
+                }
+                *out_count = 0;
+                return false;
+            }
+            // Unconditional B: fall through to B/BL handling
+        }
+        [[fallthrough]];
         case Mnemonic::BL: {
             // B/BL imm26 - 26-bit signed offset * 4
             int32_t imm26 = static_cast<int32_t>(insn & 0x03FFFFFF);

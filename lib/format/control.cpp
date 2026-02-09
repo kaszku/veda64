@@ -6367,7 +6367,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::B, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Condition, enc.bonly_condbranch.cond, true));
                         int32_t offset = static_cast<int32_t>(enc.bonly_condbranch.imm19 << 13) >> 13;
                         offset *= 4;
                         result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));
@@ -6378,9 +6377,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Condition, enc.bc_only_condbranch.cond, true));
-                        int32_t offset = static_cast<int32_t>(enc.bc_only_condbranch.imm19 << 13) >> 13;
-                        offset *= 4;
-                        result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));
                         return result;
         }
         default: break;

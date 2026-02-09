@@ -1154,16 +1154,6 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
         }
     }
 
-    // B.cond / BC.cond: condition suffix on mnemonic
-    if ((insn.mnemonic == Mnemonic::B || insn.mnemonic == Mnemonic::BC) &&
-        insn.operands.size() >= 2 &&
-        insn.operands[0].type == OperandType::Condition) {
-        std::string result = mnemonic_to_string(insn.mnemonic);
-        result += "." + insn.operands[0].to_string();
-        result += " " + insn.operands[1].to_string();
-        return result;
-    }
-
     return std::nullopt;  // No alias
 }
 
