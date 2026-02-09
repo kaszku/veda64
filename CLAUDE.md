@@ -60,6 +60,36 @@ The following files are **not** published: `parse_arm64_xml.py`, `CLAUDE.md`, `a
 
 **Publish target**: `github.com/kaszku/veda64` — only the files listed above are pushed to this repo.
 
+### Publishing Guidelines
+
+When publishing to `kaszku/veda64`:
+
+1. **Always squash commits** — The public repo should have clean, meaningful commits, not the development history
+2. **Write descriptive commit messages** — Focus on what changed and why (e.g., "Add big-endian support to disassembler", "Fix instruction alias formatting")
+3. **Never mention AI or co-authorship** in commit messages — Keep commits professional and implementation-focused
+4. **Use force-push when needed** — The public repo history should be clean and linear
+
+**Publishing process**:
+```bash
+# Create clean branch from latest public state
+git fetch public
+git checkout -b public-release public/main
+
+# Cherry-pick or apply changes from main (excluding private files)
+git checkout main -- include/ lib/ test/ tools/ CMakeLists.txt README.md LICENSE .gitignore
+
+# Commit with meaningful message
+git add -A
+git commit -m "Descriptive message about the changes"
+
+# Force-push to keep history clean
+git push public public-release:main --force
+
+# Clean up
+git checkout main
+git branch -D public-release
+```
+
 ### Key Components
 
 **Main Header** (`include/veda64.hpp`):
