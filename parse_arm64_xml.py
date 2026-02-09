@@ -1073,21 +1073,37 @@ class ARM64XMLParser:
         code.append("        }")
         code.append("    }")
         code.append("")
-        code.append("    // MOVZ/MOVN/MOVK with no shifts -> MOV alias")
+        code.append("    // MOVZ/MOVN/MOVK with or without shifts -> MOV/MVN alias")
         code.append("    if (insn.mnemonic == Mnemonic::MOVZ && insn.operands.size() >= 2) {")
-        code.append("        // Check if there's no shift operand or shift is 0")
+        code.append("        // Check if there's a shift operand")
         code.append("        bool has_shift = insn.operands.size() >= 3 && insn.operands[2].type == OperandType::Shift;")
-        code.append("        bool no_shift = !has_shift || (has_shift && insn.operands[2].value == 0);")
-        code.append("        if (no_shift) {")
-        code.append('            return std::string("mov ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string();')
+        code.append("        if (has_shift) {")
+        code.append("            // Compute the final shifted value")
+        code.append("            uint64_t imm = insn.operands[1].value;")
+        code.append("            uint32_t shift_amt = insn.operands[2].value & 0xFF;")
+        code.append("            uint64_t final_val = imm << shift_amt;")
+        code.append("            std::ostringstream oss;")
+        code.append("            oss << \"mov \" << insn.operands[0].to_string() << \", #0x\" << std::hex << final_val;")
+        code.append("            return oss.str();")
+        code.append("        } else {")
+        code.append("            return std::string(\"mov \") + insn.operands[0].to_string() + \", \" + insn.operands[1].to_string();")
         code.append("        }")
         code.append("    }")
         code.append("")
         code.append("    if (insn.mnemonic == Mnemonic::MOVN && insn.operands.size() >= 2) {")
         code.append("        bool has_shift = insn.operands.size() >= 3 && insn.operands[2].type == OperandType::Shift;")
-        code.append("        bool no_shift = !has_shift || (has_shift && insn.operands[2].value == 0);")
-        code.append("        if (no_shift) {")
-        code.append('            return std::string("mvn ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string();')
+        code.append("        if (has_shift) {")
+        code.append("            // Compute the final shifted and inverted value")
+        code.append("            uint64_t imm = insn.operands[1].value;")
+        code.append("            uint32_t shift_amt = insn.operands[2].value & 0xFF;")
+        code.append("            uint64_t final_val = ~(imm << shift_amt);")
+        code.append("            // Mask to register size")
+        code.append("            if (!insn.operands[0].is_64bit) final_val &= 0xFFFFFFFFULL;")
+        code.append("            std::ostringstream oss;")
+        code.append("            oss << \"mov \" << insn.operands[0].to_string() << \", #0x\" << std::hex << final_val;")
+        code.append("            return oss.str();")
+        code.append("        } else {")
+        code.append("            return std::string(\"mvn \") + insn.operands[0].to_string() + \", \" + insn.operands[1].to_string();")
         code.append("        }")
         code.append("    }")
         code.append("")
@@ -1154,6 +1170,21 @@ class ARM64XMLParser:
         code.append("        }")
         code.append("    }")
         code.append("")
+        code.append("    // RORV -> ROR alias (variable rotate is just called ROR in disassembly)")
+        code.append("    if (insn.mnemonic == Mnemonic::RORV && insn.operands.size() >= 3) {")
+        code.append('        return std::string("ror ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();')
+        code.append("    }")
+        code.append("")
+        code.append("    // CSEL condition suffix (cseleq, cselne, etc.)")
+        code.append("    if (insn.mnemonic == Mnemonic::CSEL && insn.operands.size() >= 4 && insn.operands[3].type == OperandType::Condition) {")
+        code.append("        const char* conds[] = {\"eq\", \"ne\", \"cs\", \"cc\", \"mi\", \"pl\", \"vs\", \"vc\",")
+        code.append("                               \"hi\", \"ls\", \"ge\", \"lt\", \"gt\", \"le\", \"al\", \"nv\"};")
+        code.append("        uint32_t cond = insn.operands[3].value;")
+        code.append("        if (cond < 16) {")
+        code.append('            return std::string("csel") + conds[cond] + " " + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();')
+        code.append("        }")
+        code.append("    }")
+        code.append("")
         code.append("    return std::nullopt;  // No alias")
         code.append("}")
         code.append("")
@@ -1193,7 +1224,12 @@ class ARM64XMLParser:
         code.append("        case OperandType::Immediate:")
         code.append("            {")
         code.append("                std::ostringstream oss;")
-        code.append("                oss << \"#0x\" << std::hex << value;")
+        code.append("                // Use decimal for small values (0-15), hex for larger")
+        code.append("                if (value <= 15) {")
+        code.append("                    oss << \"#\" << std::dec << value;")
+        code.append("                } else {")
+        code.append("                    oss << \"#0x\" << std::hex << value;")
+        code.append("                }")
         code.append("                return oss.str();")
         code.append("            }")
         code.append("        ")
@@ -1202,9 +1238,17 @@ class ARM64XMLParser:
         code.append("                std::ostringstream oss;")
         code.append("                int32_t sval = static_cast<int32_t>(value);")
         code.append("                if (sval < 0) {")
-        code.append("                    oss << \"#-0x\" << std::hex << (-sval);")
+        code.append("                    if (sval >= -15) {")
+        code.append("                        oss << \"#\" << std::dec << sval;")
+        code.append("                    } else {")
+        code.append("                        oss << \"#-0x\" << std::hex << (-sval);")
+        code.append("                    }")
         code.append("                } else {")
-        code.append("                    oss << \"#0x\" << std::hex << sval;")
+        code.append("                    if (sval <= 15) {")
+        code.append("                        oss << \"#\" << std::dec << sval;")
+        code.append("                    } else {")
+        code.append("                        oss << \"#0x\" << std::hex << sval;")
+        code.append("                    }")
         code.append("                }")
         code.append("                return oss.str();")
         code.append("            }")
@@ -1235,8 +1279,13 @@ class ARM64XMLParser:
         code.append("            {")
         code.append("                std::ostringstream oss;")
         code.append("                oss << \"[\" << format_register(base_reg, true, true) << \", #\";")
-        code.append("                if (offset < 0) oss << \"-0x\" << std::hex << (-offset);")
-        code.append("                else oss << \"0x\" << std::hex << offset;")
+        code.append("                if (offset < 0) {")
+        code.append("                    if (offset >= -15) oss << std::dec << offset;")
+        code.append("                    else oss << \"-0x\" << std::hex << (-offset);")
+        code.append("                } else {")
+        code.append("                    if (offset <= 15) oss << std::dec << offset;")
+        code.append("                    else oss << \"0x\" << std::hex << offset;")
+        code.append("                }")
         code.append("                oss << \"]\";")
         code.append("                return oss.str();")
         code.append("            }")
@@ -1246,8 +1295,13 @@ class ARM64XMLParser:
         code.append("            {")
         code.append("                std::ostringstream oss;")
         code.append("                oss << \"[\" << format_register(base_reg, true, true) << \", #\";")
-        code.append("                if (offset < 0) oss << \"-0x\" << std::hex << (-offset);")
-        code.append("                else oss << \"0x\" << std::hex << offset;")
+        code.append("                if (offset < 0) {")
+        code.append("                    if (offset >= -15) oss << std::dec << offset;")
+        code.append("                    else oss << \"-0x\" << std::hex << (-offset);")
+        code.append("                } else {")
+        code.append("                    if (offset <= 15) oss << std::dec << offset;")
+        code.append("                    else oss << \"0x\" << std::hex << offset;")
+        code.append("                }")
         code.append("                oss << \"]!\";")
         code.append("                return oss.str();")
         code.append("            }")
@@ -1257,8 +1311,13 @@ class ARM64XMLParser:
         code.append("            {")
         code.append("                std::ostringstream oss;")
         code.append("                oss << \"[\" << format_register(base_reg, true, true) << \"], #\";")
-        code.append("                if (offset < 0) oss << \"-0x\" << std::hex << (-offset);")
-        code.append("                else oss << \"0x\" << std::hex << offset;")
+        code.append("                if (offset < 0) {")
+        code.append("                    if (offset >= -15) oss << std::dec << offset;")
+        code.append("                    else oss << \"-0x\" << std::hex << (-offset);")
+        code.append("                } else {")
+        code.append("                    if (offset <= 15) oss << std::dec << offset;")
+        code.append("                    else oss << \"0x\" << std::hex << offset;")
+        code.append("                }")
         code.append("                return oss.str();")
         code.append("            }")
         code.append("        ")
@@ -2588,7 +2647,10 @@ class ARM64XMLParser:
                 code.append(f"{ind}return result;")
                 return code
             elif mnemonic == 'B' and 'imm19' in field_map:
-                # Conditional branch B.cond
+                # Conditional branch B.cond - extract condition first, then offset
+                if 'cond' in field_map and not field_map['cond']['is_fixed']:
+                    cond_field = field_map['cond']['name']
+                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::Condition, enc.{member_name}.{cond_field}, true));")
                 imm_field = field_map['imm19']['name']
                 # Sign-extend 19-bit immediate and multiply by 4
                 code.append(f"{ind}int32_t offset = static_cast<int32_t>(enc.{member_name}.{imm_field} << 13) >> 13;")
@@ -2848,10 +2910,38 @@ class ARM64XMLParser:
                 code.append(f"{ind}bool is_64bit = false;")
 
         # Extract all GPR register operands - pass is_64bit as third parameter
+        # Special case: For advsimd class, Rd/Rn/Rm might actually be vector registers
+        # Check if this is an advsimd instruction that uses vector registers
+        is_advsimd_vector = (class_name == 'advsimd' and mnemonic in [
+            'MOVI', 'MVNI', 'ORR', 'BIC', 'FMOV', 'DUP', 'INS', 'UMOV', 'SMOV',
+            'ABS', 'NEG', 'NOT', 'CNT', 'CLS', 'CLZ', 'RBIT', 'REV16', 'REV32', 'REV64',
+            'ADD', 'SUB', 'MUL', 'MLA', 'MLS', 'AND', 'EOR', 'BSL', 'BIT', 'BIF',
+            'SMAX', 'SMIN', 'UMAX', 'UMIN', 'SMAXP', 'SMINP', 'UMAXP', 'UMINP',
+            'SHL', 'SHR', 'SSHR', 'USHR', 'SSRA', 'USRA', 'SRSHR', 'URSHR',
+            'SHADD', 'UHADD', 'SHSUB', 'UHSUB', 'SRHADD', 'URHADD',
+            'SADDLP', 'UADDLP', 'SADALP', 'UADALP',
+            'SQABS', 'SQNEG', 'SUQADD', 'USQADD',
+            'ADDP', 'ADDV', 'SADDLV', 'UADDLV',
+            'FCVT', 'FCVTL', 'FCVTN', 'FCVTXN',
+            'FADD', 'FSUB', 'FMUL', 'FDIV', 'FNEG', 'FABS', 'FSQRT',
+            'FMAX', 'FMIN', 'FMAXNM', 'FMINNM', 'FMAXP', 'FMINP',
+            'FCMEQ', 'FCMGE', 'FCMGT', 'FCMLE', 'FCMLT',
+            'FRINTN', 'FRINTP', 'FRINTM', 'FRINTZ', 'FRINTA', 'FRINTX', 'FRINTI',
+            'XTN', 'SQXTN', 'UQXTN', 'SQXTUN', 'SHLL',
+            'UXTL', 'SXTL', 'SADDL', 'SADDW', 'SSUBL', 'SSUBW', 'UADDL', 'UADDW', 'USUBL', 'USUBW',
+            'SMLAL', 'SMLSL', 'UMLAL', 'UMLSL', 'SMULL', 'UMULL',
+            'SQDMLAL', 'SQDMLSL', 'SQDMULL', 'SQDMULH', 'SQRDMULH',
+            'PMUL', 'PMULL', 'SABD', 'UABD', 'SABA', 'UABA'
+        ])
+        
         for reg_name in ['Rd', 'Rn', 'Rm', 'Ra', 'Rt', 'Rs', 'Rt2', 'Rdn']:
             if reg_name in field_map and not field_map[reg_name]['is_fixed']:
                 field_cpp_name = field_map[reg_name]['name']
-                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{field_cpp_name}, is_64bit));")
+                if is_advsimd_vector:
+                    # Use VectorRegister for advsimd vector instructions (false = use 'v' prefix not 'q')
+                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false));")
+                else:
+                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{field_cpp_name}, is_64bit));")
 
         # Extract SVE Z register operands
         for reg_name in ['Zd', 'Zn', 'Zm', 'Za', 'Zk', 'Zt', 'Zda', 'Zdn']:
@@ -3161,22 +3251,20 @@ class ARM64XMLParser:
             print(f"Generated test_{cls}.cpp ({len(instrs)} instructions)")
 
     def _generate_class_tests(self, class_name: str, instructions: List[Instruction], output_file: Path):
-        """Generate test file for a specific instruction class."""
+        """Generate test file for a specific instruction class using format-based decode."""
         code = []
 
+        code.append(f"// Auto-generated - do not edit")
         code.append(f"// Test suite for {class_name} instruction class")
         code.append("#include \"veda64.hpp\"")
-        code.append(f"#include \"class/{class_name}.hpp\"")
         code.append("#include <cassert>")
         code.append("#include <iostream>")
-        code.append("#include <iomanip>")
         code.append("")
-        code.append(f"using namespace veda64::{self._sanitize_namespace(class_name)};")
         code.append("using namespace veda64;")
         code.append("")
 
         # Generate test functions for sample instructions
-        test_count = 0
+        test_funcs = []
         for instr in instructions[:10]:  # Test first 10 instructions per class
             if not instr.encodings:
                 continue
@@ -3185,50 +3273,26 @@ class ARM64XMLParser:
             if not encoding.name:
                 continue
 
-            test_count += 1
             func_name = self._sanitize_function_name(encoding.name)
+
+            # Compute the instruction value with all fixed bits set, variable bits = 0
+            _, _, _, _, full_pattern, _ = self._generate_encoding_struct(instr, encoding)
+
+            if full_pattern is None:
+                continue
+
+            test_funcs.append((func_name, instr.mnemonic, full_pattern))
 
             code.append(f"void test_{func_name}() {{")
             code.append(f"    // Test {instr.mnemonic}: {instr.brief}")
-            code.append(f"    ")
-
-            # Use encode function to create a properly formed instruction
-            code.append(f"    // Create test instruction using encode function")
-
-            # Collect parameters for encode function (non-fixed, non-reserved fields)
-            # Order fields by bit position (low to high) to match encoder parameter order
-            params = []
-            sorted_fields = sorted(
-                [(name, info) for name, info in encoding.fields.items()
-                 if info.get('hibit') is not None],
-                key=lambda x: x[1].get('hibit', 0) - x[1].get('width', 1) + 1
-            )
-            for field_name, field_info in sorted_fields:
-                if field_name.startswith('_unnamed_') or field_name.startswith('reserved'):
-                    continue
-                fixed = field_info.get('fixed')
-                is_fixed = fixed is not None and self._is_binary_string(fixed)
-                if not is_fixed:
-                    # For partial patterns, calculate the value with fixed bits set
-                    partial = field_info.get('partial_pattern')
-                    if partial:
-                        fixed_bits = 0
-                        for i, bit_char in enumerate(reversed(partial)):
-                            if bit_char == '1':
-                                fixed_bits |= (1 << i)
-                        params.append(str(fixed_bits))
-                    else:
-                        params.append("0")  # Pass 0 for fully variable fields
-
-            param_str = ", ".join(params) if params else ""
-            code.append(f"    uint32_t test_insn = encode_{func_name}({param_str});")
-
-            code.append(f"    ")
-            code.append(f"    auto result = decode_{self._sanitize_function_name(class_name)}(test_insn);")
+            code.append(f"    uint32_t test_insn = 0x{full_pattern:08X}u;")
+            code.append(f"")
+            code.append(f"    auto result = decode(test_insn);")
             code.append(f"    assert(result.has_value());")
+            code.append(f"    (void)result;")
             if instr.mnemonic:
                 code.append(f"    assert(result->mnemonic == Mnemonic::{instr.mnemonic});")
-            code.append(f"    ")
+            code.append(f"")
             code.append(f"    std::cout << \"  {func_name}: \" << result->to_string() << std::endl;")
             code.append(f"}}")
             code.append("")
@@ -3236,19 +3300,14 @@ class ARM64XMLParser:
         # Generate main function
         code.append(f"int main() {{")
         code.append(f"    std::cout << \"Running {class_name} tests...\" << std::endl;")
-        code.append(f"    ")
+        code.append(f"")
 
         # Call all test functions
-        test_count = 0
-        for instr in instructions[:10]:
-            if not instr.encodings or not instr.encodings[0].name:
-                continue
-            test_count += 1
-            func_name = self._sanitize_function_name(instr.encodings[0].name)
+        for func_name, _, _ in test_funcs:
             code.append(f"    test_{func_name}();")
 
-        code.append(f"    ")
-        code.append(f"    std::cout << \"All {test_count} tests passed!\" << std::endl;")
+        code.append(f"")
+        code.append(f"    std::cout << \"All {len(test_funcs)} tests passed!\" << std::endl;")
         code.append(f"    return 0;")
         code.append(f"}}")
         code.append("")
@@ -3265,10 +3324,19 @@ class ARM64XMLParser:
         code.append("#include \"veda64.hpp\"")
         code.append("#include <iostream>")
         code.append("#include <cstdlib>")
+        code.append("#include <cstring>")
         code.append("")
         code.append("using namespace veda64;")
         code.append("")
-        code.append("// Parse a uint32_t from string (little-endian memory order)")
+        code.append("// Byte swap for big-endian to little-endian conversion")
+        code.append("inline uint32_t bswap32(uint32_t value) {")
+        code.append("    return ((value & 0xFF000000u) >> 24) |")
+        code.append("           ((value & 0x00FF0000u) >> 8)  |")
+        code.append("           ((value & 0x0000FF00u) << 8)  |")
+        code.append("           ((value & 0x000000FFu) << 24);")
+        code.append("}")
+        code.append("")
+        code.append("// Parse a uint32_t from string")
         code.append("bool parse_instruction(const char* str, uint32_t& value) {")
         code.append("    char* endptr;")
         code.append("")
@@ -3284,18 +3352,23 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
         code.append("void print_usage(const char* progname) {")
-        code.append("    std::cerr << \"Usage: \" << progname << \" <instruction> [instruction...]\\n\";")
+        code.append("    std::cerr << \"Usage: \" << progname << \" [options] <instruction> [instruction...]\\n\";")
         code.append("    std::cerr << \"\\n\";")
         code.append("    std::cerr << \"Disassemble one or more ARM64 instructions.\\n\";")
         code.append("    std::cerr << \"\\n\";")
+        code.append("    std::cerr << \"Options:\\n\";")
+        code.append("    std::cerr << \"  -b, --big-endian  Input values are in big-endian byte order\\n\";")
+        code.append("    std::cerr << \"  -h, --help        Show this help message\\n\";")
+        code.append("    std::cerr << \"\\n\";")
         code.append("    std::cerr << \"Arguments:\\n\";")
-        code.append("    std::cerr << \"  instruction  32-bit native instruction value\\n\";")
-        code.append("    std::cerr << \"               (hex: 0x..., binary: 0b..., or decimal)\\n\";")
+        code.append("    std::cerr << \"  instruction       32-bit instruction value\\n\";")
+        code.append("    std::cerr << \"                    (hex: 0x..., binary: 0b..., or decimal)\\n\";")
         code.append("    std::cerr << \"\\n\";")
         code.append("    std::cerr << \"Examples:\\n\";")
-        code.append("    std::cerr << \"  \" << progname << \" 0xd503237f              # PACIBSP\\n\";")
-        code.append("    std::cerr << \"  \" << progname << \" 0xd65f03c0              # RET\\n\";")
-        code.append("    std::cerr << \"  \" << progname << \" 0xd503237f 0xd65f03c0   # Multiple instructions\\n\";")
+        code.append("    std::cerr << \"  \" << progname << \" 0xd503237f              # PACIBSP (little-endian)\\n\";")
+        code.append("    std::cerr << \"  \" << progname << \" 0xd65f03c0              # RET (little-endian)\\n\";")
+        code.append("    std::cerr << \"  \" << progname << \" -b 0x7f2303d5           # PACIBSP (big-endian)\\n\";")
+        code.append("    std::cerr << \"  \" << progname << \" -b 0x7f2303d5 0xff2303d5  # Multiple (big-endian)\\n\";")
         code.append("}")
         code.append("")
         code.append("int main(int argc, char* argv[]) {")
@@ -3304,9 +3377,33 @@ class ARM64XMLParser:
         code.append("        return 1;")
         code.append("    }")
         code.append("")
+        code.append("    bool big_endian = false;")
+        code.append("    int start_idx = 1;")
+        code.append("")
+        code.append("    // Parse options")
+        code.append("    while (start_idx < argc && argv[start_idx][0] == '-') {")
+        code.append("        if (std::strcmp(argv[start_idx], \"-b\") == 0 || std::strcmp(argv[start_idx], \"--big-endian\") == 0) {")
+        code.append("            big_endian = true;")
+        code.append("            start_idx++;")
+        code.append("        } else if (std::strcmp(argv[start_idx], \"-h\") == 0 || std::strcmp(argv[start_idx], \"--help\") == 0) {")
+        code.append("            print_usage(argv[0]);")
+        code.append("            return 0;")
+        code.append("        } else {")
+        code.append("            std::cerr << \"Error: Unknown option: \" << argv[start_idx] << \"\\n\\n\";")
+        code.append("            print_usage(argv[0]);")
+        code.append("            return 1;")
+        code.append("        }")
+        code.append("    }")
+        code.append("")
+        code.append("    if (start_idx >= argc) {")
+        code.append("        std::cerr << \"Error: No instruction values provided\\n\\n\";")
+        code.append("        print_usage(argv[0]);")
+        code.append("        return 1;")
+        code.append("    }")
+        code.append("")
         code.append("    int errors = 0;")
         code.append("")
-        code.append("    for (int i = 1; i < argc; i++) {")
+        code.append("    for (int i = start_idx; i < argc; i++) {")
         code.append("        uint32_t insn;")
         code.append("")
         code.append("        if (!parse_instruction(argv[i], insn)) {")
@@ -3315,12 +3412,17 @@ class ARM64XMLParser:
         code.append("            continue;")
         code.append("        }")
         code.append("")
+        code.append("        // Convert from big-endian to little-endian if needed")
+        code.append("        if (big_endian) {")
+        code.append("            insn = bswap32(insn);")
+        code.append("        }")
+        code.append("")
         code.append("        auto result = decode(insn);")
         code.append("")
         code.append("        if (result) {")
-        code.append("            std::cout << \"0x\" << std::hex << insn << std::dec << \": \" << result->to_string() << \"\\n\";")
+        code.append("            std::cout << \"0x\" << std::hex << (big_endian ? bswap32(insn) : insn) << std::dec << \": \" << result->to_string() << \"\\n\";")
         code.append("        } else {")
-        code.append("            std::cout << \"0x\" << std::hex << insn << std::dec << \": <unknown>\\n\";")
+        code.append("            std::cout << \"0x\" << std::hex << (big_endian ? bswap32(insn) : insn) << std::dec << \": <unknown>\\n\";")
         code.append("        }")
         code.append("    }")
         code.append("")

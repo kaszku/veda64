@@ -1073,20 +1073,36 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
         }
     }
 
-    // MOVZ/MOVN/MOVK with no shifts -> MOV alias
+    // MOVZ/MOVN/MOVK with or without shifts -> MOV/MVN alias
     if (insn.mnemonic == Mnemonic::MOVZ && insn.operands.size() >= 2) {
-        // Check if there's no shift operand or shift is 0
+        // Check if there's a shift operand
         bool has_shift = insn.operands.size() >= 3 && insn.operands[2].type == OperandType::Shift;
-        bool no_shift = !has_shift || (has_shift && insn.operands[2].value == 0);
-        if (no_shift) {
+        if (has_shift) {
+            // Compute the final shifted value
+            uint64_t imm = insn.operands[1].value;
+            uint32_t shift_amt = insn.operands[2].value & 0xFF;
+            uint64_t final_val = imm << shift_amt;
+            std::ostringstream oss;
+            oss << "mov " << insn.operands[0].to_string() << ", #0x" << std::hex << final_val;
+            return oss.str();
+        } else {
             return std::string("mov ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string();
         }
     }
 
     if (insn.mnemonic == Mnemonic::MOVN && insn.operands.size() >= 2) {
         bool has_shift = insn.operands.size() >= 3 && insn.operands[2].type == OperandType::Shift;
-        bool no_shift = !has_shift || (has_shift && insn.operands[2].value == 0);
-        if (no_shift) {
+        if (has_shift) {
+            // Compute the final shifted and inverted value
+            uint64_t imm = insn.operands[1].value;
+            uint32_t shift_amt = insn.operands[2].value & 0xFF;
+            uint64_t final_val = ~(imm << shift_amt);
+            // Mask to register size
+            if (!insn.operands[0].is_64bit) final_val &= 0xFFFFFFFFULL;
+            std::ostringstream oss;
+            oss << "mov " << insn.operands[0].to_string() << ", #0x" << std::hex << final_val;
+            return oss.str();
+        } else {
             return std::string("mvn ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string();
         }
     }
@@ -1154,6 +1170,21 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
         }
     }
 
+    // RORV -> ROR alias (variable rotate is just called ROR in disassembly)
+    if (insn.mnemonic == Mnemonic::RORV && insn.operands.size() >= 3) {
+        return std::string("ror ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();
+    }
+
+    // CSEL condition suffix (cseleq, cselne, etc.)
+    if (insn.mnemonic == Mnemonic::CSEL && insn.operands.size() >= 4 && insn.operands[3].type == OperandType::Condition) {
+        const char* conds[] = {"eq", "ne", "cs", "cc", "mi", "pl", "vs", "vc",
+                               "hi", "ls", "ge", "lt", "gt", "le", "al", "nv"};
+        uint32_t cond = insn.operands[3].value;
+        if (cond < 16) {
+            return std::string("csel") + conds[cond] + " " + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();
+        }
+    }
+
     return std::nullopt;  // No alias
 }
 
@@ -1189,7 +1220,12 @@ std::string Operand::to_string() const {
         case OperandType::Immediate:
             {
                 std::ostringstream oss;
-                oss << "#0x" << std::hex << value;
+                // Use decimal for small values (0-15), hex for larger
+                if (value <= 15) {
+                    oss << "#" << std::dec << value;
+                } else {
+                    oss << "#0x" << std::hex << value;
+                }
                 return oss.str();
             }
 
@@ -1198,9 +1234,17 @@ std::string Operand::to_string() const {
                 std::ostringstream oss;
                 int32_t sval = static_cast<int32_t>(value);
                 if (sval < 0) {
-                    oss << "#-0x" << std::hex << (-sval);
+                    if (sval >= -15) {
+                        oss << "#" << std::dec << sval;
+                    } else {
+                        oss << "#-0x" << std::hex << (-sval);
+                    }
                 } else {
-                    oss << "#0x" << std::hex << sval;
+                    if (sval <= 15) {
+                        oss << "#" << std::dec << sval;
+                    } else {
+                        oss << "#0x" << std::hex << sval;
+                    }
                 }
                 return oss.str();
             }
@@ -1231,8 +1275,13 @@ std::string Operand::to_string() const {
             {
                 std::ostringstream oss;
                 oss << "[" << format_register(base_reg, true, true) << ", #";
-                if (offset < 0) oss << "-0x" << std::hex << (-offset);
-                else oss << "0x" << std::hex << offset;
+                if (offset < 0) {
+                    if (offset >= -15) oss << std::dec << offset;
+                    else oss << "-0x" << std::hex << (-offset);
+                } else {
+                    if (offset <= 15) oss << std::dec << offset;
+                    else oss << "0x" << std::hex << offset;
+                }
                 oss << "]";
                 return oss.str();
             }
@@ -1242,8 +1291,13 @@ std::string Operand::to_string() const {
             {
                 std::ostringstream oss;
                 oss << "[" << format_register(base_reg, true, true) << ", #";
-                if (offset < 0) oss << "-0x" << std::hex << (-offset);
-                else oss << "0x" << std::hex << offset;
+                if (offset < 0) {
+                    if (offset >= -15) oss << std::dec << offset;
+                    else oss << "-0x" << std::hex << (-offset);
+                } else {
+                    if (offset <= 15) oss << std::dec << offset;
+                    else oss << "0x" << std::hex << offset;
+                }
                 oss << "]!";
                 return oss.str();
             }
@@ -1253,8 +1307,13 @@ std::string Operand::to_string() const {
             {
                 std::ostringstream oss;
                 oss << "[" << format_register(base_reg, true, true) << "], #";
-                if (offset < 0) oss << "-0x" << std::hex << (-offset);
-                else oss << "0x" << std::hex << offset;
+                if (offset < 0) {
+                    if (offset >= -15) oss << std::dec << offset;
+                    else oss << "-0x" << std::hex << (-offset);
+                } else {
+                    if (offset <= 15) oss << std::dec << offset;
+                    else oss << "0x" << std::hex << offset;
+                }
                 return oss.str();
             }
 
