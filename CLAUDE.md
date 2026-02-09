@@ -44,6 +44,22 @@ cmake -DVEDA64_NO_STRINGS=ON ..
 - `include/format/` and `lib/format/` — format-specific encoding structures and decoders
 - `include/` (top-level headers) and `lib/` (top-level sources) — also generated
 
+### Published Files
+
+The following files are intended for public distribution (the `arm64/` XML specs are **not** published):
+
+- `include/` and `lib/` — generated library source
+- `test/` — generated test suite
+- `tools/` — disassembler CLI tool
+- `CMakeLists.txt` — build configuration
+- `README.md` — user documentation
+- `LICENSE` — MIT license
+- `.gitignore`
+
+The following files are **not** published: `parse_arm64_xml.py`, `CLAUDE.md`, `arm64/`.
+
+**Publish target**: `github.com/kaszku/veda64` — only the files listed above are pushed to this repo.
+
 ### Key Components
 
 **Main Header** (`include/veda64.hpp`):
