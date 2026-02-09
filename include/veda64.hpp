@@ -1636,6 +1636,7 @@ public:
     uint32_t value = 0;          // Raw field value for simple operands
     bool is_64bit = true;        // True for 64-bit registers (X), false for 32-bit (W)
     bool is_sp = false;          // True if reg 31 should be SP/WSP, false for XZR/WZR
+    const char* arrangement = nullptr;  // Vector arrangement specifier (.16b, .4s, etc.)
 
     // Memory operand fields
     uint32_t base_reg = 0;       // Base register number
@@ -1658,6 +1659,9 @@ private:
 #ifndef VEDA64_NO_STRINGS
 // Convert mnemonic enum to string
 const char* mnemonic_to_string(Mnemonic mnem);
+
+// Determine vector arrangement for MOVI/MVNI based on Q and cmode fields
+const char* get_movi_arrangement(uint32_t insn);
 #endif
 
 // Instruction representation

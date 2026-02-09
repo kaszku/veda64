@@ -921,6 +921,7 @@ class ARM64XMLParser:
         code.append("    uint32_t value = 0;          // Raw field value for simple operands")
         code.append("    bool is_64bit = true;        // True for 64-bit registers (X), false for 32-bit (W)")
         code.append("    bool is_sp = false;          // True if reg 31 should be SP/WSP, false for XZR/WZR")
+        code.append("    const char* arrangement = nullptr;  // Vector arrangement specifier (.16b, .4s, etc.)")
         code.append("")
         code.append("    // Memory operand fields")
         code.append("    uint32_t base_reg = 0;       // Base register number")
@@ -945,6 +946,9 @@ class ARM64XMLParser:
         code.append("#ifndef VEDA64_NO_STRINGS")
         code.append("// Convert mnemonic enum to string")
         code.append("const char* mnemonic_to_string(Mnemonic mnem);")
+        code.append("")
+        code.append("// Determine vector arrangement for MOVI/MVNI based on Q and cmode fields")
+        code.append("const char* get_movi_arrangement(uint32_t insn);")
         code.append("#endif")
         code.append("")
 
@@ -1042,6 +1046,37 @@ class ARM64XMLParser:
         code.append("        result += arrangement;")
         code.append("    }")
         code.append("    return result;")
+        code.append("}")
+        code.append("")
+
+        # Generate helper for MOVI/MVNI arrangement determination
+        code.append("// Determine vector arrangement for MOVI/MVNI based on Q and cmode fields")
+        code.append("const char* get_movi_arrangement(uint32_t insn) {")
+        code.append("    uint32_t Q = (insn >> 30) & 1;")
+        code.append("    uint32_t op = (insn >> 29) & 1;")
+        code.append("    uint32_t cmode = (insn >> 12) & 0xF;")
+        code.append("    ")
+        code.append("    // 8-bit (cmode=1110, op=0)")
+        code.append("    if (op == 0 && cmode == 0xE) {")
+        code.append("        return Q ? \"16b\" : \"8b\";")
+        code.append("    }")
+        code.append("    // 16-bit shifted (cmode=10x0, op=0)")
+        code.append("    if (op == 0 && (cmode & 0xD) == 0x8) {")
+        code.append("        return Q ? \"8h\" : \"4h\";")
+        code.append("    }")
+        code.append("    // 32-bit shifted (cmode=0xx0, op=0)")
+        code.append("    if (op == 0 && (cmode & 0x9) == 0x0) {")
+        code.append("        return Q ? \"4s\" : \"2s\";")
+        code.append("    }")
+        code.append("    // 32-bit shifting ones (cmode=110x, op=0)")
+        code.append("    if (op == 0 && (cmode & 0xE) == 0xC) {")
+        code.append("        return Q ? \"4s\" : \"2s\";")
+        code.append("    }")
+        code.append("    // 64-bit (cmode=1110, op=1)")
+        code.append("    if (op == 1 && cmode == 0xE) {")
+        code.append("        return Q ? \"2d\" : nullptr;  // Scalar form (D register) doesn't use arrangement")
+        code.append("    }")
+        code.append("    return nullptr;")
         code.append("}")
         code.append("")
 
@@ -1256,7 +1291,7 @@ class ARM64XMLParser:
         code.append("        case OperandType::VectorRegister:")
         code.append("            // is_64bit used to select Q prefix for 128-bit context (STP/LDP Q)")
         code.append("            if (is_64bit) return \"q\" + std::to_string(value);")
-        code.append("            return format_vector_register(value, \"\");")
+        code.append("            return format_vector_register(value, arrangement ? arrangement : \"\");")
         code.append("        ")
         code.append("        case OperandType::SVERegister:")
         code.append("            return \"z\" + std::to_string(value);")
@@ -1597,6 +1632,7 @@ class ARM64XMLParser:
         code.append("    uint32_t value = 0;          // Raw field value for simple operands")
         code.append("    bool is_64bit = true;        // True for 64-bit registers (X), false for 32-bit (W)")
         code.append("    bool is_sp = false;          // True if reg 31 should be SP/WSP, false for XZR/WZR")
+        code.append("    const char* arrangement = nullptr;  // Vector arrangement specifier (.16b, .4s, etc.)")
         code.append("")
         code.append("    // Memory operand fields")
         code.append("    uint32_t base_reg = 0;       // Base register number")
@@ -1621,6 +1657,9 @@ class ARM64XMLParser:
         code.append("#ifndef VEDA64_NO_STRINGS")
         code.append("// Convert mnemonic enum to string")
         code.append("const char* mnemonic_to_string(Mnemonic mnem);")
+        code.append("")
+        code.append("// Determine vector arrangement for MOVI/MVNI based on Q and cmode fields")
+        code.append("const char* get_movi_arrangement(uint32_t insn);")
         code.append("#endif")
         code.append("")
 
@@ -2938,8 +2977,14 @@ class ARM64XMLParser:
             if reg_name in field_map and not field_map[reg_name]['is_fixed']:
                 field_cpp_name = field_map[reg_name]['name']
                 if is_advsimd_vector:
-                    # Use VectorRegister for advsimd vector instructions (false = use 'v' prefix not 'q')
-                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false));")
+                    # Use VectorRegister for advsimd vector instructions
+                    # For MOVI/MVNI, use helper to determine arrangement from Q/cmode fields
+                    if mnemonic in ['MOVI', 'MVNI'] and reg_name == 'Rd':
+                        code.append(f"{ind}const char* arr = get_movi_arrangement(insn);")
+                        code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, arr));")
+                    else:
+                        # Other vector instructions: use false = 'v' prefix without arrangement
+                        code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false));")
                 else:
                     code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{field_cpp_name}, is_64bit));")
 

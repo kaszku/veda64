@@ -1046,6 +1046,35 @@ std::string Operand::format_vector_register(uint32_t reg, const char* arrangemen
     return result;
 }
 
+// Determine vector arrangement for MOVI/MVNI based on Q and cmode fields
+const char* get_movi_arrangement(uint32_t insn) {
+    uint32_t Q = (insn >> 30) & 1;
+    uint32_t op = (insn >> 29) & 1;
+    uint32_t cmode = (insn >> 12) & 0xF;
+
+    // 8-bit (cmode=1110, op=0)
+    if (op == 0 && cmode == 0xE) {
+        return Q ? "16b" : "8b";
+    }
+    // 16-bit shifted (cmode=10x0, op=0)
+    if (op == 0 && (cmode & 0xD) == 0x8) {
+        return Q ? "8h" : "4h";
+    }
+    // 32-bit shifted (cmode=0xx0, op=0)
+    if (op == 0 && (cmode & 0x9) == 0x0) {
+        return Q ? "4s" : "2s";
+    }
+    // 32-bit shifting ones (cmode=110x, op=0)
+    if (op == 0 && (cmode & 0xE) == 0xC) {
+        return Q ? "4s" : "2s";
+    }
+    // 64-bit (cmode=1110, op=1)
+    if (op == 1 && cmode == 0xE) {
+        return Q ? "2d" : nullptr;  // Scalar form (D register) doesn't use arrangement
+    }
+    return nullptr;
+}
+
 // Synthesize pseudo-instruction aliases
 std::optional<std::string> synthesize_alias(const Instruction& insn) {
     // MOV Aliases: ADD/ORR with sp or Rn==Rm pattern
@@ -1252,7 +1281,7 @@ std::string Operand::to_string() const {
         case OperandType::VectorRegister:
             // is_64bit used to select Q prefix for 128-bit context (STP/LDP Q)
             if (is_64bit) return "q" + std::to_string(value);
-            return format_vector_register(value, "");
+            return format_vector_register(value, arrangement ? arrangement : "");
 
         case OperandType::SVERegister:
             return "z" + std::to_string(value);

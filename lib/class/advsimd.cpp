@@ -34748,7 +34748,8 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         AdvsimdEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_dds.Rd, false));
+                        const char* arr = get_movi_arrangement(insn);
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_dds.Rd, arr));
                         return result;
         }
         case 0x5F007400u: { // SQSHL_asisdshf_R
@@ -34801,7 +34802,8 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         AdvsimdEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_d2d.Rd, false));
+                        const char* arr = get_movi_arrangement(insn);
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_d2d.Rd, arr));
                         return result;
         }
         case 0x6F00F400u: { // FMOV_asimdimm_D2_d
@@ -38701,7 +38703,8 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         AdvsimdEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_nb.Rd, false));
+                        const char* arr = get_movi_arrangement(insn);
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_nb.Rd, arr));
                         return result;
         }
         case 0x0F00F400u: { // FMOV_asimdimm_S_s
@@ -38867,7 +38870,8 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         AdvsimdEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_msm.Rd, false));
+                        const char* arr = get_movi_arrangement(insn);
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_msm.Rd, arr));
                         return result;
         }
         case 0x2F00C400u: { // MVNI_asimdimm_M_sm
@@ -38875,7 +38879,8 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         AdvsimdEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.mvni_asimdimm_msm.Rd, false));
+                        const char* arr = get_movi_arrangement(insn);
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.mvni_asimdimm_msm.Rd, arr));
                         return result;
         }
         default: break;
@@ -38888,7 +38893,8 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         AdvsimdEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_lhl.Rd, false));
+                        const char* arr = get_movi_arrangement(insn);
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_lhl.Rd, arr));
                         return result;
         }
         case 0x0F009400u: { // ORR_asimdimm_L_hl
@@ -38904,7 +38910,8 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         AdvsimdEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.mvni_asimdimm_lhl.Rd, false));
+                        const char* arr = get_movi_arrangement(insn);
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.mvni_asimdimm_lhl.Rd, arr));
                         return result;
         }
         case 0x2F009400u: { // BIC_asimdimm_L_hl
@@ -38925,7 +38932,8 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         AdvsimdEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_lsl.Rd, false));
+                        const char* arr = get_movi_arrangement(insn);
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_lsl.Rd, arr));
                         return result;
         }
         case 0x0F001400u: { // ORR_asimdimm_L_sl
@@ -38941,7 +38949,8 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         AdvsimdEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.mvni_asimdimm_lsl.Rd, false));
+                        const char* arr = get_movi_arrangement(insn);
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.mvni_asimdimm_lsl.Rd, arr));
                         return result;
         }
         case 0x2F001400u: { // BIC_asimdimm_L_sl
