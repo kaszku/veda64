@@ -8,7 +8,7 @@
 
 namespace veda64 {
 namespace Format {
-namespace Sme {
+namespace sme {
 
 // Encode functions
 uint32_t encode_add_mz_zzv_2x1(uint32_t Zdn, uint32_t Zm, uint32_t size);
@@ -889,6 +889,6 @@ inline std::optional<Instruction> decode_sme(const uint8_t* bytes) {
     return decode_sme(from_bytes(bytes));
 }
 
-} // namespace Sme
+} // namespace sme
 } // namespace Format
 } // namespace veda64

@@ -8,7 +8,7 @@
 
 namespace veda64 {
 namespace Format {
-namespace Dpreg {
+namespace dpreg {
 
 // Encode functions
 uint32_t encode_abs_32_dp_1src(uint32_t Rd, uint32_t Rn);
@@ -222,6 +222,6 @@ inline std::optional<Instruction> decode_dpreg(const uint8_t* bytes) {
     return decode_dpreg(from_bytes(bytes));
 }
 
-} // namespace Dpreg
+} // namespace dpreg
 } // namespace Format
 } // namespace veda64

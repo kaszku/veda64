@@ -8,7 +8,7 @@
 
 namespace veda64 {
 namespace Format {
-namespace Dpimm {
+namespace dpimm {
 
 // Encode functions
 uint32_t encode_add_32_addsub_imm(uint32_t Rd, uint32_t Rn, uint32_t imm12, uint32_t sh);
@@ -108,6 +108,6 @@ inline std::optional<Instruction> decode_dpimm(const uint8_t* bytes) {
     return decode_dpimm(from_bytes(bytes));
 }
 
-} // namespace Dpimm
+} // namespace dpimm
 } // namespace Format
 } // namespace veda64

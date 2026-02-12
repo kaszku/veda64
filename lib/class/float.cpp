@@ -10928,6 +10928,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_s32float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_s32float2fix.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.scvtf_s32float2fix.scale, true));
                         return result;
         }
         case 0x1E030000u: { // UCVTF_S32_float2fix
@@ -10937,6 +10938,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_s32float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_s32float2fix.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ucvtf_s32float2fix.scale, true));
                         return result;
         }
         case 0x1E180000u: { // FCVTZS_32S_float2fix
@@ -10946,6 +10948,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32s_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32s_float2fix.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.fcvtzs32s_float2fix.scale, true));
                         return result;
         }
         case 0x1E190000u: { // FCVTZU_32S_float2fix
@@ -10955,6 +10958,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32s_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32s_float2fix.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.fcvtzu32s_float2fix.scale, true));
                         return result;
         }
         case 0x1E420000u: { // SCVTF_D32_float2fix
@@ -10964,6 +10968,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_d32float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_d32float2fix.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.scvtf_d32float2fix.scale, true));
                         return result;
         }
         case 0x1E430000u: { // UCVTF_D32_float2fix
@@ -10973,6 +10978,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_d32float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_d32float2fix.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ucvtf_d32float2fix.scale, true));
                         return result;
         }
         case 0x1E580000u: { // FCVTZS_32D_float2fix
@@ -10982,6 +10988,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32d_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32d_float2fix.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.fcvtzs32d_float2fix.scale, true));
                         return result;
         }
         case 0x1E590000u: { // FCVTZU_32D_float2fix
@@ -10991,6 +10998,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32d_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32d_float2fix.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.fcvtzu32d_float2fix.scale, true));
                         return result;
         }
         case 0x1EC20000u: { // SCVTF_H32_float2fix
@@ -11000,6 +11008,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_h32float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_h32float2fix.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.scvtf_h32float2fix.scale, true));
                         return result;
         }
         case 0x1EC30000u: { // UCVTF_H32_float2fix
@@ -11009,6 +11018,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_h32float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_h32float2fix.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ucvtf_h32float2fix.scale, true));
                         return result;
         }
         case 0x1ED80000u: { // FCVTZS_32H_float2fix
@@ -11018,6 +11028,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32h_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs32h_float2fix.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.fcvtzs32h_float2fix.scale, true));
                         return result;
         }
         case 0x1ED90000u: { // FCVTZU_32H_float2fix
@@ -11027,6 +11038,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32h_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu32h_float2fix.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.fcvtzu32h_float2fix.scale, true));
                         return result;
         }
         case 0x9E020000u: { // SCVTF_S64_float2fix
@@ -11036,6 +11048,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_s64float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_s64float2fix.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.scvtf_s64float2fix.scale, true));
                         return result;
         }
         case 0x9E030000u: { // UCVTF_S64_float2fix
@@ -11045,6 +11058,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_s64float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_s64float2fix.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ucvtf_s64float2fix.scale, true));
                         return result;
         }
         case 0x9E180000u: { // FCVTZS_64S_float2fix
@@ -11054,6 +11068,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64s_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64s_float2fix.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.fcvtzs64s_float2fix.scale, true));
                         return result;
         }
         case 0x9E190000u: { // FCVTZU_64S_float2fix
@@ -11063,6 +11078,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64s_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64s_float2fix.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.fcvtzu64s_float2fix.scale, true));
                         return result;
         }
         case 0x9E420000u: { // SCVTF_D64_float2fix
@@ -11072,6 +11088,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_d64float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_d64float2fix.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.scvtf_d64float2fix.scale, true));
                         return result;
         }
         case 0x9E430000u: { // UCVTF_D64_float2fix
@@ -11081,6 +11098,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_d64float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_d64float2fix.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ucvtf_d64float2fix.scale, true));
                         return result;
         }
         case 0x9E580000u: { // FCVTZS_64D_float2fix
@@ -11090,6 +11108,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64d_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64d_float2fix.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.fcvtzs64d_float2fix.scale, true));
                         return result;
         }
         case 0x9E590000u: { // FCVTZU_64D_float2fix
@@ -11099,6 +11118,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64d_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64d_float2fix.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.fcvtzu64d_float2fix.scale, true));
                         return result;
         }
         case 0x9EC20000u: { // SCVTF_H64_float2fix
@@ -11108,6 +11128,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_h64float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_h64float2fix.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.scvtf_h64float2fix.scale, true));
                         return result;
         }
         case 0x9EC30000u: { // UCVTF_H64_float2fix
@@ -11117,6 +11138,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_h64float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_h64float2fix.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ucvtf_h64float2fix.scale, true));
                         return result;
         }
         case 0x9ED80000u: { // FCVTZS_64H_float2fix
@@ -11126,6 +11148,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64h_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs64h_float2fix.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.fcvtzs64h_float2fix.scale, true));
                         return result;
         }
         case 0x9ED90000u: { // FCVTZU_64H_float2fix
@@ -11135,6 +11158,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64h_float2fix.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu64h_float2fix.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.fcvtzu64h_float2fix.scale, true));
                         return result;
         }
         default: break;
@@ -11707,6 +11731,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmp_sfloatccmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmp_sfloatccmp.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Condition, enc.fccmp_sfloatccmp.cond, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.fccmp_sfloatccmp.nzcv, true));
                         return result;
         }
         case 0x1E200410u: { // FCCMPE_S_floatccmp
@@ -11717,6 +11742,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmpe_sfloatccmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmpe_sfloatccmp.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Condition, enc.fccmpe_sfloatccmp.cond, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.fccmpe_sfloatccmp.nzcv, true));
                         return result;
         }
         case 0x1E600400u: { // FCCMP_D_floatccmp
@@ -11727,6 +11753,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmp_dfloatccmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmp_dfloatccmp.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Condition, enc.fccmp_dfloatccmp.cond, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.fccmp_dfloatccmp.nzcv, true));
                         return result;
         }
         case 0x1E600410u: { // FCCMPE_D_floatccmp
@@ -11737,6 +11764,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmpe_dfloatccmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmpe_dfloatccmp.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Condition, enc.fccmpe_dfloatccmp.cond, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.fccmpe_dfloatccmp.nzcv, true));
                         return result;
         }
         case 0x1EE00400u: { // FCCMP_H_floatccmp
@@ -11747,6 +11775,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmp_hfloatccmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmp_hfloatccmp.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Condition, enc.fccmp_hfloatccmp.cond, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.fccmp_hfloatccmp.nzcv, true));
                         return result;
         }
         case 0x1EE00410u: { // FCCMPE_H_floatccmp
@@ -11757,6 +11786,7 @@ std::optional<Instruction> decode_float(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmpe_hfloatccmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmpe_hfloatccmp.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Condition, enc.fccmpe_hfloatccmp.cond, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.fccmpe_hfloatccmp.nzcv, true));
                         return result;
         }
         default: break;

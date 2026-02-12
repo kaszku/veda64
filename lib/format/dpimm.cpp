@@ -2,7 +2,7 @@
 
 namespace veda64 {
 namespace Format {
-namespace Dpimm {
+namespace dpimm {
 
 // Encoding structures union
 union DpimmEncoding {
@@ -2695,6 +2695,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.extr32extract.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.extr32extract.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.extr32extract.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.extr32extract.imms, true));
                         return result;
         }
         default: break;
@@ -2730,6 +2731,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.extr64extract.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.extr64extract.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.extr64extract.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.extr64extract.imms, true));
                         return result;
         }
         default: break;
@@ -2771,6 +2773,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.asr_sbfm32m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.asr_sbfm32m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.asr_sbfm32m_bitfield.immr, true));
                         return result;
         }
         case 0x53007C00u: { // LSR_UBFM_32M_bitfield
@@ -2780,6 +2783,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.lsr_ubfm32m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lsr_ubfm32m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.lsr_ubfm32m_bitfield.immr, true));
                         return result;
         }
         case 0x9340FC00u: { // ASR_SBFM_64M_bitfield
@@ -2789,6 +2793,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.asr_sbfm64m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.asr_sbfm64m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.asr_sbfm64m_bitfield.immr, true));
                         return result;
         }
         case 0xD340FC00u: { // LSR_UBFM_64M_bitfield
@@ -2798,6 +2803,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.lsr_ubfm64m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lsr_ubfm64m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.lsr_ubfm64m_bitfield.immr, true));
                         return result;
         }
         default: break;
@@ -2823,6 +2829,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.bfc_bfm32m_bitfield.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfc_bfm32m_bitfield.immr, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfc_bfm32m_bitfield.imms, true));
                         return result;
         }
         case 0xB34003E0u: { // BFC_BFM_64M_bitfield
@@ -2832,6 +2840,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.bfc_bfm64m_bitfield.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfc_bfm64m_bitfield.immr, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfc_bfm64m_bitfield.imms, true));
                         return result;
         }
         default: break;
@@ -2887,6 +2897,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sbfiz_sbfm32m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sbfiz_sbfm32m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sbfiz_sbfm32m_bitfield.immr, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sbfiz_sbfm32m_bitfield.imms, true));
                         return result;
         }
         case 0x32000000u: { // ORR_32_log_imm
@@ -2908,6 +2920,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.bfm32m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bfm32m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfm32m_bitfield.immr, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfm32m_bitfield.imms, true));
                         return result;
         }
         case 0x52000000u: { // EOR_32_log_imm
@@ -2943,6 +2957,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.lsl_ubfm32m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lsl_ubfm32m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.lsl_ubfm32m_bitfield.immr, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.lsl_ubfm32m_bitfield.imms, true));
                         return result;
         }
         case 0x72000000u: { // ANDS_32S_log_imm
@@ -2976,6 +2992,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sbfiz_sbfm64m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sbfiz_sbfm64m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sbfiz_sbfm64m_bitfield.immr, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sbfiz_sbfm64m_bitfield.imms, true));
                         return result;
         }
         case 0xB3400000u: { // BFM_64M_bitfield
@@ -2986,6 +3004,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.bfm64m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bfm64m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfm64m_bitfield.immr, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfm64m_bitfield.imms, true));
                         return result;
         }
         case 0xD3400000u: { // LSL_UBFM_64M_bitfield
@@ -2998,6 +3018,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.lsl_ubfm64m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lsl_ubfm64m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.lsl_ubfm64m_bitfield.immr, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.lsl_ubfm64m_bitfield.imms, true));
                         return result;
         }
         default: break;
@@ -3288,6 +3310,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
     return std::nullopt;
 }
 
-} // namespace Dpimm
+} // namespace dpimm
 } // namespace Format
 } // namespace veda64

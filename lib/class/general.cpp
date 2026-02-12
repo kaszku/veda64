@@ -42473,6 +42473,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.extr32extract.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.extr32extract.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.extr32extract.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.extr32extract.imms, true));
                         return result;
         }
         case 0x1B000000u: { // MADD_32A_dp_3src
@@ -42641,6 +42642,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rmif_only_rmif.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.rmif_only_rmif.imm6, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.rmif_only_rmif.mask, true));
                         return result;
         }
         default: break;
@@ -42657,6 +42659,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.prfm_pldst_regoff.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.prfm_pldst_regoff.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.prfm_pldst_regoff.Rt, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Extend, enc.prfm_pldst_regoff.option, true));
                         return result;
         }
         default: break;
@@ -42857,6 +42860,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsb64b_ldst_regoff.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsb64b_ldst_regoff.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsb64b_ldst_regoff.Rt, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Extend, enc.ldrsb64b_ldst_regoff.option, true));
                         return result;
         }
         case 0x38E00800u: { // LDRSB_32B_ldst_regoff
@@ -42891,6 +42895,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsh64ldst_regoff.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsh64ldst_regoff.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsh64ldst_regoff.Rt, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Extend, enc.ldrsh64ldst_regoff.option, true));
                         return result;
         }
         case 0x78E00800u: { // LDRSH_32_ldst_regoff
@@ -42901,6 +42906,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsh32ldst_regoff.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsh32ldst_regoff.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsh32ldst_regoff.Rt, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Extend, enc.ldrsh32ldst_regoff.option, true));
                         return result;
         }
         case 0xB8200800u: { // STR_32_ldst_regoff
@@ -42929,6 +42935,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsw64ldst_regoff.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsw64ldst_regoff.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsw64ldst_regoff.Rt, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Extend, enc.ldrsw64ldst_regoff.option, true));
                         return result;
         }
         case 0xF8200800u: { // STR_64_ldst_regoff
@@ -42962,6 +42969,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmn32condcmp_reg.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmn32condcmp_reg.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Condition, enc.ccmn32condcmp_reg.cond, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ccmn32condcmp_reg.nzcv, true));
                         return result;
         }
         case 0x3A400800u: { // CCMN_32_condcmp_imm
@@ -42972,6 +42980,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmn32condcmp_imm.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.ccmn32condcmp_imm.imm5, true));
                         result.operands.push_back(Operand(OperandType::Condition, enc.ccmn32condcmp_imm.cond, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ccmn32condcmp_imm.nzcv, true));
                         return result;
         }
         case 0x7A400000u: { // CCMP_32_condcmp_reg
@@ -42982,6 +42991,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmp32condcmp_reg.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmp32condcmp_reg.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Condition, enc.ccmp32condcmp_reg.cond, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ccmp32condcmp_reg.nzcv, true));
                         return result;
         }
         case 0x7A400800u: { // CCMP_32_condcmp_imm
@@ -42992,6 +43002,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmp32condcmp_imm.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.ccmp32condcmp_imm.imm5, true));
                         result.operands.push_back(Operand(OperandType::Condition, enc.ccmp32condcmp_imm.cond, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ccmp32condcmp_imm.nzcv, true));
                         return result;
         }
         case 0xBA400000u: { // CCMN_64_condcmp_reg
@@ -43002,6 +43013,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmn64condcmp_reg.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmn64condcmp_reg.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Condition, enc.ccmn64condcmp_reg.cond, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ccmn64condcmp_reg.nzcv, true));
                         return result;
         }
         case 0xBA400800u: { // CCMN_64_condcmp_imm
@@ -43012,6 +43024,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmn64condcmp_imm.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.ccmn64condcmp_imm.imm5, true));
                         result.operands.push_back(Operand(OperandType::Condition, enc.ccmn64condcmp_imm.cond, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ccmn64condcmp_imm.nzcv, true));
                         return result;
         }
         case 0xFA400000u: { // CCMP_64_condcmp_reg
@@ -43022,6 +43035,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmp64condcmp_reg.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmp64condcmp_reg.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Condition, enc.ccmp64condcmp_reg.cond, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ccmp64condcmp_reg.nzcv, true));
                         return result;
         }
         case 0xFA400800u: { // CCMP_64_condcmp_imm
@@ -43032,6 +43046,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmp64condcmp_imm.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.ccmp64condcmp_imm.imm5, true));
                         result.operands.push_back(Operand(OperandType::Condition, enc.ccmp64condcmp_imm.cond, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ccmp64condcmp_imm.nzcv, true));
                         return result;
         }
         default: break;
@@ -44087,6 +44102,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds32s_addsub_ext.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds32s_addsub_ext.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cmn_adds32s_addsub_ext.imm3, true));
+                        result.operands.push_back(Operand(OperandType::Extend, enc.cmn_adds32s_addsub_ext.option, true));
                         return result;
         }
         case 0x5500001Fu: { // RETAASPPC_only_miscbranch
@@ -44111,6 +44127,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs32s_addsub_ext.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs32s_addsub_ext.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cmp_subs32s_addsub_ext.imm3, true));
+                        result.operands.push_back(Operand(OperandType::Extend, enc.cmp_subs32s_addsub_ext.option, true));
                         return result;
         }
         case 0xAB20001Fu: { // CMN_ADDS_64S_addsub_ext
@@ -44121,6 +44138,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds64s_addsub_ext.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds64s_addsub_ext.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cmn_adds64s_addsub_ext.imm3, true));
+                        result.operands.push_back(Operand(OperandType::Extend, enc.cmn_adds64s_addsub_ext.option, true));
                         return result;
         }
         case 0xEB20001Fu: { // CMP_SUBS_64S_addsub_ext
@@ -44131,6 +44149,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs64s_addsub_ext.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs64s_addsub_ext.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cmp_subs64s_addsub_ext.imm3, true));
+                        result.operands.push_back(Operand(OperandType::Extend, enc.cmp_subs64s_addsub_ext.option, true));
                         return result;
         }
         case 0xF380001Fu: { // AUTIASPPC_only_dp_1src_imm
@@ -44161,6 +44180,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.add32addsub_ext.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.add32addsub_ext.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.add32addsub_ext.imm3, true));
+                        result.operands.push_back(Operand(OperandType::Extend, enc.add32addsub_ext.option, true));
                         return result;
         }
         case 0x2B200000u: { // ADDS_32S_addsub_ext
@@ -44172,6 +44192,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.adds32s_addsub_ext.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.adds32s_addsub_ext.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.adds32s_addsub_ext.imm3, true));
+                        result.operands.push_back(Operand(OperandType::Extend, enc.adds32s_addsub_ext.option, true));
                         return result;
         }
         case 0x4B200000u: { // SUB_32_addsub_ext
@@ -44183,6 +44204,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.sub32addsub_ext.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sub32addsub_ext.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sub32addsub_ext.imm3, true));
+                        result.operands.push_back(Operand(OperandType::Extend, enc.sub32addsub_ext.option, true));
                         return result;
         }
         case 0x6B200000u: { // SUBS_32S_addsub_ext
@@ -44194,6 +44216,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.subs32s_addsub_ext.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.subs32s_addsub_ext.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.subs32s_addsub_ext.imm3, true));
+                        result.operands.push_back(Operand(OperandType::Extend, enc.subs32s_addsub_ext.option, true));
                         return result;
         }
         case 0x8B200000u: { // ADD_64_addsub_ext
@@ -44205,6 +44228,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.add64addsub_ext.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.add64addsub_ext.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.add64addsub_ext.imm3, true));
+                        result.operands.push_back(Operand(OperandType::Extend, enc.add64addsub_ext.option, true));
                         return result;
         }
         case 0x93C00000u: { // EXTR_64_extract
@@ -44216,6 +44240,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.extr64extract.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.extr64extract.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.extr64extract.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.extr64extract.imms, true));
                         return result;
         }
         case 0xAB200000u: { // ADDS_64S_addsub_ext
@@ -44227,6 +44252,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.adds64s_addsub_ext.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.adds64s_addsub_ext.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.adds64s_addsub_ext.imm3, true));
+                        result.operands.push_back(Operand(OperandType::Extend, enc.adds64s_addsub_ext.option, true));
                         return result;
         }
         case 0xCB200000u: { // SUB_64_addsub_ext
@@ -44238,6 +44264,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.sub64addsub_ext.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sub64addsub_ext.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sub64addsub_ext.imm3, true));
+                        result.operands.push_back(Operand(OperandType::Extend, enc.sub64addsub_ext.option, true));
                         return result;
         }
         case 0xEB200000u: { // SUBS_64S_addsub_ext
@@ -44249,6 +44276,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.subs64s_addsub_ext.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.subs64s_addsub_ext.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.subs64s_addsub_ext.imm3, true));
+                        result.operands.push_back(Operand(OperandType::Extend, enc.subs64s_addsub_ext.option, true));
                         return result;
         }
         default: break;
@@ -44290,6 +44318,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.asr_sbfm32m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.asr_sbfm32m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.asr_sbfm32m_bitfield.immr, true));
                         return result;
         }
         case 0x53007C00u: { // LSR_UBFM_32M_bitfield
@@ -44299,6 +44328,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.lsr_ubfm32m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lsr_ubfm32m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.lsr_ubfm32m_bitfield.immr, true));
                         return result;
         }
         case 0x9340FC00u: { // ASR_SBFM_64M_bitfield
@@ -44308,6 +44338,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.asr_sbfm64m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.asr_sbfm64m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.asr_sbfm64m_bitfield.immr, true));
                         return result;
         }
         case 0xD340FC00u: { // LSR_UBFM_64M_bitfield
@@ -44317,6 +44348,7 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.lsr_ubfm64m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lsr_ubfm64m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.lsr_ubfm64m_bitfield.immr, true));
                         return result;
         }
         default: break;
@@ -44342,6 +44374,8 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.bfc_bfm32m_bitfield.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfc_bfm32m_bitfield.immr, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfc_bfm32m_bitfield.imms, true));
                         return result;
         }
         case 0xB34003E0u: { // BFC_BFM_64M_bitfield
@@ -44351,6 +44385,8 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.bfc_bfm64m_bitfield.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfc_bfm64m_bitfield.immr, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfc_bfm64m_bitfield.imms, true));
                         return result;
         }
         default: break;
@@ -44406,6 +44442,8 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sbfiz_sbfm32m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sbfiz_sbfm32m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sbfiz_sbfm32m_bitfield.immr, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sbfiz_sbfm32m_bitfield.imms, true));
                         return result;
         }
         case 0x28000000u: { // STNP_32_ldstnapair_offs
@@ -44515,6 +44553,8 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.bfm32m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bfm32m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfm32m_bitfield.immr, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfm32m_bitfield.imms, true));
                         return result;
         }
         case 0x39000000u: { // STRB_32_ldst_pos
@@ -44586,6 +44626,8 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.lsl_ubfm32m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lsl_ubfm32m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.lsl_ubfm32m_bitfield.immr, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.lsl_ubfm32m_bitfield.imms, true));
                         return result;
         }
         case 0x68800000u: { // STGP_64_ldstpair_post
@@ -44721,6 +44763,8 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sbfiz_sbfm64m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sbfiz_sbfm64m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sbfiz_sbfm64m_bitfield.immr, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sbfiz_sbfm64m_bitfield.imms, true));
                         return result;
         }
         case 0xA8000000u: { // STNP_64_ldstnapair_offs
@@ -44819,6 +44863,8 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.bfm64m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.bfm64m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfm64m_bitfield.immr, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfm64m_bitfield.imms, true));
                         return result;
         }
         case 0xB9000000u: { // STR_32_ldst_pos
@@ -44861,6 +44907,8 @@ std::optional<Instruction> decode_general(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.lsl_ubfm64m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.lsl_ubfm64m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.lsl_ubfm64m_bitfield.immr, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.lsl_ubfm64m_bitfield.imms, true));
                         return result;
         }
         case 0xE8000000u: { // STTNP_64_ldstnapair_offs

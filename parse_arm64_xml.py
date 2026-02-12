@@ -810,9 +810,7 @@ class ARM64XMLParser:
 
     def _group_namespace_name(self, group_name: str) -> str:
         """Convert group name to valid C++ namespace name."""
-        # CamelCase conversion
-        parts = group_name.split('_')
-        return ''.join(part.capitalize() for part in parts)
+        return group_name
 
     def _generate_instruction_header(self, output_file: Path):
         """Generate instruction.hpp with base Instruction class, enums, and Operand class."""
@@ -1121,7 +1119,9 @@ class ARM64XMLParser:
         code.append("            oss << \"mov \" << insn.operands[0].to_string() << \", #0x\" << std::hex << final_val;")
         code.append("            return oss.str();")
         code.append("        } else {")
-        code.append("            return std::string(\"mov \") + insn.operands[0].to_string() + \", \" + insn.operands[1].to_string();")
+        code.append("            std::ostringstream oss;")
+        code.append("            oss << \"mov \" << insn.operands[0].to_string() << \", #0x\" << std::hex << insn.operands[1].value;")
+        code.append("            return oss.str();")
         code.append("        }")
         code.append("    }")
         code.append("")
@@ -1138,50 +1138,69 @@ class ARM64XMLParser:
         code.append("            oss << \"mov \" << insn.operands[0].to_string() << \", #0x\" << std::hex << final_val;")
         code.append("            return oss.str();")
         code.append("        } else {")
-        code.append("            return std::string(\"mvn \") + insn.operands[0].to_string() + \", \" + insn.operands[1].to_string();")
+        code.append("            std::ostringstream oss;")
+        code.append("            oss << \"mvn \" << insn.operands[0].to_string() << \", #0x\" << std::hex << insn.operands[1].value;")
+        code.append("            return oss.str();")
         code.append("        }")
         code.append("    }")
         code.append("")
-        code.append("    if (insn.mnemonic == Mnemonic::SUBS && insn.operands.size() >= 3) {")
-        code.append("        if (insn.operands[0].value == 31) {")
+        code.append("    // CMP/CMN/TST aliases: Rd (bits [4:0]) == 31 (XZR)")
+        code.append("    // Use raw bits to detect - alias encodings may omit Rd from operands")
+        code.append("    if (insn.mnemonic == Mnemonic::SUBS && (insn.raw_value & 0x1F) == 0x1F) {")
+        code.append("        // CMP alias: skip Rd if present in operands")
+        code.append("        size_t start = (insn.operands.size() >= 3 && insn.operands[0].type == OperandType::Register && insn.operands[0].value == 31) ? 1 : 0;")
+        code.append("        // Only alias if not also NEGS (Rn==31)")
+        code.append("        if (((insn.raw_value >> 5) & 0x1F) != 0x1F) {")
         code.append('            std::string result = "cmp";')
-        code.append("            for (size_t i = 1; i < insn.operands.size(); ++i) {")
-        code.append('                result += (i == 1 ? " " : ", ") + insn.operands[i].to_string();')
+        code.append("            for (size_t i = start; i < insn.operands.size(); ++i) {")
+        code.append('                result += (i == start ? " " : ", ") + insn.operands[i].to_string();')
         code.append("            }")
         code.append("            return result;")
         code.append("        }")
         code.append("    }")
         code.append("")
-        code.append("    if (insn.mnemonic == Mnemonic::ADDS && insn.operands.size() >= 3) {")
-        code.append("        if (insn.operands[0].value == 31) {")
-        code.append('            std::string result = "cmn";')
-        code.append("            for (size_t i = 1; i < insn.operands.size(); ++i) {")
-        code.append('                result += (i == 1 ? " " : ", ") + insn.operands[i].to_string();')
+        code.append("    if (insn.mnemonic == Mnemonic::ADDS && (insn.raw_value & 0x1F) == 0x1F) {")
+        code.append("        size_t start = (insn.operands.size() >= 3 && insn.operands[0].type == OperandType::Register && insn.operands[0].value == 31) ? 1 : 0;")
+        code.append('        std::string result = "cmn";')
+        code.append("        for (size_t i = start; i < insn.operands.size(); ++i) {")
+        code.append('            result += (i == start ? " " : ", ") + insn.operands[i].to_string();')
+        code.append("        }")
+        code.append("        return result;")
+        code.append("    }")
+        code.append("")
+        code.append("    if (insn.mnemonic == Mnemonic::ANDS && (insn.raw_value & 0x1F) == 0x1F) {")
+        code.append("        size_t start = (insn.operands.size() >= 3 && insn.operands[0].type == OperandType::Register && insn.operands[0].value == 31) ? 1 : 0;")
+        code.append('        std::string result = "tst";')
+        code.append("        for (size_t i = start; i < insn.operands.size(); ++i) {")
+        code.append('            result += (i == start ? " " : ", ") + insn.operands[i].to_string();')
+        code.append("        }")
+        code.append("        return result;")
+        code.append("    }")
+        code.append("")
+        code.append("    // NEG Aliases: SUB/SUBS with Rn (bits [9:5]) == 31 (register form only)")
+        code.append("    if (insn.mnemonic == Mnemonic::SUB && ((insn.raw_value >> 5) & 0x1F) == 0x1F) {")
+        code.append("        // Only for register form (not immediate) - check bit 24")
+        code.append("        if ((insn.raw_value & (1u << 24)) == 0) {")
+        code.append("            // Emit Rd, Rm (skip Rn)")
+        code.append("            size_t rd_idx = 0;")
+        code.append("            size_t rm_idx = (insn.operands.size() >= 3 && insn.operands[1].type == OperandType::Register && insn.operands[1].value == 31) ? 2 : 1;")
+        code.append('            std::string result = "neg " + insn.operands[rd_idx].to_string();')
+        code.append("            for (size_t i = rm_idx; i < insn.operands.size(); ++i) {")
+        code.append('                result += ", " + insn.operands[i].to_string();')
         code.append("            }")
         code.append("            return result;")
         code.append("        }")
         code.append("    }")
         code.append("")
-        code.append("    if (insn.mnemonic == Mnemonic::ANDS && insn.operands.size() >= 3) {")
-        code.append("        if (insn.operands[0].value == 31) {")
-        code.append('            std::string result = "tst";')
-        code.append("            for (size_t i = 1; i < insn.operands.size(); ++i) {")
-        code.append('                result += (i == 1 ? " " : ", ") + insn.operands[i].to_string();')
+        code.append("    if (insn.mnemonic == Mnemonic::SUBS && ((insn.raw_value >> 5) & 0x1F) == 0x1F && (insn.raw_value & 0x1F) != 0x1F) {")
+        code.append("        if ((insn.raw_value & (1u << 24)) == 0) {")
+        code.append("            size_t rd_idx = 0;")
+        code.append("            size_t rm_idx = (insn.operands.size() >= 3 && insn.operands[1].type == OperandType::Register && insn.operands[1].value == 31) ? 2 : 1;")
+        code.append('            std::string result = "negs " + insn.operands[rd_idx].to_string();')
+        code.append("            for (size_t i = rm_idx; i < insn.operands.size(); ++i) {")
+        code.append('                result += ", " + insn.operands[i].to_string();')
         code.append("            }")
         code.append("            return result;")
-        code.append("        }")
-        code.append("    }")
-        code.append("")
-        code.append("    // NEG Aliases: SUB/SUBS with Rn==31 (register form only, not immediate)")
-        code.append("    if (insn.mnemonic == Mnemonic::SUB && insn.operands.size() >= 3) {")
-        code.append("        if (insn.operands[1].value == 31 && insn.operands[2].type == OperandType::Register) {")
-        code.append('            return std::string("neg ") + insn.operands[0].to_string() + ", " + insn.operands[2].to_string();')
-        code.append("        }")
-        code.append("    }")
-        code.append("")
-        code.append("    if (insn.mnemonic == Mnemonic::SUBS && insn.operands.size() >= 3) {")
-        code.append("        if (insn.operands[1].value == 31 && insn.operands[0].value != 31 && insn.operands[2].type == OperandType::Register) {")
-        code.append('            return std::string("negs ") + insn.operands[0].to_string() + ", " + insn.operands[2].to_string();')
         code.append("        }")
         code.append("    }")
         code.append("")
@@ -1929,6 +1948,8 @@ class ARM64XMLParser:
             'CRm', 'CRn', 'op1', 'op2',
             # SVE/SME variable fields
             'Pg', 'Pd', 'Pn', 'Pm', 'Zd', 'Zn', 'Zm', 'Zt', 'Za', 'ZAda', 'ZAn',
+            # Size/arrangement operands that are often variable parameters
+            'Q', 'size', 'sz',
         }
 
         # Include all bits EXCEPT operand fields
@@ -2949,9 +2970,9 @@ class ARM64XMLParser:
                 code.append(f"{ind}bool is_64bit = false;")
 
         # Extract all GPR register operands - pass is_64bit as third parameter
-        # Special case: For advsimd class, Rd/Rn/Rm might actually be vector registers
+        # Special case: For advsimd/simd_dp classes, Rd/Rn/Rm might actually be vector registers
         # Check if this is an advsimd instruction that uses vector registers
-        is_advsimd_vector = (class_name == 'advsimd' and mnemonic in [
+        is_advsimd_vector = (class_name in ['advsimd', 'simd_dp'] and mnemonic in [
             'MOVI', 'MVNI', 'ORR', 'BIC', 'FMOV', 'DUP', 'INS', 'UMOV', 'SMOV',
             'ABS', 'NEG', 'NOT', 'CNT', 'CLS', 'CLZ', 'RBIT', 'REV16', 'REV32', 'REV64',
             'ADD', 'SUB', 'MUL', 'MLA', 'MLS', 'AND', 'EOR', 'BSL', 'BIT', 'BIF',
@@ -2978,13 +2999,8 @@ class ARM64XMLParser:
                 field_cpp_name = field_map[reg_name]['name']
                 if is_advsimd_vector:
                     # Use VectorRegister for advsimd vector instructions
-                    # For MOVI/MVNI, use helper to determine arrangement from Q/cmode fields
-                    if mnemonic in ['MOVI', 'MVNI'] and reg_name == 'Rd':
-                        code.append(f"{ind}const char* arr = get_movi_arrangement(insn);")
-                        code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, arr));")
-                    else:
-                        # Other vector instructions: use false = 'v' prefix without arrangement
-                        code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false));")
+                    # Use false for now (v prefix), arrangement handled during to_string()
+                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false));")
                 else:
                     code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{field_cpp_name}, is_64bit));")
 
@@ -3017,6 +3033,51 @@ class ARM64XMLParser:
             rv_field = field_map['Rv']['name']
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rv_field} + 8, false));")
 
+        # Combine split immediate fields before extracting individual immediates
+        # i3h + i3l -> combined 3-bit index
+        if 'i3h' in field_map and not field_map['i3h']['is_fixed'] and 'i3l' in field_map and not field_map['i3l']['is_fixed']:
+            i3h_field = field_map['i3h']['name']
+            i3l_field = field_map['i3l']['name']
+            i3l_width = field_map['i3l']['width']
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, (enc.{member_name}.{i3h_field} << {i3l_width}) | enc.{member_name}.{i3l_field}, true));")
+
+        # i4h + i4l -> combined 4-bit index
+        if 'i4h' in field_map and not field_map['i4h']['is_fixed'] and 'i4l' in field_map and not field_map['i4l']['is_fixed']:
+            i4h_field = field_map['i4h']['name']
+            i4l_field = field_map['i4l']['name']
+            i4l_width = field_map['i4l']['width']
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, (enc.{member_name}.{i4h_field} << {i4l_width}) | enc.{member_name}.{i4l_field}, true));")
+
+        # i2h + i2l -> combined 2-bit index
+        if 'i2h' in field_map and not field_map['i2h']['is_fixed'] and 'i2l' in field_map and not field_map['i2l']['is_fixed']:
+            i2h_field = field_map['i2h']['name']
+            i2l_field = field_map['i2l']['name']
+            i2l_width = field_map['i2l']['width']
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, (enc.{member_name}.{i2h_field} << {i2l_width}) | enc.{member_name}.{i2l_field}, true));")
+
+        # imm9h + imm9l -> combined imm9 (SVE LDR/STR pred/vec)
+        if 'imm9h' in field_map and not field_map['imm9h']['is_fixed'] and 'imm9l' in field_map and not field_map['imm9l']['is_fixed']:
+            imm9h_field = field_map['imm9h']['name']
+            imm9l_field = field_map['imm9l']['name']
+            imm9l_width = field_map['imm9l']['width']
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, (enc.{member_name}.{imm9h_field} << {imm9l_width}) | enc.{member_name}.{imm9l_field}, true));")
+
+        # imm8h + imm8l -> combined imm8 (SVE EXT)
+        if 'imm8h' in field_map and not field_map['imm8h']['is_fixed'] and 'imm8l' in field_map and not field_map['imm8l']['is_fixed']:
+            imm8h_field = field_map['imm8h']['name']
+            imm8l_field = field_map['imm8l']['name']
+            imm8l_width = field_map['imm8l']['width']
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, (enc.{member_name}.{imm8h_field} << {imm8l_width}) | enc.{member_name}.{imm8l_field}, true));")
+
+        # a,b,c,d,e,f,g,h -> combined imm8 for ADVSIMD BIC/MOVI/FMOV
+        abcdefgh_fields = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+        if all(f in field_map and not field_map[f]['is_fixed'] for f in abcdefgh_fields):
+            parts = []
+            for bit_idx, f in enumerate(abcdefgh_fields):
+                parts.append(f"(enc.{member_name}.{field_map[f]['name']} << {7 - bit_idx})")
+            combined = ' | '.join(parts)
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, {combined}, true));")
+
         # Extract ALL immediate operands (don't break after first)
         imm_patterns = [
             ('imm12', 12, True),   # (name, bits, is_unsigned)
@@ -3024,6 +3085,7 @@ class ARM64XMLParser:
             ('imm13', 13, True),   # SVE logical immediate
             ('imm6', 6, True),
             ('imm5', 5, True),
+            ('imm5b', 5, True),    # Split imm5 variant
             ('imm8', 8, True),
             ('imm9', 9, False),    # Typically signed
             ('simm9', 9, False),   # Explicitly signed
@@ -3032,6 +3094,9 @@ class ARM64XMLParser:
             ('imm4', 4, True),     # SVE/SME index, barrier CRm
             ('imm3', 3, True),     # SVE/SME index
             ('imm2', 2, True),     # SVE/SME index
+            ('immb', 6, True),     # SIMD shift amount
+            ('immr', 6, True),     # Rotate/right-shift amount
+            ('imms', 6, True),     # Bit width / shift amount
         ]
 
         # Check if shift field exists (imm6 is then the shift amount, not standalone)
@@ -3091,6 +3156,46 @@ class ARM64XMLParser:
         if 'cond' in field_map and not field_map['cond']['is_fixed']:
             cond_field = field_map['cond']['name']
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::Condition, enc.{member_name}.{cond_field}, true));")
+
+        # Handle cc (condition code for CB instructions)
+        if 'cc' in field_map and not field_map['cc']['is_fixed']:
+            cc_field = field_map['cc']['name']
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Condition, enc.{member_name}.{cc_field}, true));")
+
+        # Handle SVE pattern operand (pow2, vl1..vl256, mul3, mul4, all)
+        if 'pattern' in field_map and not field_map['pattern']['is_fixed']:
+            pattern_field = field_map['pattern']['name']
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Pattern, enc.{member_name}.{pattern_field}, true));")
+
+        # Handle prefetch operation (pldl1keep, pstl2strm, etc.)
+        if 'prfop' in field_map and not field_map['prfop']['is_fixed']:
+            prfop_field = field_map['prfop']['name']
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Prefetch, enc.{member_name}.{prfop_field}, true));")
+
+        # Handle NZCV flags immediate (CCMN/CCMP)
+        if 'nzcv' in field_map and not field_map['nzcv']['is_fixed']:
+            nzcv_field = field_map['nzcv']['name']
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.{nzcv_field}, true));")
+
+        # Handle rotation amount (0/90/180/270 for complex multiply)
+        if 'rot' in field_map and not field_map['rot']['is_fixed']:
+            rot_field = field_map['rot']['name']
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.{rot_field} * 90, true));")
+
+        # Handle fixed-point scale (FCVT/SCVTF)
+        if 'scale' in field_map and not field_map['scale']['is_fixed']:
+            scale_field = field_map['scale']['name']
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.{scale_field}, true));")
+
+        # Handle RMIF mask operand
+        if 'mask' in field_map and not field_map['mask']['is_fixed']:
+            mask_field = field_map['mask']['name']
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.{mask_field}, true));")
+
+        # Handle extend type (option field for add/sub extended)
+        if 'option' in field_map and not field_map['option']['is_fixed']:
+            option_field = field_map['option']['name']
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Extend, enc.{member_name}.{option_field}, true));")
 
         code.append(f"{ind}return result;")
         return code

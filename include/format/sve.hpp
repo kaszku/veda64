@@ -8,7 +8,7 @@
 
 namespace veda64 {
 namespace Format {
-namespace Sve {
+namespace sve {
 
 // Encode functions
 uint32_t encode_abs_z_p_z_m(uint32_t Zd, uint32_t Zn, uint32_t Pg, uint32_t size);
@@ -1382,6 +1382,6 @@ inline std::optional<Instruction> decode_sve(const uint8_t* bytes) {
     return decode_sve(from_bytes(bytes));
 }
 
-} // namespace Sve
+} // namespace sve
 } // namespace Format
 } // namespace veda64

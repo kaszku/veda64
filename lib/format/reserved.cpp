@@ -2,7 +2,7 @@
 
 namespace veda64 {
 namespace Format {
-namespace Reserved {
+namespace reserved {
 
 // Encoding structures union
 union ReservedEncoding {
@@ -53,6 +53,6 @@ std::optional<Instruction> decode_reserved(uint32_t insn) {
     return std::nullopt;
 }
 
-} // namespace Reserved
+} // namespace reserved
 } // namespace Format
 } // namespace veda64

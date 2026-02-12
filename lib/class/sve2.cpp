@@ -22808,6 +22808,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmlalb_zzzzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmlalb_zzzzi_s.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmlalb_zzzzi_s.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmlalb_zzzzi_s.i3h << 1) | enc.sqdmlalb_zzzzi_s.i3l, true));
                         return result;
         }
         case 0x44A02400u: { // sqdmlalt_z_zzzi_s
@@ -22817,6 +22818,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmlalt_zzzzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmlalt_zzzzi_s.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmlalt_zzzzi_s.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmlalt_zzzzi_s.i3h << 1) | enc.sqdmlalt_zzzzi_s.i3l, true));
                         return result;
         }
         case 0x44A03000u: { // sqdmlslb_z_zzzi_s
@@ -22826,6 +22828,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmlslb_zzzzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmlslb_zzzzi_s.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmlslb_zzzzi_s.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmlslb_zzzzi_s.i3h << 1) | enc.sqdmlslb_zzzzi_s.i3l, true));
                         return result;
         }
         case 0x44A03400u: { // sqdmlslt_z_zzzi_s
@@ -22835,6 +22838,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmlslt_zzzzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmlslt_zzzzi_s.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmlslt_zzzzi_s.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmlslt_zzzzi_s.i3h << 1) | enc.sqdmlslt_zzzzi_s.i3l, true));
                         return result;
         }
         case 0x44A08000u: { // smlalb_z_zzzi_s
@@ -22844,6 +22848,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlalb_zzzzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlalb_zzzzi_s.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlalb_zzzzi_s.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlalb_zzzzi_s.i3h << 1) | enc.smlalb_zzzzi_s.i3l, true));
                         return result;
         }
         case 0x44A08400u: { // smlalt_z_zzzi_s
@@ -22853,6 +22858,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlalt_zzzzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlalt_zzzzi_s.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlalt_zzzzi_s.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlalt_zzzzi_s.i3h << 1) | enc.smlalt_zzzzi_s.i3l, true));
                         return result;
         }
         case 0x44A09000u: { // umlalb_z_zzzi_s
@@ -22862,6 +22868,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlalb_zzzzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlalb_zzzzi_s.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlalb_zzzzi_s.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlalb_zzzzi_s.i3h << 1) | enc.umlalb_zzzzi_s.i3l, true));
                         return result;
         }
         case 0x44A09400u: { // umlalt_z_zzzi_s
@@ -22871,6 +22878,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlalt_zzzzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlalt_zzzzi_s.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlalt_zzzzi_s.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlalt_zzzzi_s.i3h << 1) | enc.umlalt_zzzzi_s.i3l, true));
                         return result;
         }
         case 0x44A0A000u: { // smlslb_z_zzzi_s
@@ -22880,6 +22888,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlslb_zzzzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlslb_zzzzi_s.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlslb_zzzzi_s.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlslb_zzzzi_s.i3h << 1) | enc.smlslb_zzzzi_s.i3l, true));
                         return result;
         }
         case 0x44A0A400u: { // smlslt_z_zzzi_s
@@ -22889,6 +22898,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlslt_zzzzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlslt_zzzzi_s.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlslt_zzzzi_s.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlslt_zzzzi_s.i3h << 1) | enc.smlslt_zzzzi_s.i3l, true));
                         return result;
         }
         case 0x44A0B000u: { // umlslb_z_zzzi_s
@@ -22898,6 +22908,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlslb_zzzzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlslb_zzzzi_s.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlslb_zzzzi_s.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlslb_zzzzi_s.i3h << 1) | enc.umlslb_zzzzi_s.i3l, true));
                         return result;
         }
         case 0x44A0B400u: { // umlslt_z_zzzi_s
@@ -22907,6 +22918,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlslt_zzzzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlslt_zzzzi_s.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlslt_zzzzi_s.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlslt_zzzzi_s.i3h << 1) | enc.umlslt_zzzzi_s.i3l, true));
                         return result;
         }
         case 0x44A0C000u: { // smullb_z_zzi_s
@@ -22916,6 +22928,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smullb_zzzi_s.Zd, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smullb_zzzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smullb_zzzi_s.Zm, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smullb_zzzi_s.i3h << 1) | enc.smullb_zzzi_s.i3l, true));
                         return result;
         }
         case 0x44A0C400u: { // smullt_z_zzi_s
@@ -22925,6 +22938,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smullt_zzzi_s.Zd, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smullt_zzzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smullt_zzzi_s.Zm, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smullt_zzzi_s.i3h << 1) | enc.smullt_zzzi_s.i3l, true));
                         return result;
         }
         case 0x44A0D000u: { // umullb_z_zzi_s
@@ -22934,6 +22948,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umullb_zzzi_s.Zd, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umullb_zzzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umullb_zzzi_s.Zm, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umullb_zzzi_s.i3h << 1) | enc.umullb_zzzi_s.i3l, true));
                         return result;
         }
         case 0x44A0D400u: { // umullt_z_zzi_s
@@ -22943,6 +22958,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umullt_zzzi_s.Zd, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umullt_zzzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umullt_zzzi_s.Zm, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umullt_zzzi_s.i3h << 1) | enc.umullt_zzzi_s.i3l, true));
                         return result;
         }
         case 0x44A0E000u: { // sqdmullb_z_zzi_s
@@ -22952,6 +22968,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmullb_zzzi_s.Zd, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmullb_zzzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmullb_zzzi_s.Zm, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmullb_zzzi_s.i3h << 1) | enc.sqdmullb_zzzi_s.i3l, true));
                         return result;
         }
         case 0x44A0E400u: { // sqdmullt_z_zzi_s
@@ -22961,6 +22978,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmullt_zzzi_s.Zd, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmullt_zzzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmullt_zzzi_s.Zm, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmullt_zzzi_s.i3h << 1) | enc.sqdmullt_zzzi_s.i3l, true));
                         return result;
         }
         case 0x44E02000u: { // sqdmlalb_z_zzzi_d
@@ -22970,6 +22988,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmlalb_zzzzi_d.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmlalb_zzzzi_d.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmlalb_zzzzi_d.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmlalb_zzzzi_d.i2h << 1) | enc.sqdmlalb_zzzzi_d.i2l, true));
                         return result;
         }
         case 0x44E02400u: { // sqdmlalt_z_zzzi_d
@@ -22979,6 +22998,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmlalt_zzzzi_d.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmlalt_zzzzi_d.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmlalt_zzzzi_d.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmlalt_zzzzi_d.i2h << 1) | enc.sqdmlalt_zzzzi_d.i2l, true));
                         return result;
         }
         case 0x44E03000u: { // sqdmlslb_z_zzzi_d
@@ -22988,6 +23008,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmlslb_zzzzi_d.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmlslb_zzzzi_d.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmlslb_zzzzi_d.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmlslb_zzzzi_d.i2h << 1) | enc.sqdmlslb_zzzzi_d.i2l, true));
                         return result;
         }
         case 0x44E03400u: { // sqdmlslt_z_zzzi_d
@@ -22997,6 +23018,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmlslt_zzzzi_d.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmlslt_zzzzi_d.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmlslt_zzzzi_d.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmlslt_zzzzi_d.i2h << 1) | enc.sqdmlslt_zzzzi_d.i2l, true));
                         return result;
         }
         case 0x44E08000u: { // smlalb_z_zzzi_d
@@ -23006,6 +23028,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlalb_zzzzi_d.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlalb_zzzzi_d.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlalb_zzzzi_d.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlalb_zzzzi_d.i2h << 1) | enc.smlalb_zzzzi_d.i2l, true));
                         return result;
         }
         case 0x44E08400u: { // smlalt_z_zzzi_d
@@ -23015,6 +23038,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlalt_zzzzi_d.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlalt_zzzzi_d.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlalt_zzzzi_d.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlalt_zzzzi_d.i2h << 1) | enc.smlalt_zzzzi_d.i2l, true));
                         return result;
         }
         case 0x44E09000u: { // umlalb_z_zzzi_d
@@ -23024,6 +23048,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlalb_zzzzi_d.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlalb_zzzzi_d.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlalb_zzzzi_d.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlalb_zzzzi_d.i2h << 1) | enc.umlalb_zzzzi_d.i2l, true));
                         return result;
         }
         case 0x44E09400u: { // umlalt_z_zzzi_d
@@ -23033,6 +23058,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlalt_zzzzi_d.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlalt_zzzzi_d.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlalt_zzzzi_d.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlalt_zzzzi_d.i2h << 1) | enc.umlalt_zzzzi_d.i2l, true));
                         return result;
         }
         case 0x44E0A000u: { // smlslb_z_zzzi_d
@@ -23042,6 +23068,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlslb_zzzzi_d.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlslb_zzzzi_d.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlslb_zzzzi_d.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlslb_zzzzi_d.i2h << 1) | enc.smlslb_zzzzi_d.i2l, true));
                         return result;
         }
         case 0x44E0A400u: { // smlslt_z_zzzi_d
@@ -23051,6 +23078,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlslt_zzzzi_d.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlslt_zzzzi_d.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlslt_zzzzi_d.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlslt_zzzzi_d.i2h << 1) | enc.smlslt_zzzzi_d.i2l, true));
                         return result;
         }
         case 0x44E0B000u: { // umlslb_z_zzzi_d
@@ -23060,6 +23088,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlslb_zzzzi_d.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlslb_zzzzi_d.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlslb_zzzzi_d.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlslb_zzzzi_d.i2h << 1) | enc.umlslb_zzzzi_d.i2l, true));
                         return result;
         }
         case 0x44E0B400u: { // umlslt_z_zzzi_d
@@ -23069,6 +23098,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlslt_zzzzi_d.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlslt_zzzzi_d.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlslt_zzzzi_d.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlslt_zzzzi_d.i2h << 1) | enc.umlslt_zzzzi_d.i2l, true));
                         return result;
         }
         case 0x44E0C000u: { // smullb_z_zzi_d
@@ -23078,6 +23108,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smullb_zzzi_d.Zd, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smullb_zzzi_d.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smullb_zzzi_d.Zm, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smullb_zzzi_d.i2h << 1) | enc.smullb_zzzi_d.i2l, true));
                         return result;
         }
         case 0x44E0C400u: { // smullt_z_zzi_d
@@ -23087,6 +23118,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smullt_zzzi_d.Zd, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smullt_zzzi_d.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smullt_zzzi_d.Zm, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smullt_zzzi_d.i2h << 1) | enc.smullt_zzzi_d.i2l, true));
                         return result;
         }
         case 0x44E0D000u: { // umullb_z_zzi_d
@@ -23096,6 +23128,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umullb_zzzi_d.Zd, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umullb_zzzi_d.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umullb_zzzi_d.Zm, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umullb_zzzi_d.i2h << 1) | enc.umullb_zzzi_d.i2l, true));
                         return result;
         }
         case 0x44E0D400u: { // umullt_z_zzi_d
@@ -23105,6 +23138,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umullt_zzzi_d.Zd, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umullt_zzzi_d.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umullt_zzzi_d.Zm, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umullt_zzzi_d.i2h << 1) | enc.umullt_zzzi_d.i2l, true));
                         return result;
         }
         case 0x44E0E000u: { // sqdmullb_z_zzi_d
@@ -23114,6 +23148,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmullb_zzzi_d.Zd, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmullb_zzzi_d.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmullb_zzzi_d.Zm, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmullb_zzzi_d.i2h << 1) | enc.sqdmullb_zzzi_d.i2l, true));
                         return result;
         }
         case 0x44E0E400u: { // sqdmullt_z_zzi_d
@@ -23123,6 +23158,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmullt_zzzi_d.Zd, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmullt_zzzi_d.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmullt_zzzi_d.Zm, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmullt_zzzi_d.i2h << 1) | enc.sqdmullt_zzzi_d.i2l, true));
                         return result;
         }
         case 0x64204400u: { // fdot_z_zz8z8i_
@@ -23132,6 +23168,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fdot_zzz8z8i.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fdot_zzz8z8i.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fdot_zzz8z8i.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fdot_zzz8z8i.i3h << 1) | enc.fdot_zzz8z8i.i3l, true));
                         return result;
         }
         case 0x64A04000u: { // fmlalb_z_zzzi_s
@@ -23141,6 +23178,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlalb_zzzzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlalb_zzzzi_s.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlalb_zzzzi_s.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmlalb_zzzzi_s.i3h << 1) | enc.fmlalb_zzzzi_s.i3l, true));
                         return result;
         }
         case 0x64A04400u: { // fmlalt_z_zzzi_s
@@ -23150,6 +23188,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlalt_zzzzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlalt_zzzzi_s.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlalt_zzzzi_s.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmlalt_zzzzi_s.i3h << 1) | enc.fmlalt_zzzzi_s.i3l, true));
                         return result;
         }
         case 0x64A06000u: { // fmlslb_z_zzzi_s
@@ -23159,6 +23198,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlslb_zzzzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlslb_zzzzi_s.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlslb_zzzzi_s.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmlslb_zzzzi_s.i3h << 1) | enc.fmlslb_zzzzi_s.i3l, true));
                         return result;
         }
         case 0x64A06400u: { // fmlslt_z_zzzi_s
@@ -23168,6 +23208,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlslt_zzzzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlslt_zzzzi_s.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlslt_zzzzi_s.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmlslt_zzzzi_s.i3h << 1) | enc.fmlslt_zzzzi_s.i3l, true));
                         return result;
         }
         case 0x64E06000u: { // bfmlslb_z_zzzi_
@@ -23177,6 +23218,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmlslb_zzzzi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmlslb_zzzzi.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmlslb_zzzzi.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.bfmlslb_zzzzi.i3h << 1) | enc.bfmlslb_zzzzi.i3l, true));
                         return result;
         }
         case 0x64E06400u: { // bfmlslt_z_zzzi_
@@ -23186,6 +23228,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmlslt_zzzzi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmlslt_zzzzi.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmlslt_zzzzi.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.bfmlslt_zzzzi.i3h << 1) | enc.bfmlslt_zzzzi.i3l, true));
                         return result;
         }
         default: break;
@@ -23201,6 +23244,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.cdot_zzzzi_s.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.cdot_zzzzi_s.Zda, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cdot_zzzzi_s.i2, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.cdot_zzzzi_s.rot * 90, true));
                         return result;
         }
         case 0x44A06000u: { // cmla_z_zzzi_h
@@ -23211,6 +23255,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.cmla_zzzzi_h.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.cmla_zzzzi_h.Zda, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cmla_zzzzi_h.i2, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.cmla_zzzzi_h.rot * 90, true));
                         return result;
         }
         case 0x44A07000u: { // sqrdcmlah_z_zzzi_h
@@ -23221,6 +23266,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqrdcmlah_zzzzi_h.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqrdcmlah_zzzzi_h.Zda, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqrdcmlah_zzzzi_h.i2, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqrdcmlah_zzzzi_h.rot * 90, true));
                         return result;
         }
         case 0x44E04000u: { // cdot_z_zzzi_d
@@ -23231,6 +23277,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.cdot_zzzzi_d.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.cdot_zzzzi_d.Zda, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cdot_zzzzi_d.i1, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.cdot_zzzzi_d.rot * 90, true));
                         return result;
         }
         case 0x44E06000u: { // cmla_z_zzzi_s
@@ -23241,6 +23288,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.cmla_zzzzi_s.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.cmla_zzzzi_s.Zda, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cmla_zzzzi_s.i1, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.cmla_zzzzi_s.rot * 90, true));
                         return result;
         }
         case 0x44E07000u: { // sqrdcmlah_z_zzzi_s
@@ -23251,6 +23299,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqrdcmlah_zzzzi_s.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqrdcmlah_zzzzi_s.Zda, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqrdcmlah_zzzzi_s.i1, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqrdcmlah_zzzzi_s.rot * 90, true));
                         return result;
         }
         case 0x64205000u: { // fmlalb_z_z8z8z8i_
@@ -23260,6 +23309,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlalb_zz8z8z8i.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlalb_zz8z8z8i.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlalb_zz8z8z8i.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmlalb_zz8z8z8i.i4h << 2) | enc.fmlalb_zz8z8z8i.i4l, true));
                         return result;
         }
         case 0x6420C000u: { // fmlallbb_z32_z8z8z8i_
@@ -23269,6 +23319,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlallbb_z32z8z8z8i.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlallbb_z32z8z8z8i.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlallbb_z32z8z8z8i.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmlallbb_z32z8z8z8i.i4h << 2) | enc.fmlallbb_z32z8z8z8i.i4l, true));
                         return result;
         }
         case 0x6460C000u: { // fmlallbt_z32_z8z8z8i_
@@ -23278,6 +23329,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlallbt_z32z8z8z8i.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlallbt_z32z8z8z8i.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlallbt_z32z8z8z8i.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmlallbt_z32z8z8z8i.i4h << 2) | enc.fmlallbt_z32z8z8z8i.i4l, true));
                         return result;
         }
         case 0x64A05000u: { // fmlalt_z_z8z8z8i_
@@ -23287,6 +23339,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlalt_zz8z8z8i.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlalt_zz8z8z8i.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlalt_zz8z8z8i.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmlalt_zz8z8z8i.i4h << 2) | enc.fmlalt_zz8z8z8i.i4l, true));
                         return result;
         }
         case 0x64A0C000u: { // fmlalltb_z32_z8z8z8i_
@@ -23296,6 +23349,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlalltb_z32z8z8z8i.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlalltb_z32z8z8z8i.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlalltb_z32z8z8z8i.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmlalltb_z32z8z8z8i.i4h << 2) | enc.fmlalltb_z32z8z8z8i.i4l, true));
                         return result;
         }
         case 0x64E0C000u: { // fmlalltt_z32_z8z8z8i_
@@ -23305,6 +23359,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlalltt_z32z8z8z8i.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlalltt_z32z8z8z8i.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlalltt_z32z8z8z8i.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmlalltt_z32z8z8z8i.i4h << 2) | enc.fmlalltt_z32z8z8z8i.i4l, true));
                         return result;
         }
         default: break;
@@ -23936,6 +23991,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.pmov_zpi_d.Zd, true));
                         result.operands.push_back(Operand(OperandType::PredicateRegister, enc.pmov_zpi_d.Pn, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.pmov_zpi_d.i3h << 2) | enc.pmov_zpi_d.i3l, true));
                         return result;
         }
         default: break;
@@ -23949,6 +24005,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.pmov_pzi_d.Zn, true));
                         result.operands.push_back(Operand(OperandType::PredicateRegister, enc.pmov_pzi_d.Pd, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.pmov_pzi_d.i3h << 2) | enc.pmov_pzi_d.i3l, true));
                         return result;
         }
         default: break;
@@ -24016,6 +24073,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sdot_z16zzzi_h.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sdot_z16zzzi_h.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sdot_z16zzzi_h.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sdot_z16zzzi_h.i3h << 2) | enc.sdot_z16zzzi_h.i3l, true));
                         return result;
         }
         case 0x44200400u: { // udot_z16_zzzi_h
@@ -24025,6 +24083,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.udot_z16zzzi_h.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.udot_z16zzzi_h.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.udot_z16zzzi_h.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.udot_z16zzzi_h.i3h << 2) | enc.udot_z16zzzi_h.i3l, true));
                         return result;
         }
         case 0x44200800u: { // mla_z_zzzi_h
@@ -24034,6 +24093,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.mla_zzzzi_h.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.mla_zzzzi_h.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.mla_zzzzi_h.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.mla_zzzzi_h.i3h << 2) | enc.mla_zzzzi_h.i3l, true));
                         return result;
         }
         case 0x44200C00u: { // mls_z_zzzi_h
@@ -24043,6 +24103,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.mls_zzzzi_h.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.mls_zzzzi_h.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.mls_zzzzi_h.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.mls_zzzzi_h.i3h << 2) | enc.mls_zzzzi_h.i3l, true));
                         return result;
         }
         case 0x44201000u: { // sqrdmlah_z_zzzi_h
@@ -24052,6 +24113,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqrdmlah_zzzzi_h.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqrdmlah_zzzzi_h.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqrdmlah_zzzzi_h.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqrdmlah_zzzzi_h.i3h << 2) | enc.sqrdmlah_zzzzi_h.i3l, true));
                         return result;
         }
         case 0x44201400u: { // sqrdmlsh_z_zzzi_h
@@ -24061,6 +24123,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqrdmlsh_zzzzi_h.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqrdmlsh_zzzzi_h.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqrdmlsh_zzzzi_h.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqrdmlsh_zzzzi_h.i3h << 2) | enc.sqrdmlsh_zzzzi_h.i3l, true));
                         return result;
         }
         case 0x4420F000u: { // sqdmulh_z_zzi_h
@@ -24070,6 +24133,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmulh_zzzi_h.Zd, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmulh_zzzi_h.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmulh_zzzi_h.Zm, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmulh_zzzi_h.i3h << 2) | enc.sqdmulh_zzzi_h.i3l, true));
                         return result;
         }
         case 0x4420F400u: { // sqrdmulh_z_zzi_h
@@ -24079,6 +24143,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqrdmulh_zzzi_h.Zd, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqrdmulh_zzzi_h.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqrdmulh_zzzi_h.Zm, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqrdmulh_zzzi_h.i3h << 2) | enc.sqrdmulh_zzzi_h.i3l, true));
                         return result;
         }
         case 0x4420F800u: { // mul_z_zzi_h
@@ -24088,6 +24153,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.mul_zzzi_h.Zd, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.mul_zzzi_h.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.mul_zzzi_h.Zm, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.mul_zzzi_h.i3h << 2) | enc.mul_zzzi_h.i3l, true));
                         return result;
         }
         case 0x4500A000u: { // sshllb_z_zi_
@@ -24313,6 +24379,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmla_zzzzi_h.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmla_zzzzi_h.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmla_zzzzi_h.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.bfmla_zzzzi_h.i3h << 2) | enc.bfmla_zzzzi_h.i3l, true));
                         return result;
         }
         case 0x64200C00u: { // bfmls_z_zzzi_h
@@ -24322,6 +24389,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmls_zzzzi_h.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmls_zzzzi_h.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmls_zzzzi_h.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.bfmls_zzzzi_h.i3h << 2) | enc.bfmls_zzzzi_h.i3l, true));
                         return result;
         }
         case 0x64202800u: { // bfmul_z_zzi_h
@@ -24331,6 +24399,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmul_zzzi_h.Zd, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmul_zzzi_h.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmul_zzzi_h.Zm, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.bfmul_zzzi_h.i3h << 2) | enc.bfmul_zzzi_h.i3l, true));
                         return result;
         }
         default: break;
@@ -24481,6 +24550,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.cadd_zzz.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.cadd_zzz.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.cadd_zzz.rot * 90, true));
                         return result;
         }
         case 0x4501D800u: { // sqcadd_z_zz_
@@ -24489,6 +24559,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqcadd_zzz.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqcadd_zzz.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqcadd_zzz.rot * 90, true));
                         return result;
         }
         default: break;
@@ -26118,6 +26189,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.cdot_zzzz.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.cdot_zzzz.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.cdot_zzzz.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.cdot_zzzz.rot * 90, true));
                         return result;
         }
         case 0x44002000u: { // cmla_z_zzz_
@@ -26127,6 +26199,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.cmla_zzzz.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.cmla_zzzz.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.cmla_zzzz.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.cmla_zzzz.rot * 90, true));
                         return result;
         }
         case 0x44003000u: { // sqrdcmlah_z_zzz_
@@ -26136,6 +26209,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqrdcmlah_zzzz.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqrdcmlah_zzzz.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqrdcmlah_zzzz.Zda, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqrdcmlah_zzzz.rot * 90, true));
                         return result;
         }
         default: break;
@@ -26195,6 +26269,7 @@ std::optional<Instruction> decode_sve2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.luti2zzz16.Zd, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.luti2zzz16.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.luti2zzz16.Zm, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.luti2zzz16.i3h << 1) | enc.luti2zzz16.i3l, true));
                         return result;
         }
         default: break;

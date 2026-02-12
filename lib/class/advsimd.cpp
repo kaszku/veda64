@@ -33385,422 +33385,8 @@ uint32_t encode_zip2_asimdperm_only(uint32_t Rd, uint32_t Rn, uint32_t Rm, uint3
 // Decode a advsimd instruction
 // Input is in native ARM64 format (as read from memory)
 std::optional<Instruction> decode_advsimd(uint32_t insn) {
-    // Switch for mask 0xFFFFFC00u (93 patterns, 93 encodings)
+    // Switch for mask 0xFFFFFC00u (47 patterns, 47 encodings)
     switch (insn & 0xFFFFFC00u) {
-        case 0x0D000000u: { // ST1_asisdlso_B1_1b
-                        Instruction result(Mnemonic::ST1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlso_b11b.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlso_b11b.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D008000u: { // ST1_asisdlso_S1_1s
-                        Instruction result(Mnemonic::ST1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlso_s11s.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlso_s11s.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D008400u: { // ST1_asisdlso_D1_1d
-                        Instruction result(Mnemonic::ST1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlso_d11d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlso_d11d.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D00A000u: { // ST3_asisdlso_S3_3s
-                        Instruction result(Mnemonic::ST3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlso_s33s.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlso_s33s.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D00A400u: { // ST3_asisdlso_D3_3d
-                        Instruction result(Mnemonic::ST3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlso_d33d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlso_d33d.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D018400u: { // STL1_asisdlso_D1
-                        Instruction result(Mnemonic::STL1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stl1asisdlso_d1.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stl1asisdlso_d1.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D200000u: { // ST2_asisdlso_B2_2b
-                        Instruction result(Mnemonic::ST2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlso_b22b.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlso_b22b.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D202000u: { // ST4_asisdlso_B4_4b
-                        Instruction result(Mnemonic::ST4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlso_b44b.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlso_b44b.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D208000u: { // ST2_asisdlso_S2_2s
-                        Instruction result(Mnemonic::ST2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlso_s22s.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlso_s22s.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D208400u: { // ST2_asisdlso_D2_2d
-                        Instruction result(Mnemonic::ST2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlso_d22d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlso_d22d.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D20A000u: { // ST4_asisdlso_S4_4s
-                        Instruction result(Mnemonic::ST4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlso_s44s.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlso_s44s.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D20A400u: { // ST4_asisdlso_D4_4d
-                        Instruction result(Mnemonic::ST4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlso_d44d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlso_d44d.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D400000u: { // LD1_asisdlso_B1_1b
-                        Instruction result(Mnemonic::LD1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlso_b11b.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlso_b11b.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D408000u: { // LD1_asisdlso_S1_1s
-                        Instruction result(Mnemonic::LD1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlso_s11s.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlso_s11s.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D408400u: { // LD1_asisdlso_D1_1d
-                        Instruction result(Mnemonic::LD1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlso_d11d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlso_d11d.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D40A000u: { // LD3_asisdlso_S3_3s
-                        Instruction result(Mnemonic::LD3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlso_s33s.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlso_s33s.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D40A400u: { // LD3_asisdlso_D3_3d
-                        Instruction result(Mnemonic::LD3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlso_d33d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlso_d33d.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D418400u: { // LDAP1_asisdlso_D1
-                        Instruction result(Mnemonic::LDAP1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldap1asisdlso_d1.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldap1asisdlso_d1.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D600000u: { // LD2_asisdlso_B2_2b
-                        Instruction result(Mnemonic::LD2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlso_b22b.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlso_b22b.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D602000u: { // LD4_asisdlso_B4_4b
-                        Instruction result(Mnemonic::LD4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlso_b44b.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlso_b44b.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D608000u: { // LD2_asisdlso_S2_2s
-                        Instruction result(Mnemonic::LD2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlso_s22s.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlso_s22s.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D608400u: { // LD2_asisdlso_D2_2d
-                        Instruction result(Mnemonic::LD2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlso_d22d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlso_d22d.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D60A000u: { // LD4_asisdlso_S4_4s
-                        Instruction result(Mnemonic::LD4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlso_s44s.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlso_s44s.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D60A400u: { // LD4_asisdlso_D4_4d
-                        Instruction result(Mnemonic::LD4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlso_d44d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlso_d44d.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D9F0000u: { // ST1_asisdlsop_B1_i1b
-                        Instruction result(Mnemonic::ST1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_b1i1b.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_b1i1b.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D9F8000u: { // ST1_asisdlsop_S1_i1s
-                        Instruction result(Mnemonic::ST1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_s1i1s.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_s1i1s.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D9F8400u: { // ST1_asisdlsop_D1_i1d
-                        Instruction result(Mnemonic::ST1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_d1i1d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_d1i1d.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D9FA000u: { // ST3_asisdlsop_S3_i3s
-                        Instruction result(Mnemonic::ST3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_s3i3s.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_s3i3s.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D9FA400u: { // ST3_asisdlsop_D3_i3d
-                        Instruction result(Mnemonic::ST3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_d3i3d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_d3i3d.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DBF0000u: { // ST2_asisdlsop_B2_i2b
-                        Instruction result(Mnemonic::ST2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_b2i2b.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_b2i2b.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DBF2000u: { // ST4_asisdlsop_B4_i4b
-                        Instruction result(Mnemonic::ST4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_b4i4b.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_b4i4b.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DBF8000u: { // ST2_asisdlsop_S2_i2s
-                        Instruction result(Mnemonic::ST2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_s2i2s.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_s2i2s.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DBF8400u: { // ST2_asisdlsop_D2_i2d
-                        Instruction result(Mnemonic::ST2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_d2i2d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_d2i2d.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DBFA000u: { // ST4_asisdlsop_S4_i4s
-                        Instruction result(Mnemonic::ST4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_s4i4s.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_s4i4s.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DBFA400u: { // ST4_asisdlsop_D4_i4d
-                        Instruction result(Mnemonic::ST4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_d4i4d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_d4i4d.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DDF0000u: { // LD1_asisdlsop_B1_i1b
-                        Instruction result(Mnemonic::LD1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_b1i1b.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_b1i1b.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DDF8000u: { // LD1_asisdlsop_S1_i1s
-                        Instruction result(Mnemonic::LD1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_s1i1s.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_s1i1s.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DDF8400u: { // LD1_asisdlsop_D1_i1d
-                        Instruction result(Mnemonic::LD1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_d1i1d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_d1i1d.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DDFA000u: { // LD3_asisdlsop_S3_i3s
-                        Instruction result(Mnemonic::LD3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_s3i3s.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_s3i3s.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DDFA400u: { // LD3_asisdlsop_D3_i3d
-                        Instruction result(Mnemonic::LD3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_d3i3d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_d3i3d.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DFF0000u: { // LD2_asisdlsop_B2_i2b
-                        Instruction result(Mnemonic::LD2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_b2i2b.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_b2i2b.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DFF2000u: { // LD4_asisdlsop_B4_i4b
-                        Instruction result(Mnemonic::LD4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_b4i4b.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_b4i4b.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DFF8000u: { // LD2_asisdlsop_S2_i2s
-                        Instruction result(Mnemonic::LD2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_s2i2s.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_s2i2s.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DFF8400u: { // LD2_asisdlsop_D2_i2d
-                        Instruction result(Mnemonic::LD2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_d2i2d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_d2i2d.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DFFA000u: { // LD4_asisdlsop_S4_i4s
-                        Instruction result(Mnemonic::LD4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_s4i4s.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_s4i4s.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DFFA400u: { // LD4_asisdlsop_D4_i4d
-                        Instruction result(Mnemonic::LD4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_d4i4d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_d4i4d.Rt, is_64bit));
-                        return result;
-        }
         case 0x4E284800u: { // AESE_B_cryptoaes
                         Instruction result(Mnemonic::AESE, insn);
                         AdvsimdEncoding enc = {};
@@ -34227,520 +33813,6 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
         default: break;
     }
 
-    // Switch for mask 0xFFFFF400u (16 patterns, 16 encodings)
-    switch (insn & 0xFFFFF400u) {
-        case 0x0D004000u: { // ST1_asisdlso_H1_1h
-                        Instruction result(Mnemonic::ST1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlso_h11h.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlso_h11h.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D006000u: { // ST3_asisdlso_H3_3h
-                        Instruction result(Mnemonic::ST3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlso_h33h.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlso_h33h.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D204000u: { // ST2_asisdlso_H2_2h
-                        Instruction result(Mnemonic::ST2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlso_h22h.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlso_h22h.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D206000u: { // ST4_asisdlso_H4_4h
-                        Instruction result(Mnemonic::ST4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlso_h44h.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlso_h44h.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D404000u: { // LD1_asisdlso_H1_1h
-                        Instruction result(Mnemonic::LD1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlso_h11h.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlso_h11h.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D406000u: { // LD3_asisdlso_H3_3h
-                        Instruction result(Mnemonic::LD3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlso_h33h.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlso_h33h.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D604000u: { // LD2_asisdlso_H2_2h
-                        Instruction result(Mnemonic::LD2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlso_h22h.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlso_h22h.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D606000u: { // LD4_asisdlso_H4_4h
-                        Instruction result(Mnemonic::LD4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlso_h44h.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlso_h44h.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D9F4000u: { // ST1_asisdlsop_H1_i1h
-                        Instruction result(Mnemonic::ST1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_h1i1h.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_h1i1h.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D9F6000u: { // ST3_asisdlsop_H3_i3h
-                        Instruction result(Mnemonic::ST3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_h3i3h.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_h3i3h.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DBF4000u: { // ST2_asisdlsop_H2_i2h
-                        Instruction result(Mnemonic::ST2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_h2i2h.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_h2i2h.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DBF6000u: { // ST4_asisdlsop_H4_i4h
-                        Instruction result(Mnemonic::ST4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_h4i4h.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_h4i4h.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DDF4000u: { // LD1_asisdlsop_H1_i1h
-                        Instruction result(Mnemonic::LD1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_h1i1h.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_h1i1h.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DDF6000u: { // LD3_asisdlsop_H3_i3h
-                        Instruction result(Mnemonic::LD3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_h3i3h.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_h3i3h.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DFF4000u: { // LD2_asisdlsop_H2_i2h
-                        Instruction result(Mnemonic::LD2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_h2i2h.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_h2i2h.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DFF6000u: { // LD4_asisdlsop_H4_i4h
-                        Instruction result(Mnemonic::LD4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_h4i4h.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_h4i4h.Rt, is_64bit));
-                        return result;
-        }
-        default: break;
-    }
-
-    // Switch for mask 0xFFFFF000u (40 patterns, 40 encodings)
-    switch (insn & 0xFFFFF000u) {
-        case 0x0C000000u: { // ST4_asisdlse_R4
-                        Instruction result(Mnemonic::ST4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlse_r4.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlse_r4.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C002000u: { // ST1_asisdlse_R4_4v
-                        Instruction result(Mnemonic::ST1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlse_r44v.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlse_r44v.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C004000u: { // ST3_asisdlse_R3
-                        Instruction result(Mnemonic::ST3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlse_r3.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlse_r3.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C006000u: { // ST1_asisdlse_R3_3v
-                        Instruction result(Mnemonic::ST1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlse_r33v.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlse_r33v.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C007000u: { // ST1_asisdlse_R1_1v
-                        Instruction result(Mnemonic::ST1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlse_r11v.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlse_r11v.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C008000u: { // ST2_asisdlse_R2
-                        Instruction result(Mnemonic::ST2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlse_r2.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlse_r2.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C00A000u: { // ST1_asisdlse_R2_2v
-                        Instruction result(Mnemonic::ST1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlse_r22v.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlse_r22v.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C400000u: { // LD4_asisdlse_R4
-                        Instruction result(Mnemonic::LD4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlse_r4.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlse_r4.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C402000u: { // LD1_asisdlse_R4_4v
-                        Instruction result(Mnemonic::LD1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlse_r44v.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlse_r44v.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C404000u: { // LD3_asisdlse_R3
-                        Instruction result(Mnemonic::LD3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlse_r3.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlse_r3.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C406000u: { // LD1_asisdlse_R3_3v
-                        Instruction result(Mnemonic::LD1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlse_r33v.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlse_r33v.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C407000u: { // LD1_asisdlse_R1_1v
-                        Instruction result(Mnemonic::LD1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlse_r11v.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlse_r11v.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C408000u: { // LD2_asisdlse_R2
-                        Instruction result(Mnemonic::LD2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlse_r2.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlse_r2.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C40A000u: { // LD1_asisdlse_R2_2v
-                        Instruction result(Mnemonic::LD1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlse_r22v.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlse_r22v.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C9F0000u: { // ST4_asisdlsep_I4_i
-                        Instruction result(Mnemonic::ST4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsep_i4i.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsep_i4i.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C9F2000u: { // ST1_asisdlsep_I4_i4
-                        Instruction result(Mnemonic::ST1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_i4i4.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_i4i4.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C9F4000u: { // ST3_asisdlsep_I3_i
-                        Instruction result(Mnemonic::ST3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsep_i3i.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsep_i3i.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C9F6000u: { // ST1_asisdlsep_I3_i3
-                        Instruction result(Mnemonic::ST1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_i3i3.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_i3i3.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C9F7000u: { // ST1_asisdlsep_I1_i1
-                        Instruction result(Mnemonic::ST1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_i1i1.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_i1i1.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C9F8000u: { // ST2_asisdlsep_I2_i
-                        Instruction result(Mnemonic::ST2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsep_i2i.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsep_i2i.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C9FA000u: { // ST1_asisdlsep_I2_i2
-                        Instruction result(Mnemonic::ST1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_i2i2.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_i2i2.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0CDF0000u: { // LD4_asisdlsep_I4_i
-                        Instruction result(Mnemonic::LD4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsep_i4i.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsep_i4i.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0CDF2000u: { // LD1_asisdlsep_I4_i4
-                        Instruction result(Mnemonic::LD1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_i4i4.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_i4i4.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0CDF4000u: { // LD3_asisdlsep_I3_i
-                        Instruction result(Mnemonic::LD3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsep_i3i.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsep_i3i.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0CDF6000u: { // LD1_asisdlsep_I3_i3
-                        Instruction result(Mnemonic::LD1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_i3i3.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_i3i3.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0CDF7000u: { // LD1_asisdlsep_I1_i1
-                        Instruction result(Mnemonic::LD1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_i1i1.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_i1i1.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0CDF8000u: { // LD2_asisdlsep_I2_i
-                        Instruction result(Mnemonic::LD2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsep_i2i.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsep_i2i.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0CDFA000u: { // LD1_asisdlsep_I2_i2
-                        Instruction result(Mnemonic::LD1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_i2i2.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_i2i2.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D002000u: { // ST3_asisdlso_B3_3b
-                        Instruction result(Mnemonic::ST3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlso_b33b.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlso_b33b.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D402000u: { // LD3_asisdlso_B3_3b
-                        Instruction result(Mnemonic::LD3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlso_b33b.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlso_b33b.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D40C000u: { // LD1R_asisdlso_R1
-                        Instruction result(Mnemonic::LD1R, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlso_r1.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlso_r1.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D40E000u: { // LD3R_asisdlso_R3
-                        Instruction result(Mnemonic::LD3R, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlso_r3.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlso_r3.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D60C000u: { // LD2R_asisdlso_R2
-                        Instruction result(Mnemonic::LD2R, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlso_r2.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlso_r2.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D60E000u: { // LD4R_asisdlso_R4
-                        Instruction result(Mnemonic::LD4R, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlso_r4.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlso_r4.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D9F2000u: { // ST3_asisdlsop_B3_i3b
-                        Instruction result(Mnemonic::ST3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_b3i3b.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_b3i3b.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DDF2000u: { // LD3_asisdlsop_B3_i3b
-                        Instruction result(Mnemonic::LD3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_b3i3b.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_b3i3b.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DDFC000u: { // LD1R_asisdlsop_R1_i
-                        Instruction result(Mnemonic::LD1R, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlsop_r1i.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlsop_r1i.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DDFE000u: { // LD3R_asisdlsop_R3_i
-                        Instruction result(Mnemonic::LD3R, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlsop_r3i.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlsop_r3i.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DFFC000u: { // LD2R_asisdlsop_R2_i
-                        Instruction result(Mnemonic::LD2R, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlsop_r2i.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlsop_r2i.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DFFE000u: { // LD4R_asisdlsop_R4_i
-                        Instruction result(Mnemonic::LD4R, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlsop_r4i.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlsop_r4i.Rt, is_64bit));
-                        return result;
-        }
-        default: break;
-    }
-
     // Switch for mask 0xFFF8FC00u (16 patterns, 16 encodings)
     switch (insn & 0xFFF8FC00u) {
         case 0x2F00E400u: { // MOVI_asimdimm_D_ds
@@ -34748,8 +33820,8 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         AdvsimdEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        const char* arr = get_movi_arrangement(insn);
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_dds.Rd, arr));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_dds.Rd, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.movi_asimdimm_dds.a << 7) | (enc.movi_asimdimm_dds.b << 6) | (enc.movi_asimdimm_dds.c << 5) | (enc.movi_asimdimm_dds.d << 4) | (enc.movi_asimdimm_dds.e << 3) | (enc.movi_asimdimm_dds.f << 2) | (enc.movi_asimdimm_dds.g << 1) | (enc.movi_asimdimm_dds.h << 0), true));
                         return result;
         }
         case 0x5F007400u: { // SQSHL_asisdshf_R
@@ -34759,6 +33831,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshl_asisdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshl_asisdshf_r.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqshl_asisdshf_r.immb, true));
                         return result;
         }
         case 0x5F009400u: { // SQSHRN_asisdshf_N
@@ -34768,6 +33841,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshrn_asisdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshrn_asisdshf_n.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqshrn_asisdshf_n.immb, true));
                         return result;
         }
         case 0x5F009C00u: { // SQRSHRN_asisdshf_N
@@ -34777,6 +33851,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrshrn_asisdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrshrn_asisdshf_n.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqrshrn_asisdshf_n.immb, true));
                         return result;
         }
         case 0x5F00E400u: { // SCVTF_asisdshf_C
@@ -34786,6 +33861,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_asisdshf_c.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.scvtf_asisdshf_c.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.scvtf_asisdshf_c.immb, true));
                         return result;
         }
         case 0x5F00FC00u: { // FCVTZS_asisdshf_C
@@ -34795,6 +33871,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_asisdshf_c.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_asisdshf_c.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.fcvtzs_asisdshf_c.immb, true));
                         return result;
         }
         case 0x6F00E400u: { // MOVI_asimdimm_D2_d
@@ -34802,8 +33879,8 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         AdvsimdEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        const char* arr = get_movi_arrangement(insn);
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_d2d.Rd, arr));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_d2d.Rd, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.movi_asimdimm_d2d.a << 7) | (enc.movi_asimdimm_d2d.b << 6) | (enc.movi_asimdimm_d2d.c << 5) | (enc.movi_asimdimm_d2d.d << 4) | (enc.movi_asimdimm_d2d.e << 3) | (enc.movi_asimdimm_d2d.f << 2) | (enc.movi_asimdimm_d2d.g << 1) | (enc.movi_asimdimm_d2d.h << 0), true));
                         return result;
         }
         case 0x6F00F400u: { // FMOV_asimdimm_D2_d
@@ -34812,6 +33889,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.fmov_asimdimm_d2d.Rd, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmov_asimdimm_d2d.a << 7) | (enc.fmov_asimdimm_d2d.b << 6) | (enc.fmov_asimdimm_d2d.c << 5) | (enc.fmov_asimdimm_d2d.d << 4) | (enc.fmov_asimdimm_d2d.e << 3) | (enc.fmov_asimdimm_d2d.f << 2) | (enc.fmov_asimdimm_d2d.g << 1) | (enc.fmov_asimdimm_d2d.h << 0), true));
                         return result;
         }
         case 0x7F006400u: { // SQSHLU_asisdshf_R
@@ -34821,6 +33899,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshlu_asisdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshlu_asisdshf_r.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqshlu_asisdshf_r.immb, true));
                         return result;
         }
         case 0x7F007400u: { // UQSHL_asisdshf_R
@@ -34830,6 +33909,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqshl_asisdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uqshl_asisdshf_r.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqshl_asisdshf_r.immb, true));
                         return result;
         }
         case 0x7F008400u: { // SQSHRUN_asisdshf_N
@@ -34839,6 +33919,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshrun_asisdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshrun_asisdshf_n.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqshrun_asisdshf_n.immb, true));
                         return result;
         }
         case 0x7F008C00u: { // SQRSHRUN_asisdshf_N
@@ -34848,6 +33929,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrshrun_asisdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrshrun_asisdshf_n.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqrshrun_asisdshf_n.immb, true));
                         return result;
         }
         case 0x7F009400u: { // UQSHRN_asisdshf_N
@@ -34857,6 +33939,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqshrn_asisdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uqshrn_asisdshf_n.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqshrn_asisdshf_n.immb, true));
                         return result;
         }
         case 0x7F009C00u: { // UQRSHRN_asisdshf_N
@@ -34866,6 +33949,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqrshrn_asisdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uqrshrn_asisdshf_n.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqrshrn_asisdshf_n.immb, true));
                         return result;
         }
         case 0x7F00E400u: { // UCVTF_asisdshf_C
@@ -34875,6 +33959,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_asisdshf_c.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_asisdshf_c.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ucvtf_asisdshf_c.immb, true));
                         return result;
         }
         case 0x7F00FC00u: { // FCVTZU_asisdshf_C
@@ -34884,6 +33969,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_asisdshf_c.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_asisdshf_c.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.fcvtzu_asisdshf_c.immb, true));
                         return result;
         }
         default: break;
@@ -35285,248 +34371,8 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
         default: break;
     }
 
-    // Switch for mask 0xFFE0FC00u (158 patterns, 160 encodings)
+    // Switch for mask 0xFFE0FC00u (134 patterns, 136 encodings)
     switch (insn & 0xFFE0FC00u) {
-        case 0x0D800000u: { // ST1_asisdlsop_BX1_r1b
-                        Instruction result(Mnemonic::ST1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_bx1r1b.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_bx1r1b.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_bx1r1b.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D802000u: { // ST3_asisdlsop_BX3_r3b
-                        Instruction result(Mnemonic::ST3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_bx3r3b.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_bx3r3b.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_bx3r3b.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D808000u: { // ST1_asisdlsop_SX1_r1s
-                        Instruction result(Mnemonic::ST1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_sx1r1s.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_sx1r1s.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_sx1r1s.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D808400u: { // ST1_asisdlsop_DX1_r1d
-                        Instruction result(Mnemonic::ST1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_dx1r1d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_dx1r1d.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_dx1r1d.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D80A000u: { // ST3_asisdlsop_SX3_r3s
-                        Instruction result(Mnemonic::ST3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_sx3r3s.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_sx3r3s.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_sx3r3s.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D80A400u: { // ST3_asisdlsop_DX3_r3d
-                        Instruction result(Mnemonic::ST3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_dx3r3d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_dx3r3d.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_dx3r3d.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DA00000u: { // ST2_asisdlsop_BX2_r2b
-                        Instruction result(Mnemonic::ST2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_bx2r2b.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_bx2r2b.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_bx2r2b.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DA02000u: { // ST4_asisdlsop_BX4_r4b
-                        Instruction result(Mnemonic::ST4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_bx4r4b.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_bx4r4b.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_bx4r4b.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DA08000u: { // ST2_asisdlsop_SX2_r2s
-                        Instruction result(Mnemonic::ST2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_sx2r2s.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_sx2r2s.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_sx2r2s.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DA08400u: { // ST2_asisdlsop_DX2_r2d
-                        Instruction result(Mnemonic::ST2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_dx2r2d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_dx2r2d.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_dx2r2d.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DA0A000u: { // ST4_asisdlsop_SX4_r4s
-                        Instruction result(Mnemonic::ST4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_sx4r4s.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_sx4r4s.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_sx4r4s.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DA0A400u: { // ST4_asisdlsop_DX4_r4d
-                        Instruction result(Mnemonic::ST4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_dx4r4d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_dx4r4d.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_dx4r4d.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DC00000u: { // LD1_asisdlsop_BX1_r1b
-                        Instruction result(Mnemonic::LD1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_bx1r1b.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_bx1r1b.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_bx1r1b.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DC02000u: { // LD3_asisdlsop_BX3_r3b
-                        Instruction result(Mnemonic::LD3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_bx3r3b.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_bx3r3b.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_bx3r3b.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DC08000u: { // LD1_asisdlsop_SX1_r1s
-                        Instruction result(Mnemonic::LD1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_sx1r1s.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_sx1r1s.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_sx1r1s.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DC08400u: { // LD1_asisdlsop_DX1_r1d
-                        Instruction result(Mnemonic::LD1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_dx1r1d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_dx1r1d.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_dx1r1d.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DC0A000u: { // LD3_asisdlsop_SX3_r3s
-                        Instruction result(Mnemonic::LD3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_sx3r3s.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_sx3r3s.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_sx3r3s.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DC0A400u: { // LD3_asisdlsop_DX3_r3d
-                        Instruction result(Mnemonic::LD3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_dx3r3d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_dx3r3d.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_dx3r3d.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DE00000u: { // LD2_asisdlsop_BX2_r2b
-                        Instruction result(Mnemonic::LD2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_bx2r2b.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_bx2r2b.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_bx2r2b.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DE02000u: { // LD4_asisdlsop_BX4_r4b
-                        Instruction result(Mnemonic::LD4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_bx4r4b.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_bx4r4b.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_bx4r4b.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DE08000u: { // LD2_asisdlsop_SX2_r2s
-                        Instruction result(Mnemonic::LD2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_sx2r2s.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_sx2r2s.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_sx2r2s.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DE08400u: { // LD2_asisdlsop_DX2_r2d
-                        Instruction result(Mnemonic::LD2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_dx2r2d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_dx2r2d.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_dx2r2d.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DE0A000u: { // LD4_asisdlsop_SX4_r4s
-                        Instruction result(Mnemonic::LD4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_sx4r4s.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_sx4r4s.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_sx4r4s.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DE0A400u: { // LD4_asisdlsop_DX4_r4d
-                        Instruction result(Mnemonic::LD4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_dx4r4d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_dx4r4d.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_dx4r4d.Rt, is_64bit));
-                        return result;
-        }
         case 0x0E002C00u: { // SMOV_asimdins_W_w
                         Instruction result(Mnemonic::SMOV, insn);
                         AdvsimdEncoding enc = {};
@@ -36872,276 +35718,6 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
         default: break;
     }
 
-    // Switch for mask 0xFFE0F400u (8 patterns, 8 encodings)
-    switch (insn & 0xFFE0F400u) {
-        case 0x0D804000u: { // ST1_asisdlsop_HX1_r1h
-                        Instruction result(Mnemonic::ST1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_hx1r1h.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_hx1r1h.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_hx1r1h.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0D806000u: { // ST3_asisdlsop_HX3_r3h
-                        Instruction result(Mnemonic::ST3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_hx3r3h.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_hx3r3h.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_hx3r3h.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DA04000u: { // ST2_asisdlsop_HX2_r2h
-                        Instruction result(Mnemonic::ST2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_hx2r2h.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_hx2r2h.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_hx2r2h.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DA06000u: { // ST4_asisdlsop_HX4_r4h
-                        Instruction result(Mnemonic::ST4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_hx4r4h.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_hx4r4h.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_hx4r4h.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DC04000u: { // LD1_asisdlsop_HX1_r1h
-                        Instruction result(Mnemonic::LD1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_hx1r1h.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_hx1r1h.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_hx1r1h.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DC06000u: { // LD3_asisdlsop_HX3_r3h
-                        Instruction result(Mnemonic::LD3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_hx3r3h.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_hx3r3h.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_hx3r3h.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DE04000u: { // LD2_asisdlsop_HX2_r2h
-                        Instruction result(Mnemonic::LD2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_hx2r2h.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_hx2r2h.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_hx2r2h.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DE06000u: { // LD4_asisdlsop_HX4_r4h
-                        Instruction result(Mnemonic::LD4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_hx4r4h.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_hx4r4h.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_hx4r4h.Rt, is_64bit));
-                        return result;
-        }
-        default: break;
-    }
-
-    // Switch for mask 0xFFE0F000u (18 patterns, 18 encodings)
-    switch (insn & 0xFFE0F000u) {
-        case 0x0C800000u: { // ST4_asisdlsep_R4_r
-                        Instruction result(Mnemonic::ST4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsep_r4r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsep_r4r.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsep_r4r.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C802000u: { // ST1_asisdlsep_R4_r4
-                        Instruction result(Mnemonic::ST1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r4r4.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r4r4.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r4r4.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C804000u: { // ST3_asisdlsep_R3_r
-                        Instruction result(Mnemonic::ST3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsep_r3r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsep_r3r.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsep_r3r.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C806000u: { // ST1_asisdlsep_R3_r3
-                        Instruction result(Mnemonic::ST1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r3r3.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r3r3.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r3r3.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C807000u: { // ST1_asisdlsep_R1_r1
-                        Instruction result(Mnemonic::ST1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r1r1.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r1r1.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r1r1.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C808000u: { // ST2_asisdlsep_R2_r
-                        Instruction result(Mnemonic::ST2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsep_r2r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsep_r2r.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsep_r2r.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0C80A000u: { // ST1_asisdlsep_R2_r2
-                        Instruction result(Mnemonic::ST1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r2r2.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r2r2.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r2r2.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0CC00000u: { // LD4_asisdlsep_R4_r
-                        Instruction result(Mnemonic::LD4, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsep_r4r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsep_r4r.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsep_r4r.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0CC02000u: { // LD1_asisdlsep_R4_r4
-                        Instruction result(Mnemonic::LD1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r4r4.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r4r4.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r4r4.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0CC04000u: { // LD3_asisdlsep_R3_r
-                        Instruction result(Mnemonic::LD3, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsep_r3r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsep_r3r.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsep_r3r.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0CC06000u: { // LD1_asisdlsep_R3_r3
-                        Instruction result(Mnemonic::LD1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r3r3.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r3r3.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r3r3.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0CC07000u: { // LD1_asisdlsep_R1_r1
-                        Instruction result(Mnemonic::LD1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r1r1.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r1r1.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r1r1.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0CC08000u: { // LD2_asisdlsep_R2_r
-                        Instruction result(Mnemonic::LD2, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsep_r2r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsep_r2r.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsep_r2r.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0CC0A000u: { // LD1_asisdlsep_R2_r2
-                        Instruction result(Mnemonic::LD1, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r2r2.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r2r2.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r2r2.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DC0C000u: { // LD1R_asisdlsop_RX1_r
-                        Instruction result(Mnemonic::LD1R, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlsop_rx1r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlsop_rx1r.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlsop_rx1r.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DC0E000u: { // LD3R_asisdlsop_RX3_r
-                        Instruction result(Mnemonic::LD3R, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlsop_rx3r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlsop_rx3r.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlsop_rx3r.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DE0C000u: { // LD2R_asisdlsop_RX2_r
-                        Instruction result(Mnemonic::LD2R, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlsop_rx2r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlsop_rx2r.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlsop_rx2r.Rt, is_64bit));
-                        return result;
-        }
-        case 0x0DE0E000u: { // LD4R_asisdlsop_RX4_r
-                        Instruction result(Mnemonic::LD4R, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlsop_rx4r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlsop_rx4r.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlsop_rx4r.Rt, is_64bit));
-                        return result;
-        }
-        default: break;
-    }
-
     // Switch for mask 0xFFE0CC00u (4 patterns, 4 encodings)
     switch (insn & 0xFFE0CC00u) {
         case 0xCE408000u: { // SM3TT1A_VVV4_crypto3_imm2
@@ -37326,6 +35902,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.sshr_asisdshf_r.Rd, false));
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.sshr_asisdshf_r.Rn, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sshr_asisdshf_r.immb, true));
                         return result;
         }
         case 0x5F401400u: { // SSRA_asisdshf_R
@@ -37335,6 +35912,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.ssra_asisdshf_r.Rd, false));
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.ssra_asisdshf_r.Rn, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ssra_asisdshf_r.immb, true));
                         return result;
         }
         case 0x5F402400u: { // SRSHR_asisdshf_R
@@ -37344,6 +35922,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.srshr_asisdshf_r.Rd, false));
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.srshr_asisdshf_r.Rn, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.srshr_asisdshf_r.immb, true));
                         return result;
         }
         case 0x5F403400u: { // SRSRA_asisdshf_R
@@ -37353,6 +35932,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.srsra_asisdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.srsra_asisdshf_r.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.srsra_asisdshf_r.immb, true));
                         return result;
         }
         case 0x5F405400u: { // SHL_asisdshf_R
@@ -37362,6 +35942,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.shl_asisdshf_r.Rd, false));
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.shl_asisdshf_r.Rn, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.shl_asisdshf_r.immb, true));
                         return result;
         }
         case 0x7F400400u: { // USHR_asisdshf_R
@@ -37371,6 +35952,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.ushr_asisdshf_r.Rd, false));
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.ushr_asisdshf_r.Rn, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ushr_asisdshf_r.immb, true));
                         return result;
         }
         case 0x7F401400u: { // USRA_asisdshf_R
@@ -37380,6 +35962,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.usra_asisdshf_r.Rd, false));
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.usra_asisdshf_r.Rn, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.usra_asisdshf_r.immb, true));
                         return result;
         }
         case 0x7F402400u: { // URSHR_asisdshf_R
@@ -37389,6 +35972,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.urshr_asisdshf_r.Rd, false));
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.urshr_asisdshf_r.Rn, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.urshr_asisdshf_r.immb, true));
                         return result;
         }
         case 0x7F403400u: { // URSRA_asisdshf_R
@@ -37398,6 +35982,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ursra_asisdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ursra_asisdshf_r.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ursra_asisdshf_r.immb, true));
                         return result;
         }
         case 0x7F404400u: { // SRI_asisdshf_R
@@ -37407,6 +35992,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sri_asisdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sri_asisdshf_r.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sri_asisdshf_r.immb, true));
                         return result;
         }
         case 0x7F405400u: { // SLI_asisdshf_R
@@ -37416,6 +36002,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sli_asisdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sli_asisdshf_r.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sli_asisdshf_r.immb, true));
                         return result;
         }
         default: break;
@@ -38194,8 +36781,314 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
         default: break;
     }
 
-    // Switch for mask 0xBFFFFC00u (44 patterns, 45 encodings)
+    // Switch for mask 0xBFFFFC00u (77 patterns, 78 encodings)
     switch (insn & 0xBFFFFC00u) {
+        case 0x0D008000u: { // ST1_asisdlso_S1_1s
+                        Instruction result(Mnemonic::ST1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlso_s11s.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlso_s11s.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D008400u: { // ST1_asisdlso_D1_1d
+                        Instruction result(Mnemonic::ST1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlso_d11d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlso_d11d.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D00A000u: { // ST3_asisdlso_S3_3s
+                        Instruction result(Mnemonic::ST3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlso_s33s.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlso_s33s.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D00A400u: { // ST3_asisdlso_D3_3d
+                        Instruction result(Mnemonic::ST3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlso_d33d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlso_d33d.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D018400u: { // STL1_asisdlso_D1
+                        Instruction result(Mnemonic::STL1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.stl1asisdlso_d1.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stl1asisdlso_d1.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D208000u: { // ST2_asisdlso_S2_2s
+                        Instruction result(Mnemonic::ST2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlso_s22s.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlso_s22s.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D208400u: { // ST2_asisdlso_D2_2d
+                        Instruction result(Mnemonic::ST2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlso_d22d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlso_d22d.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D20A000u: { // ST4_asisdlso_S4_4s
+                        Instruction result(Mnemonic::ST4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlso_s44s.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlso_s44s.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D20A400u: { // ST4_asisdlso_D4_4d
+                        Instruction result(Mnemonic::ST4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlso_d44d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlso_d44d.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D408000u: { // LD1_asisdlso_S1_1s
+                        Instruction result(Mnemonic::LD1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlso_s11s.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlso_s11s.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D408400u: { // LD1_asisdlso_D1_1d
+                        Instruction result(Mnemonic::LD1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlso_d11d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlso_d11d.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D40A000u: { // LD3_asisdlso_S3_3s
+                        Instruction result(Mnemonic::LD3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlso_s33s.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlso_s33s.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D40A400u: { // LD3_asisdlso_D3_3d
+                        Instruction result(Mnemonic::LD3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlso_d33d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlso_d33d.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D418400u: { // LDAP1_asisdlso_D1
+                        Instruction result(Mnemonic::LDAP1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldap1asisdlso_d1.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldap1asisdlso_d1.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D608000u: { // LD2_asisdlso_S2_2s
+                        Instruction result(Mnemonic::LD2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlso_s22s.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlso_s22s.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D608400u: { // LD2_asisdlso_D2_2d
+                        Instruction result(Mnemonic::LD2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlso_d22d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlso_d22d.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D60A000u: { // LD4_asisdlso_S4_4s
+                        Instruction result(Mnemonic::LD4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlso_s44s.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlso_s44s.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D60A400u: { // LD4_asisdlso_D4_4d
+                        Instruction result(Mnemonic::LD4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlso_d44d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlso_d44d.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D9F8000u: { // ST1_asisdlsop_S1_i1s
+                        Instruction result(Mnemonic::ST1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_s1i1s.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_s1i1s.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D9F8400u: { // ST1_asisdlsop_D1_i1d
+                        Instruction result(Mnemonic::ST1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_d1i1d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_d1i1d.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D9FA000u: { // ST3_asisdlsop_S3_i3s
+                        Instruction result(Mnemonic::ST3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_s3i3s.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_s3i3s.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D9FA400u: { // ST3_asisdlsop_D3_i3d
+                        Instruction result(Mnemonic::ST3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_d3i3d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_d3i3d.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DBF8000u: { // ST2_asisdlsop_S2_i2s
+                        Instruction result(Mnemonic::ST2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_s2i2s.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_s2i2s.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DBF8400u: { // ST2_asisdlsop_D2_i2d
+                        Instruction result(Mnemonic::ST2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_d2i2d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_d2i2d.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DBFA000u: { // ST4_asisdlsop_S4_i4s
+                        Instruction result(Mnemonic::ST4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_s4i4s.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_s4i4s.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DBFA400u: { // ST4_asisdlsop_D4_i4d
+                        Instruction result(Mnemonic::ST4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_d4i4d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_d4i4d.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DDF8000u: { // LD1_asisdlsop_S1_i1s
+                        Instruction result(Mnemonic::LD1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_s1i1s.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_s1i1s.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DDF8400u: { // LD1_asisdlsop_D1_i1d
+                        Instruction result(Mnemonic::LD1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_d1i1d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_d1i1d.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DDFA000u: { // LD3_asisdlsop_S3_i3s
+                        Instruction result(Mnemonic::LD3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_s3i3s.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_s3i3s.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DDFA400u: { // LD3_asisdlsop_D3_i3d
+                        Instruction result(Mnemonic::LD3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_d3i3d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_d3i3d.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DFF8000u: { // LD2_asisdlsop_S2_i2s
+                        Instruction result(Mnemonic::LD2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_s2i2s.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_s2i2s.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DFF8400u: { // LD2_asisdlsop_D2_i2d
+                        Instruction result(Mnemonic::LD2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_d2i2d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_d2i2d.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DFFA000u: { // LD4_asisdlsop_S4_i4s
+                        Instruction result(Mnemonic::LD4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_s4i4s.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_s4i4s.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DFFA400u: { // LD4_asisdlsop_D4_i4d
+                        Instruction result(Mnemonic::LD4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_d4i4d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_d4i4d.Rt, is_64bit));
+                        return result;
+        }
         case 0x0E30C800u: { // FMAXNMV_asimdall_only_H
                         Instruction result(Mnemonic::FMAXNMV, insn);
                         AdvsimdEncoding enc = {};
@@ -38485,15 +37378,6 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_asimdmiscfp16r.Rn, is_64bit));
                         return result;
         }
-        case 0x2EA13800u: { // SHLL_asimdmisc_S
-                        Instruction result(Mnemonic::SHLL, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.shll_asimdmisc_s.Rd, false));
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.shll_asimdmisc_s.Rn, false));
-                        return result;
-        }
         case 0x2EA17800u: { // BF1CVTL_asimdmisc_V
                         Instruction result(Mnemonic::BF1CVTL, insn);
                         AdvsimdEncoding enc = {};
@@ -38596,6 +37480,628 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
         default: break;
     }
 
+    // Switch for mask 0xBFFFF400u (16 patterns, 16 encodings)
+    switch (insn & 0xBFFFF400u) {
+        case 0x0D004000u: { // ST1_asisdlso_H1_1h
+                        Instruction result(Mnemonic::ST1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlso_h11h.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlso_h11h.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D006000u: { // ST3_asisdlso_H3_3h
+                        Instruction result(Mnemonic::ST3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlso_h33h.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlso_h33h.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D204000u: { // ST2_asisdlso_H2_2h
+                        Instruction result(Mnemonic::ST2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlso_h22h.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlso_h22h.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D206000u: { // ST4_asisdlso_H4_4h
+                        Instruction result(Mnemonic::ST4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlso_h44h.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlso_h44h.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D404000u: { // LD1_asisdlso_H1_1h
+                        Instruction result(Mnemonic::LD1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlso_h11h.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlso_h11h.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D406000u: { // LD3_asisdlso_H3_3h
+                        Instruction result(Mnemonic::LD3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlso_h33h.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlso_h33h.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D604000u: { // LD2_asisdlso_H2_2h
+                        Instruction result(Mnemonic::LD2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlso_h22h.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlso_h22h.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D606000u: { // LD4_asisdlso_H4_4h
+                        Instruction result(Mnemonic::LD4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlso_h44h.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlso_h44h.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D9F4000u: { // ST1_asisdlsop_H1_i1h
+                        Instruction result(Mnemonic::ST1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_h1i1h.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_h1i1h.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D9F6000u: { // ST3_asisdlsop_H3_i3h
+                        Instruction result(Mnemonic::ST3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_h3i3h.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_h3i3h.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DBF4000u: { // ST2_asisdlsop_H2_i2h
+                        Instruction result(Mnemonic::ST2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_h2i2h.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_h2i2h.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DBF6000u: { // ST4_asisdlsop_H4_i4h
+                        Instruction result(Mnemonic::ST4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_h4i4h.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_h4i4h.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DDF4000u: { // LD1_asisdlsop_H1_i1h
+                        Instruction result(Mnemonic::LD1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_h1i1h.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_h1i1h.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DDF6000u: { // LD3_asisdlsop_H3_i3h
+                        Instruction result(Mnemonic::LD3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_h3i3h.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_h3i3h.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DFF4000u: { // LD2_asisdlsop_H2_i2h
+                        Instruction result(Mnemonic::LD2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_h2i2h.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_h2i2h.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DFF6000u: { // LD4_asisdlsop_H4_i4h
+                        Instruction result(Mnemonic::LD4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_h4i4h.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_h4i4h.Rt, is_64bit));
+                        return result;
+        }
+        default: break;
+    }
+
+    // Switch for mask 0xBFFFF000u (52 patterns, 52 encodings)
+    switch (insn & 0xBFFFF000u) {
+        case 0x0C000000u: { // ST4_asisdlse_R4
+                        Instruction result(Mnemonic::ST4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlse_r4.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlse_r4.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C002000u: { // ST1_asisdlse_R4_4v
+                        Instruction result(Mnemonic::ST1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlse_r44v.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlse_r44v.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C004000u: { // ST3_asisdlse_R3
+                        Instruction result(Mnemonic::ST3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlse_r3.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlse_r3.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C006000u: { // ST1_asisdlse_R3_3v
+                        Instruction result(Mnemonic::ST1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlse_r33v.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlse_r33v.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C007000u: { // ST1_asisdlse_R1_1v
+                        Instruction result(Mnemonic::ST1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlse_r11v.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlse_r11v.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C008000u: { // ST2_asisdlse_R2
+                        Instruction result(Mnemonic::ST2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlse_r2.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlse_r2.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C00A000u: { // ST1_asisdlse_R2_2v
+                        Instruction result(Mnemonic::ST1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlse_r22v.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlse_r22v.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C400000u: { // LD4_asisdlse_R4
+                        Instruction result(Mnemonic::LD4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlse_r4.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlse_r4.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C402000u: { // LD1_asisdlse_R4_4v
+                        Instruction result(Mnemonic::LD1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlse_r44v.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlse_r44v.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C404000u: { // LD3_asisdlse_R3
+                        Instruction result(Mnemonic::LD3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlse_r3.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlse_r3.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C406000u: { // LD1_asisdlse_R3_3v
+                        Instruction result(Mnemonic::LD1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlse_r33v.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlse_r33v.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C407000u: { // LD1_asisdlse_R1_1v
+                        Instruction result(Mnemonic::LD1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlse_r11v.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlse_r11v.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C408000u: { // LD2_asisdlse_R2
+                        Instruction result(Mnemonic::LD2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlse_r2.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlse_r2.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C40A000u: { // LD1_asisdlse_R2_2v
+                        Instruction result(Mnemonic::LD1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlse_r22v.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlse_r22v.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C9F0000u: { // ST4_asisdlsep_I4_i
+                        Instruction result(Mnemonic::ST4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsep_i4i.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsep_i4i.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C9F2000u: { // ST1_asisdlsep_I4_i4
+                        Instruction result(Mnemonic::ST1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_i4i4.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_i4i4.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C9F4000u: { // ST3_asisdlsep_I3_i
+                        Instruction result(Mnemonic::ST3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsep_i3i.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsep_i3i.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C9F6000u: { // ST1_asisdlsep_I3_i3
+                        Instruction result(Mnemonic::ST1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_i3i3.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_i3i3.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C9F7000u: { // ST1_asisdlsep_I1_i1
+                        Instruction result(Mnemonic::ST1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_i1i1.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_i1i1.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C9F8000u: { // ST2_asisdlsep_I2_i
+                        Instruction result(Mnemonic::ST2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsep_i2i.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsep_i2i.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C9FA000u: { // ST1_asisdlsep_I2_i2
+                        Instruction result(Mnemonic::ST1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_i2i2.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_i2i2.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0CDF0000u: { // LD4_asisdlsep_I4_i
+                        Instruction result(Mnemonic::LD4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsep_i4i.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsep_i4i.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0CDF2000u: { // LD1_asisdlsep_I4_i4
+                        Instruction result(Mnemonic::LD1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_i4i4.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_i4i4.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0CDF4000u: { // LD3_asisdlsep_I3_i
+                        Instruction result(Mnemonic::LD3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsep_i3i.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsep_i3i.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0CDF6000u: { // LD1_asisdlsep_I3_i3
+                        Instruction result(Mnemonic::LD1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_i3i3.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_i3i3.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0CDF7000u: { // LD1_asisdlsep_I1_i1
+                        Instruction result(Mnemonic::LD1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_i1i1.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_i1i1.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0CDF8000u: { // LD2_asisdlsep_I2_i
+                        Instruction result(Mnemonic::LD2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsep_i2i.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsep_i2i.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0CDFA000u: { // LD1_asisdlsep_I2_i2
+                        Instruction result(Mnemonic::LD1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_i2i2.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_i2i2.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D000000u: { // ST1_asisdlso_B1_1b
+                        Instruction result(Mnemonic::ST1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlso_b11b.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlso_b11b.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D002000u: { // ST3_asisdlso_B3_3b
+                        Instruction result(Mnemonic::ST3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlso_b33b.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlso_b33b.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D200000u: { // ST2_asisdlso_B2_2b
+                        Instruction result(Mnemonic::ST2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlso_b22b.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlso_b22b.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D202000u: { // ST4_asisdlso_B4_4b
+                        Instruction result(Mnemonic::ST4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlso_b44b.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlso_b44b.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D400000u: { // LD1_asisdlso_B1_1b
+                        Instruction result(Mnemonic::LD1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlso_b11b.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlso_b11b.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D402000u: { // LD3_asisdlso_B3_3b
+                        Instruction result(Mnemonic::LD3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlso_b33b.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlso_b33b.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D40C000u: { // LD1R_asisdlso_R1
+                        Instruction result(Mnemonic::LD1R, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlso_r1.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlso_r1.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D40E000u: { // LD3R_asisdlso_R3
+                        Instruction result(Mnemonic::LD3R, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlso_r3.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlso_r3.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D600000u: { // LD2_asisdlso_B2_2b
+                        Instruction result(Mnemonic::LD2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlso_b22b.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlso_b22b.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D602000u: { // LD4_asisdlso_B4_4b
+                        Instruction result(Mnemonic::LD4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlso_b44b.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlso_b44b.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D60C000u: { // LD2R_asisdlso_R2
+                        Instruction result(Mnemonic::LD2R, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlso_r2.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlso_r2.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D60E000u: { // LD4R_asisdlso_R4
+                        Instruction result(Mnemonic::LD4R, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlso_r4.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlso_r4.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D9F0000u: { // ST1_asisdlsop_B1_i1b
+                        Instruction result(Mnemonic::ST1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_b1i1b.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_b1i1b.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D9F2000u: { // ST3_asisdlsop_B3_i3b
+                        Instruction result(Mnemonic::ST3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_b3i3b.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_b3i3b.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DBF0000u: { // ST2_asisdlsop_B2_i2b
+                        Instruction result(Mnemonic::ST2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_b2i2b.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_b2i2b.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DBF2000u: { // ST4_asisdlsop_B4_i4b
+                        Instruction result(Mnemonic::ST4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_b4i4b.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_b4i4b.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DDF0000u: { // LD1_asisdlsop_B1_i1b
+                        Instruction result(Mnemonic::LD1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_b1i1b.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_b1i1b.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DDF2000u: { // LD3_asisdlsop_B3_i3b
+                        Instruction result(Mnemonic::LD3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_b3i3b.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_b3i3b.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DDFC000u: { // LD1R_asisdlsop_R1_i
+                        Instruction result(Mnemonic::LD1R, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlsop_r1i.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlsop_r1i.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DDFE000u: { // LD3R_asisdlsop_R3_i
+                        Instruction result(Mnemonic::LD3R, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlsop_r3i.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlsop_r3i.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DFF0000u: { // LD2_asisdlsop_B2_i2b
+                        Instruction result(Mnemonic::LD2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_b2i2b.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_b2i2b.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DFF2000u: { // LD4_asisdlsop_B4_i4b
+                        Instruction result(Mnemonic::LD4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_b4i4b.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_b4i4b.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DFFC000u: { // LD2R_asisdlsop_R2_i
+                        Instruction result(Mnemonic::LD2R, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlsop_r2i.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlsop_r2i.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DFFE000u: { // LD4R_asisdlsop_R4_i
+                        Instruction result(Mnemonic::LD4R, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlsop_r4i.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlsop_r4i.Rt, is_64bit));
+                        return result;
+        }
+        default: break;
+    }
+
     // Switch for mask 0xBFF8FC00u (29 patterns, 31 encodings)
     switch (insn & 0xBFF8FC00u) {
         case 0x0F000400u: { // SSHR_asimdshf_R
@@ -38605,6 +38111,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.sshr_asimdshf_r.Rd, false));
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.sshr_asimdshf_r.Rn, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sshr_asimdshf_r.immb, true));
                         return result;
         }
         case 0x0F001400u: { // SSRA_asimdshf_R
@@ -38614,6 +38121,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.ssra_asimdshf_r.Rd, false));
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.ssra_asimdshf_r.Rn, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ssra_asimdshf_r.immb, true));
                         return result;
         }
         case 0x0F002400u: { // SRSHR_asimdshf_R
@@ -38623,6 +38131,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.srshr_asimdshf_r.Rd, false));
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.srshr_asimdshf_r.Rn, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.srshr_asimdshf_r.immb, true));
                         return result;
         }
         case 0x0F003400u: { // SRSRA_asimdshf_R
@@ -38632,6 +38141,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.srsra_asimdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.srsra_asimdshf_r.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.srsra_asimdshf_r.immb, true));
                         return result;
         }
         case 0x0F005400u: { // SHL_asimdshf_R
@@ -38641,6 +38151,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.shl_asimdshf_r.Rd, false));
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.shl_asimdshf_r.Rn, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.shl_asimdshf_r.immb, true));
                         return result;
         }
         case 0x0F007400u: { // SQSHL_asimdshf_R
@@ -38650,6 +38161,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshl_asimdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshl_asimdshf_r.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqshl_asimdshf_r.immb, true));
                         return result;
         }
         case 0x0F008400u: { // SHRN_asimdshf_N
@@ -38659,6 +38171,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.shrn_asimdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.shrn_asimdshf_n.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.shrn_asimdshf_n.immb, true));
                         return result;
         }
         case 0x0F008C00u: { // RSHRN_asimdshf_N
@@ -38668,6 +38181,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.rshrn_asimdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rshrn_asimdshf_n.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.rshrn_asimdshf_n.immb, true));
                         return result;
         }
         case 0x0F009400u: { // SQSHRN_asimdshf_N
@@ -38677,6 +38191,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshrn_asimdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshrn_asimdshf_n.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqshrn_asimdshf_n.immb, true));
                         return result;
         }
         case 0x0F009C00u: { // SQRSHRN_asimdshf_N
@@ -38686,6 +38201,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrshrn_asimdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrshrn_asimdshf_n.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqrshrn_asimdshf_n.immb, true));
                         return result;
         }
         case 0x0F00A400u: { // SSHLL_asimdshf_L
@@ -38695,6 +38211,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sshll_asimdshf_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sshll_asimdshf_l.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sshll_asimdshf_l.immb, true));
                         return result;
         }
         case 0x0F00E400u: { // MOVI_asimdimm_N_b
@@ -38703,8 +38220,8 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         AdvsimdEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* arr = get_movi_arrangement(insn);
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_nb.Rd, arr));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_nb.Rd, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.movi_asimdimm_nb.a << 7) | (enc.movi_asimdimm_nb.b << 6) | (enc.movi_asimdimm_nb.c << 5) | (enc.movi_asimdimm_nb.d << 4) | (enc.movi_asimdimm_nb.e << 3) | (enc.movi_asimdimm_nb.f << 2) | (enc.movi_asimdimm_nb.g << 1) | (enc.movi_asimdimm_nb.h << 0), true));
                         return result;
         }
         case 0x0F00F400u: { // FMOV_asimdimm_S_s
@@ -38713,6 +38230,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.fmov_asimdimm_ss.Rd, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmov_asimdimm_ss.a << 7) | (enc.fmov_asimdimm_ss.b << 6) | (enc.fmov_asimdimm_ss.c << 5) | (enc.fmov_asimdimm_ss.d << 4) | (enc.fmov_asimdimm_ss.e << 3) | (enc.fmov_asimdimm_ss.f << 2) | (enc.fmov_asimdimm_ss.g << 1) | (enc.fmov_asimdimm_ss.h << 0), true));
                         return result;
         }
         case 0x0F00FC00u: { // FCVTZS_asimdshf_C
@@ -38723,6 +38241,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_asimdshf_c.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_asimdshf_c.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.fcvtzs_asimdshf_c.immb, true));
                         return result;
         }
         case 0x2F000400u: { // USHR_asimdshf_R
@@ -38732,6 +38251,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.ushr_asimdshf_r.Rd, false));
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.ushr_asimdshf_r.Rn, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ushr_asimdshf_r.immb, true));
                         return result;
         }
         case 0x2F001400u: { // USRA_asimdshf_R
@@ -38741,6 +38261,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.usra_asimdshf_r.Rd, false));
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.usra_asimdshf_r.Rn, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.usra_asimdshf_r.immb, true));
                         return result;
         }
         case 0x2F002400u: { // URSHR_asimdshf_R
@@ -38750,6 +38271,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.urshr_asimdshf_r.Rd, false));
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.urshr_asimdshf_r.Rn, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.urshr_asimdshf_r.immb, true));
                         return result;
         }
         case 0x2F003400u: { // URSRA_asimdshf_R
@@ -38759,6 +38281,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ursra_asimdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ursra_asimdshf_r.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ursra_asimdshf_r.immb, true));
                         return result;
         }
         case 0x2F004400u: { // SRI_asimdshf_R
@@ -38768,6 +38291,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sri_asimdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sri_asimdshf_r.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sri_asimdshf_r.immb, true));
                         return result;
         }
         case 0x2F005400u: { // SLI_asimdshf_R
@@ -38777,6 +38301,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sli_asimdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sli_asimdshf_r.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sli_asimdshf_r.immb, true));
                         return result;
         }
         case 0x2F006400u: { // SQSHLU_asimdshf_R
@@ -38786,6 +38311,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshlu_asimdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshlu_asimdshf_r.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqshlu_asimdshf_r.immb, true));
                         return result;
         }
         case 0x2F007400u: { // UQSHL_asimdshf_R
@@ -38795,6 +38321,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqshl_asimdshf_r.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uqshl_asimdshf_r.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqshl_asimdshf_r.immb, true));
                         return result;
         }
         case 0x2F008400u: { // SQSHRUN_asimdshf_N
@@ -38804,6 +38331,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshrun_asimdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqshrun_asimdshf_n.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqshrun_asimdshf_n.immb, true));
                         return result;
         }
         case 0x2F008C00u: { // SQRSHRUN_asimdshf_N
@@ -38813,6 +38341,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrshrun_asimdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrshrun_asimdshf_n.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqrshrun_asimdshf_n.immb, true));
                         return result;
         }
         case 0x2F009400u: { // UQSHRN_asimdshf_N
@@ -38822,6 +38351,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqshrn_asimdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uqshrn_asimdshf_n.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqshrn_asimdshf_n.immb, true));
                         return result;
         }
         case 0x2F009C00u: { // UQRSHRN_asimdshf_N
@@ -38831,6 +38361,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqrshrn_asimdshf_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uqrshrn_asimdshf_n.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqrshrn_asimdshf_n.immb, true));
                         return result;
         }
         case 0x2F00A400u: { // USHLL_asimdshf_L
@@ -38840,6 +38371,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ushll_asimdshf_l.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ushll_asimdshf_l.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ushll_asimdshf_l.immb, true));
                         return result;
         }
         case 0x2F00E400u: { // UCVTF_asimdshf_C
@@ -38849,6 +38381,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_asimdshf_c.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_asimdshf_c.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.ucvtf_asimdshf_c.immb, true));
                         return result;
         }
         case 0x2F00FC00u: { // FCVTZU_asimdshf_C
@@ -38858,6 +38391,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_asimdshf_c.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_asimdshf_c.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.fcvtzu_asimdshf_c.immb, true));
                         return result;
         }
         default: break;
@@ -38870,8 +38404,8 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         AdvsimdEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* arr = get_movi_arrangement(insn);
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_msm.Rd, arr));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_msm.Rd, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.movi_asimdimm_msm.a << 7) | (enc.movi_asimdimm_msm.b << 6) | (enc.movi_asimdimm_msm.c << 5) | (enc.movi_asimdimm_msm.d << 4) | (enc.movi_asimdimm_msm.e << 3) | (enc.movi_asimdimm_msm.f << 2) | (enc.movi_asimdimm_msm.g << 1) | (enc.movi_asimdimm_msm.h << 0), true));
                         return result;
         }
         case 0x2F00C400u: { // MVNI_asimdimm_M_sm
@@ -38879,8 +38413,8 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         AdvsimdEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* arr = get_movi_arrangement(insn);
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.mvni_asimdimm_msm.Rd, arr));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.mvni_asimdimm_msm.Rd, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.mvni_asimdimm_msm.a << 7) | (enc.mvni_asimdimm_msm.b << 6) | (enc.mvni_asimdimm_msm.c << 5) | (enc.mvni_asimdimm_msm.d << 4) | (enc.mvni_asimdimm_msm.e << 3) | (enc.mvni_asimdimm_msm.f << 2) | (enc.mvni_asimdimm_msm.g << 1) | (enc.mvni_asimdimm_msm.h << 0), true));
                         return result;
         }
         default: break;
@@ -38893,8 +38427,8 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         AdvsimdEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* arr = get_movi_arrangement(insn);
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_lhl.Rd, arr));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_lhl.Rd, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.movi_asimdimm_lhl.a << 7) | (enc.movi_asimdimm_lhl.b << 6) | (enc.movi_asimdimm_lhl.c << 5) | (enc.movi_asimdimm_lhl.d << 4) | (enc.movi_asimdimm_lhl.e << 3) | (enc.movi_asimdimm_lhl.f << 2) | (enc.movi_asimdimm_lhl.g << 1) | (enc.movi_asimdimm_lhl.h << 0), true));
                         return result;
         }
         case 0x0F009400u: { // ORR_asimdimm_L_hl
@@ -38903,6 +38437,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.orr_asimdimm_lhl.Rd, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.orr_asimdimm_lhl.a << 7) | (enc.orr_asimdimm_lhl.b << 6) | (enc.orr_asimdimm_lhl.c << 5) | (enc.orr_asimdimm_lhl.d << 4) | (enc.orr_asimdimm_lhl.e << 3) | (enc.orr_asimdimm_lhl.f << 2) | (enc.orr_asimdimm_lhl.g << 1) | (enc.orr_asimdimm_lhl.h << 0), true));
                         return result;
         }
         case 0x2F008400u: { // MVNI_asimdimm_L_hl
@@ -38910,8 +38445,8 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         AdvsimdEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* arr = get_movi_arrangement(insn);
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.mvni_asimdimm_lhl.Rd, arr));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.mvni_asimdimm_lhl.Rd, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.mvni_asimdimm_lhl.a << 7) | (enc.mvni_asimdimm_lhl.b << 6) | (enc.mvni_asimdimm_lhl.c << 5) | (enc.mvni_asimdimm_lhl.d << 4) | (enc.mvni_asimdimm_lhl.e << 3) | (enc.mvni_asimdimm_lhl.f << 2) | (enc.mvni_asimdimm_lhl.g << 1) | (enc.mvni_asimdimm_lhl.h << 0), true));
                         return result;
         }
         case 0x2F009400u: { // BIC_asimdimm_L_hl
@@ -38920,6 +38455,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.bic_asimdimm_lhl.Rd, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.bic_asimdimm_lhl.a << 7) | (enc.bic_asimdimm_lhl.b << 6) | (enc.bic_asimdimm_lhl.c << 5) | (enc.bic_asimdimm_lhl.d << 4) | (enc.bic_asimdimm_lhl.e << 3) | (enc.bic_asimdimm_lhl.f << 2) | (enc.bic_asimdimm_lhl.g << 1) | (enc.bic_asimdimm_lhl.h << 0), true));
                         return result;
         }
         default: break;
@@ -38932,8 +38468,8 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         AdvsimdEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* arr = get_movi_arrangement(insn);
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_lsl.Rd, arr));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_lsl.Rd, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.movi_asimdimm_lsl.a << 7) | (enc.movi_asimdimm_lsl.b << 6) | (enc.movi_asimdimm_lsl.c << 5) | (enc.movi_asimdimm_lsl.d << 4) | (enc.movi_asimdimm_lsl.e << 3) | (enc.movi_asimdimm_lsl.f << 2) | (enc.movi_asimdimm_lsl.g << 1) | (enc.movi_asimdimm_lsl.h << 0), true));
                         return result;
         }
         case 0x0F001400u: { // ORR_asimdimm_L_sl
@@ -38942,6 +38478,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.orr_asimdimm_lsl.Rd, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.orr_asimdimm_lsl.a << 7) | (enc.orr_asimdimm_lsl.b << 6) | (enc.orr_asimdimm_lsl.c << 5) | (enc.orr_asimdimm_lsl.d << 4) | (enc.orr_asimdimm_lsl.e << 3) | (enc.orr_asimdimm_lsl.f << 2) | (enc.orr_asimdimm_lsl.g << 1) | (enc.orr_asimdimm_lsl.h << 0), true));
                         return result;
         }
         case 0x2F000400u: { // MVNI_asimdimm_L_sl
@@ -38949,8 +38486,8 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         AdvsimdEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* arr = get_movi_arrangement(insn);
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.mvni_asimdimm_lsl.Rd, arr));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.mvni_asimdimm_lsl.Rd, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.mvni_asimdimm_lsl.a << 7) | (enc.mvni_asimdimm_lsl.b << 6) | (enc.mvni_asimdimm_lsl.c << 5) | (enc.mvni_asimdimm_lsl.d << 4) | (enc.mvni_asimdimm_lsl.e << 3) | (enc.mvni_asimdimm_lsl.f << 2) | (enc.mvni_asimdimm_lsl.g << 1) | (enc.mvni_asimdimm_lsl.h << 0), true));
                         return result;
         }
         case 0x2F001400u: { // BIC_asimdimm_L_sl
@@ -38959,13 +38496,174 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.bic_asimdimm_lsl.Rd, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.bic_asimdimm_lsl.a << 7) | (enc.bic_asimdimm_lsl.b << 6) | (enc.bic_asimdimm_lsl.c << 5) | (enc.bic_asimdimm_lsl.d << 4) | (enc.bic_asimdimm_lsl.e << 3) | (enc.bic_asimdimm_lsl.f << 2) | (enc.bic_asimdimm_lsl.g << 1) | (enc.bic_asimdimm_lsl.h << 0), true));
                         return result;
         }
         default: break;
     }
 
-    // Switch for mask 0xBFE0FC00u (59 patterns, 60 encodings)
+    // Switch for mask 0xBFE0FC00u (73 patterns, 74 encodings)
     switch (insn & 0xBFE0FC00u) {
+        case 0x0D808000u: { // ST1_asisdlsop_SX1_r1s
+                        Instruction result(Mnemonic::ST1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_sx1r1s.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_sx1r1s.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_sx1r1s.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D808400u: { // ST1_asisdlsop_DX1_r1d
+                        Instruction result(Mnemonic::ST1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_dx1r1d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_dx1r1d.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_dx1r1d.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D80A000u: { // ST3_asisdlsop_SX3_r3s
+                        Instruction result(Mnemonic::ST3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_sx3r3s.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_sx3r3s.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_sx3r3s.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D80A400u: { // ST3_asisdlsop_DX3_r3d
+                        Instruction result(Mnemonic::ST3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_dx3r3d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_dx3r3d.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_dx3r3d.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DA08000u: { // ST2_asisdlsop_SX2_r2s
+                        Instruction result(Mnemonic::ST2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_sx2r2s.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_sx2r2s.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_sx2r2s.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DA08400u: { // ST2_asisdlsop_DX2_r2d
+                        Instruction result(Mnemonic::ST2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_dx2r2d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_dx2r2d.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_dx2r2d.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DA0A000u: { // ST4_asisdlsop_SX4_r4s
+                        Instruction result(Mnemonic::ST4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_sx4r4s.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_sx4r4s.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_sx4r4s.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DA0A400u: { // ST4_asisdlsop_DX4_r4d
+                        Instruction result(Mnemonic::ST4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_dx4r4d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_dx4r4d.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_dx4r4d.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DC08000u: { // LD1_asisdlsop_SX1_r1s
+                        Instruction result(Mnemonic::LD1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_sx1r1s.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_sx1r1s.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_sx1r1s.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DC08400u: { // LD1_asisdlsop_DX1_r1d
+                        Instruction result(Mnemonic::LD1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_dx1r1d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_dx1r1d.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_dx1r1d.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DC0A000u: { // LD3_asisdlsop_SX3_r3s
+                        Instruction result(Mnemonic::LD3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_sx3r3s.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_sx3r3s.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_sx3r3s.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DC0A400u: { // LD3_asisdlsop_DX3_r3d
+                        Instruction result(Mnemonic::LD3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_dx3r3d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_dx3r3d.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_dx3r3d.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DE08000u: { // LD2_asisdlsop_SX2_r2s
+                        Instruction result(Mnemonic::LD2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_sx2r2s.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_sx2r2s.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_sx2r2s.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DE08400u: { // LD2_asisdlsop_DX2_r2d
+                        Instruction result(Mnemonic::LD2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_dx2r2d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_dx2r2d.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_dx2r2d.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DE0A000u: { // LD4_asisdlsop_SX4_r4s
+                        Instruction result(Mnemonic::LD4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_sx4r4s.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_sx4r4s.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_sx4r4s.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DE0A400u: { // LD4_asisdlsop_DX4_r4d
+                        Instruction result(Mnemonic::LD4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_dx4r4d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_dx4r4d.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_dx4r4d.Rt, is_64bit));
+                        return result;
+        }
         case 0x0E000000u: { // TBL_asimdtbl_L1_1
                         Instruction result(Mnemonic::TBL, insn);
                         AdvsimdEncoding enc = {};
@@ -39307,16 +39005,6 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.frsqrts_asimdsamefp16only.Rm, is_64bit));
                         return result;
         }
-        case 0x0EC09400u: { // SDOT_asimdsame2_D
-                        Instruction result(Mnemonic::SDOT, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sdot_asimdsame2d.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sdot_asimdsame2d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sdot_asimdsame2d.Rm, is_64bit));
-                        return result;
-        }
         case 0x0EE01C00u: { // ORN_asimdsame_only
                         Instruction result(Mnemonic::ORN, insn);
                         AdvsimdEncoding enc = {};
@@ -39527,16 +39215,6 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fscale_asimdsamefp16only.Rm, is_64bit));
                         return result;
         }
-        case 0x2EC09400u: { // UDOT_asimdsame2_D
-                        Instruction result(Mnemonic::UDOT, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.udot_asimdsame2d.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.udot_asimdsame2d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.udot_asimdsame2d.Rm, is_64bit));
-                        return result;
-        }
         case 0x2EC0FC00u: { // BFMLAL_asimdsame2_F_
                         Instruction result(Mnemonic::BFMLAL, insn);
                         AdvsimdEncoding enc = {};
@@ -39560,6 +39238,356 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
         default: break;
     }
 
+    // Switch for mask 0xBFE0F400u (8 patterns, 8 encodings)
+    switch (insn & 0xBFE0F400u) {
+        case 0x0D804000u: { // ST1_asisdlsop_HX1_r1h
+                        Instruction result(Mnemonic::ST1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_hx1r1h.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_hx1r1h.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_hx1r1h.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D806000u: { // ST3_asisdlsop_HX3_r3h
+                        Instruction result(Mnemonic::ST3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_hx3r3h.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_hx3r3h.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_hx3r3h.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DA04000u: { // ST2_asisdlsop_HX2_r2h
+                        Instruction result(Mnemonic::ST2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_hx2r2h.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_hx2r2h.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_hx2r2h.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DA06000u: { // ST4_asisdlsop_HX4_r4h
+                        Instruction result(Mnemonic::ST4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_hx4r4h.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_hx4r4h.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_hx4r4h.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DC04000u: { // LD1_asisdlsop_HX1_r1h
+                        Instruction result(Mnemonic::LD1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_hx1r1h.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_hx1r1h.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_hx1r1h.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DC06000u: { // LD3_asisdlsop_HX3_r3h
+                        Instruction result(Mnemonic::LD3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_hx3r3h.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_hx3r3h.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_hx3r3h.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DE04000u: { // LD2_asisdlsop_HX2_r2h
+                        Instruction result(Mnemonic::LD2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_hx2r2h.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_hx2r2h.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_hx2r2h.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DE06000u: { // LD4_asisdlsop_HX4_r4h
+                        Instruction result(Mnemonic::LD4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_hx4r4h.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_hx4r4h.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_hx4r4h.Rt, is_64bit));
+                        return result;
+        }
+        default: break;
+    }
+
+    // Switch for mask 0xBFE0F000u (26 patterns, 26 encodings)
+    switch (insn & 0xBFE0F000u) {
+        case 0x0C800000u: { // ST4_asisdlsep_R4_r
+                        Instruction result(Mnemonic::ST4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsep_r4r.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsep_r4r.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsep_r4r.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C802000u: { // ST1_asisdlsep_R4_r4
+                        Instruction result(Mnemonic::ST1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r4r4.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r4r4.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r4r4.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C804000u: { // ST3_asisdlsep_R3_r
+                        Instruction result(Mnemonic::ST3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsep_r3r.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsep_r3r.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsep_r3r.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C806000u: { // ST1_asisdlsep_R3_r3
+                        Instruction result(Mnemonic::ST1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r3r3.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r3r3.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r3r3.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C807000u: { // ST1_asisdlsep_R1_r1
+                        Instruction result(Mnemonic::ST1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r1r1.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r1r1.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r1r1.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C808000u: { // ST2_asisdlsep_R2_r
+                        Instruction result(Mnemonic::ST2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsep_r2r.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsep_r2r.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsep_r2r.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0C80A000u: { // ST1_asisdlsep_R2_r2
+                        Instruction result(Mnemonic::ST1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r2r2.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r2r2.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsep_r2r2.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0CC00000u: { // LD4_asisdlsep_R4_r
+                        Instruction result(Mnemonic::LD4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsep_r4r.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsep_r4r.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsep_r4r.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0CC02000u: { // LD1_asisdlsep_R4_r4
+                        Instruction result(Mnemonic::LD1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r4r4.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r4r4.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r4r4.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0CC04000u: { // LD3_asisdlsep_R3_r
+                        Instruction result(Mnemonic::LD3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsep_r3r.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsep_r3r.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsep_r3r.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0CC06000u: { // LD1_asisdlsep_R3_r3
+                        Instruction result(Mnemonic::LD1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r3r3.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r3r3.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r3r3.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0CC07000u: { // LD1_asisdlsep_R1_r1
+                        Instruction result(Mnemonic::LD1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r1r1.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r1r1.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r1r1.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0CC08000u: { // LD2_asisdlsep_R2_r
+                        Instruction result(Mnemonic::LD2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsep_r2r.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsep_r2r.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsep_r2r.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0CC0A000u: { // LD1_asisdlsep_R2_r2
+                        Instruction result(Mnemonic::LD1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r2r2.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r2r2.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsep_r2r2.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D800000u: { // ST1_asisdlsop_BX1_r1b
+                        Instruction result(Mnemonic::ST1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_bx1r1b.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_bx1r1b.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st1asisdlsop_bx1r1b.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0D802000u: { // ST3_asisdlsop_BX3_r3b
+                        Instruction result(Mnemonic::ST3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_bx3r3b.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_bx3r3b.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st3asisdlsop_bx3r3b.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DA00000u: { // ST2_asisdlsop_BX2_r2b
+                        Instruction result(Mnemonic::ST2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_bx2r2b.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_bx2r2b.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st2asisdlsop_bx2r2b.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DA02000u: { // ST4_asisdlsop_BX4_r4b
+                        Instruction result(Mnemonic::ST4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_bx4r4b.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_bx4r4b.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.st4asisdlsop_bx4r4b.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DC00000u: { // LD1_asisdlsop_BX1_r1b
+                        Instruction result(Mnemonic::LD1, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_bx1r1b.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_bx1r1b.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1asisdlsop_bx1r1b.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DC02000u: { // LD3_asisdlsop_BX3_r3b
+                        Instruction result(Mnemonic::LD3, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_bx3r3b.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_bx3r3b.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3asisdlsop_bx3r3b.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DC0C000u: { // LD1R_asisdlsop_RX1_r
+                        Instruction result(Mnemonic::LD1R, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlsop_rx1r.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlsop_rx1r.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlsop_rx1r.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DC0E000u: { // LD3R_asisdlsop_RX3_r
+                        Instruction result(Mnemonic::LD3R, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlsop_rx3r.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlsop_rx3r.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlsop_rx3r.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DE00000u: { // LD2_asisdlsop_BX2_r2b
+                        Instruction result(Mnemonic::LD2, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_bx2r2b.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_bx2r2b.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2asisdlsop_bx2r2b.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DE02000u: { // LD4_asisdlsop_BX4_r4b
+                        Instruction result(Mnemonic::LD4, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_bx4r4b.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_bx4r4b.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4asisdlsop_bx4r4b.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DE0C000u: { // LD2R_asisdlsop_RX2_r
+                        Instruction result(Mnemonic::LD2R, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlsop_rx2r.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlsop_rx2r.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlsop_rx2r.Rt, is_64bit));
+                        return result;
+        }
+        case 0x0DE0E000u: { // LD4R_asisdlsop_RX4_r
+                        Instruction result(Mnemonic::LD4R, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlsop_rx4r.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlsop_rx4r.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlsop_rx4r.Rt, is_64bit));
+                        return result;
+        }
+        default: break;
+    }
+
     // Switch for mask 0xBFE08400u (1 pattern, 1 encoding)
     switch (insn & 0xBFE08400u) {
         case 0x2E000000u: { // EXT_asimdext_only
@@ -39576,7 +39604,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
         default: break;
     }
 
-    // Switch for mask 0xBFC0F400u (17 patterns, 17 encodings)
+    // Switch for mask 0xBFC0F400u (15 patterns, 15 encodings)
     switch (insn & 0xBFC0F400u) {
         case 0x0F000000u: { // FDOT_asimdelem_D
                         Instruction result(Mnemonic::FDOT, insn);
@@ -39688,16 +39716,6 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.usdot_asimdelem_d.Rm, is_64bit));
                         return result;
         }
-        case 0x0FC0E000u: { // SDOT_asimdelem_D
-                        Instruction result(Mnemonic::SDOT, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sdot_asimdelem_d.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sdot_asimdelem_d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sdot_asimdelem_d.Rm, is_64bit));
-                        return result;
-        }
         case 0x0FC0F000u: { // BFMLAL_asimdelem_F
                         Instruction result(Mnemonic::BFMLAL, insn);
                         AdvsimdEncoding enc = {};
@@ -39736,16 +39754,6 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlsl2asimdelem_lh.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlsl2asimdelem_lh.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlsl2asimdelem_lh.Rm, is_64bit));
-                        return result;
-        }
-        case 0x2FC0E000u: { // UDOT_asimdelem_D
-                        Instruction result(Mnemonic::UDOT, insn);
-                        AdvsimdEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.udot_asimdelem_d.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.udot_asimdelem_d.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.udot_asimdelem_d.Rm, is_64bit));
                         return result;
         }
         default: break;
@@ -40409,7 +40417,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
         default: break;
     }
 
-    // Switch for mask 0xBF3FFC00u (32 patterns, 32 encodings)
+    // Switch for mask 0xBF3FFC00u (33 patterns, 33 encodings)
     switch (insn & 0xBF3FFC00u) {
         case 0x0E200800u: { // REV64_asimdmisc_R
                         Instruction result(Mnemonic::REV64, insn);
@@ -40663,6 +40671,15 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.sqxtun_asimdmisc_n.Rn, false));
                         return result;
         }
+        case 0x2E213800u: { // SHLL_asimdmisc_S
+                        Instruction result(Mnemonic::SHLL, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.shll_asimdmisc_s.Rd, false));
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.shll_asimdmisc_s.Rn, false));
+                        return result;
+        }
         case 0x2E214800u: { // UQXTN_asimdmisc_N
                         Instruction result(Mnemonic::UQXTN, insn);
                         AdvsimdEncoding enc = {};
@@ -40702,7 +40719,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
         default: break;
     }
 
-    // Switch for mask 0xBF20FC00u (79 patterns, 79 encodings)
+    // Switch for mask 0xBF20FC00u (81 patterns, 81 encodings)
     switch (insn & 0xBF20FC00u) {
         case 0x0E001800u: { // UZP1_asimdperm_only
                         Instruction result(Mnemonic::UZP1, insn);
@@ -40762,6 +40779,16 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.zip2asimdperm_only.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.zip2asimdperm_only.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.zip2asimdperm_only.Rm, is_64bit));
+                        return result;
+        }
+        case 0x0E009400u: { // SDOT_asimdsame2_D
+                        Instruction result(Mnemonic::SDOT, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.sdot_asimdsame2d.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.sdot_asimdsame2d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.sdot_asimdsame2d.Rm, is_64bit));
                         return result;
         }
         case 0x0E200000u: { // SADDL_asimddiff_L
@@ -41164,6 +41191,16 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmlsh_asimdsame2only.Rm, is_64bit));
                         return result;
         }
+        case 0x2E009400u: { // UDOT_asimdsame2_D
+                        Instruction result(Mnemonic::UDOT, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.udot_asimdsame2d.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.udot_asimdsame2d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.udot_asimdsame2d.Rm, is_64bit));
+                        return result;
+        }
         case 0x2E200000u: { // UADDL_asimddiff_L
                         Instruction result(Mnemonic::UADDL, insn);
                         AdvsimdEncoding enc = {};
@@ -41507,6 +41544,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fcadd_asimdsame2c.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcadd_asimdsame2c.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcadd_asimdsame2c.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.fcadd_asimdsame2c.rot * 90, true));
                         return result;
         }
         default: break;
@@ -41522,12 +41560,13 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmla_asimdsame2c.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmla_asimdsame2c.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmla_asimdsame2c.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.fcmla_asimdsame2c.rot * 90, true));
                         return result;
         }
         default: break;
     }
 
-    // Switch for mask 0xBF00F400u (16 patterns, 16 encodings)
+    // Switch for mask 0xBF00F400u (18 patterns, 18 encodings)
     switch (insn & 0xBF00F400u) {
         case 0x0F002000u: { // SMLAL_asimdelem_L
                         Instruction result(Mnemonic::SMLAL, insn);
@@ -41619,6 +41658,16 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.sqrdmulh_asimdelem_r.Rm, false));
                         return result;
         }
+        case 0x0F00E000u: { // SDOT_asimdelem_D
+                        Instruction result(Mnemonic::SDOT, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.sdot_asimdelem_d.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.sdot_asimdelem_d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.sdot_asimdelem_d.Rm, is_64bit));
+                        return result;
+        }
         case 0x2F000000u: { // MLA_asimdelem_R
                         Instruction result(Mnemonic::MLA, insn);
                         AdvsimdEncoding enc = {};
@@ -41679,6 +41728,16 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.sqrdmlah_asimdelem_r.Rm, is_64bit));
                         return result;
         }
+        case 0x2F00E000u: { // UDOT_asimdelem_D
+                        Instruction result(Mnemonic::UDOT, insn);
+                        AdvsimdEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.udot_asimdelem_d.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.udot_asimdelem_d.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.udot_asimdelem_d.Rm, is_64bit));
+                        return result;
+        }
         case 0x2F00F000u: { // SQRDMLSH_asimdelem_R
                         Instruction result(Mnemonic::SQRDMLSH, insn);
                         AdvsimdEncoding enc = {};
@@ -41702,6 +41761,7 @@ std::optional<Instruction> decode_advsimd(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmla_advsimd_elt.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmla_advsimd_elt.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcmla_advsimd_elt.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.fcmla_advsimd_elt.rot * 90, true));
                         return result;
         }
         default: break;

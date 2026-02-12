@@ -8,7 +8,7 @@
 
 namespace veda64 {
 namespace Format {
-namespace Control {
+namespace control {
 
 // Encode functions
 uint32_t encode_apas_sys_cr_systeminstrs(uint32_t Rt);
@@ -199,6 +199,6 @@ inline std::optional<Instruction> decode_control(const uint8_t* bytes) {
     return decode_control(from_bytes(bytes));
 }
 
-} // namespace Control
+} // namespace control
 } // namespace Format
 } // namespace veda64

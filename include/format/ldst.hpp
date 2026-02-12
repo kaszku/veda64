@@ -8,7 +8,7 @@
 
 namespace veda64 {
 namespace Format {
-namespace Ldst {
+namespace ldst {
 
 // Encode functions
 uint32_t encode_cas_c32_comswap(uint32_t Rt, uint32_t Rn, uint32_t Rs);
@@ -1096,6 +1096,6 @@ inline std::optional<Instruction> decode_ldst(const uint8_t* bytes) {
     return decode_ldst(from_bytes(bytes));
 }
 
-} // namespace Ldst
+} // namespace ldst
 } // namespace Format
 } // namespace veda64

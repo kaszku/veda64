@@ -1115,7 +1115,9 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
             oss << "mov " << insn.operands[0].to_string() << ", #0x" << std::hex << final_val;
             return oss.str();
         } else {
-            return std::string("mov ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string();
+            std::ostringstream oss;
+            oss << "mov " << insn.operands[0].to_string() << ", #0x" << std::hex << insn.operands[1].value;
+            return oss.str();
         }
     }
 
@@ -1132,50 +1134,69 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
             oss << "mov " << insn.operands[0].to_string() << ", #0x" << std::hex << final_val;
             return oss.str();
         } else {
-            return std::string("mvn ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string();
+            std::ostringstream oss;
+            oss << "mvn " << insn.operands[0].to_string() << ", #0x" << std::hex << insn.operands[1].value;
+            return oss.str();
         }
     }
 
-    if (insn.mnemonic == Mnemonic::SUBS && insn.operands.size() >= 3) {
-        if (insn.operands[0].value == 31) {
+    // CMP/CMN/TST aliases: Rd (bits [4:0]) == 31 (XZR)
+    // Use raw bits to detect - alias encodings may omit Rd from operands
+    if (insn.mnemonic == Mnemonic::SUBS && (insn.raw_value & 0x1F) == 0x1F) {
+        // CMP alias: skip Rd if present in operands
+        size_t start = (insn.operands.size() >= 3 && insn.operands[0].type == OperandType::Register && insn.operands[0].value == 31) ? 1 : 0;
+        // Only alias if not also NEGS (Rn==31)
+        if (((insn.raw_value >> 5) & 0x1F) != 0x1F) {
             std::string result = "cmp";
-            for (size_t i = 1; i < insn.operands.size(); ++i) {
-                result += (i == 1 ? " " : ", ") + insn.operands[i].to_string();
+            for (size_t i = start; i < insn.operands.size(); ++i) {
+                result += (i == start ? " " : ", ") + insn.operands[i].to_string();
             }
             return result;
         }
     }
 
-    if (insn.mnemonic == Mnemonic::ADDS && insn.operands.size() >= 3) {
-        if (insn.operands[0].value == 31) {
-            std::string result = "cmn";
-            for (size_t i = 1; i < insn.operands.size(); ++i) {
-                result += (i == 1 ? " " : ", ") + insn.operands[i].to_string();
+    if (insn.mnemonic == Mnemonic::ADDS && (insn.raw_value & 0x1F) == 0x1F) {
+        size_t start = (insn.operands.size() >= 3 && insn.operands[0].type == OperandType::Register && insn.operands[0].value == 31) ? 1 : 0;
+        std::string result = "cmn";
+        for (size_t i = start; i < insn.operands.size(); ++i) {
+            result += (i == start ? " " : ", ") + insn.operands[i].to_string();
+        }
+        return result;
+    }
+
+    if (insn.mnemonic == Mnemonic::ANDS && (insn.raw_value & 0x1F) == 0x1F) {
+        size_t start = (insn.operands.size() >= 3 && insn.operands[0].type == OperandType::Register && insn.operands[0].value == 31) ? 1 : 0;
+        std::string result = "tst";
+        for (size_t i = start; i < insn.operands.size(); ++i) {
+            result += (i == start ? " " : ", ") + insn.operands[i].to_string();
+        }
+        return result;
+    }
+
+    // NEG Aliases: SUB/SUBS with Rn (bits [9:5]) == 31 (register form only)
+    if (insn.mnemonic == Mnemonic::SUB && ((insn.raw_value >> 5) & 0x1F) == 0x1F) {
+        // Only for register form (not immediate) - check bit 24
+        if ((insn.raw_value & (1u << 24)) == 0) {
+            // Emit Rd, Rm (skip Rn)
+            size_t rd_idx = 0;
+            size_t rm_idx = (insn.operands.size() >= 3 && insn.operands[1].type == OperandType::Register && insn.operands[1].value == 31) ? 2 : 1;
+            std::string result = "neg " + insn.operands[rd_idx].to_string();
+            for (size_t i = rm_idx; i < insn.operands.size(); ++i) {
+                result += ", " + insn.operands[i].to_string();
             }
             return result;
         }
     }
 
-    if (insn.mnemonic == Mnemonic::ANDS && insn.operands.size() >= 3) {
-        if (insn.operands[0].value == 31) {
-            std::string result = "tst";
-            for (size_t i = 1; i < insn.operands.size(); ++i) {
-                result += (i == 1 ? " " : ", ") + insn.operands[i].to_string();
+    if (insn.mnemonic == Mnemonic::SUBS && ((insn.raw_value >> 5) & 0x1F) == 0x1F && (insn.raw_value & 0x1F) != 0x1F) {
+        if ((insn.raw_value & (1u << 24)) == 0) {
+            size_t rd_idx = 0;
+            size_t rm_idx = (insn.operands.size() >= 3 && insn.operands[1].type == OperandType::Register && insn.operands[1].value == 31) ? 2 : 1;
+            std::string result = "negs " + insn.operands[rd_idx].to_string();
+            for (size_t i = rm_idx; i < insn.operands.size(); ++i) {
+                result += ", " + insn.operands[i].to_string();
             }
             return result;
-        }
-    }
-
-    // NEG Aliases: SUB/SUBS with Rn==31 (register form only, not immediate)
-    if (insn.mnemonic == Mnemonic::SUB && insn.operands.size() >= 3) {
-        if (insn.operands[1].value == 31 && insn.operands[2].type == OperandType::Register) {
-            return std::string("neg ") + insn.operands[0].to_string() + ", " + insn.operands[2].to_string();
-        }
-    }
-
-    if (insn.mnemonic == Mnemonic::SUBS && insn.operands.size() >= 3) {
-        if (insn.operands[1].value == 31 && insn.operands[0].value != 31 && insn.operands[2].type == OperandType::Register) {
-            return std::string("negs ") + insn.operands[0].to_string() + ", " + insn.operands[2].to_string();
         }
     }
 

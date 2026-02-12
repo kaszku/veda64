@@ -35663,6 +35663,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlall_za_zzi_d4xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlall_za_zzi_d4xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.smlall_za_zzi_d4xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlall_za_zzi_d4xi.i3h << 2) | enc.smlall_za_zzi_d4xi.i3l, true));
                         return result;
         }
         case 0xC1908008u: { // smlsll_za_zzi_d4xi
@@ -35672,6 +35673,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlsll_za_zzi_d4xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlsll_za_zzi_d4xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.smlsll_za_zzi_d4xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlsll_za_zzi_d4xi.i3h << 2) | enc.smlsll_za_zzi_d4xi.i3l, true));
                         return result;
         }
         case 0xC1908010u: { // umlall_za_zzi_d4xi
@@ -35681,6 +35683,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlall_za_zzi_d4xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlall_za_zzi_d4xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.umlall_za_zzi_d4xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlall_za_zzi_d4xi.i3h << 2) | enc.umlall_za_zzi_d4xi.i3l, true));
                         return result;
         }
         case 0xC1908018u: { // umlsll_za_zzi_d4xi
@@ -35690,6 +35693,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlsll_za_zzi_d4xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlsll_za_zzi_d4xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.umlsll_za_zzi_d4xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlsll_za_zzi_d4xi.i3h << 2) | enc.umlsll_za_zzi_d4xi.i3l, true));
                         return result;
         }
         case 0xC1D08000u: { // fmla_za_zzi_d4xi
@@ -35770,6 +35774,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlall_za_zzi_d2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlall_za_zzi_d2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.smlall_za_zzi_d2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlall_za_zzi_d2xi.i3h << 2) | enc.smlall_za_zzi_d2xi.i3l, true));
                         return result;
         }
         case 0xC1900008u: { // smlsll_za_zzi_d2xi
@@ -35779,6 +35784,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlsll_za_zzi_d2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlsll_za_zzi_d2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.smlsll_za_zzi_d2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlsll_za_zzi_d2xi.i3h << 2) | enc.smlsll_za_zzi_d2xi.i3l, true));
                         return result;
         }
         case 0xC1900010u: { // umlall_za_zzi_d2xi
@@ -35788,6 +35794,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlall_za_zzi_d2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlall_za_zzi_d2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.umlall_za_zzi_d2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlall_za_zzi_d2xi.i3h << 2) | enc.umlall_za_zzi_d2xi.i3l, true));
                         return result;
         }
         case 0xC1900018u: { // umlsll_za_zzi_d2xi
@@ -35797,6 +35804,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlsll_za_zzi_d2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlsll_za_zzi_d2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.umlsll_za_zzi_d2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlsll_za_zzi_d2xi.i3h << 2) | enc.umlsll_za_zzi_d2xi.i3l, true));
                         return result;
         }
         case 0xC1D00000u: { // fmla_za_zzi_d2xi
@@ -35855,6 +35863,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fvdotb_za32z8z8i2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fvdotb_za32z8z8i2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.fvdotb_za32z8z8i2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fvdotb_za32z8z8i2xi.i2h << 1) | enc.fvdotb_za32z8z8i2xi.i2l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fvdotb_za32z8z8i2xi.off3, true));
                         return result;
         }
@@ -35865,6 +35874,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fvdott_za32z8z8i2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fvdott_za32z8z8i2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.fvdott_za32z8z8i2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fvdott_za32z8z8i2xi.i2h << 1) | enc.fvdott_za32z8z8i2xi.i2l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fvdott_za32z8z8i2xi.off3, true));
                         return result;
         }
@@ -35880,6 +35890,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlall_za_zzi_s4xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlall_za_zzi_s4xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.smlall_za_zzi_s4xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlall_za_zzi_s4xi.i4h << 2) | enc.smlall_za_zzi_s4xi.i4l, true));
                         return result;
         }
         case 0xC1108008u: { // smlsll_za_zzi_s4xi
@@ -35889,6 +35900,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlsll_za_zzi_s4xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlsll_za_zzi_s4xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.smlsll_za_zzi_s4xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlsll_za_zzi_s4xi.i4h << 2) | enc.smlsll_za_zzi_s4xi.i4l, true));
                         return result;
         }
         case 0xC1108010u: { // umlall_za_zzi_s4xi
@@ -35898,6 +35910,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlall_za_zzi_s4xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlall_za_zzi_s4xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.umlall_za_zzi_s4xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlall_za_zzi_s4xi.i4h << 2) | enc.umlall_za_zzi_s4xi.i4l, true));
                         return result;
         }
         case 0xC1108018u: { // umlsll_za_zzi_s4xi
@@ -35907,6 +35920,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlsll_za_zzi_s4xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlsll_za_zzi_s4xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.umlsll_za_zzi_s4xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlsll_za_zzi_s4xi.i4h << 2) | enc.umlsll_za_zzi_s4xi.i4l, true));
                         return result;
         }
         case 0xC1108020u: { // usmlall_za_zzi_s4xi
@@ -35916,6 +35930,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.usmlall_za_zzi_s4xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.usmlall_za_zzi_s4xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.usmlall_za_zzi_s4xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.usmlall_za_zzi_s4xi.i4h << 2) | enc.usmlall_za_zzi_s4xi.i4l, true));
                         return result;
         }
         case 0xC1108030u: { // sumlall_za_zzi_s4xi
@@ -35925,6 +35940,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sumlall_za_zzi_s4xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sumlall_za_zzi_s4xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.sumlall_za_zzi_s4xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sumlall_za_zzi_s4xi.i4h << 2) | enc.sumlall_za_zzi_s4xi.i4l, true));
                         return result;
         }
         case 0xC1108040u: { // fmlall_za32_z8z8i_4xi
@@ -35934,6 +35950,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlall_za32z8z8i4xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlall_za32z8z8i4xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlall_za32z8z8i4xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmlall_za32z8z8i4xi.i4h << 2) | enc.fmlall_za32z8z8i4xi.i4l, true));
                         return result;
         }
         case 0xC1508000u: { // fmla_za_zzi_s4xi
@@ -36108,6 +36125,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlal_za_zzi4xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlal_za_zzi4xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlal_za_zzi4xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmlal_za_zzi4xi.i3h << 1) | enc.fmlal_za_zzi4xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmlal_za_zzi4xi.off2, true));
                         return result;
         }
@@ -36118,6 +36136,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlsl_za_zzi4xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlsl_za_zzi4xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlsl_za_zzi4xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmlsl_za_zzi4xi.i3h << 1) | enc.fmlsl_za_zzi4xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmlsl_za_zzi4xi.off2, true));
                         return result;
         }
@@ -36128,6 +36147,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmlal_za_zzi4xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmlal_za_zzi4xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.bfmlal_za_zzi4xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.bfmlal_za_zzi4xi.i3h << 1) | enc.bfmlal_za_zzi4xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.bfmlal_za_zzi4xi.off2, true));
                         return result;
         }
@@ -36138,6 +36158,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmlsl_za_zzi4xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmlsl_za_zzi4xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.bfmlsl_za_zzi4xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.bfmlsl_za_zzi4xi.i3h << 1) | enc.bfmlsl_za_zzi4xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.bfmlsl_za_zzi4xi.off2, true));
                         return result;
         }
@@ -36148,6 +36169,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlal_za_zzi4xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlal_za_zzi4xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.smlal_za_zzi4xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlal_za_zzi4xi.i3h << 1) | enc.smlal_za_zzi4xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.smlal_za_zzi4xi.off2, true));
                         return result;
         }
@@ -36158,6 +36180,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlsl_za_zzi4xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlsl_za_zzi4xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.smlsl_za_zzi4xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlsl_za_zzi4xi.i3h << 1) | enc.smlsl_za_zzi4xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.smlsl_za_zzi4xi.off2, true));
                         return result;
         }
@@ -36168,6 +36191,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlal_za_zzi4xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlal_za_zzi4xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.umlal_za_zzi4xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlal_za_zzi4xi.i3h << 1) | enc.umlal_za_zzi4xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.umlal_za_zzi4xi.off2, true));
                         return result;
         }
@@ -36178,6 +36202,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlsl_za_zzi4xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlsl_za_zzi4xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.umlsl_za_zzi4xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlsl_za_zzi4xi.i3h << 1) | enc.umlsl_za_zzi4xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.umlsl_za_zzi4xi.off2, true));
                         return result;
         }
@@ -36193,6 +36218,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmla_za_zzi_h4xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmla_za_zzi_h4xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmla_za_zzi_h4xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmla_za_zzi_h4xi.i3h << 1) | enc.fmla_za_zzi_h4xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmla_za_zzi_h4xi.off3, true));
                         return result;
         }
@@ -36203,6 +36229,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmls_za_zzi_h4xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmls_za_zzi_h4xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmls_za_zzi_h4xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmls_za_zzi_h4xi.i3h << 1) | enc.fmls_za_zzi_h4xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmls_za_zzi_h4xi.off3, true));
                         return result;
         }
@@ -36213,6 +36240,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmla_za_zzi_h4xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmla_za_zzi_h4xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.bfmla_za_zzi_h4xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.bfmla_za_zzi_h4xi.i3h << 1) | enc.bfmla_za_zzi_h4xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.bfmla_za_zzi_h4xi.off3, true));
                         return result;
         }
@@ -36223,6 +36251,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmls_za_zzi_h4xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmls_za_zzi_h4xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.bfmls_za_zzi_h4xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.bfmls_za_zzi_h4xi.i3h << 1) | enc.bfmls_za_zzi_h4xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.bfmls_za_zzi_h4xi.off3, true));
                         return result;
         }
@@ -36233,6 +36262,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fdot_za_z8z8i4xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fdot_za_z8z8i4xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.fdot_za_z8z8i4xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fdot_za_z8z8i4xi.i3h << 1) | enc.fdot_za_z8z8i4xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_za_z8z8i4xi.off3, true));
                         return result;
         }
@@ -36243,6 +36273,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlal_za_z8z8i4xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlal_za_z8z8i4xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlal_za_z8z8i4xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmlal_za_z8z8i4xi.i4h << 2) | enc.fmlal_za_z8z8i4xi.i4l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmlal_za_z8z8i4xi.off2, true));
                         return result;
         }
@@ -36258,6 +36289,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlall_za_zzi_s2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlall_za_zzi_s2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.smlall_za_zzi_s2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlall_za_zzi_s2xi.i4h << 2) | enc.smlall_za_zzi_s2xi.i4l, true));
                         return result;
         }
         case 0xC1100008u: { // smlsll_za_zzi_s2xi
@@ -36267,6 +36299,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlsll_za_zzi_s2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlsll_za_zzi_s2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.smlsll_za_zzi_s2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlsll_za_zzi_s2xi.i4h << 2) | enc.smlsll_za_zzi_s2xi.i4l, true));
                         return result;
         }
         case 0xC1100010u: { // umlall_za_zzi_s2xi
@@ -36276,6 +36309,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlall_za_zzi_s2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlall_za_zzi_s2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.umlall_za_zzi_s2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlall_za_zzi_s2xi.i4h << 2) | enc.umlall_za_zzi_s2xi.i4l, true));
                         return result;
         }
         case 0xC1100018u: { // umlsll_za_zzi_s2xi
@@ -36285,6 +36319,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlsll_za_zzi_s2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlsll_za_zzi_s2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.umlsll_za_zzi_s2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlsll_za_zzi_s2xi.i4h << 2) | enc.umlsll_za_zzi_s2xi.i4l, true));
                         return result;
         }
         case 0xC1100020u: { // usmlall_za_zzi_s2xi
@@ -36294,6 +36329,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.usmlall_za_zzi_s2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.usmlall_za_zzi_s2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.usmlall_za_zzi_s2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.usmlall_za_zzi_s2xi.i4h << 2) | enc.usmlall_za_zzi_s2xi.i4l, true));
                         return result;
         }
         case 0xC1100030u: { // sumlall_za_zzi_s2xi
@@ -36303,6 +36339,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sumlall_za_zzi_s2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sumlall_za_zzi_s2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.sumlall_za_zzi_s2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sumlall_za_zzi_s2xi.i4h << 2) | enc.sumlall_za_zzi_s2xi.i4l, true));
                         return result;
         }
         case 0xC1500000u: { // fmla_za_zzi_s2xi
@@ -36477,6 +36514,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlall_za32z8z8i2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlall_za32z8z8i2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlall_za32z8z8i2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmlall_za32z8z8i2xi.i4h << 2) | enc.fmlall_za32z8z8i2xi.i4l, true));
                         return result;
         }
         case 0xC1901000u: { // fmlal_za_zzi_2xi
@@ -36486,6 +36524,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlal_za_zzi2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlal_za_zzi2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlal_za_zzi2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmlal_za_zzi2xi.i3h << 1) | enc.fmlal_za_zzi2xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmlal_za_zzi2xi.off2, true));
                         return result;
         }
@@ -36496,6 +36535,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlsl_za_zzi2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlsl_za_zzi2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlsl_za_zzi2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmlsl_za_zzi2xi.i3h << 1) | enc.fmlsl_za_zzi2xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmlsl_za_zzi2xi.off2, true));
                         return result;
         }
@@ -36506,6 +36546,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmlal_za_zzi2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmlal_za_zzi2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.bfmlal_za_zzi2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.bfmlal_za_zzi2xi.i3h << 1) | enc.bfmlal_za_zzi2xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.bfmlal_za_zzi2xi.off2, true));
                         return result;
         }
@@ -36516,6 +36557,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmlsl_za_zzi2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmlsl_za_zzi2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.bfmlsl_za_zzi2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.bfmlsl_za_zzi2xi.i3h << 1) | enc.bfmlsl_za_zzi2xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.bfmlsl_za_zzi2xi.off2, true));
                         return result;
         }
@@ -36526,6 +36568,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlal_za_zzi2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlal_za_zzi2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.smlal_za_zzi2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlal_za_zzi2xi.i3h << 1) | enc.smlal_za_zzi2xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.smlal_za_zzi2xi.off2, true));
                         return result;
         }
@@ -36536,6 +36579,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlsl_za_zzi2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlsl_za_zzi2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.smlsl_za_zzi2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlsl_za_zzi2xi.i3h << 1) | enc.smlsl_za_zzi2xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.smlsl_za_zzi2xi.off2, true));
                         return result;
         }
@@ -36546,6 +36590,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlal_za_zzi2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlal_za_zzi2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.umlal_za_zzi2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlal_za_zzi2xi.i3h << 1) | enc.umlal_za_zzi2xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.umlal_za_zzi2xi.off2, true));
                         return result;
         }
@@ -36556,6 +36601,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlsl_za_zzi2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlsl_za_zzi2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.umlsl_za_zzi2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlsl_za_zzi2xi.i3h << 1) | enc.umlsl_za_zzi2xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.umlsl_za_zzi2xi.off2, true));
                         return result;
         }
@@ -36571,6 +36617,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmla_za_zzi_h2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmla_za_zzi_h2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmla_za_zzi_h2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmla_za_zzi_h2xi.i3h << 1) | enc.fmla_za_zzi_h2xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmla_za_zzi_h2xi.off3, true));
                         return result;
         }
@@ -36581,6 +36628,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmls_za_zzi_h2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmls_za_zzi_h2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmls_za_zzi_h2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmls_za_zzi_h2xi.i3h << 1) | enc.fmls_za_zzi_h2xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmls_za_zzi_h2xi.off3, true));
                         return result;
         }
@@ -36591,6 +36639,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmla_za_zzi_h2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmla_za_zzi_h2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.bfmla_za_zzi_h2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.bfmla_za_zzi_h2xi.i3h << 1) | enc.bfmla_za_zzi_h2xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.bfmla_za_zzi_h2xi.off3, true));
                         return result;
         }
@@ -36601,6 +36650,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmls_za_zzi_h2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmls_za_zzi_h2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.bfmls_za_zzi_h2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.bfmls_za_zzi_h2xi.i3h << 1) | enc.bfmls_za_zzi_h2xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.bfmls_za_zzi_h2xi.off3, true));
                         return result;
         }
@@ -36611,6 +36661,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlal_za_z8z8i2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlal_za_z8z8i2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlal_za_z8z8i2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmlal_za_z8z8i2xi.i4h << 2) | enc.fmlal_za_z8z8i2xi.i4l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmlal_za_z8z8i2xi.off2, true));
                         return result;
         }
@@ -36621,6 +36672,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fdot_za_z8z8i2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fdot_za_z8z8i2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.fdot_za_z8z8i2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fdot_za_z8z8i2xi.i3h << 1) | enc.fdot_za_z8z8i2xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_za_z8z8i2xi.off3, true));
                         return result;
         }
@@ -36631,6 +36683,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fvdot_za_z8z8i2xi.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fvdot_za_z8z8i2xi.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.fvdot_za_z8z8i2xi.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fvdot_za_z8z8i2xi.i3h << 1) | enc.fvdot_za_z8z8i2xi.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fvdot_za_z8z8i2xi.off3, true));
                         return result;
         }
@@ -36646,6 +36699,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlall_za_zzi_d.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlall_za_zzi_d.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.smlall_za_zzi_d.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlall_za_zzi_d.i3h << 2) | enc.smlall_za_zzi_d.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.smlall_za_zzi_d.off2, true));
                         return result;
         }
@@ -36656,6 +36710,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlsll_za_zzi_d.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlsll_za_zzi_d.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.smlsll_za_zzi_d.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlsll_za_zzi_d.i3h << 2) | enc.smlsll_za_zzi_d.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.smlsll_za_zzi_d.off2, true));
                         return result;
         }
@@ -36666,6 +36721,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlall_za_zzi_d.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlall_za_zzi_d.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.umlall_za_zzi_d.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlall_za_zzi_d.i3h << 2) | enc.umlall_za_zzi_d.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.umlall_za_zzi_d.off2, true));
                         return result;
         }
@@ -36676,6 +36732,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlsll_za_zzi_d.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlsll_za_zzi_d.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.umlsll_za_zzi_d.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlsll_za_zzi_d.i3h << 2) | enc.umlsll_za_zzi_d.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.umlsll_za_zzi_d.off2, true));
                         return result;
         }
@@ -36691,6 +36748,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlal_za_zzi1.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlal_za_zzi1.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlal_za_zzi1.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmlal_za_zzi1.i3h << 2) | enc.fmlal_za_zzi1.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmlal_za_zzi1.off3, true));
                         return result;
         }
@@ -36701,6 +36759,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlsl_za_zzi1.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlsl_za_zzi1.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlsl_za_zzi1.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmlsl_za_zzi1.i3h << 2) | enc.fmlsl_za_zzi1.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmlsl_za_zzi1.off3, true));
                         return result;
         }
@@ -36711,6 +36770,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmlal_za_zzi1.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmlal_za_zzi1.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.bfmlal_za_zzi1.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.bfmlal_za_zzi1.i3h << 2) | enc.bfmlal_za_zzi1.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.bfmlal_za_zzi1.off3, true));
                         return result;
         }
@@ -36721,6 +36781,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmlsl_za_zzi1.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmlsl_za_zzi1.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.bfmlsl_za_zzi1.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.bfmlsl_za_zzi1.i3h << 2) | enc.bfmlsl_za_zzi1.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.bfmlsl_za_zzi1.off3, true));
                         return result;
         }
@@ -36731,6 +36792,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlal_za_zzi1.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlal_za_zzi1.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.smlal_za_zzi1.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlal_za_zzi1.i3h << 2) | enc.smlal_za_zzi1.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.smlal_za_zzi1.off3, true));
                         return result;
         }
@@ -36741,6 +36803,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlsl_za_zzi1.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlsl_za_zzi1.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.smlsl_za_zzi1.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlsl_za_zzi1.i3h << 2) | enc.smlsl_za_zzi1.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.smlsl_za_zzi1.off3, true));
                         return result;
         }
@@ -36751,6 +36814,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlal_za_zzi1.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlal_za_zzi1.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.umlal_za_zzi1.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlal_za_zzi1.i3h << 2) | enc.umlal_za_zzi1.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.umlal_za_zzi1.off3, true));
                         return result;
         }
@@ -36761,6 +36825,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlsl_za_zzi1.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlsl_za_zzi1.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.umlsl_za_zzi1.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlsl_za_zzi1.i3h << 2) | enc.umlsl_za_zzi1.i3l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.umlsl_za_zzi1.off3, true));
                         return result;
         }
@@ -36791,6 +36856,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlall_za_zzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlall_za_zzi_s.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.smlall_za_zzi_s.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlall_za_zzi_s.i4h << 3) | enc.smlall_za_zzi_s.i4l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.smlall_za_zzi_s.off2, true));
                         return result;
         }
@@ -36801,6 +36867,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.usmlall_za_zzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.usmlall_za_zzi_s.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.usmlall_za_zzi_s.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.usmlall_za_zzi_s.i4h << 3) | enc.usmlall_za_zzi_s.i4l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.usmlall_za_zzi_s.off2, true));
                         return result;
         }
@@ -36811,6 +36878,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlsll_za_zzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smlsll_za_zzi_s.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.smlsll_za_zzi_s.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlsll_za_zzi_s.i4h << 3) | enc.smlsll_za_zzi_s.i4l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.smlsll_za_zzi_s.off2, true));
                         return result;
         }
@@ -36821,6 +36889,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlall_za_zzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlall_za_zzi_s.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.umlall_za_zzi_s.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlall_za_zzi_s.i4h << 3) | enc.umlall_za_zzi_s.i4l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.umlall_za_zzi_s.off2, true));
                         return result;
         }
@@ -36831,6 +36900,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sumlall_za_zzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sumlall_za_zzi_s.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.sumlall_za_zzi_s.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sumlall_za_zzi_s.i4h << 3) | enc.sumlall_za_zzi_s.i4l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sumlall_za_zzi_s.off2, true));
                         return result;
         }
@@ -36841,6 +36911,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlsll_za_zzi_s.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umlsll_za_zzi_s.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.umlsll_za_zzi_s.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlsll_za_zzi_s.i4h << 3) | enc.umlsll_za_zzi_s.i4l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.umlsll_za_zzi_s.off2, true));
                         return result;
         }
@@ -36851,6 +36922,7 @@ std::optional<Instruction> decode_mortlach2(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlall_za32z8z8i1.Zn, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmlall_za32z8z8i1.Zm, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.fmlall_za32z8z8i1.Rv + 8, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmlall_za32z8z8i1.i4h << 3) | enc.fmlall_za32z8z8i1.i4l, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmlall_za32z8z8i1.off2, true));
                         return result;
         }

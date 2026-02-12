@@ -8,7 +8,7 @@
 
 namespace veda64 {
 namespace Format {
-namespace SimdDp {
+namespace simd_dp {
 
 // Encode functions
 uint32_t encode_abs_asisdmisc_r(uint32_t Rd, uint32_t Rn);
@@ -873,6 +873,6 @@ inline std::optional<Instruction> decode_simd_dp(const uint8_t* bytes) {
     return decode_simd_dp(from_bytes(bytes));
 }
 
-} // namespace SimdDp
+} // namespace simd_dp
 } // namespace Format
 } // namespace veda64

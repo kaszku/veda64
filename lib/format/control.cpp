@@ -2,7 +2,7 @@
 
 namespace veda64 {
 namespace Format {
-namespace Control {
+namespace control {
 
 // Encoding structures union
 union ControlEncoding {
@@ -6482,6 +6482,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     return std::nullopt;
 }
 
-} // namespace Control
+} // namespace control
 } // namespace Format
 } // namespace veda64

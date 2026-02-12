@@ -8,7 +8,7 @@
 
 namespace veda64 {
 namespace Format {
-namespace Reserved {
+namespace reserved {
 
 // Encode functions
 uint32_t encode_udf_only_perm_undef(uint32_t imm16);
@@ -22,6 +22,6 @@ inline std::optional<Instruction> decode_reserved(const uint8_t* bytes) {
     return decode_reserved(from_bytes(bytes));
 }
 
-} // namespace Reserved
+} // namespace reserved
 } // namespace Format
 } // namespace veda64

@@ -33,32 +33,32 @@ inline std::optional<Instruction> decode_format(uint32_t insn) {
 
     switch (key) {
     case 0:  // op0=0, op1=0000: Reserved
-        return Format::Reserved::decode_reserved(insn);
+        return Format::reserved::decode_reserved(insn);
     case 16: // op0=1, op1=0000: SME
-        return Format::Sme::decode_sme(insn);
+        return Format::sme::decode_sme(insn);
     case 2:  // op0=0, op1=0010: SVE
     case 18: // op0=1, op1=0010: SVE
-        return Format::Sve::decode_sve(insn);
+        return Format::sve::decode_sve(insn);
     case 8:  // op0=0, op1=1000: Data Processing - Immediate
     case 9:  // op0=0, op1=1001
     case 24: // op0=1, op1=1000
     case 25: // op0=1, op1=1001
-        return Format::Dpimm::decode_dpimm(insn);
+        return Format::dpimm::decode_dpimm(insn);
     case 10: // op0=0, op1=1010: Branches, Exception & System
     case 11: // op0=0, op1=1011
     case 26: // op0=1, op1=1010
     case 27: // op0=1, op1=1011
-        return Format::Control::decode_control(insn);
+        return Format::control::decode_control(insn);
     case 5:  // op0=0, op1=0101: Data Processing - Register
     case 13: // op0=0, op1=1101
     case 21: // op0=1, op1=0101
     case 29: // op0=1, op1=1101
-        return Format::Dpreg::decode_dpreg(insn);
+        return Format::dpreg::decode_dpreg(insn);
     case 7:  // op0=0, op1=0111: Scalar FP & Advanced SIMD
     case 15: // op0=0, op1=1111
     case 23: // op0=1, op1=0111
     case 31: // op0=1, op1=1111
-        return Format::SimdDp::decode_simd_dp(insn);
+        return Format::simd_dp::decode_simd_dp(insn);
     case 4:  // op0=0, op1=0100: Loads and Stores
     case 6:  // op0=0, op1=0110
     case 12: // op0=0, op1=1100
@@ -67,7 +67,7 @@ inline std::optional<Instruction> decode_format(uint32_t insn) {
     case 22: // op0=1, op1=0110
     case 28: // op0=1, op1=1100
     case 30: // op0=1, op1=1110
-        return Format::Ldst::decode_ldst(insn);
+        return Format::ldst::decode_ldst(insn);
     default: // Unallocated (op1=0001 or op1=0011)
         return std::nullopt;
     }
