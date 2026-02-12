@@ -5215,7 +5215,7 @@ class ARM64XMLParser:
             ("0x52800221", "mov w1, #0x11"),              # alias: MOVZ 32-bit
             ("0x92800020", "mvn x0, #0x1"),               # alias: MOVN
             ("0x97fa94a3", "bl .-0x15ad74"),               # -1420660 = -0x15ad74
-            ("0x37f800a0", "tbnz w0, #0x1f, .+0x14"),      # b5=0, b40=31, imm14=5 (5*4=20=0x14)
+            ("0x37f800a0", "tbnz x0, #0x1f, .+0x14"),      # Always show X register (WinDbg convention)
             ("0x394043a8", "ldrb w8, [fp, #0x10]"),
             ("0x35000068", "cbnz w8, .+0xc"),              # 12 = 0xc
             ("0xd43e0000", "brk #0xf000"),
@@ -5446,7 +5446,7 @@ class ARM64XMLParser:
         code.append("    assert(Hook::Detail::is_pc_relative(0x34000060));  // CBZ W0, .+0xC")
         code.append("    assert(Hook::Detail::is_pc_relative(0x35000068));  // CBNZ W8, .+0xC")
         code.append("    assert(Hook::Detail::is_pc_relative(0x36080040));  // TBZ W0, #1, .+8")
-        code.append("    assert(Hook::Detail::is_pc_relative(0x37f800a0));  // TBNZ W0, #31, .+0x14")
+        code.append("    assert(Hook::Detail::is_pc_relative(0x37f800a0));  // TBNZ X0, #31, .+0x14")
         code.append("    assert(Hook::Detail::is_pc_relative(0x10000020));  // ADR X0, .+4")
         code.append("    assert(Hook::Detail::is_pc_relative(0x90000000));  // ADRP X0, current page")
         code.append("")
@@ -6248,22 +6248,17 @@ def main():
     # Create output directories
     base_dir = Path(__file__).parent
     include_dir = base_dir / "include"
-    include_class_dir = include_dir / "class"
     include_format_dir = include_dir / "format"
     lib_dir = base_dir / "lib"
-    lib_class_dir = lib_dir / "class"
     lib_format_dir = lib_dir / "format"
     test_dir = base_dir / "test"
     include_dir.mkdir(exist_ok=True)
-    include_class_dir.mkdir(exist_ok=True)
     include_format_dir.mkdir(exist_ok=True)
     lib_dir.mkdir(exist_ok=True)
-    lib_class_dir.mkdir(exist_ok=True)
     lib_format_dir.mkdir(exist_ok=True)
     test_dir.mkdir(exist_ok=True)
 
-    # Generate instruction class files
-    parser.generate_cpp_files(include_class_dir, lib_class_dir)
+    # Note: class/ folder generation is deprecated and disabled
 
     # Generate base headers (veda64.hpp) and implementation
     parser.generate_header_files(include_dir, lib_dir)

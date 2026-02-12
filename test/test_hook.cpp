@@ -180,7 +180,7 @@ void test_is_pc_relative() {
     assert(Hook::Detail::is_pc_relative(0x34000060));  // CBZ W0, .+0xC
     assert(Hook::Detail::is_pc_relative(0x35000068));  // CBNZ W8, .+0xC
     assert(Hook::Detail::is_pc_relative(0x36080040));  // TBZ W0, #1, .+8
-    assert(Hook::Detail::is_pc_relative(0x37f800a0));  // TBNZ W0, #31, .+0x14
+    assert(Hook::Detail::is_pc_relative(0x37f800a0));  // TBNZ X0, #31, .+0x14
     assert(Hook::Detail::is_pc_relative(0x10000020));  // ADR X0, .+4
     assert(Hook::Detail::is_pc_relative(0x90000000));  // ADRP X0, current page
 
