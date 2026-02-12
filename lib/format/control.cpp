@@ -6457,7 +6457,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::TBZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.tbz_only_testbranch.Rt, static_cast<bool>(enc.tbz_only_testbranch.b5)));
+                        result.operands.push_back(Operand(OperandType::Register, enc.tbz_only_testbranch.Rt, true));
                         result.operands.push_back(Operand(OperandType::Immediate, (enc.tbz_only_testbranch.b5 << 5) | enc.tbz_only_testbranch.b40, true));
                         int32_t offset = static_cast<int32_t>(enc.tbz_only_testbranch.imm14 << 18) >> 18;
                         offset *= 4;
@@ -6468,7 +6468,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::TBNZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.tbnz_only_testbranch.Rt, static_cast<bool>(enc.tbnz_only_testbranch.b5)));
+                        result.operands.push_back(Operand(OperandType::Register, enc.tbnz_only_testbranch.Rt, true));
                         result.operands.push_back(Operand(OperandType::Immediate, (enc.tbnz_only_testbranch.b5 << 5) | enc.tbnz_only_testbranch.b40, true));
                         int32_t offset = static_cast<int32_t>(enc.tbnz_only_testbranch.imm14 << 18) >> 18;
                         offset *= 4;

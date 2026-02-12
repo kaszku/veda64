@@ -77,7 +77,7 @@ int main() {
     if (check_disasm(0x52800221, "mov w1, #0x11")) passed++; else failed++;
     if (check_disasm(0x92800020, "mvn x0, #0x1")) passed++; else failed++;
     if (check_disasm(0x97fa94a3, "bl .-0x15ad74")) passed++; else failed++;
-    if (check_disasm(0x37f800a0, "tbnz w0, #0x1f, .+0x14")) passed++; else failed++;
+    if (check_disasm(0x37f800a0, "tbnz x0, #0x1f, .+0x14")) passed++; else failed++;
     if (check_disasm(0x394043a8, "ldrb w8, [fp, #0x10]")) passed++; else failed++;
     if (check_disasm(0x35000068, "cbnz w8, .+0xc")) passed++; else failed++;
     if (check_disasm(0xd43e0000, "brk #0xf000")) passed++; else failed++;

@@ -2739,9 +2739,9 @@ class ARM64XMLParser:
                 imm_field = field_map['imm14']['name']
                 b5_field = field_map['b5']['name']
                 b40_field = field_map['b40']['name']
-                # Register (X if b5=1, W otherwise)
-                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, static_cast<bool>(enc.{member_name}.{b5_field})));")
-                # Bit number
+                # Always use X register for clarity (WinDbg convention) even though ARM spec uses b5
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, true));")
+                # Bit number (6-bit value from b5:b40)
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, (enc.{member_name}.{b5_field} << 5) | enc.{member_name}.{b40_field}, true));")
                 # Sign-extend 14-bit immediate and multiply by 4
                 code.append(f"{ind}int32_t offset = static_cast<int32_t>(enc.{member_name}.{imm_field} << 18) >> 18;")
