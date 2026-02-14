@@ -1188,11 +1188,12 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
         return result;
     }
 
-    // NEG Aliases: SUB/SUBS with Rn (bits [9:5]) == 31 (register form only)
+    // NEG Aliases: SUB/SUBS with Rn (bits [9:5]) == 31 (shifted register form only)
+    // Shifted register: bit 28=0 (register form), bit 21=0 (not extended)
+    // Extended register: bit 21=1, Rn=31 means SP not XZR — NOT a NEG
     if (insn.mnemonic == Mnemonic::SUB && ((insn.raw_value >> 5) & 0x1F) == 0x1F) {
-        // Only for register form (not immediate) - check bit 24
-        if ((insn.raw_value & (1u << 24)) == 0) {
-            // Emit Rd, Rm (skip Rn)
+        if ((insn.raw_value & (1u << 28)) == 0 && (insn.raw_value & (1u << 21)) == 0) {
+            // Emit Rd, Rm (skip Rn which is xzr)
             size_t rd_idx = 0;
             size_t rm_idx = (insn.operands.size() >= 3 && insn.operands[1].type == OperandType::Register && insn.operands[1].value == 31) ? 2 : 1;
             std::string result = "neg " + insn.operands[rd_idx].to_string();
@@ -1204,7 +1205,7 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
     }
 
     if (insn.mnemonic == Mnemonic::SUBS && ((insn.raw_value >> 5) & 0x1F) == 0x1F && (insn.raw_value & 0x1F) != 0x1F) {
-        if ((insn.raw_value & (1u << 24)) == 0) {
+        if ((insn.raw_value & (1u << 28)) == 0 && (insn.raw_value & (1u << 21)) == 0) {
             size_t rd_idx = 0;
             size_t rm_idx = (insn.operands.size() >= 3 && insn.operands[1].type == OperandType::Register && insn.operands[1].value == 31) ? 2 : 1;
             std::string result = "negs " + insn.operands[rd_idx].to_string();
@@ -1379,11 +1380,12 @@ std::string Operand::to_string() const {
         case OperandType::Immediate:
             {
                 std::ostringstream oss;
-                // Use decimal for small values (0-15), hex for larger
-                if (value <= 15) {
-                    oss << "#" << std::dec << value;
+                // Use imm64 for 64-bit logical immediates
+                uint64_t display_val = imm64 ? imm64 : static_cast<uint64_t>(value);
+                if (display_val <= 15) {
+                    oss << "#" << std::dec << display_val;
                 } else {
-                    oss << "#0x" << std::hex << value;
+                    oss << "#0x" << std::hex << display_val;
                 }
                 return oss.str();
             }
@@ -1510,8 +1512,11 @@ std::string Operand::to_string() const {
                 const char* shifts[] = {"lsl", "lsr", "asr", "ror"};
                 uint32_t shift_type = (value >> 8) & 0x3;
                 uint32_t shift_amount = value & 0xFF;
-                if (value < 4) return shifts[value];  // Legacy: bare shift type
-                return std::string(shifts[shift_type]) + " #" + std::to_string(shift_amount);
+                std::ostringstream oss;
+                oss << shifts[shift_type] << " #";
+                if (shift_amount <= 15) oss << std::dec << shift_amount;
+                else oss << "0x" << std::hex << shift_amount;
+                return oss.str();
             }
 
         case OperandType::Extend:

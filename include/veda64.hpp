@@ -48,9 +48,10 @@ inline uint64_t decode_bit_masks(uint32_t N, uint32_t imms, uint32_t immr, bool 
     uint32_t levels = esize - 1;
     uint32_t S = imms & levels;
     uint32_t R = immr & levels;
-    uint64_t welem = (1ULL << (S + 1)) - 1;
+    uint64_t welem = (S + 1 == 64) ? ~0ULL : ((1ULL << (S + 1)) - 1);
+    uint64_t emask = (esize == 64) ? ~0ULL : ((1ULL << esize) - 1);
     if (R != 0) {
-        welem = ((welem >> R) | (welem << (esize - R))) & ((1ULL << esize) - 1);
+        welem = ((welem >> R) | (welem << (esize - R))) & emask;
     }
     uint64_t result = 0;
     uint32_t regsize = is_64bit ? 64 : 32;
@@ -1656,6 +1657,7 @@ public:
 
     OperandType type = OperandType::Unknown;
     uint32_t value = 0;          // Raw field value for simple operands
+    uint64_t imm64 = 0;          // 64-bit immediate value (for logical immediates)
     bool is_64bit = true;        // True for 64-bit registers (X), false for 32-bit (W)
     bool is_sp = false;          // True if reg 31 should be SP/WSP, false for XZR/WZR
     const char* arrangement = nullptr;  // Vector arrangement specifier (.16b, .4s, etc.)

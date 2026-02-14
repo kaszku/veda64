@@ -2819,7 +2819,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         { Operand op(OperandType::Register, enc.mov_orr32log_imm.Rd, is_64bit); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_orr32log_imm.Rn, is_64bit));
                         uint64_t imm_val = decode_bit_masks(enc.mov_orr32log_imm.N, enc.mov_orr32log_imm.imms, enc.mov_orr32log_imm.immr, is_64bit);
-                        result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit));
+                        { Operand op(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit); op.imm64 = imm_val; result.operands.push_back(op); }
                         return result;
         }
         case 0x330003E0u: { // BFC_BFM_32M_bitfield
@@ -2857,7 +2857,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.tst_ands32s_log_imm.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.tst_ands32s_log_imm.Rn, is_64bit));
                         uint64_t imm_val = decode_bit_masks(enc.tst_ands32s_log_imm.N, enc.tst_ands32s_log_imm.imms, enc.tst_ands32s_log_imm.immr, is_64bit);
-                        result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit));
+                        { Operand op(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit); op.imm64 = imm_val; result.operands.push_back(op); }
                         return result;
         }
         default: break;
@@ -2873,7 +2873,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         { Operand op(OperandType::Register, enc.and32log_imm.Rd, is_64bit); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Register, enc.and32log_imm.Rn, is_64bit));
                         uint64_t imm_val = decode_bit_masks(enc.and32log_imm.N, enc.and32log_imm.imms, enc.and32log_imm.immr, is_64bit);
-                        result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit));
+                        { Operand op(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit); op.imm64 = imm_val; result.operands.push_back(op); }
                         return result;
         }
         case 0x12800000u: { // MOV_MOVN_32_movewide
@@ -2909,7 +2909,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         { Operand op(OperandType::Register, enc.orr32log_imm.Rd, is_64bit); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Register, enc.orr32log_imm.Rn, is_64bit));
                         uint64_t imm_val = decode_bit_masks(enc.orr32log_imm.N, enc.orr32log_imm.imms, enc.orr32log_imm.immr, is_64bit);
-                        result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit));
+                        { Operand op(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit); op.imm64 = imm_val; result.operands.push_back(op); }
                         return result;
         }
         case 0x33000000u: { // BFM_32M_bitfield
@@ -2932,7 +2932,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         { Operand op(OperandType::Register, enc.eor32log_imm.Rd, is_64bit); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Register, enc.eor32log_imm.Rn, is_64bit));
                         uint64_t imm_val = decode_bit_masks(enc.eor32log_imm.N, enc.eor32log_imm.imms, enc.eor32log_imm.immr, is_64bit);
-                        result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit));
+                        { Operand op(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit); op.imm64 = imm_val; result.operands.push_back(op); }
                         return result;
         }
         case 0x52800000u: { // MOV_MOVZ_32_movewide
@@ -2969,7 +2969,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ands32s_log_imm.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ands32s_log_imm.Rn, is_64bit));
                         uint64_t imm_val = decode_bit_masks(enc.ands32s_log_imm.N, enc.ands32s_log_imm.imms, enc.ands32s_log_imm.immr, is_64bit);
-                        result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit));
+                        { Operand op(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit); op.imm64 = imm_val; result.operands.push_back(op); }
                         return result;
         }
         case 0x72800000u: { // MOVK_32_movewide
@@ -3035,7 +3035,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         { Operand op(OperandType::Register, enc.mov_orr64log_imm.Rd, is_64bit); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_orr64log_imm.Rn, is_64bit));
                         uint64_t imm_val = decode_bit_masks(enc.mov_orr64log_imm.N, enc.mov_orr64log_imm.imms, enc.mov_orr64log_imm.immr, is_64bit);
-                        result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit));
+                        { Operand op(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit); op.imm64 = imm_val; result.operands.push_back(op); }
                         return result;
         }
         default: break;
@@ -3095,11 +3095,11 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::ANDS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.tst_ands64s_log_imm.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.tst_ands64s_log_imm.Rn, is_64bit));
                         uint64_t imm_val = decode_bit_masks(enc.tst_ands64s_log_imm.N, enc.tst_ands64s_log_imm.imms, enc.tst_ands64s_log_imm.immr, is_64bit);
-                        result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit));
+                        { Operand op(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit); op.imm64 = imm_val; result.operands.push_back(op); }
                         return result;
         }
         default: break;
@@ -3175,7 +3175,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         { Operand op(OperandType::Register, enc.and64log_imm.Rd, is_64bit); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Register, enc.and64log_imm.Rn, is_64bit));
                         uint64_t imm_val = decode_bit_masks(enc.and64log_imm.N, enc.and64log_imm.imms, enc.and64log_imm.immr, is_64bit);
-                        result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit));
+                        { Operand op(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit); op.imm64 = imm_val; result.operands.push_back(op); }
                         return result;
         }
         case 0x92800000u: { // MOV_MOVN_64_movewide
@@ -3210,7 +3210,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         { Operand op(OperandType::Register, enc.orr64log_imm.Rd, is_64bit); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Register, enc.orr64log_imm.Rn, is_64bit));
                         uint64_t imm_val = decode_bit_masks(enc.orr64log_imm.N, enc.orr64log_imm.imms, enc.orr64log_imm.immr, is_64bit);
-                        result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit));
+                        { Operand op(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit); op.imm64 = imm_val; result.operands.push_back(op); }
                         return result;
         }
         case 0xD1000000u: { // SUB_64_addsub_imm
@@ -3233,7 +3233,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         { Operand op(OperandType::Register, enc.eor64log_imm.Rd, is_64bit); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Register, enc.eor64log_imm.Rn, is_64bit));
                         uint64_t imm_val = decode_bit_masks(enc.eor64log_imm.N, enc.eor64log_imm.imms, enc.eor64log_imm.immr, is_64bit);
-                        result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit));
+                        { Operand op(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit); op.imm64 = imm_val; result.operands.push_back(op); }
                         return result;
         }
         case 0xD2800000u: { // MOV_MOVZ_64_movewide
@@ -3264,11 +3264,11 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::ANDS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ands64s_log_imm.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ands64s_log_imm.Rn, is_64bit));
                         uint64_t imm_val = decode_bit_masks(enc.ands64s_log_imm.N, enc.ands64s_log_imm.imms, enc.ands64s_log_imm.immr, is_64bit);
-                        result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit));
+                        { Operand op(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit); op.imm64 = imm_val; result.operands.push_back(op); }
                         return result;
         }
         case 0xF2800000u: { // MOVK_64_movewide

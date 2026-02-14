@@ -44208,11 +44208,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::PRFM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.prfm_pldst_regoff.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.prfm_pldst_regoff.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.prfm_pldst_regoff.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Extend, enc.prfm_pldst_regoff.option, true));
+                        result.operands.push_back(Operand(OperandType::Prefetch, enc.prfm_pldst_regoff.Rt, true));
+                        result.operands.push_back(Operand::memory_reg_offset(enc.prfm_pldst_regoff.Rn, enc.prfm_pldst_regoff.Rm, enc.prfm_pldst_regoff.option, enc.prfm_pldst_regoff.S ? 3 : 0));
                         return result;
         }
         default: break;
@@ -45869,13 +45866,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::PRFUM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.prfum_pldst_unscaled.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.prfum_pldst_unscaled.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.prfum_pldst_unscaled.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Prefetch, enc.prfum_pldst_unscaled.Rt, true));
+                        int32_t imm = enc.prfum_pldst_unscaled.imm9 * 8;
+                        result.operands.push_back(Operand::memory_offset(enc.prfum_pldst_unscaled.Rn, imm));
                         return result;
         }
         case 0xF8A00400u: { // LDRAB_64_ldst_pac
@@ -46907,10 +46900,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::PRFM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.prfm_pldst_pos.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.prfm_pldst_pos.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.prfm_pldst_pos.imm12, true));
+                        result.operands.push_back(Operand(OperandType::Prefetch, enc.prfm_pldst_pos.Rt, true));
+                        int32_t imm = enc.prfm_pldst_pos.imm12 * 8;
+                        result.operands.push_back(Operand::memory_offset(enc.prfm_pldst_pos.Rn, imm));
                         return result;
         }
         case 0xFD000000u: { // STR_D_ldst_pos

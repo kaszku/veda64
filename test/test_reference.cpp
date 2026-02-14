@@ -118,6 +118,19 @@ int main() {
     if (check_disasm(0xeb2f73f0, "subs x16, sp, x15, lsl #4")) passed++; else failed++;
     if (check_disasm(0x8b2063e0, "add x0, sp, x0")) passed++; else failed++;
     if (check_disasm(0xcb2043e0, "sub x0, sp, w0, uxtw")) passed++; else failed++;
+    if (check_disasm(0x9278dc63, "and x3, x3, #0xffffffffffffff00")) passed++; else failed++;
+    if (check_disasm(0xf278dc7f, "tst x3, #0xffffffffffffff00")) passed++; else failed++;
+    if (check_disasm(0xcb0407e4, "neg x4, x4, lsl #1")) passed++; else failed++;
+    if (check_disasm(0x9e660025, "fmov x5, d1")) passed++; else failed++;
+    if (check_disasm(0x9e670025, "fmov d5, x1")) passed++; else failed++;
+    if (check_disasm(0x1e270000, "fmov s0, w0")) passed++; else failed++;
+    if (check_disasm(0x1e260000, "fmov w0, s0")) passed++; else failed++;
+    if (check_disasm(0xf2a0ffe5, "movk x5, #0x7ff, lsl #0x10")) passed++; else failed++;
+    if (check_disasm(0xf9800c01, "prfm pldl1strm, [x0, #0x18]")) passed++; else failed++;
+    if (check_disasm(0x4e209800, "cmeq v0.16b, v0.16b, #0")) passed++; else failed++;
+    if (check_disasm(0x4e010c20, "dup v0.16b, w1")) passed++; else failed++;
+    if (check_disasm(0x4ea31c60, "orr v0.16b, v3.16b, v3.16b")) passed++; else failed++;
+    if (check_disasm(0x4e22bc00, "addp v0.16b, v0.16b, v2.16b")) passed++; else failed++;
 
     std::cout << std::endl;
     std::cout << "Passed: " << passed << "/" << (passed + failed) << std::endl;
