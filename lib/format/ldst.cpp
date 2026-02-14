@@ -44259,8 +44259,12 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.str_bldst_regoff.Rt, is_64bit));
+                        // SIMD/FP B register variant (scale=1)
+                        {
+                            Operand op(OperandType::VectorRegister, enc.str_bldst_regoff.Rt, false);
+                            op.arrangement = "b";
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand::memory_base(enc.str_bldst_regoff.Rn));
                         return result;
         }
@@ -44268,8 +44272,12 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldr_bldst_regoff.Rt, is_64bit));
+                        // SIMD/FP B register variant (scale=1)
+                        {
+                            Operand op(OperandType::VectorRegister, enc.ldr_bldst_regoff.Rt, false);
+                            op.arrangement = "b";
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand::memory_base(enc.ldr_bldst_regoff.Rn));
                         return result;
         }
@@ -44277,8 +44285,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.str_qldst_regoff.Rt, is_64bit));
+                        // SIMD/FP Q register variant (scale=16)
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.str_qldst_regoff.Rt, true));
                         result.operands.push_back(Operand::memory_base(enc.str_qldst_regoff.Rn));
                         return result;
         }
@@ -44286,8 +44294,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldr_qldst_regoff.Rt, is_64bit));
+                        // SIMD/FP Q register variant (scale=16)
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldr_qldst_regoff.Rt, true));
                         result.operands.push_back(Operand::memory_base(enc.ldr_qldst_regoff.Rn));
                         return result;
         }
@@ -44333,8 +44341,12 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.str_hldst_regoff.Rt, is_64bit));
+                        // SIMD/FP H register variant (scale=2)
+                        {
+                            Operand op(OperandType::VectorRegister, enc.str_hldst_regoff.Rt, false);
+                            op.arrangement = "h";
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand::memory_base(enc.str_hldst_regoff.Rn));
                         return result;
         }
@@ -44342,8 +44354,12 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldr_hldst_regoff.Rt, is_64bit));
+                        // SIMD/FP H register variant (scale=2)
+                        {
+                            Operand op(OperandType::VectorRegister, enc.ldr_hldst_regoff.Rt, false);
+                            op.arrangement = "h";
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand::memory_base(enc.ldr_hldst_regoff.Rn));
                         return result;
         }
@@ -44380,8 +44396,12 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.str_sldst_regoff.Rt, is_64bit));
+                        // SIMD/FP S register variant (scale=4)
+                        {
+                            Operand op(OperandType::VectorRegister, enc.str_sldst_regoff.Rt, false);
+                            op.arrangement = "s";
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand::memory_base(enc.str_sldst_regoff.Rn));
                         return result;
         }
@@ -44389,8 +44409,12 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldr_sldst_regoff.Rt, is_64bit));
+                        // SIMD/FP S register variant (scale=4)
+                        {
+                            Operand op(OperandType::VectorRegister, enc.ldr_sldst_regoff.Rt, false);
+                            op.arrangement = "s";
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand::memory_base(enc.ldr_sldst_regoff.Rn));
                         return result;
         }
@@ -44416,8 +44440,12 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.str_dldst_regoff.Rt, is_64bit));
+                        // SIMD/FP D register variant (scale=8)
+                        {
+                            Operand op(OperandType::VectorRegister, enc.str_dldst_regoff.Rt, false);
+                            op.arrangement = "d";
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand::memory_base(enc.str_dldst_regoff.Rn));
                         return result;
         }
@@ -44425,8 +44453,12 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldr_dldst_regoff.Rt, is_64bit));
+                        // SIMD/FP D register variant (scale=8)
+                        {
+                            Operand op(OperandType::VectorRegister, enc.ldr_dldst_regoff.Rt, false);
+                            op.arrangement = "d";
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand::memory_base(enc.ldr_dldst_regoff.Rn));
                         return result;
         }
@@ -44735,9 +44767,13 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        int scale = 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stur_bldst_unscaled.Rt, is_64bit));
+                        // SIMD/FP B register variant (scale=1)
+                        int scale = 1;
+                        {
+                            Operand op(OperandType::VectorRegister, enc.stur_bldst_unscaled.Rt, false);
+                            op.arrangement = "b";
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand::memory_offset(enc.stur_bldst_unscaled.Rn, enc.stur_bldst_unscaled.imm9 * scale));
                         return result;
         }
@@ -44745,8 +44781,12 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.str_bldst_immpost.Rt, is_64bit));
+                        // SIMD/FP B register variant (scale=1)
+                        {
+                            Operand op(OperandType::VectorRegister, enc.str_bldst_immpost.Rt, false);
+                            op.arrangement = "b";
+                            result.operands.push_back(op);
+                        }
                         int32_t imm = (static_cast<int32_t>(enc.str_bldst_immpost.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_post_index(enc.str_bldst_immpost.Rn, imm));
                         return result;
@@ -44755,8 +44795,12 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.str_bldst_immpre.Rt, is_64bit));
+                        // SIMD/FP B register variant (scale=1)
+                        {
+                            Operand op(OperandType::VectorRegister, enc.str_bldst_immpre.Rt, false);
+                            op.arrangement = "b";
+                            result.operands.push_back(op);
+                        }
                         int32_t imm = (static_cast<int32_t>(enc.str_bldst_immpre.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_pre_index(enc.str_bldst_immpre.Rn, imm));
                         return result;
@@ -44765,9 +44809,13 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        int scale = 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldur_bldst_unscaled.Rt, is_64bit));
+                        // SIMD/FP B register variant (scale=1)
+                        int scale = 1;
+                        {
+                            Operand op(OperandType::VectorRegister, enc.ldur_bldst_unscaled.Rt, false);
+                            op.arrangement = "b";
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand::memory_offset(enc.ldur_bldst_unscaled.Rn, enc.ldur_bldst_unscaled.imm9 * scale));
                         return result;
         }
@@ -44775,8 +44823,12 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldr_bldst_immpost.Rt, is_64bit));
+                        // SIMD/FP B register variant (scale=1)
+                        {
+                            Operand op(OperandType::VectorRegister, enc.ldr_bldst_immpost.Rt, false);
+                            op.arrangement = "b";
+                            result.operands.push_back(op);
+                        }
                         int32_t imm = (static_cast<int32_t>(enc.ldr_bldst_immpost.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_post_index(enc.ldr_bldst_immpost.Rn, imm));
                         return result;
@@ -44785,8 +44837,12 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldr_bldst_immpre.Rt, is_64bit));
+                        // SIMD/FP B register variant (scale=1)
+                        {
+                            Operand op(OperandType::VectorRegister, enc.ldr_bldst_immpre.Rt, false);
+                            op.arrangement = "b";
+                            result.operands.push_back(op);
+                        }
                         int32_t imm = (static_cast<int32_t>(enc.ldr_bldst_immpre.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_pre_index(enc.ldr_bldst_immpre.Rn, imm));
                         return result;
@@ -44795,9 +44851,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        int scale = 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stur_qldst_unscaled.Rt, is_64bit));
+                        // SIMD/FP Q register variant (scale=16)
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.stur_qldst_unscaled.Rt, true));
                         result.operands.push_back(Operand::memory_offset(enc.stur_qldst_unscaled.Rn, enc.stur_qldst_unscaled.imm9 * scale));
                         return result;
         }
@@ -44805,8 +44861,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.str_qldst_immpost.Rt, is_64bit));
+                        // SIMD/FP Q register variant (scale=16)
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.str_qldst_immpost.Rt, true));
                         int32_t imm = (static_cast<int32_t>(enc.str_qldst_immpost.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_post_index(enc.str_qldst_immpost.Rn, imm));
                         return result;
@@ -44815,8 +44871,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.str_qldst_immpre.Rt, is_64bit));
+                        // SIMD/FP Q register variant (scale=16)
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.str_qldst_immpre.Rt, true));
                         int32_t imm = (static_cast<int32_t>(enc.str_qldst_immpre.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_pre_index(enc.str_qldst_immpre.Rn, imm));
                         return result;
@@ -44825,9 +44881,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        int scale = 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldur_qldst_unscaled.Rt, is_64bit));
+                        // SIMD/FP Q register variant (scale=16)
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldur_qldst_unscaled.Rt, true));
                         result.operands.push_back(Operand::memory_offset(enc.ldur_qldst_unscaled.Rn, enc.ldur_qldst_unscaled.imm9 * scale));
                         return result;
         }
@@ -44835,8 +44891,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldr_qldst_immpost.Rt, is_64bit));
+                        // SIMD/FP Q register variant (scale=16)
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldr_qldst_immpost.Rt, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldr_qldst_immpost.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_post_index(enc.ldr_qldst_immpost.Rn, imm));
                         return result;
@@ -44845,8 +44901,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldr_qldst_immpre.Rt, is_64bit));
+                        // SIMD/FP Q register variant (scale=16)
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldr_qldst_immpre.Rt, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldr_qldst_immpre.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_pre_index(enc.ldr_qldst_immpre.Rn, imm));
                         return result;
@@ -45125,9 +45181,13 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        int scale = 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stur_hldst_unscaled.Rt, is_64bit));
+                        // SIMD/FP H register variant (scale=2)
+                        int scale = 2;
+                        {
+                            Operand op(OperandType::VectorRegister, enc.stur_hldst_unscaled.Rt, false);
+                            op.arrangement = "h";
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand::memory_offset(enc.stur_hldst_unscaled.Rn, enc.stur_hldst_unscaled.imm9 * scale));
                         return result;
         }
@@ -45135,8 +45195,12 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.str_hldst_immpost.Rt, is_64bit));
+                        // SIMD/FP H register variant (scale=2)
+                        {
+                            Operand op(OperandType::VectorRegister, enc.str_hldst_immpost.Rt, false);
+                            op.arrangement = "h";
+                            result.operands.push_back(op);
+                        }
                         int32_t imm = (static_cast<int32_t>(enc.str_hldst_immpost.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_post_index(enc.str_hldst_immpost.Rn, imm));
                         return result;
@@ -45145,8 +45209,12 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.str_hldst_immpre.Rt, is_64bit));
+                        // SIMD/FP H register variant (scale=2)
+                        {
+                            Operand op(OperandType::VectorRegister, enc.str_hldst_immpre.Rt, false);
+                            op.arrangement = "h";
+                            result.operands.push_back(op);
+                        }
                         int32_t imm = (static_cast<int32_t>(enc.str_hldst_immpre.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_pre_index(enc.str_hldst_immpre.Rn, imm));
                         return result;
@@ -45155,9 +45223,13 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        int scale = 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldur_hldst_unscaled.Rt, is_64bit));
+                        // SIMD/FP H register variant (scale=2)
+                        int scale = 2;
+                        {
+                            Operand op(OperandType::VectorRegister, enc.ldur_hldst_unscaled.Rt, false);
+                            op.arrangement = "h";
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand::memory_offset(enc.ldur_hldst_unscaled.Rn, enc.ldur_hldst_unscaled.imm9 * scale));
                         return result;
         }
@@ -45165,8 +45237,12 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldr_hldst_immpost.Rt, is_64bit));
+                        // SIMD/FP H register variant (scale=2)
+                        {
+                            Operand op(OperandType::VectorRegister, enc.ldr_hldst_immpost.Rt, false);
+                            op.arrangement = "h";
+                            result.operands.push_back(op);
+                        }
                         int32_t imm = (static_cast<int32_t>(enc.ldr_hldst_immpost.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_post_index(enc.ldr_hldst_immpost.Rn, imm));
                         return result;
@@ -45175,8 +45251,12 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldr_hldst_immpre.Rt, is_64bit));
+                        // SIMD/FP H register variant (scale=2)
+                        {
+                            Operand op(OperandType::VectorRegister, enc.ldr_hldst_immpre.Rt, false);
+                            op.arrangement = "h";
+                            result.operands.push_back(op);
+                        }
                         int32_t imm = (static_cast<int32_t>(enc.ldr_hldst_immpre.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_pre_index(enc.ldr_hldst_immpre.Rn, imm));
                         return result;
@@ -45382,9 +45462,13 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        // SIMD/FP S register variant (scale=4)
                         int scale = 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stur_sldst_unscaled.Rt, is_64bit));
+                        {
+                            Operand op(OperandType::VectorRegister, enc.stur_sldst_unscaled.Rt, false);
+                            op.arrangement = "s";
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand::memory_offset(enc.stur_sldst_unscaled.Rn, enc.stur_sldst_unscaled.imm9 * scale));
                         return result;
         }
@@ -45392,8 +45476,12 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.str_sldst_immpost.Rt, is_64bit));
+                        // SIMD/FP S register variant (scale=4)
+                        {
+                            Operand op(OperandType::VectorRegister, enc.str_sldst_immpost.Rt, false);
+                            op.arrangement = "s";
+                            result.operands.push_back(op);
+                        }
                         int32_t imm = (static_cast<int32_t>(enc.str_sldst_immpost.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_post_index(enc.str_sldst_immpost.Rn, imm));
                         return result;
@@ -45402,8 +45490,12 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.str_sldst_immpre.Rt, is_64bit));
+                        // SIMD/FP S register variant (scale=4)
+                        {
+                            Operand op(OperandType::VectorRegister, enc.str_sldst_immpre.Rt, false);
+                            op.arrangement = "s";
+                            result.operands.push_back(op);
+                        }
                         int32_t imm = (static_cast<int32_t>(enc.str_sldst_immpre.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_pre_index(enc.str_sldst_immpre.Rn, imm));
                         return result;
@@ -45412,9 +45504,13 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        // SIMD/FP S register variant (scale=4)
                         int scale = 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldur_sldst_unscaled.Rt, is_64bit));
+                        {
+                            Operand op(OperandType::VectorRegister, enc.ldur_sldst_unscaled.Rt, false);
+                            op.arrangement = "s";
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand::memory_offset(enc.ldur_sldst_unscaled.Rn, enc.ldur_sldst_unscaled.imm9 * scale));
                         return result;
         }
@@ -45422,8 +45518,12 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldr_sldst_immpost.Rt, is_64bit));
+                        // SIMD/FP S register variant (scale=4)
+                        {
+                            Operand op(OperandType::VectorRegister, enc.ldr_sldst_immpost.Rt, false);
+                            op.arrangement = "s";
+                            result.operands.push_back(op);
+                        }
                         int32_t imm = (static_cast<int32_t>(enc.ldr_sldst_immpost.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_post_index(enc.ldr_sldst_immpost.Rn, imm));
                         return result;
@@ -45432,8 +45532,12 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldr_sldst_immpre.Rt, is_64bit));
+                        // SIMD/FP S register variant (scale=4)
+                        {
+                            Operand op(OperandType::VectorRegister, enc.ldr_sldst_immpre.Rt, false);
+                            op.arrangement = "s";
+                            result.operands.push_back(op);
+                        }
                         int32_t imm = (static_cast<int32_t>(enc.ldr_sldst_immpre.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_pre_index(enc.ldr_sldst_immpre.Rn, imm));
                         return result;
@@ -45808,9 +45912,13 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        int scale = 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stur_dldst_unscaled.Rt, is_64bit));
+                        // SIMD/FP D register variant (scale=8)
+                        int scale = 8;
+                        {
+                            Operand op(OperandType::VectorRegister, enc.stur_dldst_unscaled.Rt, false);
+                            op.arrangement = "d";
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand::memory_offset(enc.stur_dldst_unscaled.Rn, enc.stur_dldst_unscaled.imm9 * scale));
                         return result;
         }
@@ -45818,8 +45926,12 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.str_dldst_immpost.Rt, is_64bit));
+                        // SIMD/FP D register variant (scale=8)
+                        {
+                            Operand op(OperandType::VectorRegister, enc.str_dldst_immpost.Rt, false);
+                            op.arrangement = "d";
+                            result.operands.push_back(op);
+                        }
                         int32_t imm = (static_cast<int32_t>(enc.str_dldst_immpost.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_post_index(enc.str_dldst_immpost.Rn, imm));
                         return result;
@@ -45828,8 +45940,12 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.str_dldst_immpre.Rt, is_64bit));
+                        // SIMD/FP D register variant (scale=8)
+                        {
+                            Operand op(OperandType::VectorRegister, enc.str_dldst_immpre.Rt, false);
+                            op.arrangement = "d";
+                            result.operands.push_back(op);
+                        }
                         int32_t imm = (static_cast<int32_t>(enc.str_dldst_immpre.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_pre_index(enc.str_dldst_immpre.Rn, imm));
                         return result;
@@ -45838,9 +45954,13 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        int scale = 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldur_dldst_unscaled.Rt, is_64bit));
+                        // SIMD/FP D register variant (scale=8)
+                        int scale = 8;
+                        {
+                            Operand op(OperandType::VectorRegister, enc.ldur_dldst_unscaled.Rt, false);
+                            op.arrangement = "d";
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand::memory_offset(enc.ldur_dldst_unscaled.Rn, enc.ldur_dldst_unscaled.imm9 * scale));
                         return result;
         }
@@ -45848,8 +45968,12 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldr_dldst_immpost.Rt, is_64bit));
+                        // SIMD/FP D register variant (scale=8)
+                        {
+                            Operand op(OperandType::VectorRegister, enc.ldr_dldst_immpost.Rt, false);
+                            op.arrangement = "d";
+                            result.operands.push_back(op);
+                        }
                         int32_t imm = (static_cast<int32_t>(enc.ldr_dldst_immpost.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_post_index(enc.ldr_dldst_immpost.Rn, imm));
                         return result;
@@ -45858,8 +45982,12 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldr_dldst_immpre.Rt, is_64bit));
+                        // SIMD/FP D register variant (scale=8)
+                        {
+                            Operand op(OperandType::VectorRegister, enc.ldr_dldst_immpre.Rt, false);
+                            op.arrangement = "d";
+                            result.operands.push_back(op);
+                        }
                         int32_t imm = (static_cast<int32_t>(enc.ldr_dldst_immpre.imm9) << 23) >> 23;
                         result.operands.push_back(Operand::memory_pre_index(enc.ldr_dldst_immpre.Rn, imm));
                         return result;
@@ -46085,9 +46213,13 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        int scale = 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.str_bldst_pos.Rt, is_64bit));
+                        // SIMD/FP B register variant (scale=1)
+                        int scale = 1;
+                        {
+                            Operand op(OperandType::VectorRegister, enc.str_bldst_pos.Rt, false);
+                            op.arrangement = "b";
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand::memory_offset(enc.str_bldst_pos.Rn, enc.str_bldst_pos.imm12 * scale));
                         return result;
         }
@@ -46095,9 +46227,13 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        int scale = 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldr_bldst_pos.Rt, is_64bit));
+                        // SIMD/FP B register variant (scale=1)
+                        int scale = 1;
+                        {
+                            Operand op(OperandType::VectorRegister, enc.ldr_bldst_pos.Rt, false);
+                            op.arrangement = "b";
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand::memory_offset(enc.ldr_bldst_pos.Rn, enc.ldr_bldst_pos.imm12 * scale));
                         return result;
         }
@@ -46105,9 +46241,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        int scale = 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.str_qldst_pos.Rt, is_64bit));
+                        // SIMD/FP Q register variant (scale=16)
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.str_qldst_pos.Rt, true));
                         result.operands.push_back(Operand::memory_offset(enc.str_qldst_pos.Rn, enc.str_qldst_pos.imm12 * scale));
                         return result;
         }
@@ -46115,9 +46251,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        int scale = 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldr_qldst_pos.Rt, is_64bit));
+                        // SIMD/FP Q register variant (scale=16)
+                        int scale = 16;
+                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldr_qldst_pos.Rt, true));
                         result.operands.push_back(Operand::memory_offset(enc.ldr_qldst_pos.Rn, enc.ldr_qldst_pos.imm12 * scale));
                         return result;
         }
@@ -46315,9 +46451,13 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        int scale = 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.str_hldst_pos.Rt, is_64bit));
+                        // SIMD/FP H register variant (scale=2)
+                        int scale = 2;
+                        {
+                            Operand op(OperandType::VectorRegister, enc.str_hldst_pos.Rt, false);
+                            op.arrangement = "h";
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand::memory_offset(enc.str_hldst_pos.Rn, enc.str_hldst_pos.imm12 * scale));
                         return result;
         }
@@ -46325,9 +46465,13 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        int scale = 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldr_hldst_pos.Rt, is_64bit));
+                        // SIMD/FP H register variant (scale=2)
+                        int scale = 2;
+                        {
+                            Operand op(OperandType::VectorRegister, enc.ldr_hldst_pos.Rt, false);
+                            op.arrangement = "h";
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand::memory_offset(enc.ldr_hldst_pos.Rn, enc.ldr_hldst_pos.imm12 * scale));
                         return result;
         }
@@ -46541,9 +46685,13 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        // SIMD/FP S register variant (scale=4)
                         int scale = 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.str_sldst_pos.Rt, is_64bit));
+                        {
+                            Operand op(OperandType::VectorRegister, enc.str_sldst_pos.Rt, false);
+                            op.arrangement = "s";
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand::memory_offset(enc.str_sldst_pos.Rn, enc.str_sldst_pos.imm12 * scale));
                         return result;
         }
@@ -46551,9 +46699,13 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        // SIMD/FP S register variant (scale=4)
                         int scale = 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldr_sldst_pos.Rt, is_64bit));
+                        {
+                            Operand op(OperandType::VectorRegister, enc.ldr_sldst_pos.Rt, false);
+                            op.arrangement = "s";
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand::memory_offset(enc.ldr_sldst_pos.Rn, enc.ldr_sldst_pos.imm12 * scale));
                         return result;
         }
@@ -46767,9 +46919,13 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        int scale = 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.str_dldst_pos.Rt, is_64bit));
+                        // SIMD/FP D register variant (scale=8)
+                        int scale = 8;
+                        {
+                            Operand op(OperandType::VectorRegister, enc.str_dldst_pos.Rt, false);
+                            op.arrangement = "d";
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand::memory_offset(enc.str_dldst_pos.Rn, enc.str_dldst_pos.imm12 * scale));
                         return result;
         }
@@ -46777,9 +46933,13 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        int scale = 4;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldr_dldst_pos.Rt, is_64bit));
+                        // SIMD/FP D register variant (scale=8)
+                        int scale = 8;
+                        {
+                            Operand op(OperandType::VectorRegister, enc.ldr_dldst_pos.Rt, false);
+                            op.arrangement = "d";
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand::memory_offset(enc.ldr_dldst_pos.Rn, enc.ldr_dldst_pos.imm12 * scale));
                         return result;
         }

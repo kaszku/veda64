@@ -3291,16 +3291,22 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::ADR, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.adr_only_pcreladdr.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.adr_only_pcreladdr.Rd, true));
+                        int32_t imm21 = static_cast<int32_t>((enc.adr_only_pcreladdr.immhi << 2) | (enc.adr_only_pcreladdr.immlo & 0x3));
+                        if (imm21 & 0x100000) imm21 |= static_cast<int32_t>(0xFFE00000);
+                        int32_t offset = imm21;
+                        result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));
                         return result;
         }
         case 0x90000000u: { // ADRP_only_pcreladdr
                         Instruction result(Mnemonic::ADRP, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.adrp_only_pcreladdr.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.adrp_only_pcreladdr.Rd, true));
+                        int32_t imm21 = static_cast<int32_t>((enc.adrp_only_pcreladdr.immhi << 2) | (enc.adrp_only_pcreladdr.immlo & 0x3));
+                        if (imm21 & 0x100000) imm21 |= static_cast<int32_t>(0xFFE00000);
+                        int32_t offset = imm21 << 12;
+                        result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));
                         return result;
         }
         default: break;

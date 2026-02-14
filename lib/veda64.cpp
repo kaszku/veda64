@@ -1038,6 +1038,13 @@ std::string Operand::format_register(uint32_t reg, bool is_64bit, bool is_sp) {
 
 // Format a vector register
 std::string Operand::format_vector_register(uint32_t reg, const char* arrangement) {
+    // Single-char scalar prefixes: d, s, h, b → "d7", "s7", etc.
+    if (arrangement && arrangement[0] != '\0' && arrangement[1] == '\0') {
+        char c = arrangement[0];
+        if (c == 'd' || c == 's' || c == 'h' || c == 'b') {
+            return std::string(1, c) + std::to_string(reg);
+        }
+    }
     std::string result = "v" + std::to_string(reg);
     if (arrangement && arrangement[0] != '\0') {
         result += ".";

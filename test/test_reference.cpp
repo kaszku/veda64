@@ -85,6 +85,15 @@ int main() {
     if (check_disasm(0xa8c27bfd, "ldp fp, lr, [sp], #0x20")) passed++; else failed++;
     if (check_disasm(0xd50323ff, "autibsp")) passed++; else failed++;
     if (check_disasm(0xd65f03c0, "ret")) passed++; else failed++;
+    if (check_disasm(0x4f00e407, "movi v7.16b, #0")) passed++; else failed++;
+    if (check_disasm(0x3d800fe7, "str q7, [sp, #0x30]")) passed++; else failed++;
+    if (check_disasm(0xad021fe7, "stp q7, q7, [sp, #0x40]")) passed++; else failed++;
+    if (check_disasm(0x90000008, "adrp x8, .+0x0")) passed++; else failed++;
+    if (check_disasm(0x10000020, "adr x0, .+0x4")) passed++; else failed++;
+    if (check_disasm(0x54000040, "b.eq .+0x8")) passed++; else failed++;
+    if (check_disasm(0x54000061, "b.ne .+0xc")) passed++; else failed++;
+    if (check_disasm(0x7a400000, "ccmp w0, w0, #0, eq")) passed++; else failed++;
+    if (check_disasm(0x1a800000, "csel w0, w0, w0, eq")) passed++; else failed++;
 
     std::cout << std::endl;
     std::cout << "Passed: " << passed << "/" << (passed + failed) << std::endl;

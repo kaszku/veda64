@@ -34903,7 +34903,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_dds.Rd, false));
+                        {
+                            Operand op(OperandType::VectorRegister, enc.movi_asimdimm_dds.Rd, false);
+                            op.arrangement = get_movi_arrangement(insn);
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand(OperandType::Immediate, (enc.movi_asimdimm_dds.a << 7) | (enc.movi_asimdimm_dds.b << 6) | (enc.movi_asimdimm_dds.c << 5) | (enc.movi_asimdimm_dds.d << 4) | (enc.movi_asimdimm_dds.e << 3) | (enc.movi_asimdimm_dds.f << 2) | (enc.movi_asimdimm_dds.g << 1) | (enc.movi_asimdimm_dds.h << 0), true));
                         return result;
         }
@@ -34962,7 +34966,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_d2d.Rd, false));
+                        {
+                            Operand op(OperandType::VectorRegister, enc.movi_asimdimm_d2d.Rd, false);
+                            op.arrangement = get_movi_arrangement(insn);
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand(OperandType::Immediate, (enc.movi_asimdimm_d2d.a << 7) | (enc.movi_asimdimm_d2d.b << 6) | (enc.movi_asimdimm_d2d.c << 5) | (enc.movi_asimdimm_d2d.d << 4) | (enc.movi_asimdimm_d2d.e << 3) | (enc.movi_asimdimm_d2d.f << 2) | (enc.movi_asimdimm_d2d.g << 1) | (enc.movi_asimdimm_d2d.h << 0), true));
                         return result;
         }
@@ -37866,7 +37874,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_nb.Rd, false));
+                        {
+                            Operand op(OperandType::VectorRegister, enc.movi_asimdimm_nb.Rd, false);
+                            op.arrangement = get_movi_arrangement(insn);
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand(OperandType::Immediate, (enc.movi_asimdimm_nb.a << 7) | (enc.movi_asimdimm_nb.b << 6) | (enc.movi_asimdimm_nb.c << 5) | (enc.movi_asimdimm_nb.d << 4) | (enc.movi_asimdimm_nb.e << 3) | (enc.movi_asimdimm_nb.f << 2) | (enc.movi_asimdimm_nb.g << 1) | (enc.movi_asimdimm_nb.h << 0), true));
                         return result;
         }
@@ -38050,7 +38062,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_msm.Rd, false));
+                        {
+                            Operand op(OperandType::VectorRegister, enc.movi_asimdimm_msm.Rd, false);
+                            op.arrangement = get_movi_arrangement(insn);
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand(OperandType::Immediate, (enc.movi_asimdimm_msm.a << 7) | (enc.movi_asimdimm_msm.b << 6) | (enc.movi_asimdimm_msm.c << 5) | (enc.movi_asimdimm_msm.d << 4) | (enc.movi_asimdimm_msm.e << 3) | (enc.movi_asimdimm_msm.f << 2) | (enc.movi_asimdimm_msm.g << 1) | (enc.movi_asimdimm_msm.h << 0), true));
                         return result;
         }
@@ -38059,7 +38075,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.mvni_asimdimm_msm.Rd, false));
+                        {
+                            Operand op(OperandType::VectorRegister, enc.mvni_asimdimm_msm.Rd, false);
+                            op.arrangement = get_movi_arrangement(insn);
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand(OperandType::Immediate, (enc.mvni_asimdimm_msm.a << 7) | (enc.mvni_asimdimm_msm.b << 6) | (enc.mvni_asimdimm_msm.c << 5) | (enc.mvni_asimdimm_msm.d << 4) | (enc.mvni_asimdimm_msm.e << 3) | (enc.mvni_asimdimm_msm.f << 2) | (enc.mvni_asimdimm_msm.g << 1) | (enc.mvni_asimdimm_msm.h << 0), true));
                         return result;
         }
@@ -38073,7 +38093,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_lhl.Rd, false));
+                        {
+                            Operand op(OperandType::VectorRegister, enc.movi_asimdimm_lhl.Rd, false);
+                            op.arrangement = get_movi_arrangement(insn);
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand(OperandType::Immediate, (enc.movi_asimdimm_lhl.a << 7) | (enc.movi_asimdimm_lhl.b << 6) | (enc.movi_asimdimm_lhl.c << 5) | (enc.movi_asimdimm_lhl.d << 4) | (enc.movi_asimdimm_lhl.e << 3) | (enc.movi_asimdimm_lhl.f << 2) | (enc.movi_asimdimm_lhl.g << 1) | (enc.movi_asimdimm_lhl.h << 0), true));
                         return result;
         }
@@ -38091,7 +38115,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.mvni_asimdimm_lhl.Rd, false));
+                        {
+                            Operand op(OperandType::VectorRegister, enc.mvni_asimdimm_lhl.Rd, false);
+                            op.arrangement = get_movi_arrangement(insn);
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand(OperandType::Immediate, (enc.mvni_asimdimm_lhl.a << 7) | (enc.mvni_asimdimm_lhl.b << 6) | (enc.mvni_asimdimm_lhl.c << 5) | (enc.mvni_asimdimm_lhl.d << 4) | (enc.mvni_asimdimm_lhl.e << 3) | (enc.mvni_asimdimm_lhl.f << 2) | (enc.mvni_asimdimm_lhl.g << 1) | (enc.mvni_asimdimm_lhl.h << 0), true));
                         return result;
         }
@@ -38114,7 +38142,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.movi_asimdimm_lsl.Rd, false));
+                        {
+                            Operand op(OperandType::VectorRegister, enc.movi_asimdimm_lsl.Rd, false);
+                            op.arrangement = get_movi_arrangement(insn);
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand(OperandType::Immediate, (enc.movi_asimdimm_lsl.a << 7) | (enc.movi_asimdimm_lsl.b << 6) | (enc.movi_asimdimm_lsl.c << 5) | (enc.movi_asimdimm_lsl.d << 4) | (enc.movi_asimdimm_lsl.e << 3) | (enc.movi_asimdimm_lsl.f << 2) | (enc.movi_asimdimm_lsl.g << 1) | (enc.movi_asimdimm_lsl.h << 0), true));
                         return result;
         }
@@ -38132,7 +38164,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.mvni_asimdimm_lsl.Rd, false));
+                        {
+                            Operand op(OperandType::VectorRegister, enc.mvni_asimdimm_lsl.Rd, false);
+                            op.arrangement = get_movi_arrangement(insn);
+                            result.operands.push_back(op);
+                        }
                         result.operands.push_back(Operand(OperandType::Immediate, (enc.mvni_asimdimm_lsl.a << 7) | (enc.mvni_asimdimm_lsl.b << 6) | (enc.mvni_asimdimm_lsl.c << 5) | (enc.mvni_asimdimm_lsl.d << 4) | (enc.mvni_asimdimm_lsl.e << 3) | (enc.mvni_asimdimm_lsl.f << 2) | (enc.mvni_asimdimm_lsl.g << 1) | (enc.mvni_asimdimm_lsl.h << 0), true));
                         return result;
         }

@@ -1037,6 +1037,13 @@ class ARM64XMLParser:
         # Generate format_vector_register helper (now in Operand class)
         code.append("// Format a vector register")
         code.append("std::string Operand::format_vector_register(uint32_t reg, const char* arrangement) {")
+        code.append("    // Single-char scalar prefixes: d, s, h, b → \"d7\", \"s7\", etc.")
+        code.append("    if (arrangement && arrangement[0] != '\\0' && arrangement[1] == '\\0') {")
+        code.append("        char c = arrangement[0];")
+        code.append("        if (c == 'd' || c == 's' || c == 'h' || c == 'b') {")
+        code.append("            return std::string(1, c) + std::to_string(reg);")
+        code.append("        }")
+        code.append("    }")
         code.append("    std::string result = \"v\" + std::to_string(reg);")
         code.append("    if (arrangement && arrangement[0] != '\\0') {")
         code.append("        result += \".\";")
@@ -2913,6 +2920,25 @@ class ARM64XMLParser:
             code.append(f"{ind}return result;")
             return code
 
+        # Special case: ADR/ADRP - combine immhi and immlo into label operand
+        if mnemonic in ['ADR', 'ADRP'] and 'immhi' in field_map and 'immlo' in field_map and 'Rd' in field_map:
+            rd_field = field_map['Rd']['name']
+            immhi_field = field_map['immhi']['name']
+            immlo_field = field_map['immlo']['name']
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rd_field}, true));")
+            # Combine immhi:immlo into 21-bit signed offset
+            code.append(f"{ind}int32_t imm21 = static_cast<int32_t>((enc.{member_name}.{immhi_field} << 2) | (enc.{member_name}.{immlo_field} & 0x3));")
+            code.append(f"{ind}if (imm21 & 0x100000) imm21 |= static_cast<int32_t>(0xFFE00000);")
+            if mnemonic == 'ADRP':
+                # ADRP: offset is imm21 << 12 (page-aligned)
+                code.append(f"{ind}int32_t offset = imm21 << 12;")
+            else:
+                # ADR: offset is imm21 directly
+                code.append(f"{ind}int32_t offset = imm21;")
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));")
+            code.append(f"{ind}return result;")
+            return code
+
         # Special case: Branch instructions - only if required fields exist
         if is_branch:
             if (mnemonic == 'BL' or mnemonic == 'B') and 'imm26' in field_map:
@@ -3108,22 +3134,45 @@ class ARM64XMLParser:
             # Check if we need scale (only for unsigned offset with imm_field)
             needs_scale = addr_mode not in ['post_index', 'pre_index'] and imm_field is not None
 
-            # Determine register size from encoding name or 'size' field
-            if 'size' in field_map and not field_map['size']['is_fixed']:
-                size_field = field_map['size']['name']
-                code.append(f"{ind}bool is_64bit = (enc.{member_name}.{size_field} & 1) == 1;")
-                if needs_scale:
-                    code.append(f"{ind}int scale = is_64bit ? 8 : 4;")
-            elif '64' in encoding_name:
-                code.append(f"{ind}bool is_64bit = true;")
-                if needs_scale:
-                    code.append(f"{ind}int scale = 8;")
-            else:
-                code.append(f"{ind}bool is_64bit = false;")
-                if needs_scale:
-                    code.append(f"{ind}int scale = 4;")
+            # Detect SIMD/FP register variants from encoding name (_Q_, _D_, _S_, _H_, _B_)
+            simd_reg_type = None
+            enc_upper = encoding_name.upper()
+            for suffix, scale_val, reg_char in [('_Q_', 16, 'q'), ('_D_', 8, 'd'), ('_S_', 4, 's'), ('_H_', 2, 'h'), ('_B_', 1, 'b')]:
+                if suffix in enc_upper:
+                    simd_reg_type = (scale_val, reg_char)
+                    break
 
-            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, is_64bit));")
+            if simd_reg_type:
+                simd_scale, simd_char = simd_reg_type
+                code.append(f"{ind}// SIMD/FP {simd_char.upper()} register variant (scale={simd_scale})")
+                if needs_scale:
+                    code.append(f"{ind}int scale = {simd_scale};")
+                # Q uses is_64bit=true (gives q prefix), D/S/H/B use arrangement as scalar prefix
+                if simd_char == 'q':
+                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{rt_field}, true));")
+                else:
+                    code.append(f"{ind}{{")
+                    code.append(f'{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{rt_field}, false);')
+                    code.append(f'{ind}    op.arrangement = "{simd_char}";')
+                    code.append(f"{ind}    result.operands.push_back(op);")
+                    code.append(f"{ind}}}")
+            else:
+                # Determine register size from encoding name or 'size' field
+                if 'size' in field_map and not field_map['size']['is_fixed']:
+                    size_field = field_map['size']['name']
+                    code.append(f"{ind}bool is_64bit = (enc.{member_name}.{size_field} & 1) == 1;")
+                    if needs_scale:
+                        code.append(f"{ind}int scale = is_64bit ? 8 : 4;")
+                elif '64' in encoding_name:
+                    code.append(f"{ind}bool is_64bit = true;")
+                    if needs_scale:
+                        code.append(f"{ind}int scale = 8;")
+                else:
+                    code.append(f"{ind}bool is_64bit = false;")
+                    if needs_scale:
+                        code.append(f"{ind}int scale = 4;")
+
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, is_64bit));")
 
             # Memory operand with scaling for imm12 (unsigned offset)
             if addr_mode == 'post_index':
@@ -3216,8 +3265,15 @@ class ARM64XMLParser:
                 field_cpp_name = field_map[reg_name]['name']
                 if is_advsimd_vector:
                     # Use VectorRegister for advsimd vector instructions
-                    # Use false for now (v prefix), arrangement handled during to_string()
-                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false));")
+                    if mnemonic in ['MOVI', 'MVNI'] and reg_name == 'Rd':
+                        # MOVI/MVNI need arrangement from Q and cmode fields
+                        code.append(f"{ind}{{")
+                        code.append(f"{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false);")
+                        code.append(f"{ind}    op.arrangement = get_movi_arrangement(insn);")
+                        code.append(f"{ind}    result.operands.push_back(op);")
+                        code.append(f"{ind}}}")
+                    else:
+                        code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false));")
                 else:
                     code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{field_cpp_name}, is_64bit));")
 
@@ -5264,6 +5320,20 @@ class ARM64XMLParser:
             ("0xa8c27bfd", "ldp fp, lr, [sp], #0x20"),     # 32 = 0x20
             ("0xd50323ff", "autibsp"),                     # HINT #31
             ("0xd65f03c0", "ret"),
+            # MOVI with vector arrangement
+            ("0x4f00e407", "movi v7.16b, #0"),             # MOVI Vd.16B, #0 (Q=1, cmode=1110, op=0)
+            # SIMD/FP load-store (Q register)
+            ("0x3d800fe7", "str q7, [sp, #0x30]"),         # STR Qt, [Xn, #imm] (size=00, V=1, opc=00 → Q, scale=16)
+            ("0xad021fe7", "stp q7, q7, [sp, #0x40]"),     # STP Qt1, Qt2, [Xn, #imm]
+            # ADR/ADRP with label operand
+            ("0x90000008", "adrp x8, .+0x0"),              # ADRP Xd, #0 (immhi=0, immlo=0)
+            ("0x10000020", "adr x0, .+0x4"),               # ADR Xd, .+4 (immhi=0x00001, immlo=0)
+            # Conditional branch
+            ("0x54000040", "b.eq .+0x8"),                  # B.cond with condition suffix
+            ("0x54000061", "b.ne .+0xc"),                  # B.cond NE
+            # Condition at end of operand list
+            ("0x7a400000", "ccmp w0, w0, #0, eq"),         # CCMP with condition at end
+            ("0x1a800000", "csel w0, w0, w0, eq"),         # CSEL with condition at end
         ]
 
         for insn_hex, expected in test_cases:
