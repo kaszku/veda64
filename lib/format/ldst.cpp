@@ -40960,7 +40960,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.strb32bl_ldst_regoff.Rt, false));
-                        result.operands.push_back(Operand::memory_base(enc.strb32bl_ldst_regoff.Rn));
+                        result.operands.push_back(Operand::memory_reg_offset(enc.strb32bl_ldst_regoff.Rn, enc.strb32bl_ldst_regoff.Rm, 3, enc.strb32bl_ldst_regoff.S ? 0 : 0));
                         return result;
         }
         case 0x38207000u: { // LDUMINB_32_memop
@@ -41088,7 +41088,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrb32bl_ldst_regoff.Rt, false));
-                        result.operands.push_back(Operand::memory_base(enc.ldrb32bl_ldst_regoff.Rn));
+                        result.operands.push_back(Operand::memory_reg_offset(enc.ldrb32bl_ldst_regoff.Rn, enc.ldrb32bl_ldst_regoff.Rm, 3, enc.ldrb32bl_ldst_regoff.S ? 0 : 0));
                         return result;
         }
         case 0x38607000u: { // LDUMINLB_32_memop
@@ -41447,7 +41447,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str_bl_ldst_regoff.Rt, is_64bit));
-                        result.operands.push_back(Operand::memory_base(enc.str_bl_ldst_regoff.Rn));
+                        result.operands.push_back(Operand::memory_reg_offset(enc.str_bl_ldst_regoff.Rn, enc.str_bl_ldst_regoff.Rm, 3, enc.str_bl_ldst_regoff.S ? 2 : 0));
                         return result;
         }
         case 0x3C207000u: { // LDBFMINNM_16
@@ -41506,7 +41506,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr_bl_ldst_regoff.Rt, is_64bit));
-                        result.operands.push_back(Operand::memory_base(enc.ldr_bl_ldst_regoff.Rn));
+                        result.operands.push_back(Operand::memory_reg_offset(enc.ldr_bl_ldst_regoff.Rn, enc.ldr_bl_ldst_regoff.Rm, 3, enc.ldr_bl_ldst_regoff.S ? 2 : 0));
                         return result;
         }
         case 0x3C607000u: { // LDBFMINNML_16
@@ -44225,7 +44225,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.strb32b_ldst_regoff.Rt, false));
-                        result.operands.push_back(Operand::memory_base(enc.strb32b_ldst_regoff.Rn));
+                        result.operands.push_back(Operand::memory_reg_offset(enc.strb32b_ldst_regoff.Rn, enc.strb32b_ldst_regoff.Rm, enc.strb32b_ldst_regoff.option, enc.strb32b_ldst_regoff.S ? 0 : 0));
                         return result;
         }
         case 0x38600800u: { // LDRB_32B_ldst_regoff
@@ -44233,7 +44233,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrb32b_ldst_regoff.Rt, false));
-                        result.operands.push_back(Operand::memory_base(enc.ldrb32b_ldst_regoff.Rn));
+                        result.operands.push_back(Operand::memory_reg_offset(enc.ldrb32b_ldst_regoff.Rn, enc.ldrb32b_ldst_regoff.Rm, enc.ldrb32b_ldst_regoff.option, enc.ldrb32b_ldst_regoff.S ? 0 : 0));
                         return result;
         }
         case 0x38A00800u: { // LDRSB_64B_ldst_regoff
@@ -44252,7 +44252,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrsb32b_ldst_regoff.Rt, false));
-                        result.operands.push_back(Operand::memory_base(enc.ldrsb32b_ldst_regoff.Rn));
+                        result.operands.push_back(Operand::memory_reg_offset(enc.ldrsb32b_ldst_regoff.Rn, enc.ldrsb32b_ldst_regoff.Rm, enc.ldrsb32b_ldst_regoff.option, enc.ldrsb32b_ldst_regoff.S ? 0 : 0));
                         return result;
         }
         case 0x3C200800u: { // STR_B_ldst_regoff
@@ -44265,7 +44265,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.arrangement = "b";
                             result.operands.push_back(op);
                         }
-                        result.operands.push_back(Operand::memory_base(enc.str_bldst_regoff.Rn));
+                        result.operands.push_back(Operand::memory_reg_offset(enc.str_bldst_regoff.Rn, enc.str_bldst_regoff.Rm, enc.str_bldst_regoff.option, enc.str_bldst_regoff.S ? 0 : 0));
                         return result;
         }
         case 0x3C600800u: { // LDR_B_ldst_regoff
@@ -44278,7 +44278,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.arrangement = "b";
                             result.operands.push_back(op);
                         }
-                        result.operands.push_back(Operand::memory_base(enc.ldr_bldst_regoff.Rn));
+                        result.operands.push_back(Operand::memory_reg_offset(enc.ldr_bldst_regoff.Rn, enc.ldr_bldst_regoff.Rm, enc.ldr_bldst_regoff.option, enc.ldr_bldst_regoff.S ? 0 : 0));
                         return result;
         }
         case 0x3CA00800u: { // STR_Q_ldst_regoff
@@ -44287,7 +44287,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         // SIMD/FP Q register variant (scale=16)
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.str_qldst_regoff.Rt, true));
-                        result.operands.push_back(Operand::memory_base(enc.str_qldst_regoff.Rn));
+                        result.operands.push_back(Operand::memory_reg_offset(enc.str_qldst_regoff.Rn, enc.str_qldst_regoff.Rm, enc.str_qldst_regoff.option, enc.str_qldst_regoff.S ? 4 : 0));
                         return result;
         }
         case 0x3CE00800u: { // LDR_Q_ldst_regoff
@@ -44296,7 +44296,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         // SIMD/FP Q register variant (scale=16)
                         result.operands.push_back(Operand(OperandType::VectorRegister, enc.ldr_qldst_regoff.Rt, true));
-                        result.operands.push_back(Operand::memory_base(enc.ldr_qldst_regoff.Rn));
+                        result.operands.push_back(Operand::memory_reg_offset(enc.ldr_qldst_regoff.Rn, enc.ldr_qldst_regoff.Rm, enc.ldr_qldst_regoff.option, enc.ldr_qldst_regoff.S ? 4 : 0));
                         return result;
         }
         case 0x78200800u: { // STRH_32_ldst_regoff
@@ -44304,7 +44304,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.strh32ldst_regoff.Rt, false));
-                        result.operands.push_back(Operand::memory_base(enc.strh32ldst_regoff.Rn));
+                        result.operands.push_back(Operand::memory_reg_offset(enc.strh32ldst_regoff.Rn, enc.strh32ldst_regoff.Rm, enc.strh32ldst_regoff.option, enc.strh32ldst_regoff.S ? 1 : 0));
                         return result;
         }
         case 0x78600800u: { // LDRH_32_ldst_regoff
@@ -44312,7 +44312,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrh32ldst_regoff.Rt, false));
-                        result.operands.push_back(Operand::memory_base(enc.ldrh32ldst_regoff.Rn));
+                        result.operands.push_back(Operand::memory_reg_offset(enc.ldrh32ldst_regoff.Rn, enc.ldrh32ldst_regoff.Rm, enc.ldrh32ldst_regoff.option, enc.ldrh32ldst_regoff.S ? 1 : 0));
                         return result;
         }
         case 0x78A00800u: { // LDRSH_64_ldst_regoff
@@ -44347,7 +44347,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.arrangement = "h";
                             result.operands.push_back(op);
                         }
-                        result.operands.push_back(Operand::memory_base(enc.str_hldst_regoff.Rn));
+                        result.operands.push_back(Operand::memory_reg_offset(enc.str_hldst_regoff.Rn, enc.str_hldst_regoff.Rm, enc.str_hldst_regoff.option, enc.str_hldst_regoff.S ? 1 : 0));
                         return result;
         }
         case 0x7C600800u: { // LDR_H_ldst_regoff
@@ -44360,7 +44360,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.arrangement = "h";
                             result.operands.push_back(op);
                         }
-                        result.operands.push_back(Operand::memory_base(enc.ldr_hldst_regoff.Rn));
+                        result.operands.push_back(Operand::memory_reg_offset(enc.ldr_hldst_regoff.Rn, enc.ldr_hldst_regoff.Rm, enc.ldr_hldst_regoff.option, enc.ldr_hldst_regoff.S ? 1 : 0));
                         return result;
         }
         case 0xB8200800u: { // STR_32_ldst_regoff
@@ -44369,7 +44369,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.str32ldst_regoff.Rt, is_64bit));
-                        result.operands.push_back(Operand::memory_base(enc.str32ldst_regoff.Rn));
+                        result.operands.push_back(Operand::memory_reg_offset(enc.str32ldst_regoff.Rn, enc.str32ldst_regoff.Rm, enc.str32ldst_regoff.option, enc.str32ldst_regoff.S ? 2 : 0));
                         return result;
         }
         case 0xB8600800u: { // LDR_32_ldst_regoff
@@ -44378,7 +44378,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr32ldst_regoff.Rt, is_64bit));
-                        result.operands.push_back(Operand::memory_base(enc.ldr32ldst_regoff.Rn));
+                        result.operands.push_back(Operand::memory_reg_offset(enc.ldr32ldst_regoff.Rn, enc.ldr32ldst_regoff.Rm, enc.ldr32ldst_regoff.option, enc.ldr32ldst_regoff.S ? 2 : 0));
                         return result;
         }
         case 0xB8A00800u: { // LDRSW_64_ldst_regoff
@@ -44402,7 +44402,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.arrangement = "s";
                             result.operands.push_back(op);
                         }
-                        result.operands.push_back(Operand::memory_base(enc.str_sldst_regoff.Rn));
+                        result.operands.push_back(Operand::memory_reg_offset(enc.str_sldst_regoff.Rn, enc.str_sldst_regoff.Rm, enc.str_sldst_regoff.option, enc.str_sldst_regoff.S ? 2 : 0));
                         return result;
         }
         case 0xBC601800u: { // LDR_S_ldst_regoff
@@ -44415,7 +44415,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.arrangement = "s";
                             result.operands.push_back(op);
                         }
-                        result.operands.push_back(Operand::memory_base(enc.ldr_sldst_regoff.Rn));
+                        result.operands.push_back(Operand::memory_reg_offset(enc.ldr_sldst_regoff.Rn, enc.ldr_sldst_regoff.Rm, enc.ldr_sldst_regoff.option, enc.ldr_sldst_regoff.S ? 2 : 0));
                         return result;
         }
         case 0xF8200800u: { // STR_64_ldst_regoff
@@ -44424,7 +44424,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.str64ldst_regoff.Rt, is_64bit));
-                        result.operands.push_back(Operand::memory_base(enc.str64ldst_regoff.Rn));
+                        result.operands.push_back(Operand::memory_reg_offset(enc.str64ldst_regoff.Rn, enc.str64ldst_regoff.Rm, enc.str64ldst_regoff.option, enc.str64ldst_regoff.S ? 3 : 0));
                         return result;
         }
         case 0xF8600800u: { // LDR_64_ldst_regoff
@@ -44433,7 +44433,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldr64ldst_regoff.Rt, is_64bit));
-                        result.operands.push_back(Operand::memory_base(enc.ldr64ldst_regoff.Rn));
+                        result.operands.push_back(Operand::memory_reg_offset(enc.ldr64ldst_regoff.Rn, enc.ldr64ldst_regoff.Rm, enc.ldr64ldst_regoff.option, enc.ldr64ldst_regoff.S ? 3 : 0));
                         return result;
         }
         case 0xFC200800u: { // STR_D_ldst_regoff
@@ -44446,7 +44446,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.arrangement = "d";
                             result.operands.push_back(op);
                         }
-                        result.operands.push_back(Operand::memory_base(enc.str_dldst_regoff.Rn));
+                        result.operands.push_back(Operand::memory_reg_offset(enc.str_dldst_regoff.Rn, enc.str_dldst_regoff.Rm, enc.str_dldst_regoff.option, enc.str_dldst_regoff.S ? 3 : 0));
                         return result;
         }
         case 0xFC600800u: { // LDR_D_ldst_regoff
@@ -44459,7 +44459,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.arrangement = "d";
                             result.operands.push_back(op);
                         }
-                        result.operands.push_back(Operand::memory_base(enc.ldr_dldst_regoff.Rn));
+                        result.operands.push_back(Operand::memory_reg_offset(enc.ldr_dldst_regoff.Rn, enc.ldr_dldst_regoff.Rm, enc.ldr_dldst_regoff.option, enc.ldr_dldst_regoff.S ? 3 : 0));
                         return result;
         }
         default: break;

@@ -103,6 +103,18 @@ int main() {
     if (check_disasm(0x385ff08a, "ldurb w10, [x4, #-1]")) passed++; else failed++;
     if (check_disasm(0xb85fc088, "ldur w8, [x4, #-4]")) passed++; else failed++;
     if (check_disasm(0xb81fc0a8, "stur w8, [x5, #-4]")) passed++; else failed++;
+    if (check_disasm(0x386f6828, "ldrb w8, [x1, x15]")) passed++; else failed++;
+    if (check_disasm(0xf8606820, "ldr x0, [x1, x0]")) passed++; else failed++;
+    if (check_disasm(0xb8606820, "ldr w0, [x1, x0]")) passed++; else failed++;
+    if (check_disasm(0xd341fc4f, "lsr x15, x2, #1")) passed++; else failed++;
+    if (check_disasm(0x53017c08, "lsr w8, w0, #1")) passed++; else failed++;
+    if (check_disasm(0x53001c00, "uxtb w0, w0")) passed++; else failed++;
+    if (check_disasm(0x53003c00, "uxth w0, w0")) passed++; else failed++;
+    if (check_disasm(0x93401c00, "sxtb x0, w0")) passed++; else failed++;
+    if (check_disasm(0x93403c00, "sxth x0, w0")) passed++; else failed++;
+    if (check_disasm(0x93407c00, "sxtw x0, w0")) passed++; else failed++;
+    if (check_disasm(0x13001c00, "sxtb w0, w0")) passed++; else failed++;
+    if (check_disasm(0x33070c00, "bfi w0, w0, #25, #4")) passed++; else failed++;
 
     std::cout << std::endl;
     std::cout << "Passed: " << passed << "/" << (passed + failed) << std::endl;

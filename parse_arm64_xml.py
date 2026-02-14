@@ -1245,6 +1245,89 @@ class ARM64XMLParser:
         code.append('        return std::string("ror ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();')
         code.append("    }")
         code.append("")
+        code.append("    // LSLV/LSRV/ASRV -> LSL/LSR/ASR aliases (variable shift is just called LSL/LSR/ASR)")
+        code.append("    if (insn.mnemonic == Mnemonic::LSLV && insn.operands.size() >= 3) {")
+        code.append('        return std::string("lsl ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();')
+        code.append("    }")
+        code.append("    if (insn.mnemonic == Mnemonic::LSRV && insn.operands.size() >= 3) {")
+        code.append('        return std::string("lsr ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();')
+        code.append("    }")
+        code.append("    if (insn.mnemonic == Mnemonic::ASRV && insn.operands.size() >= 3) {")
+        code.append('        return std::string("asr ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();')
+        code.append("    }")
+        code.append("")
+        code.append("    // UBFM/SBFM/BFM aliases: Extract immr/imms from raw bits since specific")
+        code.append("    // alias encodings (LSR_UBFM, ASR_SBFM etc.) have imms as fixed field")
+        code.append("    if (insn.mnemonic == Mnemonic::UBFM && insn.operands.size() >= 2) {")
+        code.append("        uint32_t immr = (insn.raw_value >> 16) & 0x3F;")
+        code.append("        uint32_t imms = (insn.raw_value >> 10) & 0x3F;")
+        code.append("        bool is_64 = insn.operands[0].is_64bit;")
+        code.append("        uint32_t regsize = is_64 ? 64 : 32;")
+        code.append("        auto& rd = insn.operands[0];")
+        code.append("        auto& rn = insn.operands[1];")
+        code.append("        if (!is_64 && immr == 0 && imms == 7) {")
+        code.append('            return std::string("uxtb ") + rd.to_string() + ", " + rn.to_string();')
+        code.append("        }")
+        code.append("        if (!is_64 && immr == 0 && imms == 15) {")
+        code.append('            return std::string("uxth ") + rd.to_string() + ", " + rn.to_string();')
+        code.append("        }")
+        code.append("        if (imms == regsize - 1) {")
+        code.append('            return std::string("lsr ") + rd.to_string() + ", " + rn.to_string() + ", #" + std::to_string(immr);')
+        code.append("        }")
+        code.append("        if (imms + 1 == immr) {")
+        code.append("            uint32_t shift = regsize - immr;")
+        code.append('            return std::string("lsl ") + rd.to_string() + ", " + rn.to_string() + ", #" + std::to_string(shift);')
+        code.append("        }")
+        code.append("        if (imms >= immr) {")
+        code.append("            uint32_t width = imms - immr + 1;")
+        code.append('            return std::string("ubfx ") + rd.to_string() + ", " + rn.to_string() + ", #" + std::to_string(immr) + ", #" + std::to_string(width);')
+        code.append("        }")
+        code.append("    }")
+        code.append("")
+        code.append("    if (insn.mnemonic == Mnemonic::SBFM && insn.operands.size() >= 2) {")
+        code.append("        uint32_t immr = (insn.raw_value >> 16) & 0x3F;")
+        code.append("        uint32_t imms = (insn.raw_value >> 10) & 0x3F;")
+        code.append("        bool is_64 = insn.operands[0].is_64bit;")
+        code.append("        uint32_t regsize = is_64 ? 64 : 32;")
+        code.append("        auto& rd = insn.operands[0];")
+        code.append("        auto& rn = insn.operands[1];")
+        code.append("        // SXT aliases: source register is always W-form (sign-extending from smaller type)")
+        code.append('        std::string rn_w = rn.value == 31 ? "wzr" : "w" + std::to_string(rn.value);')
+        code.append("        if (immr == 0 && imms == 7) {")
+        code.append('            return std::string("sxtb ") + rd.to_string() + ", " + rn_w;')
+        code.append("        }")
+        code.append("        if (immr == 0 && imms == 15) {")
+        code.append('            return std::string("sxth ") + rd.to_string() + ", " + rn_w;')
+        code.append("        }")
+        code.append("        if (is_64 && immr == 0 && imms == 31) {")
+        code.append('            return std::string("sxtw ") + rd.to_string() + ", " + rn_w;')
+        code.append("        }")
+        code.append("        if (imms == regsize - 1) {")
+        code.append('            return std::string("asr ") + rd.to_string() + ", " + rn.to_string() + ", #" + std::to_string(immr);')
+        code.append("        }")
+        code.append("        if (imms >= immr) {")
+        code.append("            uint32_t width = imms - immr + 1;")
+        code.append('            return std::string("sbfx ") + rd.to_string() + ", " + rn.to_string() + ", #" + std::to_string(immr) + ", #" + std::to_string(width);')
+        code.append("        }")
+        code.append("    }")
+        code.append("")
+        code.append("    if (insn.mnemonic == Mnemonic::BFM && insn.operands.size() >= 2) {")
+        code.append("        uint32_t immr = (insn.raw_value >> 16) & 0x3F;")
+        code.append("        uint32_t imms = (insn.raw_value >> 10) & 0x3F;")
+        code.append("        bool is_64 = insn.operands[0].is_64bit;")
+        code.append("        uint32_t regsize = is_64 ? 64 : 32;")
+        code.append("        auto& rd = insn.operands[0];")
+        code.append("        auto& rn = insn.operands[1];")
+        code.append("        if (imms < immr) {")
+        code.append("            uint32_t lsb = (regsize - immr) & (regsize - 1);")
+        code.append("            uint32_t width = imms + 1;")
+        code.append('            return std::string("bfi ") + rd.to_string() + ", " + rn.to_string() + ", #" + std::to_string(lsb) + ", #" + std::to_string(width);')
+        code.append("        } else {")
+        code.append("            uint32_t width = imms - immr + 1;")
+        code.append('            return std::string("bfxil ") + rd.to_string() + ", " + rn.to_string() + ", #" + std::to_string(immr) + ", #" + std::to_string(width);')
+        code.append("        }")
+        code.append("    }")
+        code.append("")
         code.append("    return std::nullopt;  // No alias")
         code.append("}")
         code.append("")
@@ -1406,9 +1489,15 @@ class ARM64XMLParser:
         code.append("            // [Xn|SP, Rm{, extend {#amount}}]")
         code.append("            {")
         code.append("                std::string result = \"[\" + format_register(base_reg, true, true) + \", \";")
-        code.append("                result += format_register(index_reg, true, false);")
-        code.append("                if (extend != 0 || amount != 0) {")
-        code.append("                    const char* extends[] = {\"UXTB\", \"UXTH\", \"UXTW\", \"UXTX\", ")
+        code.append("                // Index register: W for UXTW(2)/SXTW(6), X for UXTX(3)/SXTX(7)/LSL")
+        code.append("                bool index_is_32 = (extend == 2 || extend == 6);")
+        code.append("                result += format_register(index_reg, !index_is_32, false);")
+        code.append("                // extend=3 (UXTX) is equivalent to LSL for 64-bit index")
+        code.append("                // Suppress extend=3 with amount=0 (it's the default)")
+        code.append("                if (extend == 3 && amount == 0) {")
+        code.append("                    // Default: no extend/shift needed")
+        code.append("                } else if (extend != 0 || amount != 0) {")
+        code.append("                    const char* extends[] = {\"UXTB\", \"UXTH\", \"UXTW\", \"LSL\", ")
         code.append("                                             \"SXTB\", \"SXTH\", \"SXTW\", \"SXTX\"};")
         code.append("                    if (extend < 8) {")
         code.append("                        result += \", \" + std::string(extends[extend]);")
@@ -3103,9 +3192,27 @@ class ARM64XMLParser:
             is_halfword = any(x in encoding_name for x in ['ldrh', 'strh', 'ldurh', 'sturh', '32h_'])
             is_unscaled = any(x in encoding_name for x in ['ldur', 'stur'])
             scale_factor = 2 if is_halfword and not is_unscaled else 1
+            # Shift amount for register offset: log2(scale) - halfword=1, byte=0
+            reg_shift_amount = 1 if is_halfword else 0
 
             # Memory operand (imm9 is 9-bit signed for pre/post/unscaled, imm12 is unsigned for offset)
-            if addr_mode == 'post_index':
+            if addr_mode == 'reg_offset' and 'Rm' in field_map:
+                rm_field = field_map['Rm']['name']
+                if 'option' in field_map and not field_map['option']['is_fixed']:
+                    option_field = field_map['option']['name']
+                    s_field = field_map['S']['name'] if 'S' in field_map and not field_map['S']['is_fixed'] else None
+                    if s_field:
+                        code.append(f"{ind}result.operands.push_back(Operand::memory_reg_offset(enc.{member_name}.{rn_field}, enc.{member_name}.{rm_field}, enc.{member_name}.{option_field}, enc.{member_name}.{s_field} ? {reg_shift_amount} : 0));")
+                    else:
+                        code.append(f"{ind}result.operands.push_back(Operand::memory_reg_offset(enc.{member_name}.{rn_field}, enc.{member_name}.{rm_field}, enc.{member_name}.{option_field}));")
+                else:
+                    # LSL variant (option=0b011 fixed, just Rm)
+                    s_field = field_map['S']['name'] if 'S' in field_map and not field_map['S']['is_fixed'] else None
+                    if s_field:
+                        code.append(f"{ind}result.operands.push_back(Operand::memory_reg_offset(enc.{member_name}.{rn_field}, enc.{member_name}.{rm_field}, 3, enc.{member_name}.{s_field} ? {reg_shift_amount} : 0));")
+                    else:
+                        code.append(f"{ind}result.operands.push_back(Operand::memory_reg_offset(enc.{member_name}.{rn_field}, enc.{member_name}.{rm_field}));")
+            elif addr_mode == 'post_index':
                 if imm_field:
                     code.append(f"{ind}int32_t imm = (static_cast<int32_t>(enc.{member_name}.{imm_field}) << 23) >> 23;")
                     code.append(f"{ind}result.operands.push_back(Operand::memory_post_index(enc.{member_name}.{rn_field}, imm));")
@@ -3189,8 +3296,33 @@ class ARM64XMLParser:
             # Check if this is an unscaled load/store (LDUR/STUR use signed imm9, no scaling)
             is_unscaled = mnemonic in ['LDUR', 'STUR']
 
+            # Compute shift amount for register-offset addressing (log2 of byte size)
+            scale_to_shift = {1: 0, 2: 1, 4: 2, 8: 3, 16: 4}
+            if simd_reg_type:
+                reg_offset_shift = scale_to_shift.get(simd_reg_type[0], 0)
+            elif '64' in encoding_name:
+                reg_offset_shift = 3
+            else:
+                reg_offset_shift = 2
+
             # Memory operand with scaling for imm12 (unsigned offset)
-            if addr_mode == 'post_index':
+            if addr_mode == 'reg_offset' and 'Rm' in field_map:
+                rm_field = field_map['Rm']['name']
+                if 'option' in field_map and not field_map['option']['is_fixed']:
+                    option_field = field_map['option']['name']
+                    s_field = field_map['S']['name'] if 'S' in field_map and not field_map['S']['is_fixed'] else None
+                    if s_field:
+                        code.append(f"{ind}result.operands.push_back(Operand::memory_reg_offset(enc.{member_name}.{rn_field}, enc.{member_name}.{rm_field}, enc.{member_name}.{option_field}, enc.{member_name}.{s_field} ? {reg_offset_shift} : 0));")
+                    else:
+                        code.append(f"{ind}result.operands.push_back(Operand::memory_reg_offset(enc.{member_name}.{rn_field}, enc.{member_name}.{rm_field}, enc.{member_name}.{option_field}));")
+                else:
+                    # LSL variant (option=0b011 fixed, just Rm)
+                    s_field = field_map['S']['name'] if 'S' in field_map and not field_map['S']['is_fixed'] else None
+                    if s_field:
+                        code.append(f"{ind}result.operands.push_back(Operand::memory_reg_offset(enc.{member_name}.{rn_field}, enc.{member_name}.{rm_field}, 3, enc.{member_name}.{s_field} ? {reg_offset_shift} : 0));")
+                    else:
+                        code.append(f"{ind}result.operands.push_back(Operand::memory_reg_offset(enc.{member_name}.{rn_field}, enc.{member_name}.{rm_field}));")
+            elif addr_mode == 'post_index':
                 if imm_field:
                     code.append(f"{ind}int32_t imm = (static_cast<int32_t>(enc.{member_name}.{imm_field}) << 23) >> 23;")
                     code.append(f"{ind}result.operands.push_back(Operand::memory_post_index(enc.{member_name}.{rn_field}, imm));")
@@ -5366,6 +5498,22 @@ class ARM64XMLParser:
             # LDUR/STUR (unscaled word/dword)
             ("0xb85fc088", "ldur w8, [x4, #-4]"),          # LDUR W with -4 offset
             ("0xb81fc0a8", "stur w8, [x5, #-4]"),          # STUR W with -4 offset
+            # Register-offset loads/stores
+            ("0x386f6828", "ldrb w8, [x1, x15]"),           # LDRB with register offset (option=3, S=0)
+            ("0xf8606820", "ldr x0, [x1, x0]"),            # LDR X with register offset
+            ("0xb8606820", "ldr w0, [x1, x0]"),            # LDR W with register offset
+            # UBFM aliases (LSR, LSL, UXTB, UXTH)
+            ("0xd341fc4f", "lsr x15, x2, #1"),             # UBFM X15, X2, #1, #63 -> LSR (imms=63=regsize-1)
+            ("0x53017c08", "lsr w8, w0, #1"),              # UBFM W8, W0, #1, #31 -> LSR (imms=31)
+            ("0x53001c00", "uxtb w0, w0"),                 # UBFM W0, W0, #0, #7 -> UXTB
+            ("0x53003c00", "uxth w0, w0"),                 # UBFM W0, W0, #0, #15 -> UXTH
+            # SBFM aliases (ASR, SXTB, SXTH, SXTW)
+            ("0x93401c00", "sxtb x0, w0"),                 # SBFM X0, X0, #0, #7 -> SXTB (W source)
+            ("0x93403c00", "sxth x0, w0"),                 # SBFM X0, X0, #0, #15 -> SXTH (W source)
+            ("0x93407c00", "sxtw x0, w0"),                 # SBFM X0, X0, #0, #31 -> SXTW (W source)
+            ("0x13001c00", "sxtb w0, w0"),                 # SBFM W0, W0, #0, #7 -> SXTB 32-bit
+            # BFM aliases
+            ("0x33070c00", "bfi w0, w0, #25, #4"),         # BFM with imms < immr -> BFI
         ]
 
         for insn_hex, expected in test_cases:

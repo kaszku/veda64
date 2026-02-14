@@ -1240,6 +1240,89 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
         return std::string("ror ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();
     }
 
+    // LSLV/LSRV/ASRV -> LSL/LSR/ASR aliases (variable shift is just called LSL/LSR/ASR)
+    if (insn.mnemonic == Mnemonic::LSLV && insn.operands.size() >= 3) {
+        return std::string("lsl ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();
+    }
+    if (insn.mnemonic == Mnemonic::LSRV && insn.operands.size() >= 3) {
+        return std::string("lsr ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();
+    }
+    if (insn.mnemonic == Mnemonic::ASRV && insn.operands.size() >= 3) {
+        return std::string("asr ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();
+    }
+
+    // UBFM/SBFM/BFM aliases: Extract immr/imms from raw bits since specific
+    // alias encodings (LSR_UBFM, ASR_SBFM etc.) have imms as fixed field
+    if (insn.mnemonic == Mnemonic::UBFM && insn.operands.size() >= 2) {
+        uint32_t immr = (insn.raw_value >> 16) & 0x3F;
+        uint32_t imms = (insn.raw_value >> 10) & 0x3F;
+        bool is_64 = insn.operands[0].is_64bit;
+        uint32_t regsize = is_64 ? 64 : 32;
+        auto& rd = insn.operands[0];
+        auto& rn = insn.operands[1];
+        if (!is_64 && immr == 0 && imms == 7) {
+            return std::string("uxtb ") + rd.to_string() + ", " + rn.to_string();
+        }
+        if (!is_64 && immr == 0 && imms == 15) {
+            return std::string("uxth ") + rd.to_string() + ", " + rn.to_string();
+        }
+        if (imms == regsize - 1) {
+            return std::string("lsr ") + rd.to_string() + ", " + rn.to_string() + ", #" + std::to_string(immr);
+        }
+        if (imms + 1 == immr) {
+            uint32_t shift = regsize - immr;
+            return std::string("lsl ") + rd.to_string() + ", " + rn.to_string() + ", #" + std::to_string(shift);
+        }
+        if (imms >= immr) {
+            uint32_t width = imms - immr + 1;
+            return std::string("ubfx ") + rd.to_string() + ", " + rn.to_string() + ", #" + std::to_string(immr) + ", #" + std::to_string(width);
+        }
+    }
+
+    if (insn.mnemonic == Mnemonic::SBFM && insn.operands.size() >= 2) {
+        uint32_t immr = (insn.raw_value >> 16) & 0x3F;
+        uint32_t imms = (insn.raw_value >> 10) & 0x3F;
+        bool is_64 = insn.operands[0].is_64bit;
+        uint32_t regsize = is_64 ? 64 : 32;
+        auto& rd = insn.operands[0];
+        auto& rn = insn.operands[1];
+        // SXT aliases: source register is always W-form (sign-extending from smaller type)
+        std::string rn_w = rn.value == 31 ? "wzr" : "w" + std::to_string(rn.value);
+        if (immr == 0 && imms == 7) {
+            return std::string("sxtb ") + rd.to_string() + ", " + rn_w;
+        }
+        if (immr == 0 && imms == 15) {
+            return std::string("sxth ") + rd.to_string() + ", " + rn_w;
+        }
+        if (is_64 && immr == 0 && imms == 31) {
+            return std::string("sxtw ") + rd.to_string() + ", " + rn_w;
+        }
+        if (imms == regsize - 1) {
+            return std::string("asr ") + rd.to_string() + ", " + rn.to_string() + ", #" + std::to_string(immr);
+        }
+        if (imms >= immr) {
+            uint32_t width = imms - immr + 1;
+            return std::string("sbfx ") + rd.to_string() + ", " + rn.to_string() + ", #" + std::to_string(immr) + ", #" + std::to_string(width);
+        }
+    }
+
+    if (insn.mnemonic == Mnemonic::BFM && insn.operands.size() >= 2) {
+        uint32_t immr = (insn.raw_value >> 16) & 0x3F;
+        uint32_t imms = (insn.raw_value >> 10) & 0x3F;
+        bool is_64 = insn.operands[0].is_64bit;
+        uint32_t regsize = is_64 ? 64 : 32;
+        auto& rd = insn.operands[0];
+        auto& rn = insn.operands[1];
+        if (imms < immr) {
+            uint32_t lsb = (regsize - immr) & (regsize - 1);
+            uint32_t width = imms + 1;
+            return std::string("bfi ") + rd.to_string() + ", " + rn.to_string() + ", #" + std::to_string(lsb) + ", #" + std::to_string(width);
+        } else {
+            uint32_t width = imms - immr + 1;
+            return std::string("bfxil ") + rd.to_string() + ", " + rn.to_string() + ", #" + std::to_string(immr) + ", #" + std::to_string(width);
+        }
+    }
+
     return std::nullopt;  // No alias
 }
 
@@ -1397,9 +1480,15 @@ std::string Operand::to_string() const {
             // [Xn|SP, Rm{, extend {#amount}}]
             {
                 std::string result = "[" + format_register(base_reg, true, true) + ", ";
-                result += format_register(index_reg, true, false);
-                if (extend != 0 || amount != 0) {
-                    const char* extends[] = {"UXTB", "UXTH", "UXTW", "UXTX",
+                // Index register: W for UXTW(2)/SXTW(6), X for UXTX(3)/SXTX(7)/LSL
+                bool index_is_32 = (extend == 2 || extend == 6);
+                result += format_register(index_reg, !index_is_32, false);
+                // extend=3 (UXTX) is equivalent to LSL for 64-bit index
+                // Suppress extend=3 with amount=0 (it's the default)
+                if (extend == 3 && amount == 0) {
+                    // Default: no extend/shift needed
+                } else if (extend != 0 || amount != 0) {
+                    const char* extends[] = {"UXTB", "UXTH", "UXTW", "LSL",
                                              "SXTB", "SXTH", "SXTW", "SXTX"};
                     if (extend < 8) {
                         result += ", " + std::string(extends[extend]);
