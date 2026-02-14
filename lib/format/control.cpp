@@ -5600,18 +5600,21 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::DSB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::Barrier, enc.dsb_bo_barriers.CRm, true));
                         return result;
         }
         case 0xD50330BFu: { // DMB_BO_barriers
                         Instruction result(Mnemonic::DMB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::Barrier, enc.dmb_bo_barriers.CRm, true));
                         return result;
         }
         case 0xD50330DFu: { // ISB_BI_barriers
                         Instruction result(Mnemonic::ISB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::Barrier, enc.isb_bi_barriers.CRm, true));
                         return result;
         }
         default: break;

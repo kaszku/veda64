@@ -2783,7 +2783,7 @@ class ARM64XMLParser:
         is_movn = mnemonic == 'MOVN'
         is_movk = mnemonic == 'MOVK'
         is_add_sub = mnemonic in ['ADD', 'ADDS', 'SUB', 'SUBS']
-        is_ldp_stp = 'ldstpair' in encoding_name or 'ldp' in encoding_name or 'stp' in encoding_name
+        is_ldp_stp = 'ldstpair' in encoding_name or 'ldstnapair' in encoding_name or 'ldp' in encoding_name or 'stp' in encoding_name or 'ldnp' in encoding_name or 'stnp' in encoding_name
 
         # Determine if this is a load/store with memory addressing
         is_load_store = any(x in encoding_name for x in ['ldst', 'ldap', 'stl', 'ldur', 'stur',
@@ -2865,8 +2865,8 @@ class ARM64XMLParser:
             # Determine register type from encoding name and opc field
             # Check for SIMD/FP pair: _Q_ (128-bit), _D_ (64-bit), _S_ (32-bit)
             is_simd_q = '_Q_' in encoding_name or '_q_' in encoding_name
-            is_simd_d = '_D_' in encoding_name and 'ldstpair' in encoding_name
-            is_simd_s = '_S_' in encoding_name and 'ldstpair' in encoding_name
+            is_simd_d = '_D_' in encoding_name and ('ldstpair' in encoding_name or 'ldstnapair' in encoding_name)
+            is_simd_s = '_S_' in encoding_name and ('ldstpair' in encoding_name or 'ldstnapair' in encoding_name)
 
             if is_simd_q:
                 # 128-bit Q registers (SIMD), scale=16
@@ -2936,6 +2936,13 @@ class ARM64XMLParser:
                 # ADR: offset is imm21 directly
                 code.append(f"{ind}int32_t offset = imm21;")
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));")
+            code.append(f"{ind}return result;")
+            return code
+
+        # Special case: Barrier instructions (DMB, DSB, ISB) - extract CRm as Barrier operand
+        if mnemonic in ['DMB', 'DSB', 'ISB'] and 'CRm' in field_map and not field_map['CRm']['is_fixed']:
+            crm_field = field_map['CRm']['name']
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Barrier, enc.{member_name}.{crm_field}, true));")
             code.append(f"{ind}return result;")
             return code
 
@@ -3079,8 +3086,8 @@ class ARM64XMLParser:
             code.append(f"{ind}return result;")
             return code
 
-        # Special case: Load/store byte/half (LDRB, STRB, LDRH, STRH) - only if required fields exist
-        if is_load_store and 'Rt' in field_map and 'Rn' in field_map and any(x in encoding_name for x in ['ldrb', 'strb', 'ldrh', 'strh', '32b_', '32h_']):
+        # Special case: Load/store byte/half (LDRB, STRB, LDRH, STRH, LDURB, STURB, LDURH, STURH) - only if required fields exist
+        if is_load_store and 'Rt' in field_map and 'Rn' in field_map and any(x in encoding_name for x in ['ldrb', 'strb', 'ldrh', 'strh', 'ldurb', 'sturb', 'ldurh', 'sturh', '32b_', '32h_']):
             rt_field = field_map['Rt']['name']
             rn_field = field_map['Rn']['name']
             imm_field = None
@@ -3093,10 +3100,11 @@ class ARM64XMLParser:
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, false));")
 
             # Determine scale for unsigned offset: halfword = 2, byte = 1
-            is_halfword = any(x in encoding_name for x in ['ldrh', 'strh', '32h_'])
-            scale_factor = 2 if is_halfword else 1
+            is_halfword = any(x in encoding_name for x in ['ldrh', 'strh', 'ldurh', 'sturh', '32h_'])
+            is_unscaled = any(x in encoding_name for x in ['ldur', 'stur'])
+            scale_factor = 2 if is_halfword and not is_unscaled else 1
 
-            # Memory operand (imm9 is 9-bit signed for pre/post, imm12 is unsigned for offset)
+            # Memory operand (imm9 is 9-bit signed for pre/post/unscaled, imm12 is unsigned for offset)
             if addr_mode == 'post_index':
                 if imm_field:
                     code.append(f"{ind}int32_t imm = (static_cast<int32_t>(enc.{member_name}.{imm_field}) << 23) >> 23;")
@@ -3110,7 +3118,11 @@ class ARM64XMLParser:
                 else:
                     code.append(f"{ind}result.operands.push_back(Operand::memory_pre_index(enc.{member_name}.{rn_field}, 0));")
             else:
-                if imm_field:
+                if imm_field and is_unscaled:
+                    # Unscaled: imm9 is signed, no scaling
+                    code.append(f"{ind}int32_t imm = (static_cast<int32_t>(enc.{member_name}.{imm_field}) << 23) >> 23;")
+                    code.append(f"{ind}result.operands.push_back(Operand::memory_offset(enc.{member_name}.{rn_field}, imm));")
+                elif imm_field:
                     if scale_factor > 1:
                         code.append(f"{ind}result.operands.push_back(Operand::memory_offset(enc.{member_name}.{rn_field}, enc.{member_name}.{imm_field} * {scale_factor}));")
                     else:
@@ -3174,6 +3186,9 @@ class ARM64XMLParser:
 
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, is_64bit));")
 
+            # Check if this is an unscaled load/store (LDUR/STUR use signed imm9, no scaling)
+            is_unscaled = mnemonic in ['LDUR', 'STUR']
+
             # Memory operand with scaling for imm12 (unsigned offset)
             if addr_mode == 'post_index':
                 if imm_field:
@@ -3188,8 +3203,12 @@ class ARM64XMLParser:
                 else:
                     code.append(f"{ind}result.operands.push_back(Operand::memory_pre_index(enc.{member_name}.{rn_field}, 0));")
             else:
-                # Unsigned offset - needs to be scaled
-                if imm_field:
+                if imm_field and is_unscaled:
+                    # Unscaled: imm9 is signed, no scaling
+                    code.append(f"{ind}int32_t imm = (static_cast<int32_t>(enc.{member_name}.{imm_field}) << 23) >> 23;")
+                    code.append(f"{ind}result.operands.push_back(Operand::memory_offset(enc.{member_name}.{rn_field}, imm));")
+                elif imm_field:
+                    # Unsigned offset - needs to be scaled
                     code.append(f"{ind}result.operands.push_back(Operand::memory_offset(enc.{member_name}.{rn_field}, enc.{member_name}.{imm_field} * scale));")
                 else:
                     code.append(f"{ind}result.operands.push_back(Operand::memory_base(enc.{member_name}.{rn_field}));")
@@ -5334,6 +5353,19 @@ class ARM64XMLParser:
             # Condition at end of operand list
             ("0x7a400000", "ccmp w0, w0, #0, eq"),         # CCMP with condition at end
             ("0x1a800000", "csel w0, w0, w0, eq"),         # CSEL with condition at end
+            # DMB barrier option
+            ("0xd50335bf", "dmb nshld"),                   # DMB with CRm=5 (nshld)
+            ("0xd50333bf", "dmb osh"),                     # DMB with CRm=3 (osh)
+            ("0xd5033fbf", "dmb sy"),                      # DMB with CRm=15 (sy)
+            # LDNP/STNP (non-temporal pair)
+            ("0xa8401c26", "ldnp x6, x7, [x1]"),          # LDNP Xt1, Xt2, [Xn]
+            ("0xa87f2488", "ldnp x8, x9, [x4, #-0x10]"),  # LDNP with negative offset
+            ("0x28402026", "ldnp w6, w8, [x1]"),           # LDNP 32-bit
+            # LDURB/STURB (unscaled byte)
+            ("0x385ff08a", "ldurb w10, [x4, #-1]"),        # LDURB with -1 offset
+            # LDUR/STUR (unscaled word/dword)
+            ("0xb85fc088", "ldur w8, [x4, #-4]"),          # LDUR W with -4 offset
+            ("0xb81fc0a8", "stur w8, [x5, #-4]"),          # STUR W with -4 offset
         ]
 
         for insn_hex, expected in test_cases:

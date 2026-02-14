@@ -94,6 +94,15 @@ int main() {
     if (check_disasm(0x54000061, "b.ne .+0xc")) passed++; else failed++;
     if (check_disasm(0x7a400000, "ccmp w0, w0, #0, eq")) passed++; else failed++;
     if (check_disasm(0x1a800000, "csel w0, w0, w0, eq")) passed++; else failed++;
+    if (check_disasm(0xd50335bf, "dmb nshld")) passed++; else failed++;
+    if (check_disasm(0xd50333bf, "dmb osh")) passed++; else failed++;
+    if (check_disasm(0xd5033fbf, "dmb sy")) passed++; else failed++;
+    if (check_disasm(0xa8401c26, "ldnp x6, x7, [x1]")) passed++; else failed++;
+    if (check_disasm(0xa87f2488, "ldnp x8, x9, [x4, #-0x10]")) passed++; else failed++;
+    if (check_disasm(0x28402026, "ldnp w6, w8, [x1]")) passed++; else failed++;
+    if (check_disasm(0x385ff08a, "ldurb w10, [x4, #-1]")) passed++; else failed++;
+    if (check_disasm(0xb85fc088, "ldur w8, [x4, #-4]")) passed++; else failed++;
+    if (check_disasm(0xb81fc0a8, "stur w8, [x5, #-4]")) passed++; else failed++;
 
     std::cout << std::endl;
     std::cout << "Passed: " << passed << "/" << (passed + failed) << std::endl;
