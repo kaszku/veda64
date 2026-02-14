@@ -7,7 +7,7 @@
 #include "../veda64.hpp"
 
 namespace veda64 {
-namespace Format {
+namespace format {
 namespace sme {
 
 // Encode functions
@@ -890,5 +890,5 @@ inline std::optional<Instruction> decode_sme(const uint8_t* bytes) {
 }
 
 } // namespace sme
-} // namespace Format
+} // namespace format
 } // namespace veda64

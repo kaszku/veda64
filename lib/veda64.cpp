@@ -1075,6 +1075,14 @@ const char* get_movi_arrangement(uint32_t insn) {
     return nullptr;
 }
 
+const char* condition_to_string(Condition cond) {
+    static const char* names[] = {"eq", "ne", "cs", "cc", "mi", "pl", "vs", "vc",
+                                   "hi", "ls", "ge", "lt", "gt", "le", "al", "nv"};
+    auto idx = static_cast<int8_t>(cond);
+    if (idx >= 0 && idx < 16) return names[idx];
+    return nullptr;
+}
+
 // Synthesize pseudo-instruction aliases
 std::optional<std::string> synthesize_alias(const Instruction& insn) {
     // MOV Aliases: ADD/ORR with sp or Rn==Rm pattern
@@ -1225,16 +1233,6 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
         return std::string("ror ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();
     }
 
-    // CSEL condition suffix (cseleq, cselne, etc.)
-    if (insn.mnemonic == Mnemonic::CSEL && insn.operands.size() >= 4 && insn.operands[3].type == OperandType::Condition) {
-        const char* conds[] = {"eq", "ne", "cs", "cc", "mi", "pl", "vs", "vc",
-                               "hi", "ls", "ge", "lt", "gt", "le", "al", "nv"};
-        uint32_t cond = insn.operands[3].value;
-        if (cond < 16) {
-            return std::string("csel") + conds[cond] + " " + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();
-        }
-    }
-
     return std::nullopt;  // No alias
 }
 
@@ -1249,11 +1247,32 @@ std::string Instruction::to_string() const {
     // Fall back to base mnemonic
     std::string result = mnemonic_to_string(mnemonic);
 
+    // For B/BC: condition is a suffix on the mnemonic (e.g., b.eq)
+    if (condition != Condition::None &&
+        (mnemonic == Mnemonic::B || mnemonic == Mnemonic::BC)) {
+        const char* cond_str = condition_to_string(condition);
+        if (cond_str) {
+            result += ".";
+            result += cond_str;
+        }
+    }
+
     if (!operands.empty()) {
         result += " ";
         for (size_t i = 0; i < operands.size(); ++i) {
             if (i > 0) result += ", ";
             result += operands[i].to_string();
+        }
+    }
+
+    // For other instructions: condition at the end (e.g., ccmp w0, w0, #0, ne)
+    if (condition != Condition::None &&
+        mnemonic != Mnemonic::B && mnemonic != Mnemonic::BC) {
+        const char* cond_str = condition_to_string(condition);
+        if (cond_str) {
+            if (!operands.empty()) result += ", ";
+            else result += " ";
+            result += cond_str;
         }
     }
 
@@ -1388,15 +1407,6 @@ std::string Operand::to_string() const {
 
         case OperandType::SystemRegister:
             return "s" + std::to_string(value);
-
-        case OperandType::Condition:
-            // Format condition codes
-            {
-                const char* conds[] = {"eq", "ne", "cs", "cc", "mi", "pl", "vs", "vc",
-                                       "hi", "ls", "ge", "lt", "gt", "le", "al", "nv"};
-                if (value < 16) return conds[value];
-                return "cond" + std::to_string(value);
-            }
 
         case OperandType::Shift:
             {

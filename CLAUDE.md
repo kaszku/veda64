@@ -8,6 +8,8 @@ veda64 is an ARM64 (AArch64) instruction encoder, decoder, and disassembler libr
 
 ## Build Commands
 
+**CMake location**: `C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe`
+
 ```bash
 # Standard build (from repo root)
 mkdir build && cd build

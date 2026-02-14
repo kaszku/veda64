@@ -1,7 +1,7 @@
 #include "format/reserved.hpp"
 
 namespace veda64 {
-namespace Format {
+namespace format {
 namespace reserved {
 
 // Encoding structures union
@@ -54,5 +54,5 @@ std::optional<Instruction> decode_reserved(uint32_t insn) {
 }
 
 } // namespace reserved
-} // namespace Format
+} // namespace format
 } // namespace veda64

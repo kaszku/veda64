@@ -7,7 +7,7 @@
 #include "../veda64.hpp"
 
 namespace veda64 {
-namespace Format {
+namespace format {
 namespace ldst {
 
 // Encode functions
@@ -1097,5 +1097,5 @@ inline std::optional<Instruction> decode_ldst(const uint8_t* bytes) {
 }
 
 } // namespace ldst
-} // namespace Format
+} // namespace format
 } // namespace veda64

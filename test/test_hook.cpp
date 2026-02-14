@@ -4,9 +4,8 @@
 // Live hook tests only run on ARM64
 #include "veda64.hpp"
 
-#if defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT)
+#if !defined(VEDA64_NO_HOOKS) && (defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT))
 
-#include "hook.hpp"
 #include <cassert>
 #include <cstdint>
 #include <cstring>
@@ -18,72 +17,72 @@ void test_initialization_lifecycle() {
     std::cout << "  test_initialization_lifecycle..." << std::endl;
 
     // Should not be initialized yet
-    Hook::shutdown(); // clean slate
-    assert(!Hook::is_initialized());
+    hook::shutdown(); // clean slate
+    assert(!hook::is_initialized());
 
     // Initialize
-    auto status = Hook::initialize();
-    assert(status == Hook::HookStatus::Success);
-    assert(Hook::is_initialized());
+    auto status = hook::initialize();
+    assert(status == hook::HookStatus::Success);
+    assert(hook::is_initialized());
 
     // Double-init is idempotent
-    status = Hook::initialize();
-    assert(status == Hook::HookStatus::Success);
-    assert(Hook::is_initialized());
+    status = hook::initialize();
+    assert(status == hook::HookStatus::Success);
+    assert(hook::is_initialized());
 
     // Shutdown
-    Hook::shutdown();
-    assert(!Hook::is_initialized());
+    hook::shutdown();
+    assert(!hook::is_initialized());
 
     // Double-shutdown is safe
-    Hook::shutdown();
-    assert(!Hook::is_initialized());
+    hook::shutdown();
+    assert(!hook::is_initialized());
 }
 
 void test_configuration() {
     std::cout << "  test_configuration..." << std::endl;
 
-    Hook::initialize();
+    hook::initialize();
 
-    Hook::HookConfig cfg;
+    hook::HookConfig cfg;
     cfg.min_hook_size = 32;
     cfg.max_relocated_insns = 64;
     cfg.thread_safe = false;
     cfg.preserve_flags = false;
     cfg.allow_chain = true;
-    Hook::set_config(cfg);
+    hook::set_config(cfg);
 
-    auto got = Hook::get_config();
+    auto got = hook::get_config();
     assert(got.min_hook_size == 32);
     assert(got.max_relocated_insns == 64);
     assert(got.thread_safe == false);
     assert(got.preserve_flags == false);
     assert(got.allow_chain == true);
 
-    Hook::shutdown();
+    hook::shutdown();
 }
 
 #ifndef VEDA64_NO_STRINGS
 void test_status_strings() {
     std::cout << "  test_status_strings..." << std::endl;
 
-    assert(Hook::status_to_string(Hook::HookStatus::Success) != nullptr);
-    assert(Hook::status_to_string(Hook::HookStatus::NotInitialized) != nullptr);
-    assert(Hook::status_to_string(Hook::HookStatus::InvalidTarget) != nullptr);
-    assert(Hook::status_to_string(Hook::HookStatus::InvalidDetour) != nullptr);
-    assert(Hook::status_to_string(Hook::HookStatus::AllocationFailed) != nullptr);
-    assert(Hook::status_to_string(Hook::HookStatus::ProtectionFailed) != nullptr);
-    assert(Hook::status_to_string(Hook::HookStatus::DisassemblyFailed) != nullptr);
-    assert(Hook::status_to_string(Hook::HookStatus::RelocationFailed) != nullptr);
-    assert(Hook::status_to_string(Hook::HookStatus::InstructionTooComplex) != nullptr);
-    assert(Hook::status_to_string(Hook::HookStatus::HookAlreadyInstalled) != nullptr);
-    assert(Hook::status_to_string(Hook::HookStatus::HookNotFound) != nullptr);
-    assert(Hook::status_to_string(Hook::HookStatus::HookDisabled) != nullptr);
-    assert(Hook::status_to_string(Hook::HookStatus::InternalError) != nullptr);
+    assert(hook::status_to_string(hook::HookStatus::Success) != nullptr);
+    assert(hook::status_to_string(hook::HookStatus::NotInitialized) != nullptr);
+    assert(hook::status_to_string(hook::HookStatus::InvalidTarget) != nullptr);
+    assert(hook::status_to_string(hook::HookStatus::InvalidDetour) != nullptr);
+    assert(hook::status_to_string(hook::HookStatus::AllocationFailed) != nullptr);
+    assert(hook::status_to_string(hook::HookStatus::ProtectionFailed) != nullptr);
+    assert(hook::status_to_string(hook::HookStatus::DisassemblyFailed) != nullptr);
+    assert(hook::status_to_string(hook::HookStatus::RelocationFailed) != nullptr);
+    assert(hook::status_to_string(hook::HookStatus::InstructionTooComplex) != nullptr);
+    assert(hook::status_to_string(hook::HookStatus::HookAlreadyInstalled) != nullptr);
+    assert(hook::status_to_string(hook::HookStatus::HookNotFound) != nullptr);
+    assert(hook::status_to_string(hook::HookStatus::HookDisabled) != nullptr);
+    assert(hook::status_to_string(hook::HookStatus::InternalError) != nullptr);
 
     // Verify specific strings are not empty
-    assert(strlen(Hook::status_to_string(Hook::HookStatus::Success)) > 0);
-    assert(strlen(Hook::status_to_string(Hook::HookStatus::InternalError)) > 0);
+    assert(strlen(hook::status_to_string(hook::HookStatus::Success)) > 0);
+    assert(strlen(hook::status_to_string(hook::HookStatus::InternalError)) > 0);
 }
 #endif
 
@@ -91,31 +90,32 @@ void test_error_handling() {
     std::cout << "  test_error_handling..." << std::endl;
 
     // Ensure not initialized
-    Hook::shutdown();
+    hook::shutdown();
 
     // install before initialize should fail
-    Hook::HookStatus status;
+    hook::HookStatus status;
     int dummy_target = 0;
     int dummy_detour = 0;
     void* original = nullptr;
-    auto handle = Hook::install_ex(&dummy_target, &dummy_detour, &original, &status);
+    hook::HookHandle handle = nullptr;
+    status = hook::install(&dummy_target, &dummy_detour, &original, &handle);
     assert(handle == nullptr);
-    assert(status == Hook::HookStatus::NotInitialized);
+    assert(status == hook::HookStatus::NotInitialized);
 
     // Initialize for remaining tests
-    Hook::initialize();
+    hook::initialize();
 
     // null target should fail
-    handle = Hook::install_ex(nullptr, &dummy_detour, &original, &status);
+    status = hook::install(nullptr, &dummy_detour, &original, &handle);
     assert(handle == nullptr);
-    assert(status == Hook::HookStatus::InvalidTarget);
+    assert(status == hook::HookStatus::InvalidTarget);
 
     // null detour should fail
-    handle = Hook::install_ex(&dummy_target, nullptr, &original, &status);
+    status = hook::install(&dummy_target, nullptr, &original, &handle);
     assert(handle == nullptr);
-    assert(status == Hook::HookStatus::InvalidDetour);
+    assert(status == hook::HookStatus::InvalidDetour);
 
-    Hook::shutdown();
+    hook::shutdown();
 }
 
 void test_generate_jump() {
@@ -123,7 +123,7 @@ void test_generate_jump() {
 
     uint8_t buffer[16] = {};
     void* target = reinterpret_cast<void*>(static_cast<uintptr_t>(0xDEADBEEFCAFE0000ULL));
-    size_t written = Hook::Detail::generate_jump(buffer, target);
+    size_t written = hook::detail::generate_jump(buffer, target);
     (void)written;
 
     assert(written == 16);
@@ -149,7 +149,7 @@ void test_generate_call() {
 
     uint8_t buffer[16] = {};
     void* target = reinterpret_cast<void*>(static_cast<uintptr_t>(0x1234567890ABCDEFULL));
-    size_t written = Hook::Detail::generate_call(buffer, target);
+    size_t written = hook::detail::generate_call(buffer, target);
     (void)written;
 
     assert(written == 16);
@@ -174,33 +174,33 @@ void test_is_pc_relative() {
     std::cout << "  test_is_pc_relative..." << std::endl;
 
     // PC-relative instructions should return true
-    assert(Hook::Detail::is_pc_relative(0x14000001));  // B .+4
-    assert(Hook::Detail::is_pc_relative(0x97fa94a3));  // BL offset
-    assert(Hook::Detail::is_pc_relative(0x54000040));  // B.EQ .+8
-    assert(Hook::Detail::is_pc_relative(0x34000060));  // CBZ W0, .+0xC
-    assert(Hook::Detail::is_pc_relative(0x35000068));  // CBNZ W8, .+0xC
-    assert(Hook::Detail::is_pc_relative(0x36080040));  // TBZ W0, #1, .+8
-    assert(Hook::Detail::is_pc_relative(0x37f800a0));  // TBNZ X0, #31, .+0x14
-    assert(Hook::Detail::is_pc_relative(0x10000020));  // ADR X0, .+4
-    assert(Hook::Detail::is_pc_relative(0x90000000));  // ADRP X0, current page
+    assert(hook::detail::is_pc_relative(0x14000001));  // B .+4
+    assert(hook::detail::is_pc_relative(0x97fa94a3));  // BL offset
+    assert(hook::detail::is_pc_relative(0x54000040));  // B.EQ .+8
+    assert(hook::detail::is_pc_relative(0x34000060));  // CBZ W0, .+0xC
+    assert(hook::detail::is_pc_relative(0x35000068));  // CBNZ W8, .+0xC
+    assert(hook::detail::is_pc_relative(0x36080040));  // TBZ W0, #1, .+8
+    assert(hook::detail::is_pc_relative(0x37f800a0));  // TBNZ X0, #31, .+0x14
+    assert(hook::detail::is_pc_relative(0x10000020));  // ADR X0, .+4
+    assert(hook::detail::is_pc_relative(0x90000000));  // ADRP X0, current page
 
     // Non-PC-relative instructions should return false
-    assert(!Hook::Detail::is_pc_relative(0x8b020020));  // ADD X0, X1, X2
-    assert(!Hook::Detail::is_pc_relative(0x910003fd));  // MOV FP, SP
-    assert(!Hook::Detail::is_pc_relative(0xd503201f));  // NOP
-    assert(!Hook::Detail::is_pc_relative(0xd65f03c0));  // RET
+    assert(!hook::detail::is_pc_relative(0x8b020020));  // ADD X0, X1, X2
+    assert(!hook::detail::is_pc_relative(0x910003fd));  // MOV FP, SP
+    assert(!hook::detail::is_pc_relative(0xd503201f));  // NOP
+    assert(!hook::detail::is_pc_relative(0xd65f03c0));  // RET
 }
 
 void test_can_relocate() {
     std::cout << "  test_can_relocate..." << std::endl;
 
     // Relocatable instructions
-    assert(Hook::Detail::can_relocate(0x14000001));  // B .+4
-    assert(Hook::Detail::can_relocate(0x8b020020));  // ADD X0, X1, X2
-    assert(Hook::Detail::can_relocate(0xd503201f));  // NOP
+    assert(hook::detail::can_relocate(0x14000001));  // B .+4
+    assert(hook::detail::can_relocate(0x8b020020));  // ADD X0, X1, X2
+    assert(hook::detail::can_relocate(0xd503201f));  // NOP
 
     // Non-relocatable instructions
-    assert(!Hook::Detail::can_relocate(0xd65f03c0));  // RET
+    assert(!hook::detail::can_relocate(0xd65f03c0));  // RET
 }
 
 void test_relocate_instruction() {
@@ -211,14 +211,14 @@ void test_relocate_instruction() {
     bool ok;
 
     // Non-PC-relative (ADD) should be copied unchanged
-    ok = Hook::Detail::relocate_instruction(0x8b020020, 0x1000, 0x2000, out_insn, &out_count);
+    ok = hook::detail::relocate_instruction(0x8b020020, 0x1000, 0x2000, out_insn, &out_count);
     assert(ok);
     assert(out_count == 1);
     assert(out_insn[0] == 0x8b020020);
 
     // B .+4 relocated from 0x1000 to 0x2000
     // target=0x1004, new_offset=0x1004-0x2000=-0xFFC
-    ok = Hook::Detail::relocate_instruction(0x14000001, 0x1000, 0x2000, out_insn, &out_count);
+    ok = hook::detail::relocate_instruction(0x14000001, 0x1000, 0x2000, out_insn, &out_count);
     assert(ok);
     assert(out_count == 1);
     // new_imm26 = (-0xFFC / 4) & 0x03FFFFFF = 0x03FFFC01
@@ -226,7 +226,7 @@ void test_relocate_instruction() {
 
     // B.EQ .+8 relocated from 0x1000 to 0x3000
     // target=0x1008, new_offset=0x1008-0x3000=-0x1FF8
-    ok = Hook::Detail::relocate_instruction(0x54000040, 0x1000, 0x3000, out_insn, &out_count);
+    ok = hook::detail::relocate_instruction(0x54000040, 0x1000, 0x3000, out_insn, &out_count);
     assert(ok);
     assert(out_count == 1);
     // new_imm19 = (-0x1FF8 / 4) & 0x7FFFF = 0x7F802
@@ -235,7 +235,7 @@ void test_relocate_instruction() {
 
     // CBZ W0, .+0xC relocated from 0x1000 to 0x2000
     // target=0x100C, new_offset=0x100C-0x2000=-0xFF4
-    ok = Hook::Detail::relocate_instruction(0x34000060, 0x1000, 0x2000, out_insn, &out_count);
+    ok = hook::detail::relocate_instruction(0x34000060, 0x1000, 0x2000, out_insn, &out_count);
     assert(ok);
     assert(out_count == 1);
     // new_imm19 = (-0xFF4 / 4) & 0x7FFFF = 0x7FC03
@@ -244,7 +244,7 @@ void test_relocate_instruction() {
 
     // TBZ W0, #1, .+8 relocated from 0x1000 to 0x2000
     // target=0x1008, new_offset=0x1008-0x2000=-0xFF8
-    ok = Hook::Detail::relocate_instruction(0x36080040, 0x1000, 0x2000, out_insn, &out_count);
+    ok = hook::detail::relocate_instruction(0x36080040, 0x1000, 0x2000, out_insn, &out_count);
     assert(ok);
     assert(out_count == 1);
     // new_imm14 = (-0xFF8 / 4) & 0x3FFF = 0x3C02
@@ -253,7 +253,7 @@ void test_relocate_instruction() {
 
     // ADR X0, .+4 relocated from 0x1000 to 0x5000
     // target=0x1004, new_offset=0x1004-0x5000=-0x3FFC
-    ok = Hook::Detail::relocate_instruction(0x10000020, 0x1000, 0x5000, out_insn, &out_count);
+    ok = hook::detail::relocate_instruction(0x10000020, 0x1000, 0x5000, out_insn, &out_count);
     assert(ok);
     assert(out_count == 1);
     // new_imm21 = -0x3FFC & 0x1FFFFF = 0x1C0004
@@ -272,7 +272,7 @@ void test_relocate_instruction() {
     // ADRP X0, 0 relocated from 0x1000 to 0x5000
     // target_page = (0x1000 & ~0xFFF) + 0 = 0x1000
     // new_offset = 0x1000 - (0x5000 & ~0xFFF) = 0x1000 - 0x5000 = -0x4000
-    ok = Hook::Detail::relocate_instruction(0x90000000, 0x1000, 0x5000, out_insn, &out_count);
+    ok = hook::detail::relocate_instruction(0x90000000, 0x1000, 0x5000, out_insn, &out_count);
     assert(ok);
     assert(out_count == 1);
     {
@@ -310,15 +310,15 @@ static int detour_func(int a, int b) {
 
 // Helper: configure hook for testing (disable thread suspension)
 static void setup_test_config() {
-    Hook::HookConfig cfg;
+    hook::HookConfig cfg;
     cfg.thread_safe = false;  // Avoid NT thread enumeration in tests
-    Hook::set_config(cfg);
+    hook::set_config(cfg);
 }
 
 void test_live_hook() {
     std::cout << "  test_live_hook..." << std::endl;
 
-    Hook::initialize();
+    hook::initialize();
     setup_test_config();
     g_hook_called = 0;
 
@@ -326,15 +326,21 @@ void test_live_hook() {
     assert(target_func(3, 4) == 7);
     assert(g_hook_called == 0);
 
-    // Install hook
-    Hook::HookStatus status;
-    auto handle = Hook::install_ex(
+    // Install hook (starts disabled)
+    hook::HookHandle handle = nullptr;
+    auto status = hook::install(
         reinterpret_cast<void*>(&target_func),
         reinterpret_cast<void*>(&detour_func),
         reinterpret_cast<void**>(&original_func),
-        &status);
+        &handle);
     assert(handle != nullptr);
-    assert(status == Hook::HookStatus::Success);
+    assert(status == hook::HookStatus::Success);
+    assert(!hook::is_enabled(handle));
+
+    // Enable the hook
+    status = hook::enable(handle);
+    assert(status == hook::HookStatus::Success);
+    assert(hook::is_enabled(handle));
 
     // Call through hook - detour should be called
     int result = target_func(3, 4);
@@ -347,9 +353,9 @@ void test_live_hook() {
     assert(g_hook_called == 1);  // detour not called via trampoline
 
     // Remove hook
-    auto rem_status = Hook::remove(handle);
+    auto rem_status = hook::remove(handle);
     (void)rem_status;
-    assert(rem_status == Hook::HookStatus::Success);
+    assert(rem_status == hook::HookStatus::Success);
 
     // Verify original behavior restored
     g_hook_called = 0;
@@ -357,29 +363,34 @@ void test_live_hook() {
     assert(result == 11);
     assert(g_hook_called == 0);
 
-    Hook::shutdown();
+    hook::shutdown();
 }
 
 void test_hook_enable_disable() {
     std::cout << "  test_hook_enable_disable..." << std::endl;
 
-    Hook::initialize();
+    hook::initialize();
     setup_test_config();
     g_hook_called = 0;
 
-    Hook::HookStatus status;
-    auto handle = Hook::install_ex(
+    hook::HookHandle handle = nullptr;
+    auto status = hook::install(
         reinterpret_cast<void*>(&target_func),
         reinterpret_cast<void*>(&detour_func),
         reinterpret_cast<void**>(&original_func),
-        &status);
+        &handle);
     assert(handle != nullptr);
-    assert(Hook::is_enabled(handle));
+    assert(!hook::is_enabled(handle));  // Starts disabled
+
+    // Enable hook first
+    status = hook::enable(handle);
+    assert(status == hook::HookStatus::Success);
+    assert(hook::is_enabled(handle));
 
     // Disable hook
-    status = Hook::disable(handle);
-    assert(status == Hook::HookStatus::Success);
-    assert(!Hook::is_enabled(handle));
+    status = hook::disable(handle);
+    assert(status == hook::HookStatus::Success);
+    assert(!hook::is_enabled(handle));
 
     // Call should go to original
     g_hook_called = 0;
@@ -387,70 +398,71 @@ void test_hook_enable_disable() {
     assert(g_hook_called == 0);
 
     // Re-enable hook
-    status = Hook::enable(handle);
-    assert(status == Hook::HookStatus::Success);
-    assert(Hook::is_enabled(handle));
+    status = hook::enable(handle);
+    assert(status == hook::HookStatus::Success);
+    assert(hook::is_enabled(handle));
 
     // Call should go through detour again
     assert(target_func(1, 2) == 3);
     assert(g_hook_called == 1);
 
-    Hook::remove(handle);
-    Hook::shutdown();
+    hook::remove(handle);
+    hook::shutdown();
 }
 
 void test_hook_info() {
     std::cout << "  test_hook_info..." << std::endl;
 
-    Hook::initialize();
+    hook::initialize();
     setup_test_config();
 
-    Hook::HookStatus status;
-    auto handle = Hook::install_ex(
+    hook::HookHandle handle = nullptr;
+    auto status = hook::install(
         reinterpret_cast<void*>(&target_func),
         reinterpret_cast<void*>(&detour_func),
         reinterpret_cast<void**>(&original_func),
-        &status);
+        &handle);
+    (void)status;
     assert(handle != nullptr);
 
-    assert(Hook::get_target(handle) == reinterpret_cast<void*>(&target_func));
-    assert(Hook::get_detour(handle) == reinterpret_cast<void*>(&detour_func));
-    assert(Hook::get_trampoline(handle) != nullptr);
-    assert(Hook::get_hook_size(handle) >= 16);
-    assert(Hook::get_relocated_count(handle) > 0);
+    assert(hook::get_target(handle) == reinterpret_cast<void*>(&target_func));
+    assert(hook::get_detour(handle) == reinterpret_cast<void*>(&detour_func));
+    assert(hook::get_trampoline(handle) != nullptr);
+    assert(hook::get_hook_size(handle) >= 16);
+    assert(hook::get_relocated_count(handle) > 0);
 
-    Hook::remove(handle);
-    Hook::shutdown();
+    hook::remove(handle);
+    hook::shutdown();
 }
 
 void test_double_hook_rejection() {
     std::cout << "  test_double_hook_rejection..." << std::endl;
 
-    Hook::initialize();
+    hook::initialize();
     setup_test_config();
 
-    Hook::HookStatus status;
     void* orig1 = nullptr;
     void* orig2 = nullptr;
+    hook::HookHandle handle1 = nullptr;
+    hook::HookHandle handle2 = nullptr;
 
-    auto handle1 = Hook::install_ex(
+    auto status = hook::install(
         reinterpret_cast<void*>(&target_func),
         reinterpret_cast<void*>(&detour_func),
-        &orig1, &status);
+        &orig1, &handle1);
     assert(handle1 != nullptr);
-    assert(status == Hook::HookStatus::Success);
+    assert(status == hook::HookStatus::Success);
 
     // Second hook on same target should fail
-    auto handle2 = Hook::install_ex(
+    status = hook::install(
         reinterpret_cast<void*>(&target_func),
         reinterpret_cast<void*>(&detour_func),
-        &orig2, &status);
-    (void)handle2;
+        &orig2, &handle2);
     assert(handle2 == nullptr);
-    assert(status == Hook::HookStatus::HookAlreadyInstalled);
+    assert(status == hook::HookStatus::HookAlreadyInstalled);
 
-    Hook::remove(handle1);
-    Hook::shutdown();
+    hook::remove(handle1);
+    hook::shutdown();
 }
 
 #endif // _M_ARM64 || __aarch64__
@@ -485,13 +497,13 @@ int main() {
     return 0;
 }
 
-#else // !(_WIN32 || VEDA64_HOOK_SUPPORT)
+#else // VEDA64_NO_HOOKS || !(_WIN32 || VEDA64_HOOK_SUPPORT)
 
 // Hook support not available on this platform
 #include <iostream>
 int main() {
-    std::cout << "Hook tests skipped (not on Windows)" << std::endl;
+    std::cout << "Hook tests skipped (hooks disabled or not on Windows)" << std::endl;
     return 0;
 }
 
-#endif // _WIN32 || VEDA64_HOOK_SUPPORT
+#endif // !VEDA64_NO_HOOKS && (_WIN32 || VEDA64_HOOK_SUPPORT)

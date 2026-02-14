@@ -1,7 +1,7 @@
 #include "format/dpreg.hpp"
 
 namespace veda64 {
-namespace Format {
+namespace format {
 namespace dpreg {
 
 // Encoding structures union
@@ -6926,7 +6926,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc32condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc32condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc32condsel.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.cinc_csinc32condsel.cond, true));
+                        result.condition = static_cast<Condition>(enc.cinc_csinc32condsel.cond);
                         return result;
         }
         case 0x5A9FE3E0u: { // CINV_CSINV_32_condsel
@@ -6938,7 +6938,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv32condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv32condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv32condsel.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.cinv_csinv32condsel.cond, true));
+                        result.condition = static_cast<Condition>(enc.cinv_csinv32condsel.cond);
                         return result;
         }
         case 0x9A9FE7E0u: { // CINC_CSINC_64_condsel
@@ -6950,7 +6950,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc64condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc64condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc64condsel.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.cinc_csinc64condsel.cond, true));
+                        result.condition = static_cast<Condition>(enc.cinc_csinc64condsel.cond);
                         return result;
         }
         case 0xDA9FE3E0u: { // CINV_CSINV_64_condsel
@@ -6962,7 +6962,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv64condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv64condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv64condsel.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.cinv_csinv64condsel.cond, true));
+                        result.condition = static_cast<Condition>(enc.cinv_csinv64condsel.cond);
                         return result;
         }
         default: break;
@@ -7571,7 +7571,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg32condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg32condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg32condsel.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.cneg_csneg32condsel.cond, true));
+                        result.condition = static_cast<Condition>(enc.cneg_csneg32condsel.cond);
                         return result;
         }
         case 0xDA80E400u: { // CNEG_CSNEG_64_condsel
@@ -7582,7 +7582,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg64condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg64condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg64condsel.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.cneg_csneg64condsel.cond, true));
+                        result.condition = static_cast<Condition>(enc.cneg_csneg64condsel.cond);
                         return result;
         }
         default: break;
@@ -7754,7 +7754,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmn32condcmp_reg.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmn32condcmp_reg.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.ccmn32condcmp_reg.cond, true));
+                        result.condition = static_cast<Condition>(enc.ccmn32condcmp_reg.cond);
                         result.operands.push_back(Operand(OperandType::Immediate, enc.ccmn32condcmp_reg.nzcv, true));
                         return result;
         }
@@ -7765,7 +7765,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmn32condcmp_imm.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.ccmn32condcmp_imm.imm5, true));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.ccmn32condcmp_imm.cond, true));
+                        result.condition = static_cast<Condition>(enc.ccmn32condcmp_imm.cond);
                         result.operands.push_back(Operand(OperandType::Immediate, enc.ccmn32condcmp_imm.nzcv, true));
                         return result;
         }
@@ -7776,7 +7776,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmp32condcmp_reg.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmp32condcmp_reg.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.ccmp32condcmp_reg.cond, true));
+                        result.condition = static_cast<Condition>(enc.ccmp32condcmp_reg.cond);
                         result.operands.push_back(Operand(OperandType::Immediate, enc.ccmp32condcmp_reg.nzcv, true));
                         return result;
         }
@@ -7787,7 +7787,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmp32condcmp_imm.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.ccmp32condcmp_imm.imm5, true));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.ccmp32condcmp_imm.cond, true));
+                        result.condition = static_cast<Condition>(enc.ccmp32condcmp_imm.cond);
                         result.operands.push_back(Operand(OperandType::Immediate, enc.ccmp32condcmp_imm.nzcv, true));
                         return result;
         }
@@ -7798,7 +7798,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmn64condcmp_reg.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmn64condcmp_reg.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.ccmn64condcmp_reg.cond, true));
+                        result.condition = static_cast<Condition>(enc.ccmn64condcmp_reg.cond);
                         result.operands.push_back(Operand(OperandType::Immediate, enc.ccmn64condcmp_reg.nzcv, true));
                         return result;
         }
@@ -7809,7 +7809,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmn64condcmp_imm.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.ccmn64condcmp_imm.imm5, true));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.ccmn64condcmp_imm.cond, true));
+                        result.condition = static_cast<Condition>(enc.ccmn64condcmp_imm.cond);
                         result.operands.push_back(Operand(OperandType::Immediate, enc.ccmn64condcmp_imm.nzcv, true));
                         return result;
         }
@@ -7820,7 +7820,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmp64condcmp_reg.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmp64condcmp_reg.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.ccmp64condcmp_reg.cond, true));
+                        result.condition = static_cast<Condition>(enc.ccmp64condcmp_reg.cond);
                         result.operands.push_back(Operand(OperandType::Immediate, enc.ccmp64condcmp_reg.nzcv, true));
                         return result;
         }
@@ -7831,7 +7831,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ccmp64condcmp_imm.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.ccmp64condcmp_imm.imm5, true));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.ccmp64condcmp_imm.cond, true));
+                        result.condition = static_cast<Condition>(enc.ccmp64condcmp_imm.cond);
                         result.operands.push_back(Operand(OperandType::Immediate, enc.ccmp64condcmp_imm.nzcv, true));
                         return result;
         }
@@ -7848,7 +7848,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.csel32condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csel32condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csel32condsel.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.csel32condsel.cond, true));
+                        result.condition = static_cast<Condition>(enc.csel32condsel.cond);
                         return result;
         }
         case 0x1A800400u: { // CSINC_32_condsel
@@ -7859,7 +7859,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.csinc32condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csinc32condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csinc32condsel.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.csinc32condsel.cond, true));
+                        result.condition = static_cast<Condition>(enc.csinc32condsel.cond);
                         return result;
         }
         case 0x5A800000u: { // CSINV_32_condsel
@@ -7870,7 +7870,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.csinv32condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csinv32condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csinv32condsel.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.csinv32condsel.cond, true));
+                        result.condition = static_cast<Condition>(enc.csinv32condsel.cond);
                         return result;
         }
         case 0x5A800400u: { // CSNEG_32_condsel
@@ -7881,7 +7881,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.csneg32condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csneg32condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csneg32condsel.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.csneg32condsel.cond, true));
+                        result.condition = static_cast<Condition>(enc.csneg32condsel.cond);
                         return result;
         }
         case 0x9A800000u: { // CSEL_64_condsel
@@ -7892,7 +7892,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.csel64condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csel64condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csel64condsel.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.csel64condsel.cond, true));
+                        result.condition = static_cast<Condition>(enc.csel64condsel.cond);
                         return result;
         }
         case 0x9A800400u: { // CSINC_64_condsel
@@ -7903,7 +7903,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.csinc64condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csinc64condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csinc64condsel.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.csinc64condsel.cond, true));
+                        result.condition = static_cast<Condition>(enc.csinc64condsel.cond);
                         return result;
         }
         case 0xDA800000u: { // CSINV_64_condsel
@@ -7914,7 +7914,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.csinv64condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csinv64condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csinv64condsel.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.csinv64condsel.cond, true));
+                        result.condition = static_cast<Condition>(enc.csinv64condsel.cond);
                         return result;
         }
         case 0xDA800400u: { // CSNEG_64_condsel
@@ -7925,7 +7925,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.csneg64condsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csneg64condsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.csneg64condsel.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.csneg64condsel.cond, true));
+                        result.condition = static_cast<Condition>(enc.csneg64condsel.cond);
                         return result;
         }
         default: break;
@@ -8742,5 +8742,5 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
 }
 
 } // namespace dpreg
-} // namespace Format
+} // namespace format
 } // namespace veda64

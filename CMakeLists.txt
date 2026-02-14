@@ -9,6 +9,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # Option to reduce binary size and remove strings
 option(VEDA64_NO_STRINGS "Disable all string functions (to_string, mnemonic_to_string, status_to_string, dump_hook)" OFF)
 option(VEDA64_BUILD_TESTS "Build test executables" ON)
+option(VEDA64_HOOK "Enable inline hooking support (Windows only)" ON)
 
 # Compiler warnings
 if(MSVC)
@@ -25,6 +26,12 @@ endif()
 # Collect all source files
 file(GLOB_RECURSE VEDA64_SOURCES "lib/*.cpp")
 
+# Hook support
+if(NOT VEDA64_HOOK)
+    list(REMOVE_ITEM VEDA64_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/lib/hook.cpp")
+    add_compile_definitions(VEDA64_NO_HOOKS)
+endif()
+
 # Create library
 add_library(veda64 ${VEDA64_SOURCES})
 target_include_directories(veda64 PUBLIC
@@ -32,8 +39,8 @@ target_include_directories(veda64 PUBLIC
     $<INSTALL_INTERFACE:include>
 )
 
-# Link ntdll for NT syscalls on Windows
-if(WIN32)
+# Link ntdll for NT syscalls on Windows (only when hooks are enabled)
+if(WIN32 AND VEDA64_HOOK)
     target_link_libraries(veda64 PUBLIC ntdll)
 endif()
 

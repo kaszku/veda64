@@ -3,10 +3,10 @@
 // Uses direct NT syscalls instead of Win32 API for stealth
 // Auto-generated - do not edit
 
-#include "hook.hpp"
+#include "veda64.hpp"
 
-// Only compile on Windows
-#if defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT)
+// Only compile when hooks are enabled
+#if !defined(VEDA64_NO_HOOKS) && (defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT))
 
 #include <Windows.h>
 #include <vector>
@@ -231,7 +231,7 @@ static DWORD nt_get_current_process_id() {
 }
 
 namespace veda64 {
-namespace Hook {
+namespace hook {
 
 // ============================================================================
 // Internal structures
@@ -354,7 +354,7 @@ bool is_initialized() {
 // Low-level memory operations (using NT syscalls)
 // ============================================================================
 
-namespace Detail {
+namespace detail {
 
 void* alloc_executable_near(void* target, size_t size) {
     // Try to allocate RWX memory near the target for PC-relative instructions
@@ -894,7 +894,7 @@ bool relocate_instruction(
     }
 }
 
-} // namespace Detail
+} // namespace detail
 
 // ============================================================================
 // Hook installation
@@ -908,7 +908,7 @@ static Trampoline create_trampoline(void* target, size_t hook_size, HookStatus* 
     size_t max_size = (hook_size / 4) * 16 + 16;  // Worst case expansion + jump
 
     // Allocate near the target for PC-relative instruction relocation
-    tramp.code = static_cast<uint8_t*>(Detail::alloc_executable_near(target, max_size));
+    tramp.code = static_cast<uint8_t*>(detail::alloc_executable_near(target, max_size));
     if (!tramp.code) {
         *status = HookStatus::AllocationFailed;
         return tramp;
@@ -927,9 +927,9 @@ static Trampoline create_trampoline(void* target, size_t hook_size, HookStatus* 
         uint32_t insn = *reinterpret_cast<uint32_t*>(src + src_offset);
 
         // Check if we can relocate this instruction
-        if (!Detail::can_relocate(insn)) {
+        if (!detail::can_relocate(insn)) {
             *status = HookStatus::InstructionTooComplex;
-            Detail::free_executable(tramp.code, tramp.code_size);
+            detail::free_executable(tramp.code, tramp.code_size);
             tramp.code = nullptr;
             return tramp;
         }
@@ -938,7 +938,7 @@ static Trampoline create_trampoline(void* target, size_t hook_size, HookStatus* 
         uint32_t relocated[4];
         size_t relocated_count = 0;
 
-        if (!Detail::relocate_instruction(
+        if (!detail::relocate_instruction(
             insn,
             src_pc + src_offset,
             dst_pc + dst_offset,
@@ -946,7 +946,7 @@ static Trampoline create_trampoline(void* target, size_t hook_size, HookStatus* 
             &relocated_count
         )) {
             *status = HookStatus::RelocationFailed;
-            Detail::free_executable(tramp.code, tramp.code_size);
+            detail::free_executable(tramp.code, tramp.code_size);
             tramp.code = nullptr;
             return tramp;
         }
@@ -963,31 +963,30 @@ static Trampoline create_trampoline(void* target, size_t hook_size, HookStatus* 
 
     // Add jump back to original code after hook
     void* return_addr = static_cast<uint8_t*>(target) + hook_size;
-    dst_offset += Detail::generate_jump(dst + dst_offset, return_addr);
+    dst_offset += detail::generate_jump(dst + dst_offset, return_addr);
 
     tramp.used_size = dst_offset;
 
     // Flush instruction cache for trampoline
-    Detail::flush_icache(tramp.code, tramp.used_size);
+    detail::flush_icache(tramp.code, tramp.used_size);
 
     *status = HookStatus::Success;
     return tramp;
 }
 
-HookHandle install_ex(void* target, void* detour, void** original, HookStatus* status) {
+HookStatus install(void* target, void* detour, void** original, HookHandle* handle) {
+    if (handle) *handle = nullptr;
+
     if (!g_state.initialized) {
-        *status = HookStatus::NotInitialized;
-        return nullptr;
+        return HookStatus::NotInitialized;
     }
 
     if (!target) {
-        *status = HookStatus::InvalidTarget;
-        return nullptr;
+        return HookStatus::InvalidTarget;
     }
 
     if (!detour) {
-        *status = HookStatus::InvalidDetour;
-        return nullptr;
+        return HookStatus::InvalidDetour;
     }
 
     std::lock_guard<std::mutex> lock(g_state.mutex);
@@ -995,8 +994,7 @@ HookHandle install_ex(void* target, void* detour, void** original, HookStatus* s
     // Check if already hooked
     if (g_state.target_map.find(target) != g_state.target_map.end()) {
         if (!g_state.config.allow_chain) {
-            *status = HookStatus::HookAlreadyInstalled;
-            return nullptr;
+            return HookStatus::HookAlreadyInstalled;
         }
     }
 
@@ -1022,30 +1020,18 @@ HookHandle install_ex(void* target, void* detour, void** original, HookStatus* s
     std::memcpy(ctx->original_bytes, target, ctx->hook_size);
 
     // Create trampoline
-    ctx->trampoline = create_trampoline(target, ctx->hook_size, status);
+    HookStatus tramp_status;
+    ctx->trampoline = create_trampoline(target, ctx->hook_size, &tramp_status);
     if (!ctx->trampoline.code) {
         delete ctx;
-        return nullptr;
+        return tramp_status;
     }
 
-    // Generate hook jump sequence
-    Detail::generate_jump(ctx->hook_bytes, detour);
+    // Generate hook jump sequence (stored but not yet written to target)
+    detail::generate_jump(ctx->hook_bytes, detour);
 
-    // Install hook
-    if (g_state.config.thread_safe) {
-        Detail::suspend_threads();
-    }
-
-    uint32_t old_protect = Detail::make_writable(target, ctx->hook_size);
-    std::memcpy(target, ctx->hook_bytes, ctx->hook_size);
-    Detail::restore_protection(target, ctx->hook_size, old_protect);
-    Detail::flush_icache(target, ctx->hook_size);
-
-    if (g_state.config.thread_safe) {
-        Detail::resume_threads();
-    }
-
-    ctx->enabled = true;
+    // Hook starts disabled — call enable() to activate
+    ctx->enabled = false;
     ctx->valid = true;
 
     // Store hook in global state
@@ -1057,13 +1043,11 @@ HookHandle install_ex(void* target, void* detour, void** original, HookStatus* s
         *original = ctx->trampoline.code;
     }
 
-    *status = HookStatus::Success;
-    return ctx;
-}
+    if (handle) {
+        *handle = ctx;
+    }
 
-HookHandle install(void* target, void* detour, void** original) {
-    HookStatus status;
-    return install_ex(target, detour, original, &status);
+    return HookStatus::Success;
 }
 
 // ============================================================================
@@ -1092,22 +1076,22 @@ HookStatus remove(HookHandle handle) {
     // Restore original bytes
     if (ctx->enabled) {
         if (g_state.config.thread_safe) {
-            Detail::suspend_threads();
+            detail::suspend_threads();
         }
 
-        uint32_t old_protect = Detail::make_writable(ctx->target, ctx->hook_size);
+        uint32_t old_protect = detail::make_writable(ctx->target, ctx->hook_size);
         std::memcpy(ctx->target, ctx->original_bytes, ctx->hook_size);
-        Detail::restore_protection(ctx->target, ctx->hook_size, old_protect);
-        Detail::flush_icache(ctx->target, ctx->hook_size);
+        detail::restore_protection(ctx->target, ctx->hook_size, old_protect);
+        detail::flush_icache(ctx->target, ctx->hook_size);
 
         if (g_state.config.thread_safe) {
-            Detail::resume_threads();
+            detail::resume_threads();
         }
     }
 
     // Free trampoline
     if (ctx->trampoline.code) {
-        Detail::free_executable(ctx->trampoline.code, ctx->trampoline.code_size);
+        detail::free_executable(ctx->trampoline.code, ctx->trampoline.code_size);
     }
 
     // Remove from global state
@@ -1159,16 +1143,16 @@ HookStatus enable(HookHandle handle) {
 
     // Install hook bytes
     if (g_state.config.thread_safe) {
-        Detail::suspend_threads();
+        detail::suspend_threads();
     }
 
-    uint32_t old_protect = Detail::make_writable(handle->target, handle->hook_size);
+    uint32_t old_protect = detail::make_writable(handle->target, handle->hook_size);
     std::memcpy(handle->target, handle->hook_bytes, handle->hook_size);
-    Detail::restore_protection(handle->target, handle->hook_size, old_protect);
-    Detail::flush_icache(handle->target, handle->hook_size);
+    detail::restore_protection(handle->target, handle->hook_size, old_protect);
+    detail::flush_icache(handle->target, handle->hook_size);
 
     if (g_state.config.thread_safe) {
-        Detail::resume_threads();
+        detail::resume_threads();
     }
 
     handle->enabled = true;
@@ -1192,16 +1176,16 @@ HookStatus disable(HookHandle handle) {
 
     // Restore original bytes
     if (g_state.config.thread_safe) {
-        Detail::suspend_threads();
+        detail::suspend_threads();
     }
 
-    uint32_t old_protect = Detail::make_writable(handle->target, handle->hook_size);
+    uint32_t old_protect = detail::make_writable(handle->target, handle->hook_size);
     std::memcpy(handle->target, handle->original_bytes, handle->hook_size);
-    Detail::restore_protection(handle->target, handle->hook_size, old_protect);
-    Detail::flush_icache(handle->target, handle->hook_size);
+    detail::restore_protection(handle->target, handle->hook_size, old_protect);
+    detail::flush_icache(handle->target, handle->hook_size);
 
     if (g_state.config.thread_safe) {
-        Detail::resume_threads();
+        detail::resume_threads();
     }
 
     handle->enabled = false;
@@ -1213,6 +1197,62 @@ bool is_enabled(HookHandle handle) {
         return false;
     }
     return handle->enabled;
+}
+
+HookStatus enable_all() {
+    if (!g_state.initialized) {
+        return HookStatus::NotInitialized;
+    }
+
+    std::lock_guard<std::mutex> lock(g_state.mutex);
+
+    if (g_state.config.thread_safe) {
+        detail::suspend_threads();
+    }
+
+    HookStatus result = HookStatus::Success;
+    for (auto* ctx : g_state.hooks) {
+        if (!ctx->valid || ctx->enabled) continue;
+        uint32_t old_protect = detail::make_writable(ctx->target, ctx->hook_size);
+        std::memcpy(ctx->target, ctx->hook_bytes, ctx->hook_size);
+        detail::restore_protection(ctx->target, ctx->hook_size, old_protect);
+        detail::flush_icache(ctx->target, ctx->hook_size);
+        ctx->enabled = true;
+    }
+
+    if (g_state.config.thread_safe) {
+        detail::resume_threads();
+    }
+
+    return result;
+}
+
+HookStatus disable_all() {
+    if (!g_state.initialized) {
+        return HookStatus::NotInitialized;
+    }
+
+    std::lock_guard<std::mutex> lock(g_state.mutex);
+
+    if (g_state.config.thread_safe) {
+        detail::suspend_threads();
+    }
+
+    HookStatus result = HookStatus::Success;
+    for (auto* ctx : g_state.hooks) {
+        if (!ctx->valid || !ctx->enabled) continue;
+        uint32_t old_protect = detail::make_writable(ctx->target, ctx->hook_size);
+        std::memcpy(ctx->target, ctx->original_bytes, ctx->hook_size);
+        detail::restore_protection(ctx->target, ctx->hook_size, old_protect);
+        detail::flush_icache(ctx->target, ctx->hook_size);
+        ctx->enabled = false;
+    }
+
+    if (g_state.config.thread_safe) {
+        detail::resume_threads();
+    }
+
+    return result;
 }
 
 // ============================================================================
@@ -1297,7 +1337,7 @@ void dump_hook(HookHandle handle) {
 }
 #endif // !VEDA64_NO_STRINGS
 
-} // namespace Hook
+} // namespace hook
 } // namespace veda64
 
-#endif // _WIN32 || VEDA64_HOOK_SUPPORT
+#endif // !VEDA64_NO_HOOKS && (_WIN32 || VEDA64_HOOK_SUPPORT)

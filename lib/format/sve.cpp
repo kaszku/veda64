@@ -1,7 +1,7 @@
 #include "format/sve.hpp"
 
 namespace veda64 {
-namespace Format {
+namespace format {
 namespace sve {
 
 // Encoding structures union
@@ -62783,5 +62783,5 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
 }
 
 } // namespace sve
-} // namespace Format
+} // namespace format
 } // namespace veda64

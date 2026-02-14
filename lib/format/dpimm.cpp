@@ -1,7 +1,7 @@
 #include "format/dpimm.hpp"
 
 namespace veda64 {
-namespace Format {
+namespace format {
 namespace dpimm {
 
 // Encoding structures union
@@ -3311,5 +3311,5 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
 }
 
 } // namespace dpimm
-} // namespace Format
+} // namespace format
 } // namespace veda64

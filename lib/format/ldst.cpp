@@ -1,7 +1,7 @@
 #include "format/ldst.hpp"
 
 namespace veda64 {
-namespace Format {
+namespace format {
 namespace ldst {
 
 // Encoding structures union
@@ -49505,5 +49505,5 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
 }
 
 } // namespace ldst
-} // namespace Format
+} // namespace format
 } // namespace veda64

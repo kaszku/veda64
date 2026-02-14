@@ -1,9 +1,11 @@
 #pragma once
 
 #include <cstdint>
+#include <cstddef>
 #include <string>
 #include <vector>
 #include <optional>
+#include <memory>
 
 namespace veda64 {
 
@@ -1575,6 +1577,27 @@ enum class Mnemonic {
     UNKNOWN
 };
 
+// ARM64 condition codes
+enum class Condition : int8_t {
+    None = -1,
+    EQ = 0,   // Equal
+    NE = 1,   // Not equal
+    CS = 2,   // Carry set / unsigned higher or same (HS)
+    CC = 3,   // Carry clear / unsigned lower (LO)
+    MI = 4,   // Minus / negative
+    PL = 5,   // Plus / positive or zero
+    VS = 6,   // Overflow
+    VC = 7,   // No overflow
+    HI = 8,   // Unsigned higher
+    LS = 9,   // Unsigned lower or same
+    GE = 10,  // Signed greater than or equal
+    LT = 11,  // Signed less than
+    GT = 12,  // Signed greater than
+    LE = 13,  // Signed less than or equal
+    AL = 14,  // Always
+    NV = 15   // Never (behaves like AL)
+};
+
 // Operand type enumeration
 enum class OperandType {
     Register,           // General purpose register (Xn, Wn)
@@ -1592,7 +1615,6 @@ enum class OperandType {
     Label,              // Branch target label/offset
     Relative,          // PC-relative offset for branches
     SystemRegister,     // System register
-    Condition,          // Condition code (EQ, NE, etc.)
     Shift,              // Shift specifier (LSL, LSR, ASR, ROR)
     Extend,             // Extend specifier (UXTB, SXTW, etc.)
     Index,              // Element index
@@ -1662,6 +1684,9 @@ const char* mnemonic_to_string(Mnemonic mnem);
 
 // Determine vector arrangement for MOVI/MVNI based on Q and cmode fields
 const char* get_movi_arrangement(uint32_t insn);
+
+// Convert condition code to string ("eq", "ne", etc.)
+const char* condition_to_string(Condition cond);
 #endif
 
 // Instruction representation
@@ -1672,6 +1697,7 @@ public:
         : mnemonic(mnem), raw_value(raw) {}
 
     Mnemonic mnemonic = Mnemonic::UNKNOWN;
+    Condition condition = Condition::None;
     uint32_t raw_value = 0;
     std::vector<Operand> operands;
 
@@ -1688,5 +1714,182 @@ std::optional<Instruction> decode(uint32_t insn);
 inline std::optional<Instruction> decode(const uint8_t* bytes) {
     return decode(from_bytes(bytes));
 }
+
+// ============================================================================
+// Hook API (Windows ARM64 inline hooking)
+// ============================================================================
+
+#if !defined(VEDA64_NO_HOOKS) && (defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT))
+
+namespace hook {
+
+// Forward declarations
+struct HookContext;
+struct Trampoline;
+
+// Hook status codes
+enum class HookStatus {
+    Success = 0,
+    NotInitialized,
+    InvalidTarget,
+    InvalidDetour,
+    AllocationFailed,
+    ProtectionFailed,
+    DisassemblyFailed,
+    RelocationFailed,
+    InstructionTooComplex,
+    HookAlreadyInstalled,
+    HookNotFound,
+    HookDisabled,
+    InternalError
+};
+
+#ifndef VEDA64_NO_STRINGS
+// Convert status to string
+const char* status_to_string(HookStatus status);
+#endif
+
+// Hook handle - opaque pointer to hook context
+using HookHandle = HookContext*;
+
+// Hook configuration options
+struct HookConfig {
+    // Minimum bytes to overwrite (default: 16 for LDR+BR sequence)
+    size_t min_hook_size = 16;
+
+    // Maximum instructions to relocate in trampoline
+    size_t max_relocated_insns = 32;
+
+    // Enable thread-safe hook installation (uses suspend/resume)
+    bool thread_safe = true;
+
+    // Preserve CPU flags across hook
+    bool preserve_flags = true;
+
+    // Allow hooking of already-hooked functions (chain hooks)
+    bool allow_chain = false;
+};
+
+// Global configuration
+void set_config(const HookConfig& config);
+HookConfig get_config();
+
+// Initialize the hooking subsystem
+// Must be called before any other hook functions
+HookStatus initialize();
+
+// Shutdown the hooking subsystem
+// Automatically removes all installed hooks
+void shutdown();
+
+// Check if hooking subsystem is initialized
+bool is_initialized();
+
+// Install an inline hook (starts disabled — call enable() to activate)
+// target: address of function to hook
+// detour: address of your hook function
+// original: receives pointer to trampoline for calling original function
+// handle: optional output — receives handle to the hook
+// Returns: HookStatus indicating success or failure
+HookStatus install(void* target, void* detour, void** original, HookHandle* handle = nullptr);
+
+// Remove a previously installed hook
+// Restores original bytes and frees trampoline
+HookStatus remove(HookHandle handle);
+
+// Remove all hooks
+void remove_all();
+
+// Enable a disabled hook
+HookStatus enable(HookHandle handle);
+
+// Disable a hook (restores original bytes but keeps trampoline)
+HookStatus disable(HookHandle handle);
+
+// Enable all installed hooks
+HookStatus enable_all();
+
+// Disable all installed hooks
+HookStatus disable_all();
+
+// Check if hook is enabled
+bool is_enabled(HookHandle handle);
+
+// Get hook information
+void* get_target(HookHandle handle);
+void* get_detour(HookHandle handle);
+void* get_trampoline(HookHandle handle);
+
+// Get number of bytes overwritten at target
+size_t get_hook_size(HookHandle handle);
+
+// Get number of instructions relocated to trampoline
+size_t get_relocated_count(HookHandle handle);
+
+#ifndef VEDA64_NO_STRINGS
+// Debug: Dump hook information
+void dump_hook(HookHandle handle);
+#endif
+
+// ============================================================================
+// Low-level API for advanced usage
+// ============================================================================
+
+namespace detail {
+
+// Generate a jump sequence to target address
+// buffer: output buffer (must be at least 16 bytes)
+// target: destination address
+// Returns: number of bytes written
+size_t generate_jump(uint8_t* buffer, void* target);
+
+// Generate a call sequence (saves return address)
+// buffer: output buffer (must be at least 16 bytes)
+// target: destination address
+// Returns: number of bytes written
+size_t generate_call(uint8_t* buffer, void* target);
+
+// Check if an instruction is PC-relative
+bool is_pc_relative(uint32_t insn);
+
+// Check if an instruction can be safely relocated
+bool can_relocate(uint32_t insn);
+
+// Relocate a single instruction to a new address
+bool relocate_instruction(
+    uint32_t insn,
+    uint64_t old_pc,
+    uint64_t new_pc,
+    uint32_t* out_insn,
+    size_t* out_count
+);
+
+// Allocate executable memory for trampolines
+void* alloc_executable(size_t size);
+
+// Free executable memory
+void free_executable(void* ptr, size_t size);
+
+// Make memory region writable temporarily
+// Returns previous protection value
+uint32_t make_writable(void* addr, size_t size);
+
+// Restore memory protection
+void restore_protection(void* addr, size_t size, uint32_t old_protect);
+
+// Flush instruction cache
+void flush_icache(void* addr, size_t size);
+
+// Suspend all threads except current (for safe hook installation)
+void suspend_threads();
+
+// Resume all suspended threads
+void resume_threads();
+
+} // namespace detail
+
+} // namespace hook
+
+#endif // !VEDA64_NO_HOOKS && (_WIN32 || VEDA64_HOOK_SUPPORT)
 
 } // namespace veda64

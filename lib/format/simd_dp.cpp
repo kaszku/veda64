@@ -1,7 +1,7 @@
 #include "format/simd_dp.hpp"
 
 namespace veda64 {
-namespace Format {
+namespace format {
 namespace simd_dp {
 
 // Encoding structures union
@@ -36351,7 +36351,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmp_sfloatccmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmp_sfloatccmp.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.fccmp_sfloatccmp.cond, true));
+                        result.condition = static_cast<Condition>(enc.fccmp_sfloatccmp.cond);
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fccmp_sfloatccmp.nzcv, true));
                         return result;
         }
@@ -36362,7 +36362,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmpe_sfloatccmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmpe_sfloatccmp.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.fccmpe_sfloatccmp.cond, true));
+                        result.condition = static_cast<Condition>(enc.fccmpe_sfloatccmp.cond);
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fccmpe_sfloatccmp.nzcv, true));
                         return result;
         }
@@ -36373,7 +36373,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmp_dfloatccmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmp_dfloatccmp.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.fccmp_dfloatccmp.cond, true));
+                        result.condition = static_cast<Condition>(enc.fccmp_dfloatccmp.cond);
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fccmp_dfloatccmp.nzcv, true));
                         return result;
         }
@@ -36384,7 +36384,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmpe_dfloatccmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmpe_dfloatccmp.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.fccmpe_dfloatccmp.cond, true));
+                        result.condition = static_cast<Condition>(enc.fccmpe_dfloatccmp.cond);
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fccmpe_dfloatccmp.nzcv, true));
                         return result;
         }
@@ -36395,7 +36395,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmp_hfloatccmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmp_hfloatccmp.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.fccmp_hfloatccmp.cond, true));
+                        result.condition = static_cast<Condition>(enc.fccmp_hfloatccmp.cond);
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fccmp_hfloatccmp.nzcv, true));
                         return result;
         }
@@ -36406,7 +36406,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmpe_hfloatccmp.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fccmpe_hfloatccmp.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.fccmpe_hfloatccmp.cond, true));
+                        result.condition = static_cast<Condition>(enc.fccmpe_hfloatccmp.cond);
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fccmpe_hfloatccmp.nzcv, true));
                         return result;
         }
@@ -36423,7 +36423,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_sfloatsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_sfloatsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_sfloatsel.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.fcsel_sfloatsel.cond, true));
+                        result.condition = static_cast<Condition>(enc.fcsel_sfloatsel.cond);
                         return result;
         }
         case 0x1E600C00u: { // FCSEL_D_floatsel
@@ -36434,7 +36434,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_dfloatsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_dfloatsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_dfloatsel.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.fcsel_dfloatsel.cond, true));
+                        result.condition = static_cast<Condition>(enc.fcsel_dfloatsel.cond);
                         return result;
         }
         case 0x1EE00C00u: { // FCSEL_H_floatsel
@@ -36445,7 +36445,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_hfloatsel.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_hfloatsel.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.fcsel_hfloatsel.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Condition, enc.fcsel_hfloatsel.cond, true));
+                        result.condition = static_cast<Condition>(enc.fcsel_hfloatsel.cond);
                         return result;
         }
         default: break;
@@ -40908,5 +40908,5 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
 }
 
 } // namespace simd_dp
-} // namespace Format
+} // namespace format
 } // namespace veda64

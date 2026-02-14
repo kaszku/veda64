@@ -7,7 +7,7 @@
 #include "../veda64.hpp"
 
 namespace veda64 {
-namespace Format {
+namespace format {
 namespace dpreg {
 
 // Encode functions
@@ -223,5 +223,5 @@ inline std::optional<Instruction> decode_dpreg(const uint8_t* bytes) {
 }
 
 } // namespace dpreg
-} // namespace Format
+} // namespace format
 } // namespace veda64

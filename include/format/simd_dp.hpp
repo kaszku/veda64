@@ -7,7 +7,7 @@
 #include "../veda64.hpp"
 
 namespace veda64 {
-namespace Format {
+namespace format {
 namespace simd_dp {
 
 // Encode functions
@@ -874,5 +874,5 @@ inline std::optional<Instruction> decode_simd_dp(const uint8_t* bytes) {
 }
 
 } // namespace simd_dp
-} // namespace Format
+} // namespace format
 } // namespace veda64

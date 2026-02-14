@@ -1,7 +1,7 @@
 #include "format/sme.hpp"
 
 namespace veda64 {
-namespace Format {
+namespace format {
 namespace sme {
 
 // Encoding structures union
@@ -45778,5 +45778,5 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
 }
 
 } // namespace sme
-} // namespace Format
+} // namespace format
 } // namespace veda64

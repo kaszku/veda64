@@ -6,8 +6,7 @@
 
 #include "veda64.hpp"
 
-#if defined(_WIN32) && (defined(_M_ARM64) || defined(__aarch64__))
-#include "hook.hpp"
+#if !defined(VEDA64_NO_HOOKS) && defined(_WIN32) && (defined(_M_ARM64) || defined(__aarch64__))
 #include <iostream>
 #include <string>
 #include <vector>
@@ -22,7 +21,7 @@ namespace examples {
 // Example 1: LoggingHook
 // Intercepts function calls and logs parameters with timestamps
 // ============================================================================
-namespace LoggingHook {
+namespace logging_hook {
 
 struct LogEntry {
     std::chrono::system_clock::time_point timestamp;
@@ -30,7 +29,7 @@ struct LogEntry {
 };
 
 static int (*original_func)(int, int) = nullptr;
-static Hook::HookHandle hook_handle = nullptr;
+static hook::HookHandle hook_handle = nullptr;
 static std::mutex log_mutex;
 static std::vector<LogEntry> call_log;
 
@@ -43,14 +42,14 @@ static int detour_func(int a, int b) {
 }
 
 bool install(void* target) {
-    Hook::HookStatus status;
-    hook_handle = Hook::install_ex(target, reinterpret_cast<void*>(&detour_func),
-                                   reinterpret_cast<void**>(&original_func), &status);
-    return hook_handle != nullptr;
+    auto status = hook::install(target, reinterpret_cast<void*>(&detour_func),
+                                reinterpret_cast<void**>(&original_func), &hook_handle);
+    if (status != hook::HookStatus::Success) return false;
+    return hook::enable(hook_handle) == hook::HookStatus::Success;
 }
 
 std::vector<LogEntry> uninstall() {
-    if (hook_handle) { Hook::remove(hook_handle); hook_handle = nullptr; }
+    if (hook_handle) { hook::remove(hook_handle); hook_handle = nullptr; }
     std::lock_guard<std::mutex> lock(log_mutex);
     auto result = std::move(call_log);
     call_log.clear();
@@ -62,18 +61,18 @@ void clear_log() {
     call_log.clear();
 }
 
-} // namespace LoggingHook
+} // namespace logging_hook
 
 // ============================================================================
 // Example 2: ValidationHook
 // Validates allocation sizes and rejects oversized requests
 // ============================================================================
-namespace ValidationHook {
+namespace validation_hook {
 
 struct Stats { size_t total_bytes, alloc_count, reject_count; };
 
 static void* (*original_alloc)(size_t) = nullptr;
-static Hook::HookHandle hook_handle = nullptr;
+static hook::HookHandle hook_handle = nullptr;
 static size_t max_alloc_size = 100 * 1024 * 1024;
 static bool log_allocations = false;
 static size_t total_allocated = 0;
@@ -93,26 +92,26 @@ static void* detour_alloc(size_t size) {
 
 bool install(void* target, size_t max_size) {
     max_alloc_size = max_size;
-    Hook::HookStatus status;
-    hook_handle = Hook::install_ex(target, reinterpret_cast<void*>(&detour_alloc),
-                                   reinterpret_cast<void**>(&original_alloc), &status);
-    return hook_handle != nullptr;
+    auto status = hook::install(target, reinterpret_cast<void*>(&detour_alloc),
+                                reinterpret_cast<void**>(&original_alloc), &hook_handle);
+    if (status != hook::HookStatus::Success) return false;
+    return hook::enable(hook_handle) == hook::HookStatus::Success;
 }
 
-void uninstall() { if (hook_handle) { Hook::remove(hook_handle); hook_handle = nullptr; } }
+void uninstall() { if (hook_handle) { hook::remove(hook_handle); hook_handle = nullptr; } }
 void set_logging(bool enable) { log_allocations = enable; }
 Stats get_stats() { return {total_allocated, allocation_count, rejected_count}; }
 void reset_stats() { total_allocated = allocation_count = rejected_count = 0; }
 
-} // namespace ValidationHook
+} // namespace validation_hook
 
 // ============================================================================
 // ReturnModifyHook Implementation
 // ============================================================================
-namespace ReturnModifyHook {
+namespace return_modify_hook {
 
 static BOOL (WINAPI *original_func)() = nullptr;
-static Hook::HookHandle hook_handle = nullptr;
+static hook::HookHandle hook_handle = nullptr;
 static bool force_result = false;
 static BOOL forced_value = FALSE;
 
@@ -125,25 +124,25 @@ bool install() {
     if (!kernel32) return false;
     void* target = GetProcAddress(kernel32, "IsDebuggerPresent");
     if (!target) return false;
-    Hook::HookStatus status;
-    hook_handle = Hook::install_ex(target, reinterpret_cast<void*>(&detour_func),
-                                   reinterpret_cast<void**>(&original_func), &status);
-    return hook_handle != nullptr;
+    auto status = hook::install(target, reinterpret_cast<void*>(&detour_func),
+                                reinterpret_cast<void**>(&original_func), &hook_handle);
+    if (status != hook::HookStatus::Success) return false;
+    return hook::enable(hook_handle) == hook::HookStatus::Success;
 }
 
-void uninstall() { if (hook_handle) { Hook::remove(hook_handle); hook_handle = nullptr; } }
+void uninstall() { if (hook_handle) { hook::remove(hook_handle); hook_handle = nullptr; } }
 void set_forced_result(bool enable, BOOL value) { force_result = enable; forced_value = value; }
 
-} // namespace ReturnModifyHook
+} // namespace return_modify_hook
 
 // ============================================================================
 // StringHook Implementation
 // ============================================================================
-namespace StringHook {
+namespace string_hook {
 
 typedef HANDLE (WINAPI *CreateFileAFunc)(LPCSTR, DWORD, DWORD, LPSECURITY_ATTRIBUTES, DWORD, DWORD, HANDLE);
 static CreateFileAFunc original_func = nullptr;
-static Hook::HookHandle hook_handle = nullptr;
+static hook::HookHandle hook_handle = nullptr;
 static FileAccessCallback callback = nullptr;
 static std::string redirect_from;
 static std::string redirect_to;
@@ -166,29 +165,29 @@ bool install() {
     if (!kernel32) return false;
     void* target = GetProcAddress(kernel32, "CreateFileA");
     if (!target) return false;
-    Hook::HookStatus status;
-    hook_handle = Hook::install_ex(target, reinterpret_cast<void*>(&detour_func),
-                                   reinterpret_cast<void**>(&original_func), &status);
-    return hook_handle != nullptr;
+    auto status = hook::install(target, reinterpret_cast<void*>(&detour_func),
+                                reinterpret_cast<void**>(&original_func), &hook_handle);
+    if (status != hook::HookStatus::Success) return false;
+    return hook::enable(hook_handle) == hook::HookStatus::Success;
 }
 
-void uninstall() { if (hook_handle) { Hook::remove(hook_handle); hook_handle = nullptr; } }
+void uninstall() { if (hook_handle) { hook::remove(hook_handle); hook_handle = nullptr; } }
 void set_callback(FileAccessCallback cb) { callback = cb; }
 void set_redirect(const std::string& from, const std::string& to) { redirect_from = from; redirect_to = to; }
 
-} // namespace StringHook
+} // namespace string_hook
 
 // ============================================================================
 // Example 5: ProfilingHook
 // Measures function execution time with high-resolution timer
 // ============================================================================
-namespace ProfilingHook {
+namespace profiling_hook {
 
 struct ProfileData { uint64_t call_count, total_ticks, min_ticks, max_ticks; };
 
 typedef int (*TargetFuncType)(int);
 static TargetFuncType original_func = nullptr;
-static Hook::HookHandle hook_handle = nullptr;
+static hook::HookHandle hook_handle = nullptr;
 static ProfileData data = {0, 0, UINT64_MAX, 0};
 static std::mutex mtx;
 
@@ -207,13 +206,13 @@ static int detour_func(int arg) {
 }
 
 bool install(void* target) {
-    Hook::HookStatus status;
-    hook_handle = Hook::install_ex(target, reinterpret_cast<void*>(&detour_func),
-                                   reinterpret_cast<void**>(&original_func), &status);
-    return hook_handle != nullptr;
+    auto status = hook::install(target, reinterpret_cast<void*>(&detour_func),
+                                reinterpret_cast<void**>(&original_func), &hook_handle);
+    if (status != hook::HookStatus::Success) return false;
+    return hook::enable(hook_handle) == hook::HookStatus::Success;
 }
 
-void uninstall() { if (hook_handle) { Hook::remove(hook_handle); hook_handle = nullptr; } }
+void uninstall() { if (hook_handle) { hook::remove(hook_handle); hook_handle = nullptr; } }
 ProfileData get_data() { std::lock_guard<std::mutex> lock(mtx); return data; }
 void reset() { std::lock_guard<std::mutex> lock(mtx); data = {0, 0, UINT64_MAX, 0}; }
 
@@ -225,15 +224,15 @@ double get_average_ms() {
     return (double)data.total_ticks / data.call_count / freq.QuadPart * 1000.0;
 }
 
-} // namespace ProfilingHook
+} // namespace profiling_hook
 
 // ============================================================================
 // ConditionalHook Implementation
 // ============================================================================
-namespace ConditionalHook {
+namespace conditional_hook {
 
 static DWORD (WINAPI *original_sleep)(DWORD) = nullptr;
-static Hook::HookHandle hook_handle = nullptr;
+static hook::HookHandle hook_handle = nullptr;
 static bool skip_long = false;
 static DWORD max_ms = 1000;
 static bool accelerate = false;
@@ -250,67 +249,40 @@ bool install() {
     if (!kernel32) return false;
     void* target = GetProcAddress(kernel32, "Sleep");
     if (!target) return false;
-    Hook::HookStatus status;
-    hook_handle = Hook::install_ex(target, reinterpret_cast<void*>(&detour_sleep),
-                                   reinterpret_cast<void**>(&original_sleep), &status);
-    return hook_handle != nullptr;
+    auto status = hook::install(target, reinterpret_cast<void*>(&detour_sleep),
+                                reinterpret_cast<void**>(&original_sleep), &hook_handle);
+    if (status != hook::HookStatus::Success) return false;
+    return hook::enable(hook_handle) == hook::HookStatus::Success;
 }
 
-void uninstall() { if (hook_handle) { Hook::remove(hook_handle); hook_handle = nullptr; } }
+void uninstall() { if (hook_handle) { hook::remove(hook_handle); hook_handle = nullptr; } }
 void configure(bool skip, DWORD max, bool acc, float f) { skip_long = skip; max_ms = max; accelerate = acc; accel_factor = f; }
 
-} // namespace ConditionalHook
+} // namespace conditional_hook
 
 // ============================================================================
-// MacroExample Implementation
-// ============================================================================
-namespace MacroExample {
-
-VEDA64_DECLARE_ORIGINAL(MessageBoxA, int, HWND, LPCSTR, LPCSTR, UINT)
-static Hook::HookHandle hook_handle = nullptr;
-
-static int MessageBoxA_hook(HWND hWnd, LPCSTR lpText, LPCSTR lpCaption, UINT uType) {
-    std::string new_caption = "[Hooked] ";
-    new_caption += lpCaption ? lpCaption : "Message";
-    return VEDA64_CALL_ORIGINAL(MessageBoxA, hWnd, lpText, new_caption.c_str(), uType);
-}
-
-bool install() {
-    HMODULE user32 = GetModuleHandleA("user32.dll");
-    if (!user32) user32 = LoadLibraryA("user32.dll");
-    if (!user32) return false;
-    void* target = GetProcAddress(user32, "MessageBoxA");
-    if (!target) return false;
-    hook_handle = VEDA64_INSTALL_HOOK(MessageBoxA, target);
-    return hook_handle != nullptr;
-}
-
-void uninstall() { if (hook_handle) { Hook::remove(hook_handle); hook_handle = nullptr; } }
-
-} // namespace MacroExample
-
-// ============================================================================
-// Example 8: HookManager
+// Example 7: HookManager
 // Manages multiple hooks with automatic cleanup
 // ============================================================================
 class HookManager {
 public:
     struct HookInfo {
-        Hook::HookHandle handle;
+        hook::HookHandle handle;
         std::string name;
         void* target;
         void* detour;
         bool enabled;
     };
 
-    HookManager() { Hook::initialize(); }
+    HookManager() { hook::initialize(); }
     ~HookManager() { remove_all(); }
 
     bool add(const std::string& name, void* target, void* detour, void** original) {
         std::lock_guard<std::mutex> lock(mutex_);
-        Hook::HookStatus status;
-        auto h = Hook::install_ex(target, detour, original, &status);
-        if (!h) return false;
+        hook::HookHandle h = nullptr;
+        auto status = hook::install(target, detour, original, &h);
+        if (status != hook::HookStatus::Success) return false;
+        if (hook::enable(h) != hook::HookStatus::Success) { hook::remove(h); return false; }
         hooks_.push_back({h, name, target, detour, true});
         return true;
     }
@@ -318,14 +290,14 @@ public:
     bool remove(const std::string& name) {
         std::lock_guard<std::mutex> lock(mutex_);
         for (auto it = hooks_.begin(); it != hooks_.end(); ++it) {
-            if (it->name == name) { Hook::remove(it->handle); hooks_.erase(it); return true; }
+            if (it->name == name) { hook::remove(it->handle); hooks_.erase(it); return true; }
         }
         return false;
     }
 
     void remove_all() {
         std::lock_guard<std::mutex> lock(mutex_);
-        for (auto& info : hooks_) Hook::remove(info.handle);
+        for (auto& info : hooks_) hook::remove(info.handle);
         hooks_.clear();
     }
 
@@ -333,7 +305,7 @@ public:
         std::lock_guard<std::mutex> lock(mutex_);
         for (auto& info : hooks_) {
             if (info.name == name) {
-                info.enabled = (Hook::enable(info.handle) == Hook::HookStatus::Success);
+                info.enabled = (hook::enable(info.handle) == hook::HookStatus::Success);
                 return info.enabled;
             }
         }
@@ -344,7 +316,7 @@ public:
         std::lock_guard<std::mutex> lock(mutex_);
         for (auto& info : hooks_) {
             if (info.name == name) {
-                if (Hook::disable(info.handle) == Hook::HookStatus::Success) {
+                if (hook::disable(info.handle) == hook::HookStatus::Success) {
                     info.enabled = false; return true;
                 }
                 return false;
@@ -369,4 +341,4 @@ private:
 } // namespace examples
 } // namespace veda64
 
-#endif // Windows ARM64
+#endif // !VEDA64_NO_HOOKS && Windows ARM64

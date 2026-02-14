@@ -7,7 +7,7 @@
 #include "../veda64.hpp"
 
 namespace veda64 {
-namespace Format {
+namespace format {
 namespace control {
 
 // Encode functions
@@ -200,5 +200,5 @@ inline std::optional<Instruction> decode_control(const uint8_t* bytes) {
 }
 
 } // namespace control
-} // namespace Format
+} // namespace format
 } // namespace veda64
