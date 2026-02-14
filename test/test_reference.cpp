@@ -131,6 +131,11 @@ int main() {
     if (check_disasm(0x4e010c20, "dup v0.16b, w1")) passed++; else failed++;
     if (check_disasm(0x4ea31c60, "orr v0.16b, v3.16b, v3.16b")) passed++; else failed++;
     if (check_disasm(0x4e22bc00, "addp v0.16b, v0.16b, v2.16b")) passed++; else failed++;
+    if (check_disasm(0x1a9f07e0, "cset w0, ne")) passed++; else failed++;
+    if (check_disasm(0x5a802400, "cneg w0, w0, cc")) passed++; else failed++;
+    if (check_disasm(0x1a800400, "cinc w0, w0, ne")) passed++; else failed++;
+    if (check_disasm(0x5a9f03e0, "csetm w0, ne")) passed++; else failed++;
+    if (check_disasm(0x5a800000, "cinv w0, w0, ne")) passed++; else failed++;
 
     std::cout << std::endl;
     std::cout << "Passed: " << passed << "/" << (passed + failed) << std::endl;
