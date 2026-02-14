@@ -1516,10 +1516,15 @@ std::string Operand::to_string() const {
 
         case OperandType::Extend:
             {
-                const char* extends[] = {"uxtb", "uxth", "uxtw", "uxtx",
+                // Combined format: option in bits [2:0], amount in bits [10:8]
+                // Legacy format (value < 8): option only, amount=0
+                uint32_t ext_type = value & 0x7;
+                uint32_t ext_amount = (value >> 8) & 0x7;
+                const char* extends[] = {"uxtb", "uxth", "uxtw", "lsl",
                                          "sxtb", "sxth", "sxtw", "sxtx"};
-                if (value < 8) return extends[value];
-                return "ext" + std::to_string(value);
+                std::string result = extends[ext_type];
+                if (ext_amount != 0) result += " #" + std::to_string(ext_amount);
+                return result;
             }
 
         case OperandType::Index:

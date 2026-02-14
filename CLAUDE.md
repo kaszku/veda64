@@ -165,6 +165,10 @@ namespace AddsubImm {
 
 Tests are in `test/test_*.cpp` (auto-discovered by CMake via glob). `test_reference.cpp` validates decode output against known disassembly. `test_aliases.cpp` tests 58+ ARM architectural aliases (MOV/ORR, CMP/SUBS, etc.). Tests are plain executables returning 0 on success. **Every new instruction format, encoding, and operand type must have corresponding tests.**
 
+## Conventions
+
+- **Always prefix hex values with `0x`** when passing them to `veda64-disasm` or any CLI tool (e.g., `0xEB2F73F0`, not `EB2F73F0`)
+
 ## Platform Notes
 
 - **Windows**: Links `ntdll.lib` for hooking support (NT syscalls)

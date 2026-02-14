@@ -115,6 +115,9 @@ int main() {
     if (check_disasm(0x93407c00, "sxtw x0, w0")) passed++; else failed++;
     if (check_disasm(0x13001c00, "sxtb w0, w0")) passed++; else failed++;
     if (check_disasm(0x33070c00, "bfi w0, w0, #25, #4")) passed++; else failed++;
+    if (check_disasm(0xeb2f73f0, "subs x16, sp, x15, lsl #4")) passed++; else failed++;
+    if (check_disasm(0x8b2063e0, "add x0, sp, x0")) passed++; else failed++;
+    if (check_disasm(0xcb2043e0, "sub x0, sp, w0, uxtw")) passed++; else failed++;
 
     std::cout << std::endl;
     std::cout << "Passed: " << passed << "/" << (passed + failed) << std::endl;

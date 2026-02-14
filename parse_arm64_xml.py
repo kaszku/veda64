@@ -1525,10 +1525,15 @@ class ARM64XMLParser:
         code.append("        ")
         code.append("        case OperandType::Extend:")
         code.append("            {")
-        code.append("                const char* extends[] = {\"uxtb\", \"uxth\", \"uxtw\", \"uxtx\", ")
+        code.append("                // Combined format: option in bits [2:0], amount in bits [10:8]")
+        code.append("                // Legacy format (value < 8): option only, amount=0")
+        code.append("                uint32_t ext_type = value & 0x7;")
+        code.append("                uint32_t ext_amount = (value >> 8) & 0x7;")
+        code.append("                const char* extends[] = {\"uxtb\", \"uxth\", \"uxtw\", \"lsl\", ")
         code.append("                                         \"sxtb\", \"sxth\", \"sxtw\", \"sxtx\"};")
-        code.append("                if (value < 8) return extends[value];")
-        code.append("                return \"ext\" + std::to_string(value);")
+        code.append("                std::string result = extends[ext_type];")
+        code.append("                if (ext_amount != 0) result += \" #\" + std::to_string(ext_amount);")
+        code.append("                return result;")
         code.append("            }")
         code.append("        ")
         code.append("        case OperandType::Index:")
@@ -3352,6 +3357,53 @@ class ARM64XMLParser:
         if mnemonic == 'BRK' and 'imm16' in field_map:
             imm_field = field_map['imm16']['name']
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.{imm_field}, true));")
+            code.append(f"{ind}return result;")
+            return code
+
+        # Special case: ADD/SUB extended register (addsub_ext)
+        # Rn=31 means SP, Rm width depends on option, option+imm3 combine as extend
+        is_addsub_ext = 'addsub_ext' in encoding_name
+        if is_addsub_ext and 'Rn' in field_map and 'Rm' in field_map:
+            # Determine register size
+            if 'sf' in field_map and not field_map['sf']['is_fixed']:
+                sf_field = field_map['sf']['name']
+                code.append(f"{ind}bool is_64bit = enc.{member_name}.{sf_field};")
+            elif '64' in encoding_name:
+                code.append(f"{ind}bool is_64bit = true;")
+            else:
+                code.append(f"{ind}bool is_64bit = false;")
+
+            # Rd (if not fixed — CMP/CMN have Rd=11111)
+            if 'Rd' in field_map and not field_map['Rd']['is_fixed']:
+                rd_field = field_map['Rd']['name']
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rd_field}, is_64bit));")
+
+            # Rn: register 31 = SP (not XZR) for addsub_ext
+            rn_field = field_map['Rn']['name']
+            code.append(f"{ind}{{ Operand op(OperandType::Register, enc.{member_name}.{rn_field}, is_64bit); op.is_sp = true; result.operands.push_back(op); }}")
+
+            # Rm: width depends on option for 64-bit (option[1:0]==11 → Xm, else Wm)
+            rm_field = field_map['Rm']['name']
+            option_field = field_map['option']['name'] if 'option' in field_map and not field_map['option']['is_fixed'] else None
+            if option_field:
+                code.append(f"{ind}uint32_t option = enc.{member_name}.{option_field};")
+                code.append(f"{ind}bool rm_is_64 = is_64bit && ((option & 3) == 3);")
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rm_field}, rm_is_64));")
+            else:
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rm_field}, is_64bit));")
+
+            # Extend + shift: combine option and imm3
+            imm3_field = field_map['imm3']['name'] if 'imm3' in field_map and not field_map['imm3']['is_fixed'] else None
+            if option_field and imm3_field:
+                code.append(f"{ind}uint32_t imm3 = enc.{member_name}.{imm3_field};")
+                # Suppress default extend: option=3 (LSL) with imm3=0 for 64-bit, option=2 (UXTW=LSL) with imm3=0 for 32-bit
+                code.append(f"{ind}bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;")
+                code.append(f"{ind}if (!is_default) {{")
+                code.append(f"{ind}    result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));")
+                code.append(f"{ind}}}")
+            elif option_field:
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Extend, option, true));")
+
             code.append(f"{ind}return result;")
             return code
 
@@ -5514,6 +5566,10 @@ class ARM64XMLParser:
             ("0x13001c00", "sxtb w0, w0"),                 # SBFM W0, W0, #0, #7 -> SXTB 32-bit
             # BFM aliases
             ("0x33070c00", "bfi w0, w0, #25, #4"),         # BFM with imms < immr -> BFI
+            # ADD/SUB extended register (addsub_ext): Rn=31→SP, extend+shift combined
+            ("0xeb2f73f0", "subs x16, sp, x15, lsl #4"),   # SUBS Xd, SP, Xm, LSL #4
+            ("0x8b2063e0", "add x0, sp, x0"),               # ADD Xd, SP, Xm (default extend suppressed)
+            ("0xcb2043e0", "sub x0, sp, w0, uxtw"),         # SUB Xd, SP, Wm, UXTW
         ]
 
         for insn_hex, expected in test_cases:

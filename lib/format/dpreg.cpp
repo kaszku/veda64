@@ -7938,10 +7938,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds32s_addsub_ext.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds32s_addsub_ext.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cmn_adds32s_addsub_ext.imm3, true));
-                        result.operands.push_back(Operand(OperandType::Extend, enc.cmn_adds32s_addsub_ext.option, true));
+                        { Operand op(OperandType::Register, enc.cmn_adds32s_addsub_ext.Rn, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        uint32_t option = enc.cmn_adds32s_addsub_ext.option;
+                        bool rm_is_64 = is_64bit && ((option & 3) == 3);
+                        result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds32s_addsub_ext.Rm, rm_is_64));
+                        uint32_t imm3 = enc.cmn_adds32s_addsub_ext.imm3;
+                        bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;
+                        if (!is_default) {
+                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));
+                        }
                         return result;
         }
         case 0x6B20001Fu: { // CMP_SUBS_32S_addsub_ext
@@ -7949,10 +7954,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs32s_addsub_ext.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs32s_addsub_ext.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cmp_subs32s_addsub_ext.imm3, true));
-                        result.operands.push_back(Operand(OperandType::Extend, enc.cmp_subs32s_addsub_ext.option, true));
+                        { Operand op(OperandType::Register, enc.cmp_subs32s_addsub_ext.Rn, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        uint32_t option = enc.cmp_subs32s_addsub_ext.option;
+                        bool rm_is_64 = is_64bit && ((option & 3) == 3);
+                        result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs32s_addsub_ext.Rm, rm_is_64));
+                        uint32_t imm3 = enc.cmp_subs32s_addsub_ext.imm3;
+                        bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;
+                        if (!is_default) {
+                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));
+                        }
                         return result;
         }
         case 0xAB20001Fu: { // CMN_ADDS_64S_addsub_ext
@@ -7960,10 +7970,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds64s_addsub_ext.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds64s_addsub_ext.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cmn_adds64s_addsub_ext.imm3, true));
-                        result.operands.push_back(Operand(OperandType::Extend, enc.cmn_adds64s_addsub_ext.option, true));
+                        { Operand op(OperandType::Register, enc.cmn_adds64s_addsub_ext.Rn, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        uint32_t option = enc.cmn_adds64s_addsub_ext.option;
+                        bool rm_is_64 = is_64bit && ((option & 3) == 3);
+                        result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds64s_addsub_ext.Rm, rm_is_64));
+                        uint32_t imm3 = enc.cmn_adds64s_addsub_ext.imm3;
+                        bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;
+                        if (!is_default) {
+                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));
+                        }
                         return result;
         }
         case 0xEB20001Fu: { // CMP_SUBS_64S_addsub_ext
@@ -7971,10 +7986,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs64s_addsub_ext.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs64s_addsub_ext.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cmp_subs64s_addsub_ext.imm3, true));
-                        result.operands.push_back(Operand(OperandType::Extend, enc.cmp_subs64s_addsub_ext.option, true));
+                        { Operand op(OperandType::Register, enc.cmp_subs64s_addsub_ext.Rn, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        uint32_t option = enc.cmp_subs64s_addsub_ext.option;
+                        bool rm_is_64 = is_64bit && ((option & 3) == 3);
+                        result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs64s_addsub_ext.Rm, rm_is_64));
+                        uint32_t imm3 = enc.cmp_subs64s_addsub_ext.imm3;
+                        bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;
+                        if (!is_default) {
+                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));
+                        }
                         return result;
         }
         default: break;
@@ -7988,10 +8008,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.add32addsub_ext.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.add32addsub_ext.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.add32addsub_ext.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.add32addsub_ext.imm3, true));
-                        result.operands.push_back(Operand(OperandType::Extend, enc.add32addsub_ext.option, true));
+                        { Operand op(OperandType::Register, enc.add32addsub_ext.Rn, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        uint32_t option = enc.add32addsub_ext.option;
+                        bool rm_is_64 = is_64bit && ((option & 3) == 3);
+                        result.operands.push_back(Operand(OperandType::Register, enc.add32addsub_ext.Rm, rm_is_64));
+                        uint32_t imm3 = enc.add32addsub_ext.imm3;
+                        bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;
+                        if (!is_default) {
+                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));
+                        }
                         return result;
         }
         case 0x2B200000u: { // ADDS_32S_addsub_ext
@@ -8000,10 +8025,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.adds32s_addsub_ext.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.adds32s_addsub_ext.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.adds32s_addsub_ext.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.adds32s_addsub_ext.imm3, true));
-                        result.operands.push_back(Operand(OperandType::Extend, enc.adds32s_addsub_ext.option, true));
+                        { Operand op(OperandType::Register, enc.adds32s_addsub_ext.Rn, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        uint32_t option = enc.adds32s_addsub_ext.option;
+                        bool rm_is_64 = is_64bit && ((option & 3) == 3);
+                        result.operands.push_back(Operand(OperandType::Register, enc.adds32s_addsub_ext.Rm, rm_is_64));
+                        uint32_t imm3 = enc.adds32s_addsub_ext.imm3;
+                        bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;
+                        if (!is_default) {
+                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));
+                        }
                         return result;
         }
         case 0x4B200000u: { // SUB_32_addsub_ext
@@ -8012,10 +8042,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sub32addsub_ext.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sub32addsub_ext.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sub32addsub_ext.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sub32addsub_ext.imm3, true));
-                        result.operands.push_back(Operand(OperandType::Extend, enc.sub32addsub_ext.option, true));
+                        { Operand op(OperandType::Register, enc.sub32addsub_ext.Rn, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        uint32_t option = enc.sub32addsub_ext.option;
+                        bool rm_is_64 = is_64bit && ((option & 3) == 3);
+                        result.operands.push_back(Operand(OperandType::Register, enc.sub32addsub_ext.Rm, rm_is_64));
+                        uint32_t imm3 = enc.sub32addsub_ext.imm3;
+                        bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;
+                        if (!is_default) {
+                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));
+                        }
                         return result;
         }
         case 0x6B200000u: { // SUBS_32S_addsub_ext
@@ -8024,10 +8059,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.subs32s_addsub_ext.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.subs32s_addsub_ext.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.subs32s_addsub_ext.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.subs32s_addsub_ext.imm3, true));
-                        result.operands.push_back(Operand(OperandType::Extend, enc.subs32s_addsub_ext.option, true));
+                        { Operand op(OperandType::Register, enc.subs32s_addsub_ext.Rn, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        uint32_t option = enc.subs32s_addsub_ext.option;
+                        bool rm_is_64 = is_64bit && ((option & 3) == 3);
+                        result.operands.push_back(Operand(OperandType::Register, enc.subs32s_addsub_ext.Rm, rm_is_64));
+                        uint32_t imm3 = enc.subs32s_addsub_ext.imm3;
+                        bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;
+                        if (!is_default) {
+                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));
+                        }
                         return result;
         }
         case 0x8B200000u: { // ADD_64_addsub_ext
@@ -8036,10 +8076,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.add64addsub_ext.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.add64addsub_ext.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.add64addsub_ext.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.add64addsub_ext.imm3, true));
-                        result.operands.push_back(Operand(OperandType::Extend, enc.add64addsub_ext.option, true));
+                        { Operand op(OperandType::Register, enc.add64addsub_ext.Rn, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        uint32_t option = enc.add64addsub_ext.option;
+                        bool rm_is_64 = is_64bit && ((option & 3) == 3);
+                        result.operands.push_back(Operand(OperandType::Register, enc.add64addsub_ext.Rm, rm_is_64));
+                        uint32_t imm3 = enc.add64addsub_ext.imm3;
+                        bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;
+                        if (!is_default) {
+                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));
+                        }
                         return result;
         }
         case 0xAB200000u: { // ADDS_64S_addsub_ext
@@ -8048,10 +8093,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.adds64s_addsub_ext.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.adds64s_addsub_ext.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.adds64s_addsub_ext.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.adds64s_addsub_ext.imm3, true));
-                        result.operands.push_back(Operand(OperandType::Extend, enc.adds64s_addsub_ext.option, true));
+                        { Operand op(OperandType::Register, enc.adds64s_addsub_ext.Rn, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        uint32_t option = enc.adds64s_addsub_ext.option;
+                        bool rm_is_64 = is_64bit && ((option & 3) == 3);
+                        result.operands.push_back(Operand(OperandType::Register, enc.adds64s_addsub_ext.Rm, rm_is_64));
+                        uint32_t imm3 = enc.adds64s_addsub_ext.imm3;
+                        bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;
+                        if (!is_default) {
+                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));
+                        }
                         return result;
         }
         case 0xCB200000u: { // SUB_64_addsub_ext
@@ -8060,10 +8110,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sub64addsub_ext.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sub64addsub_ext.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sub64addsub_ext.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sub64addsub_ext.imm3, true));
-                        result.operands.push_back(Operand(OperandType::Extend, enc.sub64addsub_ext.option, true));
+                        { Operand op(OperandType::Register, enc.sub64addsub_ext.Rn, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        uint32_t option = enc.sub64addsub_ext.option;
+                        bool rm_is_64 = is_64bit && ((option & 3) == 3);
+                        result.operands.push_back(Operand(OperandType::Register, enc.sub64addsub_ext.Rm, rm_is_64));
+                        uint32_t imm3 = enc.sub64addsub_ext.imm3;
+                        bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;
+                        if (!is_default) {
+                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));
+                        }
                         return result;
         }
         case 0xEB200000u: { // SUBS_64S_addsub_ext
@@ -8072,10 +8127,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.subs64s_addsub_ext.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.subs64s_addsub_ext.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.subs64s_addsub_ext.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.subs64s_addsub_ext.imm3, true));
-                        result.operands.push_back(Operand(OperandType::Extend, enc.subs64s_addsub_ext.option, true));
+                        { Operand op(OperandType::Register, enc.subs64s_addsub_ext.Rn, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        uint32_t option = enc.subs64s_addsub_ext.option;
+                        bool rm_is_64 = is_64bit && ((option & 3) == 3);
+                        result.operands.push_back(Operand(OperandType::Register, enc.subs64s_addsub_ext.Rm, rm_is_64));
+                        uint32_t imm3 = enc.subs64s_addsub_ext.imm3;
+                        bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;
+                        if (!is_default) {
+                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));
+                        }
                         return result;
         }
         default: break;
