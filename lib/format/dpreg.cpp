@@ -7483,9 +7483,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.smull_smaddl64wa_dp3src.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smull_smaddl64wa_dp3src.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smull_smaddl64wa_dp3src.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.smull_smaddl64wa_dp3src.Rd, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.smull_smaddl64wa_dp3src.Rn, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.smull_smaddl64wa_dp3src.Rm, false));
                         return result;
         }
         case 0x9B20FC00u: { // SMNEGL_SMSUBL_64WA_dp_3src
@@ -7493,9 +7493,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.smnegl_smsubl64wa_dp3src.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smnegl_smsubl64wa_dp3src.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smnegl_smsubl64wa_dp3src.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.smnegl_smsubl64wa_dp3src.Rd, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.smnegl_smsubl64wa_dp3src.Rn, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.smnegl_smsubl64wa_dp3src.Rm, false));
                         return result;
         }
         case 0x9BA07C00u: { // UMULL_UMADDL_64WA_dp_3src
@@ -7503,9 +7503,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.umull_umaddl64wa_dp3src.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umull_umaddl64wa_dp3src.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umull_umaddl64wa_dp3src.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.umull_umaddl64wa_dp3src.Rd, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.umull_umaddl64wa_dp3src.Rn, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.umull_umaddl64wa_dp3src.Rm, false));
                         return result;
         }
         case 0x9BA0FC00u: { // UMNEGL_UMSUBL_64WA_dp_3src
@@ -7513,9 +7513,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.umnegl_umsubl64wa_dp3src.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umnegl_umsubl64wa_dp3src.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umnegl_umsubl64wa_dp3src.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.umnegl_umsubl64wa_dp3src.Rd, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.umnegl_umsubl64wa_dp3src.Rn, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.umnegl_umsubl64wa_dp3src.Rm, false));
                         return result;
         }
         case 0xBA000000u: { // ADCS_64_addsub_carry
@@ -7666,10 +7666,10 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.smaddl64wa_dp3src.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smaddl64wa_dp3src.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smaddl64wa_dp3src.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smaddl64wa_dp3src.Ra, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.smaddl64wa_dp3src.Rd, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.smaddl64wa_dp3src.Rn, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.smaddl64wa_dp3src.Rm, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.smaddl64wa_dp3src.Ra, true));
                         return result;
         }
         case 0x9B208000u: { // SMSUBL_64WA_dp_3src
@@ -7677,10 +7677,10 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.smsubl64wa_dp3src.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smsubl64wa_dp3src.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smsubl64wa_dp3src.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smsubl64wa_dp3src.Ra, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.smsubl64wa_dp3src.Rd, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.smsubl64wa_dp3src.Rn, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.smsubl64wa_dp3src.Rm, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.smsubl64wa_dp3src.Ra, true));
                         return result;
         }
         case 0x9B600000u: { // MADDPT_64A_dp_3src
@@ -7710,10 +7710,10 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.umaddl64wa_dp3src.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umaddl64wa_dp3src.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umaddl64wa_dp3src.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umaddl64wa_dp3src.Ra, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.umaddl64wa_dp3src.Rd, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.umaddl64wa_dp3src.Rn, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.umaddl64wa_dp3src.Rm, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.umaddl64wa_dp3src.Ra, true));
                         return result;
         }
         case 0x9BA08000u: { // UMSUBL_64WA_dp_3src
@@ -7721,10 +7721,10 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.umsubl64wa_dp3src.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umsubl64wa_dp3src.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umsubl64wa_dp3src.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umsubl64wa_dp3src.Ra, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.umsubl64wa_dp3src.Rd, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.umsubl64wa_dp3src.Rn, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.umsubl64wa_dp3src.Rm, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.umsubl64wa_dp3src.Ra, true));
                         return result;
         }
         default: break;

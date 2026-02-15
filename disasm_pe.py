@@ -1,0 +1,356 @@
+#!/usr/bin/env python3
+"""PE ARM64 disassembler and comparison tool using veda64-disasm and Capstone."""
+
+import argparse
+import re
+import struct
+import subprocess
+import sys
+from pathlib import Path
+
+IMAGE_SCN_MEM_EXECUTE = 0x20000000
+MACHINE_ARM64 = 0xAA64
+BATCH_SIZE = 500
+
+
+def parse_pe(data):
+    """Parse PE headers, return (sections, image_base). Raises on invalid PE or non-ARM64."""
+    if len(data) < 64 or data[:2] != b'MZ':
+        raise ValueError("Not a valid PE file (bad MZ signature)")
+
+    e_lfanew = struct.unpack_from('<I', data, 0x3C)[0]
+    if len(data) < e_lfanew + 4 or data[e_lfanew:e_lfanew + 4] != b'PE\0\0':
+        raise ValueError("Not a valid PE file (bad PE signature)")
+
+    coff_offset = e_lfanew + 4
+    machine, num_sections, _, _, _, size_of_optional = struct.unpack_from(
+        '<HHIIIH', data, coff_offset
+    )
+
+    if machine != MACHINE_ARM64:
+        raise ValueError(f"Not an ARM64 PE (Machine=0x{machine:04X}, expected 0x{MACHINE_ARM64:04X})")
+
+    opt_offset = coff_offset + 20
+    opt_magic = struct.unpack_from('<H', data, opt_offset)[0]
+    if opt_magic == 0x20B:  # PE32+
+        image_base = struct.unpack_from('<Q', data, opt_offset + 24)[0]
+    else:
+        image_base = 0
+
+    section_table_offset = opt_offset + size_of_optional
+    sections = []
+    for i in range(num_sections):
+        off = section_table_offset + i * 40
+        name_raw = data[off:off + 8]
+        name = name_raw.split(b'\0', 1)[0].decode('ascii', errors='replace')
+        virtual_size, virtual_addr, raw_size, raw_ptr = struct.unpack_from(
+            '<IIII', data, off + 8
+        )
+        characteristics = struct.unpack_from('<I', data, off + 36)[0]
+        sections.append({
+            'name': name,
+            'virtual_size': virtual_size,
+            'virtual_address': virtual_addr,
+            'raw_size': raw_size,
+            'raw_ptr': raw_ptr,
+            'characteristics': characteristics,
+        })
+
+    return sections, image_base
+
+
+def veda64_disasm_batch(words, disasm_path):
+    """Disassemble a batch of uint32 words with veda64-disasm. Returns list of strings."""
+    args = [str(disasm_path)] + [f'0x{w:08X}' for w in words]
+    result = subprocess.run(args, capture_output=True, text=True)
+    output = []
+    for line in result.stdout.strip().splitlines():
+        colon_pos = line.find(':')
+        if colon_pos != -1:
+            output.append(line[colon_pos + 1:].strip())
+        else:
+            output.append(line.strip())
+    return output
+
+
+def disassemble_section(data, section, image_base, disasm_path):
+    """Disassemble an executable section."""
+    raw = data[section['raw_ptr']:section['raw_ptr'] + section['raw_size']]
+    num_insns = len(raw) // 4
+    base_va = image_base + section['virtual_address']
+
+    print(f"\n=== {section['name']} (RVA: 0x{section['virtual_address']:08X}, "
+          f"Size: 0x{section['raw_size']:X}, {num_insns} instructions) ===")
+
+    words = []
+    for i in range(num_insns):
+        words.append(struct.unpack_from('<I', raw, i * 4)[0])
+
+    for batch_start in range(0, len(words), BATCH_SIZE):
+        batch = words[batch_start:batch_start + BATCH_SIZE]
+        disasm_lines = veda64_disasm_batch(batch, disasm_path)
+
+        for j, text in enumerate(disasm_lines):
+            idx = batch_start + j
+            va = base_va + idx * 4
+            print(f"0x{va:016X}: {words[idx]:08x}    {text}")
+
+
+# ── Normalization for comparison ──────────────────────────────────────────────
+
+# ARM condition code synonyms (both forms are architecturally valid)
+_COND_ALIASES = {'cc': 'lo', 'cs': 'hs'}
+
+# Pattern for veda64 relative branch targets: .+0xOFFSET or .-0xOFFSET
+_REL_TARGET = re.compile(r'\.\s*([+-])\s*0x([0-9a-fA-F]+)')
+
+# ADRP-specific: match "adrp xN, .+0xOFFSET" or "adrp xN, .-0xOFFSET"
+_ADRP_REL = re.compile(r'(adrp\s+x\d+,\s*)\.\s*([+-])\s*0x([0-9a-fA-F]+)')
+
+
+def _normalize_immediates(s):
+    """Convert all numeric literals to a canonical decimal form for comparison."""
+    def _to_dec(m):
+        prefix = m.group(1) or ''
+        return prefix + str(int(m.group(2), 16))
+    # 0xHEX -> decimal (but not when it's a standalone address like "0x140001000")
+    s = re.sub(r'(#?)0x([0-9a-fA-F]+)', _to_dec, s)
+    return s
+
+
+def normalize(text, va=None):
+    """Normalize disassembly text for comparison.
+
+    Applies transformations to reduce cosmetic differences between veda64 and
+    capstone output so that only semantically meaningful mismatches are reported.
+    """
+    s = text.lower().strip()
+    # x29 <-> fp, x30 <-> lr
+    s = s.replace('fp', 'x29').replace('lr', 'x30')
+    # Remove '#' before immediates
+    s = s.replace('#', '')
+    # Condition code synonyms: cc->lo, cs->hs
+    for old, new in _COND_ALIASES.items():
+        s = re.sub(r'(?<=\.)' + old + r'\b', new, s)
+        s = re.sub(r'(?<=, )' + old + r'$', new, s)
+    # ADRP: page-aligned relative target → absolute
+    if va is not None:
+        def _adrp_to_abs(m):
+            prefix = m.group(1)
+            sign = m.group(2)
+            offset = int(m.group(3), 16)
+            if sign == '-':
+                offset = -offset
+            addr = ((va & ~0xFFF) + offset) & 0xffffffffffffffff
+            return f'{prefix}0x{addr:x}'
+        s = _ADRP_REL.sub(_adrp_to_abs, s)
+    # Convert remaining relative branch targets to absolute
+    if va is not None:
+        def _rel_to_abs(m):
+            sign = m.group(1)
+            offset = int(m.group(2), 16)
+            if sign == '-':
+                offset = -offset
+            return f'0x{(va + offset) & 0xffffffffffffffff:x}'
+        s = _REL_TARGET.sub(_rel_to_abs, s)
+    # tbz/tbnz: capstone uses w-reg for bit < 32, veda64 uses x-reg
+    s = re.sub(r'\btbz w(\d+)', r'tbz x\1', s)
+    s = re.sub(r'\btbnz w(\d+)', r'tbnz x\1', s)
+    # Normalize all hex immediates to decimal for consistent comparison
+    s = _normalize_immediates(s)
+    # Collapse whitespace
+    s = ' '.join(s.split())
+    return s
+
+
+# ── Comparison mode ───────────────────────────────────────────────────────────
+
+def compare_section(data, section, image_base, disasm_path, cs_engine, max_diffs):
+    """Compare veda64-disasm vs Capstone for one executable section.
+
+    Returns (total_instructions, match_count, mismatch_count, veda64_only, capstone_only).
+    """
+    raw = data[section['raw_ptr']:section['raw_ptr'] + section['raw_size']]
+    num_insns = len(raw) // 4
+    base_va = image_base + section['virtual_address']
+
+    print(f"\n=== {section['name']} (RVA: 0x{section['virtual_address']:08X}, "
+          f"Size: 0x{section['raw_size']:X}, {num_insns} instructions) ===")
+
+    words = []
+    for i in range(num_insns):
+        words.append(struct.unpack_from('<I', raw, i * 4)[0])
+
+    # Capstone: disassemble entire section at once
+    capstone_map = {}  # offset -> (mnemonic, op_str)
+    for insn in cs_engine.disasm(raw, base_va):
+        capstone_map[insn.address] = f"{insn.mnemonic} {insn.op_str}".strip()
+
+    match_count = 0
+    mismatch_count = 0
+    veda64_only = 0
+    capstone_only = 0
+    diff_printed = 0
+
+    for batch_start in range(0, len(words), BATCH_SIZE):
+        batch = words[batch_start:batch_start + BATCH_SIZE]
+        veda_lines = veda64_disasm_batch(batch, disasm_path)
+
+        for j, veda_text in enumerate(veda_lines):
+            idx = batch_start + j
+            va = base_va + idx * 4
+            word = words[idx]
+
+            cs_text = capstone_map.get(va)
+
+            # Normalize with VA for relative-to-absolute branch conversion
+            veda_norm = normalize(veda_text, va) if veda_text else ''
+            cs_norm = normalize(cs_text, va) if cs_text else ''
+
+            # Detect "unknown" from each side
+            veda_is_unknown = 'unknown' in veda_text.lower() if veda_text else True
+            cs_is_unknown = cs_text is None or cs_text.startswith('.byte')
+
+            if veda_is_unknown and cs_is_unknown:
+                # Both failed — not interesting
+                match_count += 1
+                continue
+
+            if veda_is_unknown and not cs_is_unknown:
+                capstone_only += 1
+                if max_diffs == 0 or diff_printed < max_diffs:
+                    print(f"  0x{va:016X}: {word:08x}  VEDA64_MISS")
+                    print(f"      veda64:   {veda_text}")
+                    print(f"      capstone: {cs_text}")
+                    diff_printed += 1
+                continue
+
+            if not veda_is_unknown and cs_is_unknown:
+                veda64_only += 1
+                if max_diffs == 0 or diff_printed < max_diffs:
+                    print(f"  0x{va:016X}: {word:08x}  CAPSTONE_MISS")
+                    print(f"      veda64:   {veda_text}")
+                    print(f"      capstone: (failed)")
+                    diff_printed += 1
+                continue
+
+            # Both decoded — compare normalized
+            if veda_norm == cs_norm:
+                match_count += 1
+            else:
+                mismatch_count += 1
+                if max_diffs == 0 or diff_printed < max_diffs:
+                    print(f"  0x{va:016X}: {word:08x}  MISMATCH")
+                    print(f"      veda64:   {veda_text}")
+                    print(f"      capstone: {cs_text}")
+                    diff_printed += 1
+
+    if max_diffs > 0 and diff_printed >= max_diffs:
+        remaining = mismatch_count + veda64_only + capstone_only - diff_printed
+        if remaining > 0:
+            print(f"  ... and {remaining} more difference(s) not shown (use --max-diffs 0 to show all)")
+
+    return num_insns, match_count, mismatch_count, veda64_only, capstone_only
+
+
+# ── Main ──────────────────────────────────────────────────────────────────────
+
+def main():
+    parser = argparse.ArgumentParser(
+        description='Disassemble ARM64 PE executables using veda64-disasm')
+    parser.add_argument('pe_file', help='Path to PE executable')
+    parser.add_argument('--disasm', help='Path to veda64-disasm.exe', default=None)
+    parser.add_argument('--compare', action='store_true',
+                        help='Compare veda64 output against Capstone and report differences')
+    parser.add_argument('--max-diffs', type=int, default=50,
+                        help='Max differences to print per section (0=unlimited, default=50)')
+    args = parser.parse_args()
+
+    pe_path = Path(args.pe_file)
+    if not pe_path.is_file():
+        print(f"Error: File not found: {pe_path}", file=sys.stderr)
+        return 1
+
+    if args.disasm:
+        disasm_path = Path(args.disasm)
+    else:
+        disasm_path = Path(__file__).parent / '__build_arm64' / 'Release' / 'veda64-disasm.exe'
+
+    if not disasm_path.is_file():
+        print(f"Error: veda64-disasm not found at: {disasm_path}", file=sys.stderr)
+        print("Use --disasm to specify its location.", file=sys.stderr)
+        return 1
+
+    data = pe_path.read_bytes()
+
+    try:
+        sections, image_base = parse_pe(data)
+    except ValueError as e:
+        print(f"Error: {e}", file=sys.stderr)
+        return 1
+
+    print(f"File: {pe_path.name}")
+    print(f"Image Base: 0x{image_base:016X}")
+    print(f"Sections: {len(sections)}")
+
+    exec_sections = [s for s in sections if s['characteristics'] & IMAGE_SCN_MEM_EXECUTE]
+    if not exec_sections:
+        print("Error: No executable sections found.", file=sys.stderr)
+        return 1
+
+    if args.compare:
+        try:
+            import capstone
+        except ImportError:
+            print("Error: capstone package required for --compare mode.", file=sys.stderr)
+            print("Install with: pip install capstone", file=sys.stderr)
+            return 1
+
+        cs = capstone.Cs(capstone.CS_ARCH_AARCH64, capstone.CS_MODE_ARM)
+        cs.skipdata = True
+
+        totals = {'insns': 0, 'match': 0, 'mismatch': 0, 'veda_only': 0, 'cs_only': 0}
+
+        for section in sections:
+            if not (section['characteristics'] & IMAGE_SCN_MEM_EXECUTE):
+                print(f"\n=== {section['name']} (not executable, skipped) ===")
+                continue
+
+            insns, match, mismatch, veda_only, cs_only = compare_section(
+                data, section, image_base, disasm_path, cs, args.max_diffs
+            )
+            totals['insns'] += insns
+            totals['match'] += match
+            totals['mismatch'] += mismatch
+            totals['veda_only'] += veda_only
+            totals['cs_only'] += cs_only
+
+            total_diffs = mismatch + veda_only + cs_only
+            print(f"\n  Section summary: {match} match, {mismatch} mismatch, "
+                  f"{veda_only} veda64-only, {cs_only} capstone-only "
+                  f"({match}/{insns} = {match/insns*100:.1f}% agreement)")
+
+        # Overall summary
+        t = totals
+        total_diffs = t['mismatch'] + t['veda_only'] + t['cs_only']
+        print(f"\n{'='*60}")
+        print(f"Overall: {t['insns']} instructions, {t['match']} match, "
+              f"{total_diffs} differences")
+        print(f"  Mismatches:    {t['mismatch']}")
+        print(f"  veda64-only:   {t['veda_only']}")
+        print(f"  capstone-only: {t['cs_only']}")
+        if t['insns'] > 0:
+            print(f"  Agreement:     {t['match']}/{t['insns']} "
+                  f"({t['match']/t['insns']*100:.2f}%)")
+    else:
+        for section in sections:
+            if section['characteristics'] & IMAGE_SCN_MEM_EXECUTE:
+                disassemble_section(data, section, image_base, disasm_path)
+            else:
+                print(f"\n=== {section['name']} (not executable, skipped) ===")
+
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

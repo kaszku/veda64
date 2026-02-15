@@ -3047,8 +3047,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::ADDS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::Register, enc.cmn_adds32s_addsub_imm.Rd, true); op.is_sp = true; result.operands.push_back(op); }
-                        { Operand op(OperandType::Register, enc.cmn_adds32s_addsub_imm.Rn, true); op.is_sp = true; result.operands.push_back(op); }
+                        { Operand op(OperandType::Register, enc.cmn_adds32s_addsub_imm.Rd, false); op.is_sp = true; result.operands.push_back(op); }
+                        { Operand op(OperandType::Register, enc.cmn_adds32s_addsub_imm.Rn, false); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cmn_adds32s_addsub_imm.imm12, true));
                         if (enc.cmn_adds32s_addsub_imm.sh != 0) {
                             result.operands.push_back(Operand(OperandType::Shift, 12, true));
@@ -3059,8 +3059,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::SUBS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::Register, enc.cmp_subs32s_addsub_imm.Rd, true); op.is_sp = true; result.operands.push_back(op); }
-                        { Operand op(OperandType::Register, enc.cmp_subs32s_addsub_imm.Rn, true); op.is_sp = true; result.operands.push_back(op); }
+                        { Operand op(OperandType::Register, enc.cmp_subs32s_addsub_imm.Rd, false); op.is_sp = true; result.operands.push_back(op); }
+                        { Operand op(OperandType::Register, enc.cmp_subs32s_addsub_imm.Rn, false); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cmp_subs32s_addsub_imm.imm12, true));
                         if (enc.cmp_subs32s_addsub_imm.sh != 0) {
                             result.operands.push_back(Operand(OperandType::Shift, 12, true));
@@ -3123,8 +3123,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::ADDS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::Register, enc.adds32s_addsub_imm.Rd, true); op.is_sp = true; result.operands.push_back(op); }
-                        { Operand op(OperandType::Register, enc.adds32s_addsub_imm.Rn, true); op.is_sp = true; result.operands.push_back(op); }
+                        { Operand op(OperandType::Register, enc.adds32s_addsub_imm.Rd, false); op.is_sp = true; result.operands.push_back(op); }
+                        { Operand op(OperandType::Register, enc.adds32s_addsub_imm.Rn, false); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.adds32s_addsub_imm.imm12, true));
                         if (enc.adds32s_addsub_imm.sh != 0) {
                             result.operands.push_back(Operand(OperandType::Shift, 12, true));
@@ -3147,8 +3147,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::SUBS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::Register, enc.subs32s_addsub_imm.Rd, true); op.is_sp = true; result.operands.push_back(op); }
-                        { Operand op(OperandType::Register, enc.subs32s_addsub_imm.Rn, true); op.is_sp = true; result.operands.push_back(op); }
+                        { Operand op(OperandType::Register, enc.subs32s_addsub_imm.Rd, false); op.is_sp = true; result.operands.push_back(op); }
+                        { Operand op(OperandType::Register, enc.subs32s_addsub_imm.Rn, false); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.subs32s_addsub_imm.imm12, true));
                         if (enc.subs32s_addsub_imm.sh != 0) {
                             result.operands.push_back(Operand(OperandType::Shift, 12, true));

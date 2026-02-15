@@ -3129,7 +3129,7 @@ class ARM64XMLParser:
                     sf_field = field_map['sf']['name']
                     code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, static_cast<bool>(enc.{member_name}.{sf_field})));")
                 else:
-                    is_64 = '_64_' in encoding_name
+                    is_64 = '_64' in encoding_name and '_32' not in encoding_name
                     code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, {str(is_64).lower()}));")
                 # Sign-extend 19-bit immediate and multiply by 4
                 code.append(f"{ind}int32_t offset = static_cast<int32_t>(enc.{member_name}.{imm_field} << 13) >> 13;")
@@ -3154,6 +3154,24 @@ class ARM64XMLParser:
                 return code
             # Fall through to default if required fields not found
 
+        # Special case: LDR/LDRSW/PRFM literal: Rt + imm19 PC-relative offset
+        if mnemonic in ['LDR', 'LDRSW', 'PRFM'] and 'Rt' in field_map and 'imm19' in field_map and 'Rn' not in field_map:
+            rt_field = field_map['Rt']['name']
+            imm_field = field_map['imm19']['name']
+            # Determine register width from encoding name
+            if has_sf and 'sf' in field_map:
+                sf_field = field_map['sf']['name']
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, static_cast<bool>(enc.{member_name}.{sf_field})));")
+            else:
+                is_64 = '_64' in encoding_name and '_32' not in encoding_name
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, {str(is_64).lower()}));")
+            # Sign-extend 19-bit immediate and multiply by 4
+            code.append(f"{ind}int32_t offset = static_cast<int32_t>(enc.{member_name}.{imm_field} << 13) >> 13;")
+            code.append(f"{ind}offset *= 4;")
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));")
+            code.append(f"{ind}return result;")
+            return code
+
         # Special case: MOVZ/MOVN/MOVK - only if required fields exist
         if (is_movz or is_movn or is_movk) and 'Rd' in field_map and 'imm16' in field_map:
             rd_field = field_map['Rd']['name']
@@ -3163,8 +3181,8 @@ class ARM64XMLParser:
                 sf_field = field_map['sf']['name']
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rd_field}, static_cast<bool>(enc.{member_name}.{sf_field})));")
             else:
-                # Determine is_64bit from encoding name (_32_ means 32-bit, _64_ means 64-bit)
-                is_64 = '_64_' in encoding_name or not '_32_' in encoding_name
+                # Determine is_64bit from encoding name (_32 means 32-bit, _64 means 64-bit)
+                is_64 = '_64' in encoding_name and '_32' not in encoding_name
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rd_field}, {str(is_64).lower()}));")
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.{imm_field}, true));")
             # Only show shift if non-zero
@@ -3189,7 +3207,7 @@ class ARM64XMLParser:
                 code.append(f"{ind}{{ Operand op(OperandType::Register, enc.{member_name}.{rd_field}, static_cast<bool>(enc.{member_name}.{sf_field})); op.is_sp = true; result.operands.push_back(op); }}")
                 code.append(f"{ind}{{ Operand op(OperandType::Register, enc.{member_name}.{rn_field}, static_cast<bool>(enc.{member_name}.{sf_field})); op.is_sp = true; result.operands.push_back(op); }}")
             else:
-                is_64 = '_64_' in encoding_name or not '_32_' in encoding_name
+                is_64 = '_64' in encoding_name and '_32' not in encoding_name
                 code.append(f"{ind}{{ Operand op(OperandType::Register, enc.{member_name}.{rd_field}, {str(is_64).lower()}); op.is_sp = true; result.operands.push_back(op); }}")
                 code.append(f"{ind}{{ Operand op(OperandType::Register, enc.{member_name}.{rn_field}, {str(is_64).lower()}); op.is_sp = true; result.operands.push_back(op); }}")
 
@@ -3280,8 +3298,9 @@ class ARM64XMLParser:
             code.append(f"{ind}return result;")
             return code
 
-        # Special case: Load/store byte/half (LDRB, STRB, LDRH, STRH, LDURB, STURB, LDURH, STURH) - only if required fields exist
-        if is_load_store and 'Rt' in field_map and 'Rn' in field_map and any(x in encoding_name for x in ['ldrb', 'strb', 'ldrh', 'strh', 'ldurb', 'sturb', 'ldurh', 'sturh', '32b_', '32h_']):
+        # Special case: Load/store byte/half (LDRB, STRB, LDRH, STRH, LDRSB, LDRSH, LDURB, STURB, LDURH, STURH, LDURSB, LDURSH) - only if required fields exist
+        byte_half_names = ['ldrb', 'strb', 'ldrh', 'strh', 'ldrsb', 'ldrsh', 'ldurb', 'sturb', 'ldurh', 'sturh', 'ldursb', 'ldursh', '32b_', '32h_']
+        if is_load_store and 'Rt' in field_map and 'Rn' in field_map and any(x in encoding_name for x in byte_half_names):
             rt_field = field_map['Rt']['name']
             rn_field = field_map['Rn']['name']
             imm_field = None
@@ -3290,11 +3309,16 @@ class ARM64XMLParser:
                     imm_field = field_map[imm_name]['name']
                     break
 
-            # Byte/half loads use W register (32-bit)
-            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, false));")
+            # Signed variants (LDRSB, LDRSH) can target 64-bit X registers
+            is_signed = any(x in encoding_name for x in ['ldrsb', 'ldrsh', 'ldursb', 'ldursh'])
+            if is_signed:
+                rt_is_64 = '_64' in encoding_name and '_32' not in encoding_name
+            else:
+                rt_is_64 = False
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, {str(rt_is_64).lower()}));")
 
             # Determine scale for unsigned offset: halfword = 2, byte = 1
-            is_halfword = any(x in encoding_name for x in ['ldrh', 'strh', 'ldurh', 'sturh', '32h_'])
+            is_halfword = any(x in encoding_name for x in ['ldrh', 'strh', 'ldrsh', 'ldurh', 'sturh', 'ldursh', '32h_'])
             is_unscaled = any(x in encoding_name for x in ['ldur', 'stur'])
             scale_factor = 2 if is_halfword and not is_unscaled else 1
             # Shift amount for register offset: log2(scale) - halfword=1, byte=0
@@ -3675,6 +3699,17 @@ class ARM64XMLParser:
                 arrs = {0: ["8b", "16b"], 1: ["4h", "8h"], 2: ["2s", "4s"], 3: ["1d", "2d"]}
                 simd_arrangement = 'runtime'
                 code.append(f"{ind}const char* _simd_arr = enc.{member_name}.{q_field} ? \"{arrs[size_val][1]}\" : \"{arrs[size_val][0]}\";")
+
+        # Mixed-width instructions: Rd/Ra are 64-bit, Rn/Rm are 32-bit
+        is_mixed_width = mnemonic in ['SMADDL', 'SMSUBL', 'UMADDL', 'UMSUBL'] and not is_advsimd_vector
+        if is_mixed_width and 'Rd' in field_map and 'Rn' in field_map and 'Rm' in field_map:
+            for reg_name in ['Rd', 'Rn', 'Rm', 'Ra']:
+                if reg_name in field_map and not field_map[reg_name]['is_fixed']:
+                    field_cpp_name = field_map[reg_name]['name']
+                    rw = 'true' if reg_name in ('Rd', 'Ra') else 'false'
+                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{field_cpp_name}, {rw}));")
+            code.append(f"{ind}return result;")
+            return code
 
         for reg_name in ['Rd', 'Rn', 'Rm', 'Ra', 'Rt', 'Rs', 'Rt2', 'Rdn']:
             if reg_name in field_map and not field_map[reg_name]['is_fixed']:
