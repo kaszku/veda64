@@ -157,6 +157,11 @@ def normalize(text, va=None):
     # tbz/tbnz: capstone uses w-reg for bit < 32, veda64 uses x-reg
     s = re.sub(r'\btbz w(\d+)', r'tbz x\1', s)
     s = re.sub(r'\btbnz w(\d+)', r'tbnz x\1', s)
+    # MOVA → MOV alias (SME tile move, capstone uses MOV preferred form)
+    s = re.sub(r'\bmova\b', 'mov', s)
+    # SSHR shift-by-zero → MOVI aliasing (encoding collision)
+    # When shift amount is 0 in SSHR, it overlaps with MOVI encoding
+    s = re.sub(r'\bsshr (v\d+\.\d+[bhsdq]), (v\d+\.\d+[bhsdq]), 0\b', r'movi \1, 0', s)
     # ISB: "isb sy" → "isb" (SY is default barrier, capstone omits it)
     s = re.sub(r'\bisb\s+sy\b', 'isb', s)
     # MOVI 64-bit zero: "0000000000000000" → "0"
