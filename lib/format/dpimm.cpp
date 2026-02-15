@@ -3300,8 +3300,10 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.adrp_only_pcreladdr.Rd, true));
                         int32_t imm21 = static_cast<int32_t>((enc.adrp_only_pcreladdr.immhi << 2) | (enc.adrp_only_pcreladdr.immlo & 0x3));
                         if (imm21 & 0x100000) imm21 |= static_cast<int32_t>(0xFFE00000);
-                        int32_t offset = imm21 << 12;
-                        result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));
+                        int64_t offset = static_cast<int64_t>(imm21) << 12;
+                        Operand op(OperandType::Relative, static_cast<uint32_t>(offset & 0xFFFFFFFF), true);
+                        op.imm64 = static_cast<uint64_t>(offset);
+                        result.operands.push_back(op);
                         return result;
         }
         default: break;

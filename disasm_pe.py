@@ -105,7 +105,7 @@ _COND_ALIASES = {'cc': 'lo', 'cs': 'hs'}
 _REL_TARGET = re.compile(r'\.\s*([+-])\s*0x([0-9a-fA-F]+)')
 
 # ADRP-specific: match "adrp xN, .+0xOFFSET" or "adrp xN, .-0xOFFSET"
-_ADRP_REL = re.compile(r'(adrp\s+x\d+,\s*)\.\s*([+-])\s*0x([0-9a-fA-F]+)')
+_ADRP_REL = re.compile(r'(adrp\s+(?:x\d+|xzr),\s*)\.\s*([+-])\s*0x([0-9a-fA-F]+)')
 
 
 def _normalize_immediates(s):
@@ -162,8 +162,8 @@ def normalize(text, va=None):
     # SSHR shift-by-zero → MOVI aliasing (encoding collision)
     # When shift amount is 0 in SSHR, it overlaps with MOVI encoding
     s = re.sub(r'\bsshr (v\d+(?:\.\d+[bhsdq])?), (v\d+(?:\.\d+[bhsdq])?), 0\b', r'movi \1, 0', s)
-    # UMOV xN, vM.d[K] → MOV xN, vM.d[K] (preferred alias for 64-bit UMOV)
-    s = re.sub(r'\bumov\s+(x\d+)', r'mov \1', s)
+    # UMOV → MOV alias (preferred form for both 32-bit .s and 64-bit .d UMOV)
+    s = re.sub(r'\bumov\s+((?:w|x)\d+)', r'mov \1', s)
     # ORN with implicit WZR/XZR → MVN: orn wN, wM / orn xN, xM → mvn wN, wM / mvn xN, xM
     # veda64 omits the WZR/XZR first source, printing 2 operands instead of 3
     s = re.sub(r'\born\s+((?:w|x)\d+),\s*((?:w|x)\d+)\b', r'mvn \1, \2', s)
@@ -221,6 +221,23 @@ def normalize(text, va=None):
     s = re.sub(r'\bubfm\s+((?:w|x)\d+),\s*((?:w|x)\d+),\s*(\d+),\s*(\d+)', _ubfm_to_ubfiz, s)
     # BFI with XZR/WZR source → BFC (also handles veda64 bug: Rn=31 as bare number)
     s = re.sub(r'\bbfi\s+((?:w|x)\d+),\s*(?:(?:w|x)zr|\d+),\s*', r'bfc \1, ', s)
+    # SBFM → SBFIZ alias: when imms < immr, SBFM is SBFIZ
+    def _sbfm_to_sbfiz(m):
+        rd = m.group(1)
+        rn = m.group(2)
+        immr = int(m.group(3))
+        imms = int(m.group(4))
+        n = 64 if 'x' in rd else 32
+        if imms < immr:
+            lsb = n - immr
+            width = imms + 1
+            return f'sbfiz {rd}, {rn}, {lsb}, {width}'
+        return m.group(0)
+    s = re.sub(r'\bsbfm\s+((?:w|x)\d+),\s*((?:w|x)\d+),\s*(\d+),\s*(\d+)', _sbfm_to_sbfiz, s)
+    # ORR vector with identical sources → MOV alias: orr vN.T, vM.T, vM.T → mov vN.T, vM.T
+    s = re.sub(r'\borr\s+(v\d+\.\d+b),\s*(v\d+\.\d+b),\s*\2\b', r'mov \1, \2', s)
+    # MOVI: strip arrangement for zero-immediate comparison (veda64 omits arrangement)
+    s = re.sub(r'\bmovi\s+(v\d+)(?:\.\d+[bhsdq])?,\s*0\b', r'movi \1, 0', s)
     # RDVL: always uses X register (64-bit result)
     s = re.sub(r'\brdvl\s+w(\d+)', r'rdvl x\1', s)
     # Collapse whitespace

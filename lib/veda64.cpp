@@ -2232,7 +2232,8 @@ std::string Operand::to_string() const {
             // Format as PC-relative offset (.+0x10 or .-0x10)
             {
                 std::ostringstream oss;
-                int32_t sval = static_cast<int32_t>(value);
+                // Use imm64 for wide offsets (ADRP), fall back to value
+                int64_t sval = imm64 ? static_cast<int64_t>(imm64) : static_cast<int64_t>(static_cast<int32_t>(value));
                 if (sval < 0) oss << ".-0x" << std::hex << (-sval);
                 else oss << ".+0x" << std::hex << sval;
                 return oss.str();

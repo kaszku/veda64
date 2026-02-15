@@ -1761,7 +1761,8 @@ class ARM64XMLParser:
         code.append("            // Format as PC-relative offset (.+0x10 or .-0x10)")
         code.append("            {")
         code.append("                std::ostringstream oss;")
-        code.append("                int32_t sval = static_cast<int32_t>(value);")
+        code.append("                // Use imm64 for wide offsets (ADRP), fall back to value")
+        code.append("                int64_t sval = imm64 ? static_cast<int64_t>(imm64) : static_cast<int64_t>(static_cast<int32_t>(value));")
         code.append("                if (sval < 0) oss << \".-0x\" << std::hex << (-sval);")
         code.append("                else oss << \".+0x\" << std::hex << sval;")
         code.append("                return oss.str();")
@@ -3269,12 +3270,16 @@ class ARM64XMLParser:
             code.append(f"{ind}int32_t imm21 = static_cast<int32_t>((enc.{member_name}.{immhi_field} << 2) | (enc.{member_name}.{immlo_field} & 0x3));")
             code.append(f"{ind}if (imm21 & 0x100000) imm21 |= static_cast<int32_t>(0xFFE00000);")
             if mnemonic == 'ADRP':
-                # ADRP: offset is imm21 << 12 (page-aligned)
-                code.append(f"{ind}int32_t offset = imm21 << 12;")
+                # ADRP: offset is imm21 << 12 (page-aligned), can be up to ±4GB (33 bits)
+                code.append(f"{ind}int64_t offset = static_cast<int64_t>(imm21) << 12;")
+                code.append(f"{ind}Operand op(OperandType::Relative, static_cast<uint32_t>(offset & 0xFFFFFFFF), true);")
+                code.append(f"{ind}op.imm64 = static_cast<uint64_t>(offset);")
+                code.append(f"{ind}result.operands.push_back(op);")
             else:
-                # ADR: offset is imm21 directly
+                # ADR: offset is imm21 directly (fits in 32 bits)
                 code.append(f"{ind}int32_t offset = imm21;")
-            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));")
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));")
+
             code.append(f"{ind}return result;")
             return code
 
