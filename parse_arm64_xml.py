@@ -893,6 +893,7 @@ class ARM64XMLParser:
         code.append("    Prefetch,           // Prefetch operation")
         code.append("    Barrier,            // Barrier option")
         code.append("    FloatImmediate,     // Floating-point immediate (#0.0, etc.)")
+        code.append("    VectorRegisterList, // Vector register list { Vt.T, Vt+1.T, ... }")
         code.append("    Unknown")
         code.append("};")
         code.append("")
@@ -1683,16 +1684,16 @@ class ARM64XMLParser:
         code.append("                    case 0xDCE7u: return \"pmceid1_el0\";")
         code.append("                    case 0xDCF0u: return \"pmuserenr_el0\";")
         code.append("                    // Timers")
-        code.append("                    case 0xDF00u: return \"cntpct_el0\";")   # s3_3_c14_c0_0
-        code.append("                    case 0xDF01u: return \"cntvctss_el0\";")
-        code.append("                    case 0xDF02u: return \"cntvct_el0\";")   # s3_3_c14_c0_2
+        code.append("                    case 0xDF00u: return \"cntfrq_el0\";")    # s3_3_c14_c0_0
+        code.append("                    case 0xDF01u: return \"cntpct_el0\";")    # s3_3_c14_c0_1
+        code.append("                    case 0xDF02u: return \"cntvct_el0\";")    # s3_3_c14_c0_2
+        code.append("                    case 0xDF06u: return \"cntvctss_el0\";")  # s3_3_c14_c0_6
         code.append("                    case 0xDF10u: return \"cntp_tval_el0\";")
         code.append("                    case 0xDF11u: return \"cntp_ctl_el0\";")
         code.append("                    case 0xDF12u: return \"cntp_cval_el0\";")
         code.append("                    case 0xDF18u: return \"cntv_tval_el0\";")
         code.append("                    case 0xDF19u: return \"cntv_ctl_el0\";")
         code.append("                    case 0xDF1Au: return \"cntv_cval_el0\";")
-        code.append("                    case 0xDF08u: return \"cntfrq_el0\";")
         code.append("                    // EL1 system regs")
         code.append("                    case 0xC080u: return \"sctlr_el1\";")
         code.append("                    case 0xC081u: return \"actlr_el1\";")
@@ -1813,6 +1814,23 @@ class ARM64XMLParser:
         code.append("                std::ostringstream oss;")
         code.append("                oss << \"#\" << std::fixed << std::setprecision(8) << fval;")
         code.append("                return oss.str();")
+        code.append("            }")
+        code.append("")
+        code.append("        case OperandType::VectorRegisterList:")
+        code.append("            {")
+        code.append("                // value = first register, index = count, arrangement = element type")
+        code.append("                std::string result = \"{ \";")
+        code.append("                for (uint32_t i = 0; i < index; ++i) {")
+        code.append("                    if (i > 0) result += \", \";")
+        code.append("                    uint32_t reg = (value + i) & 31;")
+        code.append("                    result += \"v\" + std::to_string(reg);")
+        code.append("                    if (arrangement && arrangement[0] != '\\0') {")
+        code.append("                        result += \".\";")
+        code.append("                        result += arrangement;")
+        code.append("                    }")
+        code.append("                }")
+        code.append("                result += \" }\";")
+        code.append("                return result;")
         code.append("            }")
         code.append("")
         code.append("        default:")
@@ -1977,6 +1995,7 @@ class ARM64XMLParser:
         code.append("    Prefetch,           // Prefetch operation")
         code.append("    Barrier,            // Barrier option")
         code.append("    FloatImmediate,     // Floating-point immediate (#0.0, etc.)")
+        code.append("    VectorRegisterList, // Vector register list { Vt.T, Vt+1.T, ... }")
         code.append("    Unknown")
         code.append("};")
         code.append("")
@@ -3880,6 +3899,183 @@ class ARM64XMLParser:
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rn_field}, _rn_64));")
                 code.append(f"{ind}return result;")
                 return code
+
+        # Special case: INS (GPR→vector element) — decode imm5 for element size and index
+        if mnemonic == 'INS' and 'ir_r' in encoding_name and 'Rd' in field_map and 'Rn' in field_map and 'imm5' in field_map:
+            rd_field = field_map['Rd']['name']
+            rn_field = field_map['Rn']['name']
+            imm5_field = field_map['imm5']['name']
+            code.append(f"{ind}uint32_t _imm5 = enc.{member_name}.{imm5_field};")
+            code.append(f"{ind}{{")
+            code.append(f"{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false);")
+            code.append(f"{ind}    uint32_t idx = 0;")
+            code.append(f'{ind}    if (_imm5 & 1) {{ op.arrangement = "b"; idx = _imm5 >> 1; }}')
+            code.append(f'{ind}    else if (_imm5 & 2) {{ op.arrangement = "h"; idx = _imm5 >> 2; }}')
+            code.append(f'{ind}    else if (_imm5 & 4) {{ op.arrangement = "s"; idx = _imm5 >> 3; }}')
+            code.append(f'{ind}    else if (_imm5 & 8) {{ op.arrangement = "d"; idx = _imm5 >> 4; }}')
+            code.append(f"{ind}    op.index = idx;")
+            code.append(f"{ind}    op.has_index = true;")
+            code.append(f"{ind}    result.operands.push_back(op);")
+            code.append(f"{ind}}}")
+            # Source is GPR: B/H/S → W register, D → X register
+            code.append(f"{ind}bool _rn_64 = !(_imm5 & 0x7);")  # D elements → X register
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rn_field}, _rn_64));")
+            code.append(f"{ind}return result;")
+            return code
+
+        # Special case: INS (vector→vector element) — decode imm5 and imm4 for element indices
+        if mnemonic == 'INS' and 'iv_v' in encoding_name and 'Rd' in field_map and 'Rn' in field_map and 'imm5' in field_map and 'imm4' in field_map:
+            rd_field = field_map['Rd']['name']
+            rn_field = field_map['Rn']['name']
+            imm5_field = field_map['imm5']['name']
+            imm4_field = field_map['imm4']['name']
+            code.append(f"{ind}uint32_t _imm5 = enc.{member_name}.{imm5_field};")
+            code.append(f"{ind}uint32_t _imm4 = enc.{member_name}.{imm4_field};")
+            # Destination element
+            code.append(f"{ind}{{")
+            code.append(f"{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false);")
+            code.append(f"{ind}    uint32_t idx = 0;")
+            code.append(f'{ind}    if (_imm5 & 1) {{ op.arrangement = "b"; idx = _imm5 >> 1; }}')
+            code.append(f'{ind}    else if (_imm5 & 2) {{ op.arrangement = "h"; idx = _imm5 >> 2; }}')
+            code.append(f'{ind}    else if (_imm5 & 4) {{ op.arrangement = "s"; idx = _imm5 >> 3; }}')
+            code.append(f'{ind}    else if (_imm5 & 8) {{ op.arrangement = "d"; idx = _imm5 >> 4; }}')
+            code.append(f"{ind}    op.index = idx;")
+            code.append(f"{ind}    op.has_index = true;")
+            code.append(f"{ind}    result.operands.push_back(op);")
+            code.append(f"{ind}}}")
+            # Source element
+            code.append(f"{ind}{{")
+            code.append(f"{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false);")
+            code.append(f"{ind}    uint32_t idx2 = 0;")
+            code.append(f'{ind}    if (_imm5 & 1) {{ op.arrangement = "b"; idx2 = _imm4; }}')
+            code.append(f'{ind}    else if (_imm5 & 2) {{ op.arrangement = "h"; idx2 = _imm4 >> 1; }}')
+            code.append(f'{ind}    else if (_imm5 & 4) {{ op.arrangement = "s"; idx2 = _imm4 >> 2; }}')
+            code.append(f'{ind}    else if (_imm5 & 8) {{ op.arrangement = "d"; idx2 = _imm4 >> 3; }}')
+            code.append(f"{ind}    op.index = idx2;")
+            code.append(f"{ind}    op.has_index = true;")
+            code.append(f"{ind}    result.operands.push_back(op);")
+            code.append(f"{ind}}}")
+            code.append(f"{ind}return result;")
+            return code
+
+        # Special case: DUP scalar (asisdone_only) — Rd is scalar, Vn.Ts[index]
+        if mnemonic == 'DUP' and 'asisdone' in encoding_name and 'Rd' in field_map and 'Rn' in field_map and 'imm5' in field_map:
+            rd_field = field_map['Rd']['name']
+            rn_field = field_map['Rn']['name']
+            imm5_field = field_map['imm5']['name']
+            code.append(f"{ind}uint32_t _imm5 = enc.{member_name}.{imm5_field};")
+            # Destination: scalar register (B/H/S/D prefix based on element size)
+            code.append(f"{ind}{{")
+            code.append(f"{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false);")
+            code.append(f'{ind}    if (_imm5 & 1) op.arrangement = "b";')
+            code.append(f'{ind}    else if (_imm5 & 2) op.arrangement = "h";')
+            code.append(f'{ind}    else if (_imm5 & 4) op.arrangement = "s";')
+            code.append(f'{ind}    else op.arrangement = "d";')
+            code.append(f"{ind}    result.operands.push_back(op);")
+            code.append(f"{ind}}}")
+            # Source: Vn.Ts[index]
+            code.append(f"{ind}{{")
+            code.append(f"{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false);")
+            code.append(f"{ind}    uint32_t idx = 0;")
+            code.append(f'{ind}    if (_imm5 & 1) {{ op.arrangement = "b"; idx = _imm5 >> 1; }}')
+            code.append(f'{ind}    else if (_imm5 & 2) {{ op.arrangement = "h"; idx = _imm5 >> 2; }}')
+            code.append(f'{ind}    else if (_imm5 & 4) {{ op.arrangement = "s"; idx = _imm5 >> 3; }}')
+            code.append(f'{ind}    else if (_imm5 & 8) {{ op.arrangement = "d"; idx = _imm5 >> 4; }}')
+            code.append(f"{ind}    op.index = idx;")
+            code.append(f"{ind}    op.has_index = true;")
+            code.append(f"{ind}    result.operands.push_back(op);")
+            code.append(f"{ind}}}")
+            code.append(f"{ind}return result;")
+            return code
+
+        # Special case: SIMD structure loads/stores (LD1-4/ST1-4 with asisdlse/asisdlsep encodings)
+        is_simd_struct = mnemonic in ['LD1', 'LD2', 'LD3', 'LD4', 'ST1', 'ST2', 'ST3', 'ST4'] and ('asisdlse' in encoding_name)
+        if is_simd_struct and 'Rt' in field_map and 'Rn' in field_map:
+            rt_field = field_map['Rt']['name']
+            rn_field = field_map['Rn']['name']
+
+            # Determine number of registers from encoding name
+            # LD1: R1_1v/R2_2v/R3_3v/R4_4v or I1_i1/R1_r1 etc.
+            # LD2/LD3/LD4: always use their mnemonic count
+            num_regs = 1
+            if mnemonic in ['LD2', 'ST2']:
+                num_regs = 2
+            elif mnemonic in ['LD3', 'ST3']:
+                num_regs = 3
+            elif mnemonic in ['LD4', 'ST4']:
+                num_regs = 4
+            else:
+                # LD1/ST1: parse from encoding name (R1_1v, R2_2v, R3_3v, R4_4v, I1/I2/I3/I4, etc.)
+                import re as _re
+                m = _re.search(r'[ri](\d)', encoding_name)
+                if m:
+                    num_regs = int(m.group(1))
+
+            # Arrangement from Q and size fields
+            if 'Q' in field_map and 'size' in field_map:
+                q_field = field_map['Q']['name']
+                size_field = field_map['size']['name']
+                q_fixed = field_map['Q']['is_fixed']
+                size_fixed = field_map['size']['is_fixed']
+
+                if not q_fixed and not size_fixed:
+                    code.append(f"{ind}const char* _arr = nullptr;")
+                    code.append(f"{ind}{{")
+                    code.append(f'{ind}    static const char* arrs[2][4] = {{')
+                    code.append(f'{ind}        {{"8b", "4h", "2s", "1d"}},')
+                    code.append(f'{ind}        {{"16b", "8h", "4s", "2d"}}')
+                    code.append(f'{ind}    }};')
+                    code.append(f"{ind}    _arr = arrs[enc.{member_name}.{q_field}][enc.{member_name}.{size_field}];")
+                    code.append(f"{ind}}}")
+                elif q_fixed and not size_fixed:
+                    q_val = int(field_map['Q']['fixed'], 2) if field_map['Q']['fixed'] else 0
+                    arrs = [["8b", "4h", "2s", "1d"], ["16b", "8h", "4s", "2d"]]
+                    code.append(f"{ind}const char* _arr = nullptr;")
+                    arr_list = arrs[q_val]
+                    code.append(f'{ind}{{ static const char* arrs[] = {{"{arr_list[0]}", "{arr_list[1]}", "{arr_list[2]}", "{arr_list[3]}"}}; _arr = arrs[enc.{member_name}.{size_field}]; }}')
+                elif not q_fixed and size_fixed:
+                    size_val = int(field_map['size']['fixed'], 2) if field_map['size']['fixed'] else 0
+                    arrs = {0: ["8b", "16b"], 1: ["4h", "8h"], 2: ["2s", "4s"], 3: ["1d", "2d"]}
+                    code.append(f"{ind}const char* _arr = enc.{member_name}.{q_field} ? \"{arrs[size_val][1]}\" : \"{arrs[size_val][0]}\";")
+                else:
+                    q_val = int(field_map['Q']['fixed'], 2) if field_map['Q']['fixed'] else 0
+                    size_val = int(field_map['size']['fixed'], 2) if field_map['size']['fixed'] else 0
+                    arrs = [["8b", "4h", "2s", "1d"], ["16b", "8h", "4s", "2d"]]
+                    code.append(f'{ind}const char* _arr = "{arrs[q_val][size_val]}";')
+            else:
+                code.append(f'{ind}const char* _arr = nullptr;')
+
+            # Vector register list operand: { Vt.T, V(t+1).T, ... }
+            code.append(f"{ind}{{ Operand op(OperandType::VectorRegisterList, enc.{member_name}.{rt_field}, false);")
+            code.append(f"{ind}  op.index = {num_regs}; op.arrangement = _arr; result.operands.push_back(op); }}")
+
+            # Memory base operand: [Xn|SP]
+            is_post_index = 'asisdlsep' in encoding_name
+            if is_post_index and 'Rm' in field_map and not field_map['Rm']['is_fixed']:
+                rm_field = field_map['Rm']['name']
+                # Post-index with register: [Xn], Xm
+                code.append(f"{ind}result.operands.push_back(Operand::memory_base(enc.{member_name}.{rn_field}));")
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rm_field}, true));")
+            elif is_post_index:
+                # Post-index with immediate: [Xn], #imm
+                # Immediate = num_regs * (Q ? 16 : 8) for LD1/ST1
+                # For LD2-4/ST2-4: num_regs * (Q ? 16 : 8)
+                if 'Q' in field_map and not field_map['Q']['is_fixed']:
+                    q_field = field_map['Q']['name']
+                    code.append(f"{ind}int32_t _post_imm = enc.{member_name}.{q_field} ? {num_regs * 16} : {num_regs * 8};")
+                elif 'Q' in field_map:
+                    q_val = int(field_map['Q']['fixed'], 2) if field_map['Q']['fixed'] else 0
+                    post_imm = num_regs * 16 if q_val else num_regs * 8
+                    code.append(f"{ind}int32_t _post_imm = {post_imm};")
+                else:
+                    code.append(f"{ind}int32_t _post_imm = {num_regs * 8};")
+                code.append(f"{ind}result.operands.push_back(Operand::memory_post_index(enc.{member_name}.{rn_field}, _post_imm));")
+            else:
+                # No post-index: [Xn]
+                code.append(f"{ind}result.operands.push_back(Operand::memory_base(enc.{member_name}.{rn_field}));")
+
+            code.append(f"{ind}return result;")
+            return code
 
         # Extract all GPR register operands - pass is_64bit as third parameter
         # Special case: For advsimd/simd_dp classes, Rd/Rn/Rm might actually be vector registers

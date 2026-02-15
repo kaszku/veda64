@@ -2154,16 +2154,16 @@ std::string Operand::to_string() const {
                     case 0xDCE7u: return "pmceid1_el0";
                     case 0xDCF0u: return "pmuserenr_el0";
                     // Timers
-                    case 0xDF00u: return "cntpct_el0";
-                    case 0xDF01u: return "cntvctss_el0";
+                    case 0xDF00u: return "cntfrq_el0";
+                    case 0xDF01u: return "cntpct_el0";
                     case 0xDF02u: return "cntvct_el0";
+                    case 0xDF06u: return "cntvctss_el0";
                     case 0xDF10u: return "cntp_tval_el0";
                     case 0xDF11u: return "cntp_ctl_el0";
                     case 0xDF12u: return "cntp_cval_el0";
                     case 0xDF18u: return "cntv_tval_el0";
                     case 0xDF19u: return "cntv_ctl_el0";
                     case 0xDF1Au: return "cntv_cval_el0";
-                    case 0xDF08u: return "cntfrq_el0";
                     // EL1 system regs
                     case 0xC080u: return "sctlr_el1";
                     case 0xC081u: return "actlr_el1";
@@ -2284,6 +2284,23 @@ std::string Operand::to_string() const {
                 std::ostringstream oss;
                 oss << "#" << std::fixed << std::setprecision(8) << fval;
                 return oss.str();
+            }
+
+        case OperandType::VectorRegisterList:
+            {
+                // value = first register, index = count, arrangement = element type
+                std::string result = "{ ";
+                for (uint32_t i = 0; i < index; ++i) {
+                    if (i > 0) result += ", ";
+                    uint32_t reg = (value + i) & 31;
+                    result += "v" + std::to_string(reg);
+                    if (arrangement && arrangement[0] != '\0') {
+                        result += ".";
+                        result += arrangement;
+                    }
+                }
+                result += " }";
+                return result;
             }
 
         default:

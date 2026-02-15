@@ -1623,6 +1623,7 @@ enum class OperandType {
     Prefetch,           // Prefetch operation
     Barrier,            // Barrier option
     FloatImmediate,     // Floating-point immediate (#0.0, etc.)
+    VectorRegisterList, // Vector register list { Vt.T, Vt+1.T, ... }
     Unknown
 };
 

@@ -35583,9 +35583,20 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ins_asimdins_ir_r.Rd, false));
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ins_asimdins_ir_r.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.ins_asimdins_ir_r.imm5, true));
+                        uint32_t _imm5 = enc.ins_asimdins_ir_r.imm5;
+                        {
+                            Operand op(OperandType::VectorRegister, enc.ins_asimdins_ir_r.Rd, false);
+                            uint32_t idx = 0;
+                            if (_imm5 & 1) { op.arrangement = "b"; idx = _imm5 >> 1; }
+                            else if (_imm5 & 2) { op.arrangement = "h"; idx = _imm5 >> 2; }
+                            else if (_imm5 & 4) { op.arrangement = "s"; idx = _imm5 >> 3; }
+                            else if (_imm5 & 8) { op.arrangement = "d"; idx = _imm5 >> 4; }
+                            op.index = idx;
+                            op.has_index = true;
+                            result.operands.push_back(op);
+                        }
+                        bool _rn_64 = !(_imm5 & 0x7);
+                        result.operands.push_back(Operand(OperandType::Register, enc.ins_asimdins_ir_r.Rn, _rn_64));
                         return result;
         }
         case 0x4E002C00u: { // SMOV_asimdins_X_x
@@ -35694,9 +35705,26 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.dup_asisdone_only.Rd, false));
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.dup_asisdone_only.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.dup_asisdone_only.imm5, true));
+                        uint32_t _imm5 = enc.dup_asisdone_only.imm5;
+                        {
+                            Operand op(OperandType::VectorRegister, enc.dup_asisdone_only.Rd, false);
+                            if (_imm5 & 1) op.arrangement = "b";
+                            else if (_imm5 & 2) op.arrangement = "h";
+                            else if (_imm5 & 4) op.arrangement = "s";
+                            else op.arrangement = "d";
+                            result.operands.push_back(op);
+                        }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.dup_asisdone_only.Rn, false);
+                            uint32_t idx = 0;
+                            if (_imm5 & 1) { op.arrangement = "b"; idx = _imm5 >> 1; }
+                            else if (_imm5 & 2) { op.arrangement = "h"; idx = _imm5 >> 2; }
+                            else if (_imm5 & 4) { op.arrangement = "s"; idx = _imm5 >> 3; }
+                            else if (_imm5 & 8) { op.arrangement = "d"; idx = _imm5 >> 4; }
+                            op.index = idx;
+                            op.has_index = true;
+                            result.operands.push_back(op);
+                        }
                         return result;
         }
         case 0x5E001000u: { // SHA1P_QSV_cryptosha3
@@ -36194,10 +36222,30 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ins_asimdins_iv_v.Rd, false));
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ins_asimdins_iv_v.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.ins_asimdins_iv_v.imm5, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.ins_asimdins_iv_v.imm4, true));
+                        uint32_t _imm5 = enc.ins_asimdins_iv_v.imm5;
+                        uint32_t _imm4 = enc.ins_asimdins_iv_v.imm4;
+                        {
+                            Operand op(OperandType::VectorRegister, enc.ins_asimdins_iv_v.Rd, false);
+                            uint32_t idx = 0;
+                            if (_imm5 & 1) { op.arrangement = "b"; idx = _imm5 >> 1; }
+                            else if (_imm5 & 2) { op.arrangement = "h"; idx = _imm5 >> 2; }
+                            else if (_imm5 & 4) { op.arrangement = "s"; idx = _imm5 >> 3; }
+                            else if (_imm5 & 8) { op.arrangement = "d"; idx = _imm5 >> 4; }
+                            op.index = idx;
+                            op.has_index = true;
+                            result.operands.push_back(op);
+                        }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.ins_asimdins_iv_v.Rn, false);
+                            uint32_t idx2 = 0;
+                            if (_imm5 & 1) { op.arrangement = "b"; idx2 = _imm4; }
+                            else if (_imm5 & 2) { op.arrangement = "h"; idx2 = _imm4 >> 1; }
+                            else if (_imm5 & 4) { op.arrangement = "s"; idx2 = _imm4 >> 2; }
+                            else if (_imm5 & 8) { op.arrangement = "d"; idx2 = _imm4 >> 3; }
+                            op.index = idx2;
+                            op.has_index = true;
+                            result.operands.push_back(op);
+                        }
                         return result;
         }
         default: break;
