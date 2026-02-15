@@ -37976,7 +37976,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
+                        bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_mz4za_d1mova_mz4za_d1.Rs, is_64bit));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.mov_mz4za_d1mova_mz4za_d1.Zd, true));
                         result.operands.push_back(Operand(OperandType::SMETileRegister, enc.mov_mz4za_d1mova_mz4za_d1.ZAn, true));
@@ -37986,7 +37986,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVAZ, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
+                        bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.movaz_mz4za_d1.Rs, is_64bit));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.movaz_mz4za_d1.Zd, true));
                         result.operands.push_back(Operand(OperandType::SMETileRegister, enc.movaz_mz4za_d1.ZAn, true));
@@ -38067,7 +38067,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
+                        bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_mz2za_d1mova_mz2za_d1.Rs, is_64bit));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.mov_mz2za_d1mova_mz2za_d1.Zd, true));
                         result.operands.push_back(Operand(OperandType::SMETileRegister, enc.mov_mz2za_d1mova_mz2za_d1.ZAn, true));
@@ -38077,7 +38077,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVAZ, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
+                        bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.movaz_mz2za_d1.Rs, is_64bit));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.movaz_mz2za_d1.Zd, true));
                         result.operands.push_back(Operand(OperandType::SMETileRegister, enc.movaz_mz2za_d1.ZAn, true));
@@ -38124,7 +38124,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVAZ, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
+                        bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.movaz_zrza_d.Rs, is_64bit));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.movaz_zrza_d.Zd, true));
                         result.operands.push_back(Operand(OperandType::SMETileRegister, enc.movaz_zrza_d.ZAn, true));
@@ -38188,7 +38188,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
+                        bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za4zd1mova_za4zd1.Rs, is_64bit));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.mov_za4zd1mova_za4zd1.Zn, true));
                         result.operands.push_back(Operand(OperandType::SMETileRegister, enc.mov_za4zd1mova_za4zd1.ZAd, true));
@@ -38238,7 +38238,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
+                        bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za2zd1mova_za2zd1.Rs, is_64bit));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.mov_za2zd1mova_za2zd1.Zn, true));
                         result.operands.push_back(Operand(OperandType::SMETileRegister, enc.mov_za2zd1mova_za2zd1.ZAd, true));
@@ -38292,7 +38292,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
+                        bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_zprza_dmova_zprza_d.Rs, is_64bit));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.mov_zprza_dmova_zprza_d.Zd, true));
                         result.operands.push_back(Operand(OperandType::PredicateRegister, enc.mov_zprza_dmova_zprza_d.Pg, true));
@@ -38409,7 +38409,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
+                        bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_za_prz_dmova_za_prz_d.Rs, is_64bit));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.mov_za_prz_dmova_za_prz_d.Zn, true));
                         result.operands.push_back(Operand(OperandType::PredicateRegister, enc.mov_za_prz_dmova_za_prz_d.Pg, true));

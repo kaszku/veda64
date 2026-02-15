@@ -46,7 +46,7 @@ union DpimmEncoding {
         uint32_t Rd : 5;
         uint32_t Rn : 5;
         uint32_t imm4 : 4;
-        uint32_t op3 : 2;  // partial: (0)(0)
+        uint32_t op3 : 2;  // fixed: 0b00 (0x0)
         uint32_t imm6 : 6;
         uint32_t _unnamed_1 : 4;  // fixed: 0b0110 (0x6)
         uint32_t _unnamed_0 : 3;  // fixed: 0b100 (0x4)
@@ -1034,7 +1034,7 @@ union DpimmEncoding {
         uint32_t Rd : 5;
         uint32_t Rn : 5;
         uint32_t imm4 : 4;
-        uint32_t op3 : 2;  // partial: (0)(0)
+        uint32_t op3 : 2;  // fixed: 0b00 (0x0)
         uint32_t imm6 : 6;
         uint32_t _unnamed_1 : 4;  // fixed: 0b0110 (0x6)
         uint32_t _unnamed_0 : 3;  // fixed: 0b100 (0x4)
@@ -1414,12 +1414,12 @@ uint32_t encode_add_64_addsub_imm(uint32_t Rd, uint32_t Rn, uint32_t imm12, uint
     return insn.raw;
 }
 
-uint32_t encode_addg_64_addsub_immtags(uint32_t Rd, uint32_t Rn, uint32_t imm4, uint32_t op3, uint32_t imm6) {
+uint32_t encode_addg_64_addsub_immtags(uint32_t Rd, uint32_t Rn, uint32_t imm4, uint32_t imm6) {
     DpimmEncoding insn = {};
     insn.addg64addsub_immtags.Rd = Rd;
     insn.addg64addsub_immtags.Rn = Rn;
     insn.addg64addsub_immtags.imm4 = imm4;
-    insn.addg64addsub_immtags.op3 = op3;
+    insn.addg64addsub_immtags.op3 = 0b00;
     insn.addg64addsub_immtags.imm6 = imm6;
     insn.addg64addsub_immtags._unnamed_1 = 0b0110;
     insn.addg64addsub_immtags._unnamed_0 = 0b100;
@@ -2213,12 +2213,12 @@ uint32_t encode_sub_64_addsub_imm(uint32_t Rd, uint32_t Rn, uint32_t imm12, uint
     return insn.raw;
 }
 
-uint32_t encode_subg_64_addsub_immtags(uint32_t Rd, uint32_t Rn, uint32_t imm4, uint32_t op3, uint32_t imm6) {
+uint32_t encode_subg_64_addsub_immtags(uint32_t Rd, uint32_t Rn, uint32_t imm4, uint32_t imm6) {
     DpimmEncoding insn = {};
     insn.subg64addsub_immtags.Rd = Rd;
     insn.subg64addsub_immtags.Rn = Rn;
     insn.subg64addsub_immtags.imm4 = imm4;
-    insn.subg64addsub_immtags.op3 = op3;
+    insn.subg64addsub_immtags.op3 = 0b00;
     insn.subg64addsub_immtags.imm6 = imm6;
     insn.subg64addsub_immtags._unnamed_1 = 0b0110;
     insn.subg64addsub_immtags._unnamed_0 = 0b100;
@@ -2737,33 +2737,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
         default: break;
     }
 
-    // Switch for mask 0xFFC48000u (2 patterns, 2 encodings)
-    switch (insn & 0xFFC48000u) {
-        case 0x91800000u: { // ADDG_64_addsub_immtags
-                        Instruction result(Mnemonic::ADDG, insn);
-                        DpimmEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.addg64addsub_immtags.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.addg64addsub_immtags.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.addg64addsub_immtags.imm6, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.addg64addsub_immtags.imm4, true));
-                        return result;
-        }
-        case 0xD1800000u: { // SUBG_64_addsub_immtags
-                        Instruction result(Mnemonic::SUBG, insn);
-                        DpimmEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.subg64addsub_immtags.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.subg64addsub_immtags.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.subg64addsub_immtags.imm6, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.subg64addsub_immtags.imm4, true));
-                        return result;
-        }
-        default: break;
-    }
-
     // Switch for mask 0xFFC0FC00u (4 patterns, 4 encodings)
     switch (insn & 0xFFC0FC00u) {
         case 0x13007C00u: { // ASR_SBFM_32M_bitfield
@@ -2863,7 +2836,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
         default: break;
     }
 
-    // Switch for mask 0xFFC00000u (13 patterns, 27 encodings)
+    // Switch for mask 0xFFC00000u (15 patterns, 29 encodings)
     switch (insn & 0xFFC00000u) {
         case 0x12000000u: { // AND_32_log_imm
                         Instruction result(Mnemonic::AND, insn);
@@ -2983,6 +2956,17 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         }
                         return result;
         }
+        case 0x91800000u: { // ADDG_64_addsub_immtags
+                        Instruction result(Mnemonic::ADDG, insn);
+                        DpimmEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.addg64addsub_immtags.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.addg64addsub_immtags.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.addg64addsub_immtags.imm6, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.addg64addsub_immtags.imm4, true));
+                        return result;
+        }
         case 0x93400000u: { // SBFIZ_SBFM_64M_bitfield
             // Also matches: SBFM_64M_bitfield (SBFM)
             // Also matches: SBFX_SBFM_64M_bitfield (SBFM)
@@ -3006,6 +2990,17 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.bfm64m_bitfield.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.bfm64m_bitfield.immr, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.bfm64m_bitfield.imms, true));
+                        return result;
+        }
+        case 0xD1800000u: { // SUBG_64_addsub_immtags
+                        Instruction result(Mnemonic::SUBG, insn);
+                        DpimmEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.subg64addsub_immtags.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.subg64addsub_immtags.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.subg64addsub_immtags.imm6, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.subg64addsub_immtags.imm4, true));
                         return result;
         }
         case 0xD3400000u: { // LSL_UBFM_64M_bitfield

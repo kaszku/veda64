@@ -282,16 +282,25 @@ class ARM64XMLParser:
                     # Concatenate all <c> elements to form the complete binary value
                     # Handle partial patterns like "x1" where some bits are fixed
                     binary_value = ''.join([c.text.strip() if c.text else '' for c in c_elements])
-                    if binary_value:
+                    # ARM XML uses (1) and (0) for "should be" bits — strip parens
+                    has_should_be = '(' in binary_value
+                    clean_value = binary_value.replace('(', '').replace(')', '')
+                    if clean_value:
                         # Check if fully fixed (all 0s and 1s)
-                        if all(b in '01' for b in binary_value):
-                            bit_pattern[name] = binary_value
-                            field_info['fixed'] = binary_value
+                        if all(b in '01' for b in clean_value):
+                            if has_should_be:
+                                # "Should be" bits: fixed for operand purposes but
+                                # NOT included in match mask (permissive decoding)
+                                field_info['fixed'] = clean_value
+                                field_info['should_be'] = True
+                            else:
+                                bit_pattern[name] = clean_value
+                                field_info['fixed'] = clean_value
                         # Check if partially fixed (has some 0s or 1s mixed with x)
-                        elif any(b in '01' for b in binary_value):
+                        elif any(b in '01' for b in clean_value):
                             # Store raw pattern for reference, but mark as partial
                             field_info['fixed'] = None
-                            field_info['partial_pattern'] = binary_value
+                            field_info['partial_pattern'] = clean_value
                         else:
                             field_info['fixed'] = None
                     else:
@@ -496,6 +505,10 @@ class ARM64XMLParser:
             width = field_info.get('width', 1)
 
             if hibit is None:
+                continue
+
+            # Skip "should be" fields — don't include in match mask
+            if field_info.get('should_be'):
                 continue
 
             lobit = hibit - width + 1
@@ -986,11 +999,15 @@ class ARM64XMLParser:
         code.append("namespace veda64 {")
         code.append("")
 
-        # Collect all unique mnemonics
+        # Collect all unique mnemonics (must match enum generation)
         mnemonics = set()
         for instr in self.instructions:
             if instr.mnemonic:
                 mnemonics.add(instr.mnemonic)
+            for encoding in instr.encodings:
+                encoding_mnemonic = encoding.docvars.get('mnemonic', '')
+                if encoding_mnemonic:
+                    mnemonics.add(encoding_mnemonic)
 
         # Add HINT aliases that are decoded at runtime (complete list from ARM64 XML)
         hint_aliases = ['NOP', 'YIELD', 'WFE', 'WFI', 'SEV', 'SEVL', 'DGH', 'XPACLRI',
@@ -2320,7 +2337,7 @@ class ARM64XMLParser:
             'imm', 'imm12', 'imm16', 'imm19', 'imm26', 'immr', 'imms', 'immlo', 'immhi',
             'imm2', 'imm3', 'imm4', 'imm5', 'imm6', 'imm7', 'imm8', 'imm9', 'imm13',
             # Shift/extend/condition operands
-            'hw', 'shift', 'cond', 'nzcv', 'option',
+            'hw', 'shift', 'cond', 'nzcv', 'option', 'S',
             # System register operands
             'CRm', 'CRn', 'op1', 'op2',
             # SVE/SME variable fields
@@ -2339,6 +2356,10 @@ class ARM64XMLParser:
                 continue
 
             lobit = hibit - width + 1
+
+            # Skip "should be" fields — don't include in match mask (permissive)
+            if field_info.get('should_be'):
+                continue
 
             # Always include fixed bits
             if fixed is not None and self._is_binary_string(fixed):
@@ -2941,7 +2962,8 @@ class ARM64XMLParser:
         # Determine if this is a load/store with memory addressing
         is_load_store = any(x in encoding_name for x in ['ldst', 'ldap', 'stl', 'ldur', 'stur',
                                                           'ldr_', 'str_', 'ldnp', 'stnp', 'ldtr', 'sttr',
-                                                          'ldrb', 'strb', 'ldrh', 'strh'])
+                                                          'ldrb', 'strb', 'ldrh', 'strh',
+                                                          'comswap', 'memop'])
         is_load_store = is_load_store and not is_ldp_stp  # Handle LDP/STP separately
 
         # Determine addressing mode
@@ -3017,25 +3039,25 @@ class ARM64XMLParser:
 
             # Determine register type from encoding name and opc field
             # Check for SIMD/FP pair: _Q_ (128-bit), _D_ (64-bit), _S_ (32-bit)
-            is_simd_q = '_Q_' in encoding_name or '_q_' in encoding_name
-            is_simd_d = '_D_' in encoding_name and ('ldstpair' in encoding_name or 'ldstnapair' in encoding_name)
-            is_simd_s = '_S_' in encoding_name and ('ldstpair' in encoding_name or 'ldstnapair' in encoding_name)
+            is_simd_q = '_q_' in encoding_name or '_Q_' in encoding_name
+            is_simd_d = '_d_' in encoding_name and ('ldstpair' in encoding_name or 'ldstnapair' in encoding_name)
+            is_simd_s = '_s_' in encoding_name and ('ldstpair' in encoding_name or 'ldstnapair' in encoding_name)
 
             if is_simd_q:
                 # 128-bit Q registers (SIMD), scale=16
                 code.append(f"{ind}int scale = 16;")
-                code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{rt_field}, true));")
-                code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{rt2_field}, true));")
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rt_field}, false); op.arrangement = \"q\"; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rt2_field}, false); op.arrangement = \"q\"; result.operands.push_back(op); }}")
             elif is_simd_d:
-                # 64-bit D registers (SIMD), scale=8 - use 'v' prefix (equivalent to 'd')
+                # 64-bit D registers (SIMD), scale=8
                 code.append(f"{ind}int scale = 8;")
-                code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{rt_field}, false));")
-                code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{rt2_field}, false));")
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rt_field}, false); op.arrangement = \"d\"; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rt2_field}, false); op.arrangement = \"d\"; result.operands.push_back(op); }}")
             elif is_simd_s:
-                # 32-bit S registers (SIMD), scale=4 - use 'v' prefix (equivalent to 's')
+                # 32-bit S registers (SIMD), scale=4
                 code.append(f"{ind}int scale = 4;")
-                code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{rt_field}, false));")
-                code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{rt2_field}, false));")
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rt_field}, false); op.arrangement = \"s\"; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rt2_field}, false); op.arrangement = \"s\"; result.operands.push_back(op); }}")
             elif 'opc' in field_map and not field_map['opc']['is_fixed']:
                 opc_field = field_map['opc']['name']
                 code.append(f"{ind}bool is_64bit = (enc.{member_name}.{opc_field} == 2);")
@@ -3158,8 +3180,18 @@ class ARM64XMLParser:
         if mnemonic in ['LDR', 'LDRSW', 'PRFM'] and 'Rt' in field_map and 'imm19' in field_map and 'Rn' not in field_map:
             rt_field = field_map['Rt']['name']
             imm_field = field_map['imm19']['name']
-            # Determine register width from encoding name
-            if has_sf and 'sf' in field_map:
+            # Check for SIMD/FP literal load (LDR_S_loadlit, LDR_D_loadlit, LDR_Q_loadlit)
+            fp_lit_arr = None
+            if 'loadlit' in encoding_name:
+                if '_s_' in encoding_name:
+                    fp_lit_arr = 's'
+                elif '_d_' in encoding_name:
+                    fp_lit_arr = 'd'
+                elif '_q_' in encoding_name:
+                    fp_lit_arr = 'q'
+            if fp_lit_arr:
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rt_field}, false); op.arrangement = \"{fp_lit_arr}\"; result.operands.push_back(op); }}")
+            elif has_sf and 'sf' in field_map:
                 sf_field = field_map['sf']['name']
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, static_cast<bool>(enc.{member_name}.{sf_field})));")
             else:
@@ -3294,6 +3326,36 @@ class ARM64XMLParser:
                     code.append(f"{ind}result.operands.push_back(Operand::memory_offset(enc.{member_name}.{rn_field}, imm));")
                 else:
                     code.append(f"{ind}result.operands.push_back(Operand::memory_base(enc.{member_name}.{rn_field}));")
+
+            code.append(f"{ind}return result;")
+            return code
+
+        # Special case: Load/store exclusive, ordered, and atomic operations
+        # Covers: LDAR/STLR, LDXR/STXR, LDAXR/STLXR, LDLAR/STLLR, CAS, LDADD, LDCLR, LDSET, LDEOR, SWP, LDAPR
+        excl_ord_names = ['ldstord', 'ldstexcl', 'comswap', 'memop']
+        if is_load_store and 'Rt' in field_map and 'Rn' in field_map and any(x in encoding_name for x in excl_ord_names):
+            rt_field = field_map['Rt']['name']
+            rn_field = field_map['Rn']['name']
+            has_rs = 'Rs' in field_map and not field_map['Rs']['is_fixed']
+            has_rt2 = 'Rt2' in field_map and not field_map['Rt2']['is_fixed']
+
+            # Register width: 64 in name → X, otherwise W
+            # Exclusive/ordered use patterns like sl64, sr64, lr64 (not _64_)
+            is_64 = '64' in encoding_name and '32' not in encoding_name
+            code.append(f"{ind}bool is_64bit = {str(is_64).lower()};")
+
+            # Exclusive stores: Rs is status register (always W32)
+            is_excl_store = 'stxr' in encoding_name or 'stlxr' in encoding_name or 'stxp' in encoding_name or 'stlxp' in encoding_name
+            # Operand order: [Rs,] Rt [, Rt2], [Xn|SP]
+            if has_rs:
+                rs_field = field_map['Rs']['name']
+                rs_64 = 'false' if is_excl_store else 'is_64bit'
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rs_field}, {rs_64}));")
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, is_64bit));")
+            if has_rt2:
+                rt2_field = field_map['Rt2']['name']
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt2_field}, is_64bit));")
+            code.append(f"{ind}result.operands.push_back(Operand::memory_base(enc.{member_name}.{rn_field}));")
 
             code.append(f"{ind}return result;")
             return code
@@ -3554,7 +3616,7 @@ class ARM64XMLParser:
             if 'sf' in field_map and not field_map['sf']['is_fixed']:
                 sf_field = field_map['sf']['name']
                 code.append(f"{ind}bool is_64bit = enc.{member_name}.{sf_field};")
-            elif '64' in encoding_name or '_d' in encoding_name or '_x' in encoding_name:
+            elif '64' in encoding_name and '32' not in encoding_name:
                 code.append(f"{ind}bool is_64bit = true;")
             elif mnemonic in ['ADR', 'ADRP'] or 'pcreladdr' in encoding_name:
                 # ADR/ADRP always produce 64-bit X registers
@@ -3711,12 +3773,26 @@ class ARM64XMLParser:
             code.append(f"{ind}return result;")
             return code
 
+        # Detect scalar FP: encoding name contains 'float' (floatdp1, floatdp2, floatdp3, floatcmp)
+        # These use s/d/h register naming based on precision in encoding name
+        scalar_fp_arr = None
+        if 'float' in encoding_name and is_advsimd_vector:
+            if '_d_' in encoding_name or encoding_name.startswith('d_'):
+                scalar_fp_arr = 'd'
+            elif '_s_' in encoding_name or encoding_name.startswith('s_'):
+                scalar_fp_arr = 's'
+            elif '_h_' in encoding_name or encoding_name.startswith('h_'):
+                scalar_fp_arr = 'h'
+
         for reg_name in ['Rd', 'Rn', 'Rm', 'Ra', 'Rt', 'Rs', 'Rt2', 'Rdn']:
             if reg_name in field_map and not field_map[reg_name]['is_fixed']:
                 field_cpp_name = field_map[reg_name]['name']
                 if is_advsimd_vector:
+                    # Scalar FP: use arrangement from encoding name (s/d/h)
+                    if scalar_fp_arr:
+                        code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = \"{scalar_fp_arr}\"; result.operands.push_back(op); }}")
                     # Use VectorRegister for advsimd vector instructions
-                    if mnemonic in ['MOVI', 'MVNI'] and reg_name == 'Rd':
+                    elif mnemonic in ['MOVI', 'MVNI'] and reg_name == 'Rd':
                         # MOVI/MVNI need arrangement from Q and cmode fields
                         code.append(f"{ind}{{")
                         code.append(f"{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false);")

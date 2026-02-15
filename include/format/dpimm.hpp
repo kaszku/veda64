@@ -13,7 +13,7 @@ namespace dpimm {
 // Encode functions
 uint32_t encode_add_32_addsub_imm(uint32_t Rd, uint32_t Rn, uint32_t imm12, uint32_t sh);
 uint32_t encode_add_64_addsub_imm(uint32_t Rd, uint32_t Rn, uint32_t imm12, uint32_t sh);
-uint32_t encode_addg_64_addsub_immtags(uint32_t Rd, uint32_t Rn, uint32_t imm4, uint32_t op3, uint32_t imm6);
+uint32_t encode_addg_64_addsub_immtags(uint32_t Rd, uint32_t Rn, uint32_t imm4, uint32_t imm6);
 uint32_t encode_adds_32s_addsub_imm(uint32_t Rd, uint32_t Rn, uint32_t imm12, uint32_t sh);
 uint32_t encode_adds_64s_addsub_imm(uint32_t Rd, uint32_t Rn, uint32_t imm12, uint32_t sh);
 uint32_t encode_adr_only_pcreladdr(uint32_t Rd, int32_t immhi, int32_t immlo);
@@ -76,7 +76,7 @@ uint32_t encode_smin_32_minmax_imm(uint32_t Rd, uint32_t Rn, uint32_t imm8);
 uint32_t encode_smin_64_minmax_imm(uint32_t Rd, uint32_t Rn, uint32_t imm8);
 uint32_t encode_sub_32_addsub_imm(uint32_t Rd, uint32_t Rn, uint32_t imm12, uint32_t sh);
 uint32_t encode_sub_64_addsub_imm(uint32_t Rd, uint32_t Rn, uint32_t imm12, uint32_t sh);
-uint32_t encode_subg_64_addsub_immtags(uint32_t Rd, uint32_t Rn, uint32_t imm4, uint32_t op3, uint32_t imm6);
+uint32_t encode_subg_64_addsub_immtags(uint32_t Rd, uint32_t Rn, uint32_t imm4, uint32_t imm6);
 uint32_t encode_subs_32s_addsub_imm(uint32_t Rd, uint32_t Rn, uint32_t imm12, uint32_t sh);
 uint32_t encode_subs_64s_addsub_imm(uint32_t Rd, uint32_t Rn, uint32_t imm12, uint32_t sh);
 uint32_t encode_sxtb_sbfm_32m_bitfield(uint32_t Rd, uint32_t Rn);

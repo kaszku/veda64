@@ -121,7 +121,7 @@ union ControlEncoding {
     struct AxflagMPstate {
         uint32_t Rt : 5;  // fixed: 0b11111 (0x1F)
         uint32_t op2 : 3;  // fixed: 0b010 (0x2)
-        uint32_t CRm : 4;  // partial: (0)(0)(0)(0)
+        uint32_t CRm : 4;  // fixed: 0b0000 (0x0)
         uint32_t _unnamed_3 : 4;  // fixed: 0b0100 (0x4)
         uint32_t op1 : 3;  // fixed: 0b000 (0x0)
         uint32_t _unnamed_2 : 7;  // fixed: 0b0100000 (0x20)
@@ -1388,7 +1388,7 @@ union ControlEncoding {
     struct CfinvMPstate {
         uint32_t Rt : 5;  // fixed: 0b11111 (0x1F)
         uint32_t op2 : 3;  // fixed: 0b000 (0x0)
-        uint32_t CRm : 4;  // partial: (0)(0)(0)(0)
+        uint32_t CRm : 4;  // fixed: 0b0000 (0x0)
         uint32_t _unnamed_3 : 4;  // fixed: 0b0100 (0x4)
         uint32_t op1 : 3;  // fixed: 0b000 (0x0)
         uint32_t _unnamed_2 : 7;  // fixed: 0b0100000 (0x20)
@@ -2355,7 +2355,7 @@ union ControlEncoding {
         uint32_t Rt : 5;  // fixed: 0b11111 (0x1F)
         uint32_t opc : 2;  // fixed: 0b11 (0x3)
         uint32_t _unnamed_3 : 1;  // fixed: 0b1 (0x1)
-        uint32_t CRm : 4;  // partial: (0)(0)(0)(0)
+        uint32_t CRm : 4;  // fixed: 0b0000 (0x0)
         uint32_t _unnamed_2 : 14;  // fixed: 0b01000000110011 (0x1033)
         uint32_t _unnamed_1 : 3;  // fixed: 0b101 (0x5)
         uint32_t _unnamed_0 : 3;  // fixed: 0b110 (0x6)
@@ -2726,7 +2726,7 @@ union ControlEncoding {
     struct XaflagMPstate {
         uint32_t Rt : 5;  // fixed: 0b11111 (0x1F)
         uint32_t op2 : 3;  // fixed: 0b001 (0x1)
-        uint32_t CRm : 4;  // partial: (0)(0)(0)(0)
+        uint32_t CRm : 4;  // fixed: 0b0000 (0x0)
         uint32_t _unnamed_3 : 4;  // fixed: 0b0100 (0x4)
         uint32_t op1 : 3;  // fixed: 0b000 (0x0)
         uint32_t _unnamed_2 : 7;  // fixed: 0b0100000 (0x20)
@@ -2852,11 +2852,11 @@ uint32_t encode_autibz_hi_hints() {
     return insn.raw;
 }
 
-uint32_t encode_axflag_m_pstate(uint32_t CRm) {
+uint32_t encode_axflag_m_pstate() {
     ControlEncoding insn = {};
     insn.axflag_mpstate.Rt = 0b11111;
     insn.axflag_mpstate.op2 = 0b010;
-    insn.axflag_mpstate.CRm = CRm;
+    insn.axflag_mpstate.CRm = 0b0000;
     insn.axflag_mpstate._unnamed_3 = 0b0100;
     insn.axflag_mpstate.op1 = 0b000;
     insn.axflag_mpstate._unnamed_2 = 0b0100000;
@@ -3873,11 +3873,11 @@ uint32_t encode_cbz_64_compbranch(uint32_t Rt, int32_t imm19) {
     return insn.raw;
 }
 
-uint32_t encode_cfinv_m_pstate(uint32_t CRm) {
+uint32_t encode_cfinv_m_pstate() {
     ControlEncoding insn = {};
     insn.cfinv_mpstate.Rt = 0b11111;
     insn.cfinv_mpstate.op2 = 0b000;
-    insn.cfinv_mpstate.CRm = CRm;
+    insn.cfinv_mpstate.CRm = 0b0000;
     insn.cfinv_mpstate._unnamed_3 = 0b0100;
     insn.cfinv_mpstate.op1 = 0b000;
     insn.cfinv_mpstate._unnamed_2 = 0b0100000;
@@ -4656,12 +4656,12 @@ uint32_t encode_retabsppcr_64m_branch_reg(uint32_t Rm) {
     return insn.raw;
 }
 
-uint32_t encode_sb_only_barriers(uint32_t CRm) {
+uint32_t encode_sb_only_barriers() {
     ControlEncoding insn = {};
     insn.sb_only_barriers.Rt = 0b11111;
     insn.sb_only_barriers.opc = 0b11;
     insn.sb_only_barriers._unnamed_3 = 0b1;
-    insn.sb_only_barriers.CRm = CRm;
+    insn.sb_only_barriers.CRm = 0b0000;
     insn.sb_only_barriers._unnamed_2 = 0b01000000110011;
     insn.sb_only_barriers._unnamed_1 = 0b101;
     insn.sb_only_barriers._unnamed_0 = 0b110;
@@ -4956,11 +4956,11 @@ uint32_t encode_wfit_only_systeminstrswithreg(uint32_t Rd) {
     return insn.raw;
 }
 
-uint32_t encode_xaflag_m_pstate(uint32_t CRm) {
+uint32_t encode_xaflag_m_pstate() {
     ControlEncoding insn = {};
     insn.xaflag_mpstate.Rt = 0b11111;
     insn.xaflag_mpstate.op2 = 0b001;
-    insn.xaflag_mpstate.CRm = CRm;
+    insn.xaflag_mpstate.CRm = 0b0000;
     insn.xaflag_mpstate._unnamed_3 = 0b0100;
     insn.xaflag_mpstate.op1 = 0b000;
     insn.xaflag_mpstate._unnamed_2 = 0b0100000;
@@ -5559,8 +5559,8 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         default: break;
     }
 
-    // Switch for mask 0xFFFFF2FFu (4 patterns, 4 encodings)
-    switch (insn & 0xFFFFF2FFu) {
+    // Switch for mask 0xFFFFF0FFu (8 patterns, 8 encodings)
+    switch (insn & 0xFFFFF0FFu) {
         case 0xD500401Fu: { // CFINV_M_pstate
                         Instruction result(Mnemonic::CFINV, insn);
                         ControlEncoding enc = {};
@@ -5579,17 +5579,6 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         enc.raw = insn;
                         return result;
         }
-        case 0xD50330FFu: { // SB_only_barriers
-                        Instruction result(Mnemonic::SB, insn);
-                        ControlEncoding enc = {};
-                        enc.raw = insn;
-                        return result;
-        }
-        default: break;
-    }
-
-    // Switch for mask 0xFFFFF0FFu (4 patterns, 4 encodings)
-    switch (insn & 0xFFFFF0FFu) {
         case 0xD503305Fu: { // CLREX_BN_barriers
                         Instruction result(Mnemonic::CLREX, insn);
                         ControlEncoding enc = {};
@@ -5615,6 +5604,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Barrier, enc.isb_bi_barriers.CRm, true));
+                        return result;
+        }
+        case 0xD50330FFu: { // SB_only_barriers
+                        Instruction result(Mnemonic::SB, insn);
+                        ControlEncoding enc = {};
+                        enc.raw = insn;
                         return result;
         }
         default: break;
