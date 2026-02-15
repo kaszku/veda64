@@ -1622,6 +1622,7 @@ enum class OperandType {
     Pattern,            // SVE pattern specifier
     Prefetch,           // Prefetch operation
     Barrier,            // Barrier option
+    FloatImmediate,     // Floating-point immediate (#0.0, etc.)
     Unknown
 };
 

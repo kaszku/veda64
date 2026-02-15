@@ -1548,7 +1548,7 @@ std::string Operand::format_vector_register(uint32_t reg, const char* arrangemen
     // Single-char scalar prefixes: d, s, h, b → "d7", "s7", etc.
     if (arrangement && arrangement[0] != '\0' && arrangement[1] == '\0') {
         char c = arrangement[0];
-        if (c == 'd' || c == 's' || c == 'h' || c == 'b') {
+        if (c == 'q' || c == 'd' || c == 's' || c == 'h' || c == 'b') {
             return std::string(1, c) + std::to_string(reg);
         }
     }
@@ -2056,7 +2056,52 @@ std::string Operand::to_string() const {
             }
 
         case OperandType::SystemRegister:
-            return "s" + std::to_string(value);
+            {
+                // Decode system register from o0:op1:CRn:CRm:op2 encoding
+                // value = (o0 << 14) | (op1 << 11) | (CRn << 7) | (CRm << 3) | op2
+                struct SysRegEntry { uint32_t encoding; const char* name; };
+                static const SysRegEntry sysregs[] = {
+                    {0x5A10, "nzcv"},    // 3,3,4,2,0
+                    {0x5A20, "daif"},    // 3,3,4,2,1 (actually 0x5A21)
+                    {0x5E82, "fpcr"},    // 3,3,4,4,0 -> o0=1,op1=3,CRn=4,CRm=4,op2=0
+                    {0x5E84, "fpsr"},
+                    {0x5E80, "fpcr"},    // alternate
+                };
+                // Common system registers by full encoding
+                uint32_t o0 = (value >> 14) & 1;
+                uint32_t op1 = (value >> 11) & 7;
+                uint32_t crn = (value >> 7) & 0xF;
+                uint32_t crm = (value >> 3) & 0xF;
+                uint32_t op2v = value & 7;
+                // Encode as op0(2):op1(3):CRn(4):CRm(4):op2(3) = 16-bit key
+                uint32_t key = ((2 + o0) << 14) | (op1 << 11) | (crn << 7) | (crm << 3) | op2v;
+                switch (key) {
+                    case 0xDA10u: return "nzcv";
+                    case 0xDA11u: return "daif";
+                    case 0xDE82u: return "tpidr_el0";
+                    case 0xDE83u: return "tpidrro_el0";
+                    case 0xDA20u: return "fpcr";
+                    case 0xDA21u: return "fpsr";
+                    case 0xDE84u: return "tpidr2_el0";
+                    case 0xC000u: return "midr_el1";
+                    case 0xC005u: return "mpidr_el1";
+                    case 0xDA15u: return "dlr_el0";
+                    case 0xDA14u: return "dspsr_el0";
+                    case 0xDA28u: return "dit";
+                    case 0xDA29u: return "ssbs";
+                    case 0xDA2Au: return "tco";
+                    case 0xD801u: return "ctr_el0";
+                    case 0xD807u: return "dczid_el0";
+                    case 0xDE80u: return "fpmr";
+                    case 0xDE85u: return "scxtnum_el0";
+                    default: {
+                        // Fallback: S<op0>_<op1>_C<CRn>_C<CRm>_<op2>
+                        std::ostringstream oss;
+                        oss << "s" << (2 + o0) << "_" << op1 << "_c" << crn << "_c" << crm << "_" << op2v;
+                        return oss.str();
+                    }
+                }
+            }
 
         case OperandType::Shift:
             {
@@ -2134,6 +2179,9 @@ std::string Operand::to_string() const {
                 if (value < 16) return barriers[value];
                 return "#" + std::to_string(value);
             }
+
+        case OperandType::FloatImmediate:
+            return "#0.0";
 
         default:
             return std::to_string(value);

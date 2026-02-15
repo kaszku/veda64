@@ -892,6 +892,7 @@ class ARM64XMLParser:
         code.append("    Pattern,            // SVE pattern specifier")
         code.append("    Prefetch,           // Prefetch operation")
         code.append("    Barrier,            // Barrier option")
+        code.append("    FloatImmediate,     // Floating-point immediate (#0.0, etc.)")
         code.append("    Unknown")
         code.append("};")
         code.append("")
@@ -1058,7 +1059,7 @@ class ARM64XMLParser:
         code.append("    // Single-char scalar prefixes: d, s, h, b → \"d7\", \"s7\", etc.")
         code.append("    if (arrangement && arrangement[0] != '\\0' && arrangement[1] == '\\0') {")
         code.append("        char c = arrangement[0];")
-        code.append("        if (c == 'd' || c == 's' || c == 'h' || c == 'b') {")
+        code.append("        if (c == 'q' || c == 'd' || c == 's' || c == 'h' || c == 'b') {")
         code.append("            return std::string(1, c) + std::to_string(reg);")
         code.append("        }")
         code.append("    }")
@@ -1582,7 +1583,52 @@ class ARM64XMLParser:
         code.append("            }")
         code.append("        ")
         code.append("        case OperandType::SystemRegister:")
-        code.append("            return \"s\" + std::to_string(value);")
+        code.append("            {")
+        code.append("                // Decode system register from o0:op1:CRn:CRm:op2 encoding")
+        code.append("                // value = (o0 << 14) | (op1 << 11) | (CRn << 7) | (CRm << 3) | op2")
+        code.append("                struct SysRegEntry { uint32_t encoding; const char* name; };")
+        code.append("                static const SysRegEntry sysregs[] = {")
+        code.append("                    {0x5A10, \"nzcv\"},    // 3,3,4,2,0")
+        code.append("                    {0x5A20, \"daif\"},    // 3,3,4,2,1 (actually 0x5A21)")
+        code.append("                    {0x5E82, \"fpcr\"},    // 3,3,4,4,0 -> o0=1,op1=3,CRn=4,CRm=4,op2=0")
+        code.append("                    {0x5E84, \"fpsr\"},")
+        code.append("                    {0x5E80, \"fpcr\"},    // alternate")
+        code.append("                };")
+        code.append("                // Common system registers by full encoding")
+        code.append("                uint32_t o0 = (value >> 14) & 1;")
+        code.append("                uint32_t op1 = (value >> 11) & 7;")
+        code.append("                uint32_t crn = (value >> 7) & 0xF;")
+        code.append("                uint32_t crm = (value >> 3) & 0xF;")
+        code.append("                uint32_t op2v = value & 7;")
+        code.append("                // Encode as op0(2):op1(3):CRn(4):CRm(4):op2(3) = 16-bit key")
+        code.append("                uint32_t key = ((2 + o0) << 14) | (op1 << 11) | (crn << 7) | (crm << 3) | op2v;")
+        code.append("                switch (key) {")
+        code.append("                    case 0xDA10u: return \"nzcv\";")
+        code.append("                    case 0xDA11u: return \"daif\";")
+        code.append("                    case 0xDE82u: return \"tpidr_el0\";")
+        code.append("                    case 0xDE83u: return \"tpidrro_el0\";")
+        code.append("                    case 0xDA20u: return \"fpcr\";")
+        code.append("                    case 0xDA21u: return \"fpsr\";")
+        code.append("                    case 0xDE84u: return \"tpidr2_el0\";")
+        code.append("                    case 0xC000u: return \"midr_el1\";")
+        code.append("                    case 0xC005u: return \"mpidr_el1\";")
+        code.append("                    case 0xDA15u: return \"dlr_el0\";")
+        code.append("                    case 0xDA14u: return \"dspsr_el0\";")
+        code.append("                    case 0xDA28u: return \"dit\";")
+        code.append("                    case 0xDA29u: return \"ssbs\";")
+        code.append("                    case 0xDA2Au: return \"tco\";")
+        code.append("                    case 0xD801u: return \"ctr_el0\";")
+        code.append("                    case 0xD807u: return \"dczid_el0\";")
+        code.append("                    case 0xDE80u: return \"fpmr\";")
+        code.append("                    case 0xDE85u: return \"scxtnum_el0\";")
+        code.append("                    default: {")
+        code.append("                        // Fallback: S<op0>_<op1>_C<CRn>_C<CRm>_<op2>")
+        code.append("                        std::ostringstream oss;")
+        code.append("                        oss << \"s\" << (2 + o0) << \"_\" << op1 << \"_c\" << crn << \"_c\" << crm << \"_\" << op2v;")
+        code.append("                        return oss.str();")
+        code.append("                    }")
+        code.append("                }")
+        code.append("            }")
         code.append("        ")
         code.append("        case OperandType::Shift:")
         code.append("            {")
@@ -1660,7 +1706,10 @@ class ARM64XMLParser:
         code.append("                if (value < 16) return barriers[value];")
         code.append("                return \"#\" + std::to_string(value);")
         code.append("            }")
-        code.append("        ")
+        code.append("")
+        code.append("        case OperandType::FloatImmediate:")
+        code.append("            return \"#0.0\";")
+        code.append("")
         code.append("        default:")
         code.append("            return std::to_string(value);")
         code.append("    }")
@@ -1822,6 +1871,7 @@ class ARM64XMLParser:
         code.append("    Pattern,            // SVE pattern specifier")
         code.append("    Prefetch,           // Prefetch operation")
         code.append("    Barrier,            // Barrier option")
+        code.append("    FloatImmediate,     // Floating-point immediate (#0.0, etc.)")
         code.append("    Unknown")
         code.append("};")
         code.append("")
@@ -3431,8 +3481,8 @@ class ARM64XMLParser:
             code.append(f"{ind}return result;")
             return code
 
-        # Special case: General load/store (LDR, STR 32/64-bit) - only if required fields exist
-        if is_load_store and mnemonic in ['LDR', 'STR', 'LDUR', 'STUR', 'LDTR', 'STTR'] and 'Rt' in field_map and 'Rn' in field_map:
+        # Special case: General load/store (LDR, STR, LDRSW 32/64-bit) - only if required fields exist
+        if is_load_store and mnemonic in ['LDR', 'STR', 'LDUR', 'STUR', 'LDTR', 'STTR', 'LDRSW'] and 'Rt' in field_map and 'Rn' in field_map:
             rt_field = field_map['Rt']['name']
             rn_field = field_map['Rn']['name']
             imm_field = None
@@ -3476,7 +3526,9 @@ class ARM64XMLParser:
                 elif '64' in encoding_name:
                     code.append(f"{ind}bool is_64bit = true;")
                     if needs_scale:
-                        code.append(f"{ind}int scale = 8;")
+                        # LDRSW loads 32-bit words (scale=4) even though result is 64-bit
+                        ldrsw_scale = 4 if mnemonic == 'LDRSW' else 8
+                        code.append(f"{ind}int scale = {ldrsw_scale};")
                 else:
                     code.append(f"{ind}bool is_64bit = false;")
                     if needs_scale:
@@ -3491,6 +3543,8 @@ class ARM64XMLParser:
             scale_to_shift = {1: 0, 2: 1, 4: 2, 8: 3, 16: 4}
             if simd_reg_type:
                 reg_offset_shift = scale_to_shift.get(simd_reg_type[0], 0)
+            elif mnemonic == 'LDRSW':
+                reg_offset_shift = 2  # LDRSW loads 32-bit word (scale=4)
             elif '64' in encoding_name:
                 reg_offset_shift = 3
             else:
@@ -3593,6 +3647,27 @@ class ARM64XMLParser:
             code.append(f"{ind}return result;")
             return code
 
+        # Special case: MRS/MSR system register move
+        if mnemonic in ['MRS', 'MSR'] and 'Rt' in field_map and 'o0' in field_map:
+            rt_field = field_map['Rt']['name']
+            o0_field = field_map['o0']['name']
+            op1_field = field_map['op1']['name']
+            crn_field = field_map['CRn']['name']
+            crm_field = field_map['CRm']['name']
+            op2_field = field_map['op2']['name']
+            if mnemonic == 'MRS':
+                # MRS: Xt, <sysreg> — always 64-bit
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, true));")
+                code.append(f"{ind}uint32_t sysreg = (enc.{member_name}.{o0_field} << 14) | (enc.{member_name}.{op1_field} << 11) | (enc.{member_name}.{crn_field} << 7) | (enc.{member_name}.{crm_field} << 3) | enc.{member_name}.{op2_field};")
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::SystemRegister, sysreg, true));")
+            else:
+                # MSR: <sysreg>, Xt — always 64-bit
+                code.append(f"{ind}uint32_t sysreg = (enc.{member_name}.{o0_field} << 14) | (enc.{member_name}.{op1_field} << 11) | (enc.{member_name}.{crn_field} << 7) | (enc.{member_name}.{crm_field} << 3) | enc.{member_name}.{op2_field};")
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::SystemRegister, sysreg, true));")
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, true));")
+            code.append(f"{ind}return result;")
+            return code
+
         # Generic operand extraction for all other instructions
         # Extract register operands in order: Rd, Rn, Rm, Ra, Rt, Rs, Rt2
 
@@ -3616,7 +3691,7 @@ class ARM64XMLParser:
             if 'sf' in field_map and not field_map['sf']['is_fixed']:
                 sf_field = field_map['sf']['name']
                 code.append(f"{ind}bool is_64bit = enc.{member_name}.{sf_field};")
-            elif '64' in encoding_name and '32' not in encoding_name:
+            elif '_64_' in encoding_name or encoding_name.endswith('_64') or ('64' in encoding_name and '32' not in encoding_name):
                 code.append(f"{ind}bool is_64bit = true;")
             elif mnemonic in ['ADR', 'ADRP'] or 'pcreladdr' in encoding_name:
                 # ADR/ADRP always produce 64-bit X registers
@@ -3773,26 +3848,70 @@ class ARM64XMLParser:
             code.append(f"{ind}return result;")
             return code
 
-        # Detect scalar FP: encoding name contains 'float' (floatdp1, floatdp2, floatdp3, floatcmp)
+        # Special case: float2int instructions (SCVTF, UCVTF, FCVTZS, FCVTZU, FMOV GP↔FP)
+        # These have mixed register types: one FP and one GP register
+        # Encoding name pattern: SCVTF_D32 → Rd=D-FP, Rn=W-GP; FCVTZS_32D → Rd=W-GP, Rn=D-FP
+        if 'float2int' in encoding_name and 'Rd' in field_map and 'Rn' in field_map:
+            rd_field = field_map['Rd']['name']
+            rn_field = field_map['Rn']['name']
+            enc_parts = encoding_name.split('_')
+            # Second part is like 'd32', 's64', '32d', '64s', etc.
+            fp_gp_part = enc_parts[1] if len(enc_parts) >= 2 else ''
+            # Determine which reg is FP and which is GP, and their sizes
+            import re as _re
+            # Pattern: letter then digits = FP first (Rd=FP, Rn=GP)
+            # Pattern: digits then letter = GP first (Rd=GP, Rn=FP)
+            fp_first = _re.match(r'^([dshb])(\d+)$', fp_gp_part)
+            gp_first = _re.match(r'^(\d+)([dshb])$', fp_gp_part)
+            if fp_first:
+                fp_char = fp_first.group(1)
+                gp_bits = fp_first.group(2)
+                gp_64 = '64' in gp_bits
+                # Rd = FP, Rn = GP
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = \"{fp_char}\"; result.operands.push_back(op); }}")
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rn_field}, {str(gp_64).lower()}));")
+            elif gp_first:
+                gp_bits = gp_first.group(1)
+                fp_char = gp_first.group(2)
+                gp_64 = '64' in gp_bits
+                # Rd = GP, Rn = FP
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rd_field}, {str(gp_64).lower()}));")
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = \"{fp_char}\"; result.operands.push_back(op); }}")
+            else:
+                # Fallback: both as GP registers with best guess
+                is_64 = '64' in encoding_name and '32' not in encoding_name
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rd_field}, {str(is_64).lower()}));")
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rn_field}, {str(is_64).lower()}));")
+            code.append(f"{ind}return result;")
+            return code
+
+        # Detect scalar FP: encoding name contains 'float' (floatdp1, floatdp2, floatdp3, floatcmp, floatsel)
         # These use s/d/h register naming based on precision in encoding name
         scalar_fp_arr = None
-        if 'float' in encoding_name and is_advsimd_vector:
-            if '_d_' in encoding_name or encoding_name.startswith('d_'):
+        # FCMP/FCMPE zero variants: _SZ_, _DZ_, _HZ_ → compare against #0.0
+        is_fp_cmp_zero = False
+        if 'float' in encoding_name:
+            if '_d_' in encoding_name or '_dz_' in encoding_name or encoding_name.startswith('d_'):
                 scalar_fp_arr = 'd'
-            elif '_s_' in encoding_name or encoding_name.startswith('s_'):
+            elif '_s_' in encoding_name or '_sz_' in encoding_name or encoding_name.startswith('s_'):
                 scalar_fp_arr = 's'
-            elif '_h_' in encoding_name or encoding_name.startswith('h_'):
+            elif '_h_' in encoding_name or '_hz_' in encoding_name or encoding_name.startswith('h_'):
                 scalar_fp_arr = 'h'
+            if '_dz_' in encoding_name or '_sz_' in encoding_name or '_hz_' in encoding_name:
+                is_fp_cmp_zero = True
 
         for reg_name in ['Rd', 'Rn', 'Rm', 'Ra', 'Rt', 'Rs', 'Rt2', 'Rdn']:
             if reg_name in field_map and not field_map[reg_name]['is_fixed']:
                 field_cpp_name = field_map[reg_name]['name']
-                if is_advsimd_vector:
-                    # Scalar FP: use arrangement from encoding name (s/d/h)
-                    if scalar_fp_arr:
-                        code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = \"{scalar_fp_arr}\"; result.operands.push_back(op); }}")
+                # Skip Rm for FCMP/FCMPE zero variants (replaced by #0.0 below)
+                if scalar_fp_arr and is_fp_cmp_zero and reg_name == 'Rm':
+                    continue
+                # Scalar FP: use arrangement from encoding name (s/d/h)
+                if scalar_fp_arr:
+                    code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = \"{scalar_fp_arr}\"; result.operands.push_back(op); }}")
+                elif is_advsimd_vector:
                     # Use VectorRegister for advsimd vector instructions
-                    elif mnemonic in ['MOVI', 'MVNI'] and reg_name == 'Rd':
+                    if mnemonic in ['MOVI', 'MVNI'] and reg_name == 'Rd':
                         # MOVI/MVNI need arrangement from Q and cmode fields
                         code.append(f"{ind}{{")
                         code.append(f"{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false);")
@@ -3811,6 +3930,10 @@ class ARM64XMLParser:
         # Add implicit #0 for SIMD compare-to-zero forms (encoding names ending in _z)
         if mnemonic in ['CMEQ', 'CMGE', 'CMGT', 'CMLE', 'CMLT', 'FCMEQ', 'FCMGE', 'FCMGT', 'FCMLE', 'FCMLT'] and encoding_name.endswith('_z'):
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, 0, true));")
+
+        # Add #0.0 for FCMP/FCMPE zero variants
+        if is_fp_cmp_zero:
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::FloatImmediate, 0, true));")
 
         # Extract SVE Z register operands
         for reg_name in ['Zd', 'Zn', 'Zm', 'Za', 'Zk', 'Zt', 'Zda', 'Zdn']:

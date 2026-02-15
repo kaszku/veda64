@@ -6780,7 +6780,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::REV32, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rev3264dp1src.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rev3264dp1src.Rn, is_64bit));
                         return result;
