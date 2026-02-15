@@ -326,9 +326,10 @@ def main():
             totals['cs_only'] += cs_only
 
             total_diffs = mismatch + veda_only + cs_only
+            pct = match/insns*100 if insns > 0 else 100.0
             print(f"\n  Section summary: {match} match, {mismatch} mismatch, "
                   f"{veda_only} veda64-only, {cs_only} capstone-only "
-                  f"({match}/{insns} = {match/insns*100:.1f}% agreement)")
+                  f"({match}/{insns} = {pct:.1f}% agreement)")
 
         # Overall summary
         t = totals
