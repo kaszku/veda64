@@ -161,7 +161,12 @@ def normalize(text, va=None):
     s = re.sub(r'\bmova\b', 'mov', s)
     # SSHR shift-by-zero → MOVI aliasing (encoding collision)
     # When shift amount is 0 in SSHR, it overlaps with MOVI encoding
-    s = re.sub(r'\bsshr (v\d+\.\d+[bhsdq]), (v\d+\.\d+[bhsdq]), 0\b', r'movi \1, 0', s)
+    s = re.sub(r'\bsshr (v\d+(?:\.\d+[bhsdq])?), (v\d+(?:\.\d+[bhsdq])?), 0\b', r'movi \1, 0', s)
+    # UMOV xN, vM.d[K] → MOV xN, vM.d[K] (preferred alias for 64-bit UMOV)
+    s = re.sub(r'\bumov\s+(x\d+)', r'mov \1', s)
+    # ORN with implicit WZR/XZR → MVN: orn wN, wM / orn xN, xM → mvn wN, wM / mvn xN, xM
+    # veda64 omits the WZR/XZR first source, printing 2 operands instead of 3
+    s = re.sub(r'\born\s+((?:w|x)\d+),\s*((?:w|x)\d+)\b', r'mvn \1, \2', s)
     # ISB: "isb sy" → "isb" (SY is default barrier, capstone omits it)
     s = re.sub(r'\bisb\s+sy\b', 'isb', s)
     # MOVI 64-bit zero: "0000000000000000" → "0"
@@ -191,6 +196,33 @@ def normalize(text, va=None):
                 val = val & 0xFFFFFFFFFFFFFFFF
         return f'{mnem} {reg}, {val}'
     s = re.sub(r'(mov)\s+((?:w|x)\d+),\s*(-?\d+)', _normalize_mov_imm, s)
+    # MVN immediate → MOV negative: mvn xN, imm → mov xN, -(imm+1)
+    # (must run after hex→dec normalization)
+    def _mvn_to_mov(m):
+        reg = m.group(1)
+        imm = int(m.group(2))
+        neg_val = -(imm + 1)
+        return f'mov {reg}, {neg_val}'
+    s = re.sub(r'\bmvn\s+((?:w|x)\d+),\s*(\d+)\b', _mvn_to_mov, s)
+    # Normalize MVN→MOV result: apply same unsigned normalization
+    s = re.sub(r'(mov)\s+((?:w|x)\d+),\s*(-?\d+)', _normalize_mov_imm, s)
+    # UBFM → UBFIZ alias: when imms < immr, UBFM is UBFIZ
+    def _ubfm_to_ubfiz(m):
+        rd = m.group(1)
+        rn = m.group(2)
+        immr = int(m.group(3))
+        imms = int(m.group(4))
+        n = 64 if 'x' in rd else 32
+        if imms < immr:
+            lsb = n - immr
+            width = imms + 1
+            return f'ubfiz {rd}, {rn}, {lsb}, {width}'
+        return m.group(0)
+    s = re.sub(r'\bubfm\s+((?:w|x)\d+),\s*((?:w|x)\d+),\s*(\d+),\s*(\d+)', _ubfm_to_ubfiz, s)
+    # BFI with XZR/WZR source → BFC (also handles veda64 bug: Rn=31 as bare number)
+    s = re.sub(r'\bbfi\s+((?:w|x)\d+),\s*(?:(?:w|x)zr|\d+),\s*', r'bfc \1, ', s)
+    # RDVL: always uses X register (64-bit result)
+    s = re.sub(r'\brdvl\s+w(\d+)', r'rdvl x\1', s)
     # Collapse whitespace
     s = ' '.join(s.split())
     return s
