@@ -934,6 +934,8 @@ class ARM64XMLParser:
         code.append("    bool is_64bit = true;        // True for 64-bit registers (X), false for 32-bit (W)")
         code.append("    bool is_sp = false;          // True if reg 31 should be SP/WSP, false for XZR/WZR")
         code.append("    const char* arrangement = nullptr;  // Vector arrangement specifier (.16b, .4s, etc.)")
+        code.append("    uint32_t index = 0;           // Element index for indexed vector operands (v0.b[3])")
+        code.append("    bool has_index = false;       // True if index field is valid")
         code.append("")
         code.append("    // Memory operand fields")
         code.append("    uint32_t base_reg = 0;       // Base register number")
@@ -995,6 +997,7 @@ class ARM64XMLParser:
         code.append("#include \"veda64.hpp\"")
         code.append("#include \"format/format.hpp\"")
         code.append("#include <cstring>")
+        code.append("#include <iomanip>")
         code.append("#include <sstream>")
         code.append("")
         code.append("namespace veda64 {")
@@ -1097,7 +1100,7 @@ class ARM64XMLParser:
         code.append("    }")
         code.append("    // 64-bit (cmode=1110, op=1)")
         code.append("    if (op == 1 && cmode == 0xE) {")
-        code.append("        return Q ? \"2d\" : nullptr;  // Scalar form (D register) doesn't use arrangement")
+        code.append("        return Q ? \"2d\" : \"d\";  // Scalar D register form")
         code.append("    }")
         code.append("    return nullptr;")
         code.append("}")
@@ -1240,16 +1243,38 @@ class ARM64XMLParser:
         code.append("        }")
         code.append("    }")
         code.append("")
-        code.append("    // MUL Aliases: MADD/MSUB with Ra==31")
-        code.append("    if (insn.mnemonic == Mnemonic::MADD && insn.operands.size() >= 4) {")
-        code.append("        if (insn.operands[3].value == 31) {")
+        code.append("    // MUL Aliases: MADD/MSUB with Ra==31 (4 operands) or alias encoding (3 operands)")
+        code.append("    if (insn.mnemonic == Mnemonic::MADD) {")
+        code.append("        if (insn.operands.size() == 3 || (insn.operands.size() >= 4 && insn.operands[3].value == 31)) {")
         code.append('            return std::string("mul ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();')
         code.append("        }")
         code.append("    }")
         code.append("")
-        code.append("    if (insn.mnemonic == Mnemonic::MSUB && insn.operands.size() >= 4) {")
-        code.append("        if (insn.operands[3].value == 31) {")
+        code.append("    if (insn.mnemonic == Mnemonic::MSUB) {")
+        code.append("        if (insn.operands.size() == 3 || (insn.operands.size() >= 4 && insn.operands[3].value == 31)) {")
         code.append('            return std::string("mneg ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();')
+        code.append("        }")
+        code.append("    }")
+        code.append("")
+        code.append("    // SMULL/UMULL/SMNEGL/UMNEGL Aliases")
+        code.append("    if (insn.mnemonic == Mnemonic::SMADDL) {")
+        code.append("        if (insn.operands.size() == 3 || (insn.operands.size() >= 4 && insn.operands[3].value == 31)) {")
+        code.append('            return std::string("smull ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();')
+        code.append("        }")
+        code.append("    }")
+        code.append("    if (insn.mnemonic == Mnemonic::UMADDL) {")
+        code.append("        if (insn.operands.size() == 3 || (insn.operands.size() >= 4 && insn.operands[3].value == 31)) {")
+        code.append('            return std::string("umull ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();')
+        code.append("        }")
+        code.append("    }")
+        code.append("    if (insn.mnemonic == Mnemonic::SMSUBL) {")
+        code.append("        if (insn.operands.size() == 3 || (insn.operands.size() >= 4 && insn.operands[3].value == 31)) {")
+        code.append('            return std::string("smnegl ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();')
+        code.append("        }")
+        code.append("    }")
+        code.append("    if (insn.mnemonic == Mnemonic::UMSUBL) {")
+        code.append("        if (insn.operands.size() == 3 || (insn.operands.size() >= 4 && insn.operands[3].value == 31)) {")
+        code.append('            return std::string("umnegl ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();')
         code.append("        }")
         code.append("    }")
         code.append("")
@@ -1415,6 +1440,21 @@ class ARM64XMLParser:
         code.append("    // Fall back to base mnemonic")
         code.append("    std::string result = mnemonic_to_string(mnemonic);")
         code.append("")
+        code.append("    // SIMD long/wide instructions: Q=1 → add '2' suffix (PMULL→PMULL2, SMLAL→SMLAL2, etc.)")
+        code.append("    if ((raw_value >> 30) & 1) {  // Q bit")
+        code.append("        if (mnemonic == Mnemonic::PMULL || mnemonic == Mnemonic::SMLAL || mnemonic == Mnemonic::SMLSL ||")
+        code.append("            mnemonic == Mnemonic::UMLAL || mnemonic == Mnemonic::UMLSL || mnemonic == Mnemonic::SMULL ||")
+        code.append("            mnemonic == Mnemonic::UMULL || mnemonic == Mnemonic::SQDMLAL || mnemonic == Mnemonic::SQDMLSL ||")
+        code.append("            mnemonic == Mnemonic::SQDMULL || mnemonic == Mnemonic::SABAL || mnemonic == Mnemonic::UABAL ||")
+        code.append("            mnemonic == Mnemonic::SABDL || mnemonic == Mnemonic::UABDL || mnemonic == Mnemonic::SADDL ||")
+        code.append("            mnemonic == Mnemonic::UADDL || mnemonic == Mnemonic::SSUBL || mnemonic == Mnemonic::USUBL ||")
+        code.append("            mnemonic == Mnemonic::SSHLL || mnemonic == Mnemonic::USHLL ||")
+        code.append("            mnemonic == Mnemonic::ADDHN || mnemonic == Mnemonic::SUBHN ||")
+        code.append("            mnemonic == Mnemonic::RADDHN || mnemonic == Mnemonic::RSUBHN) {")
+        code.append('            result += "2";')
+        code.append("        }")
+        code.append("    }")
+        code.append("")
         code.append("    // For B/BC: condition is a suffix on the mnemonic (e.g., b.eq)")
         code.append("    if (condition != Condition::None &&")
         code.append("        (mnemonic == Mnemonic::B || mnemonic == Mnemonic::BC)) {")
@@ -1492,7 +1532,14 @@ class ARM64XMLParser:
         code.append("        case OperandType::VectorRegister:")
         code.append("            // is_64bit used to select Q prefix for 128-bit context (STP/LDP Q)")
         code.append("            if (is_64bit) return \"q\" + std::to_string(value);")
-        code.append("            return format_vector_register(value, arrangement ? arrangement : \"\");")
+        code.append("            {")
+        code.append("                if (has_index && arrangement) {")
+        code.append("                    // Indexed element: always use v<n>.<T>[<idx>] format")
+        code.append("                    return \"v\" + std::to_string(value) + \".\" + arrangement + \"[\" + std::to_string(index) + \"]\";")
+        code.append("                }")
+        code.append("                std::string vr = format_vector_register(value, arrangement ? arrangement : \"\");")
+        code.append("                return vr;")
+        code.append("            }")
         code.append("        ")
         code.append("        case OperandType::SVERegister:")
         code.append("            return \"z\" + std::to_string(value);")
@@ -1621,6 +1668,47 @@ class ARM64XMLParser:
         code.append("                    case 0xD807u: return \"dczid_el0\";")
         code.append("                    case 0xDE80u: return \"fpmr\";")
         code.append("                    case 0xDE85u: return \"scxtnum_el0\";")
+        code.append("                    // Performance monitors")
+        code.append("                    case 0xDCE8u: return \"pmccntr_el0\";")  # s3_3_c9_c13_0
+        code.append("                    case 0xDCE0u: return \"pmcr_el0\";")     # s3_3_c9_c12_0
+        code.append("                    case 0xDCE1u: return \"pmcntenset_el0\";")
+        code.append("                    case 0xDCE2u: return \"pmcntenclr_el0\";")
+        code.append("                    case 0xDCE3u: return \"pmovsclr_el0\";")
+        code.append("                    case 0xDCE4u: return \"pmswinc_el0\";")
+        code.append("                    case 0xDCE5u: return \"pmselr_el0\";")
+        code.append("                    case 0xDCE9u: return \"pmxevtyper_el0\";")
+        code.append("                    case 0xDCEAu: return \"pmxevcntr_el0\";")
+        code.append("                    case 0xDCF3u: return \"pmovsset_el0\";")
+        code.append("                    case 0xDCE6u: return \"pmceid0_el0\";")
+        code.append("                    case 0xDCE7u: return \"pmceid1_el0\";")
+        code.append("                    case 0xDCF0u: return \"pmuserenr_el0\";")
+        code.append("                    // Timers")
+        code.append("                    case 0xDF00u: return \"cntpct_el0\";")   # s3_3_c14_c0_0
+        code.append("                    case 0xDF01u: return \"cntvctss_el0\";")
+        code.append("                    case 0xDF02u: return \"cntvct_el0\";")   # s3_3_c14_c0_2
+        code.append("                    case 0xDF10u: return \"cntp_tval_el0\";")
+        code.append("                    case 0xDF11u: return \"cntp_ctl_el0\";")
+        code.append("                    case 0xDF12u: return \"cntp_cval_el0\";")
+        code.append("                    case 0xDF18u: return \"cntv_tval_el0\";")
+        code.append("                    case 0xDF19u: return \"cntv_ctl_el0\";")
+        code.append("                    case 0xDF1Au: return \"cntv_cval_el0\";")
+        code.append("                    case 0xDF08u: return \"cntfrq_el0\";")
+        code.append("                    // EL1 system regs")
+        code.append("                    case 0xC080u: return \"sctlr_el1\";")
+        code.append("                    case 0xC081u: return \"actlr_el1\";")
+        code.append("                    case 0xC082u: return \"cpacr_el1\";")
+        code.append("                    case 0xC100u: return \"ttbr0_el1\";")
+        code.append("                    case 0xC101u: return \"ttbr1_el1\";")
+        code.append("                    case 0xC102u: return \"tcr_el1\";")
+        code.append("                    case 0xC200u: return \"esr_el1\";")
+        code.append("                    case 0xC300u: return \"far_el1\";")
+        code.append("                    case 0xC288u: return \"isr_el1\";")
+        code.append("                    case 0xC510u: return \"contextidr_el1\";")
+        code.append("                    case 0xC518u: return \"tpidr_el1\";")
+        code.append("                    case 0xC600u: return \"vbar_el1\";")
+        code.append("                    case 0xC400u: return \"spsr_el1\";")
+        code.append("                    case 0xC401u: return \"elr_el1\";")
+        code.append("                    case 0xC408u: return \"sp_el0\";")
         code.append("                    default: {")
         code.append("                        // Fallback: S<op0>_<op1>_C<CRn>_C<CRm>_<op2>")
         code.append("                        std::ostringstream oss;")
@@ -1708,7 +1796,23 @@ class ARM64XMLParser:
         code.append("            }")
         code.append("")
         code.append("        case OperandType::FloatImmediate:")
-        code.append("            return \"#0.0\";")
+        code.append("            {")
+        code.append("                // Decode ARM VFPExpandImm: imm8 → double")
+        code.append("                // Format: sign:NOT(b):rep(b,8):bcdefgh:zeros(44)")
+        code.append("                if (value == 0) return \"#0.0\";")
+        code.append("                uint64_t a = (value >> 7) & 1;")
+        code.append("                uint64_t b = (value >> 6) & 1;")
+        code.append("                uint64_t bcdefgh = value & 0x7F;")
+        code.append("                uint64_t sign = a;")
+        code.append("                uint64_t exp = (b ? 0x3FC : 0x400) | ((bcdefgh >> 4) & 0x7);")
+        code.append("                uint64_t frac = (bcdefgh & 0xF) << 48;")
+        code.append("                uint64_t bits = (sign << 63) | (exp << 52) | frac;")
+        code.append("                double fval;")
+        code.append("                std::memcpy(&fval, &bits, 8);")
+        code.append("                std::ostringstream oss;")
+        code.append("                oss << \"#\" << std::fixed << std::setprecision(8) << fval;")
+        code.append("                return oss.str();")
+        code.append("            }")
         code.append("")
         code.append("        default:")
         code.append("            return std::to_string(value);")
@@ -1913,6 +2017,8 @@ class ARM64XMLParser:
         code.append("    bool is_64bit = true;        // True for 64-bit registers (X), false for 32-bit (W)")
         code.append("    bool is_sp = false;          // True if reg 31 should be SP/WSP, false for XZR/WZR")
         code.append("    const char* arrangement = nullptr;  // Vector arrangement specifier (.16b, .4s, etc.)")
+        code.append("    uint32_t index = 0;           // Element index for indexed vector operands (v0.b[3])")
+        code.append("    bool has_index = false;       // True if index field is valid")
         code.append("")
         code.append("    // Memory operand fields")
         code.append("    uint32_t base_reg = 0;       // Base register number")
@@ -2178,7 +2284,8 @@ class ARM64XMLParser:
 
                 struct_code, field_list, fixed_bits, fixed_mask, full_pattern, full_mask = self._generate_encoding_struct(instr, encoding)
 
-                # Use encoding-specific mnemonic if available, otherwise fall back to instruction mnemonic
+                # Use alias_mnemonic if this is an alias instruction (e.g., MUL is alias of MADD)
+                # Otherwise use encoding-specific mnemonic, falling back to instruction mnemonic
                 mnemonic = encoding.docvars.get('mnemonic', instr.mnemonic)
 
                 encoding_info.append({
@@ -3117,7 +3224,14 @@ class ARM64XMLParser:
             else:
                 # Fallback: check encoding name for integer size
                 is_64bit_val = '64' in encoding_name or '_d' in encoding_name
-                scale = 8 if is_64bit_val else 4
+                # STGP: tag granule pair store, scale=16
+                if mnemonic == 'STGP':
+                    scale = 16
+                # LDPSW: 32-bit signed word pair load, scale=4
+                elif mnemonic == 'LDPSW':
+                    scale = 4
+                else:
+                    scale = 8 if is_64bit_val else 4
                 code.append(f"{ind}int scale = {scale};")
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, {str(is_64bit_val).lower()}));")
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt2_field}, {str(is_64bit_val).lower()}));")
@@ -3614,9 +3728,10 @@ class ARM64XMLParser:
                 code.append(f"{ind}bool is_64bit = false;")
 
             # Rd (if not fixed — CMP/CMN have Rd=11111)
+            # Rd=31 means SP in extended register form (not XZR)
             if 'Rd' in field_map and not field_map['Rd']['is_fixed']:
                 rd_field = field_map['Rd']['name']
-                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rd_field}, is_64bit));")
+                code.append(f"{ind}{{ Operand op(OperandType::Register, enc.{member_name}.{rd_field}, is_64bit); op.is_sp = true; result.operands.push_back(op); }}")
 
             # Rn: register 31 = SP (not XZR) for addsub_ext
             rn_field = field_map['Rn']['name']
@@ -3691,6 +3806,9 @@ class ARM64XMLParser:
             if 'sf' in field_map and not field_map['sf']['is_fixed']:
                 sf_field = field_map['sf']['name']
                 code.append(f"{ind}bool is_64bit = enc.{member_name}.{sf_field};")
+            elif 'sf' in field_map and field_map['sf']['is_fixed'] and field_map['sf']['fixed']:
+                sf_val = int(field_map['sf']['fixed'], 2)
+                code.append(f"{ind}bool is_64bit = {str(bool(sf_val)).lower()};")
             elif '_64_' in encoding_name or encoding_name.endswith('_64') or ('64' in encoding_name and '32' not in encoding_name):
                 code.append(f"{ind}bool is_64bit = true;")
             elif mnemonic in ['ADR', 'ADRP'] or 'pcreladdr' in encoding_name:
@@ -3771,6 +3889,7 @@ class ARM64XMLParser:
             'SADDLP', 'UADDLP', 'SADALP', 'UADALP',
             'SQABS', 'SQNEG', 'SUQADD', 'USQADD',
             'ADDP', 'ADDV', 'SADDLV', 'UADDLV',
+            'UMINV', 'UMAXV', 'SMINV', 'SMAXV',
             'FCVT', 'FCVTL', 'FCVTN', 'FCVTXN',
             'FADD', 'FSUB', 'FMUL', 'FDIV', 'FNEG', 'FABS', 'FSQRT',
             'FMAX', 'FMIN', 'FMAXNM', 'FMINNM', 'FMAXP', 'FMINP',
@@ -3790,7 +3909,9 @@ class ARM64XMLParser:
         simd_arrangement = None
         # Bitwise logic ops always use byte arrangement (size field is ignored for arrangement)
         bitwise_logic_ops = ['ORR', 'AND', 'BIC', 'BIT', 'BIF', 'BSL', 'EOR', 'ORN', 'NOT']
-        is_bitwise_logic = mnemonic in bitwise_logic_ops and 'asimdsame' in encoding_name
+        # EXT always uses byte arrangement (no size field), same as bitwise ops
+        byte_arr_ops = ['EXT']
+        is_bitwise_logic = (mnemonic in bitwise_logic_ops and 'asimdsame' in encoding_name) or mnemonic in byte_arr_ops
         if is_advsimd_vector and is_bitwise_logic and 'Q' in field_map:
             q_field = field_map['Q']['name']
             q_is_fixed = field_map['Q']['is_fixed']
@@ -3837,6 +3958,19 @@ class ARM64XMLParser:
                 simd_arrangement = 'runtime'
                 code.append(f"{ind}const char* _simd_arr = enc.{member_name}.{q_field} ? \"{arrs[size_val][1]}\" : \"{arrs[size_val][0]}\";")
 
+        # ADDG/SUBG: imm6 is tag granule offset (×16), Rd/Rn can be SP
+        if mnemonic in ['ADDG', 'SUBG'] and 'imm6' in field_map and 'imm4' in field_map:
+            rd_field = field_map['Rd']['name']
+            rn_field = field_map['Rn']['name']
+            imm6_field = field_map['imm6']['name']
+            imm4_field = field_map['imm4']['name']
+            code.append(f"{ind}{{ Operand op(OperandType::Register, enc.{member_name}.{rd_field}, true); op.is_sp = true; result.operands.push_back(op); }}")
+            code.append(f"{ind}{{ Operand op(OperandType::Register, enc.{member_name}.{rn_field}, true); op.is_sp = true; result.operands.push_back(op); }}")
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.{imm6_field} * 16, true));")
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.{imm4_field}, true));")
+            code.append(f"{ind}return result;")
+            return code
+
         # Mixed-width instructions: Rd/Ra are 64-bit, Rn/Rm are 32-bit
         is_mixed_width = mnemonic in ['SMADDL', 'SMSUBL', 'UMADDL', 'UMSUBL'] and not is_advsimd_vector
         if is_mixed_width and 'Rd' in field_map and 'Rn' in field_map and 'Rm' in field_map:
@@ -3845,6 +3979,31 @@ class ARM64XMLParser:
                     field_cpp_name = field_map[reg_name]['name']
                     rw = 'true' if reg_name in ('Rd', 'Ra') else 'false'
                     code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{field_cpp_name}, {rw}));")
+            code.append(f"{ind}return result;")
+            return code
+
+        # Special case: UMOV/SMOV — Rd is GPR, Vn uses arrangement from imm5
+        if mnemonic in ['UMOV', 'SMOV'] and 'Rd' in field_map and 'Rn' in field_map and 'imm5' in field_map:
+            rd_field = field_map['Rd']['name']
+            rn_field = field_map['Rn']['name']
+            imm5_field = field_map['imm5']['name']
+            # For X_x variant (64-bit): Rd is Xd, element is .d
+            # For W_w variant (32-bit): Rd is Wd, element determined by imm5
+            is_x = '_x_' in encoding_name or encoding_name.endswith('_x')
+            rd_64 = 'true' if is_x else 'false'
+            code.append(f"{ind}uint32_t _imm5 = enc.{member_name}.{imm5_field};")
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rd_field}, {rd_64}));")
+            code.append(f"{ind}{{")
+            code.append(f"{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false);")
+            code.append(f"{ind}    uint32_t idx = 0;")
+            code.append(f'{ind}    if (_imm5 & 1) {{ op.arrangement = "b"; idx = _imm5 >> 1; }}')
+            code.append(f'{ind}    else if (_imm5 & 2) {{ op.arrangement = "h"; idx = _imm5 >> 2; }}')
+            code.append(f'{ind}    else if (_imm5 & 4) {{ op.arrangement = "s"; idx = _imm5 >> 3; }}')
+            code.append(f'{ind}    else if (_imm5 & 8) {{ op.arrangement = "d"; idx = _imm5 >> 4; }}')
+            code.append(f"{ind}    op.index = idx;")
+            code.append(f"{ind}    op.has_index = true;")
+            code.append(f"{ind}    result.operands.push_back(op);")
+            code.append(f"{ind}}}")
             code.append(f"{ind}return result;")
             return code
 
@@ -3910,8 +4069,47 @@ class ARM64XMLParser:
                 if scalar_fp_arr:
                     code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = \"{scalar_fp_arr}\"; result.operands.push_back(op); }}")
                 elif is_advsimd_vector:
-                    # Use VectorRegister for advsimd vector instructions
-                    if mnemonic in ['MOVI', 'MVNI'] and reg_name == 'Rd':
+                    # Across-lane reduction: Rd is scalar of appropriate width
+                    if mnemonic in ['UADDLV', 'SADDLV'] and reg_name == 'Rd' and 'size' in field_map and not field_map['size']['is_fixed']:
+                        size_f = field_map['size']['name']
+                        # Widening: size 0(B)→h, 1(H)→s, 2(S)→d
+                        code.append(f"{ind}{{")
+                        code.append(f'{ind}    static const char* _scalar_arr[] = {{"h", "s", "d", "d"}};')
+                        code.append(f"{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false);")
+                        code.append(f"{ind}    op.arrangement = _scalar_arr[enc.{member_name}.{size_f}];")
+                        code.append(f"{ind}    result.operands.push_back(op);")
+                        code.append(f"{ind}}}")
+                    elif mnemonic in ['ADDV', 'UMINV', 'UMAXV', 'SMINV', 'SMAXV'] and reg_name == 'Rd' and 'size' in field_map and not field_map['size']['is_fixed']:
+                        size_f = field_map['size']['name']
+                        # Non-widening: size 0→b, 1→h, 2→s
+                        code.append(f"{ind}{{")
+                        code.append(f'{ind}    static const char* _scalar_arr[] = {{"b", "h", "s", "d"}};')
+                        code.append(f"{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false);")
+                        code.append(f"{ind}    op.arrangement = _scalar_arr[enc.{member_name}.{size_f}];")
+                        code.append(f"{ind}    result.operands.push_back(op);")
+                        code.append(f"{ind}}}")
+                    elif mnemonic == 'PMULL' and reg_name == 'Rd':
+                        # PMULL destination is always .1q (128-bit polynomial result)
+                        code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = \"1q\"; result.operands.push_back(op); }}")
+                    elif mnemonic in ['SMLAL', 'SMLSL', 'UMLAL', 'UMLSL', 'SMULL', 'UMULL', 'SQDMLAL', 'SQDMLSL', 'SQDMULL', 'SABAL', 'UABAL', 'SABDL', 'UABDL', 'SADDL', 'UADDL', 'SSUBL', 'USUBL', 'SSHLL', 'USHLL', 'ADDHN', 'SUBHN', 'RADDHN', 'RSUBHN'] and reg_name == 'Rd' and simd_arrangement == 'runtime':
+                        # Widening/narrowing: Rd uses next wider arrangement
+                        # Source arr is set via _simd_arr; Rd needs wider version
+                        code.append(f"{ind}{{")
+                        code.append(f"{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false);")
+                        if 'size' in field_map and not field_map['size']['is_fixed']:
+                            size_f = field_map['size']['name']
+                            if 'Q' in field_map and not field_map['Q']['is_fixed']:
+                                q_f = field_map['Q']['name']
+                                code.append(f'{ind}    static const char* _wide_arrs[][2] = {{{{"8h", "8h"}}, {{"4s", "4s"}}, {{"2d", "2d"}}}};')
+                                code.append(f"{ind}    op.arrangement = _wide_arrs[enc.{member_name}.{size_f}][0];")
+                            else:
+                                code.append(f'{ind}    static const char* _wide_arrs[] = {{"8h", "4s", "2d", "2d"}};')
+                                code.append(f"{ind}    op.arrangement = _wide_arrs[enc.{member_name}.{size_f}];")
+                        else:
+                            code.append(f"{ind}    op.arrangement = _simd_arr;  // fallback")
+                        code.append(f"{ind}    result.operands.push_back(op);")
+                        code.append(f"{ind}}}")
+                    elif mnemonic in ['MOVI', 'MVNI'] and reg_name == 'Rd':
                         # MOVI/MVNI need arrangement from Q and cmode fields
                         code.append(f"{ind}{{")
                         code.append(f"{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false);")
@@ -3925,7 +4123,11 @@ class ARM64XMLParser:
                     else:
                         code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false));")
                 else:
-                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{field_cpp_name}, is_64bit));")
+                    # CRC32 instructions: Rd/Rn are always 32-bit, only Rm uses sf-dependent width
+                    if mnemonic.startswith('CRC32') and reg_name in ('Rd', 'Rn'):
+                        code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{field_cpp_name}, false));")
+                    else:
+                        code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{field_cpp_name}, is_64bit));")
 
         # Add implicit #0 for SIMD compare-to-zero forms (encoding names ending in _z)
         if mnemonic in ['CMEQ', 'CMGE', 'CMGT', 'CMLE', 'CMLT', 'FCMEQ', 'FCMGE', 'FCMGT', 'FCMLE', 'FCMLT'] and encoding_name.endswith('_z'):
@@ -4040,6 +4242,11 @@ class ARM64XMLParser:
                     continue
 
                 field_cpp_name = field_map[imm_name]['name']
+
+                # FMOV floatimm: imm8 is a VFP-encoded float, not a raw integer
+                if imm_name == 'imm8' and 'floatimm' in encoding_name:
+                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::FloatImmediate, enc.{member_name}.{field_cpp_name}, true));")
+                    continue
 
                 if is_unsigned or not self._is_signed_field(imm_name):
                     code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.{field_cpp_name}, true));")

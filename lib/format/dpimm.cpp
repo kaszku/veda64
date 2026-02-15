@@ -2961,9 +2961,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         DpimmEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.addg64addsub_immtags.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.addg64addsub_immtags.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.addg64addsub_immtags.imm6, true));
+                        { Operand op(OperandType::Register, enc.addg64addsub_immtags.Rd, true); op.is_sp = true; result.operands.push_back(op); }
+                        { Operand op(OperandType::Register, enc.addg64addsub_immtags.Rn, true); op.is_sp = true; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.addg64addsub_immtags.imm6 * 16, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.addg64addsub_immtags.imm4, true));
                         return result;
         }
@@ -2997,9 +2997,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         DpimmEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.subg64addsub_immtags.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.subg64addsub_immtags.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.subg64addsub_immtags.imm6, true));
+                        { Operand op(OperandType::Register, enc.subg64addsub_immtags.Rd, true); op.is_sp = true; result.operands.push_back(op); }
+                        { Operand op(OperandType::Register, enc.subg64addsub_immtags.Rn, true); op.is_sp = true; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.subg64addsub_immtags.imm6 * 16, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.subg64addsub_immtags.imm4, true));
                         return result;
         }

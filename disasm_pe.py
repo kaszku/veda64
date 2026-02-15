@@ -125,8 +125,9 @@ def normalize(text, va=None):
     capstone output so that only semantically meaningful mismatches are reported.
     """
     s = text.lower().strip()
-    # x29 <-> fp, x30 <-> lr
-    s = s.replace('fp', 'x29').replace('lr', 'x30')
+    # x29 <-> fp, x30 <-> lr (word boundary to avoid mangling 'adrp', 'clr', etc.)
+    s = re.sub(r'\bfp\b', 'x29', s)
+    s = re.sub(r'\blr\b', 'x30', s)
     # Remove '#' before immediates
     s = s.replace('#', '')
     # Condition code synonyms: cc->lo, cs->hs
@@ -156,8 +157,35 @@ def normalize(text, va=None):
     # tbz/tbnz: capstone uses w-reg for bit < 32, veda64 uses x-reg
     s = re.sub(r'\btbz w(\d+)', r'tbz x\1', s)
     s = re.sub(r'\btbnz w(\d+)', r'tbnz x\1', s)
+    # ISB: "isb sy" → "isb" (SY is default barrier, capstone omits it)
+    s = re.sub(r'\bisb\s+sy\b', 'isb', s)
+    # MOVI 64-bit zero: "0000000000000000" → "0"
+    s = s.replace('0000000000000000', '0')
+    # Normalize floating-point immediates: remove trailing zeros after decimal
+    # "#-1.00000000" → "#-1.0", "#0.50000000" → "#0.5"
+    def _norm_float(m):
+        prefix = m.group(1)
+        intpart = m.group(2)
+        fracpart = m.group(3).rstrip('0') or '0'
+        return f'{prefix}{intpart}.{fracpart}'
+    s = re.sub(r'(#-?)(\d+)\.(\d+)', _norm_float, s)
     # Normalize all hex immediates to decimal for consistent comparison
     s = _normalize_immediates(s)
+    # Normalize signed vs unsigned 32-bit immediates for MOV:
+    # capstone: "mov w8, -1073741823" vs veda64: "mov w8, 3221225473"
+    # Both represent the same 32-bit value, normalize to unsigned
+    def _normalize_mov_imm(m):
+        mnem = m.group(1)
+        reg = m.group(2)
+        val = int(m.group(3))
+        if val < 0:
+            # Convert negative to unsigned 32-bit or 64-bit
+            if 'w' in reg:
+                val = val & 0xFFFFFFFF
+            else:
+                val = val & 0xFFFFFFFFFFFFFFFF
+        return f'{mnem} {reg}, {val}'
+    s = re.sub(r'(mov)\s+((?:w|x)\d+),\s*(-?\d+)', _normalize_mov_imm, s)
     # Collapse whitespace
     s = ' '.join(s.split())
     return s

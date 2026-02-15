@@ -52011,7 +52011,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SQINCB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqincb_rrs_x.Rdn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqincb_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqincb_rrs_x.pattern, true));
@@ -52021,7 +52021,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UQINCB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqincb_rrs_x.Rdn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.uqincb_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqincb_rrs_x.pattern, true));
@@ -52031,7 +52031,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SQDECB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdecb_rrs_x.Rdn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqdecb_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecb_rrs_x.pattern, true));
@@ -52041,7 +52041,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UQDECB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqdecb_rrs_x.Rdn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.uqdecb_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecb_rrs_x.pattern, true));
@@ -52175,7 +52175,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SQINCH, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqinch_rrs_x.Rdn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqinch_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqinch_rrs_x.pattern, true));
@@ -52185,7 +52185,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UQINCH, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqinch_rrs_x.Rdn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.uqinch_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqinch_rrs_x.pattern, true));
@@ -52195,7 +52195,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SQDECH, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdech_rrs_x.Rdn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqdech_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqdech_rrs_x.pattern, true));
@@ -52205,7 +52205,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UQDECH, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqdech_rrs_x.Rdn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.uqdech_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqdech_rrs_x.pattern, true));
@@ -52339,7 +52339,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SQINCW, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqincw_rrs_x.Rdn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqincw_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqincw_rrs_x.pattern, true));
@@ -52349,7 +52349,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UQINCW, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqincw_rrs_x.Rdn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.uqincw_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqincw_rrs_x.pattern, true));
@@ -52359,7 +52359,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SQDECW, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdecw_rrs_x.Rdn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqdecw_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecw_rrs_x.pattern, true));
@@ -52369,7 +52369,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UQDECW, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqdecw_rrs_x.Rdn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.uqdecw_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecw_rrs_x.pattern, true));
@@ -52503,7 +52503,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SQINCD, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqincd_rrs_x.Rdn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqincd_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqincd_rrs_x.pattern, true));
@@ -52513,7 +52513,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UQINCD, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqincd_rrs_x.Rdn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.uqincd_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqincd_rrs_x.pattern, true));
@@ -52523,7 +52523,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SQDECD, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdecd_rrs_x.Rdn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqdecd_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecd_rrs_x.pattern, true));
@@ -52533,7 +52533,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UQDECD, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqdecd_rrs_x.Rdn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.uqdecd_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecd_rrs_x.pattern, true));
@@ -58301,7 +58301,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SQINCP, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqincp_rprx.Rdn, is_64bit));
                         result.operands.push_back(Operand(OperandType::PredicateRegister, enc.sqincp_rprx.Pm, true));
                         return result;
@@ -58327,7 +58327,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UQINCP, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqincp_rprx.Rdn, is_64bit));
                         result.operands.push_back(Operand(OperandType::PredicateRegister, enc.uqincp_rprx.Pm, true));
                         return result;
@@ -58353,7 +58353,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SQDECP, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdecp_rprx.Rdn, is_64bit));
                         result.operands.push_back(Operand(OperandType::PredicateRegister, enc.sqdecp_rprx.Pm, true));
                         return result;
@@ -58379,7 +58379,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UQDECP, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqdecp_rprx.Rdn, is_64bit));
                         result.operands.push_back(Operand(OperandType::PredicateRegister, enc.uqdecp_rprx.Pm, true));
                         return result;

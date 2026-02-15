@@ -1,6 +1,7 @@
 #include "veda64.hpp"
 #include "format/format.hpp"
 #include <cstring>
+#include <iomanip>
 #include <sstream>
 
 namespace veda64 {
@@ -1584,7 +1585,7 @@ const char* get_movi_arrangement(uint32_t insn) {
     }
     // 64-bit (cmode=1110, op=1)
     if (op == 1 && cmode == 0xE) {
-        return Q ? "2d" : nullptr;  // Scalar form (D register) doesn't use arrangement
+        return Q ? "2d" : "d";  // Scalar D register form
     }
     return nullptr;
 }
@@ -1723,16 +1724,38 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
         }
     }
 
-    // MUL Aliases: MADD/MSUB with Ra==31
-    if (insn.mnemonic == Mnemonic::MADD && insn.operands.size() >= 4) {
-        if (insn.operands[3].value == 31) {
+    // MUL Aliases: MADD/MSUB with Ra==31 (4 operands) or alias encoding (3 operands)
+    if (insn.mnemonic == Mnemonic::MADD) {
+        if (insn.operands.size() == 3 || (insn.operands.size() >= 4 && insn.operands[3].value == 31)) {
             return std::string("mul ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();
         }
     }
 
-    if (insn.mnemonic == Mnemonic::MSUB && insn.operands.size() >= 4) {
-        if (insn.operands[3].value == 31) {
+    if (insn.mnemonic == Mnemonic::MSUB) {
+        if (insn.operands.size() == 3 || (insn.operands.size() >= 4 && insn.operands[3].value == 31)) {
             return std::string("mneg ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();
+        }
+    }
+
+    // SMULL/UMULL/SMNEGL/UMNEGL Aliases
+    if (insn.mnemonic == Mnemonic::SMADDL) {
+        if (insn.operands.size() == 3 || (insn.operands.size() >= 4 && insn.operands[3].value == 31)) {
+            return std::string("smull ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();
+        }
+    }
+    if (insn.mnemonic == Mnemonic::UMADDL) {
+        if (insn.operands.size() == 3 || (insn.operands.size() >= 4 && insn.operands[3].value == 31)) {
+            return std::string("umull ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();
+        }
+    }
+    if (insn.mnemonic == Mnemonic::SMSUBL) {
+        if (insn.operands.size() == 3 || (insn.operands.size() >= 4 && insn.operands[3].value == 31)) {
+            return std::string("smnegl ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();
+        }
+    }
+    if (insn.mnemonic == Mnemonic::UMSUBL) {
+        if (insn.operands.size() == 3 || (insn.operands.size() >= 4 && insn.operands[3].value == 31)) {
+            return std::string("umnegl ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + insn.operands[2].to_string();
         }
     }
 
@@ -1890,6 +1913,21 @@ std::string Instruction::to_string() const {
     // Fall back to base mnemonic
     std::string result = mnemonic_to_string(mnemonic);
 
+    // SIMD long/wide instructions: Q=1 → add '2' suffix (PMULL→PMULL2, SMLAL→SMLAL2, etc.)
+    if ((raw_value >> 30) & 1) {  // Q bit
+        if (mnemonic == Mnemonic::PMULL || mnemonic == Mnemonic::SMLAL || mnemonic == Mnemonic::SMLSL ||
+            mnemonic == Mnemonic::UMLAL || mnemonic == Mnemonic::UMLSL || mnemonic == Mnemonic::SMULL ||
+            mnemonic == Mnemonic::UMULL || mnemonic == Mnemonic::SQDMLAL || mnemonic == Mnemonic::SQDMLSL ||
+            mnemonic == Mnemonic::SQDMULL || mnemonic == Mnemonic::SABAL || mnemonic == Mnemonic::UABAL ||
+            mnemonic == Mnemonic::SABDL || mnemonic == Mnemonic::UABDL || mnemonic == Mnemonic::SADDL ||
+            mnemonic == Mnemonic::UADDL || mnemonic == Mnemonic::SSUBL || mnemonic == Mnemonic::USUBL ||
+            mnemonic == Mnemonic::SSHLL || mnemonic == Mnemonic::USHLL ||
+            mnemonic == Mnemonic::ADDHN || mnemonic == Mnemonic::SUBHN ||
+            mnemonic == Mnemonic::RADDHN || mnemonic == Mnemonic::RSUBHN) {
+            result += "2";
+        }
+    }
+
     // For B/BC: condition is a suffix on the mnemonic (e.g., b.eq)
     if (condition != Condition::None &&
         (mnemonic == Mnemonic::B || mnemonic == Mnemonic::BC)) {
@@ -1965,7 +2003,14 @@ std::string Operand::to_string() const {
         case OperandType::VectorRegister:
             // is_64bit used to select Q prefix for 128-bit context (STP/LDP Q)
             if (is_64bit) return "q" + std::to_string(value);
-            return format_vector_register(value, arrangement ? arrangement : "");
+            {
+                if (has_index && arrangement) {
+                    // Indexed element: always use v<n>.<T>[<idx>] format
+                    return "v" + std::to_string(value) + "." + arrangement + "[" + std::to_string(index) + "]";
+                }
+                std::string vr = format_vector_register(value, arrangement ? arrangement : "");
+                return vr;
+            }
 
         case OperandType::SVERegister:
             return "z" + std::to_string(value);
@@ -2094,6 +2139,47 @@ std::string Operand::to_string() const {
                     case 0xD807u: return "dczid_el0";
                     case 0xDE80u: return "fpmr";
                     case 0xDE85u: return "scxtnum_el0";
+                    // Performance monitors
+                    case 0xDCE8u: return "pmccntr_el0";
+                    case 0xDCE0u: return "pmcr_el0";
+                    case 0xDCE1u: return "pmcntenset_el0";
+                    case 0xDCE2u: return "pmcntenclr_el0";
+                    case 0xDCE3u: return "pmovsclr_el0";
+                    case 0xDCE4u: return "pmswinc_el0";
+                    case 0xDCE5u: return "pmselr_el0";
+                    case 0xDCE9u: return "pmxevtyper_el0";
+                    case 0xDCEAu: return "pmxevcntr_el0";
+                    case 0xDCF3u: return "pmovsset_el0";
+                    case 0xDCE6u: return "pmceid0_el0";
+                    case 0xDCE7u: return "pmceid1_el0";
+                    case 0xDCF0u: return "pmuserenr_el0";
+                    // Timers
+                    case 0xDF00u: return "cntpct_el0";
+                    case 0xDF01u: return "cntvctss_el0";
+                    case 0xDF02u: return "cntvct_el0";
+                    case 0xDF10u: return "cntp_tval_el0";
+                    case 0xDF11u: return "cntp_ctl_el0";
+                    case 0xDF12u: return "cntp_cval_el0";
+                    case 0xDF18u: return "cntv_tval_el0";
+                    case 0xDF19u: return "cntv_ctl_el0";
+                    case 0xDF1Au: return "cntv_cval_el0";
+                    case 0xDF08u: return "cntfrq_el0";
+                    // EL1 system regs
+                    case 0xC080u: return "sctlr_el1";
+                    case 0xC081u: return "actlr_el1";
+                    case 0xC082u: return "cpacr_el1";
+                    case 0xC100u: return "ttbr0_el1";
+                    case 0xC101u: return "ttbr1_el1";
+                    case 0xC102u: return "tcr_el1";
+                    case 0xC200u: return "esr_el1";
+                    case 0xC300u: return "far_el1";
+                    case 0xC288u: return "isr_el1";
+                    case 0xC510u: return "contextidr_el1";
+                    case 0xC518u: return "tpidr_el1";
+                    case 0xC600u: return "vbar_el1";
+                    case 0xC400u: return "spsr_el1";
+                    case 0xC401u: return "elr_el1";
+                    case 0xC408u: return "sp_el0";
                     default: {
                         // Fallback: S<op0>_<op1>_C<CRn>_C<CRm>_<op2>
                         std::ostringstream oss;
@@ -2181,7 +2267,23 @@ std::string Operand::to_string() const {
             }
 
         case OperandType::FloatImmediate:
-            return "#0.0";
+            {
+                // Decode ARM VFPExpandImm: imm8 → double
+                // Format: sign:NOT(b):rep(b,8):bcdefgh:zeros(44)
+                if (value == 0) return "#0.0";
+                uint64_t a = (value >> 7) & 1;
+                uint64_t b = (value >> 6) & 1;
+                uint64_t bcdefgh = value & 0x7F;
+                uint64_t sign = a;
+                uint64_t exp = (b ? 0x3FC : 0x400) | ((bcdefgh >> 4) & 0x7);
+                uint64_t frac = (bcdefgh & 0xF) << 48;
+                uint64_t bits = (sign << 63) | (exp << 52) | frac;
+                double fval;
+                std::memcpy(&fval, &bits, 8);
+                std::ostringstream oss;
+                oss << "#" << std::fixed << std::setprecision(8) << fval;
+                return oss.str();
+            }
 
         default:
             return std::to_string(value);

@@ -35079,9 +35079,19 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.mov_umov_asimdins_xx.Rd, false));
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.mov_umov_asimdins_xx.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.mov_umov_asimdins_xx.imm5, true));
+                        uint32_t _imm5 = enc.mov_umov_asimdins_xx.imm5;
+                        result.operands.push_back(Operand(OperandType::Register, enc.mov_umov_asimdins_xx.Rd, true));
+                        {
+                            Operand op(OperandType::VectorRegister, enc.mov_umov_asimdins_xx.Rn, false);
+                            uint32_t idx = 0;
+                            if (_imm5 & 1) { op.arrangement = "b"; idx = _imm5 >> 1; }
+                            else if (_imm5 & 2) { op.arrangement = "h"; idx = _imm5 >> 2; }
+                            else if (_imm5 & 4) { op.arrangement = "s"; idx = _imm5 >> 3; }
+                            else if (_imm5 & 8) { op.arrangement = "d"; idx = _imm5 >> 4; }
+                            op.index = idx;
+                            op.has_index = true;
+                            result.operands.push_back(op);
+                        }
                         return result;
         }
         default: break;
@@ -35094,9 +35104,19 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.mov_umov_asimdins_ww.Rd, false));
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.mov_umov_asimdins_ww.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.mov_umov_asimdins_ww.imm5, true));
+                        uint32_t _imm5 = enc.mov_umov_asimdins_ww.imm5;
+                        result.operands.push_back(Operand(OperandType::Register, enc.mov_umov_asimdins_ww.Rd, false));
+                        {
+                            Operand op(OperandType::VectorRegister, enc.mov_umov_asimdins_ww.Rn, false);
+                            uint32_t idx = 0;
+                            if (_imm5 & 1) { op.arrangement = "b"; idx = _imm5 >> 1; }
+                            else if (_imm5 & 2) { op.arrangement = "h"; idx = _imm5 >> 2; }
+                            else if (_imm5 & 4) { op.arrangement = "s"; idx = _imm5 >> 3; }
+                            else if (_imm5 & 8) { op.arrangement = "d"; idx = _imm5 >> 4; }
+                            op.index = idx;
+                            op.has_index = true;
+                            result.operands.push_back(op);
+                        }
                         return result;
         }
         default: break;
@@ -35222,9 +35242,19 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.smov_asimdins_ww.Rd, false));
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.smov_asimdins_ww.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.smov_asimdins_ww.imm5, true));
+                        uint32_t _imm5 = enc.smov_asimdins_ww.imm5;
+                        result.operands.push_back(Operand(OperandType::Register, enc.smov_asimdins_ww.Rd, false));
+                        {
+                            Operand op(OperandType::VectorRegister, enc.smov_asimdins_ww.Rn, false);
+                            uint32_t idx = 0;
+                            if (_imm5 & 1) { op.arrangement = "b"; idx = _imm5 >> 1; }
+                            else if (_imm5 & 2) { op.arrangement = "h"; idx = _imm5 >> 2; }
+                            else if (_imm5 & 4) { op.arrangement = "s"; idx = _imm5 >> 3; }
+                            else if (_imm5 & 8) { op.arrangement = "d"; idx = _imm5 >> 4; }
+                            op.index = idx;
+                            op.has_index = true;
+                            result.operands.push_back(op);
+                        }
                         return result;
         }
         case 0x0E003C00u: { // UMOV_asimdins_W_w
@@ -35232,9 +35262,19 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.umov_asimdins_ww.Rd, false));
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.umov_asimdins_ww.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.umov_asimdins_ww.imm5, true));
+                        uint32_t _imm5 = enc.umov_asimdins_ww.imm5;
+                        result.operands.push_back(Operand(OperandType::Register, enc.umov_asimdins_ww.Rd, false));
+                        {
+                            Operand op(OperandType::VectorRegister, enc.umov_asimdins_ww.Rn, false);
+                            uint32_t idx = 0;
+                            if (_imm5 & 1) { op.arrangement = "b"; idx = _imm5 >> 1; }
+                            else if (_imm5 & 2) { op.arrangement = "h"; idx = _imm5 >> 2; }
+                            else if (_imm5 & 4) { op.arrangement = "s"; idx = _imm5 >> 3; }
+                            else if (_imm5 & 8) { op.arrangement = "d"; idx = _imm5 >> 4; }
+                            op.index = idx;
+                            op.has_index = true;
+                            result.operands.push_back(op);
+                        }
                         return result;
         }
         case 0x0E00C400u: { // FMLALLBB_asimdsame2_G
@@ -35553,9 +35593,19 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.smov_asimdins_xx.Rd, false));
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.smov_asimdins_xx.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.smov_asimdins_xx.imm5, true));
+                        uint32_t _imm5 = enc.smov_asimdins_xx.imm5;
+                        result.operands.push_back(Operand(OperandType::Register, enc.smov_asimdins_xx.Rd, true));
+                        {
+                            Operand op(OperandType::VectorRegister, enc.smov_asimdins_xx.Rn, false);
+                            uint32_t idx = 0;
+                            if (_imm5 & 1) { op.arrangement = "b"; idx = _imm5 >> 1; }
+                            else if (_imm5 & 2) { op.arrangement = "h"; idx = _imm5 >> 2; }
+                            else if (_imm5 & 4) { op.arrangement = "s"; idx = _imm5 >> 3; }
+                            else if (_imm5 & 8) { op.arrangement = "d"; idx = _imm5 >> 4; }
+                            op.index = idx;
+                            op.has_index = true;
+                            result.operands.push_back(op);
+                        }
                         return result;
         }
         case 0x4E00C400u: { // FMLALLTB_asimdsame2_G
@@ -36331,7 +36381,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         { Operand op(OperandType::VectorRegister, enc.fmov_sfloatimm.Rd, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmov_sfloatimm.imm8, true));
+                        result.operands.push_back(Operand(OperandType::FloatImmediate, enc.fmov_sfloatimm.imm8, true));
                         return result;
         }
         case 0x1E601000u: { // FMOV_D_floatimm
@@ -36340,7 +36390,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         { Operand op(OperandType::VectorRegister, enc.fmov_dfloatimm.Rd, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmov_dfloatimm.imm8, true));
+                        result.operands.push_back(Operand(OperandType::FloatImmediate, enc.fmov_dfloatimm.imm8, true));
                         return result;
         }
         case 0x1EE01000u: { // FMOV_H_floatimm
@@ -36349,7 +36399,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         { Operand op(OperandType::VectorRegister, enc.fmov_hfloatimm.Rd, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmov_hfloatimm.imm8, true));
+                        result.operands.push_back(Operand(OperandType::FloatImmediate, enc.fmov_hfloatimm.imm8, true));
                         return result;
         }
         default: break;
@@ -38791,9 +38841,10 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ext_asimdext_only.Rd, false));
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ext_asimdext_only.Rn, false));
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.ext_asimdext_only.Rm, false));
+                        const char* _simd_arr = enc.ext_asimdext_only.Q ? "16b" : "8b";
+                        { Operand op(OperandType::VectorRegister, enc.ext_asimdext_only.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ext_asimdext_only.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ext_asimdext_only.Rm, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.ext_asimdext_only.imm4, true));
                         return result;
         }
@@ -39870,7 +39921,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.saddlv_asimdall_only.Q][enc.saddlv_asimdall_only.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.saddlv_asimdall_only.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            static const char* _scalar_arr[] = {"h", "s", "d", "d"};
+                            Operand op(OperandType::VectorRegister, enc.saddlv_asimdall_only.Rd, false);
+                            op.arrangement = _scalar_arr[enc.saddlv_asimdall_only.size];
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::VectorRegister, enc.saddlv_asimdall_only.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
         }
@@ -39879,8 +39935,21 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.smaxv_asimdall_only.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smaxv_asimdall_only.Rn, is_64bit));
+                        const char* _simd_arr = nullptr;
+                        {
+                            static const char* arrs[2][4] = {
+                                {"8b", "4h", "2s", "1d"},
+                                {"16b", "8h", "4s", "2d"}
+                            };
+                            _simd_arr = arrs[enc.smaxv_asimdall_only.Q][enc.smaxv_asimdall_only.size];
+                        }
+                        {
+                            static const char* _scalar_arr[] = {"b", "h", "s", "d"};
+                            Operand op(OperandType::VectorRegister, enc.smaxv_asimdall_only.Rd, false);
+                            op.arrangement = _scalar_arr[enc.smaxv_asimdall_only.size];
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::VectorRegister, enc.smaxv_asimdall_only.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
         }
         case 0x0E31A800u: { // SMINV_asimdall_only
@@ -39888,8 +39957,21 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sminv_asimdall_only.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sminv_asimdall_only.Rn, is_64bit));
+                        const char* _simd_arr = nullptr;
+                        {
+                            static const char* arrs[2][4] = {
+                                {"8b", "4h", "2s", "1d"},
+                                {"16b", "8h", "4s", "2d"}
+                            };
+                            _simd_arr = arrs[enc.sminv_asimdall_only.Q][enc.sminv_asimdall_only.size];
+                        }
+                        {
+                            static const char* _scalar_arr[] = {"b", "h", "s", "d"};
+                            Operand op(OperandType::VectorRegister, enc.sminv_asimdall_only.Rd, false);
+                            op.arrangement = _scalar_arr[enc.sminv_asimdall_only.size];
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::VectorRegister, enc.sminv_asimdall_only.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
         }
         case 0x0E31B800u: { // ADDV_asimdall_only
@@ -39905,7 +39987,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.addv_asimdall_only.Q][enc.addv_asimdall_only.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.addv_asimdall_only.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            static const char* _scalar_arr[] = {"b", "h", "s", "d"};
+                            Operand op(OperandType::VectorRegister, enc.addv_asimdall_only.Rd, false);
+                            op.arrangement = _scalar_arr[enc.addv_asimdall_only.size];
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::VectorRegister, enc.addv_asimdall_only.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
         }
@@ -40128,7 +40215,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.uaddlv_asimdall_only.Q][enc.uaddlv_asimdall_only.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.uaddlv_asimdall_only.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            static const char* _scalar_arr[] = {"h", "s", "d", "d"};
+                            Operand op(OperandType::VectorRegister, enc.uaddlv_asimdall_only.Rd, false);
+                            op.arrangement = _scalar_arr[enc.uaddlv_asimdall_only.size];
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::VectorRegister, enc.uaddlv_asimdall_only.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
         }
@@ -40137,8 +40229,21 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.umaxv_asimdall_only.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umaxv_asimdall_only.Rn, is_64bit));
+                        const char* _simd_arr = nullptr;
+                        {
+                            static const char* arrs[2][4] = {
+                                {"8b", "4h", "2s", "1d"},
+                                {"16b", "8h", "4s", "2d"}
+                            };
+                            _simd_arr = arrs[enc.umaxv_asimdall_only.Q][enc.umaxv_asimdall_only.size];
+                        }
+                        {
+                            static const char* _scalar_arr[] = {"b", "h", "s", "d"};
+                            Operand op(OperandType::VectorRegister, enc.umaxv_asimdall_only.Rd, false);
+                            op.arrangement = _scalar_arr[enc.umaxv_asimdall_only.size];
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::VectorRegister, enc.umaxv_asimdall_only.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
         }
         case 0x2E31A800u: { // UMINV_asimdall_only
@@ -40146,8 +40251,21 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.uminv_asimdall_only.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.uminv_asimdall_only.Rn, is_64bit));
+                        const char* _simd_arr = nullptr;
+                        {
+                            static const char* arrs[2][4] = {
+                                {"8b", "4h", "2s", "1d"},
+                                {"16b", "8h", "4s", "2d"}
+                            };
+                            _simd_arr = arrs[enc.uminv_asimdall_only.Q][enc.uminv_asimdall_only.size];
+                        }
+                        {
+                            static const char* _scalar_arr[] = {"b", "h", "s", "d"};
+                            Operand op(OperandType::VectorRegister, enc.uminv_asimdall_only.Rd, false);
+                            op.arrangement = _scalar_arr[enc.uminv_asimdall_only.size];
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::VectorRegister, enc.uminv_asimdall_only.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
         }
         default: break;
@@ -40286,7 +40404,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.saddl_asimddiff_l.Q][enc.saddl_asimddiff_l.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.saddl_asimddiff_l.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.saddl_asimddiff_l.Rd, false);
+                            static const char* _wide_arrs[][2] = {{"8h", "8h"}, {"4s", "4s"}, {"2d", "2d"}};
+                            op.arrangement = _wide_arrs[enc.saddl_asimddiff_l.size][0];
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::VectorRegister, enc.saddl_asimddiff_l.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.saddl_asimddiff_l.Rm, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
@@ -40368,7 +40491,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.ssubl_asimddiff_l.Q][enc.ssubl_asimddiff_l.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.ssubl_asimddiff_l.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.ssubl_asimddiff_l.Rd, false);
+                            static const char* _wide_arrs[][2] = {{"8h", "8h"}, {"4s", "4s"}, {"2d", "2d"}};
+                            op.arrangement = _wide_arrs[enc.ssubl_asimddiff_l.size][0];
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::VectorRegister, enc.ssubl_asimddiff_l.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ssubl_asimddiff_l.Rm, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
@@ -40620,7 +40748,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.smlal_asimddiff_l.Q][enc.smlal_asimddiff_l.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.smlal_asimddiff_l.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.smlal_asimddiff_l.Rd, false);
+                            static const char* _wide_arrs[][2] = {{"8h", "8h"}, {"4s", "4s"}, {"2d", "2d"}};
+                            op.arrangement = _wide_arrs[enc.smlal_asimddiff_l.size][0];
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::VectorRegister, enc.smlal_asimddiff_l.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.smlal_asimddiff_l.Rm, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
@@ -40674,7 +40807,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.sqdmlal_asimddiff_l.Q][enc.sqdmlal_asimddiff_l.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.sqdmlal_asimddiff_l.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.sqdmlal_asimddiff_l.Rd, false);
+                            static const char* _wide_arrs[][2] = {{"8h", "8h"}, {"4s", "4s"}, {"2d", "2d"}};
+                            op.arrangement = _wide_arrs[enc.sqdmlal_asimddiff_l.size][0];
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::VectorRegister, enc.sqdmlal_asimddiff_l.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.sqdmlal_asimddiff_l.Rm, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
@@ -40728,7 +40866,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.smlsl_asimddiff_l.Q][enc.smlsl_asimddiff_l.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.smlsl_asimddiff_l.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.smlsl_asimddiff_l.Rd, false);
+                            static const char* _wide_arrs[][2] = {{"8h", "8h"}, {"4s", "4s"}, {"2d", "2d"}};
+                            op.arrangement = _wide_arrs[enc.smlsl_asimddiff_l.size][0];
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::VectorRegister, enc.smlsl_asimddiff_l.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.smlsl_asimddiff_l.Rm, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
@@ -40782,7 +40925,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.sqdmlsl_asimddiff_l.Q][enc.sqdmlsl_asimddiff_l.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.sqdmlsl_asimddiff_l.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.sqdmlsl_asimddiff_l.Rd, false);
+                            static const char* _wide_arrs[][2] = {{"8h", "8h"}, {"4s", "4s"}, {"2d", "2d"}};
+                            op.arrangement = _wide_arrs[enc.sqdmlsl_asimddiff_l.size][0];
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::VectorRegister, enc.sqdmlsl_asimddiff_l.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.sqdmlsl_asimddiff_l.Rm, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
@@ -40836,7 +40984,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.smull_asimddiff_l.Q][enc.smull_asimddiff_l.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.smull_asimddiff_l.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.smull_asimddiff_l.Rd, false);
+                            static const char* _wide_arrs[][2] = {{"8h", "8h"}, {"4s", "4s"}, {"2d", "2d"}};
+                            op.arrangement = _wide_arrs[enc.smull_asimddiff_l.size][0];
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::VectorRegister, enc.smull_asimddiff_l.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.smull_asimddiff_l.Rm, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
@@ -40854,7 +41007,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.sqdmull_asimddiff_l.Q][enc.sqdmull_asimddiff_l.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.sqdmull_asimddiff_l.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.sqdmull_asimddiff_l.Rd, false);
+                            static const char* _wide_arrs[][2] = {{"8h", "8h"}, {"4s", "4s"}, {"2d", "2d"}};
+                            op.arrangement = _wide_arrs[enc.sqdmull_asimddiff_l.size][0];
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::VectorRegister, enc.sqdmull_asimddiff_l.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.sqdmull_asimddiff_l.Rm, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
@@ -40872,7 +41030,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.pmull_asimddiff_l.Q][enc.pmull_asimddiff_l.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.pmull_asimddiff_l.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.pmull_asimddiff_l.Rd, false); op.arrangement = "1q"; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.pmull_asimddiff_l.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.pmull_asimddiff_l.Rm, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
@@ -40920,7 +41078,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.uaddl_asimddiff_l.Q][enc.uaddl_asimddiff_l.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.uaddl_asimddiff_l.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.uaddl_asimddiff_l.Rd, false);
+                            static const char* _wide_arrs[][2] = {{"8h", "8h"}, {"4s", "4s"}, {"2d", "2d"}};
+                            op.arrangement = _wide_arrs[enc.uaddl_asimddiff_l.size][0];
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::VectorRegister, enc.uaddl_asimddiff_l.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.uaddl_asimddiff_l.Rm, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
@@ -41002,7 +41165,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.usubl_asimddiff_l.Q][enc.usubl_asimddiff_l.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.usubl_asimddiff_l.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.usubl_asimddiff_l.Rd, false);
+                            static const char* _wide_arrs[][2] = {{"8h", "8h"}, {"4s", "4s"}, {"2d", "2d"}};
+                            op.arrangement = _wide_arrs[enc.usubl_asimddiff_l.size][0];
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::VectorRegister, enc.usubl_asimddiff_l.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.usubl_asimddiff_l.Rm, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
@@ -41254,7 +41422,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.umlal_asimddiff_l.Q][enc.umlal_asimddiff_l.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.umlal_asimddiff_l.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.umlal_asimddiff_l.Rd, false);
+                            static const char* _wide_arrs[][2] = {{"8h", "8h"}, {"4s", "4s"}, {"2d", "2d"}};
+                            op.arrangement = _wide_arrs[enc.umlal_asimddiff_l.size][0];
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::VectorRegister, enc.umlal_asimddiff_l.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.umlal_asimddiff_l.Rm, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
@@ -41344,7 +41517,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.umlsl_asimddiff_l.Q][enc.umlsl_asimddiff_l.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.umlsl_asimddiff_l.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.umlsl_asimddiff_l.Rd, false);
+                            static const char* _wide_arrs[][2] = {{"8h", "8h"}, {"4s", "4s"}, {"2d", "2d"}};
+                            op.arrangement = _wide_arrs[enc.umlsl_asimddiff_l.size][0];
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::VectorRegister, enc.umlsl_asimddiff_l.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.umlsl_asimddiff_l.Rm, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
@@ -41416,7 +41594,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.umull_asimddiff_l.Q][enc.umull_asimddiff_l.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.umull_asimddiff_l.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.umull_asimddiff_l.Rd, false);
+                            static const char* _wide_arrs[][2] = {{"8h", "8h"}, {"4s", "4s"}, {"2d", "2d"}};
+                            op.arrangement = _wide_arrs[enc.umull_asimddiff_l.size][0];
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::VectorRegister, enc.umull_asimddiff_l.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.umull_asimddiff_l.Rm, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
@@ -41471,7 +41654,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.smlal_asimdelem_l.Q][enc.smlal_asimdelem_l.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.smlal_asimdelem_l.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.smlal_asimdelem_l.Rd, false);
+                            static const char* _wide_arrs[][2] = {{"8h", "8h"}, {"4s", "4s"}, {"2d", "2d"}};
+                            op.arrangement = _wide_arrs[enc.smlal_asimdelem_l.size][0];
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::VectorRegister, enc.smlal_asimdelem_l.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.smlal_asimdelem_l.Rm, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
@@ -41489,7 +41677,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.sqdmlal_asimdelem_l.Q][enc.sqdmlal_asimdelem_l.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.sqdmlal_asimdelem_l.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.sqdmlal_asimdelem_l.Rd, false);
+                            static const char* _wide_arrs[][2] = {{"8h", "8h"}, {"4s", "4s"}, {"2d", "2d"}};
+                            op.arrangement = _wide_arrs[enc.sqdmlal_asimdelem_l.size][0];
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::VectorRegister, enc.sqdmlal_asimdelem_l.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.sqdmlal_asimdelem_l.Rm, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
@@ -41507,7 +41700,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.smlsl_asimdelem_l.Q][enc.smlsl_asimdelem_l.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.smlsl_asimdelem_l.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.smlsl_asimdelem_l.Rd, false);
+                            static const char* _wide_arrs[][2] = {{"8h", "8h"}, {"4s", "4s"}, {"2d", "2d"}};
+                            op.arrangement = _wide_arrs[enc.smlsl_asimdelem_l.size][0];
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::VectorRegister, enc.smlsl_asimdelem_l.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.smlsl_asimdelem_l.Rm, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
@@ -41525,7 +41723,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.sqdmlsl_asimdelem_l.Q][enc.sqdmlsl_asimdelem_l.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.sqdmlsl_asimdelem_l.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.sqdmlsl_asimdelem_l.Rd, false);
+                            static const char* _wide_arrs[][2] = {{"8h", "8h"}, {"4s", "4s"}, {"2d", "2d"}};
+                            op.arrangement = _wide_arrs[enc.sqdmlsl_asimdelem_l.size][0];
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::VectorRegister, enc.sqdmlsl_asimdelem_l.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.sqdmlsl_asimdelem_l.Rm, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
@@ -41561,7 +41764,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.smull_asimdelem_l.Q][enc.smull_asimdelem_l.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.smull_asimdelem_l.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.smull_asimdelem_l.Rd, false);
+                            static const char* _wide_arrs[][2] = {{"8h", "8h"}, {"4s", "4s"}, {"2d", "2d"}};
+                            op.arrangement = _wide_arrs[enc.smull_asimdelem_l.size][0];
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::VectorRegister, enc.smull_asimdelem_l.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.smull_asimdelem_l.Rm, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
@@ -41579,7 +41787,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.sqdmull_asimdelem_l.Q][enc.sqdmull_asimdelem_l.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.sqdmull_asimdelem_l.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.sqdmull_asimdelem_l.Rd, false);
+                            static const char* _wide_arrs[][2] = {{"8h", "8h"}, {"4s", "4s"}, {"2d", "2d"}};
+                            op.arrangement = _wide_arrs[enc.sqdmull_asimdelem_l.size][0];
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::VectorRegister, enc.sqdmull_asimdelem_l.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.sqdmull_asimdelem_l.Rm, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
@@ -41661,7 +41874,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.umlal_asimdelem_l.Q][enc.umlal_asimdelem_l.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.umlal_asimdelem_l.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.umlal_asimdelem_l.Rd, false);
+                            static const char* _wide_arrs[][2] = {{"8h", "8h"}, {"4s", "4s"}, {"2d", "2d"}};
+                            op.arrangement = _wide_arrs[enc.umlal_asimdelem_l.size][0];
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::VectorRegister, enc.umlal_asimdelem_l.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.umlal_asimdelem_l.Rm, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
@@ -41697,7 +41915,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.umlsl_asimdelem_l.Q][enc.umlsl_asimdelem_l.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.umlsl_asimdelem_l.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.umlsl_asimdelem_l.Rd, false);
+                            static const char* _wide_arrs[][2] = {{"8h", "8h"}, {"4s", "4s"}, {"2d", "2d"}};
+                            op.arrangement = _wide_arrs[enc.umlsl_asimdelem_l.size][0];
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::VectorRegister, enc.umlsl_asimdelem_l.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.umlsl_asimdelem_l.Rm, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;
@@ -41715,7 +41938,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             };
                             _simd_arr = arrs[enc.umull_asimdelem_l.Q][enc.umull_asimdelem_l.size];
                         }
-                        { Operand op(OperandType::VectorRegister, enc.umull_asimdelem_l.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.umull_asimdelem_l.Rd, false);
+                            static const char* _wide_arrs[][2] = {{"8h", "8h"}, {"4s", "4s"}, {"2d", "2d"}};
+                            op.arrangement = _wide_arrs[enc.umull_asimdelem_l.size][0];
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::VectorRegister, enc.umull_asimdelem_l.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.umull_asimdelem_l.Rm, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         return result;

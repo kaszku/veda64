@@ -46192,7 +46192,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STGP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        int scale = 8;
+                        int scale = 16;
                         result.operands.push_back(Operand(OperandType::Register, enc.stgp64ldstpair_post.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.stgp64ldstpair_post.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.stgp64ldstpair_post.simm7) << 25) >> 25;
@@ -46203,7 +46203,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDPSW, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        int scale = 8;
+                        int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldpsw64ldstpair_post.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldpsw64ldstpair_post.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldpsw64ldstpair_post.imm7) << 25) >> 25;
@@ -46214,7 +46214,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STGP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        int scale = 8;
+                        int scale = 16;
                         result.operands.push_back(Operand(OperandType::Register, enc.stgp64ldstpair_off.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.stgp64ldstpair_off.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.stgp64ldstpair_off.simm7) << 25) >> 25;
@@ -46225,7 +46225,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDPSW, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        int scale = 8;
+                        int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldpsw64ldstpair_off.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldpsw64ldstpair_off.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldpsw64ldstpair_off.imm7) << 25) >> 25;
@@ -46236,7 +46236,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STGP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        int scale = 8;
+                        int scale = 16;
                         result.operands.push_back(Operand(OperandType::Register, enc.stgp64ldstpair_pre.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.stgp64ldstpair_pre.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.stgp64ldstpair_pre.simm7) << 25) >> 25;
@@ -46247,7 +46247,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDPSW, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        int scale = 8;
+                        int scale = 4;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldpsw64ldstpair_pre.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldpsw64ldstpair_pre.Rt2, true));
                         int32_t imm = (static_cast<int32_t>(enc.ldpsw64ldstpair_pre.imm7) << 25) >> 25;
