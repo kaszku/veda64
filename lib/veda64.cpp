@@ -1899,6 +1899,49 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
         }
     }
 
+    // MOVA → MOV: ZA tile slice operand format
+    if (insn.mnemonic == Mnemonic::MOVA) {
+        uint32_t raw = insn.raw_value;
+        // Detect mov_za_p_rz variants (vector to/from ZA tile with predicate)
+        // These have top byte 0xC0 and bit 20=0, bits [19:16]=0
+        if ((raw & 0xFF200000u) == 0xC0000000u && ((raw >> 16) & 0xF) == 0) {
+            uint32_t size = (raw >> 22) & 3;
+            bool is_q = ((raw >> 16) & 1) != 0;  // Q bit for .Q variant
+            uint32_t V = (raw >> 15) & 1;
+            uint32_t Rs = (raw >> 13) & 3;
+            uint32_t Pg = (raw >> 10) & 7;
+            uint32_t Zn = (raw >> 5) & 0x1F;
+            std::ostringstream oss;
+            oss << "mov ";
+            // ZA tile operand: za<tile><hv>.<sz>[w<12+Rs>, <offset>]
+            const char* hv = V ? "v" : "h";
+            const char* sz_name;
+            uint32_t tile, offset;
+            if (size == 0 && !is_q) {
+                // .B: ZAd is always 0, offset is 4 bits [3:0]
+                sz_name = "b"; tile = 0; offset = raw & 0xF;
+            } else if (size == 1) {
+                // .H: ZAd is 1 bit [3], offset is 3 bits [2:0]
+                sz_name = "h"; tile = (raw >> 3) & 1; offset = raw & 7;
+            } else if (size == 2) {
+                // .S: ZAd is 2 bits [3:2], offset is 2 bits [1:0]
+                sz_name = "s"; tile = (raw >> 2) & 3; offset = raw & 3;
+            } else if (size == 3 && !is_q) {
+                // .D: ZAd is 3 bits [3:1], offset is 1 bit [0]
+                sz_name = "d"; tile = (raw >> 1) & 7; offset = raw & 1;
+            } else {
+                // .Q: ZAd is 4 bits [3:0], no offset
+                sz_name = "q"; tile = raw & 0xF; offset = 0;
+            }
+            oss << "za" << tile << hv << "." << sz_name;
+            oss << "[w" << (12 + Rs) << ", ";
+            if (offset >= 10) oss << "0x" << std::hex << offset;
+            else oss << std::dec << offset;
+            oss << "], p" << std::dec << Pg << "/m, z" << Zn << "." << sz_name;
+            return oss.str();
+        }
+    }
+
     return std::nullopt;  // No alias
 }
 
@@ -2012,11 +2055,27 @@ std::string Operand::to_string() const {
                 return vr;
             }
 
-        case OperandType::SVERegister:
-            return "z" + std::to_string(value);
+        case OperandType::SVERegister: {
+            std::string r = "z" + std::to_string(value);
+            if (arrangement && arrangement[0] != '\0') {
+                r += ".";
+                r += arrangement;
+            }
+            return r;
+        }
 
-        case OperandType::PredicateRegister:
-            return "p" + std::to_string(value);
+        case OperandType::PredicateRegister: {
+            std::string r = "p" + std::to_string(value);
+            if (arrangement && arrangement[0] != '\0') {
+                r += ".";
+                r += arrangement;
+            }
+            // is_sp is reused for predicate qualifier: 0=none, 1=/z, 2=/m
+            if (is_sp) {
+                r += is_64bit ? "/m" : "/z";
+            }
+            return r;
+        }
 
         case OperandType::SMETileRegister:
             return "za" + std::to_string(value);
@@ -2164,6 +2223,68 @@ std::string Operand::to_string() const {
                     case 0xDF18u: return "cntv_tval_el0";
                     case 0xDF19u: return "cntv_ctl_el0";
                     case 0xDF1Au: return "cntv_cval_el0";
+                    case 0xDF40u: return "pmevcntr0_el0";
+                    case 0xDF41u: return "pmevcntr1_el0";
+                    case 0xDF42u: return "pmevcntr2_el0";
+                    case 0xDF43u: return "pmevcntr3_el0";
+                    case 0xDF44u: return "pmevcntr4_el0";
+                    case 0xDF45u: return "pmevcntr5_el0";
+                    case 0xDF46u: return "pmevcntr6_el0";
+                    case 0xDF47u: return "pmevcntr7_el0";
+                    case 0xDF48u: return "pmevcntr8_el0";
+                    case 0xDF49u: return "pmevcntr9_el0";
+                    case 0xDF4Au: return "pmevcntr10_el0";
+                    case 0xDF4Bu: return "pmevcntr11_el0";
+                    case 0xDF4Cu: return "pmevcntr12_el0";
+                    case 0xDF4Du: return "pmevcntr13_el0";
+                    case 0xDF4Eu: return "pmevcntr14_el0";
+                    case 0xDF4Fu: return "pmevcntr15_el0";
+                    case 0xDF50u: return "pmevcntr16_el0";
+                    case 0xDF51u: return "pmevcntr17_el0";
+                    case 0xDF52u: return "pmevcntr18_el0";
+                    case 0xDF53u: return "pmevcntr19_el0";
+                    case 0xDF54u: return "pmevcntr20_el0";
+                    case 0xDF55u: return "pmevcntr21_el0";
+                    case 0xDF56u: return "pmevcntr22_el0";
+                    case 0xDF57u: return "pmevcntr23_el0";
+                    case 0xDF58u: return "pmevcntr24_el0";
+                    case 0xDF59u: return "pmevcntr25_el0";
+                    case 0xDF5Au: return "pmevcntr26_el0";
+                    case 0xDF5Bu: return "pmevcntr27_el0";
+                    case 0xDF5Cu: return "pmevcntr28_el0";
+                    case 0xDF5Du: return "pmevcntr29_el0";
+                    case 0xDF5Eu: return "pmevcntr30_el0";
+                    case 0xDF60u: return "pmevtyper0_el0";
+                    case 0xDF61u: return "pmevtyper1_el0";
+                    case 0xDF62u: return "pmevtyper2_el0";
+                    case 0xDF63u: return "pmevtyper3_el0";
+                    case 0xDF64u: return "pmevtyper4_el0";
+                    case 0xDF65u: return "pmevtyper5_el0";
+                    case 0xDF66u: return "pmevtyper6_el0";
+                    case 0xDF67u: return "pmevtyper7_el0";
+                    case 0xDF68u: return "pmevtyper8_el0";
+                    case 0xDF69u: return "pmevtyper9_el0";
+                    case 0xDF6Au: return "pmevtyper10_el0";
+                    case 0xDF6Bu: return "pmevtyper11_el0";
+                    case 0xDF6Cu: return "pmevtyper12_el0";
+                    case 0xDF6Du: return "pmevtyper13_el0";
+                    case 0xDF6Eu: return "pmevtyper14_el0";
+                    case 0xDF6Fu: return "pmevtyper15_el0";
+                    case 0xDF70u: return "pmevtyper16_el0";
+                    case 0xDF71u: return "pmevtyper17_el0";
+                    case 0xDF72u: return "pmevtyper18_el0";
+                    case 0xDF73u: return "pmevtyper19_el0";
+                    case 0xDF74u: return "pmevtyper20_el0";
+                    case 0xDF75u: return "pmevtyper21_el0";
+                    case 0xDF76u: return "pmevtyper22_el0";
+                    case 0xDF77u: return "pmevtyper23_el0";
+                    case 0xDF78u: return "pmevtyper24_el0";
+                    case 0xDF79u: return "pmevtyper25_el0";
+                    case 0xDF7Au: return "pmevtyper26_el0";
+                    case 0xDF7Bu: return "pmevtyper27_el0";
+                    case 0xDF7Cu: return "pmevtyper28_el0";
+                    case 0xDF7Du: return "pmevtyper29_el0";
+                    case 0xDF7Eu: return "pmevtyper30_el0";
                     // EL1 system regs
                     case 0xC080u: return "sctlr_el1";
                     case 0xC081u: return "actlr_el1";
@@ -2300,6 +2421,9 @@ std::string Operand::to_string() const {
                     }
                 }
                 result += " }";
+                if (has_index) {
+                    result += "[" + std::to_string(amount) + "]";
+                }
                 return result;
             }
 

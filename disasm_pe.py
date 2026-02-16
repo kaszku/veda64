@@ -240,6 +240,12 @@ def normalize(text, va=None):
     s = re.sub(r'\bmovi\s+(v\d+)(?:\.\d+[bhsdq])?,\s*0\b', r'movi \1, 0', s)
     # RDVL: always uses X register (64-bit result)
     s = re.sub(r'\brdvl\s+w(\d+)', r'rdvl x\1', s)
+    # INS → MOV alias (preferred form for element insert)
+    s = re.sub(r'\bins\b', 'mov', s)
+    # DUP scalar → MOV alias (preferred form for scalar duplicate)
+    s = re.sub(r'\bdup\s+([bhsd]\d+)', r'mov \1', s)
+    # SHRN with shift 0 → MOVI encoding collision
+    s = re.sub(r'\bshrn\s+((?:w|v)\d+(?:\.\d+[bhsdq])?),\s*(?:(?:w|v)\d+(?:\.\d+[bhsdq])?),\s*0\b', r'movi \1, 0', s)
     # Collapse whitespace
     s = ' '.join(s.split())
     return s

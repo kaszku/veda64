@@ -329,6 +329,78 @@ class ARM64XMLParser:
 
         return ''.join(parts).strip()
 
+    @staticmethod
+    def _parse_template_operands(template: str) -> list:
+        """Parse ARM assembly template to extract operand order and metadata.
+
+        Returns list of dicts with keys: field, arrangement, qualifier, is_list, mem_base, mem_index
+        Example: 'BRKPBS  <Pd>.B, <Pg>/Z, <Pn>.B, <Pm>.B'
+        → [{'field': 'Pd', 'arrangement': 'b', 'qualifier': None},
+           {'field': 'Pg', 'arrangement': None, 'qualifier': 'z'},
+           {'field': 'Pn', 'arrangement': 'b', 'qualifier': None},
+           {'field': 'Pm', 'arrangement': 'b', 'qualifier': None}]
+        """
+        import re
+        # Strip mnemonic
+        parts = template.strip().split(None, 1)
+        if len(parts) < 2:
+            return []
+        operand_str = parts[1]
+
+        result = []
+        # Match template operands like <Pd>.B, <Pg>/Z, <Zn>.<T>, { <Zt>.S }, [<Xn|SP>], #<imm>
+        # Split by comma but respect brackets
+        depth = 0
+        current = ''
+        tokens = []
+        for ch in operand_str:
+            if ch in '{[':
+                depth += 1
+            elif ch in '}]':
+                depth -= 1
+            if ch == ',' and depth == 0:
+                tokens.append(current.strip())
+                current = ''
+            else:
+                current += ch
+        if current.strip():
+            tokens.append(current.strip())
+
+        for token in tokens:
+            # Extract field references like <Pd>, <Zn>, <Xn|SP>
+            field_match = re.search(r'<(\w+?)(?:\|SP)?>', token)
+            if not field_match:
+                # Could be an immediate like #<const> or a fixed value
+                imm_match = re.search(r'#<(\w+)>', token)
+                if imm_match:
+                    result.append({'field': imm_match.group(1), 'type': 'imm', 'arrangement': None, 'qualifier': None})
+                continue
+
+            field = field_match.group(1)
+            # Check for arrangement: .B, .H, .S, .D, .<T>, .<Ts>
+            arr_match = re.search(r'\.([BHSDQbhsdq])\b', token)
+            arr = arr_match.group(1).lower() if arr_match else None
+            # Variable arrangement like .<T> means use size field
+            if re.search(r'\.<T\w*>', token):
+                arr = 'T'  # sentinel for "use size field"
+
+            # Check for qualifier: /Z, /M
+            qual_match = re.search(r'/([ZMzm])', token)
+            qual = qual_match.group(1).lower() if qual_match else None
+
+            # Check if it's in a list { }
+            is_list = '{' in token
+
+            result.append({
+                'field': field,
+                'arrangement': arr,
+                'qualifier': qual,
+                'is_list': is_list,
+                'type': 'reg'
+            })
+
+        return result
+
     def _parse_operands(self, explanations_elem: ET.Element) -> List[Dict]:
         """Parse operand explanations."""
         operands = []
@@ -605,7 +677,8 @@ class ARM64XMLParser:
                 'fixed_mask': fixed_mask,
                 'full_pattern': full_pattern,
                 'full_mask': full_mask,
-                'mnemonic': mnemonic
+                'mnemonic': mnemonic,
+                'asm_template': encoding.asm_template
             })
 
         # Header
@@ -673,7 +746,8 @@ class ARM64XMLParser:
                 'fixed_mask': fixed_mask,
                 'full_pattern': full_pattern,
                 'full_mask': full_mask,
-                'mnemonic': mnemonic
+                'mnemonic': mnemonic,
+                'asm_template': encoding.asm_template
             })
 
         # Include header
@@ -1425,6 +1499,50 @@ class ARM64XMLParser:
         code.append("    }")
         code.append("")
 
+        # MOVA → MOV alias: decode raw instruction for proper ZA tile slice format
+        code.append("    // MOVA → MOV: ZA tile slice operand format")
+        code.append("    if (insn.mnemonic == Mnemonic::MOVA) {")
+        code.append("        uint32_t raw = insn.raw_value;")
+        code.append("        // Detect mov_za_p_rz variants (vector to/from ZA tile with predicate)")
+        code.append("        // These have top byte 0xC0 and bit 20=0, bits [19:16]=0")
+        code.append("        if ((raw & 0xFF200000u) == 0xC0000000u && ((raw >> 16) & 0xF) == 0) {")
+        code.append("            uint32_t size = (raw >> 22) & 3;")
+        code.append("            bool is_q = ((raw >> 16) & 1) != 0;  // Q bit for .Q variant")
+        code.append("            uint32_t V = (raw >> 15) & 1;")
+        code.append("            uint32_t Rs = (raw >> 13) & 3;")
+        code.append("            uint32_t Pg = (raw >> 10) & 7;")
+        code.append("            uint32_t Zn = (raw >> 5) & 0x1F;")
+        code.append("            std::ostringstream oss;")
+        code.append("            oss << \"mov \";")
+        code.append("            // ZA tile operand: za<tile><hv>.<sz>[w<12+Rs>, <offset>]")
+        code.append("            const char* hv = V ? \"v\" : \"h\";")
+        code.append("            const char* sz_name;")
+        code.append("            uint32_t tile, offset;")
+        code.append("            if (size == 0 && !is_q) {")
+        code.append("                // .B: ZAd is always 0, offset is 4 bits [3:0]")
+        code.append("                sz_name = \"b\"; tile = 0; offset = raw & 0xF;")
+        code.append("            } else if (size == 1) {")
+        code.append("                // .H: ZAd is 1 bit [3], offset is 3 bits [2:0]")
+        code.append("                sz_name = \"h\"; tile = (raw >> 3) & 1; offset = raw & 7;")
+        code.append("            } else if (size == 2) {")
+        code.append("                // .S: ZAd is 2 bits [3:2], offset is 2 bits [1:0]")
+        code.append("                sz_name = \"s\"; tile = (raw >> 2) & 3; offset = raw & 3;")
+        code.append("            } else if (size == 3 && !is_q) {")
+        code.append("                // .D: ZAd is 3 bits [3:1], offset is 1 bit [0]")
+        code.append("                sz_name = \"d\"; tile = (raw >> 1) & 7; offset = raw & 1;")
+        code.append("            } else {")
+        code.append("                // .Q: ZAd is 4 bits [3:0], no offset")
+        code.append("                sz_name = \"q\"; tile = raw & 0xF; offset = 0;")
+        code.append("            }")
+        code.append("            oss << \"za\" << tile << hv << \".\" << sz_name;")
+        code.append("            oss << \"[w\" << (12 + Rs) << \", \";")
+        code.append("            if (offset >= 10) oss << \"0x\" << std::hex << offset;")
+        code.append("            else oss << std::dec << offset;")
+        code.append("            oss << \"], p\" << std::dec << Pg << \"/m, z\" << Zn << \".\" << sz_name;")
+        code.append("            return oss.str();")
+        code.append("        }")
+        code.append("    }")
+        code.append("")
         code.append("    return std::nullopt;  // No alias")
         code.append("}")
         code.append("")
@@ -1542,11 +1660,27 @@ class ARM64XMLParser:
         code.append("                return vr;")
         code.append("            }")
         code.append("        ")
-        code.append("        case OperandType::SVERegister:")
-        code.append("            return \"z\" + std::to_string(value);")
+        code.append("        case OperandType::SVERegister: {")
+        code.append("            std::string r = \"z\" + std::to_string(value);")
+        code.append("            if (arrangement && arrangement[0] != '\\0') {")
+        code.append("                r += \".\";")
+        code.append("                r += arrangement;")
+        code.append("            }")
+        code.append("            return r;")
+        code.append("        }")
         code.append("        ")
-        code.append("        case OperandType::PredicateRegister:")
-        code.append("            return \"p\" + std::to_string(value);")
+        code.append("        case OperandType::PredicateRegister: {")
+        code.append("            std::string r = \"p\" + std::to_string(value);")
+        code.append("            if (arrangement && arrangement[0] != '\\0') {")
+        code.append("                r += \".\";")
+        code.append("                r += arrangement;")
+        code.append("            }")
+        code.append("            // is_sp is reused for predicate qualifier: 0=none, 1=/z, 2=/m")
+        code.append("            if (is_sp) {")
+        code.append("                r += is_64bit ? \"/m\" : \"/z\";")
+        code.append("            }")
+        code.append("            return r;")
+        code.append("        }")
         code.append("        ")
         code.append("        case OperandType::SMETileRegister:")
         code.append("            return \"za\" + std::to_string(value);")
@@ -1694,6 +1828,18 @@ class ARM64XMLParser:
         code.append("                    case 0xDF18u: return \"cntv_tval_el0\";")
         code.append("                    case 0xDF19u: return \"cntv_ctl_el0\";")
         code.append("                    case 0xDF1Au: return \"cntv_cval_el0\";")
+        # PMEVCNTR<n>_EL0: op0=3, op1=3, CRn=14, CRm=8+(n/8), op2=n%8
+        for n in range(31):
+            crm = 8 + (n // 8)
+            op2 = n % 8
+            key = (3 << 14) | (3 << 11) | (14 << 7) | (crm << 3) | op2
+            code.append(f"                    case 0x{key:04X}u: return \"pmevcntr{n}_el0\";")
+        # PMEVTYPER<n>_EL0: op0=3, op1=3, CRn=14, CRm=12+(n/8), op2=n%8
+        for n in range(31):
+            crm = 12 + (n // 8)
+            op2 = n % 8
+            key = (3 << 14) | (3 << 11) | (14 << 7) | (crm << 3) | op2
+            code.append(f"                    case 0x{key:04X}u: return \"pmevtyper{n}_el0\";")
         code.append("                    // EL1 system regs")
         code.append("                    case 0xC080u: return \"sctlr_el1\";")
         code.append("                    case 0xC081u: return \"actlr_el1\";")
@@ -1830,6 +1976,9 @@ class ARM64XMLParser:
         code.append("                    }")
         code.append("                }")
         code.append("                result += \" }\";")
+        code.append("                if (has_index) {")
+        code.append("                    result += \"[\" + std::to_string(amount) + \"]\";")
+        code.append("                }")
         code.append("                return result;")
         code.append("            }")
         code.append("")
@@ -3379,6 +3528,9 @@ class ARM64XMLParser:
                     fp_lit_arr = 'q'
             if fp_lit_arr:
                 code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rt_field}, false); op.arrangement = \"{fp_lit_arr}\"; result.operands.push_back(op); }}")
+            elif mnemonic == 'PRFM':
+                # PRFM literal: Rt is prefetch operation, not a register
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Prefetch, enc.{member_name}.{rt_field}, true));")
             elif has_sf and 'sf' in field_map:
                 sf_field = field_map['sf']['name']
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, static_cast<bool>(enc.{member_name}.{sf_field})));")
@@ -3503,14 +3655,19 @@ class ARM64XMLParser:
                 code.append(f"{ind}offset *= 4;")
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));")
             else:
-                # Unsigned offset form
+                # Offset form
                 imm_field = None
-                for imm_name in ['imm12', 'imm9']:
+                for imm_name in ['imm12', 'imm9', 'simm9']:
                     if imm_name in field_map:
                         imm_field = field_map[imm_name]['name']
                         break
                 if imm_field:
-                    code.append(f"{ind}int32_t imm = enc.{member_name}.{imm_field} * 8;")  # scale by 8 for PRFM
+                    if mnemonic == 'PRFUM' or 'imm9' in field_map or 'simm9' in field_map:
+                        # PRFUM / unscaled: signed imm9, no scaling
+                        code.append(f"{ind}int32_t imm = static_cast<int32_t>(enc.{member_name}.{imm_field} << 23) >> 23;")
+                    else:
+                        # PRFM unsigned offset: scale by 8
+                        code.append(f"{ind}int32_t imm = enc.{member_name}.{imm_field} * 8;")
                     code.append(f"{ind}result.operands.push_back(Operand::memory_offset(enc.{member_name}.{rn_field}, imm));")
                 else:
                     code.append(f"{ind}result.operands.push_back(Operand::memory_base(enc.{member_name}.{rn_field}));")
@@ -3534,12 +3691,19 @@ class ARM64XMLParser:
 
             # Exclusive stores: Rs is status register (always W32)
             is_excl_store = 'stxr' in encoding_name or 'stlxr' in encoding_name or 'stxp' in encoding_name or 'stlxp' in encoding_name
-            # Operand order: [Rs,] Rt [, Rt2], [Xn|SP]
+            # CASP/CASPA/CASPAL/CASPL: paired registers Rs, Rs+1, Rt, Rt+1
+            is_casp = mnemonic in ['CASP', 'CASPA', 'CASPAL', 'CASPL',
+                                   'CASPT', 'CASPAT', 'CASPALT', 'CASPLT']
+            # Operand order: [Rs, [Rs+1,]] Rt [, Rt+1] [, Rt2], [Xn|SP]
             if has_rs:
                 rs_field = field_map['Rs']['name']
                 rs_64 = 'false' if is_excl_store else 'is_64bit'
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rs_field}, {rs_64}));")
+                if is_casp:
+                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, (enc.{member_name}.{rs_field} + 1) & 31, is_64bit));")
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, is_64bit));")
+            if is_casp:
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, (enc.{member_name}.{rt_field} + 1) & 31, is_64bit));")
             if has_rt2:
                 rt2_field = field_map['Rt2']['name']
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt2_field}, is_64bit));")
@@ -3548,8 +3712,11 @@ class ARM64XMLParser:
             code.append(f"{ind}return result;")
             return code
 
-        # Special case: Load/store byte/half (LDRB, STRB, LDRH, STRH, LDRSB, LDRSH, LDURB, STURB, LDURH, STURH, LDURSB, LDURSH) - only if required fields exist
-        byte_half_names = ['ldrb', 'strb', 'ldrh', 'strh', 'ldrsb', 'ldrsh', 'ldurb', 'sturb', 'ldurh', 'sturh', 'ldursb', 'ldursh', '32b_', '32h_']
+        # Special case: Load/store byte/half (and unprivileged variants) - only if required fields exist
+        byte_half_names = ['ldrb', 'strb', 'ldrh', 'strh', 'ldrsb', 'ldrsh',
+                          'ldurb', 'sturb', 'ldurh', 'sturh', 'ldursb', 'ldursh',
+                          'ldtrb', 'sttrb', 'ldtrh', 'sttrh', 'ldtrsb', 'ldtrsh',
+                          '32b_', '32h_']
         if is_load_store and 'Rt' in field_map and 'Rn' in field_map and any(x in encoding_name for x in byte_half_names):
             rt_field = field_map['Rt']['name']
             rn_field = field_map['Rn']['name']
@@ -3560,7 +3727,7 @@ class ARM64XMLParser:
                     break
 
             # Signed variants (LDRSB, LDRSH) can target 64-bit X registers
-            is_signed = any(x in encoding_name for x in ['ldrsb', 'ldrsh', 'ldursb', 'ldursh'])
+            is_signed = any(x in encoding_name for x in ['ldrsb', 'ldrsh', 'ldursb', 'ldursh', 'ldtrsb', 'ldtrsh'])
             if is_signed:
                 rt_is_64 = '_64' in encoding_name and '_32' not in encoding_name
             else:
@@ -3568,8 +3735,8 @@ class ARM64XMLParser:
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, {str(rt_is_64).lower()}));")
 
             # Determine scale for unsigned offset: halfword = 2, byte = 1
-            is_halfword = any(x in encoding_name for x in ['ldrh', 'strh', 'ldrsh', 'ldurh', 'sturh', 'ldursh', '32h_'])
-            is_unscaled = any(x in encoding_name for x in ['ldur', 'stur'])
+            is_halfword = any(x in encoding_name for x in ['ldrh', 'strh', 'ldrsh', 'ldurh', 'sturh', 'ldursh', 'ldtrh', 'sttrh', 'ldtrsh', '32h_'])
+            is_unscaled = any(x in encoding_name for x in ['ldur', 'stur', 'ldtr', 'sttr'])
             scale_factor = 2 if is_halfword and not is_unscaled else 1
             # Shift amount for register offset: log2(scale) - halfword=1, byte=0
             reg_shift_amount = 1 if is_halfword else 0
@@ -3620,7 +3787,11 @@ class ARM64XMLParser:
             return code
 
         # Special case: General load/store (LDR, STR, LDRSW 32/64-bit) - only if required fields exist
-        if is_load_store and mnemonic in ['LDR', 'STR', 'LDUR', 'STUR', 'LDTR', 'STTR', 'LDRSW'] and 'Rt' in field_map and 'Rn' in field_map:
+        if is_load_store and mnemonic in ['LDR', 'STR', 'LDUR', 'STUR', 'LDTR', 'STTR', 'LDRSW',
+                'LDRSH', 'LDRSB', 'LDRH', 'LDRB', 'STRH', 'STRB',
+                'LDURSH', 'LDURSB', 'LDURH', 'LDURB', 'STURH', 'STURB',
+                'LDTRSH', 'LDTRSB', 'LDTRH', 'LDTRB', 'STTRH', 'STTRB',
+                'PRFUM'] and 'Rt' in field_map and 'Rn' in field_map:
             rt_field = field_map['Rt']['name']
             rn_field = field_map['Rn']['name']
             imm_field = None
@@ -3664,18 +3835,36 @@ class ARM64XMLParser:
                 elif '64' in encoding_name:
                     code.append(f"{ind}bool is_64bit = true;")
                     if needs_scale:
-                        # LDRSW loads 32-bit words (scale=4) even though result is 64-bit
-                        ldrsw_scale = 4 if mnemonic == 'LDRSW' else 8
+                        # LDRSW loads 32-bit words (scale=4), LDRSB/LDRSH sign-extend to 64-bit
+                        if mnemonic in ['LDRSW', 'LDRSH', 'LDTRSH']:
+                            ldrsw_scale = 4 if mnemonic == 'LDRSW' else 2
+                        elif mnemonic in ['LDRSB', 'LDTRSB']:
+                            ldrsw_scale = 1
+                        else:
+                            ldrsw_scale = 8
                         code.append(f"{ind}int scale = {ldrsw_scale};")
                 else:
                     code.append(f"{ind}bool is_64bit = false;")
                     if needs_scale:
-                        code.append(f"{ind}int scale = 4;")
+                        # Byte/halfword variants: LDRB/STRB=1, LDRH/STRH/LDRSH=2, default=4
+                        if mnemonic in ['LDRB', 'STRB', 'LDRSB', 'LDTRB', 'STTRB', 'LDURB', 'STURB', 'LDTRSB', 'LDURSB']:
+                            code.append(f"{ind}int scale = 1;")
+                        elif mnemonic in ['LDRH', 'STRH', 'LDRSH', 'LDTRH', 'STTRH', 'LDURH', 'STURH', 'LDTRSH', 'LDURSH']:
+                            code.append(f"{ind}int scale = 2;")
+                        else:
+                            code.append(f"{ind}int scale = 4;")
 
-                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, is_64bit));")
+                # PRFUM uses prefetch operand instead of register
+                if mnemonic == 'PRFUM':
+                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::Prefetch, enc.{member_name}.{rt_field}, true));")
+                else:
+                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, is_64bit));")
 
-            # Check if this is an unscaled load/store (LDUR/STUR use signed imm9, no scaling)
-            is_unscaled = mnemonic in ['LDUR', 'STUR']
+            # Check if this is an unscaled load/store (LDUR/STUR/LDTR/STTR use signed imm9, no scaling)
+            is_unscaled = mnemonic in ['LDUR', 'STUR', 'LDTR', 'STTR',
+                'LDURSH', 'LDURSB', 'LDURH', 'LDURB', 'STURH', 'STURB',
+                'LDTRSH', 'LDTRSB', 'LDTRH', 'LDTRB', 'STTRH', 'STTRB',
+                'PRFUM']
 
             # Compute shift amount for register-offset addressing (log2 of byte size)
             scale_to_shift = {1: 0, 2: 1, 4: 2, 8: 3, 16: 4}
@@ -4077,6 +4266,171 @@ class ARM64XMLParser:
             code.append(f"{ind}return result;")
             return code
 
+        # Special case: SIMD single-structure loads/stores (asisdlso/asisdlsop)
+        # These use per-lane indexing: { Vt.B, Vt2.B, ... }[idx], [Xn], ...
+        is_simd_single = mnemonic in ['LD1', 'LD2', 'LD3', 'LD4', 'ST1', 'ST2', 'ST3', 'ST4'] and ('asisdlso' in encoding_name) and 'Rt' in field_map and 'Rn' in field_map
+        if is_simd_single:
+            rt_field = field_map['Rt']['name']
+            rn_field = field_map['Rn']['name']
+
+            # Element size from encoding name suffix
+            enc_lower = encoding_name.lower()
+            if '_b' in enc_lower.split('_')[-1] or enc_lower.endswith('b'):
+                elem_arr = 'b'
+            elif '_h' in enc_lower.split('_')[-1] or enc_lower.endswith('h'):
+                elem_arr = 'h'
+            elif '_s' in enc_lower.split('_')[-1] or enc_lower.endswith('s'):
+                elem_arr = 's'
+            elif '_d' in enc_lower.split('_')[-1] or enc_lower.endswith('d'):
+                elem_arr = 'd'
+            else:
+                elem_arr = 'b'  # fallback
+
+            # Number of registers
+            num_regs = 1
+            if mnemonic in ['LD2', 'ST2']:
+                num_regs = 2
+            elif mnemonic in ['LD3', 'ST3']:
+                num_regs = 3
+            elif mnemonic in ['LD4', 'ST4']:
+                num_regs = 4
+
+            # Element index from Q/S/size fields depending on element size
+            has_q = 'Q' in field_map and not field_map['Q']['is_fixed']
+            has_s = 'S' in field_map and not field_map['S']['is_fixed']
+            has_size = 'size' in field_map and not field_map['size']['is_fixed']
+            q_f = field_map['Q']['name'] if has_q else None
+            s_f = field_map['S']['name'] if has_s else None
+            size_f = field_map['size']['name'] if has_size else None
+
+            code.append(f"{ind}uint32_t _elem_idx = 0;")
+            if elem_arr == 'b' and has_q and has_s and has_size:
+                code.append(f"{ind}_elem_idx = (enc.{member_name}.{q_f} << 3) | (enc.{member_name}.{s_f} << 2) | enc.{member_name}.{size_f};")
+            elif elem_arr == 'h' and has_q and has_s and has_size:
+                code.append(f"{ind}_elem_idx = (enc.{member_name}.{q_f} << 2) | (enc.{member_name}.{s_f} << 1) | (enc.{member_name}.{size_f} >> 1);")
+            elif elem_arr == 's' and has_q and has_s:
+                code.append(f"{ind}_elem_idx = (enc.{member_name}.{q_f} << 1) | enc.{member_name}.{s_f};")
+            elif elem_arr == 'd' and has_q:
+                code.append(f"{ind}_elem_idx = enc.{member_name}.{q_f};")
+
+            # Vector register list with index
+            code.append(f"{ind}{{")
+            code.append(f"{ind}    Operand op(OperandType::VectorRegisterList, enc.{member_name}.{rt_field}, false);")
+            code.append(f"{ind}    op.index = {num_regs};")
+            code.append(f'{ind}    op.arrangement = "{elem_arr}";')
+            code.append(f"{ind}    op.has_index = true;")
+            code.append(f"{ind}    op.amount = _elem_idx;")
+            code.append(f"{ind}    result.operands.push_back(op);")
+            code.append(f"{ind}}}")
+
+            # Memory operand
+            is_post_index = 'asisdlsop' in encoding_name
+            if is_post_index and 'Rm' in field_map and not field_map['Rm']['is_fixed']:
+                rm_field = field_map['Rm']['name']
+                code.append(f"{ind}result.operands.push_back(Operand::memory_base(enc.{member_name}.{rn_field}));")
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rm_field}, true));")
+            elif is_post_index:
+                # Post-index immediate depends on element size and num_regs
+                elem_sizes = {'b': 1, 'h': 2, 's': 4, 'd': 8}
+                post_imm = elem_sizes.get(elem_arr, 1) * num_regs
+                code.append(f"{ind}result.operands.push_back(Operand::memory_post_index(enc.{member_name}.{rn_field}, {post_imm}));")
+            else:
+                code.append(f"{ind}result.operands.push_back(Operand::memory_base(enc.{member_name}.{rn_field}));")
+
+            code.append(f"{ind}return result;")
+            return code
+
+        # Special case: SIMD by-element (asimdelem) — Rm has element index from H/L/M fields
+        is_asimdelem = 'asimdelem' in encoding_name and 'Rd' in field_map and 'Rn' in field_map and 'Rm' in field_map
+        if is_asimdelem:
+            rd_field = field_map['Rd']['name']
+            rn_field = field_map['Rn']['name']
+            rm_field = field_map['Rm']['name']
+
+            # Compute arrangement from Q and size
+            has_q = 'Q' in field_map
+            has_size = 'size' in field_map
+            if has_q and has_size:
+                q_fixed = field_map['Q']['is_fixed']
+                size_fixed = field_map['size']['is_fixed']
+                q_field = field_map['Q']['name'] if not q_fixed else None
+                size_field = field_map['size']['name'] if not size_fixed else None
+
+                if not q_fixed and not size_fixed:
+                    code.append(f"{ind}const char* _simd_arr = nullptr;")
+                    code.append(f"{ind}{{")
+                    code.append(f'{ind}    static const char* arrs[2][4] = {{')
+                    code.append(f'{ind}        {{"8b", "4h", "2s", "1d"}},')
+                    code.append(f'{ind}        {{"16b", "8h", "4s", "2d"}}')
+                    code.append(f'{ind}    }};')
+                    code.append(f"{ind}    _simd_arr = arrs[enc.{member_name}.{q_field}][enc.{member_name}.{size_field}];")
+                    code.append(f"{ind}}}")
+                    code.append(f"{ind}uint32_t _sz = enc.{member_name}.{size_field};")
+                elif q_fixed and not size_fixed:
+                    q_val = int(field_map['Q']['fixed'], 2) if field_map['Q']['fixed'] else 0
+                    arrs = [["8b", "4h", "2s", "1d"], ["16b", "8h", "4s", "2d"]]
+                    arr_list = arrs[q_val]
+                    code.append(f'{ind}static const char* _elem_arrs[] = {{"{arr_list[0]}", "{arr_list[1]}", "{arr_list[2]}", "{arr_list[3]}"}};')
+                    code.append(f"{ind}const char* _simd_arr = _elem_arrs[enc.{member_name}.{size_field}];")
+                    code.append(f"{ind}uint32_t _sz = enc.{member_name}.{size_field};")
+                elif not q_fixed and size_fixed:
+                    size_val = int(field_map['size']['fixed'], 2) if field_map['size']['fixed'] else 0
+                    arrs = {0: ["8b", "16b"], 1: ["4h", "8h"], 2: ["2s", "4s"], 3: ["1d", "2d"]}
+                    code.append(f"{ind}const char* _simd_arr = enc.{member_name}.{q_field} ? \"{arrs[size_val][1]}\" : \"{arrs[size_val][0]}\";")
+                    code.append(f"{ind}uint32_t _sz = {size_val};")
+                else:
+                    q_val = int(field_map['Q']['fixed'], 2) if field_map['Q']['fixed'] else 0
+                    size_val = int(field_map['size']['fixed'], 2) if field_map['size']['fixed'] else 0
+                    arrs = [["8b", "4h", "2s", "1d"], ["16b", "8h", "4s", "2d"]]
+                    code.append(f'{ind}const char* _simd_arr = "{arrs[q_val][size_val]}";')
+                    code.append(f"{ind}uint32_t _sz = {size_val};")
+            else:
+                code.append(f'{ind}const char* _simd_arr = nullptr;')
+                code.append(f"{ind}uint32_t _sz = 0;")
+
+            # Rd and Rn use vector arrangement
+            code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = _simd_arr; result.operands.push_back(op); }}")
+            code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = _simd_arr; result.operands.push_back(op); }}")
+
+            # Rm with element index: scalar arrangement + index from H/L/M
+            has_h = 'H' in field_map and not field_map['H']['is_fixed']
+            has_l = 'L' in field_map and not field_map['L']['is_fixed']
+            has_m = 'M' in field_map and not field_map['M']['is_fixed']
+            h_f = field_map['H']['name'] if has_h else None
+            l_f = field_map['L']['name'] if has_l else None
+            m_f = field_map['M']['name'] if has_m else None
+
+            code.append(f"{ind}{{")
+            code.append(f"{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{rm_field}, false);")
+            code.append(f"{ind}    uint32_t _idx = 0;")
+            # Element index depends on size:
+            # size=1 (H): H:L:M (3 bits)
+            # size=2 (S): H:L (2 bits)
+            # size=3 (D): H (1 bit)  (rare in asimdelem)
+            if has_h and has_l and has_m:
+                code.append(f'{ind}    static const char* _elem_scalar[] = {{"b", "h", "s", "d"}};')
+                code.append(f"{ind}    op.arrangement = _elem_scalar[_sz];")
+                code.append(f"{ind}    if (_sz == 1) _idx = (enc.{member_name}.{h_f} << 2) | (enc.{member_name}.{l_f} << 1) | enc.{member_name}.{m_f};")
+                code.append(f"{ind}    else if (_sz == 2) _idx = (enc.{member_name}.{h_f} << 1) | enc.{member_name}.{l_f};")
+                code.append(f"{ind}    else if (_sz == 3) _idx = enc.{member_name}.{h_f};")
+            elif has_h and has_l:
+                code.append(f'{ind}    static const char* _elem_scalar[] = {{"b", "h", "s", "d"}};')
+                code.append(f"{ind}    op.arrangement = _elem_scalar[_sz];")
+                code.append(f"{ind}    _idx = (enc.{member_name}.{h_f} << 1) | enc.{member_name}.{l_f};")
+            elif has_h:
+                code.append(f'{ind}    op.arrangement = "d";')
+                code.append(f"{ind}    _idx = enc.{member_name}.{h_f};")
+            else:
+                code.append(f'{ind}    static const char* _elem_scalar[] = {{"b", "h", "s", "d"}};')
+                code.append(f"{ind}    op.arrangement = _elem_scalar[_sz];")
+
+            code.append(f"{ind}    op.index = _idx;")
+            code.append(f"{ind}    op.has_index = true;")
+            code.append(f"{ind}    result.operands.push_back(op);")
+            code.append(f"{ind}}}")
+            code.append(f"{ind}return result;")
+            return code
+
         # Extract all GPR register operands - pass is_64bit as third parameter
         # Special case: For advsimd/simd_dp classes, Rd/Rn/Rm might actually be vector registers
         # Check if this is an advsimd instruction that uses vector registers
@@ -4292,7 +4646,7 @@ class ARM64XMLParser:
                     elif mnemonic == 'PMULL' and reg_name == 'Rd':
                         # PMULL destination is always .1q (128-bit polynomial result)
                         code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = \"1q\"; result.operands.push_back(op); }}")
-                    elif mnemonic in ['SMLAL', 'SMLSL', 'UMLAL', 'UMLSL', 'SMULL', 'UMULL', 'SQDMLAL', 'SQDMLSL', 'SQDMULL', 'SABAL', 'UABAL', 'SABDL', 'UABDL', 'SADDL', 'UADDL', 'SSUBL', 'USUBL', 'SSHLL', 'USHLL', 'ADDHN', 'SUBHN', 'RADDHN', 'RSUBHN'] and reg_name == 'Rd' and simd_arrangement == 'runtime':
+                    elif mnemonic in ['SMLAL', 'SMLSL', 'UMLAL', 'UMLSL', 'SMULL', 'UMULL', 'SQDMLAL', 'SQDMLSL', 'SQDMULL', 'SABAL', 'UABAL', 'SABDL', 'UABDL', 'SADDL', 'UADDL', 'SSUBL', 'USUBL', 'SSHLL', 'USHLL', 'ADDHN', 'SUBHN', 'RADDHN', 'RSUBHN', 'SADDW', 'UADDW', 'SSUBW', 'USUBW'] and (reg_name == 'Rd' or (reg_name == 'Rn' and mnemonic in ['SADDW', 'UADDW', 'SSUBW', 'USUBW'])) and simd_arrangement == 'runtime':
                         # Widening/narrowing: Rd uses next wider arrangement
                         # Source arr is set via _simd_arr; Rd needs wider version
                         code.append(f"{ind}{{")
@@ -4338,23 +4692,97 @@ class ARM64XMLParser:
         if is_fp_cmp_zero:
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::FloatImmediate, 0, true));")
 
-        # Extract SVE Z register operands
-        for reg_name in ['Zd', 'Zn', 'Zm', 'Za', 'Zk', 'Zt', 'Zda', 'Zdn']:
-            if reg_name in field_map and not field_map[reg_name]['is_fixed']:
-                field_cpp_name = field_map[reg_name]['name']
-                code.append(f"{ind}result.operands.push_back(Operand(OperandType::SVERegister, enc.{member_name}.{field_cpp_name}, true));")
+        # SVE/SME operand extraction using template-based ordering
+        sve_z_names = {'Zd', 'Zn', 'Zm', 'Za', 'Zk', 'Zt', 'Zda', 'Zdn'}
+        sve_p_names = {'Pd', 'Pn', 'Pm', 'Pg', 'Pt', 'Pv', 'Pdm', 'Pdn', 'PNd', 'PNn', 'PNg', 'PNv'}
+        has_sve_regs = any(rn in field_map and not field_map[rn]['is_fixed'] for rn in sve_z_names)
+        has_pred_regs = any(rn in field_map and not field_map[rn]['is_fixed'] for rn in sve_p_names)
+
+        asm_template = encoding_info.get('asm_template', '')
+        template_ops = self._parse_template_operands(asm_template) if asm_template else []
+
+        if (has_sve_regs or has_pred_regs) and template_ops:
+            # Use template-based ordering for SVE/SME instructions
+            has_sve_size = False
+            sve_size_field = None
+            for sz_name in ['size', 'sz']:
+                if sz_name in field_map and not field_map[sz_name]['is_fixed']:
+                    has_sve_size = True
+                    sve_size_field = field_map[sz_name]['name']
+                    break
+
+            if has_sve_size:
+                sz_width = field_map[list(filter(lambda n: n in field_map and not field_map[n]['is_fixed'], ['size', 'sz']))[0]].get('width', 1)
+                if sz_width == 2:
+                    code.append(f'{ind}const char* _sve_arr = nullptr;')
+                    code.append(f'{ind}switch (enc.{member_name}.{sve_size_field}) {{')
+                    code.append(f'{ind}    case 0: _sve_arr = "b"; break;')
+                    code.append(f'{ind}    case 1: _sve_arr = "h"; break;')
+                    code.append(f'{ind}    case 2: _sve_arr = "s"; break;')
+                    code.append(f'{ind}    case 3: _sve_arr = "d"; break;')
+                    code.append(f'{ind}}}')
+                elif sz_width == 1:
+                    code.append(f'{ind}const char* _sve_arr = enc.{member_name}.{sve_size_field} ? "d" : "s";')
+
+            # Emit SVE/predicate operands in template order
+            emitted_fields = set()
+            for top in template_ops:
+                field = top['field']
+                arr = top.get('arrangement')
+                qual = top.get('qualifier')
+                if field in emitted_fields:
+                    continue
+                if field not in field_map or field_map[field]['is_fixed']:
+                    continue
+                field_cpp_name = field_map[field]['name']
+                emitted_fields.add(field)
+
+                if field in sve_z_names:
+                    if arr and arr != 'T':
+                        arr_expr = f'"{arr}"'
+                    elif has_sve_size:
+                        arr_expr = '_sve_arr'
+                    else:
+                        arr_expr = 'nullptr'
+                    code.append(f"{ind}{{ Operand op(OperandType::SVERegister, enc.{member_name}.{field_cpp_name}, true); op.arrangement = {arr_expr}; result.operands.push_back(op); }}")
+                elif field in sve_p_names:
+                    if arr and arr != 'T':
+                        arr_expr = f'"{arr}"'
+                    elif has_sve_size:
+                        arr_expr = '_sve_arr'
+                    else:
+                        arr_expr = 'nullptr'
+                    if qual == 'z':
+                        code.append(f"{ind}{{ Operand op(OperandType::PredicateRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = {arr_expr}; op.is_sp = true; result.operands.push_back(op); }}")
+                    elif qual == 'm':
+                        code.append(f"{ind}{{ Operand op(OperandType::PredicateRegister, enc.{member_name}.{field_cpp_name}, true); op.arrangement = {arr_expr}; op.is_sp = true; result.operands.push_back(op); }}")
+                    else:
+                        code.append(f"{ind}{{ Operand op(OperandType::PredicateRegister, enc.{member_name}.{field_cpp_name}, true); op.arrangement = {arr_expr}; result.operands.push_back(op); }}")
+
+            # Emit any remaining SVE/P fields not found in template
+            for reg_name in list(sve_z_names) + list(sve_p_names):
+                if reg_name in field_map and not field_map[reg_name]['is_fixed'] and reg_name not in emitted_fields:
+                    field_cpp_name = field_map[reg_name]['name']
+                    if reg_name in sve_z_names:
+                        code.append(f"{ind}result.operands.push_back(Operand(OperandType::SVERegister, enc.{member_name}.{field_cpp_name}, true));")
+                    else:
+                        code.append(f"{ind}result.operands.push_back(Operand(OperandType::PredicateRegister, enc.{member_name}.{field_cpp_name}, true));")
+        else:
+            # Non-SVE or no template: use original field-order extraction
+            for reg_name in ['Zd', 'Zn', 'Zm', 'Za', 'Zk', 'Zt', 'Zda', 'Zdn']:
+                if reg_name in field_map and not field_map[reg_name]['is_fixed']:
+                    field_cpp_name = field_map[reg_name]['name']
+                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::SVERegister, enc.{member_name}.{field_cpp_name}, true));")
+            for reg_name in ['Pd', 'Pn', 'Pm', 'Pg', 'Pt', 'Pv', 'Pdm', 'Pdn', 'PNd', 'PNn', 'PNg', 'PNv']:
+                if reg_name in field_map and not field_map[reg_name]['is_fixed']:
+                    field_cpp_name = field_map[reg_name]['name']
+                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::PredicateRegister, enc.{member_name}.{field_cpp_name}, true));")
 
         # Extract SIMD V register operands
         for reg_name in ['Vd', 'Vdn', 'Vn', 'Vm']:
             if reg_name in field_map and not field_map[reg_name]['is_fixed']:
                 field_cpp_name = field_map[reg_name]['name']
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, true));")
-
-        # Extract SVE predicate register operands
-        for reg_name in ['Pd', 'Pn', 'Pm', 'Pg', 'Pt', 'Pv', 'Pdm', 'Pdn', 'PNd', 'PNn', 'PNg', 'PNv']:
-            if reg_name in field_map and not field_map[reg_name]['is_fixed']:
-                field_cpp_name = field_map[reg_name]['name']
-                code.append(f"{ind}result.operands.push_back(Operand(OperandType::PredicateRegister, enc.{member_name}.{field_cpp_name}, true));")
 
         # Extract SME ZA tile register operands
         for reg_name in ['ZAd', 'ZAda', 'ZAn', 'ZAt']:
