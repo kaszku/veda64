@@ -33672,8 +33672,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.sha1h_ss_cryptosha2.Rd, false); op.arrangement = "4s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.sha1h_ss_cryptosha2.Rn, false); op.arrangement = "4s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sha1h_ss_cryptosha2.Rd, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sha1h_ss_cryptosha2.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
                         return result;
         }
         case 0x5E281800u: { // SHA1SU1_VV_cryptosha2
@@ -35580,8 +35580,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.sha1c_qsv_cryptosha3.Rd, false); op.arrangement = "4s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.sha1c_qsv_cryptosha3.Rn, false); op.arrangement = "4s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sha1c_qsv_cryptosha3.Rd, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sha1c_qsv_cryptosha3.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.sha1c_qsv_cryptosha3.Rm, false); op.arrangement = "4s"; result.operands.push_back(op); }
                         return result;
         }
@@ -35618,8 +35618,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.sha1p_qsv_cryptosha3.Rd, false); op.arrangement = "4s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.sha1p_qsv_cryptosha3.Rn, false); op.arrangement = "4s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sha1p_qsv_cryptosha3.Rd, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sha1p_qsv_cryptosha3.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.sha1p_qsv_cryptosha3.Rm, false); op.arrangement = "4s"; result.operands.push_back(op); }
                         return result;
         }
@@ -35628,8 +35628,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.sha1m_qsv_cryptosha3.Rd, false); op.arrangement = "4s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.sha1m_qsv_cryptosha3.Rn, false); op.arrangement = "4s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sha1m_qsv_cryptosha3.Rd, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sha1m_qsv_cryptosha3.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.sha1m_qsv_cryptosha3.Rm, false); op.arrangement = "4s"; result.operands.push_back(op); }
                         return result;
         }
@@ -35648,8 +35648,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.sha256h_qqv_cryptosha3.Rd, false); op.arrangement = "4s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.sha256h_qqv_cryptosha3.Rn, false); op.arrangement = "4s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sha256h_qqv_cryptosha3.Rd, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sha256h_qqv_cryptosha3.Rn, false); op.arrangement = "q"; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.sha256h_qqv_cryptosha3.Rm, false); op.arrangement = "4s"; result.operands.push_back(op); }
                         return result;
         }
@@ -35658,8 +35658,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.sha256h2qqv_cryptosha3.Rd, false); op.arrangement = "4s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.sha256h2qqv_cryptosha3.Rn, false); op.arrangement = "4s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sha256h2qqv_cryptosha3.Rd, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sha256h2qqv_cryptosha3.Rn, false); op.arrangement = "q"; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.sha256h2qqv_cryptosha3.Rm, false); op.arrangement = "4s"; result.operands.push_back(op); }
                         return result;
         }
@@ -35928,8 +35928,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.sha512h_qqv_cryptosha5123.Rd, false); op.arrangement = "2d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.sha512h_qqv_cryptosha5123.Rn, false); op.arrangement = "2d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sha512h_qqv_cryptosha5123.Rd, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sha512h_qqv_cryptosha5123.Rn, false); op.arrangement = "q"; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.sha512h_qqv_cryptosha5123.Rm, false); op.arrangement = "2d"; result.operands.push_back(op); }
                         return result;
         }
@@ -35938,8 +35938,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.sha512h2qqv_cryptosha5123.Rd, false); op.arrangement = "2d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.sha512h2qqv_cryptosha5123.Rn, false); op.arrangement = "2d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sha512h2qqv_cryptosha5123.Rd, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sha512h2qqv_cryptosha5123.Rn, false); op.arrangement = "q"; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.sha512h2qqv_cryptosha5123.Rm, false); op.arrangement = "2d"; result.operands.push_back(op); }
                         return result;
         }
@@ -35988,9 +35988,9 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.sm4ekey_vvv4cryptosha5123.Rd, false); op.arrangement = "2d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.sm4ekey_vvv4cryptosha5123.Rn, false); op.arrangement = "2d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.sm4ekey_vvv4cryptosha5123.Rm, false); op.arrangement = "2d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sm4ekey_vvv4cryptosha5123.Rd, false); op.arrangement = "4s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sm4ekey_vvv4cryptosha5123.Rn, false); op.arrangement = "4s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sm4ekey_vvv4cryptosha5123.Rm, false); op.arrangement = "4s"; result.operands.push_back(op); }
                         return result;
         }
         default: break;
@@ -38907,6 +38907,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         bool is_64bit = false;
                         const char* _simd_arr = enc.fmla_asimdelem_rh_h.Q ? "16b" : "8b";
                         uint32_t _sz = 0;
+                        _simd_arr = enc.fmla_asimdelem_rh_h.Q ? "8h" : "4h";
+                        _sz = 1;
                         { Operand op(OperandType::VectorRegister, enc.fmla_asimdelem_rh_h.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.fmla_asimdelem_rh_h.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         {
@@ -38932,6 +38934,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         bool is_64bit = false;
                         const char* _simd_arr = enc.fmls_asimdelem_rh_h.Q ? "16b" : "8b";
                         uint32_t _sz = 0;
+                        _simd_arr = enc.fmls_asimdelem_rh_h.Q ? "8h" : "4h";
+                        _sz = 1;
                         { Operand op(OperandType::VectorRegister, enc.fmls_asimdelem_rh_h.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.fmls_asimdelem_rh_h.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         {
@@ -38957,6 +38961,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         bool is_64bit = false;
                         const char* _simd_arr = enc.fmul_asimdelem_rh_h.Q ? "16b" : "8b";
                         uint32_t _sz = 0;
+                        _simd_arr = enc.fmul_asimdelem_rh_h.Q ? "8h" : "4h";
+                        _sz = 1;
                         { Operand op(OperandType::VectorRegister, enc.fmul_asimdelem_rh_h.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.fmul_asimdelem_rh_h.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         {
@@ -39183,6 +39189,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         bool is_64bit = false;
                         const char* _simd_arr = enc.fmulx_asimdelem_rh_h.Q ? "16b" : "8b";
                         uint32_t _sz = 0;
+                        _simd_arr = enc.fmulx_asimdelem_rh_h.Q ? "8h" : "4h";
+                        _sz = 1;
                         { Operand op(OperandType::VectorRegister, enc.fmulx_asimdelem_rh_h.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.fmulx_asimdelem_rh_h.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         {

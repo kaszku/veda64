@@ -4426,6 +4426,64 @@ class ARM64XMLParser:
             code.append(f"{ind}return result;")
             return code
 
+        # Special case: SIMD replicate loads (LD1R/LD2R/LD3R/LD4R with asisdlso/asisdlsop)
+        # Format: LD1R { Vt.T }, [Xn|SP] or with post-index
+        is_simd_replicate = mnemonic in ['LD1R', 'LD2R', 'LD3R', 'LD4R'] and ('asisdlso' in encoding_name) and 'Rt' in field_map and 'Rn' in field_map
+        if is_simd_replicate:
+            rt_field = field_map['Rt']['name']
+            rn_field = field_map['Rn']['name']
+            num_regs = {'LD1R': 1, 'LD2R': 2, 'LD3R': 3, 'LD4R': 4}[mnemonic]
+
+            # Arrangement from Q and size fields
+            has_q = 'Q' in field_map and not field_map['Q']['is_fixed']
+            has_size = 'size' in field_map and not field_map['size']['is_fixed']
+            q_f = field_map['Q']['name'] if has_q else None
+            size_f = field_map['size']['name'] if has_size else None
+
+            if has_q and has_size:
+                code.append(f"{ind}static const char* _rep_arrs[2][4] = {{")
+                code.append(f'{ind}    {{"8b", "4h", "2s", "1d"}},')
+                code.append(f'{ind}    {{"16b", "8h", "4s", "2d"}}')
+                code.append(f"{ind}}};")
+                code.append(f"{ind}const char* _rep_arr = _rep_arrs[enc.{member_name}.{q_f}][enc.{member_name}.{size_f}];")
+            elif has_size:
+                q_val = int(field_map['Q']['fixed'], 2) if 'Q' in field_map and field_map['Q']['fixed'] else 0
+                arrs = [["8b", "4h", "2s", "1d"], ["16b", "8h", "4s", "2d"]]
+                code.append(f'{ind}static const char* _rep_arrs[] = {{"{arrs[q_val][0]}", "{arrs[q_val][1]}", "{arrs[q_val][2]}", "{arrs[q_val][3]}"}};')
+                code.append(f"{ind}const char* _rep_arr = _rep_arrs[enc.{member_name}.{size_f}];")
+            else:
+                code.append(f'{ind}const char* _rep_arr = "8b";  // fallback')
+
+            # Vector register list (no element index)
+            code.append(f"{ind}{{")
+            code.append(f"{ind}    Operand op(OperandType::VectorRegisterList, enc.{member_name}.{rt_field}, false);")
+            code.append(f"{ind}    op.index = {num_regs};")
+            code.append(f"{ind}    op.arrangement = _rep_arr;")
+            code.append(f"{ind}    result.operands.push_back(op);")
+            code.append(f"{ind}}}")
+
+            # Memory operand
+            is_post_index = 'asisdlsop' in encoding_name
+            if is_post_index and 'Rm' in field_map and not field_map['Rm']['is_fixed']:
+                rm_field = field_map['Rm']['name']
+                code.append(f"{ind}result.operands.push_back(Operand::memory_base(enc.{member_name}.{rn_field}));")
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rm_field}, true));")
+            elif is_post_index:
+                # Post-index immediate: element_size * num_regs
+                code.append(f"{ind}{{")
+                code.append(f"{ind}    static const uint32_t _elem_sizes[] = {{1, 2, 4, 8}};")
+                if has_size:
+                    code.append(f"{ind}    uint32_t _post_imm = _elem_sizes[enc.{member_name}.{size_f}] * {num_regs};")
+                else:
+                    code.append(f"{ind}    uint32_t _post_imm = {num_regs};  // byte")
+                code.append(f"{ind}    result.operands.push_back(Operand::memory_post_index(enc.{member_name}.{rn_field}, _post_imm));")
+                code.append(f"{ind}}}")
+            else:
+                code.append(f"{ind}result.operands.push_back(Operand::memory_base(enc.{member_name}.{rn_field}));")
+
+            code.append(f"{ind}return result;")
+            return code
+
         # Special case: SIMD shift-by-immediate (asimdshf) — arrangement from immh, shift from immh:immb
         is_asimdshf = 'asimdshf' in encoding_name and 'Rd' in field_map and 'Rn' in field_map and 'immh' in field_map
         if is_asimdshf:
@@ -4563,6 +4621,19 @@ class ARM64XMLParser:
             else:
                 code.append(f'{ind}const char* _simd_arr = nullptr;')
                 code.append(f"{ind}uint32_t _sz = 0;")
+
+            # Override arrangement for FP16 by-element encodings (size=0 but halfword elements)
+            enc_lower_arr = encoding_name.lower()
+            if '_rh_h' in enc_lower_arr and has_size and size_fixed:
+                size_val_check = int(field_map['size']['fixed'], 2) if field_map['size']['fixed'] else -1
+                if size_val_check == 0:
+                    if has_q and not q_fixed:
+                        code.append(f'{ind}_simd_arr = enc.{member_name}.{q_field} ? "8h" : "4h";')
+                        code.append(f"{ind}_sz = 1;")  # halfword
+                    elif has_q and q_fixed:
+                        q_val = int(field_map['Q']['fixed'], 2) if field_map['Q']['fixed'] else 0
+                        code.append(f'{ind}_simd_arr = "{["4h", "8h"][q_val]}";')
+                        code.append(f"{ind}_sz = 1;")
 
             # Dot product ops: Rn uses byte arrangement, Rm uses grouped-byte arrangement
             dot_product_ops = ['SDOT', 'UDOT', 'USDOT', 'SUDOT', 'BFDOT', 'FDOT']
@@ -4781,11 +4852,11 @@ class ARM64XMLParser:
                 simd_arrangement = 'static'
                 static_arr = '2d'
             elif 'cryptosha512_3' in enc_lower:
-                # SHA512H, SHA512H2, SHA512SU1, RAX1: .2d
+                # SHA512H, SHA512H2, SHA512SU1, RAX1: .2d; SM4EKEY: .4s
                 simd_arrangement = 'static'
-                static_arr = '2d'
+                static_arr = '4s' if mnemonic.startswith('SM4') else '2d'
             elif 'cryptosha512_2' in enc_lower:
-                # SM4E, SM4EKEY: .4s; SHA512SU0: .2d
+                # SM4E: .4s; SHA512SU0: .2d
                 simd_arrangement = 'static'
                 static_arr = '4s' if mnemonic.startswith('SM4') else '2d'
             elif 'cryptosha3' in enc_lower:
@@ -4794,9 +4865,10 @@ class ARM64XMLParser:
                 static_arr = '4s'
             elif 'cryptosha2' in enc_lower:
                 # SHA1C, SHA1M, SHA1P, SHA1SU0, SHA1SU1, SHA256SU0: .4s
-                # SHA1H: scalar (but encoding has size field, handled separately)
-                simd_arrangement = 'static'
-                static_arr = '4s'
+                # SHA1H: scalar (s-register), skip vector arrangement
+                if mnemonic != 'SHA1H':
+                    simd_arrangement = 'static'
+                    static_arr = '4s'
             elif 'crypto_aes' in enc_lower or 'cryptoaes' in enc_lower:
                 # AESE, AESD, AESMC, AESIMC: .16b
                 simd_arrangement = 'static'
@@ -4902,6 +4974,9 @@ class ARM64XMLParser:
                 scalar_fp_arr = 'h'
             if '_dz_' in encoding_name or '_sz_' in encoding_name or '_hz_' in encoding_name:
                 is_fp_cmp_zero = True
+        # SHA1H is a scalar crypto op: SHA1H Sd, Sn
+        if mnemonic == 'SHA1H':
+            scalar_fp_arr = 's'
 
         for reg_name in ['Rd', 'Rn', 'Rm', 'Ra', 'Rt', 'Rs', 'Rt2', 'Rdn']:
             if reg_name in field_map and not field_map[reg_name]['is_fixed']:
@@ -4996,6 +5071,15 @@ class ARM64XMLParser:
                         code.append(f"{ind}    op.arrangement = get_movi_arrangement(insn);")
                         code.append(f"{ind}    result.operands.push_back(op);")
                         code.append(f"{ind}}}")
+                    elif mnemonic in ['SHA256H', 'SHA256H2', 'SHA512H', 'SHA512H2'] and reg_name in ('Rd', 'Rn'):
+                        # SHA hash: Rd and Rn are Q registers (128-bit scalar)
+                        code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = \"q\"; result.operands.push_back(op); }}")
+                    elif mnemonic in ['SHA1C', 'SHA1M', 'SHA1P'] and reg_name == 'Rd':
+                        # SHA1 hash: Rd is Q register
+                        code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = \"q\"; result.operands.push_back(op); }}")
+                    elif mnemonic in ['SHA1C', 'SHA1M', 'SHA1P'] and reg_name == 'Rn':
+                        # SHA1 hash: Rn is S register (32-bit scalar)
+                        code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = \"s\"; result.operands.push_back(op); }}")
                     elif simd_arrangement == 'static':
                         code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = \"{static_arr}\"; result.operands.push_back(op); }}")
                     elif simd_arrangement == 'runtime':
