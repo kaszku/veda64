@@ -4994,7 +4994,7 @@ uint32_t encode_yield_hi_hints() {
 // Decode a control instruction
 // Input is in native ARM64 format (as read from memory)
 std::optional<Instruction> decode_control(uint32_t insn) {
-    // Switch for mask 0xFFFFFFFFu (37 patterns, 39 encodings)
+    // Switch for mask 0xFFFFFFFFu (37 patterns, 37 encodings)
     switch (insn & 0xFFFFFFFFu) {
         case 0xD503201Fu: { // NOP_HI_hints
                         Instruction result(Mnemonic::NOP, insn);
@@ -5183,14 +5183,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xD65F0BFFu: { // RETAA_64E_branch_reg
-            // Also matches: RETAASPPCR_64M_branch_reg (RETAASPPCR)
                         Instruction result(Mnemonic::RETAA, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD65F0FFFu: { // RETAB_64E_branch_reg
-            // Also matches: RETABSPPCR_64M_branch_reg (RETABSPPCR)
                         Instruction result(Mnemonic::RETAB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
@@ -5223,7 +5221,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         default: break;
     }
 
-    // Switch for mask 0xFFFFFFE0u (15 patterns, 15 encodings)
+    // Switch for mask 0xFFFFFFE0u (17 patterns, 17 encodings)
     switch (insn & 0xFFFFFFE0u) {
         case 0xD5031000u: { // WFET_only_systeminstrswithreg
                         Instruction result(Mnemonic::WFET, insn);
@@ -5343,6 +5341,24 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.gcsss2sysl_rc_systeminstrs.Rt, is_64bit));
+                        return result;
+        }
+        case 0xD65F0BE0u: { // RETAASPPCR_64M_branch_reg
+            if (((insn >> 0) & 0x1F) == 0x1F) break;
+                        Instruction result(Mnemonic::RETAASPPCR, insn);
+                        ControlEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.retaasppcr64m_branch_reg.Rm, is_64bit));
+                        return result;
+        }
+        case 0xD65F0FE0u: { // RETABSPPCR_64M_branch_reg
+            if (((insn >> 0) & 0x1F) == 0x1F) break;
+                        Instruction result(Mnemonic::RETABSPPCR, insn);
+                        ControlEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.retabsppcr64m_branch_reg.Rm, is_64bit));
                         return result;
         }
         default: break;

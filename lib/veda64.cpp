@@ -1590,6 +1590,26 @@ const char* get_movi_arrangement(uint32_t insn) {
     return nullptr;
 }
 
+// Returns shift amount for MOVI/MVNI, or -1 if no shift / MSL encoding
+int get_movi_shift(uint32_t insn) {
+    uint32_t cmode = (insn >> 12) & 0xF;
+    uint32_t op = (insn >> 29) & 1;
+    // 16-bit shifted (cmode=10x0): shift = cmode[1] * 8
+    if (op == 0 && (cmode & 0xD) == 0x8) {
+        return ((cmode >> 1) & 1) * 8;
+    }
+    // 32-bit shifted (cmode=0xx0): shift = cmode[2:1] * 8
+    if (op == 0 && (cmode & 0x9) == 0x0) {
+        return ((cmode >> 1) & 3) * 8;
+    }
+    // 32-bit shifting ones (cmode=110x): MSL, return special
+    if (op == 0 && (cmode & 0xE) == 0xC) {
+        return -((cmode & 1) ? 16 : 8);  // Negative = MSL
+    }
+    // 8-bit, 64-bit: no shift
+    return 0;
+}
+
 const char* condition_to_string(Condition cond) {
     static const char* names[] = {"eq", "ne", "cs", "cc", "mi", "pl", "vs", "vc",
                                    "hi", "ls", "ge", "lt", "gt", "le", "al", "nv"};
@@ -2313,8 +2333,9 @@ std::string Operand::to_string() const {
         case OperandType::Shift:
             {
                 // value encodes shift_type in bits [9:8] and amount in bits [7:0]
-                const char* shifts[] = {"lsl", "lsr", "asr", "ror"};
-                uint32_t shift_type = (value >> 8) & 0x3;
+                const char* shifts[] = {"lsl", "lsr", "asr", "ror", "msl"};
+                uint32_t shift_type = (value >> 8) & 0x7;
+                if (shift_type > 4) shift_type = 0;  // safety
                 uint32_t shift_amount = value & 0xFF;
                 std::ostringstream oss;
                 oss << shifts[shift_type] << " #";
@@ -2390,16 +2411,19 @@ std::string Operand::to_string() const {
 
         case OperandType::FloatImmediate:
             {
-                // Decode ARM VFPExpandImm: imm8 → double
-                // Format: sign:NOT(b):rep(b,8):bcdefgh:zeros(44)
-                if (value == 0) return "#0.0";
-                uint64_t a = (value >> 7) & 1;
+                // Literal zero marker (FCMPE/FCMP #0.0)
+                if (imm64 == UINT64_MAX) return "#0.0";
+                // Decode ARM VFPExpandImm{64}: imm8 → double
+                // exp = NOT(imm8[6]):Replicate{8}(imm8[6]):imm8[5:4]
+                // frac = imm8[3:0]:Zeros{48}
+                uint64_t sign_bit = (value >> 7) & 1;
                 uint64_t b = (value >> 6) & 1;
-                uint64_t bcdefgh = value & 0x7F;
-                uint64_t sign = a;
-                uint64_t exp = (b ? 0x3FC : 0x400) | ((bcdefgh >> 4) & 0x7);
-                uint64_t frac = (bcdefgh & 0xF) << 48;
-                uint64_t bits = (sign << 63) | (exp << 52) | frac;
+                uint64_t cd = (value >> 4) & 0x3;
+                uint64_t efgh = value & 0xF;
+                // NOT(b):Replicate{8}(b):cd = 11-bit exponent
+                uint64_t exp = ((1 - b) << 10) | ((b ? 0xFF : 0x00) << 2) | cd;
+                uint64_t frac = static_cast<uint64_t>(efgh) << 48;
+                uint64_t bits = (sign_bit << 63) | (exp << 52) | frac;
                 double fval;
                 std::memcpy(&fval, &bits, 8);
                 std::ostringstream oss;

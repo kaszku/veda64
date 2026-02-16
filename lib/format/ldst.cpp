@@ -44291,10 +44291,25 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
         default: break;
     }
 
-    // Switch for mask 0xFFE04C18u (1 pattern, 2 encodings)
+    // Switch for mask 0xFFE04C18u (1 pattern, 1 encoding)
     switch (insn & 0xFFE04C18u) {
-        case 0xF8A04818u: { // PRFM_P_ldst_regoff
-            // Also matches: RPRFM_R_ldst_regoff (RPRFM)
+        case 0xF8A04818u: { // RPRFM_R_ldst_regoff
+                        Instruction result(Mnemonic::RPRFM, insn);
+                        LdstEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.rprfm_rldst_regoff.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.rprfm_rldst_regoff.Rm, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.rprfm_rldst_regoff.Rt, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Extend, enc.rprfm_rldst_regoff.option, true));
+                        return result;
+        }
+        default: break;
+    }
+
+    // Switch for mask 0xFFE04C00u (1 pattern, 1 encoding)
+    switch (insn & 0xFFE04C00u) {
+        case 0xF8A04800u: { // PRFM_P_ldst_regoff
                         Instruction result(Mnemonic::PRFM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;

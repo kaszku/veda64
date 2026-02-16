@@ -2782,7 +2782,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
         default: break;
     }
 
-    // Switch for mask 0xFFC003E0u (3 patterns, 5 encodings)
+    // Switch for mask 0xFFC003E0u (3 patterns, 3 encodings)
     switch (insn & 0xFFC003E0u) {
         case 0x320003E0u: { // MOV_ORR_32_log_imm
                         Instruction result(Mnemonic::ORR, insn);
@@ -2796,7 +2796,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         return result;
         }
         case 0x330003E0u: { // BFC_BFM_32M_bitfield
-            // Also matches: BFI_BFM_32M_bitfield (BFM)
                         Instruction result(Mnemonic::BFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -2807,7 +2806,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         return result;
         }
         case 0xB34003E0u: { // BFC_BFM_64M_bitfield
-            // Also matches: BFI_BFM_64M_bitfield (BFM)
                         Instruction result(Mnemonic::BFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -2836,7 +2834,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
         default: break;
     }
 
-    // Switch for mask 0xFFC00000u (15 patterns, 29 encodings)
+    // Switch for mask 0xFFC00000u (15 patterns, 31 encodings)
     switch (insn & 0xFFC00000u) {
         case 0x12000000u: { // AND_32_log_imm
                         Instruction result(Mnemonic::AND, insn);
@@ -2885,16 +2883,18 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         { Operand op(OperandType::Immediate, static_cast<uint32_t>(imm_val), is_64bit); op.imm64 = imm_val; result.operands.push_back(op); }
                         return result;
         }
-        case 0x33000000u: { // BFM_32M_bitfield
+        case 0x33000000u: { // BFI_BFM_32M_bitfield
+            // Also matches: BFM_32M_bitfield (BFM)
             // Also matches: BFXIL_BFM_32M_bitfield (BFM)
+            if (((insn >> 5) & 0x1F) == 0x1F) break;
                         Instruction result(Mnemonic::BFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfm32m_bitfield.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfm32m_bitfield.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfm32m_bitfield.immr, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfm32m_bitfield.imms, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.bfi_bfm32m_bitfield.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.bfi_bfm32m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfi_bfm32m_bitfield.immr, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfi_bfm32m_bitfield.imms, true));
                         return result;
         }
         case 0x52000000u: { // EOR_32_log_imm
@@ -2980,16 +2980,18 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sbfiz_sbfm64m_bitfield.imms, true));
                         return result;
         }
-        case 0xB3400000u: { // BFM_64M_bitfield
+        case 0xB3400000u: { // BFI_BFM_64M_bitfield
+            // Also matches: BFM_64M_bitfield (BFM)
             // Also matches: BFXIL_BFM_64M_bitfield (BFM)
+            if (((insn >> 5) & 0x1F) == 0x1F) break;
                         Instruction result(Mnemonic::BFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfm64m_bitfield.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfm64m_bitfield.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfm64m_bitfield.immr, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfm64m_bitfield.imms, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.bfi_bfm64m_bitfield.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.bfi_bfm64m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfi_bfm64m_bitfield.immr, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfi_bfm64m_bitfield.imms, true));
                         return result;
         }
         case 0xD1800000u: { // SUBG_64_addsub_immtags

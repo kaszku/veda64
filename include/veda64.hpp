@@ -1690,6 +1690,7 @@ const char* mnemonic_to_string(Mnemonic mnem);
 
 // Determine vector arrangement for MOVI/MVNI based on Q and cmode fields
 const char* get_movi_arrangement(uint32_t insn);
+int get_movi_shift(uint32_t insn);
 
 // Convert condition code to string ("eq", "ne", etc.)
 const char* condition_to_string(Condition cond);

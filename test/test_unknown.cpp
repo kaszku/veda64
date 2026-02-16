@@ -66,7 +66,7 @@ void test_ld1d_z_p_bi_u64() {
 
 void test_ld1d_z_p_br_u64() {
     // Test LD1D: Contiguous load unsigned doublewords to vector (scalar index)
-    uint32_t test_insn = 0xA5FF4000u;
+    uint32_t test_insn = 0xA5E04000u;
 
     auto result = decode(test_insn);
     assert(result.has_value());
@@ -90,7 +90,7 @@ void test_ld1w_z_p_bi_u32() {
 
 void test_ld1w_z_p_br_u32() {
     // Test LD1W: Contiguous load unsigned words to vector (scalar index)
-    uint32_t test_insn = 0xA55F4000u;
+    uint32_t test_insn = 0xA5404000u;
 
     auto result = decode(test_insn);
     assert(result.has_value());

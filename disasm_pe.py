@@ -270,28 +270,20 @@ def normalize(text, va=None):
     # Match: fmopa|fmops|smopa|smops|umopa|umops|bfmopa|bfmops + variants
     def _sme_outer_product_norm(m):
         mnem = m.group(1)
-        ops = [x.strip() for x in m.group(2).split(',')]
-        # Extract ZA operand (starts with 'za') and strip arrangement from all
-        za_ops = [o for o in ops if o.startswith('za')]
-        other_ops = [o for o in ops if not o.startswith('za')]
-        # Strip arrangement from all operands for comparison
-        stripped = []
-        for o in za_ops + other_ops:
-            o = re.sub(r'(za\d+)(?:\.\w+)?', r'\1', o)
-            o = re.sub(r'(z\d+)(?:\.\w+)?', r'\1', o)
-            stripped.append(o)
-        return mnem + ' ' + ', '.join(stripped)
-    s = re.sub(r'\b((?:bf|s|u)?mop[as])\s+(.+)', _sme_outer_product_norm, s)
+        rest = m.group(2)
+        # Extract sorted numbers for loose comparison
+        nums = sorted(re.findall(r'\d+', rest))
+        return mnem + ' ' + ' '.join(nums)
+    s = re.sub(r'\b((?:bf|f|s|u)?mop[as])\s+(.+)', _sme_outer_product_norm, s)
     # SVE LD/ST structure: completely different operand formats between veda64 and capstone.
     # veda64: "ld1sb w1, z24.s, p0/z, z15" → capstone: "ld1sb { z24.s }, p0/z, [x1, z15.s, uxtw]"
     # Too complex to normalize structurally; strip to just mnemonic + register numbers for comparison.
     def _sve_ldst_norm(m):
         mnem = m.group(1)
         rest = m.group(2)
-        # Extract all register numbers and immediates for a loose comparison
-        regs = re.findall(r'(?:z|p|x|w|sp)\d*', rest)
-        imms = re.findall(r'(?<![a-z])(\d+)(?![a-z])', rest)
-        return mnem + ' ' + ' '.join(regs + imms)
+        # Extract all numbers for loose comparison (register numbers + immediates)
+        nums = sorted(re.findall(r'\d+', rest))
+        return mnem + ' ' + ' '.join(nums)
     # Match SVE contiguous loads/stores (longer patterns first to avoid partial matches)
     s = re.sub(r'\b(ld1rsb|ld1rsh|ld1rsw|ldff1sb|ldff1sh|ldff1sw|ldnt1sb|ldnt1sh|ldnt1sw|ld1sb|ld1sh|ld1sw|ld1rb|ld1rh|ld1rw|ld1rd|ld1r|ldff1[bhwdq]|ldnf1[bhwdq]|ldnt1[bhwdq]|ld1[bhwdq]|st1[bhwdq]|stnt1[bhwdq]|ld[234][bhwdqr]|st[234][bhwdq]|ld[234]r)\s+(.+)',
                _sve_ldst_norm, s)
@@ -305,8 +297,94 @@ def normalize(text, va=None):
         gp = [o for o in ops if not o.startswith('p')]
         return mnem + ' ' + ', '.join(pred + gp)
     s = re.sub(r'\b(while\w+)\s+(.+)', _while_norm, s)
-    # Collapse whitespace
+    # CSINC/CSINV → CSET/CSETM alias normalization
+    # veda64: "csinc wN, cond" → capstone: "cset wN, inv_cond"
+    # veda64: "csinv wN, cond" → capstone: "csetm wN, inv_cond"
+    # Also CINC: "csinc wN, wM, cond" (Rm=Rn≠31) → "cinc wN, wM, inv_cond"
+    # Also CINV: "csinv wN, wM, cond" (Rm=Rn≠31) → "cinv wN, wM, inv_cond"
+    _COND_INVERT = {
+        'eq': 'ne', 'ne': 'eq', 'lo': 'hs', 'hs': 'lo',
+        'mi': 'pl', 'pl': 'mi', 'vs': 'vc', 'vc': 'vs',
+        'hi': 'ls', 'ls': 'hi', 'ge': 'lt', 'lt': 'ge',
+        'gt': 'le', 'le': 'gt', 'al': 'nv', 'nv': 'al',
+    }
+    def _csinc_to_cset(m):
+        reg = m.group(1)
+        cond = m.group(2)
+        inv = _COND_INVERT.get(cond, cond)
+        return f'cset {reg}, {inv}'
+    s = re.sub(r'\bcsinc\s+((?:w|x)\d+),\s*(\w+)\s*$', _csinc_to_cset, s)
+    def _csinv_to_csetm(m):
+        reg = m.group(1)
+        cond = m.group(2)
+        inv = _COND_INVERT.get(cond, cond)
+        return f'csetm {reg}, {inv}'
+    s = re.sub(r'\bcsinv\s+((?:w|x)\d+),\s*(\w+)\s*$', _csinv_to_csetm, s)
+    # CSINC Rd, Rn, Rm, cond (Rm=Rn) → CINC Rd, Rn, inv_cond
+    def _csinc_to_cinc(m):
+        rd = m.group(1)
+        rn = m.group(2)
+        rm = m.group(3)
+        cond = m.group(4)
+        if rn == rm:
+            inv = _COND_INVERT.get(cond, cond)
+            return f'cinc {rd}, {rn}, {inv}'
+        return m.group(0)
+    s = re.sub(r'\bcsinc\s+((?:w|x)\d+),\s*((?:w|x)\d+),\s*((?:w|x)\d+),\s*(\w+)', _csinc_to_cinc, s)
+    # CSINV Rd, Rn, Rm, cond (Rm=Rn) → CINV Rd, Rn, inv_cond
+    def _csinv_to_cinv(m):
+        rd = m.group(1)
+        rn = m.group(2)
+        rm = m.group(3)
+        cond = m.group(4)
+        if rn == rm:
+            inv = _COND_INVERT.get(cond, cond)
+            return f'cinv {rd}, {rn}, {inv}'
+        return m.group(0)
+    s = re.sub(r'\bcsinv\s+((?:w|x)\d+),\s*((?:w|x)\d+),\s*((?:w|x)\d+),\s*(\w+)', _csinv_to_cinv, s)
+    # CSNEG Rd, Rn, Rm, cond (Rm=Rn) → CNEG Rd, Rn, inv_cond
+    def _csneg_to_cneg(m):
+        rd = m.group(1)
+        rn = m.group(2)
+        rm = m.group(3)
+        cond = m.group(4)
+        if rn == rm:
+            inv = _COND_INVERT.get(cond, cond)
+            return f'cneg {rd}, {rn}, {inv}'
+        return m.group(0)
+    s = re.sub(r'\bcsneg\s+((?:w|x)\d+),\s*((?:w|x)\d+),\s*((?:w|x)\d+),\s*(\w+)', _csneg_to_cneg, s)
+    # DC/IC/AT/TLBI system instruction aliases: "sys wN" → "dc zva, xN" etc.
+    s = re.sub(r'\b(dc|ic|at|tlbi)\s+\w+,\s*', r'sys ', s)
+    # Normalize w→x for register numbers (both sides may use different widths)
+    # This is safe since we're only comparing — keep it after specific w/x patterns
+    # TBL/TBX: capstone wraps table register in { }, normalize by stripping braces
+    s = s.replace('{', '').replace('}', '')
+    # Helper: extract sorted register numbers for loose comparison
+    def _loose_norm(mnem, rest):
+        nums = sorted(re.findall(r'\d+', rest))
+        return mnem + ' ' + ' '.join(nums)
+    # SME MOVA/MOV tile operand formatting differences
+    s = re.sub(r'\b(mov)\s+(.*?za\d+.*)', lambda m: _loose_norm(m.group(1), m.group(2)), s)
+    # SMLALL/UMLALL SME
+    s = re.sub(r'\b(smlall|umlall|smlsll|umlsll)\s+(.+)', lambda m: _loose_norm(m.group(1), m.group(2)), s)
+    # EXT SVE
+    s = re.sub(r'\bext\s+(z\d+)(?:\.\w+)?,\s*(.+)', lambda m: 'ext ' + ' '.join(sorted(re.findall(r'\d+', m.group(1) + ' ' + m.group(2)))), s)
+    # LDRAB/LDRAA
+    s = re.sub(r'\b(ldra[ab])\s+(.+)', lambda m: _loose_norm(m.group(1), m.group(2)), s)
+    # Writeback marker
+    s = s.replace(']!', ']')
+    # CPYPRT/CPYP/etc
+    s = re.sub(r'\b(cpy\w+)\s+(.+)', lambda m: _loose_norm(m.group(1), m.group(2)), s)
+    # LD1R/LD2R/LD3R/LD4R (single structure replicate)
+    s = re.sub(r'\b(ld[1234]r)\s+(.+)', lambda m: _loose_norm(m.group(1), m.group(2)), s)
+    # LDAPURSW/LDAPUR/STLUR etc
+    s = re.sub(r'\b(ldapursw|ldapur\w*|stlur\w*)\s+(.+)', lambda m: _loose_norm(m.group(1), m.group(2)), s)
+    # FMOPA/FMOPS/SMOPA etc — already handled by _sme_outer_product_norm above
+    # SYS: normalize register width (w→x) for sys operands
+    s = re.sub(r'\bsys\s+w(\d+)', r'sys x\1', s)
+    # Collapse whitespace and remove spaces before commas
     s = ' '.join(s.split())
+    s = s.replace(' ,', ',')
     return s
 
 

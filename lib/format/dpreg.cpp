@@ -6915,54 +6915,42 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         default: break;
     }
 
-    // Switch for mask 0xFFFFEFE0u (4 patterns, 8 encodings)
-    switch (insn & 0xFFFFEFE0u) {
-        case 0x1A9FE7E0u: { // CINC_CSINC_32_condsel
-            // Also matches: CSET_CSINC_32_condsel (CSINC)
+    // Switch for mask 0xFFFF0FE0u (4 patterns, 4 encodings)
+    switch (insn & 0xFFFF0FE0u) {
+        case 0x1A9F07E0u: { // CSET_CSINC_32_condsel
                         Instruction result(Mnemonic::CSINC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc32condsel.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc32condsel.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc32condsel.Rm, is_64bit));
-                        result.condition = static_cast<Condition>(enc.cinc_csinc32condsel.cond);
+                        result.operands.push_back(Operand(OperandType::Register, enc.cset_csinc32condsel.Rd, is_64bit));
+                        result.condition = static_cast<Condition>(enc.cset_csinc32condsel.cond);
                         return result;
         }
-        case 0x5A9FE3E0u: { // CINV_CSINV_32_condsel
-            // Also matches: CSETM_CSINV_32_condsel (CSINV)
+        case 0x5A9F03E0u: { // CSETM_CSINV_32_condsel
                         Instruction result(Mnemonic::CSINV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv32condsel.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv32condsel.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv32condsel.Rm, is_64bit));
-                        result.condition = static_cast<Condition>(enc.cinv_csinv32condsel.cond);
+                        result.operands.push_back(Operand(OperandType::Register, enc.csetm_csinv32condsel.Rd, is_64bit));
+                        result.condition = static_cast<Condition>(enc.csetm_csinv32condsel.cond);
                         return result;
         }
-        case 0x9A9FE7E0u: { // CINC_CSINC_64_condsel
-            // Also matches: CSET_CSINC_64_condsel (CSINC)
+        case 0x9A9F07E0u: { // CSET_CSINC_64_condsel
                         Instruction result(Mnemonic::CSINC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc64condsel.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc64condsel.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc64condsel.Rm, is_64bit));
-                        result.condition = static_cast<Condition>(enc.cinc_csinc64condsel.cond);
+                        result.operands.push_back(Operand(OperandType::Register, enc.cset_csinc64condsel.Rd, is_64bit));
+                        result.condition = static_cast<Condition>(enc.cset_csinc64condsel.cond);
                         return result;
         }
-        case 0xDA9FE3E0u: { // CINV_CSINV_64_condsel
-            // Also matches: CSETM_CSINV_64_condsel (CSINV)
+        case 0xDA9F03E0u: { // CSETM_CSINV_64_condsel
                         Instruction result(Mnemonic::CSINV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv64condsel.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv64condsel.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv64condsel.Rm, is_64bit));
-                        result.condition = static_cast<Condition>(enc.cinv_csinv64condsel.cond);
+                        result.operands.push_back(Operand(OperandType::Register, enc.csetm_csinv64condsel.Rd, is_64bit));
+                        result.condition = static_cast<Condition>(enc.csetm_csinv64condsel.cond);
                         return result;
         }
         default: break;
@@ -7544,33 +7532,6 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         default: break;
     }
 
-    // Switch for mask 0xFFE0EC00u (2 patterns, 2 encodings)
-    switch (insn & 0xFFE0EC00u) {
-        case 0x5A80E400u: { // CNEG_CSNEG_32_condsel
-                        Instruction result(Mnemonic::CSNEG, insn);
-                        DpregEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg32condsel.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg32condsel.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg32condsel.Rm, is_64bit));
-                        result.condition = static_cast<Condition>(enc.cneg_csneg32condsel.cond);
-                        return result;
-        }
-        case 0xDA80E400u: { // CNEG_CSNEG_64_condsel
-                        Instruction result(Mnemonic::CSNEG, insn);
-                        DpregEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg64condsel.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg64condsel.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg64condsel.Rm, is_64bit));
-                        result.condition = static_cast<Condition>(enc.cneg_csneg64condsel.cond);
-                        return result;
-        }
-        default: break;
-    }
-
     // Switch for mask 0xFFE0E000u (2 patterns, 2 encodings)
     switch (insn & 0xFFE0E000u) {
         case 0x9A002000u: { // ADDPT_64_addsub_pt
@@ -7841,7 +7802,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         default: break;
     }
 
-    // Switch for mask 0xFFE00C00u (8 patterns, 8 encodings)
+    // Switch for mask 0xFFE00C00u (8 patterns, 14 encodings)
     switch (insn & 0xFFE00C00u) {
         case 0x1A800000u: { // CSEL_32_condsel
                         Instruction result(Mnemonic::CSEL, insn);
@@ -7854,37 +7815,42 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         result.condition = static_cast<Condition>(enc.csel32condsel.cond);
                         return result;
         }
-        case 0x1A800400u: { // CSINC_32_condsel
+        case 0x1A800400u: { // CINC_CSINC_32_condsel
+            // Also matches: CSINC_32_condsel (CSINC)
+            if (((insn >> 16) & 0x1F) == 0x1F || ((insn >> 5) & 0x1F) == 0x1F) break;
                         Instruction result(Mnemonic::CSINC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.csinc32condsel.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.csinc32condsel.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.csinc32condsel.Rm, is_64bit));
-                        result.condition = static_cast<Condition>(enc.csinc32condsel.cond);
+                        result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc32condsel.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc32condsel.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc32condsel.Rm, is_64bit));
+                        result.condition = static_cast<Condition>(enc.cinc_csinc32condsel.cond);
                         return result;
         }
-        case 0x5A800000u: { // CSINV_32_condsel
+        case 0x5A800000u: { // CINV_CSINV_32_condsel
+            // Also matches: CSINV_32_condsel (CSINV)
+            if (((insn >> 16) & 0x1F) == 0x1F || ((insn >> 5) & 0x1F) == 0x1F) break;
                         Instruction result(Mnemonic::CSINV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.csinv32condsel.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.csinv32condsel.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.csinv32condsel.Rm, is_64bit));
-                        result.condition = static_cast<Condition>(enc.csinv32condsel.cond);
+                        result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv32condsel.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv32condsel.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv32condsel.Rm, is_64bit));
+                        result.condition = static_cast<Condition>(enc.cinv_csinv32condsel.cond);
                         return result;
         }
-        case 0x5A800400u: { // CSNEG_32_condsel
+        case 0x5A800400u: { // CNEG_CSNEG_32_condsel
+            // Also matches: CSNEG_32_condsel (CSNEG)
                         Instruction result(Mnemonic::CSNEG, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.csneg32condsel.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.csneg32condsel.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.csneg32condsel.Rm, is_64bit));
-                        result.condition = static_cast<Condition>(enc.csneg32condsel.cond);
+                        result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg32condsel.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg32condsel.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg32condsel.Rm, is_64bit));
+                        result.condition = static_cast<Condition>(enc.cneg_csneg32condsel.cond);
                         return result;
         }
         case 0x9A800000u: { // CSEL_64_condsel
@@ -7898,37 +7864,42 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         result.condition = static_cast<Condition>(enc.csel64condsel.cond);
                         return result;
         }
-        case 0x9A800400u: { // CSINC_64_condsel
+        case 0x9A800400u: { // CINC_CSINC_64_condsel
+            // Also matches: CSINC_64_condsel (CSINC)
+            if (((insn >> 16) & 0x1F) == 0x1F || ((insn >> 5) & 0x1F) == 0x1F) break;
                         Instruction result(Mnemonic::CSINC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.csinc64condsel.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.csinc64condsel.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.csinc64condsel.Rm, is_64bit));
-                        result.condition = static_cast<Condition>(enc.csinc64condsel.cond);
+                        result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc64condsel.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc64condsel.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc64condsel.Rm, is_64bit));
+                        result.condition = static_cast<Condition>(enc.cinc_csinc64condsel.cond);
                         return result;
         }
-        case 0xDA800000u: { // CSINV_64_condsel
+        case 0xDA800000u: { // CINV_CSINV_64_condsel
+            // Also matches: CSINV_64_condsel (CSINV)
+            if (((insn >> 16) & 0x1F) == 0x1F || ((insn >> 5) & 0x1F) == 0x1F) break;
                         Instruction result(Mnemonic::CSINV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.csinv64condsel.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.csinv64condsel.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.csinv64condsel.Rm, is_64bit));
-                        result.condition = static_cast<Condition>(enc.csinv64condsel.cond);
+                        result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv64condsel.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv64condsel.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv64condsel.Rm, is_64bit));
+                        result.condition = static_cast<Condition>(enc.cinv_csinv64condsel.cond);
                         return result;
         }
-        case 0xDA800400u: { // CSNEG_64_condsel
+        case 0xDA800400u: { // CNEG_CSNEG_64_condsel
+            // Also matches: CSNEG_64_condsel (CSNEG)
                         Instruction result(Mnemonic::CSNEG, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.csneg64condsel.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.csneg64condsel.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.csneg64condsel.Rm, is_64bit));
-                        result.condition = static_cast<Condition>(enc.csneg64condsel.cond);
+                        result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg64condsel.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg64condsel.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg64condsel.Rm, is_64bit));
+                        result.condition = static_cast<Condition>(enc.cneg_csneg64condsel.cond);
                         return result;
         }
         default: break;
@@ -8144,46 +8115,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         default: break;
     }
 
-    // Switch for mask 0xFF2003FFu (2 patterns, 2 encodings)
-    switch (insn & 0xFF2003FFu) {
-        case 0x6B0003FFu: { // NEGS_SUBS_32_addsub_shift
-                        Instruction result(Mnemonic::SUBS, insn);
-                        DpregEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.negs_subs32addsub_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.negs_subs32addsub_shift.Rm, is_64bit));
-                        {
-                            uint32_t shift_type = enc.negs_subs32addsub_shift.shift;
-                            uint32_t shift_amount = enc.negs_subs32addsub_shift.imm6;
-                            // Only emit shift operand if non-zero (suppress LSL #0)
-                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
-                            }
-                        }
-                        return result;
-        }
-        case 0xEB0003FFu: { // NEGS_SUBS_64_addsub_shift
-                        Instruction result(Mnemonic::SUBS, insn);
-                        DpregEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.negs_subs64addsub_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.negs_subs64addsub_shift.Rm, is_64bit));
-                        {
-                            uint32_t shift_type = enc.negs_subs64addsub_shift.shift;
-                            uint32_t shift_amount = enc.negs_subs64addsub_shift.imm6;
-                            // Only emit shift operand if non-zero (suppress LSL #0)
-                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
-                            }
-                        }
-                        return result;
-        }
-        default: break;
-    }
-
-    // Switch for mask 0xFF2003E0u (4 patterns, 4 encodings)
+    // Switch for mask 0xFF2003E0u (6 patterns, 6 encodings)
     switch (insn & 0xFF2003E0u) {
         case 0x2A2003E0u: { // MVN_ORN_32_log_shift
                         Instruction result(Mnemonic::ORN, insn);
@@ -8219,6 +8151,24 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         }
                         return result;
         }
+        case 0x6B0003E0u: { // NEGS_SUBS_32_addsub_shift
+            if (((insn >> 0) & 0x1F) == 0x1F) break;
+                        Instruction result(Mnemonic::SUBS, insn);
+                        DpregEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = false;
+                        result.operands.push_back(Operand(OperandType::Register, enc.negs_subs32addsub_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.negs_subs32addsub_shift.Rm, is_64bit));
+                        {
+                            uint32_t shift_type = enc.negs_subs32addsub_shift.shift;
+                            uint32_t shift_amount = enc.negs_subs32addsub_shift.imm6;
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
+                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                            }
+                        }
+                        return result;
+        }
         case 0xAA2003E0u: { // MVN_ORN_64_log_shift
                         Instruction result(Mnemonic::ORN, insn);
                         DpregEncoding enc = {};
@@ -8246,6 +8196,24 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         {
                             uint32_t shift_type = enc.neg_sub64addsub_shift.shift;
                             uint32_t shift_amount = enc.neg_sub64addsub_shift.imm6;
+                            // Only emit shift operand if non-zero (suppress LSL #0)
+                            if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
+                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                            }
+                        }
+                        return result;
+        }
+        case 0xEB0003E0u: { // NEGS_SUBS_64_addsub_shift
+            if (((insn >> 0) & 0x1F) == 0x1F) break;
+                        Instruction result(Mnemonic::SUBS, insn);
+                        DpregEncoding enc = {};
+                        enc.raw = insn;
+                        bool is_64bit = true;
+                        result.operands.push_back(Operand(OperandType::Register, enc.negs_subs64addsub_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.negs_subs64addsub_shift.Rm, is_64bit));
+                        {
+                            uint32_t shift_type = enc.negs_subs64addsub_shift.shift;
+                            uint32_t shift_amount = enc.negs_subs64addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
                                 result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));

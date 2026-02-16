@@ -270,10 +270,16 @@ class ARM64XMLParser:
                 name = f'_unnamed_{unnamed_field_count}'
                 unnamed_field_count += 1
 
+            constraint = box.get('constraint', '')
+
             field_info = {
                 'hibit': int(hibit) if hibit else None,
                 'width': int(width) if width else 1,
             }
+
+            # Capture constraint like "!= 0000" as a partial_pattern
+            if constraint and constraint.startswith('!='):
+                field_info['constraint'] = constraint
 
             # Check if this is a fixed value (may have multiple <c> elements)
             if settings:
@@ -381,8 +387,9 @@ class ARM64XMLParser:
             arr_match = re.search(r'\.([BHSDQbhsdq])\b', token)
             arr = arr_match.group(1).lower() if arr_match else None
             # Variable arrangement like .<T> means use size field
-            if re.search(r'\.<T\w*>', token):
-                arr = 'T'  # sentinel for "use size field"
+            t_match = re.search(r'\.<(T\w*)>', token)
+            if t_match:
+                arr = t_match.group(1)  # 'T', 'Tb', 'Ts', etc.
 
             # Check for qualifier: /Z, /M
             qual_match = re.search(r'/([ZMzm])', token)
@@ -1038,6 +1045,8 @@ class ARM64XMLParser:
         code.append("")
         code.append("// Determine vector arrangement for MOVI/MVNI based on Q and cmode fields")
         code.append("const char* get_movi_arrangement(uint32_t insn);")
+        code.append("// Returns shift amount for MOVI/MVNI (0=none, >0=LSL, <0=MSL with abs value)")
+        code.append("int get_movi_shift(uint32_t insn);")
         code.append("#endif")
         code.append("")
 
@@ -1178,6 +1187,27 @@ class ARM64XMLParser:
         code.append("        return Q ? \"2d\" : \"d\";  // Scalar D register form")
         code.append("    }")
         code.append("    return nullptr;")
+        code.append("}")
+        code.append("")
+        # Generate get_movi_shift: returns shift amount for MOVI/MVNI based on cmode
+        code.append("// Returns shift amount for MOVI/MVNI, or -1 if no shift / MSL encoding")
+        code.append("int get_movi_shift(uint32_t insn) {")
+        code.append("    uint32_t cmode = (insn >> 12) & 0xF;")
+        code.append("    uint32_t op = (insn >> 29) & 1;")
+        code.append("    // 16-bit shifted (cmode=10x0): shift = cmode[1] * 8")
+        code.append("    if (op == 0 && (cmode & 0xD) == 0x8) {")
+        code.append("        return ((cmode >> 1) & 1) * 8;")
+        code.append("    }")
+        code.append("    // 32-bit shifted (cmode=0xx0): shift = cmode[2:1] * 8")
+        code.append("    if (op == 0 && (cmode & 0x9) == 0x0) {")
+        code.append("        return ((cmode >> 1) & 3) * 8;")
+        code.append("    }")
+        code.append("    // 32-bit shifting ones (cmode=110x): MSL, return special")
+        code.append("    if (op == 0 && (cmode & 0xE) == 0xC) {")
+        code.append("        return -((cmode & 1) ? 16 : 8);  // Negative = MSL")
+        code.append("    }")
+        code.append("    // 8-bit, 64-bit: no shift")
+        code.append("    return 0;")
         code.append("}")
         code.append("")
 
@@ -1868,8 +1898,9 @@ class ARM64XMLParser:
         code.append("        case OperandType::Shift:")
         code.append("            {")
         code.append("                // value encodes shift_type in bits [9:8] and amount in bits [7:0]")
-        code.append("                const char* shifts[] = {\"lsl\", \"lsr\", \"asr\", \"ror\"};")
-        code.append("                uint32_t shift_type = (value >> 8) & 0x3;")
+        code.append("                const char* shifts[] = {\"lsl\", \"lsr\", \"asr\", \"ror\", \"msl\"};")
+        code.append("                uint32_t shift_type = (value >> 8) & 0x7;")
+        code.append("                if (shift_type > 4) shift_type = 0;  // safety")
         code.append("                uint32_t shift_amount = value & 0xFF;")
         code.append("                std::ostringstream oss;")
         code.append("                oss << shifts[shift_type] << \" #\";")
@@ -1945,16 +1976,19 @@ class ARM64XMLParser:
         code.append("")
         code.append("        case OperandType::FloatImmediate:")
         code.append("            {")
-        code.append("                // Decode ARM VFPExpandImm: imm8 → double")
-        code.append("                // Format: sign:NOT(b):rep(b,8):bcdefgh:zeros(44)")
-        code.append("                if (value == 0) return \"#0.0\";")
-        code.append("                uint64_t a = (value >> 7) & 1;")
+        code.append("                // Literal zero marker (FCMPE/FCMP #0.0)")
+        code.append("                if (imm64 == UINT64_MAX) return \"#0.0\";")
+        code.append("                // Decode ARM VFPExpandImm{64}: imm8 → double")
+        code.append("                // exp = NOT(imm8[6]):Replicate{8}(imm8[6]):imm8[5:4]")
+        code.append("                // frac = imm8[3:0]:Zeros{48}")
+        code.append("                uint64_t sign_bit = (value >> 7) & 1;")
         code.append("                uint64_t b = (value >> 6) & 1;")
-        code.append("                uint64_t bcdefgh = value & 0x7F;")
-        code.append("                uint64_t sign = a;")
-        code.append("                uint64_t exp = (b ? 0x3FC : 0x400) | ((bcdefgh >> 4) & 0x7);")
-        code.append("                uint64_t frac = (bcdefgh & 0xF) << 48;")
-        code.append("                uint64_t bits = (sign << 63) | (exp << 52) | frac;")
+        code.append("                uint64_t cd = (value >> 4) & 0x3;")
+        code.append("                uint64_t efgh = value & 0xF;")
+        code.append("                // NOT(b):Replicate{8}(b):cd = 11-bit exponent")
+        code.append("                uint64_t exp = ((1 - b) << 10) | ((b ? 0xFF : 0x00) << 2) | cd;")
+        code.append("                uint64_t frac = static_cast<uint64_t>(efgh) << 48;")
+        code.append("                uint64_t bits = (sign_bit << 63) | (exp << 52) | frac;")
         code.append("                double fval;")
         code.append("                std::memcpy(&fval, &bits, 8);")
         code.append("                std::ostringstream oss;")
@@ -2215,6 +2249,7 @@ class ARM64XMLParser:
         code.append("")
         code.append("// Determine vector arrangement for MOVI/MVNI based on Q and cmode fields")
         code.append("const char* get_movi_arrangement(uint32_t insn);")
+        code.append("int get_movi_shift(uint32_t insn);")
         code.append("")
         code.append("// Convert condition code to string (\"eq\", \"ne\", etc.)")
         code.append("const char* condition_to_string(Condition cond);")
@@ -2655,6 +2690,7 @@ class ARM64XMLParser:
                     'fixed': fixed if is_fixed else None,
                     'is_fixed': is_fixed,
                     'partial_pattern': partial_pattern,
+                    'constraint': field_info.get('constraint'),
                     'is_signed': is_signed,
                     'hibit': hibit,
                     'lobit': lobit
@@ -2714,16 +2750,21 @@ class ARM64XMLParser:
             # Handle partially fixed patterns like "x1" (some bits fixed, some variable)
             elif field_info.get('partial_pattern'):
                 partial = field_info['partial_pattern']
-                # Extract only the fixed bits from the partial pattern
-                # Pattern is in MSB-to-LSB order, so reverse for bit position calculation
-                for i, bit_char in enumerate(reversed(partial)):
-                    if bit_char in '01':
-                        bit_val = int(bit_char)
-                        bit_pos = lobit + i
-                        fixed_bits |= (bit_val << bit_pos)
-                        fixed_mask |= (1 << bit_pos)
-                        full_pattern |= (bit_val << bit_pos)
-                        full_mask |= (1 << bit_pos)
+                # Skip constraint text like "!= 0000" — these are NOT bit patterns.
+                # The constraint is handled by _generate_constraint_guards() at runtime.
+                if partial.startswith('!=') or partial.startswith('!'):
+                    pass
+                else:
+                    # Extract only the fixed bits from the partial pattern
+                    # Pattern is in MSB-to-LSB order, so reverse for bit position calculation
+                    for i, bit_char in enumerate(reversed(partial)):
+                        if bit_char in '01':
+                            bit_val = int(bit_char)
+                            bit_pos = lobit + i
+                            fixed_bits |= (bit_val << bit_pos)
+                            fixed_mask |= (1 << bit_pos)
+                            full_pattern |= (bit_val << bit_pos)
+                            full_mask |= (1 << bit_pos)
             # Also include non-operand, non-reserved variable fields
             elif not field_name.startswith('reserved') and field_name not in operand_fields:
                 # Try to infer value from encoding name for common fields
@@ -3176,6 +3217,10 @@ class ARM64XMLParser:
                 if len(encodings) == 1:
                     info = encodings[0]
                     code.append(f"        case 0x{pattern:08X}u: {{ // {info['encoding_name']}")
+                    # Add constraint guards for fields with != constraints
+                    guards = self._generate_constraint_guards(info)
+                    if guards:
+                        code.append(f"            {guards}")
                     code.extend(['            ' + line for line in self._generate_operand_extraction(class_name, info, indent=3)])
                     code.append(f"        }}")
                 else:
@@ -3184,6 +3229,9 @@ class ARM64XMLParser:
                     code.append(f"        case 0x{pattern:08X}u: {{ // {primary['encoding_name']}")
                     for alt in encodings[1:]:
                         code.append(f"            // Also matches: {alt['encoding_name']} ({alt['mnemonic']})")
+                    guards = self._generate_constraint_guards(primary)
+                    if guards:
+                        code.append(f"            {guards}")
                     code.extend(['            ' + line for line in self._generate_operand_extraction(class_name, primary, indent=3)])
                     code.append(f"        }}")
 
@@ -3196,6 +3244,33 @@ class ARM64XMLParser:
         code.append("}")
 
         return code
+
+    def _generate_constraint_guards(self, info: Dict) -> str:
+        """Generate C++ guard conditions for field constraints like '!= 0000'.
+
+        Returns a C++ 'if (...) break;' statement, or empty string if no constraints.
+        These handle fields where certain bit patterns are invalid for the encoding
+        (e.g., immh != 0000 for asimdshf instructions).
+        """
+        guard_set = set()  # Deduplicate identical guards
+        for field in info.get('field_list', []):
+            # Check both partial_pattern and constraint for != patterns
+            for src in [field.get('partial_pattern', ''), field.get('constraint', '')]:
+                if not src:
+                    continue
+                if src.startswith('!= '):
+                    forbidden = src[3:].strip()
+                    if self._is_binary_string(forbidden):
+                        forbidden_val = int(forbidden, 2)
+                        mask = (1 << field['width']) - 1
+                        guard_set.add(f"((insn >> {field['lobit']}) & 0x{mask:X}) == 0x{forbidden_val:X}")
+                elif src == '!= 0':
+                    mask = (1 << field['width']) - 1
+                    guard_set.add(f"((insn >> {field['lobit']}) & 0x{mask:X}) == 0")
+        if guard_set:
+            condition = ' || '.join(sorted(guard_set))
+            return f"if ({condition}) break;"
+        return ''
 
     def _generate_encode_declaration(self, struct_name: str, encoding_name: str, field_list: List[Dict]) -> List[str]:
         """Generate encode function declaration."""
@@ -4194,6 +4269,72 @@ class ARM64XMLParser:
             code.append(f"{ind}return result;")
             return code
 
+        # Special case: DUP vector element (asimdins_DV_v) — Rd is vector with arrangement, Rn.Ts[index]
+        if mnemonic == 'DUP' and 'dv_v' in encoding_name and 'Rd' in field_map and 'Rn' in field_map and 'imm5' in field_map:
+            rd_field = field_map['Rd']['name']
+            rn_field = field_map['Rn']['name']
+            imm5_field = field_map['imm5']['name']
+            q_field = field_map['Q']['name'] if 'Q' in field_map else None
+            code.append(f"{ind}uint32_t _imm5 = enc.{member_name}.{imm5_field};")
+            # Destination: vector with arrangement from Q and imm5
+            if q_field:
+                code.append(f"{ind}bool _q = enc.{member_name}.{q_field};")
+                code.append(f"{ind}const char* _dup_arr = nullptr;")
+                code.append(f"{ind}if (_imm5 & 1) _dup_arr = _q ? \"16b\" : \"8b\";")
+                code.append(f"{ind}else if (_imm5 & 2) _dup_arr = _q ? \"8h\" : \"4h\";")
+                code.append(f"{ind}else if (_imm5 & 4) _dup_arr = _q ? \"4s\" : \"2s\";")
+                code.append(f"{ind}else _dup_arr = \"2d\";")  # D only valid with Q=1
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = _dup_arr; result.operands.push_back(op); }}")
+            # Source: Vn.Ts[index]
+            code.append(f"{ind}{{")
+            code.append(f"{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false);")
+            code.append(f"{ind}    uint32_t idx = 0;")
+            code.append(f'{ind}    if (_imm5 & 1) {{ op.arrangement = "b"; idx = _imm5 >> 1; }}')
+            code.append(f'{ind}    else if (_imm5 & 2) {{ op.arrangement = "h"; idx = _imm5 >> 2; }}')
+            code.append(f'{ind}    else if (_imm5 & 4) {{ op.arrangement = "s"; idx = _imm5 >> 3; }}')
+            code.append(f'{ind}    else if (_imm5 & 8) {{ op.arrangement = "d"; idx = _imm5 >> 4; }}')
+            code.append(f"{ind}    op.index = idx;")
+            code.append(f"{ind}    op.has_index = true;")
+            code.append(f"{ind}    result.operands.push_back(op);")
+            code.append(f"{ind}}}")
+            code.append(f"{ind}return result;")
+            return code
+
+        # Special case: TBL/TBX — byte arrangement, Rn is register list
+        if mnemonic in ['TBL', 'TBX'] and 'asimdtbl' in encoding_name and 'Rd' in field_map and 'Rn' in field_map and 'Rm' in field_map:
+            rd_field = field_map['Rd']['name']
+            rn_field = field_map['Rn']['name']
+            rm_field = field_map['Rm']['name']
+            q_field = field_map['Q']['name'] if 'Q' in field_map else None
+            # Get number of table registers from 'len' field or encoding name
+            num_regs = 1
+            if 'L2_2' in encoding_name or 'l2_2' in encoding_name:
+                num_regs = 2
+            elif 'L3_3' in encoding_name or 'l3_3' in encoding_name:
+                num_regs = 3
+            elif 'L4_4' in encoding_name or 'l4_4' in encoding_name:
+                num_regs = 4
+            # Rd: vector with Q-dependent arrangement (8b/16b)
+            if q_field:
+                code.append(f'{ind}const char* _tbl_arr = enc.{member_name}.{q_field} ? "16b" : "8b";')
+            else:
+                code.append(f'{ind}const char* _tbl_arr = "16b";')
+            code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = _tbl_arr; result.operands.push_back(op); }}")
+            # Rn: vector list with .16b arrangement (always 16b regardless of Q)
+            code.append(f"{ind}{{")
+            code.append(f'{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false);')
+            code.append(f'{ind}    op.arrangement = "16b";')
+            code.append(f"{ind}    op.index = {num_regs}; op.has_index = false;")
+            # Use the 'is_list' flag via a workaround: encode num_regs in index field
+            # Actually, to_string needs to handle this as { Vn.16b, ... } list
+            # For now, just emit as a single register with arrangement
+            code.append(f"{ind}    result.operands.push_back(op);")
+            code.append(f"{ind}}}")
+            # Rm: vector with Q-dependent arrangement
+            code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rm_field}, false); op.arrangement = _tbl_arr; result.operands.push_back(op); }}")
+            code.append(f"{ind}return result;")
+            return code
+
         # Special case: SIMD structure loads/stores (LD1-4/ST1-4 with asisdlse/asisdlsep encodings)
         is_simd_struct = mnemonic in ['LD1', 'LD2', 'LD3', 'LD4', 'ST1', 'ST2', 'ST3', 'ST4'] and ('asisdlse' in encoding_name)
         if is_simd_struct and 'Rt' in field_map and 'Rn' in field_map:
@@ -4357,6 +4498,96 @@ class ARM64XMLParser:
             code.append(f"{ind}return result;")
             return code
 
+        # Special case: SIMD shift-by-immediate (asimdshf) — arrangement from immh, shift from immh:immb
+        is_asimdshf = 'asimdshf' in encoding_name and 'Rd' in field_map and 'Rn' in field_map and 'immh' in field_map
+        if is_asimdshf:
+            rd_field = field_map['Rd']['name']
+            rn_field = field_map['Rn']['name']
+            immh_field = field_map['immh']['name']
+            immb_field = field_map['immb']['name'] if 'immb' in field_map else None
+            has_q = 'Q' in field_map and not field_map['Q']['is_fixed']
+            q_field = field_map['Q']['name'] if has_q else None
+            q_fixed_val = int(field_map['Q']['fixed'], 2) if 'Q' in field_map and field_map['Q']['is_fixed'] and field_map['Q']['fixed'] else 0
+
+            # Determine if this is narrowing (SHRN, RSHRN, SQSHRN, etc.) or widening (SSHLL, USHLL)
+            narrowing_ops = ['SHRN', 'RSHRN', 'SQSHRN', 'UQSHRN', 'SQRSHRN', 'UQRSHRN', 'SQSHRUN', 'SQRSHRUN', 'XTN']
+            widening_ops = ['SSHLL', 'USHLL']
+            is_narrowing = mnemonic in narrowing_ops
+            is_widening = mnemonic in widening_ops
+
+            # immh determines element size: highest set bit position
+            # immh=0001 → 8-bit, immh=001x → 16-bit, immh=01xx → 32-bit, immh=1xxx → 64-bit
+            # Arrangement: Q=0 → 8b/4h/2s, Q=1 → 16b/8h/4s (narrowing dest uses Q for narrow side)
+            code.append(f"{ind}uint32_t _immh = enc.{member_name}.{immh_field};")
+            if immb_field:
+                code.append(f"{ind}uint32_t _immb = enc.{member_name}.{immb_field};")
+            else:
+                code.append(f"{ind}uint32_t _immb = 0;")
+            code.append(f"{ind}uint32_t _immhb = (_immh << 3) | _immb;")
+
+            # Compute element size from immh
+            code.append(f"{ind}int _esize = 0;")
+            code.append(f"{ind}const char* _narrow_arr = nullptr;")
+            code.append(f"{ind}const char* _wide_arr = nullptr;")
+            code.append(f"{ind}const char* _same_arr = nullptr;")
+            code.append(f"{ind}uint32_t _shift = 0;")
+            if has_q:
+                code.append(f"{ind}uint32_t _q = enc.{member_name}.{q_field};")
+            else:
+                code.append(f"{ind}uint32_t _q = {q_fixed_val};")
+
+            # Determine arrangement and shift based on immh
+            code.append(f"{ind}if (_immh & 0x8) {{ _esize = 64; _narrow_arr = _q ? \"4s\" : \"2s\"; _wide_arr = \"2d\"; _same_arr = _q ? \"2d\" : \"1d\"; }}")
+            code.append(f"{ind}else if (_immh & 0x4) {{ _esize = 32; _narrow_arr = _q ? \"8h\" : \"4h\"; _wide_arr = _q ? \"4s\" : \"2s\"; _same_arr = _q ? \"4s\" : \"2s\"; }}")
+            code.append(f"{ind}else if (_immh & 0x2) {{ _esize = 16; _narrow_arr = _q ? \"16b\" : \"8b\"; _wide_arr = _q ? \"8h\" : \"4h\"; _same_arr = _q ? \"8h\" : \"4h\"; }}")
+            code.append(f"{ind}else if (_immh & 0x1) {{ _esize = 8; _narrow_arr = _q ? \"16b\" : \"8b\"; _wide_arr = _q ? \"8h\" : \"4h\"; _same_arr = _q ? \"16b\" : \"8b\"; }}")
+
+            if is_narrowing:
+                # Narrowing: Rd = narrow arrangement, Rn = wide arrangement (always 8h/4s/2d)
+                # Shift amount: (esize * 2) - immhb  (right shift from wider element)
+                code.append(f"{ind}_shift = (_esize * 2) - _immhb;")
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = _narrow_arr; result.operands.push_back(op); }}")
+                # Wide source arrangement: 8h for 8-bit, 4s for 16-bit, 2d for 32-bit
+                code.append(f"{ind}const char* _src_arr = nullptr;")
+                code.append(f"{ind}if (_esize == 8) _src_arr = \"8h\";")
+                code.append(f"{ind}else if (_esize == 16) _src_arr = \"4s\";")
+                code.append(f"{ind}else if (_esize == 32) _src_arr = \"2d\";")
+                code.append(f"{ind}else _src_arr = \"2d\";")
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = _src_arr; result.operands.push_back(op); }}")
+            elif is_widening:
+                # Widening: Rd = double-width arrangement, Rn = source arrangement at _esize
+                # Shift amount: immhb - esize (left shift)
+                code.append(f"{ind}_shift = _immhb - _esize;")
+                # Destination: always double-width (8h for 8-bit src, 4s for 16-bit src, 2d for 32-bit src)
+                code.append(f"{ind}const char* _dst_arr = nullptr;")
+                code.append(f"{ind}if (_esize == 8) _dst_arr = \"8h\";")
+                code.append(f"{ind}else if (_esize == 16) _dst_arr = \"4s\";")
+                code.append(f"{ind}else if (_esize == 32) _dst_arr = \"2d\";")
+                code.append(f"{ind}else _dst_arr = \"2d\";")
+                # Source: same element size as _esize, count depends on Q
+                code.append(f"{ind}const char* _widen_src_arr = nullptr;")
+                code.append(f"{ind}if (_esize == 8) _widen_src_arr = _q ? \"16b\" : \"8b\";")
+                code.append(f"{ind}else if (_esize == 16) _widen_src_arr = _q ? \"8h\" : \"4h\";")
+                code.append(f"{ind}else if (_esize == 32) _widen_src_arr = _q ? \"4s\" : \"2s\";")
+                code.append(f"{ind}else _widen_src_arr = _q ? \"2d\" : \"1d\";")
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = _dst_arr; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = _widen_src_arr; result.operands.push_back(op); }}")
+            else:
+                # Same-width: both Rd and Rn use same arrangement
+                # Right shift: shift = (esize * 2) - immhb for SSHR/USHR/SSRA/USRA/SRSHR/URSHR/SRSRA/URSRA
+                # Left shift: shift = immhb - esize for SHL/SQSHL/UQSHL/SQSHLU/SLI/SRI
+                left_shift_ops = ['SHL', 'SQSHL', 'UQSHL', 'SQSHLU', 'SLI']
+                if mnemonic in left_shift_ops:
+                    code.append(f"{ind}_shift = _immhb - _esize;")
+                else:
+                    code.append(f"{ind}_shift = (_esize * 2) - _immhb;")
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = _same_arr; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = _same_arr; result.operands.push_back(op); }}")
+
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, _shift, true));")
+            code.append(f"{ind}return result;")
+            return code
+
         # Special case: SIMD by-element (asimdelem) — Rm has element index from H/L/M fields
         is_asimdelem = 'asimdelem' in encoding_name and 'Rd' in field_map and 'Rn' in field_map and 'Rm' in field_map
         if is_asimdelem:
@@ -4367,10 +4598,10 @@ class ARM64XMLParser:
             # Compute arrangement from Q and size
             has_q = 'Q' in field_map
             has_size = 'size' in field_map
+            q_fixed = field_map['Q']['is_fixed'] if has_q else True
+            q_field = field_map['Q']['name'] if has_q and not q_fixed else None
             if has_q and has_size:
-                q_fixed = field_map['Q']['is_fixed']
                 size_fixed = field_map['size']['is_fixed']
-                q_field = field_map['Q']['name'] if not q_fixed else None
                 size_field = field_map['size']['name'] if not size_fixed else None
 
                 if not q_fixed and not size_fixed:
@@ -4405,9 +4636,24 @@ class ARM64XMLParser:
                 code.append(f'{ind}const char* _simd_arr = nullptr;')
                 code.append(f"{ind}uint32_t _sz = 0;")
 
+            # Dot product ops: Rn uses byte arrangement, Rm uses grouped-byte arrangement
+            dot_product_ops = ['SDOT', 'UDOT', 'USDOT', 'SUDOT', 'BFDOT', 'FDOT']
+            is_dot_product = mnemonic in dot_product_ops
+
             # Rd and Rn use vector arrangement
             code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = _simd_arr; result.operands.push_back(op); }}")
-            code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = _simd_arr; result.operands.push_back(op); }}")
+            if is_dot_product:
+                # Dot products: Rn uses byte arrangement regardless of size
+                if has_q and not q_fixed:
+                    code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = enc.{member_name}.{q_field} ? \"16b\" : \"8b\"; result.operands.push_back(op); }}")
+                elif has_q and q_fixed:
+                    q_val = int(field_map['Q']['fixed'], 2) if field_map['Q']['fixed'] else 0
+                    byte_arr = "16b" if q_val else "8b"
+                    code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = \"{byte_arr}\"; result.operands.push_back(op); }}")
+                else:
+                    code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = \"8b\"; result.operands.push_back(op); }}")
+            else:
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = _simd_arr; result.operands.push_back(op); }}")
 
             # Rm with element index: scalar arrangement + index from H/L/M
             has_h = 'H' in field_map and not field_map['H']['is_fixed']
@@ -4441,6 +4687,14 @@ class ARM64XMLParser:
                 code.append(f'{ind}    static const char* _elem_scalar[] = {{"b", "h", "s", "d"}};')
                 code.append(f"{ind}    op.arrangement = _elem_scalar[_sz];")
 
+            # Override arrangement for dot product Rm: use byte-group arrangement
+            if is_dot_product:
+                # SDOT/UDOT: Rm uses .4b; FDOT/BFDOT: Rm uses .2b
+                if mnemonic in ['FDOT', 'BFDOT']:
+                    code.append(f'{ind}    op.arrangement = "2b";')
+                else:
+                    code.append(f'{ind}    op.arrangement = "4b";')
+
             code.append(f"{ind}    op.index = _idx;")
             code.append(f"{ind}    op.has_index = true;")
             code.append(f"{ind}    result.operands.push_back(op);")
@@ -4458,6 +4712,8 @@ class ARM64XMLParser:
             'SMAX', 'SMIN', 'UMAX', 'UMIN', 'SMAXP', 'SMINP', 'UMAXP', 'UMINP',
             'SHL', 'SHR', 'SSHR', 'USHR', 'SSRA', 'USRA', 'SRSHR', 'URSHR',
             'SHADD', 'UHADD', 'SHSUB', 'UHSUB', 'SRHADD', 'URHADD',
+            'SQADD', 'UQADD', 'SQSUB', 'UQSUB', 'SQRSHL', 'UQRSHL', 'SRSHL', 'URSHL',
+            'SQSHL', 'UQSHL',
             'SADDLP', 'UADDLP', 'SADALP', 'UADALP',
             'SQABS', 'SQNEG', 'SUQADD', 'USQADD',
             'ADDP', 'ADDV', 'SADDLV', 'UADDLV',
@@ -4472,7 +4728,9 @@ class ARM64XMLParser:
             'UXTL', 'SXTL', 'SADDL', 'SADDW', 'SSUBL', 'SSUBW', 'UADDL', 'UADDW', 'USUBL', 'USUBW',
             'SMLAL', 'SMLSL', 'UMLAL', 'UMLSL', 'SMULL', 'UMULL',
             'SQDMLAL', 'SQDMLSL', 'SQDMULL', 'SQDMULH', 'SQRDMULH',
-            'PMUL', 'PMULL', 'SABD', 'UABD', 'SABA', 'UABA',
+            'PMUL', 'PMULL', 'SABD', 'UABD', 'SABA', 'UABA', 'SABAL', 'UABAL', 'SABDL', 'UABDL',
+            'ADDHN', 'SUBHN', 'RADDHN', 'RSUBHN',
+            'SRSRA', 'URSRA',
             'TBL', 'TBX', 'ZIP1', 'ZIP2', 'UZP1', 'UZP2', 'TRN1', 'TRN2',
             'EXT', 'REV64', 'REV32', 'REV16',
         ])
@@ -4663,6 +4921,23 @@ class ARM64XMLParser:
                     elif mnemonic == 'PMULL' and reg_name == 'Rd':
                         # PMULL destination is always .1q (128-bit polynomial result)
                         code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = \"1q\"; result.operands.push_back(op); }}")
+                    elif mnemonic in ['SADDLP', 'UADDLP', 'SADALP', 'UADALP'] and reg_name == 'Rd' and simd_arrangement == 'runtime':
+                        # Pairwise long accumulate: Rd uses next wider arrangement than Rn
+                        code.append(f"{ind}{{")
+                        code.append(f"{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false);")
+                        if 'size' in field_map and not field_map['size']['is_fixed']:
+                            size_f = field_map['size']['name']
+                            if 'Q' in field_map and not field_map['Q']['is_fixed']:
+                                q_f = field_map['Q']['name']
+                                code.append(f'{ind}    static const char* _plong_arrs[2][4] = {{{{"4h", "2s", "1d", "1d"}}, {{"8h", "4s", "2d", "2d"}}}};')
+                                code.append(f"{ind}    op.arrangement = _plong_arrs[enc.{member_name}.{q_f}][enc.{member_name}.{size_f}];")
+                            else:
+                                code.append(f'{ind}    static const char* _plong_arrs[] = {{"8h", "4s", "2d", "2d"}};')
+                                code.append(f"{ind}    op.arrangement = _plong_arrs[enc.{member_name}.{size_f}];")
+                        else:
+                            code.append(f"{ind}    op.arrangement = _simd_arr;  // fallback")
+                        code.append(f"{ind}    result.operands.push_back(op);")
+                        code.append(f"{ind}}}")
                     elif mnemonic in ['SMLAL', 'SMLSL', 'UMLAL', 'UMLSL', 'SMULL', 'UMULL', 'SQDMLAL', 'SQDMLSL', 'SQDMULL', 'SABAL', 'UABAL', 'SABDL', 'UABDL', 'SADDL', 'UADDL', 'SSUBL', 'USUBL', 'SSHLL', 'USHLL', 'ADDHN', 'SUBHN', 'RADDHN', 'RSUBHN', 'SADDW', 'UADDW', 'SSUBW', 'USUBW'] and (reg_name == 'Rd' or (reg_name == 'Rn' and mnemonic in ['SADDW', 'UADDW', 'SSUBW', 'USUBW'])) and simd_arrangement == 'runtime':
                         # Widening/narrowing: Rd uses next wider arrangement
                         # Source arr is set via _simd_arr; Rd needs wider version
@@ -4705,9 +4980,9 @@ class ARM64XMLParser:
         if mnemonic in ['CMEQ', 'CMGE', 'CMGT', 'CMLE', 'CMLT', 'FCMEQ', 'FCMGE', 'FCMGT', 'FCMLE', 'FCMLT'] and encoding_name.endswith('_z'):
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, 0, true));")
 
-        # Add #0.0 for FCMP/FCMPE zero variants
+        # Add #0.0 for FCMP/FCMPE zero variants (use imm64=UINT64_MAX as literal-zero sentinel)
         if is_fp_cmp_zero:
-            code.append(f"{ind}result.operands.push_back(Operand(OperandType::FloatImmediate, 0, true));")
+            code.append(f"{ind}{{ Operand op(OperandType::FloatImmediate, 0, true); op.imm64 = UINT64_MAX; result.operands.push_back(op); }}")
 
         # SVE/SME operand extraction using template-based ordering
         sve_z_names = {'Zd', 'Zn', 'Zm', 'Za', 'Zk', 'Zt', 'Zda', 'Zdn'}
@@ -4728,6 +5003,9 @@ class ARM64XMLParser:
                     sve_size_field = field_map[sz_name]['name']
                     break
 
+            # Check if any template operand uses Tb (narrower arrangement)
+            needs_narrow = any(top.get('arrangement') == 'Tb' for top in template_ops)
+
             if has_sve_size:
                 sz_width = field_map[list(filter(lambda n: n in field_map and not field_map[n]['is_fixed'], ['size', 'sz']))[0]].get('width', 1)
                 if sz_width == 2:
@@ -4738,8 +5016,18 @@ class ARM64XMLParser:
                     code.append(f'{ind}    case 2: _sve_arr = "s"; break;')
                     code.append(f'{ind}    case 3: _sve_arr = "d"; break;')
                     code.append(f'{ind}}}')
+                    if needs_narrow:
+                        code.append(f'{ind}// Narrow arrangement: one step smaller than _sve_arr')
+                        code.append(f'{ind}const char* _sve_arr_narrow = nullptr;')
+                        code.append(f'{ind}switch (enc.{member_name}.{sve_size_field}) {{')
+                        code.append(f'{ind}    case 1: _sve_arr_narrow = "b"; break;')
+                        code.append(f'{ind}    case 2: _sve_arr_narrow = "h"; break;')
+                        code.append(f'{ind}    case 3: _sve_arr_narrow = "s"; break;')
+                        code.append(f'{ind}}}')
                 elif sz_width == 1:
                     code.append(f'{ind}const char* _sve_arr = enc.{member_name}.{sve_size_field} ? "d" : "s";')
+                    if needs_narrow:
+                        code.append(f'{ind}const char* _sve_arr_narrow = enc.{member_name}.{sve_size_field} ? "s" : "h";')
 
             # Emit SVE/predicate operands in template order
             emitted_fields = set()
@@ -4755,7 +5043,9 @@ class ARM64XMLParser:
                 emitted_fields.add(field)
 
                 if field in sve_z_names:
-                    if arr and arr != 'T':
+                    if arr == 'Tb' and has_sve_size and needs_narrow:
+                        arr_expr = '_sve_arr_narrow'
+                    elif arr and arr not in ('T', 'Tb', 'Ts'):
                         arr_expr = f'"{arr}"'
                     elif has_sve_size:
                         arr_expr = '_sve_arr'
@@ -4764,9 +5054,9 @@ class ARM64XMLParser:
                     code.append(f"{ind}{{ Operand op(OperandType::SVERegister, enc.{member_name}.{field_cpp_name}, true); op.arrangement = {arr_expr}; result.operands.push_back(op); }}")
                 elif field in sve_p_names:
                     # For predicates: only apply arrangement if template explicitly shows it
-                    if arr and arr != 'T':
+                    if arr and arr not in ('T', 'Tb', 'Ts'):
                         arr_expr = f'"{arr}"'
-                    elif arr == 'T' and has_sve_size:
+                    elif arr and arr.startswith('T') and has_sve_size:
                         arr_expr = '_sve_arr'
                     elif arr is None and qual is None and has_sve_size:
                         # Data predicate without explicit arrangement: use size
@@ -4860,6 +5150,16 @@ class ARM64XMLParser:
                 parts.append(f"(enc.{member_name}.{field_map[f]['name']} << {7 - bit_idx})")
             combined = ' | '.join(parts)
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, {combined}, true));")
+            # Add shift operand for MOVI/MVNI (LSL/MSL based on cmode) — must come after immediate
+            if mnemonic in ['MOVI', 'MVNI']:
+                code.append(f"{ind}{{")
+                code.append(f"{ind}    int _movi_shift = get_movi_shift(insn);")
+                code.append(f"{ind}    if (_movi_shift > 0) {{")
+                code.append(f"{ind}        result.operands.push_back(Operand(OperandType::Shift, (0 << 8) | _movi_shift, true));  // LSL")
+                code.append(f"{ind}    }} else if (_movi_shift < 0) {{")
+                code.append(f"{ind}        result.operands.push_back(Operand(OperandType::Shift, (4 << 8) | (-_movi_shift), true));  // MSL")
+                code.append(f"{ind}    }}")
+                code.append(f"{ind}}}")
 
         # Extract ALL immediate operands (don't break after first)
         imm_patterns = [
