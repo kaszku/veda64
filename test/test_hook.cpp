@@ -10,6 +10,7 @@
 #include <cstdint>
 #include <cstring>
 #include <iostream>
+#include <windows.h>
 
 using namespace veda64;
 
@@ -98,7 +99,8 @@ void test_error_handling() {
     int dummy_detour = 0;
     void* original = nullptr;
     hook::HookHandle handle = nullptr;
-    status = hook::install(&dummy_target, &dummy_detour, &original, &handle);
+    status = hook::install(reinterpret_cast<void*>(&dummy_target),
+                           reinterpret_cast<void*>(&dummy_detour), &original, &handle);
     assert(handle == nullptr);
     assert(status == hook::HookStatus::NotInitialized);
 
@@ -106,12 +108,14 @@ void test_error_handling() {
     hook::initialize();
 
     // null target should fail
-    status = hook::install(nullptr, &dummy_detour, &original, &handle);
+    status = hook::install(static_cast<void*>(nullptr),
+                           reinterpret_cast<void*>(&dummy_detour), &original, &handle);
     assert(handle == nullptr);
     assert(status == hook::HookStatus::InvalidTarget);
 
     // null detour should fail
-    status = hook::install(&dummy_target, nullptr, &original, &handle);
+    status = hook::install(reinterpret_cast<void*>(&dummy_target),
+                           static_cast<void*>(nullptr), &original, &handle);
     assert(handle == nullptr);
     assert(status == hook::HookStatus::InvalidDetour);
 
@@ -199,8 +203,28 @@ void test_can_relocate() {
     assert(hook::detail::can_relocate(0x8b020020));  // ADD X0, X1, X2
     assert(hook::detail::can_relocate(0xd503201f));  // NOP
 
-    // Non-relocatable instructions
-    assert(!hook::detail::can_relocate(0xd65f03c0));  // RET
+    // RET and SVC are position-independent, safe to relocate
+    assert(hook::detail::can_relocate(0xd65f03c0));  // RET
+    assert(hook::detail::can_relocate(0xd4000001));  // SVC #0
+    assert(hook::detail::can_relocate(0x00000000));  // zero padding
+
+    // Non-relocatable: authenticated returns (PAC-dependent)
+    assert(!hook::detail::can_relocate(0xd65f0bff));  // RETAA
+
+    // Test syscall stub detection
+    {
+        // NtQuerySystemInformation: SVC #0x36 + RET + 0 + 0
+        uint32_t stub1[] = { 0xd40006c1, 0xd65f03c0, 0x00000000, 0x00000000 };
+        assert(hook::detail::is_syscall_stub(reinterpret_cast<const uint8_t*>(stub1)));
+
+        // Not a syscall stub: SVC + NOP + 0 + 0
+        uint32_t stub2[] = { 0xd40006c1, 0xd503201f, 0x00000000, 0x00000000 };
+        assert(!hook::detail::is_syscall_stub(reinterpret_cast<const uint8_t*>(stub2)));
+
+        // Not a syscall stub: normal function prologue
+        uint32_t stub3[] = { 0xa9bf7bfd, 0x910003fd, 0x8b020020, 0xd65f03c0 };
+        assert(!hook::detail::is_syscall_stub(reinterpret_cast<const uint8_t*>(stub3)));
+    }
 }
 
 void test_relocate_instruction() {
@@ -326,12 +350,12 @@ void test_live_hook() {
     assert(target_func(3, 4) == 7);
     assert(g_hook_called == 0);
 
-    // Install hook (starts disabled)
+    // Install hook using type-safe template (starts disabled)
     hook::HookHandle handle = nullptr;
     auto status = hook::install(
-        reinterpret_cast<void*>(&target_func),
-        reinterpret_cast<void*>(&detour_func),
-        reinterpret_cast<void**>(&original_func),
+        &target_func,
+        &detour_func,
+        &original_func,
         &handle);
     assert(handle != nullptr);
     assert(status == hook::HookStatus::Success);
@@ -375,10 +399,7 @@ void test_hook_enable_disable() {
 
     hook::HookHandle handle = nullptr;
     auto status = hook::install(
-        reinterpret_cast<void*>(&target_func),
-        reinterpret_cast<void*>(&detour_func),
-        reinterpret_cast<void**>(&original_func),
-        &handle);
+        &target_func, &detour_func, &original_func, &handle);
     assert(handle != nullptr);
     assert(!hook::is_enabled(handle));  // Starts disabled
 
@@ -418,10 +439,7 @@ void test_hook_info() {
 
     hook::HookHandle handle = nullptr;
     auto status = hook::install(
-        reinterpret_cast<void*>(&target_func),
-        reinterpret_cast<void*>(&detour_func),
-        reinterpret_cast<void**>(&original_func),
-        &handle);
+        &target_func, &detour_func, &original_func, &handle);
     (void)status;
     assert(handle != nullptr);
 
@@ -441,27 +459,214 @@ void test_double_hook_rejection() {
     hook::initialize();
     setup_test_config();
 
-    void* orig1 = nullptr;
-    void* orig2 = nullptr;
+    int (*orig1)(int, int) = nullptr;
+    int (*orig2)(int, int) = nullptr;
     hook::HookHandle handle1 = nullptr;
     hook::HookHandle handle2 = nullptr;
 
     auto status = hook::install(
-        reinterpret_cast<void*>(&target_func),
-        reinterpret_cast<void*>(&detour_func),
-        &orig1, &handle1);
+        &target_func, &detour_func, &orig1, &handle1);
     assert(handle1 != nullptr);
     assert(status == hook::HookStatus::Success);
 
     // Second hook on same target should fail
     status = hook::install(
-        reinterpret_cast<void*>(&target_func),
-        reinterpret_cast<void*>(&detour_func),
-        &orig2, &handle2);
+        &target_func, &detour_func, &orig2, &handle2);
     assert(handle2 == nullptr);
     assert(status == hook::HookStatus::HookAlreadyInstalled);
 
     hook::remove(handle1);
+    hook::shutdown();
+}
+
+using VirtualAlloc_t = LPVOID (WINAPI *)(LPVOID, SIZE_T, DWORD, DWORD);
+static VirtualAlloc_t original_VirtualAlloc = nullptr;
+static volatile int g_valloc_hook_count = 0;
+
+static LPVOID WINAPI hooked_VirtualAlloc(LPVOID addr, SIZE_T size, DWORD type, DWORD protect) {
+    g_valloc_hook_count++;
+    return original_VirtualAlloc(addr, size, type, protect);
+}
+
+void test_winapi_hook() {
+    std::cout << "  test_winapi_hook (VirtualAlloc)..." << std::endl;
+
+    hook::initialize();
+    setup_test_config();
+    g_valloc_hook_count = 0;
+
+    // Resolve VirtualAlloc address from kernel32
+    HMODULE kernel32 = GetModuleHandleA("kernel32.dll");
+    assert(kernel32 != nullptr);
+    auto target = reinterpret_cast<VirtualAlloc_t>(GetProcAddress(kernel32, "VirtualAlloc"));
+    assert(target != nullptr);
+
+    // Install hook — template deduces function type from VirtualAlloc_t
+    hook::HookHandle handle = nullptr;
+    auto status = hook::install(target, &hooked_VirtualAlloc, &original_VirtualAlloc, &handle);
+    assert(status == hook::HookStatus::Success);
+
+    // Enable and test
+    status = hook::enable(handle);
+    assert(status == hook::HookStatus::Success);
+
+    // Allocate memory — should trigger our hook
+    LPVOID mem = VirtualAlloc(nullptr, 4096, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
+    assert(mem != nullptr);
+    assert(g_valloc_hook_count == 1);
+
+    // Free the memory
+    VirtualFree(mem, 0, MEM_RELEASE);
+
+    // Remove hook and verify unhook works
+    hook::remove(handle);
+    g_valloc_hook_count = 0;
+    mem = VirtualAlloc(nullptr, 4096, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
+    assert(mem != nullptr);
+    assert(g_valloc_hook_count == 0);  // Hook removed
+    VirtualFree(mem, 0, MEM_RELEASE);
+
+    hook::shutdown();
+}
+
+using GetEnvVarA_t = DWORD (WINAPI *)(LPCSTR, LPSTR, DWORD);
+static GetEnvVarA_t original_GetEnvVarA = nullptr;
+static volatile int g_getenv_hook_count = 0;
+
+static DWORD WINAPI hooked_GetEnvVarA(LPCSTR name, LPSTR buf, DWORD size) {
+    g_getenv_hook_count++;
+    return original_GetEnvVarA(name, buf, size);
+}
+
+void test_winapi_hook_getenv() {
+    std::cout << "  test_winapi_hook (GetEnvironmentVariableA)..." << std::endl;
+
+    hook::initialize();
+    setup_test_config();
+    g_getenv_hook_count = 0;
+
+    HMODULE kernel32 = GetModuleHandleA("kernel32.dll");
+    assert(kernel32 != nullptr);
+    auto target = reinterpret_cast<GetEnvVarA_t>(GetProcAddress(kernel32, "GetEnvironmentVariableA"));
+    assert(target != nullptr);
+
+    // Install hook — template deduces function type from GetEnvVarA_t
+    hook::HookHandle handle = nullptr;
+    auto status = hook::install(target, &hooked_GetEnvVarA, &original_GetEnvVarA, &handle);
+    assert(status == hook::HookStatus::Success);
+
+    status = hook::enable(handle);
+    assert(status == hook::HookStatus::Success);
+
+    // Query an environment variable — should trigger our hook
+    char buf[256];
+    GetEnvironmentVariableA("PATH", buf, sizeof(buf));
+    assert(g_getenv_hook_count == 1);
+
+    hook::remove(handle);
+    hook::shutdown();
+}
+
+void test_syscall_hook() {
+    std::cout << "  test_syscall_hook (NtClose)..." << std::endl;
+
+    hook::initialize();
+    setup_test_config();
+
+    // NtClose signature: NTSTATUS NTAPI NtClose(HANDLE Handle)
+    typedef LONG NTSTATUS;
+    typedef NTSTATUS (NTAPI *NtClose_t)(HANDLE);
+
+    static NtClose_t original_NtClose = nullptr;
+    static volatile int close_hook_count = 0;
+
+    struct SyscallDetours {
+        static NTSTATUS NTAPI hooked_NtClose(HANDLE h) {
+            close_hook_count++;
+            return original_NtClose(h);
+        }
+    };
+
+    // Resolve NtClose from ntdll.dll
+    HMODULE ntdll = GetModuleHandleA("ntdll.dll");
+    assert(ntdll != nullptr);
+    auto target = reinterpret_cast<NtClose_t>(GetProcAddress(ntdll, "NtClose"));
+    assert(target != nullptr);
+
+    // Install and enable hook — template deduces type from NtClose_t
+    hook::HookHandle handle = nullptr;
+    NtClose_t detour = &SyscallDetours::hooked_NtClose;
+    auto status = hook::install(target, detour, &original_NtClose, &handle);
+    assert(status == hook::HookStatus::Success);
+
+    status = hook::enable(handle);
+    assert(status == hook::HookStatus::Success);
+
+    // Create a dummy event handle and close it — triggers NtClose
+    HANDLE evt = CreateEventA(nullptr, FALSE, FALSE, nullptr);
+    assert(evt != nullptr);
+    close_hook_count = 0;
+    CloseHandle(evt);  // This calls NtClose internally
+    assert(close_hook_count > 0);
+
+    // Remove hook and verify normal operation
+    hook::remove(handle);
+    close_hook_count = 0;
+    evt = CreateEventA(nullptr, FALSE, FALSE, nullptr);
+    assert(evt != nullptr);
+    CloseHandle(evt);
+    assert(close_hook_count == 0);  // Hook removed, counter stays 0
+
+    hook::shutdown();
+}
+
+void test_syscall_hook_query_memory() {
+    std::cout << "  test_syscall_hook (NtQueryVirtualMemory)..." << std::endl;
+
+    hook::initialize();
+    setup_test_config();
+
+    typedef LONG NTSTATUS;
+    typedef NTSTATUS (NTAPI *NtQueryVirtualMemory_t)(
+        HANDLE ProcessHandle, PVOID BaseAddress,
+        ULONG MemoryInformationClass, PVOID MemoryInformation,
+        SIZE_T MemoryInformationLength, PSIZE_T ReturnLength);
+
+    static NtQueryVirtualMemory_t original_NtQueryVirtualMemory = nullptr;
+    static volatile int query_hook_count = 0;
+
+    struct SyscallDetours {
+        static NTSTATUS NTAPI hooked_NtQueryVirtualMemory(
+            HANDLE ProcessHandle, PVOID BaseAddress,
+            ULONG MemoryInformationClass, PVOID MemoryInformation,
+            SIZE_T MemoryInformationLength, PSIZE_T ReturnLength) {
+            query_hook_count++;
+            return original_NtQueryVirtualMemory(ProcessHandle, BaseAddress,
+                MemoryInformationClass, MemoryInformation,
+                MemoryInformationLength, ReturnLength);
+        }
+    };
+
+    HMODULE ntdll = GetModuleHandleA("ntdll.dll");
+    assert(ntdll != nullptr);
+    auto target = reinterpret_cast<NtQueryVirtualMemory_t>(GetProcAddress(ntdll, "NtQueryVirtualMemory"));
+    assert(target != nullptr);
+
+    NtQueryVirtualMemory_t detour = &SyscallDetours::hooked_NtQueryVirtualMemory;
+    hook::HookHandle handle = nullptr;
+    auto status = hook::install(target, detour, &original_NtQueryVirtualMemory, &handle);
+    assert(status == hook::HookStatus::Success);
+
+    status = hook::enable(handle);
+    assert(status == hook::HookStatus::Success);
+
+    // Query memory info for our own module — triggers the hook
+    MEMORY_BASIC_INFORMATION mbi = {};
+    query_hook_count = 0;
+    VirtualQuery(GetModuleHandleA(nullptr), &mbi, sizeof(mbi));
+    assert(query_hook_count > 0);
+
+    hook::remove(handle);
     hook::shutdown();
 }
 
@@ -489,6 +694,10 @@ int main() {
     test_hook_enable_disable();
     test_hook_info();
     test_double_hook_rejection();
+    test_winapi_hook();
+    test_winapi_hook_getenv();
+    test_syscall_hook();
+    test_syscall_hook_query_memory();
 #else
     std::cout << "  (ARM64-only tests skipped on this platform)" << std::endl;
 #endif

@@ -1791,13 +1791,24 @@ void shutdown();
 // Check if hooking subsystem is initialized
 bool is_initialized();
 
+// Internal install (void* interface)
+HookStatus install_impl(void* target, void* detour, void** original, HookHandle* handle);
+
 // Install an inline hook (starts disabled — call enable() to activate)
-// target: address of function to hook
-// detour: address of your hook function
-// original: receives pointer to trampoline for calling original function
-// handle: optional output — receives handle to the hook
-// Returns: HookStatus indicating success or failure
-HookStatus install(void* target, void* detour, void** original, HookHandle* handle = nullptr);
+// Type-safe: target and detour must have matching signatures.
+// original receives a callable trampoline to the original function.
+// Usage: hook::install(&MessageBoxA, &my_detour, &original_ptr, &handle);
+template<typename Fn>
+HookStatus install(Fn* target, Fn* detour, Fn** original, HookHandle* handle = nullptr) {
+    return install_impl(reinterpret_cast<void*>(target),
+                        reinterpret_cast<void*>(detour),
+                        reinterpret_cast<void**>(original), handle);
+}
+
+// Non-template overload for raw void* pointers
+inline HookStatus install(void* target, void* detour, void** original, HookHandle* handle = nullptr) {
+    return install_impl(target, detour, original, handle);
+}
 
 // Remove a previously installed hook
 // Restores original bytes and frees trampoline
@@ -1860,6 +1871,12 @@ bool is_pc_relative(uint32_t insn);
 
 // Check if an instruction can be safely relocated
 bool can_relocate(uint32_t insn);
+
+// Detect Windows ARM64 syscall stub pattern (SVC + RET + 0 + 0)
+bool is_syscall_stub(const uint8_t* target);
+
+// Resolve forwarding stubs (follows unconditional B chains)
+void* resolve_forwarding_stub(void* target);
 
 // Relocate a single instruction to a new address
 bool relocate_instruction(

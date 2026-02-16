@@ -650,44 +650,64 @@ bool is_pc_relative(uint32_t insn) {
 
 // Check if instruction can be safely relocated
 bool can_relocate(uint32_t insn) {
+    // Zero (UDF #0) is treated as padding, always safe to skip
+    if (insn == 0) return true;
+
     auto decoded = decode(insn);
     if (!decoded) {
         return false;
     }
 
     // Most instructions can be relocated
-    // Exceptions:
-    // - Instructions that read PC directly (rare on ARM64)
-    // - Some system instructions
+    // RET/SVC are position-independent (just BR X30 / supervisor call)
+    // They are safe to copy to a trampoline as-is
 
     switch (decoded->mnemonic) {
-        // These are generally safe even if PC-relative (we handle them)
-        case Mnemonic::B:
-        case Mnemonic::BL:
-        case Mnemonic::BC:
-        case Mnemonic::CBZ:
-        case Mnemonic::CBNZ:
-        case Mnemonic::TBZ:
-        case Mnemonic::TBNZ:
-        case Mnemonic::ADR:
-        case Mnemonic::ADRP:
-        case Mnemonic::LDR:
-        case Mnemonic::LDRSW:
-            return true;
-
-        // Return instructions - can't relocate
-        case Mnemonic::RET:
+        // Authenticated returns - can't relocate (PAC dependent on address)
         case Mnemonic::RETAA:
         case Mnemonic::RETAB:
-        case Mnemonic::ERET:
         case Mnemonic::ERETAA:
         case Mnemonic::ERETAB:
             return false;
 
         default:
-            // Most other instructions are position-independent
+            // All other instructions are either position-independent
+            // or handled by relocate_instruction()
             return true;
     }
+}
+
+// Resolve forwarding stubs: if function starts with unconditional B,
+// follow the branch to the real implementation.
+// Returns the resolved address (unchanged if not a forwarding stub).
+void* resolve_forwarding_stub(void* target) {
+    const uint32_t* insns = static_cast<const uint32_t*>(target);
+    // Follow up to 5 chained B stubs (safety limit)
+    for (int depth = 0; depth < 5; ++depth) {
+        uint32_t insn = insns[0];
+        // Unconditional B: bits [31:26] = 0b000101
+        if ((insn & 0xFC000000) != 0x14000000) break;
+        // Decode imm26 (signed)
+        int32_t imm26 = static_cast<int32_t>(insn & 0x03FFFFFF);
+        if (imm26 & 0x02000000) imm26 |= 0xFC000000;
+        int64_t offset = static_cast<int64_t>(imm26) * 4;
+        uintptr_t addr = reinterpret_cast<uintptr_t>(insns) + offset;
+        insns = reinterpret_cast<const uint32_t*>(addr);
+    }
+    return const_cast<void*>(static_cast<const void*>(insns));
+}
+
+// Detect Windows ARM64 syscall stub pattern: SVC #imm + RET + 0 + 0
+bool is_syscall_stub(const uint8_t* target) {
+    const uint32_t* insns = reinterpret_cast<const uint32_t*>(target);
+    // SVC: encoding is 0xD4000001 | (imm16 << 5)
+    // Check bits [31:21] = 0b11010100_000 and bits [4:0] = 0b00001
+    bool is_svc = (insns[0] & 0xFFE0001F) == 0xD4000001;
+    // RET (Xn=X30): 0xD65F03C0
+    bool is_ret = insns[1] == 0xD65F03C0;
+    // Two zero words of padding
+    bool is_pad = (insns[2] == 0) && (insns[3] == 0);
+    return is_svc && is_ret && is_pad;
 }
 
 // Relocate a single instruction
@@ -915,16 +935,39 @@ static Trampoline create_trampoline(void* target, size_t hook_size, HookStatus* 
     }
     tramp.code_size = max_size;
 
-    // Disassemble and relocate instructions
     uint8_t* src = static_cast<uint8_t*>(target);
     uint8_t* dst = tramp.code;
-    size_t src_offset = 0;
     size_t dst_offset = 0;
+
+    // Check for Windows ARM64 syscall stub pattern: SVC + RET + 0 + 0
+    // These are exactly 16 bytes: the SVC does the syscall, RET returns.
+    // Trampoline just needs SVC + RET (no jump-back, RET returns to caller).
+    if (hook_size == 16 && detail::is_syscall_stub(src)) {
+        uint32_t* dst_insn = reinterpret_cast<uint32_t*>(dst);
+        const uint32_t* src_insn = reinterpret_cast<const uint32_t*>(src);
+        dst_insn[0] = src_insn[0];  // SVC #imm
+        dst_insn[1] = src_insn[1];  // RET
+        tramp.used_size = 8;
+        tramp.insn_count = 2;
+        detail::flush_icache(tramp.code, tramp.used_size);
+        *status = HookStatus::Success;
+        return tramp;
+    }
+
+    // General case: disassemble and relocate instructions
+    size_t src_offset = 0;
     uint64_t src_pc = reinterpret_cast<uint64_t>(target);
     uint64_t dst_pc = reinterpret_cast<uint64_t>(tramp.code);
+    bool found_ret = false;
 
     while (src_offset < hook_size) {
         uint32_t insn = *reinterpret_cast<uint32_t*>(src + src_offset);
+
+        // Skip zero padding (UDF #0)
+        if (insn == 0) {
+            src_offset += 4;
+            continue;
+        }
 
         // Check if we can relocate this instruction
         if (!detail::can_relocate(insn)) {
@@ -933,6 +976,9 @@ static Trampoline create_trampoline(void* target, size_t hook_size, HookStatus* 
             tramp.code = nullptr;
             return tramp;
         }
+
+        // Track if we hit a RET — no jump-back needed after it
+        if (insn == 0xD65F03C0) found_ret = true;
 
         // Relocate the instruction
         uint32_t relocated[4];
@@ -961,9 +1007,11 @@ static Trampoline create_trampoline(void* target, size_t hook_size, HookStatus* 
         tramp.insn_count++;
     }
 
-    // Add jump back to original code after hook
-    void* return_addr = static_cast<uint8_t*>(target) + hook_size;
-    dst_offset += detail::generate_jump(dst + dst_offset, return_addr);
+    // Add jump back to original code after hook (unless we already have a RET)
+    if (!found_ret) {
+        void* return_addr = static_cast<uint8_t*>(target) + hook_size;
+        dst_offset += detail::generate_jump(dst + dst_offset, return_addr);
+    }
 
     tramp.used_size = dst_offset;
 
@@ -974,7 +1022,7 @@ static Trampoline create_trampoline(void* target, size_t hook_size, HookStatus* 
     return tramp;
 }
 
-HookStatus install(void* target, void* detour, void** original, HookHandle* handle) {
+HookStatus install_impl(void* target, void* detour, void** original, HookHandle* handle) {
     if (handle) *handle = nullptr;
 
     if (!g_state.initialized) {
@@ -988,6 +1036,9 @@ HookStatus install(void* target, void* detour, void** original, HookHandle* hand
     if (!detour) {
         return HookStatus::InvalidDetour;
     }
+
+    // Resolve forwarding stubs (e.g., kernel32 -> kernelbase)
+    target = detail::resolve_forwarding_stub(target);
 
     std::lock_guard<std::mutex> lock(g_state.mutex);
 

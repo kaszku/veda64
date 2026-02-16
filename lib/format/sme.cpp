@@ -42692,8 +42692,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmul_mz_zzw4x4.Zn, true));
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmul_mz_zzw4x4.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmul_mz_zzw4x4.Zd, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmul_mz_zzw4x4.Zm, true));
                         return result;
         }
         default: break;
@@ -43005,8 +43005,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmul_mz_zzw2x2.Zn, true));
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmul_mz_zzw2x2.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmul_mz_zzw2x2.Zd, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmul_mz_zzw2x2.Zm, true));
                         return result;
         }
         case 0xC120E800u: { // bfmul_mz_zzv_2x1
@@ -45325,8 +45325,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.luti6mz4zmz24.Zn, true));
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.luti6mz4zmz24.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.luti6mz4zmz24.Zd, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.luti6mz4zmz24.Zm, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.luti6mz4zmz24.i1, true));
                         return result;
         }
@@ -45340,8 +45340,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.luti6mz4zmz21.Zn, true));
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.luti6mz4zmz21.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.luti6mz4zmz21.Zd, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.luti6mz4zmz21.Zm, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.luti6mz4zmz21.i1, true));
                         return result;
         }
@@ -45917,8 +45917,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         }
                         { Operand op(OperandType::PredicateRegister, enc.sel_mz_pzz4.PNv, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sel_mz_pzz4.Zn, true));
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.sel_mz_pzz4.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sel_mz_pzz4.Zd, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.sel_mz_pzz4.Zm, true));
                         return result;
         }
         default: break;
@@ -46079,8 +46079,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         }
                         { Operand op(OperandType::PredicateRegister, enc.sel_mz_pzz2.PNv, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sel_mz_pzz2.Zn, true));
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.sel_mz_pzz2.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sel_mz_pzz2.Zd, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.sel_mz_pzz2.Zm, true));
                         return result;
         }
         default: break;
