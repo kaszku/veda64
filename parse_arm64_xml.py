@@ -1798,15 +1798,6 @@ class ARM64XMLParser:
         code.append("            {")
         code.append("                // Decode system register from o0:op1:CRn:CRm:op2 encoding")
         code.append("                // value = (o0 << 14) | (op1 << 11) | (CRn << 7) | (CRm << 3) | op2")
-        code.append("                struct SysRegEntry { uint32_t encoding; const char* name; };")
-        code.append("                static const SysRegEntry sysregs[] = {")
-        code.append("                    {0x5A10, \"nzcv\"},    // 3,3,4,2,0")
-        code.append("                    {0x5A20, \"daif\"},    // 3,3,4,2,1 (actually 0x5A21)")
-        code.append("                    {0x5E82, \"fpcr\"},    // 3,3,4,4,0 -> o0=1,op1=3,CRn=4,CRm=4,op2=0")
-        code.append("                    {0x5E84, \"fpsr\"},")
-        code.append("                    {0x5E80, \"fpcr\"},    // alternate")
-        code.append("                };")
-        code.append("                // Common system registers by full encoding")
         code.append("                uint32_t o0 = (value >> 14) & 1;")
         code.append("                uint32_t op1 = (value >> 11) & 7;")
         code.append("                uint32_t crn = (value >> 7) & 0xF;")
@@ -1815,77 +1806,14 @@ class ARM64XMLParser:
         code.append("                // Encode as op0(2):op1(3):CRn(4):CRm(4):op2(3) = 16-bit key")
         code.append("                uint32_t key = ((2 + o0) << 14) | (op1 << 11) | (crn << 7) | (crm << 3) | op2v;")
         code.append("                switch (key) {")
-        code.append("                    case 0xDA10u: return \"nzcv\";")
-        code.append("                    case 0xDA11u: return \"daif\";")
-        code.append("                    case 0xDE82u: return \"tpidr_el0\";")
-        code.append("                    case 0xDE83u: return \"tpidrro_el0\";")
-        code.append("                    case 0xDA20u: return \"fpcr\";")
-        code.append("                    case 0xDA21u: return \"fpsr\";")
-        code.append("                    case 0xDE84u: return \"tpidr2_el0\";")
-        code.append("                    case 0xC000u: return \"midr_el1\";")
-        code.append("                    case 0xC005u: return \"mpidr_el1\";")
-        code.append("                    case 0xDA15u: return \"dlr_el0\";")
-        code.append("                    case 0xDA14u: return \"dspsr_el0\";")
-        code.append("                    case 0xDA28u: return \"dit\";")
-        code.append("                    case 0xDA29u: return \"ssbs\";")
-        code.append("                    case 0xDA2Au: return \"tco\";")
-        code.append("                    case 0xD801u: return \"ctr_el0\";")
-        code.append("                    case 0xD807u: return \"dczid_el0\";")
-        code.append("                    case 0xDE80u: return \"fpmr\";")
-        code.append("                    case 0xDE85u: return \"scxtnum_el0\";")
-        code.append("                    // Performance monitors")
-        code.append("                    case 0xDCE8u: return \"pmccntr_el0\";")  # s3_3_c9_c13_0
-        code.append("                    case 0xDCE0u: return \"pmcr_el0\";")     # s3_3_c9_c12_0
-        code.append("                    case 0xDCE1u: return \"pmcntenset_el0\";")
-        code.append("                    case 0xDCE2u: return \"pmcntenclr_el0\";")
-        code.append("                    case 0xDCE3u: return \"pmovsclr_el0\";")
-        code.append("                    case 0xDCE4u: return \"pmswinc_el0\";")
-        code.append("                    case 0xDCE5u: return \"pmselr_el0\";")
-        code.append("                    case 0xDCE9u: return \"pmxevtyper_el0\";")
-        code.append("                    case 0xDCEAu: return \"pmxevcntr_el0\";")
-        code.append("                    case 0xDCF3u: return \"pmovsset_el0\";")
-        code.append("                    case 0xDCE6u: return \"pmceid0_el0\";")
-        code.append("                    case 0xDCE7u: return \"pmceid1_el0\";")
-        code.append("                    case 0xDCF0u: return \"pmuserenr_el0\";")
-        code.append("                    // Timers")
-        code.append("                    case 0xDF00u: return \"cntfrq_el0\";")    # s3_3_c14_c0_0
-        code.append("                    case 0xDF01u: return \"cntpct_el0\";")    # s3_3_c14_c0_1
-        code.append("                    case 0xDF02u: return \"cntvct_el0\";")    # s3_3_c14_c0_2
-        code.append("                    case 0xDF06u: return \"cntvctss_el0\";")  # s3_3_c14_c0_6
-        code.append("                    case 0xDF10u: return \"cntp_tval_el0\";")
-        code.append("                    case 0xDF11u: return \"cntp_ctl_el0\";")
-        code.append("                    case 0xDF12u: return \"cntp_cval_el0\";")
-        code.append("                    case 0xDF18u: return \"cntv_tval_el0\";")
-        code.append("                    case 0xDF19u: return \"cntv_ctl_el0\";")
-        code.append("                    case 0xDF1Au: return \"cntv_cval_el0\";")
-        # PMEVCNTR<n>_EL0: op0=3, op1=3, CRn=14, CRm=8+(n/8), op2=n%8
-        for n in range(31):
-            crm = 8 + (n // 8)
-            op2 = n % 8
-            key = (3 << 14) | (3 << 11) | (14 << 7) | (crm << 3) | op2
-            code.append(f"                    case 0x{key:04X}u: return \"pmevcntr{n}_el0\";")
-        # PMEVTYPER<n>_EL0: op0=3, op1=3, CRn=14, CRm=12+(n/8), op2=n%8
-        for n in range(31):
-            crm = 12 + (n // 8)
-            op2 = n % 8
-            key = (3 << 14) | (3 << 11) | (14 << 7) | (crm << 3) | op2
-            code.append(f"                    case 0x{key:04X}u: return \"pmevtyper{n}_el0\";")
-        code.append("                    // EL1 system regs")
-        code.append("                    case 0xC080u: return \"sctlr_el1\";")
-        code.append("                    case 0xC081u: return \"actlr_el1\";")
-        code.append("                    case 0xC082u: return \"cpacr_el1\";")
-        code.append("                    case 0xC100u: return \"ttbr0_el1\";")
-        code.append("                    case 0xC101u: return \"ttbr1_el1\";")
-        code.append("                    case 0xC102u: return \"tcr_el1\";")
-        code.append("                    case 0xC200u: return \"esr_el1\";")
-        code.append("                    case 0xC300u: return \"far_el1\";")
-        code.append("                    case 0xC288u: return \"isr_el1\";")
-        code.append("                    case 0xC510u: return \"contextidr_el1\";")
-        code.append("                    case 0xC518u: return \"tpidr_el1\";")
-        code.append("                    case 0xC600u: return \"vbar_el1\";")
-        code.append("                    case 0xC400u: return \"spsr_el1\";")
-        code.append("                    case 0xC401u: return \"elr_el1\";")
-        code.append("                    case 0xC408u: return \"sp_el0\";")
+        # Import comprehensive sysreg table (897 registers from ARM spec)
+        from sysreg_table import SYSREG_NAMES
+        sysregs = dict(SYSREG_NAMES)
+
+        # Generate the switch cases
+        for (op0, op1, crn, crm, op2_val), name in sorted(sysregs.items()):
+            key = (op0 << 14) | (op1 << 11) | (crn << 7) | (crm << 3) | op2_val
+            code.append(f'                    case 0x{key:04X}u: return "{name}";')
         code.append("                    default: {")
         code.append("                        // Fallback: S<op0>_<op1>_C<CRn>_C<CRm>_<op2>")
         code.append("                        std::ostringstream oss;")
@@ -4641,18 +4569,56 @@ class ARM64XMLParser:
             is_dot_product = mnemonic in dot_product_ops
 
             # Rd and Rn use vector arrangement
-            code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = _simd_arr; result.operands.push_back(op); }}")
             if is_dot_product:
-                # Dot products: Rn uses byte arrangement regardless of size
+                # Dot products: Rd is always result size (.2s/.4s for 8-bit dot, .4h/.8h for 16-bit FDOT)
+                # FDOT (8-bit float): size=0, result is .2s/.4s
+                # BFDOT (bf16): size=2, result is .2s/.4s
+                # SDOT/UDOT (int8): size=2, result is .2s/.4s
+                if mnemonic in ['FDOT']:
+                    # FDOT_asimdelem_G: FP8→FP16 (2-way), size=1, dest=.4h/.8h, Rm=.2B[idx]
+                    # FDOT_asimdelem_D: FP8→FP32 (4-way), size=0, dest=.2s/.4s, Rm=.4B[idx]
+                    # FDOT_asimdelem_FP16FP32: FP16→FP32, size=1, dest=.2s/.4s, Rm=.2H[idx]
+                    if 'asimdelem_g' in encoding_name.lower():
+                        # FP8→FP16: dest is half-precision vector
+                        if has_q and not q_fixed:
+                            code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = enc.{member_name}.{q_field} ? \"8h\" : \"4h\"; result.operands.push_back(op); }}")
+                        else:
+                            q_val = int(field_map['Q']['fixed'], 2) if has_q and field_map['Q']['fixed'] else 0
+                            code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = \"{['4h', '8h'][q_val]}\"; result.operands.push_back(op); }}")
+                    else:
+                        # FP8→FP32 and FP16→FP32: dest is single-precision vector
+                        if has_q and not q_fixed:
+                            code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = enc.{member_name}.{q_field} ? \"4s\" : \"2s\"; result.operands.push_back(op); }}")
+                        else:
+                            q_val = int(field_map['Q']['fixed'], 2) if has_q and field_map['Q']['fixed'] else 0
+                            code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = \"{['2s', '4s'][q_val]}\"; result.operands.push_back(op); }}")
+                elif mnemonic in ['BFDOT']:
+                    if has_q and not q_fixed:
+                        code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = enc.{member_name}.{q_field} ? \"4s\" : \"2s\"; result.operands.push_back(op); }}")
+                    else:
+                        q_val = int(field_map['Q']['fixed'], 2) if has_q and field_map['Q']['fixed'] else 0
+                        code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = \"{['2s', '4s'][q_val]}\"; result.operands.push_back(op); }}")
+                else:
+                    # SDOT/UDOT/USDOT/SUDOT: size=2 so _simd_arr is already correct (.2s/.4s)
+                    code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = _simd_arr; result.operands.push_back(op); }}")
+                # Dot products: Rn arrangement depends on source element type
+                # BFDOT: BF16 source → .4h/.8h; FDOT_FP16FP32: FP16 source → .4h/.8h
+                # FDOT (FP8): byte source → .8b/.16b; SDOT/UDOT: byte source → .8b/.16b
+                if mnemonic in ['BFDOT'] or (mnemonic == 'FDOT' and 'fp16fp32' in encoding_name.lower()):
+                    rn_arr_q0, rn_arr_q1 = "4h", "8h"
+                else:
+                    rn_arr_q0, rn_arr_q1 = "8b", "16b"
                 if has_q and not q_fixed:
-                    code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = enc.{member_name}.{q_field} ? \"16b\" : \"8b\"; result.operands.push_back(op); }}")
+                    code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = enc.{member_name}.{q_field} ? \"{rn_arr_q1}\" : \"{rn_arr_q0}\"; result.operands.push_back(op); }}")
                 elif has_q and q_fixed:
                     q_val = int(field_map['Q']['fixed'], 2) if field_map['Q']['fixed'] else 0
-                    byte_arr = "16b" if q_val else "8b"
-                    code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = \"{byte_arr}\"; result.operands.push_back(op); }}")
+                    rn_arr = rn_arr_q1 if q_val else rn_arr_q0
+                    code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = \"{rn_arr}\"; result.operands.push_back(op); }}")
                 else:
-                    code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = \"8b\"; result.operands.push_back(op); }}")
+                    code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = \"{rn_arr_q0}\"; result.operands.push_back(op); }}")
             else:
+                # Non-dot-product: Rd and Rn both use standard arrangement from size
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = _simd_arr; result.operands.push_back(op); }}")
                 code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = _simd_arr; result.operands.push_back(op); }}")
 
             # Rm with element index: scalar arrangement + index from H/L/M
@@ -4664,18 +4630,39 @@ class ARM64XMLParser:
             m_f = field_map['M']['name'] if has_m else None
 
             code.append(f"{ind}{{")
-            code.append(f"{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{rm_field}, false);")
+            # Determine if M bit is part of Rm register (M:Rm) or part of index
+            # Standard: size>=2 → M is Rm[4]; size=1 → M is index bit
+            # Special: FDOT_asimdelem_D has size=0 but M:Rm per ARM spec
+            # Special: BFDOT_asimdelem_E has size=1 but M:Rm per ARM spec (BF16 elements)
+            enc_lower = encoding_name.lower()
+            fdot_m_is_rm = (mnemonic == 'FDOT' and 'asimdelem_d' in enc_lower) or \
+                           (mnemonic == 'FDOT' and 'fp16fp32' in enc_lower) or \
+                           (mnemonic == 'BFDOT')
+            if has_m:
+                code.append(f"{ind}    uint32_t _rm_reg = enc.{member_name}.{rm_field};")
+                if fdot_m_is_rm:
+                    # M is always part of register number for these encodings
+                    code.append(f"{ind}    _rm_reg |= (enc.{member_name}.{m_f} << 4);")
+                else:
+                    code.append(f"{ind}    if (_sz >= 2) _rm_reg |= (enc.{member_name}.{m_f} << 4);")
+                code.append(f"{ind}    Operand op(OperandType::VectorRegister, _rm_reg, false);")
+            else:
+                code.append(f"{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{rm_field}, false);")
             code.append(f"{ind}    uint32_t _idx = 0;")
             # Element index depends on size:
-            # size=1 (H): H:L:M (3 bits)
-            # size=2 (S): H:L (2 bits)
-            # size=3 (D): H (1 bit)  (rare in asimdelem)
+            # size=1 (H): Rm=Rm[3:0], index=H:L:M (3 bits)
+            # size=2 (S): Rm=M:Rm[3:0], index=H:L (2 bits)
+            # size=3 (D): Rm=M:Rm[3:0], index=H (1 bit)
             if has_h and has_l and has_m:
                 code.append(f'{ind}    static const char* _elem_scalar[] = {{"b", "h", "s", "d"}};')
                 code.append(f"{ind}    op.arrangement = _elem_scalar[_sz];")
-                code.append(f"{ind}    if (_sz == 1) _idx = (enc.{member_name}.{h_f} << 2) | (enc.{member_name}.{l_f} << 1) | enc.{member_name}.{m_f};")
-                code.append(f"{ind}    else if (_sz == 2) _idx = (enc.{member_name}.{h_f} << 1) | enc.{member_name}.{l_f};")
-                code.append(f"{ind}    else if (_sz == 3) _idx = enc.{member_name}.{h_f};")
+                if fdot_m_is_rm:
+                    # M is part of Rm, so index is always H:L (2 bits)
+                    code.append(f"{ind}    _idx = (enc.{member_name}.{h_f} << 1) | enc.{member_name}.{l_f};")
+                else:
+                    code.append(f"{ind}    if (_sz == 1) _idx = (enc.{member_name}.{h_f} << 2) | (enc.{member_name}.{l_f} << 1) | enc.{member_name}.{m_f};")
+                    code.append(f"{ind}    else if (_sz == 2) _idx = (enc.{member_name}.{h_f} << 1) | enc.{member_name}.{l_f};")
+                    code.append(f"{ind}    else if (_sz == 3) _idx = enc.{member_name}.{h_f};")
             elif has_h and has_l:
                 code.append(f'{ind}    static const char* _elem_scalar[] = {{"b", "h", "s", "d"}};')
                 code.append(f"{ind}    op.arrangement = _elem_scalar[_sz];")
@@ -4687,11 +4674,22 @@ class ARM64XMLParser:
                 code.append(f'{ind}    static const char* _elem_scalar[] = {{"b", "h", "s", "d"}};')
                 code.append(f"{ind}    op.arrangement = _elem_scalar[_sz];")
 
-            # Override arrangement for dot product Rm: use byte-group arrangement
+            # Override arrangement for dot product Rm: use grouped element arrangement
             if is_dot_product:
-                # SDOT/UDOT: Rm uses .4b; FDOT/BFDOT: Rm uses .2b
-                if mnemonic in ['FDOT', 'BFDOT']:
-                    code.append(f'{ind}    op.arrangement = "2b";')
+                # FDOT_asimdelem_D (FP8→FP32, 4-way): Rm.4B[idx]
+                # FDOT_asimdelem_G (FP8→FP16, 2-way): Rm.2B[idx]
+                # FDOT_asimdelem_FP16FP32 (FP16→FP32): Rm.2H[idx]
+                # BFDOT: Rm.2H[idx]
+                # SDOT/UDOT/USDOT/SUDOT: Rm.4B[idx]
+                if mnemonic == 'FDOT':
+                    if 'asimdelem_g' in encoding_name.lower():
+                        code.append(f'{ind}    op.arrangement = "2b";')
+                    elif 'fp16fp32' in encoding_name.lower():
+                        code.append(f'{ind}    op.arrangement = "2h";')
+                    else:
+                        code.append(f'{ind}    op.arrangement = "4b";')
+                elif mnemonic == 'BFDOT':
+                    code.append(f'{ind}    op.arrangement = "2h";')
                 else:
                     code.append(f'{ind}    op.arrangement = "4b";')
 
@@ -4704,36 +4702,12 @@ class ARM64XMLParser:
 
         # Extract all GPR register operands - pass is_64bit as third parameter
         # Special case: For advsimd/simd_dp classes, Rd/Rn/Rm might actually be vector registers
-        # Check if this is an advsimd instruction that uses vector registers
-        is_advsimd_vector = (class_name in ['advsimd', 'simd_dp'] and mnemonic in [
-            'MOVI', 'MVNI', 'ORR', 'BIC', 'FMOV', 'DUP', 'INS', 'UMOV', 'SMOV',
-            'ABS', 'NEG', 'NOT', 'CNT', 'CLS', 'CLZ', 'RBIT', 'REV16', 'REV32', 'REV64',
-            'ADD', 'SUB', 'MUL', 'MLA', 'MLS', 'AND', 'EOR', 'BSL', 'BIT', 'BIF',
-            'SMAX', 'SMIN', 'UMAX', 'UMIN', 'SMAXP', 'SMINP', 'UMAXP', 'UMINP',
-            'SHL', 'SHR', 'SSHR', 'USHR', 'SSRA', 'USRA', 'SRSHR', 'URSHR',
-            'SHADD', 'UHADD', 'SHSUB', 'UHSUB', 'SRHADD', 'URHADD',
-            'SQADD', 'UQADD', 'SQSUB', 'UQSUB', 'SQRSHL', 'UQRSHL', 'SRSHL', 'URSHL',
-            'SQSHL', 'UQSHL',
-            'SADDLP', 'UADDLP', 'SADALP', 'UADALP',
-            'SQABS', 'SQNEG', 'SUQADD', 'USQADD',
-            'ADDP', 'ADDV', 'SADDLV', 'UADDLV',
-            'UMINV', 'UMAXV', 'SMINV', 'SMAXV',
-            'FCVT', 'FCVTL', 'FCVTN', 'FCVTXN',
-            'FADD', 'FSUB', 'FMUL', 'FDIV', 'FNEG', 'FABS', 'FSQRT',
-            'FMAX', 'FMIN', 'FMAXNM', 'FMINNM', 'FMAXP', 'FMINP',
-            'CMEQ', 'CMGE', 'CMGT', 'CMLE', 'CMLT', 'CMHI', 'CMHS', 'CMTST',
-            'FCMEQ', 'FCMGE', 'FCMGT', 'FCMLE', 'FCMLT',
-            'FRINTN', 'FRINTP', 'FRINTM', 'FRINTZ', 'FRINTA', 'FRINTX', 'FRINTI',
-            'XTN', 'SQXTN', 'UQXTN', 'SQXTUN', 'SHLL',
-            'UXTL', 'SXTL', 'SADDL', 'SADDW', 'SSUBL', 'SSUBW', 'UADDL', 'UADDW', 'USUBL', 'USUBW',
-            'SMLAL', 'SMLSL', 'UMLAL', 'UMLSL', 'SMULL', 'UMULL',
-            'SQDMLAL', 'SQDMLSL', 'SQDMULL', 'SQDMULH', 'SQRDMULH',
-            'PMUL', 'PMULL', 'SABD', 'UABD', 'SABA', 'UABA', 'SABAL', 'UABAL', 'SABDL', 'UABDL',
-            'ADDHN', 'SUBHN', 'RADDHN', 'RSUBHN',
-            'SRSRA', 'URSRA',
-            'TBL', 'TBX', 'ZIP1', 'ZIP2', 'UZP1', 'UZP2', 'TRN1', 'TRN2',
-            'EXT', 'REV64', 'REV32', 'REV16',
-        ])
+        # Detect based on encoding name pattern: asimd* = vector, crypto* = vector
+        # Scalar FP (float*) and FP<->integer (float2int, floatfix) use GPR/scalar FP
+        encoding_name_lower = encoding_name.lower()
+        _advsimd_patterns = ['asimd', 'asisdpair', 'asisdone', 'asisdlse', 'crypto', 'asisdmiscfp16']
+        is_advsimd_vector = (class_name in ['advsimd', 'simd_dp'] and
+            any(pat in encoding_name_lower for pat in _advsimd_patterns))
         
         # Determine SIMD arrangement from Q and size fields
         simd_arrangement = None
@@ -4787,6 +4761,46 @@ class ARM64XMLParser:
                 arrs = {0: ["8b", "16b"], 1: ["4h", "8h"], 2: ["2s", "4s"], 3: ["1d", "2d"]}
                 simd_arrangement = 'runtime'
                 code.append(f"{ind}const char* _simd_arr = enc.{member_name}.{q_field} ? \"{arrs[size_val][1]}\" : \"{arrs[size_val][0]}\";")
+            else:
+                # Both Q and size are fixed
+                q_val = int(field_map['Q']['fixed'], 2) if field_map['Q']['fixed'] else 0
+                size_val = int(field_map['size']['fixed'], 2) if field_map['size']['fixed'] else 0
+                all_arrs = [["8b", "4h", "2s", "1d"], ["16b", "8h", "4s", "2d"]]
+                simd_arrangement = 'static'
+                static_arr = all_arrs[q_val][size_val]
+
+        # Crypto instructions without Q/size fields: fixed arrangement from encoding name
+        if is_advsimd_vector and simd_arrangement is None:
+            enc_lower = encoding_name.lower()
+            if 'crypto4' in enc_lower:
+                # BCAX, EOR3, SM3SS1: all .16b
+                simd_arrangement = 'static'
+                static_arr = '16b'
+            elif 'crypto3_imm6' in enc_lower:
+                # XAR: .2d
+                simd_arrangement = 'static'
+                static_arr = '2d'
+            elif 'cryptosha512_3' in enc_lower:
+                # SHA512H, SHA512H2, SHA512SU1, RAX1: .2d
+                simd_arrangement = 'static'
+                static_arr = '2d'
+            elif 'cryptosha512_2' in enc_lower:
+                # SM4E, SM4EKEY: .4s; SHA512SU0: .2d
+                simd_arrangement = 'static'
+                static_arr = '4s' if mnemonic.startswith('SM4') else '2d'
+            elif 'cryptosha3' in enc_lower:
+                # SHA256H, SHA256H2, SHA256SU1: .4s
+                simd_arrangement = 'static'
+                static_arr = '4s'
+            elif 'cryptosha2' in enc_lower:
+                # SHA1C, SHA1M, SHA1P, SHA1SU0, SHA1SU1, SHA256SU0: .4s
+                # SHA1H: scalar (but encoding has size field, handled separately)
+                simd_arrangement = 'static'
+                static_arr = '4s'
+            elif 'crypto_aes' in enc_lower or 'cryptoaes' in enc_lower:
+                # AESE, AESD, AESMC, AESIMC: .16b
+                simd_arrangement = 'static'
+                static_arr = '16b'
 
         # ADDG/SUBG: imm6 is tag granule offset (×16), Rd/Rn can be SP
         if mnemonic in ['ADDG', 'SUBG'] and 'imm6' in field_map and 'imm4' in field_map:
@@ -4918,6 +4932,25 @@ class ARM64XMLParser:
                         code.append(f"{ind}    op.arrangement = _scalar_arr[enc.{member_name}.{size_f}];")
                         code.append(f"{ind}    result.operands.push_back(op);")
                         code.append(f"{ind}}}")
+                    elif mnemonic in ['SDOT', 'UDOT', 'USDOT', 'SUDOT', 'BFDOT', 'SMMLA', 'UMMLA', 'USMMLA', 'BFMMLA'] and reg_name == 'Rd':
+                        # Dot product / matrix multiply: Rd uses RESULT arrangement (.2s/.4s)
+                        # regardless of source element size
+                        if 'Q' in field_map and not field_map['Q']['is_fixed']:
+                            q_f = field_map['Q']['name']
+                            code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = enc.{member_name}.{q_f} ? \"4s\" : \"2s\"; result.operands.push_back(op); }}")
+                        else:
+                            q_val = int(field_map['Q']['fixed'], 2) if 'Q' in field_map and field_map['Q']['fixed'] else 0
+                            arr = "4s" if q_val else "2s"
+                            code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = \"{arr}\"; result.operands.push_back(op); }}")
+                    elif mnemonic in ['SDOT', 'UDOT', 'USDOT', 'SUDOT', 'SMMLA', 'UMMLA', 'USMMLA', 'BFMMLA'] and reg_name in ('Rn', 'Rm'):
+                        # Integer dot product / matrix multiply sources: always byte arrangement
+                        if 'Q' in field_map and not field_map['Q']['is_fixed']:
+                            q_f = field_map['Q']['name']
+                            code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = enc.{member_name}.{q_f} ? \"16b\" : \"8b\"; result.operands.push_back(op); }}")
+                        else:
+                            q_val = int(field_map['Q']['fixed'], 2) if 'Q' in field_map and field_map['Q']['fixed'] else 0
+                            arr = "16b" if q_val else "8b"
+                            code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = \"{arr}\"; result.operands.push_back(op); }}")
                     elif mnemonic == 'PMULL' and reg_name == 'Rd':
                         # PMULL destination is always .1q (128-bit polynomial result)
                         code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = \"1q\"; result.operands.push_back(op); }}")

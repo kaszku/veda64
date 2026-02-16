@@ -42630,40 +42630,40 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFMAX, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmax_mz_zzw4x4.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmax_mz_zzw4x4.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmax_mz_zzw4x4.Zm, true));
                         return result;
         }
         case 0xC120B901u: { // bfmin_mz_zzw_4x4
                         Instruction result(Mnemonic::BFMIN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmin_mz_zzw4x4.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmin_mz_zzw4x4.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmin_mz_zzw4x4.Zm, true));
                         return result;
         }
         case 0xC120B920u: { // bfmaxnm_mz_zzw_4x4
                         Instruction result(Mnemonic::BFMAXNM, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmaxnm_mz_zzw4x4.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmaxnm_mz_zzw4x4.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmaxnm_mz_zzw4x4.Zm, true));
                         return result;
         }
         case 0xC120B921u: { // bfminnm_mz_zzw_4x4
                         Instruction result(Mnemonic::BFMINNM, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfminnm_mz_zzw4x4.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfminnm_mz_zzw4x4.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfminnm_mz_zzw4x4.Zm, true));
                         return result;
         }
         case 0xC120B980u: { // bfscale_mz_zzw_4x4
                         Instruction result(Mnemonic::BFSCALE, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfscale_mz_zzw4x4.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfscale_mz_zzw4x4.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfscale_mz_zzw4x4.Zm, true));
                         return result;
         }
         default: break;
@@ -42922,40 +42922,40 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::BFMAX, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmax_mz_zzw2x2.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmax_mz_zzw2x2.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmax_mz_zzw2x2.Zm, true));
                         return result;
         }
         case 0xC120B101u: { // bfmin_mz_zzw_2x2
                         Instruction result(Mnemonic::BFMIN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmin_mz_zzw2x2.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmin_mz_zzw2x2.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmin_mz_zzw2x2.Zm, true));
                         return result;
         }
         case 0xC120B120u: { // bfmaxnm_mz_zzw_2x2
                         Instruction result(Mnemonic::BFMAXNM, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmaxnm_mz_zzw2x2.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmaxnm_mz_zzw2x2.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfmaxnm_mz_zzw2x2.Zm, true));
                         return result;
         }
         case 0xC120B121u: { // bfminnm_mz_zzw_2x2
                         Instruction result(Mnemonic::BFMINNM, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfminnm_mz_zzw2x2.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfminnm_mz_zzw2x2.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfminnm_mz_zzw2x2.Zm, true));
                         return result;
         }
         case 0xC120B180u: { // bfscale_mz_zzw_2x2
                         Instruction result(Mnemonic::BFSCALE, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfscale_mz_zzw2x2.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.bfscale_mz_zzw2x2.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.bfscale_mz_zzw2x2.Zm, true));
                         return result;
         }
         default: break;
@@ -45971,8 +45971,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.smax_mz_zzw4x4.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smax_mz_zzw4x4.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.smax_mz_zzw4x4.Zm, true));
                         return result;
         }
         case 0xC120B801u: { // umax_mz_zzw_4x4
@@ -45986,8 +45986,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.umax_mz_zzw4x4.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umax_mz_zzw4x4.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.umax_mz_zzw4x4.Zm, true));
                         return result;
         }
         case 0xC120B820u: { // smin_mz_zzw_4x4
@@ -46001,8 +46001,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.smin_mz_zzw4x4.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smin_mz_zzw4x4.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.smin_mz_zzw4x4.Zm, true));
                         return result;
         }
         case 0xC120B821u: { // umin_mz_zzw_4x4
@@ -46016,8 +46016,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.umin_mz_zzw4x4.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umin_mz_zzw4x4.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.umin_mz_zzw4x4.Zm, true));
                         return result;
         }
         case 0xC120B900u: { // fmax_mz_zzw_4x4
@@ -46032,8 +46032,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmax_mz_zzw4x4.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmax_mz_zzw4x4.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmax_mz_zzw4x4.Zm, true));
                         return result;
         }
         case 0xC120B901u: { // fmin_mz_zzw_4x4
@@ -46048,8 +46048,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmin_mz_zzw4x4.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmin_mz_zzw4x4.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmin_mz_zzw4x4.Zm, true));
                         return result;
         }
         case 0xC120B920u: { // fmaxnm_mz_zzw_4x4
@@ -46064,8 +46064,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmaxnm_mz_zzw4x4.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmaxnm_mz_zzw4x4.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmaxnm_mz_zzw4x4.Zm, true));
                         return result;
         }
         case 0xC120B921u: { // fminnm_mz_zzw_4x4
@@ -46080,8 +46080,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fminnm_mz_zzw4x4.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fminnm_mz_zzw4x4.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fminnm_mz_zzw4x4.Zm, true));
                         return result;
         }
         case 0xC120B940u: { // famax_mz_zzw_4x4
@@ -46095,8 +46095,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.famax_mz_zzw4x4.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.famax_mz_zzw4x4.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.famax_mz_zzw4x4.Zm, true));
                         return result;
         }
         case 0xC120B941u: { // famin_mz_zzw_4x4
@@ -46110,8 +46110,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.famin_mz_zzw4x4.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.famin_mz_zzw4x4.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.famin_mz_zzw4x4.Zm, true));
                         return result;
         }
         case 0xC120B980u: { // fscale_mz_zzw_4x4
@@ -46126,8 +46126,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fscale_mz_zzw4x4.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fscale_mz_zzw4x4.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fscale_mz_zzw4x4.Zm, true));
                         return result;
         }
         case 0xC120BA20u: { // srshl_mz_zzw_4x4
@@ -46141,8 +46141,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.srshl_mz_zzw4x4.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.srshl_mz_zzw4x4.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.srshl_mz_zzw4x4.Zm, true));
                         return result;
         }
         case 0xC120BA21u: { // urshl_mz_zzw_4x4
@@ -46156,8 +46156,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.urshl_mz_zzw4x4.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.urshl_mz_zzw4x4.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.urshl_mz_zzw4x4.Zm, true));
                         return result;
         }
         case 0xC120BC00u: { // sqdmulh_mz_zzw_4x4
@@ -46171,8 +46171,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmulh_mz_zzw4x4.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmulh_mz_zzw4x4.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmulh_mz_zzw4x4.Zm, true));
                         return result;
         }
         default: break;
@@ -46235,8 +46235,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.smax_mz_zzw2x2.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smax_mz_zzw2x2.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.smax_mz_zzw2x2.Zm, true));
                         return result;
         }
         case 0xC120B001u: { // umax_mz_zzw_2x2
@@ -46250,8 +46250,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.umax_mz_zzw2x2.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umax_mz_zzw2x2.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.umax_mz_zzw2x2.Zm, true));
                         return result;
         }
         case 0xC120B020u: { // smin_mz_zzw_2x2
@@ -46265,8 +46265,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.smin_mz_zzw2x2.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.smin_mz_zzw2x2.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.smin_mz_zzw2x2.Zm, true));
                         return result;
         }
         case 0xC120B021u: { // umin_mz_zzw_2x2
@@ -46280,8 +46280,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.umin_mz_zzw2x2.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.umin_mz_zzw2x2.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.umin_mz_zzw2x2.Zm, true));
                         return result;
         }
         case 0xC120B100u: { // fmax_mz_zzw_2x2
@@ -46296,8 +46296,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmax_mz_zzw2x2.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmax_mz_zzw2x2.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmax_mz_zzw2x2.Zm, true));
                         return result;
         }
         case 0xC120B101u: { // fmin_mz_zzw_2x2
@@ -46312,8 +46312,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmin_mz_zzw2x2.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmin_mz_zzw2x2.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmin_mz_zzw2x2.Zm, true));
                         return result;
         }
         case 0xC120B120u: { // fmaxnm_mz_zzw_2x2
@@ -46328,8 +46328,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmaxnm_mz_zzw2x2.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fmaxnm_mz_zzw2x2.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fmaxnm_mz_zzw2x2.Zm, true));
                         return result;
         }
         case 0xC120B121u: { // fminnm_mz_zzw_2x2
@@ -46344,8 +46344,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fminnm_mz_zzw2x2.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fminnm_mz_zzw2x2.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fminnm_mz_zzw2x2.Zm, true));
                         return result;
         }
         case 0xC120B140u: { // famax_mz_zzw_2x2
@@ -46359,8 +46359,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.famax_mz_zzw2x2.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.famax_mz_zzw2x2.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.famax_mz_zzw2x2.Zm, true));
                         return result;
         }
         case 0xC120B141u: { // famin_mz_zzw_2x2
@@ -46374,8 +46374,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.famin_mz_zzw2x2.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.famin_mz_zzw2x2.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.famin_mz_zzw2x2.Zm, true));
                         return result;
         }
         case 0xC120B180u: { // fscale_mz_zzw_2x2
@@ -46390,8 +46390,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fscale_mz_zzw2x2.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.fscale_mz_zzw2x2.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.fscale_mz_zzw2x2.Zm, true));
                         return result;
         }
         case 0xC120B220u: { // srshl_mz_zzw_2x2
@@ -46405,8 +46405,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.srshl_mz_zzw2x2.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.srshl_mz_zzw2x2.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.srshl_mz_zzw2x2.Zm, true));
                         return result;
         }
         case 0xC120B221u: { // urshl_mz_zzw_2x2
@@ -46420,8 +46420,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.urshl_mz_zzw2x2.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.urshl_mz_zzw2x2.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.urshl_mz_zzw2x2.Zm, true));
                         return result;
         }
         case 0xC120B400u: { // sqdmulh_mz_zzw_2x2
@@ -46435,8 +46435,8 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmulh_mz_zzw2x2.Zm, true));
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmulh_mz_zzw2x2.Zdn, true));
+                        result.operands.push_back(Operand(OperandType::SVERegister, enc.sqdmulh_mz_zzw2x2.Zm, true));
                         return result;
         }
         default: break;
