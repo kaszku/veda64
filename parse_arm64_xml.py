@@ -1673,7 +1673,7 @@ class ARM64XMLParser:
         code.append("                std::ostringstream oss;")
         code.append("                // Use imm64 for 64-bit logical immediates")
         code.append("                uint64_t display_val = imm64 ? imm64 : static_cast<uint64_t>(value);")
-        code.append("                if (display_val <= 15) {")
+        code.append("                if (display_val <= 9) {")
         code.append("                    oss << \"#\" << std::dec << display_val;")
         code.append("                } else {")
         code.append("                    oss << \"#0x\" << std::hex << display_val;")
@@ -1686,13 +1686,13 @@ class ARM64XMLParser:
         code.append("                std::ostringstream oss;")
         code.append("                int32_t sval = static_cast<int32_t>(value);")
         code.append("                if (sval < 0) {")
-        code.append("                    if (sval >= -15) {")
+        code.append("                    if (sval >= -9) {")
         code.append("                        oss << \"#\" << std::dec << sval;")
         code.append("                    } else {")
         code.append("                        oss << \"#-0x\" << std::hex << (-sval);")
         code.append("                    }")
         code.append("                } else {")
-        code.append("                    if (sval <= 15) {")
+        code.append("                    if (sval <= 9) {")
         code.append("                        oss << \"#\" << std::dec << sval;")
         code.append("                    } else {")
         code.append("                        oss << \"#0x\" << std::hex << sval;")
@@ -3887,7 +3887,7 @@ class ARM64XMLParser:
             return code
 
         # Special case: General load/store (LDR, STR, LDRSW 32/64-bit) - only if required fields exist
-        if is_load_store and mnemonic in ['LDR', 'STR', 'LDUR', 'STUR', 'LDTR', 'STTR', 'LDRSW',
+        if is_load_store and mnemonic in ['LDR', 'STR', 'LDUR', 'STUR', 'LDTR', 'STTR', 'LDRSW', 'LDTRSW',
                 'LDRSH', 'LDRSB', 'LDRH', 'LDRB', 'STRH', 'STRB',
                 'LDURSH', 'LDURSB', 'LDURH', 'LDURB', 'STURH', 'STURB',
                 'LDTRSH', 'LDTRSB', 'LDTRH', 'LDTRB', 'STTRH', 'STTRB',
@@ -3961,7 +3961,7 @@ class ARM64XMLParser:
                     code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, is_64bit));")
 
             # Check if this is an unscaled load/store (LDUR/STUR/LDTR/STTR use signed imm9, no scaling)
-            is_unscaled = mnemonic in ['LDUR', 'STUR', 'LDTR', 'STTR',
+            is_unscaled = mnemonic in ['LDUR', 'STUR', 'LDTR', 'STTR', 'LDTRSW',
                 'LDURSH', 'LDURSB', 'LDURH', 'LDURB', 'STURH', 'STURB',
                 'LDTRSH', 'LDTRSB', 'LDTRH', 'LDTRB', 'STTRH', 'STTRB',
                 'PRFUM']
@@ -4162,6 +4162,49 @@ class ARM64XMLParser:
                 code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = \"{fp_char}\"; result.operands.push_back(op); }}")
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rn_field}, is_64bit));")
 
+            code.append(f"{ind}return result;")
+            return code
+
+        # Special case: SCVTF/UCVTF/FCVTZS/FCVTZU fixed-point conversion (float2fix encoding)
+        # These have mixed FP and GPR register operands, and scale → fbits = 64 - scale
+        is_float2fix = 'float2fix' in encoding_name and 'Rd' in field_map and 'Rn' in field_map and 'scale' in field_map and 'ftype' in field_map
+        if is_float2fix:
+            rd_field = field_map['Rd']['name']
+            rn_field = field_map['Rn']['name']
+            scale_field = field_map['scale']['name']
+            ftype_field = field_map['ftype']['name']
+            sf_field = field_map['sf']['name'] if 'sf' in field_map and not field_map['sf']['is_fixed'] else None
+
+            # Determine GPR width from sf or encoding name
+            if sf_field:
+                code.append(f"{ind}bool gpr_is_64 = enc.{member_name}.{sf_field};")
+            elif '64' in encoding_name:
+                code.append(f"{ind}bool gpr_is_64 = true;")
+            else:
+                code.append(f"{ind}bool gpr_is_64 = false;")
+
+            # FP scalar type from ftype: 0=S, 1=D, 3=H
+            code.append(f'{ind}const char* fp_arr = "s";')
+            code.append(f"{ind}switch (enc.{member_name}.{ftype_field}) {{")
+            code.append(f'{ind}    case 0: fp_arr = "s"; break;')
+            code.append(f'{ind}    case 1: fp_arr = "d"; break;')
+            code.append(f'{ind}    case 3: fp_arr = "h"; break;')
+            code.append(f"{ind}    default: break;")
+            code.append(f"{ind}}}")
+
+            # SCVTF/UCVTF: Rd=FP, Rn=GPR; FCVTZS/FCVTZU: Rd=GPR, Rn=FP
+            is_to_fp = mnemonic in ['SCVTF', 'UCVTF']
+            if is_to_fp:
+                # Rd is FP scalar
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = fp_arr; result.operands.push_back(op); }}")
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rn_field}, gpr_is_64));")
+            else:
+                # Rd is GPR
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rd_field}, gpr_is_64));")
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = fp_arr; result.operands.push_back(op); }}")
+
+            # fbits = 64 - scale
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, 64 - enc.{member_name}.{scale_field}, true));")
             code.append(f"{ind}return result;")
             return code
 
@@ -4768,8 +4811,24 @@ class ARM64XMLParser:
                 else:
                     code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = \"{rn_arr_q0}\"; result.operands.push_back(op); }}")
             else:
-                # Non-dot-product: Rd and Rn both use standard arrangement from size
-                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = _simd_arr; result.operands.push_back(op); }}")
+                # Widening by-element ops: destination is one size wider than source
+                widening_elem_ops = ['SQDMLSL', 'SQDMLAL', 'SMLAL', 'SMLSL', 'UMLAL', 'UMLSL',
+                                     'SMULL', 'UMULL', 'SQDMULL', 'PMULL', 'FMLAL', 'FMLSL',
+                                     'SQDMLSL2', 'SQDMLAL2', 'SMLAL2', 'SMLSL2', 'UMLAL2', 'UMLSL2',
+                                     'SMULL2', 'UMULL2', 'SQDMULL2', 'PMULL2', 'FMLAL2', 'FMLSL2']
+                is_widening_elem = mnemonic in widening_elem_ops
+                if is_widening_elem:
+                    # Rd: one size wider, always full 128-bit dest (Q-independent)
+                    # size=1(H→S): always .4s, size=2(S→D): always .2d
+                    code.append(f'{ind}const char* _wide_arr = _simd_arr;')
+                    code.append(f'{ind}switch (_sz) {{')
+                    code.append(f'{ind}    case 1: _wide_arr = "4s"; break;  // H→S (always 4 elements)')
+                    code.append(f'{ind}    case 2: _wide_arr = "2d"; break;  // S→D (always 2 elements)')
+                    code.append(f'{ind}    default: break;')
+                    code.append(f'{ind}}}')
+                    code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = _wide_arr; result.operands.push_back(op); }}")
+                else:
+                    code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = _simd_arr; result.operands.push_back(op); }}")
                 code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = _simd_arr; result.operands.push_back(op); }}")
 
             # Rm with element index: scalar arrangement + index from H/L/M
@@ -5040,6 +5099,40 @@ class ARM64XMLParser:
             code.append(f"{ind}return result;")
             return code
 
+        # Special case: float2fix instructions (SCVTF, UCVTF, FCVTZS, FCVTZU with fixed-point scale)
+        # Template: SCVTF <Sd>, <Wn>, #<fbits>  or  FCVTZS <Wd>, <Dn>, #<fbits>
+        # Encoding name: scvtf_s32_float2fix, fcvtzs_32d_float2fix, etc.
+        if 'float2fix' in encoding_name and 'Rd' in field_map and 'Rn' in field_map and 'scale' in field_map:
+            rd_field = field_map['Rd']['name']
+            rn_field = field_map['Rn']['name']
+            scale_field = field_map['scale']['name']
+            enc_parts = encoding_name.split('_')
+            # Second part is like 's32', 'd64', '32s', '64d', 'h32', etc.
+            fp_gp_part = enc_parts[1] if len(enc_parts) >= 2 else ''
+            import re as _re
+            fp_first = _re.match(r'^([dsh])(\d+)$', fp_gp_part)
+            gp_first = _re.match(r'^(\d+)([dsh])$', fp_gp_part)
+            if fp_first:
+                fp_char = fp_first.group(1)
+                gp_bits = fp_first.group(2)
+                gp_64 = '64' in gp_bits
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = \"{fp_char}\"; result.operands.push_back(op); }}")
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rn_field}, {str(gp_64).lower()}));")
+            elif gp_first:
+                gp_bits = gp_first.group(1)
+                fp_char = gp_first.group(2)
+                gp_64 = '64' in gp_bits
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rd_field}, {str(gp_64).lower()}));")
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = \"{fp_char}\"; result.operands.push_back(op); }}")
+            else:
+                is_64 = '64' in encoding_name
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rd_field}, {str(is_64).lower()}));")
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rn_field}, {str(is_64).lower()}));")
+            # fbits = 64 - scale
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, 64 - enc.{member_name}.{scale_field}, true));")
+            code.append(f"{ind}return result;")
+            return code
+
         # Detect scalar FP: encoding name contains 'float' (floatdp1, floatdp2, floatdp3, floatcmp, floatsel)
         # These use s/d/h register naming based on precision in encoding name
         scalar_fp_arr = None
@@ -5204,6 +5297,7 @@ class ARM64XMLParser:
 
         # SVE/SME operand extraction using template-based ordering
         sve_index_consumed = False  # True if index fields (i3h:i3l etc.) were used as element index
+        has_tsz_size = False  # True if tszh:tszl fields determine element size (SVE shift-by-imm)
         sve_z_names = {'Zd', 'Zn', 'Zm', 'Za', 'Zk', 'Zt', 'Zda', 'Zdn'}
         sve_p_names = {'Pd', 'Pn', 'Pm', 'Pg', 'Pt', 'Pv', 'Pdm', 'Pdn', 'PNd', 'PNn', 'PNg', 'PNv'}
         has_sve_regs = any(rn in field_map and not field_map[rn]['is_fixed'] for rn in sve_z_names)
@@ -5216,16 +5310,46 @@ class ARM64XMLParser:
             # Use template-based ordering for SVE/SME instructions
             has_sve_size = False
             sve_size_field = None
+            has_tsz_size = False
             for sz_name in ['size', 'sz']:
                 if sz_name in field_map and not field_map[sz_name]['is_fixed']:
                     has_sve_size = True
                     sve_size_field = field_map[sz_name]['name']
                     break
 
+            # Check for tszh:tszl encoding (SVE shift-by-immediate instructions)
+            if not has_sve_size and 'tszh' in field_map and 'tszl' in field_map and not field_map['tszh']['is_fixed'] and not field_map['tszl']['is_fixed']:
+                has_tsz_size = True
+                tszh_name = field_map['tszh']['name']
+                tszl_name = field_map['tszl']['name']
+                tszl_width = field_map['tszl'].get('width', 2)
+                imm3_name = field_map['imm3']['name'] if 'imm3' in field_map and not field_map['imm3']['is_fixed'] else None
+
             # Check if any template operand uses Tb (narrower arrangement)
             needs_narrow = any(top.get('arrangement') == 'Tb' for top in template_ops)
 
-            if has_sve_size:
+            if has_tsz_size:
+                # Arrangement from tszh:tszl highest set bit
+                code.append(f'{ind}uint32_t _tsize = (enc.{member_name}.{tszh_name} << {tszl_width}) | enc.{member_name}.{tszl_name};')
+                code.append(f'{ind}const char* _sve_arr = nullptr;')
+                code.append(f'{ind}uint32_t _esize = 0;')
+                code.append(f'{ind}if (_tsize & 8) {{ _sve_arr = "d"; _esize = 64; }}')
+                code.append(f'{ind}else if (_tsize & 4) {{ _sve_arr = "s"; _esize = 32; }}')
+                code.append(f'{ind}else if (_tsize & 2) {{ _sve_arr = "h"; _esize = 16; }}')
+                code.append(f'{ind}else if (_tsize & 1) {{ _sve_arr = "b"; _esize = 8; }}')
+                if imm3_name:
+                    code.append(f'{ind}uint32_t _tsz_imm = (_tsize << 3) | enc.{member_name}.{imm3_name};')
+                    code.append(f'{ind}uint32_t _shift_right = (2 * _esize) - _tsz_imm;')
+                    code.append(f'{ind}uint32_t _shift_left = _tsz_imm - _esize;')
+                has_sve_size = True  # So arr_expr uses _sve_arr
+                if needs_narrow:
+                    # For tszh:tszl, <Tb> means one step WIDER than <T> (opposite of size-based)
+                    code.append(f'{ind}const char* _sve_arr_narrow = nullptr;')
+                    code.append(f'{ind}if (_tsize & 4) {{ _sve_arr_narrow = "d"; }}')
+                    code.append(f'{ind}else if (_tsize & 2) {{ _sve_arr_narrow = "s"; }}')
+                    code.append(f'{ind}else if (_tsize & 1) {{ _sve_arr_narrow = "h"; }}')
+
+            elif has_sve_size:
                 sz_width = field_map[list(filter(lambda n: n in field_map and not field_map[n]['is_fixed'], ['size', 'sz']))[0]].get('width', 1)
                 if sz_width == 2:
                     code.append(f'{ind}const char* _sve_arr = nullptr;')
@@ -5236,13 +5360,19 @@ class ARM64XMLParser:
                     code.append(f'{ind}    case 3: _sve_arr = "d"; break;')
                     code.append(f'{ind}}}')
                     if needs_narrow:
-                        code.append(f'{ind}// Narrow arrangement: one step smaller than _sve_arr')
-                        code.append(f'{ind}const char* _sve_arr_narrow = nullptr;')
-                        code.append(f'{ind}switch (enc.{member_name}.{sve_size_field}) {{')
-                        code.append(f'{ind}    case 1: _sve_arr_narrow = "b"; break;')
-                        code.append(f'{ind}    case 2: _sve_arr_narrow = "h"; break;')
-                        code.append(f'{ind}    case 3: _sve_arr_narrow = "s"; break;')
-                        code.append(f'{ind}}}')
+                        # Check if this is a dot product instruction (2-step narrow: Tb uses size[0])
+                        is_dot_narrow = mnemonic.upper() in ('SDOT', 'UDOT', 'USDOT', 'SUDOT')
+                        if is_dot_narrow and sz_width == 2:
+                            # Dot product Tb: size[0] → {0: B, 1: H}
+                            code.append(f'{ind}const char* _sve_arr_narrow = (enc.{member_name}.{sve_size_field} & 1) ? "h" : "b";')
+                        else:
+                            code.append(f'{ind}// Narrow arrangement: one step smaller than _sve_arr')
+                            code.append(f'{ind}const char* _sve_arr_narrow = nullptr;')
+                            code.append(f'{ind}switch (enc.{member_name}.{sve_size_field}) {{')
+                            code.append(f'{ind}    case 1: _sve_arr_narrow = "b"; break;')
+                            code.append(f'{ind}    case 2: _sve_arr_narrow = "h"; break;')
+                            code.append(f'{ind}    case 3: _sve_arr_narrow = "s"; break;')
+                            code.append(f'{ind}}}')
                 elif sz_width == 1:
                     code.append(f'{ind}const char* _sve_arr = enc.{member_name}.{sve_size_field} ? "d" : "s";')
                     if needs_narrow:
@@ -5250,11 +5380,17 @@ class ARM64XMLParser:
 
             # Emit SVE/predicate operands in template order
             emitted_fields = set()
+            # Count how many times each field appears in template (for destructive ops like NBSL)
+            from collections import Counter
+            field_template_count = Counter(top['field'] for top in template_ops)
+            field_emit_count = Counter()
             for top in template_ops:
                 field = top['field']
                 arr = top.get('arrangement')
                 qual = top.get('qualifier')
-                if field in emitted_fields:
+                field_emit_count[field] += 1
+                # Skip if field already emitted its expected number of times
+                if field_emit_count[field] > field_template_count[field]:
                     continue
                 if field not in field_map or field_map[field]['is_fixed']:
                     continue
@@ -5419,6 +5555,15 @@ class ARM64XMLParser:
                 if imm_name == 'imm6' and has_shift_field:
                     continue
 
+                # For SVE shift-by-immediate: replace raw imm3 with computed shift amount
+                if imm_name == 'imm3' and has_tsz_size:
+                    # Determine shift direction from mnemonic
+                    mnem_upper = mnemonic.upper()
+                    is_left_shift = any(s in mnem_upper for s in ['SHLL', 'SLI'])
+                    shift_var = '_shift_left' if is_left_shift else '_shift_right'
+                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, {shift_var}, true));")
+                    continue
+
                 field_cpp_name = field_map[imm_name]['name']
 
                 # FMOV floatimm: imm8 is a VFP-encoded float, not a raw integer
@@ -5426,13 +5571,17 @@ class ARM64XMLParser:
                     code.append(f"{ind}result.operands.push_back(Operand(OperandType::FloatImmediate, enc.{member_name}.{field_cpp_name}, true));")
                     continue
 
-                if is_unsigned or not self._is_signed_field(imm_name):
+                # SVE signed compare imm5: CMPEQ/CMPGE/CMPGT/CMPLE/CMPLT/CMPNE use signed 5-bit (-16..15)
+                is_sve_signed_cmp = (imm_name == 'imm5' and mnemonic in ['CMPEQ', 'CMPGE', 'CMPGT', 'CMPLE', 'CMPLT', 'CMPNE']
+                                     and any(rn in field_map for rn in ['Zn', 'Zm', 'Pd']))
+                treat_as_signed = is_sve_signed_cmp or (not is_unsigned and self._is_signed_field(imm_name))
+                if not treat_as_signed:
                     code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.{field_cpp_name}, true));")
                 else:
                     # Sign extend
                     code.append(f"{ind}{{")
                     code.append(f"{ind}    int32_t val = static_cast<int32_t>(enc.{member_name}.{field_cpp_name} << {32-bits}) >> {32-bits};")
-                    code.append(f"{ind}    result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));")
+                    code.append(f"{ind}    result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));")
                     code.append(f"{ind}}}")
 
         # Extract SVE/SME offset fields
