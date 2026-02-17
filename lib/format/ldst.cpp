@@ -46739,52 +46739,38 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDRAA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldraa64ldst_pac.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldraa64ldst_pac.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.ldraa64ldst_pac.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldraa64ldst_pac.Rt, true));
+                        int32_t imm = enc.ldraa64ldst_pac.imm9 * 8;  // sign-extended (imm9 is int32_t) and scaled
+                        if (imm == 0) result.operands.push_back(Operand::memory_base(enc.ldraa64ldst_pac.Rn));
+                        else result.operands.push_back(Operand::memory_offset(enc.ldraa64ldst_pac.Rn, imm));
                         return result;
         }
         case 0xF8200C00u: { // LDRAA_64W_ldst_pac
                         Instruction result(Mnemonic::LDRAA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldraa64w_ldst_pac.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldraa64w_ldst_pac.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.ldraa64w_ldst_pac.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldraa64w_ldst_pac.Rt, true));
+                        int32_t imm = enc.ldraa64w_ldst_pac.imm9 * 8;  // sign-extended (imm9 is int32_t) and scaled
+                        result.operands.push_back(Operand::memory_pre_index(enc.ldraa64w_ldst_pac.Rn, imm));
                         return result;
         }
         case 0xF8A00400u: { // LDRAB_64_ldst_pac
                         Instruction result(Mnemonic::LDRAB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldrab64ldst_pac.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldrab64ldst_pac.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.ldrab64ldst_pac.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldrab64ldst_pac.Rt, true));
+                        int32_t imm = enc.ldrab64ldst_pac.imm9 * 8;  // sign-extended (imm9 is int32_t) and scaled
+                        if (imm == 0) result.operands.push_back(Operand::memory_base(enc.ldrab64ldst_pac.Rn));
+                        else result.operands.push_back(Operand::memory_offset(enc.ldrab64ldst_pac.Rn, imm));
                         return result;
         }
         case 0xF8A00C00u: { // LDRAB_64W_ldst_pac
                         Instruction result(Mnemonic::LDRAB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldrab64w_ldst_pac.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldrab64w_ldst_pac.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.ldrab64w_ldst_pac.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldrab64w_ldst_pac.Rt, true));
+                        int32_t imm = enc.ldrab64w_ldst_pac.imm9 * 8;  // sign-extended (imm9 is int32_t) and scaled
+                        result.operands.push_back(Operand::memory_pre_index(enc.ldrab64w_ldst_pac.Rn, imm));
                         return result;
         }
         default: break;

@@ -1625,6 +1625,8 @@ enum class OperandType {
     FloatImmediate,     // Floating-point immediate (#0.0, etc.)
     VectorRegisterList, // Vector register list { Vt.T, Vt+1.T, ... }
     SVERegisterList,    // SVE register list { Zt.T, Zt+1.T, ... }
+    MemoryOffsetMulVL,  // SVE memory [base, #offset, mul vl]
+    MemorySVEOffset,    // SVE gather memory [Zn.T, #offset]
     Unknown
 };
 

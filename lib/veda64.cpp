@@ -1960,6 +1960,40 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
             oss << "], p" << std::dec << Pg << "/m, z" << Zn << "." << sz_name;
             return oss.str();
         }
+        // Detect mov_z_p_rza variants (ZA tile slice → Z vector): bit17=1, bits[21:18]=0
+        if ((raw & 0xFF3E0000u) == 0xC0020000u) {
+            uint32_t size = (raw >> 22) & 3;
+            bool is_q = ((raw >> 16) & 1) != 0;
+            uint32_t V = (raw >> 15) & 1;
+            uint32_t Rs = (raw >> 13) & 3;
+            uint32_t Pg = (raw >> 10) & 7;
+            uint32_t Zd = raw & 0x1F;
+            std::ostringstream oss;
+            oss << "mov ";
+            const char* hv = V ? "v" : "h";
+            const char* sz_name;
+            uint32_t tile, offset;
+            // tile/offset encoded in bits[8:5] of the instruction
+            if (size == 0 && !is_q) {
+                sz_name = "b"; tile = 0; offset = (raw >> 5) & 0xF;
+            } else if (size == 1 && !is_q) {
+                sz_name = "h"; tile = (raw >> 8) & 1; offset = (raw >> 5) & 7;
+            } else if (size == 2 && !is_q) {
+                sz_name = "s"; tile = (raw >> 7) & 3; offset = (raw >> 5) & 3;
+            } else if (size == 3 && !is_q) {
+                sz_name = "d"; tile = (raw >> 6) & 7; offset = (raw >> 5) & 1;
+            } else {
+                sz_name = "q"; tile = (raw >> 5) & 0xF; offset = 0;
+            }
+            oss << "z" << Zd << "." << sz_name;
+            oss << ", p" << std::dec << Pg << "/m, ";
+            oss << "za" << tile << hv << "." << sz_name;
+            oss << "[w" << (12 + Rs) << ", ";
+            if (offset >= 10) oss << "0x" << std::hex << offset;
+            else oss << std::dec << offset;
+            oss << "]";
+            return oss.str();
+        }
     }
 
     return std::nullopt;  // No alias
@@ -1977,7 +2011,8 @@ std::string Instruction::to_string() const {
     std::string result = mnemonic_to_string(mnemonic);
 
     // SIMD long/wide instructions: Q=1 → add '2' suffix (PMULL→PMULL2, SMLAL→SMLAL2, etc.)
-    if ((raw_value >> 30) & 1) {  // Q bit
+    // Only for SIMD (bit31=0); SME2 instructions have bit31=1 and must not get this suffix
+    if (!(raw_value >> 31) && ((raw_value >> 30) & 1)) {  // Q bit, non-SME only
         if (mnemonic == Mnemonic::PMULL || mnemonic == Mnemonic::SMLAL || mnemonic == Mnemonic::SMLSL ||
             mnemonic == Mnemonic::UMLAL || mnemonic == Mnemonic::UMLSL || mnemonic == Mnemonic::SMULL ||
             mnemonic == Mnemonic::UMULL || mnemonic == Mnemonic::SQDMLAL || mnemonic == Mnemonic::SQDMLSL ||
@@ -2101,6 +2136,31 @@ std::string Operand::to_string() const {
         }
 
         case OperandType::SMETileRegister:
+            // extend!=0: ZA accumulator range za.T[wN, start:end]
+            if (has_index && extend) {
+                std::string r = "za";
+                if (arrangement && arrangement[0] != '\0') { r += "."; r += arrangement; }
+                r += "[w" + std::to_string(index) + ", ";
+                if (amount >= 10) { std::ostringstream oss; oss << "0x" << std::hex << amount; r += oss.str(); }
+                else r += std::to_string(amount);
+                r += ":";
+                uint32_t range_end = (uint32_t)(int32_t)offset;
+                if (range_end >= 10) { std::ostringstream oss; oss << "0x" << std::hex << range_end; r += oss.str(); }
+                else r += std::to_string(range_end);
+                r += "]";
+                return r;
+            }
+            // has_index=true: ZA tile slice {zaXv/h.T[wN, offs]}
+            if (has_index) {
+                std::string r = "{ za" + std::to_string(value);
+                r += is_sp ? "v" : "h";
+                if (arrangement && arrangement[0] != '\0') { r += "."; r += arrangement; }
+                r += "[w" + std::to_string(index) + ", ";
+                if (amount >= 10) { std::ostringstream oss; oss << "0x" << std::hex << amount; r += oss.str(); }
+                else r += std::to_string(amount);
+                r += "] }";
+                return r;
+            }
             return "za" + std::to_string(value);
 
         case OperandType::MemoryBase:
@@ -2169,8 +2229,8 @@ std::string Operand::to_string() const {
                 if (extend == 3 && amount == 0) {
                     // Default: no extend/shift needed
                 } else if (extend != 0 || amount != 0) {
-                    const char* extends[] = {"UXTB", "UXTH", "UXTW", "LSL",
-                                             "SXTB", "SXTH", "SXTW", "SXTX"};
+                    const char* extends[] = {"uxtb", "uxth", "uxtw", "lsl",
+                                             "sxtb", "sxth", "sxtw", "sxtx"};
                     if (extend < 8) {
                         result += ", " + std::string(extends[extend]);
                         if (amount != 0) {
@@ -3224,6 +3284,15 @@ std::string Operand::to_string() const {
         case OperandType::SVERegisterList:
             {
                 // value = first register, index = count, arrangement = element type
+                // Use range notation { Zn.T - Zn+2.T } for count==3 when non-wrapping
+                if (index == 3 && (value + 2) <= 31) {
+                    std::string result = "{ z" + std::to_string(value);
+                    if (arrangement && arrangement[0] != '\0') { result += "."; result += arrangement; }
+                    result += " - z" + std::to_string(value + 2);
+                    if (arrangement && arrangement[0] != '\0') { result += "."; result += arrangement; }
+                    result += " }";
+                    return result;
+                }
                 std::string result = "{ ";
                 for (uint32_t i = 0; i < index; ++i) {
                     if (i > 0) result += ", ";
@@ -3238,6 +3307,46 @@ std::string Operand::to_string() const {
                 if (has_index) {
                     result += "[" + std::to_string(amount) + "]";
                 }
+                return result;
+            }
+
+        case OperandType::MemoryOffsetMulVL:
+            // [Xn|SP, #offset, mul vl] or [Xn|SP] when offset==0
+            if (offset == 0) {
+                return "[" + format_register(base_reg, true, true) + "]";
+            }
+            {
+                std::ostringstream oss;
+                oss << "[" << format_register(base_reg, true, true) << ", #";
+                if (offset < 0) {
+                    if (offset >= -15) oss << std::dec << offset;
+                    else oss << "-0x" << std::hex << (-offset);
+                } else {
+                    if (offset <= 15) oss << std::dec << offset;
+                    else oss << "0x" << std::hex << offset;
+                }
+                oss << ", mul vl]";
+                return oss.str();
+            }
+
+        case OperandType::MemorySVEOffset:
+            // [Zn.T, #offset] or [Zn.T] when offset==0
+            {
+                std::string result = "[z" + std::to_string(base_reg);
+                if (arrangement && arrangement[0] != '\0') { result += "."; result += arrangement; }
+                if (offset != 0) {
+                    std::ostringstream oss;
+                    oss << ", #";
+                    if (offset < 0) {
+                        if (offset >= -15) oss << std::dec << offset;
+                        else oss << "-0x" << std::hex << (-offset);
+                    } else {
+                        if (offset <= 15) oss << std::dec << offset;
+                        else oss << "0x" << std::hex << offset;
+                    }
+                    result += oss.str();
+                }
+                result += "]";
                 return result;
             }
 

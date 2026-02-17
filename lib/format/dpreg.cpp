@@ -7817,28 +7817,48 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x1A800400u: { // CINC_CSINC_32_condsel
             // Also matches: CSINC_32_condsel (CSINC)
-            if (((insn >> 16) & 0x1F) == 0x1F || ((insn >> 5) & 0x1F) == 0x1F) break;
+            if (!(((insn >> 16) & 0x1F) == 0x1F || ((insn >> 5) & 0x1F) == 0x1F)) {
+                                Instruction result(Mnemonic::CSINC, insn);
+                                DpregEncoding enc = {};
+                                enc.raw = insn;
+                                bool is_64bit = false;
+                                result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc32condsel.Rd, is_64bit));
+                                result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc32condsel.Rn, is_64bit));
+                                result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc32condsel.Rm, is_64bit));
+                                result.condition = static_cast<Condition>(enc.cinc_csinc32condsel.cond);
+                                return result;
+            }
                         Instruction result(Mnemonic::CSINC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc32condsel.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc32condsel.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc32condsel.Rm, is_64bit));
-                        result.condition = static_cast<Condition>(enc.cinc_csinc32condsel.cond);
+                        result.operands.push_back(Operand(OperandType::Register, enc.csinc32condsel.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.csinc32condsel.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.csinc32condsel.Rm, is_64bit));
+                        result.condition = static_cast<Condition>(enc.csinc32condsel.cond);
                         return result;
         }
         case 0x5A800000u: { // CINV_CSINV_32_condsel
             // Also matches: CSINV_32_condsel (CSINV)
-            if (((insn >> 16) & 0x1F) == 0x1F || ((insn >> 5) & 0x1F) == 0x1F) break;
+            if (!(((insn >> 16) & 0x1F) == 0x1F || ((insn >> 5) & 0x1F) == 0x1F)) {
+                                Instruction result(Mnemonic::CSINV, insn);
+                                DpregEncoding enc = {};
+                                enc.raw = insn;
+                                bool is_64bit = false;
+                                result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv32condsel.Rd, is_64bit));
+                                result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv32condsel.Rn, is_64bit));
+                                result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv32condsel.Rm, is_64bit));
+                                result.condition = static_cast<Condition>(enc.cinv_csinv32condsel.cond);
+                                return result;
+            }
                         Instruction result(Mnemonic::CSINV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv32condsel.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv32condsel.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv32condsel.Rm, is_64bit));
-                        result.condition = static_cast<Condition>(enc.cinv_csinv32condsel.cond);
+                        result.operands.push_back(Operand(OperandType::Register, enc.csinv32condsel.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.csinv32condsel.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.csinv32condsel.Rm, is_64bit));
+                        result.condition = static_cast<Condition>(enc.csinv32condsel.cond);
                         return result;
         }
         case 0x5A800400u: { // CNEG_CSNEG_32_condsel
@@ -7866,28 +7886,48 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9A800400u: { // CINC_CSINC_64_condsel
             // Also matches: CSINC_64_condsel (CSINC)
-            if (((insn >> 16) & 0x1F) == 0x1F || ((insn >> 5) & 0x1F) == 0x1F) break;
+            if (!(((insn >> 16) & 0x1F) == 0x1F || ((insn >> 5) & 0x1F) == 0x1F)) {
+                                Instruction result(Mnemonic::CSINC, insn);
+                                DpregEncoding enc = {};
+                                enc.raw = insn;
+                                bool is_64bit = true;
+                                result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc64condsel.Rd, is_64bit));
+                                result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc64condsel.Rn, is_64bit));
+                                result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc64condsel.Rm, is_64bit));
+                                result.condition = static_cast<Condition>(enc.cinc_csinc64condsel.cond);
+                                return result;
+            }
                         Instruction result(Mnemonic::CSINC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc64condsel.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc64condsel.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc64condsel.Rm, is_64bit));
-                        result.condition = static_cast<Condition>(enc.cinc_csinc64condsel.cond);
+                        result.operands.push_back(Operand(OperandType::Register, enc.csinc64condsel.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.csinc64condsel.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.csinc64condsel.Rm, is_64bit));
+                        result.condition = static_cast<Condition>(enc.csinc64condsel.cond);
                         return result;
         }
         case 0xDA800000u: { // CINV_CSINV_64_condsel
             // Also matches: CSINV_64_condsel (CSINV)
-            if (((insn >> 16) & 0x1F) == 0x1F || ((insn >> 5) & 0x1F) == 0x1F) break;
+            if (!(((insn >> 16) & 0x1F) == 0x1F || ((insn >> 5) & 0x1F) == 0x1F)) {
+                                Instruction result(Mnemonic::CSINV, insn);
+                                DpregEncoding enc = {};
+                                enc.raw = insn;
+                                bool is_64bit = true;
+                                result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv64condsel.Rd, is_64bit));
+                                result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv64condsel.Rn, is_64bit));
+                                result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv64condsel.Rm, is_64bit));
+                                result.condition = static_cast<Condition>(enc.cinv_csinv64condsel.cond);
+                                return result;
+            }
                         Instruction result(Mnemonic::CSINV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv64condsel.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv64condsel.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv64condsel.Rm, is_64bit));
-                        result.condition = static_cast<Condition>(enc.cinv_csinv64condsel.cond);
+                        result.operands.push_back(Operand(OperandType::Register, enc.csinv64condsel.Rd, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.csinv64condsel.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.csinv64condsel.Rm, is_64bit));
+                        result.condition = static_cast<Condition>(enc.csinv64condsel.cond);
                         return result;
         }
         case 0xDA800400u: { // CNEG_CSNEG_64_condsel
