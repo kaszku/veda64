@@ -38717,18 +38717,16 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlr32s_ldapstl_writeback.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlr32s_ldapstl_writeback.Rt, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stlr32s_ldapstl_writeback.Rt, false));
+                        result.operands.push_back(Operand::memory_base(enc.stlr32s_ldapstl_writeback.Rn));
                         return result;
         }
         case 0x99C00800u: { // LDAPR_32L_ldapstl_writeback
                         Instruction result(Mnemonic::LDAPR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapr32l_ldapstl_writeback.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapr32l_ldapstl_writeback.Rt, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldapr32l_ldapstl_writeback.Rt, false));
+                        result.operands.push_back(Operand::memory_base(enc.ldapr32l_ldapstl_writeback.Rn));
                         return result;
         }
         case 0xD91F0C00u: { // GCSSTR_64_ldst_gcs
@@ -38753,45 +38751,43 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STZGM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stzgm64bulk_ldsttags.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stzgm64bulk_ldsttags.Rt, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stzgm64bulk_ldsttags.Rt, true));
+                        int32_t imm = (static_cast<int32_t>(enc.stzgm64bulk_ldsttags.imm9 << 23) >> 23) * 16;
+                        result.operands.push_back(Operand::memory_offset(enc.stzgm64bulk_ldsttags.Rn, imm));
                         return result;
         }
         case 0xD9800800u: { // STLR_64S_ldapstl_writeback
                         Instruction result(Mnemonic::STLR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlr64s_ldapstl_writeback.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlr64s_ldapstl_writeback.Rt, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stlr64s_ldapstl_writeback.Rt, false));
+                        result.operands.push_back(Operand::memory_base(enc.stlr64s_ldapstl_writeback.Rn));
                         return result;
         }
         case 0xD9A00000u: { // STGM_64bulk_ldsttags
                         Instruction result(Mnemonic::STGM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stgm64bulk_ldsttags.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stgm64bulk_ldsttags.Rt, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.stgm64bulk_ldsttags.Rt, true));
+                        int32_t imm = (static_cast<int32_t>(enc.stgm64bulk_ldsttags.imm9 << 23) >> 23) * 16;
+                        result.operands.push_back(Operand::memory_offset(enc.stgm64bulk_ldsttags.Rn, imm));
                         return result;
         }
         case 0xD9C00800u: { // LDAPR_64L_ldapstl_writeback
                         Instruction result(Mnemonic::LDAPR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapr64l_ldapstl_writeback.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapr64l_ldapstl_writeback.Rt, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldapr64l_ldapstl_writeback.Rt, false));
+                        result.operands.push_back(Operand::memory_base(enc.ldapr64l_ldapstl_writeback.Rn));
                         return result;
         }
         case 0xD9E00000u: { // LDGM_64bulk_ldsttags
                         Instruction result(Mnemonic::LDGM, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldgm64bulk_ldsttags.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldgm64bulk_ldsttags.Rt, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldgm64bulk_ldsttags.Rt, true));
+                        int32_t imm = (static_cast<int32_t>(enc.ldgm64bulk_ldsttags.imm9 << 23) >> 23) * 16;
+                        result.operands.push_back(Operand::memory_offset(enc.ldgm64bulk_ldsttags.Rn, imm));
                         return result;
         }
         case 0xF83F9000u: { // ST64B_64L_memop
@@ -44326,104 +44322,72 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLURB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlurb32ldapstl_unscaled.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlurb32ldapstl_unscaled.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.stlurb32ldapstl_unscaled.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.stlurb32ldapstl_unscaled.Rt, false));
+                        int32_t imm = static_cast<int32_t>(enc.stlurb32ldapstl_unscaled.imm9 << 23) >> 23;
+                        result.operands.push_back(Operand::memory_offset(enc.stlurb32ldapstl_unscaled.Rn, imm));
                         return result;
         }
         case 0x19400000u: { // LDAPURB_32_ldapstl_unscaled
                         Instruction result(Mnemonic::LDAPURB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapurb32ldapstl_unscaled.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapurb32ldapstl_unscaled.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.ldapurb32ldapstl_unscaled.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldapurb32ldapstl_unscaled.Rt, false));
+                        int32_t imm = static_cast<int32_t>(enc.ldapurb32ldapstl_unscaled.imm9 << 23) >> 23;
+                        result.operands.push_back(Operand::memory_offset(enc.ldapurb32ldapstl_unscaled.Rn, imm));
                         return result;
         }
         case 0x19800000u: { // LDAPURSB_64_ldapstl_unscaled
                         Instruction result(Mnemonic::LDAPURSB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapursb64ldapstl_unscaled.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapursb64ldapstl_unscaled.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.ldapursb64ldapstl_unscaled.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldapursb64ldapstl_unscaled.Rt, true));
+                        int32_t imm = static_cast<int32_t>(enc.ldapursb64ldapstl_unscaled.imm9 << 23) >> 23;
+                        result.operands.push_back(Operand::memory_offset(enc.ldapursb64ldapstl_unscaled.Rn, imm));
                         return result;
         }
         case 0x19C00000u: { // LDAPURSB_32_ldapstl_unscaled
                         Instruction result(Mnemonic::LDAPURSB, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapursb32ldapstl_unscaled.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapursb32ldapstl_unscaled.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.ldapursb32ldapstl_unscaled.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldapursb32ldapstl_unscaled.Rt, false));
+                        int32_t imm = static_cast<int32_t>(enc.ldapursb32ldapstl_unscaled.imm9 << 23) >> 23;
+                        result.operands.push_back(Operand::memory_offset(enc.ldapursb32ldapstl_unscaled.Rn, imm));
                         return result;
         }
         case 0x1D000800u: { // STLUR_B_ldapstl_simd
                         Instruction result(Mnemonic::STLUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlur_bldapstl_simd.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlur_bldapstl_simd.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.stlur_bldapstl_simd.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.stlur_bldapstl_simd.Rt, false));
+                        int32_t imm = static_cast<int32_t>(enc.stlur_bldapstl_simd.imm9 << 23) >> 23;
+                        result.operands.push_back(Operand::memory_offset(enc.stlur_bldapstl_simd.Rn, imm));
                         return result;
         }
         case 0x1D400800u: { // LDAPUR_B_ldapstl_simd
                         Instruction result(Mnemonic::LDAPUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur_bldapstl_simd.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur_bldapstl_simd.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.ldapur_bldapstl_simd.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur_bldapstl_simd.Rt, false));
+                        int32_t imm = static_cast<int32_t>(enc.ldapur_bldapstl_simd.imm9 << 23) >> 23;
+                        result.operands.push_back(Operand::memory_offset(enc.ldapur_bldapstl_simd.Rn, imm));
                         return result;
         }
         case 0x1D800800u: { // STLUR_Q_ldapstl_simd
                         Instruction result(Mnemonic::STLUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlur_qldapstl_simd.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlur_qldapstl_simd.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.stlur_qldapstl_simd.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.stlur_qldapstl_simd.Rt, false));
+                        int32_t imm = static_cast<int32_t>(enc.stlur_qldapstl_simd.imm9 << 23) >> 23;
+                        result.operands.push_back(Operand::memory_offset(enc.stlur_qldapstl_simd.Rn, imm));
                         return result;
         }
         case 0x1DC00800u: { // LDAPUR_Q_ldapstl_simd
                         Instruction result(Mnemonic::LDAPUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur_qldapstl_simd.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur_qldapstl_simd.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.ldapur_qldapstl_simd.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur_qldapstl_simd.Rt, false));
+                        int32_t imm = static_cast<int32_t>(enc.ldapur_qldapstl_simd.imm9 << 23) >> 23;
+                        result.operands.push_back(Operand::memory_offset(enc.ldapur_qldapstl_simd.Rn, imm));
                         return result;
         }
         case 0x38000000u: { // STURB_32_ldst_unscaled
@@ -44798,78 +44762,54 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLURH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlurh32ldapstl_unscaled.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlurh32ldapstl_unscaled.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.stlurh32ldapstl_unscaled.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.stlurh32ldapstl_unscaled.Rt, false));
+                        int32_t imm = static_cast<int32_t>(enc.stlurh32ldapstl_unscaled.imm9 << 23) >> 23;
+                        result.operands.push_back(Operand::memory_offset(enc.stlurh32ldapstl_unscaled.Rn, imm));
                         return result;
         }
         case 0x59400000u: { // LDAPURH_32_ldapstl_unscaled
                         Instruction result(Mnemonic::LDAPURH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapurh32ldapstl_unscaled.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapurh32ldapstl_unscaled.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.ldapurh32ldapstl_unscaled.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldapurh32ldapstl_unscaled.Rt, false));
+                        int32_t imm = static_cast<int32_t>(enc.ldapurh32ldapstl_unscaled.imm9 << 23) >> 23;
+                        result.operands.push_back(Operand::memory_offset(enc.ldapurh32ldapstl_unscaled.Rn, imm));
                         return result;
         }
         case 0x59800000u: { // LDAPURSH_64_ldapstl_unscaled
                         Instruction result(Mnemonic::LDAPURSH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapursh64ldapstl_unscaled.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapursh64ldapstl_unscaled.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.ldapursh64ldapstl_unscaled.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldapursh64ldapstl_unscaled.Rt, true));
+                        int32_t imm = static_cast<int32_t>(enc.ldapursh64ldapstl_unscaled.imm9 << 23) >> 23;
+                        result.operands.push_back(Operand::memory_offset(enc.ldapursh64ldapstl_unscaled.Rn, imm));
                         return result;
         }
         case 0x59C00000u: { // LDAPURSH_32_ldapstl_unscaled
                         Instruction result(Mnemonic::LDAPURSH, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapursh32ldapstl_unscaled.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapursh32ldapstl_unscaled.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.ldapursh32ldapstl_unscaled.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldapursh32ldapstl_unscaled.Rt, false));
+                        int32_t imm = static_cast<int32_t>(enc.ldapursh32ldapstl_unscaled.imm9 << 23) >> 23;
+                        result.operands.push_back(Operand::memory_offset(enc.ldapursh32ldapstl_unscaled.Rn, imm));
                         return result;
         }
         case 0x5D000800u: { // STLUR_H_ldapstl_simd
                         Instruction result(Mnemonic::STLUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlur_hldapstl_simd.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlur_hldapstl_simd.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.stlur_hldapstl_simd.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.stlur_hldapstl_simd.Rt, false));
+                        int32_t imm = static_cast<int32_t>(enc.stlur_hldapstl_simd.imm9 << 23) >> 23;
+                        result.operands.push_back(Operand::memory_offset(enc.stlur_hldapstl_simd.Rn, imm));
                         return result;
         }
         case 0x5D400800u: { // LDAPUR_H_ldapstl_simd
                         Instruction result(Mnemonic::LDAPUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur_hldapstl_simd.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur_hldapstl_simd.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.ldapur_hldapstl_simd.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur_hldapstl_simd.Rt, false));
+                        int32_t imm = static_cast<int32_t>(enc.ldapur_hldapstl_simd.imm9 << 23) >> 23;
+                        result.operands.push_back(Operand::memory_offset(enc.ldapur_hldapstl_simd.Rn, imm));
                         return result;
         }
         case 0x78000000u: { // STURH_32_ldst_unscaled
@@ -45164,65 +45104,45 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlur32ldapstl_unscaled.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlur32ldapstl_unscaled.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.stlur32ldapstl_unscaled.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.stlur32ldapstl_unscaled.Rt, false));
+                        int32_t imm = static_cast<int32_t>(enc.stlur32ldapstl_unscaled.imm9 << 23) >> 23;
+                        result.operands.push_back(Operand::memory_offset(enc.stlur32ldapstl_unscaled.Rn, imm));
                         return result;
         }
         case 0x99400000u: { // LDAPUR_32_ldapstl_unscaled
                         Instruction result(Mnemonic::LDAPUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur32ldapstl_unscaled.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur32ldapstl_unscaled.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.ldapur32ldapstl_unscaled.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur32ldapstl_unscaled.Rt, false));
+                        int32_t imm = static_cast<int32_t>(enc.ldapur32ldapstl_unscaled.imm9 << 23) >> 23;
+                        result.operands.push_back(Operand::memory_offset(enc.ldapur32ldapstl_unscaled.Rn, imm));
                         return result;
         }
         case 0x99800000u: { // LDAPURSW_64_ldapstl_unscaled
                         Instruction result(Mnemonic::LDAPURSW, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapursw64ldapstl_unscaled.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapursw64ldapstl_unscaled.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.ldapursw64ldapstl_unscaled.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldapursw64ldapstl_unscaled.Rt, true));
+                        int32_t imm = static_cast<int32_t>(enc.ldapursw64ldapstl_unscaled.imm9 << 23) >> 23;
+                        result.operands.push_back(Operand::memory_offset(enc.ldapursw64ldapstl_unscaled.Rn, imm));
                         return result;
         }
         case 0x9D000800u: { // STLUR_S_ldapstl_simd
                         Instruction result(Mnemonic::STLUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlur_sldapstl_simd.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlur_sldapstl_simd.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.stlur_sldapstl_simd.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.stlur_sldapstl_simd.Rt, false));
+                        int32_t imm = static_cast<int32_t>(enc.stlur_sldapstl_simd.imm9 << 23) >> 23;
+                        result.operands.push_back(Operand::memory_offset(enc.stlur_sldapstl_simd.Rn, imm));
                         return result;
         }
         case 0x9D400800u: { // LDAPUR_S_ldapstl_simd
                         Instruction result(Mnemonic::LDAPUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur_sldapstl_simd.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur_sldapstl_simd.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.ldapur_sldapstl_simd.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur_sldapstl_simd.Rt, false));
+                        int32_t imm = static_cast<int32_t>(enc.ldapur_sldapstl_simd.imm9 << 23) >> 23;
+                        result.operands.push_back(Operand::memory_offset(enc.ldapur_sldapstl_simd.Rn, imm));
                         return result;
         }
         case 0xB8000000u: { // STUR_32_ldst_unscaled
@@ -45336,7 +45256,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ldursw64ldst_unscaled.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.ldursw64ldst_unscaled.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -45355,12 +45275,10 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldtrsw64ldst_unpriv.Rn, is_64bit));
+                        int scale = 8;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldtrsw64ldst_unpriv.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.ldtrsw64ldst_unpriv.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        int32_t imm = (static_cast<int32_t>(enc.ldtrsw64ldst_unpriv.imm9) << 23) >> 23;
+                        result.operands.push_back(Operand::memory_offset(enc.ldtrsw64ldst_unpriv.Rn, imm));
                         return result;
         }
         case 0xB8800C00u: { // LDRSW_64_ldst_immpre
@@ -45498,221 +45416,153 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlur64ldapstl_unscaled.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlur64ldapstl_unscaled.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.stlur64ldapstl_unscaled.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.stlur64ldapstl_unscaled.Rt, true));
+                        int32_t imm = static_cast<int32_t>(enc.stlur64ldapstl_unscaled.imm9 << 23) >> 23;
+                        result.operands.push_back(Operand::memory_offset(enc.stlur64ldapstl_unscaled.Rn, imm));
                         return result;
         }
         case 0xD9200400u: { // STG_64Spost_ldsttags
                         Instruction result(Mnemonic::STG, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stg64spost_ldsttags.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stg64spost_ldsttags.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.stg64spost_ldsttags.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        { Operand op(OperandType::Register, enc.stg64spost_ldsttags.Rt, true); op.is_sp = true; result.operands.push_back(op); }
+                        int32_t imm = (static_cast<int32_t>(enc.stg64spost_ldsttags.imm9 << 23) >> 23) * 16;
+                        result.operands.push_back(Operand::memory_post_index(enc.stg64spost_ldsttags.Rn, imm));
                         return result;
         }
         case 0xD9200800u: { // STG_64Soffset_ldsttags
                         Instruction result(Mnemonic::STG, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stg64soffset_ldsttags.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stg64soffset_ldsttags.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.stg64soffset_ldsttags.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        { Operand op(OperandType::Register, enc.stg64soffset_ldsttags.Rt, true); op.is_sp = true; result.operands.push_back(op); }
+                        int32_t imm = (static_cast<int32_t>(enc.stg64soffset_ldsttags.imm9 << 23) >> 23) * 16;
+                        result.operands.push_back(Operand::memory_offset(enc.stg64soffset_ldsttags.Rn, imm));
                         return result;
         }
         case 0xD9200C00u: { // STG_64Spre_ldsttags
                         Instruction result(Mnemonic::STG, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stg64spre_ldsttags.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stg64spre_ldsttags.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.stg64spre_ldsttags.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        { Operand op(OperandType::Register, enc.stg64spre_ldsttags.Rt, true); op.is_sp = true; result.operands.push_back(op); }
+                        int32_t imm = (static_cast<int32_t>(enc.stg64spre_ldsttags.imm9 << 23) >> 23) * 16;
+                        result.operands.push_back(Operand::memory_pre_index(enc.stg64spre_ldsttags.Rn, imm));
                         return result;
         }
         case 0xD9400000u: { // LDAPUR_64_ldapstl_unscaled
                         Instruction result(Mnemonic::LDAPUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur64ldapstl_unscaled.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur64ldapstl_unscaled.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.ldapur64ldapstl_unscaled.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur64ldapstl_unscaled.Rt, true));
+                        int32_t imm = static_cast<int32_t>(enc.ldapur64ldapstl_unscaled.imm9 << 23) >> 23;
+                        result.operands.push_back(Operand::memory_offset(enc.ldapur64ldapstl_unscaled.Rn, imm));
                         return result;
         }
         case 0xD9600000u: { // LDG_64Loffset_ldsttags
                         Instruction result(Mnemonic::LDG, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldg64loffset_ldsttags.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldg64loffset_ldsttags.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.ldg64loffset_ldsttags.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldg64loffset_ldsttags.Rt, true));
+                        int32_t imm = (static_cast<int32_t>(enc.ldg64loffset_ldsttags.imm9 << 23) >> 23) * 16;
+                        result.operands.push_back(Operand::memory_offset(enc.ldg64loffset_ldsttags.Rn, imm));
                         return result;
         }
         case 0xD9600400u: { // STZG_64Spost_ldsttags
                         Instruction result(Mnemonic::STZG, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stzg64spost_ldsttags.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stzg64spost_ldsttags.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.stzg64spost_ldsttags.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        { Operand op(OperandType::Register, enc.stzg64spost_ldsttags.Rt, true); op.is_sp = true; result.operands.push_back(op); }
+                        int32_t imm = (static_cast<int32_t>(enc.stzg64spost_ldsttags.imm9 << 23) >> 23) * 16;
+                        result.operands.push_back(Operand::memory_post_index(enc.stzg64spost_ldsttags.Rn, imm));
                         return result;
         }
         case 0xD9600800u: { // STZG_64Soffset_ldsttags
                         Instruction result(Mnemonic::STZG, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stzg64soffset_ldsttags.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stzg64soffset_ldsttags.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.stzg64soffset_ldsttags.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        { Operand op(OperandType::Register, enc.stzg64soffset_ldsttags.Rt, true); op.is_sp = true; result.operands.push_back(op); }
+                        int32_t imm = (static_cast<int32_t>(enc.stzg64soffset_ldsttags.imm9 << 23) >> 23) * 16;
+                        result.operands.push_back(Operand::memory_offset(enc.stzg64soffset_ldsttags.Rn, imm));
                         return result;
         }
         case 0xD9600C00u: { // STZG_64Spre_ldsttags
                         Instruction result(Mnemonic::STZG, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stzg64spre_ldsttags.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stzg64spre_ldsttags.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.stzg64spre_ldsttags.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        { Operand op(OperandType::Register, enc.stzg64spre_ldsttags.Rt, true); op.is_sp = true; result.operands.push_back(op); }
+                        int32_t imm = (static_cast<int32_t>(enc.stzg64spre_ldsttags.imm9 << 23) >> 23) * 16;
+                        result.operands.push_back(Operand::memory_pre_index(enc.stzg64spre_ldsttags.Rn, imm));
                         return result;
         }
         case 0xD9A00400u: { // ST2G_64Spost_ldsttags
                         Instruction result(Mnemonic::ST2G, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2g64spost_ldsttags.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2g64spost_ldsttags.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.st2g64spost_ldsttags.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        { Operand op(OperandType::Register, enc.st2g64spost_ldsttags.Rt, true); op.is_sp = true; result.operands.push_back(op); }
+                        int32_t imm = (static_cast<int32_t>(enc.st2g64spost_ldsttags.imm9 << 23) >> 23) * 16;
+                        result.operands.push_back(Operand::memory_post_index(enc.st2g64spost_ldsttags.Rn, imm));
                         return result;
         }
         case 0xD9A00800u: { // ST2G_64Soffset_ldsttags
                         Instruction result(Mnemonic::ST2G, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2g64soffset_ldsttags.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2g64soffset_ldsttags.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.st2g64soffset_ldsttags.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        { Operand op(OperandType::Register, enc.st2g64soffset_ldsttags.Rt, true); op.is_sp = true; result.operands.push_back(op); }
+                        int32_t imm = (static_cast<int32_t>(enc.st2g64soffset_ldsttags.imm9 << 23) >> 23) * 16;
+                        result.operands.push_back(Operand::memory_offset(enc.st2g64soffset_ldsttags.Rn, imm));
                         return result;
         }
         case 0xD9A00C00u: { // ST2G_64Spre_ldsttags
                         Instruction result(Mnemonic::ST2G, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2g64spre_ldsttags.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.st2g64spre_ldsttags.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.st2g64spre_ldsttags.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        { Operand op(OperandType::Register, enc.st2g64spre_ldsttags.Rt, true); op.is_sp = true; result.operands.push_back(op); }
+                        int32_t imm = (static_cast<int32_t>(enc.st2g64spre_ldsttags.imm9 << 23) >> 23) * 16;
+                        result.operands.push_back(Operand::memory_pre_index(enc.st2g64spre_ldsttags.Rn, imm));
                         return result;
         }
         case 0xD9E00400u: { // STZ2G_64Spost_ldsttags
                         Instruction result(Mnemonic::STZ2G, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stz2g64spost_ldsttags.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stz2g64spost_ldsttags.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.stz2g64spost_ldsttags.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        { Operand op(OperandType::Register, enc.stz2g64spost_ldsttags.Rt, true); op.is_sp = true; result.operands.push_back(op); }
+                        int32_t imm = (static_cast<int32_t>(enc.stz2g64spost_ldsttags.imm9 << 23) >> 23) * 16;
+                        result.operands.push_back(Operand::memory_post_index(enc.stz2g64spost_ldsttags.Rn, imm));
                         return result;
         }
         case 0xD9E00800u: { // STZ2G_64Soffset_ldsttags
                         Instruction result(Mnemonic::STZ2G, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stz2g64soffset_ldsttags.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stz2g64soffset_ldsttags.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.stz2g64soffset_ldsttags.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        { Operand op(OperandType::Register, enc.stz2g64soffset_ldsttags.Rt, true); op.is_sp = true; result.operands.push_back(op); }
+                        int32_t imm = (static_cast<int32_t>(enc.stz2g64soffset_ldsttags.imm9 << 23) >> 23) * 16;
+                        result.operands.push_back(Operand::memory_offset(enc.stz2g64soffset_ldsttags.Rn, imm));
                         return result;
         }
         case 0xD9E00C00u: { // STZ2G_64Spre_ldsttags
                         Instruction result(Mnemonic::STZ2G, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stz2g64spre_ldsttags.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stz2g64spre_ldsttags.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.stz2g64spre_ldsttags.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        { Operand op(OperandType::Register, enc.stz2g64spre_ldsttags.Rt, true); op.is_sp = true; result.operands.push_back(op); }
+                        int32_t imm = (static_cast<int32_t>(enc.stz2g64spre_ldsttags.imm9 << 23) >> 23) * 16;
+                        result.operands.push_back(Operand::memory_pre_index(enc.stz2g64spre_ldsttags.Rn, imm));
                         return result;
         }
         case 0xDD000800u: { // STLUR_D_ldapstl_simd
                         Instruction result(Mnemonic::STLUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlur_dldapstl_simd.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlur_dldapstl_simd.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.stlur_dldapstl_simd.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.stlur_dldapstl_simd.Rt, false));
+                        int32_t imm = static_cast<int32_t>(enc.stlur_dldapstl_simd.imm9 << 23) >> 23;
+                        result.operands.push_back(Operand::memory_offset(enc.stlur_dldapstl_simd.Rn, imm));
                         return result;
         }
         case 0xDD400800u: { // LDAPUR_D_ldapstl_simd
                         Instruction result(Mnemonic::LDAPUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur_dldapstl_simd.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur_dldapstl_simd.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.ldapur_dldapstl_simd.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
-                        }
+                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur_dldapstl_simd.Rt, false));
+                        int32_t imm = static_cast<int32_t>(enc.ldapur_dldapstl_simd.imm9 << 23) >> 23;
+                        result.operands.push_back(Operand::memory_offset(enc.ldapur_dldapstl_simd.Rn, imm));
                         return result;
         }
         case 0xF8000000u: { // STUR_64_ldst_unscaled
@@ -46894,7 +46744,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ldraa64ldst_pac.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.ldraa64ldst_pac.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -46907,7 +46757,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ldraa64w_ldst_pac.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.ldraa64w_ldst_pac.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -46920,7 +46770,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrab64ldst_pac.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.ldrab64ldst_pac.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -46933,7 +46783,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrab64w_ldst_pac.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.ldrab64w_ldst_pac.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -47851,8 +47701,18 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlso_r1.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlso_r1.Rt, is_64bit));
+                        static const char* _rep_arrs[2][4] = {
+                            {"8b", "4h", "2s", "1d"},
+                            {"16b", "8h", "4s", "2d"}
+                        };
+                        const char* _rep_arr = _rep_arrs[enc.ld1r_asisdlso_r1.Q][enc.ld1r_asisdlso_r1.size];
+                        {
+                            Operand op(OperandType::VectorRegisterList, enc.ld1r_asisdlso_r1.Rt, false);
+                            op.index = 1;
+                            op.arrangement = _rep_arr;
+                            result.operands.push_back(op);
+                        }
+                        result.operands.push_back(Operand::memory_base(enc.ld1r_asisdlso_r1.Rn));
                         return result;
         }
         case 0x0D40E000u: { // LD3R_asisdlso_R3
@@ -47860,8 +47720,18 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlso_r3.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlso_r3.Rt, is_64bit));
+                        static const char* _rep_arrs[2][4] = {
+                            {"8b", "4h", "2s", "1d"},
+                            {"16b", "8h", "4s", "2d"}
+                        };
+                        const char* _rep_arr = _rep_arrs[enc.ld3r_asisdlso_r3.Q][enc.ld3r_asisdlso_r3.size];
+                        {
+                            Operand op(OperandType::VectorRegisterList, enc.ld3r_asisdlso_r3.Rt, false);
+                            op.index = 3;
+                            op.arrangement = _rep_arr;
+                            result.operands.push_back(op);
+                        }
+                        result.operands.push_back(Operand::memory_base(enc.ld3r_asisdlso_r3.Rn));
                         return result;
         }
         case 0x0D60C000u: { // LD2R_asisdlso_R2
@@ -47869,8 +47739,18 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlso_r2.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlso_r2.Rt, is_64bit));
+                        static const char* _rep_arrs[2][4] = {
+                            {"8b", "4h", "2s", "1d"},
+                            {"16b", "8h", "4s", "2d"}
+                        };
+                        const char* _rep_arr = _rep_arrs[enc.ld2r_asisdlso_r2.Q][enc.ld2r_asisdlso_r2.size];
+                        {
+                            Operand op(OperandType::VectorRegisterList, enc.ld2r_asisdlso_r2.Rt, false);
+                            op.index = 2;
+                            op.arrangement = _rep_arr;
+                            result.operands.push_back(op);
+                        }
+                        result.operands.push_back(Operand::memory_base(enc.ld2r_asisdlso_r2.Rn));
                         return result;
         }
         case 0x0D60E000u: { // LD4R_asisdlso_R4
@@ -47878,8 +47758,18 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlso_r4.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlso_r4.Rt, is_64bit));
+                        static const char* _rep_arrs[2][4] = {
+                            {"8b", "4h", "2s", "1d"},
+                            {"16b", "8h", "4s", "2d"}
+                        };
+                        const char* _rep_arr = _rep_arrs[enc.ld4r_asisdlso_r4.Q][enc.ld4r_asisdlso_r4.size];
+                        {
+                            Operand op(OperandType::VectorRegisterList, enc.ld4r_asisdlso_r4.Rt, false);
+                            op.index = 4;
+                            op.arrangement = _rep_arr;
+                            result.operands.push_back(op);
+                        }
+                        result.operands.push_back(Operand::memory_base(enc.ld4r_asisdlso_r4.Rn));
                         return result;
         }
         case 0x0DDFC000u: { // LD1R_asisdlsop_R1_i
@@ -47887,8 +47777,22 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlsop_r1i.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlsop_r1i.Rt, is_64bit));
+                        static const char* _rep_arrs[2][4] = {
+                            {"8b", "4h", "2s", "1d"},
+                            {"16b", "8h", "4s", "2d"}
+                        };
+                        const char* _rep_arr = _rep_arrs[enc.ld1r_asisdlsop_r1i.Q][enc.ld1r_asisdlsop_r1i.size];
+                        {
+                            Operand op(OperandType::VectorRegisterList, enc.ld1r_asisdlsop_r1i.Rt, false);
+                            op.index = 1;
+                            op.arrangement = _rep_arr;
+                            result.operands.push_back(op);
+                        }
+                        {
+                            static const uint32_t _elem_sizes[] = {1, 2, 4, 8};
+                            uint32_t _post_imm = _elem_sizes[enc.ld1r_asisdlsop_r1i.size] * 1;
+                            result.operands.push_back(Operand::memory_post_index(enc.ld1r_asisdlsop_r1i.Rn, _post_imm));
+                        }
                         return result;
         }
         case 0x0DDFE000u: { // LD3R_asisdlsop_R3_i
@@ -47896,8 +47800,22 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlsop_r3i.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlsop_r3i.Rt, is_64bit));
+                        static const char* _rep_arrs[2][4] = {
+                            {"8b", "4h", "2s", "1d"},
+                            {"16b", "8h", "4s", "2d"}
+                        };
+                        const char* _rep_arr = _rep_arrs[enc.ld3r_asisdlsop_r3i.Q][enc.ld3r_asisdlsop_r3i.size];
+                        {
+                            Operand op(OperandType::VectorRegisterList, enc.ld3r_asisdlsop_r3i.Rt, false);
+                            op.index = 3;
+                            op.arrangement = _rep_arr;
+                            result.operands.push_back(op);
+                        }
+                        {
+                            static const uint32_t _elem_sizes[] = {1, 2, 4, 8};
+                            uint32_t _post_imm = _elem_sizes[enc.ld3r_asisdlsop_r3i.size] * 3;
+                            result.operands.push_back(Operand::memory_post_index(enc.ld3r_asisdlsop_r3i.Rn, _post_imm));
+                        }
                         return result;
         }
         case 0x0DFFC000u: { // LD2R_asisdlsop_R2_i
@@ -47905,8 +47823,22 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlsop_r2i.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlsop_r2i.Rt, is_64bit));
+                        static const char* _rep_arrs[2][4] = {
+                            {"8b", "4h", "2s", "1d"},
+                            {"16b", "8h", "4s", "2d"}
+                        };
+                        const char* _rep_arr = _rep_arrs[enc.ld2r_asisdlsop_r2i.Q][enc.ld2r_asisdlsop_r2i.size];
+                        {
+                            Operand op(OperandType::VectorRegisterList, enc.ld2r_asisdlsop_r2i.Rt, false);
+                            op.index = 2;
+                            op.arrangement = _rep_arr;
+                            result.operands.push_back(op);
+                        }
+                        {
+                            static const uint32_t _elem_sizes[] = {1, 2, 4, 8};
+                            uint32_t _post_imm = _elem_sizes[enc.ld2r_asisdlsop_r2i.size] * 2;
+                            result.operands.push_back(Operand::memory_post_index(enc.ld2r_asisdlsop_r2i.Rn, _post_imm));
+                        }
                         return result;
         }
         case 0x0DFFE000u: { // LD4R_asisdlsop_R4_i
@@ -47914,8 +47846,22 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlsop_r4i.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlsop_r4i.Rt, is_64bit));
+                        static const char* _rep_arrs[2][4] = {
+                            {"8b", "4h", "2s", "1d"},
+                            {"16b", "8h", "4s", "2d"}
+                        };
+                        const char* _rep_arr = _rep_arrs[enc.ld4r_asisdlsop_r4i.Q][enc.ld4r_asisdlsop_r4i.size];
+                        {
+                            Operand op(OperandType::VectorRegisterList, enc.ld4r_asisdlsop_r4i.Rt, false);
+                            op.index = 4;
+                            op.arrangement = _rep_arr;
+                            result.operands.push_back(op);
+                        }
+                        {
+                            static const uint32_t _elem_sizes[] = {1, 2, 4, 8};
+                            uint32_t _post_imm = _elem_sizes[enc.ld4r_asisdlsop_r4i.size] * 4;
+                            result.operands.push_back(Operand::memory_post_index(enc.ld4r_asisdlsop_r4i.Rn, _post_imm));
+                        }
                         return result;
         }
         default: break;
@@ -49230,9 +49176,19 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlsop_rx1r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlsop_rx1r.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlsop_rx1r.Rt, is_64bit));
+                        static const char* _rep_arrs[2][4] = {
+                            {"8b", "4h", "2s", "1d"},
+                            {"16b", "8h", "4s", "2d"}
+                        };
+                        const char* _rep_arr = _rep_arrs[enc.ld1r_asisdlsop_rx1r.Q][enc.ld1r_asisdlsop_rx1r.size];
+                        {
+                            Operand op(OperandType::VectorRegisterList, enc.ld1r_asisdlsop_rx1r.Rt, false);
+                            op.index = 1;
+                            op.arrangement = _rep_arr;
+                            result.operands.push_back(op);
+                        }
+                        result.operands.push_back(Operand::memory_base(enc.ld1r_asisdlsop_rx1r.Rn));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld1r_asisdlsop_rx1r.Rm, true));
                         return result;
         }
         case 0x0DC0E000u: { // LD3R_asisdlsop_RX3_r
@@ -49240,9 +49196,19 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlsop_rx3r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlsop_rx3r.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlsop_rx3r.Rt, is_64bit));
+                        static const char* _rep_arrs[2][4] = {
+                            {"8b", "4h", "2s", "1d"},
+                            {"16b", "8h", "4s", "2d"}
+                        };
+                        const char* _rep_arr = _rep_arrs[enc.ld3r_asisdlsop_rx3r.Q][enc.ld3r_asisdlsop_rx3r.size];
+                        {
+                            Operand op(OperandType::VectorRegisterList, enc.ld3r_asisdlsop_rx3r.Rt, false);
+                            op.index = 3;
+                            op.arrangement = _rep_arr;
+                            result.operands.push_back(op);
+                        }
+                        result.operands.push_back(Operand::memory_base(enc.ld3r_asisdlsop_rx3r.Rn));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld3r_asisdlsop_rx3r.Rm, true));
                         return result;
         }
         case 0x0DE0C000u: { // LD2R_asisdlsop_RX2_r
@@ -49250,9 +49216,19 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlsop_rx2r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlsop_rx2r.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlsop_rx2r.Rt, is_64bit));
+                        static const char* _rep_arrs[2][4] = {
+                            {"8b", "4h", "2s", "1d"},
+                            {"16b", "8h", "4s", "2d"}
+                        };
+                        const char* _rep_arr = _rep_arrs[enc.ld2r_asisdlsop_rx2r.Q][enc.ld2r_asisdlsop_rx2r.size];
+                        {
+                            Operand op(OperandType::VectorRegisterList, enc.ld2r_asisdlsop_rx2r.Rt, false);
+                            op.index = 2;
+                            op.arrangement = _rep_arr;
+                            result.operands.push_back(op);
+                        }
+                        result.operands.push_back(Operand::memory_base(enc.ld2r_asisdlsop_rx2r.Rn));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld2r_asisdlsop_rx2r.Rm, true));
                         return result;
         }
         case 0x0DE0E000u: { // LD4R_asisdlsop_RX4_r
@@ -49260,9 +49236,19 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlsop_rx4r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlsop_rx4r.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlsop_rx4r.Rt, is_64bit));
+                        static const char* _rep_arrs[2][4] = {
+                            {"8b", "4h", "2s", "1d"},
+                            {"16b", "8h", "4s", "2d"}
+                        };
+                        const char* _rep_arr = _rep_arrs[enc.ld4r_asisdlsop_rx4r.Q][enc.ld4r_asisdlsop_rx4r.size];
+                        {
+                            Operand op(OperandType::VectorRegisterList, enc.ld4r_asisdlsop_rx4r.Rt, false);
+                            op.index = 4;
+                            op.arrangement = _rep_arr;
+                            result.operands.push_back(op);
+                        }
+                        result.operands.push_back(Operand::memory_base(enc.ld4r_asisdlsop_rx4r.Rn));
+                        result.operands.push_back(Operand(OperandType::Register, enc.ld4r_asisdlsop_rx4r.Rm, true));
                         return result;
         }
         default: break;

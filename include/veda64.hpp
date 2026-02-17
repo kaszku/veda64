@@ -1624,6 +1624,7 @@ enum class OperandType {
     Barrier,            // Barrier option
     FloatImmediate,     // Floating-point immediate (#0.0, etc.)
     VectorRegisterList, // Vector register list { Vt.T, Vt+1.T, ... }
+    SVERegisterList,    // SVE register list { Zt.T, Zt+1.T, ... }
     Unknown
 };
 

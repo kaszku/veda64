@@ -373,45 +373,56 @@ class ARM64XMLParser:
             tokens.append(current.strip())
 
         for token in tokens:
-            # Extract field references like <Pd>, <Zn>, <Xn|SP>
-            field_match = re.search(r'<(\w+?)(?:\|SP)?>', token)
-            if not field_match:
-                # Could be an immediate like #<const> or a fixed value
-                imm_match = re.search(r'#<(\w+)>', token)
-                if imm_match:
-                    result.append({'field': imm_match.group(1), 'type': 'imm', 'arrangement': None, 'qualifier': None})
-                continue
-
-            field = field_match.group(1)
-            # Check for arrangement: .B, .H, .S, .D, .<T>, .<Ts>
-            arr_match = re.search(r'\.([BHSDQbhsdq])\b', token)
-            arr = arr_match.group(1).lower() if arr_match else None
-            # Variable arrangement like .<T> means use size field
-            t_match = re.search(r'\.<(T\w*)>', token)
-            if t_match:
-                arr = t_match.group(1)  # 'T', 'Tb', 'Ts', etc.
-
-            # Check for qualifier: /Z, /M
-            qual_match = re.search(r'/([ZMzm])', token)
-            qual = qual_match.group(1).lower() if qual_match else None
-
-            # Check if it's in a list { }
+            # Check if it's in a list { } — may contain multiple registers
             is_list = '{' in token
 
-            # Check for element index: [<imm>] suffix on the register
-            idx_match = re.search(r'\[<(\w+)>\]', token)
-            has_elem_index = idx_match is not None
-            index_field = idx_match.group(1) if idx_match else None
+            # Find ALL field references in this token (handles register pairs like { <Zn1>.B, <Zn2>.B })
+            # Each <Field> reference within the token becomes a separate operand entry
+            field_matches = re.findall(r'<(\w+?)(?:\|SP)?>(?:\.([BHSDQbhsdq]))?(?:\[<(\w+)>\])?', token)
+            if not field_matches:
+                # Check for arrangement/qualifier patterns outside <> refs
+                field_match = re.search(r'<(\w+?)(?:\|SP)?>', token)
+                if not field_match:
+                    imm_match = re.search(r'#<(\w+)>', token)
+                    if imm_match:
+                        result.append({'field': imm_match.group(1), 'type': 'imm', 'arrangement': None, 'qualifier': None})
+                    continue
+                field_matches = [(field_match.group(1), '', '')]
 
-            result.append({
-                'field': field,
-                'arrangement': arr,
-                'qualifier': qual,
-                'is_list': is_list,
-                'has_elem_index': has_elem_index,
-                'index_field': index_field,
-                'type': 'reg'
-            })
+            for field, arr_char, idx_field in field_matches:
+                # Check for arrangement: from <Field>.B capture or token-level search
+                arr = arr_char.lower() if arr_char else None
+                if not arr:
+                    # Fallback: search entire token for arrangement
+                    arr_match = re.search(r'<' + re.escape(field) + r'(?:\|SP)?>\s*\.([BHSDQbhsdq])\b', token)
+                    arr = arr_match.group(1).lower() if arr_match else None
+                # Variable arrangement like .<T> means use size field
+                if not arr:
+                    t_match = re.search(r'\.<(T\w*)>', token)
+                    if t_match:
+                        arr = t_match.group(1)
+
+                # Check for qualifier: /Z, /M
+                qual_match = re.search(r'/([ZMzm])', token)
+                qual = qual_match.group(1).lower() if qual_match else None
+
+                # Check for element index
+                has_elem_index = bool(idx_field)
+                index_field_name = idx_field if idx_field else None
+                if not has_elem_index:
+                    idx_match = re.search(r'\[<(\w+)>\]', token)
+                    has_elem_index = idx_match is not None
+                    index_field_name = idx_match.group(1) if idx_match else None
+
+                result.append({
+                    'field': field,
+                    'arrangement': arr,
+                    'qualifier': qual,
+                    'is_list': is_list,
+                    'has_elem_index': has_elem_index,
+                    'index_field': index_field_name,
+                    'type': 'reg'
+                })
 
         return result
 
@@ -998,6 +1009,7 @@ class ARM64XMLParser:
         code.append("    Barrier,            // Barrier option")
         code.append("    FloatImmediate,     // Floating-point immediate (#0.0, etc.)")
         code.append("    VectorRegisterList, // Vector register list { Vt.T, Vt+1.T, ... }")
+        code.append("    SVERegisterList,    // SVE register list { Zt.T, Zt+1.T, ... }")
         code.append("    Unknown")
         code.append("};")
         code.append("")
@@ -1908,11 +1920,11 @@ class ARM64XMLParser:
         code.append("            // Prefetch operation")
         code.append("            {")
         code.append("                const char* prfops[] = {\"pldl1keep\", \"pldl1strm\", \"pldl2keep\", \"pldl2strm\",")
-        code.append("                                        \"pldl3keep\", \"pldl3strm\", \"#6\", \"#7\",")
+        code.append("                                        \"pldl3keep\", \"pldl3strm\", \"pldslckeep\", \"pldslcstrm\",")
         code.append("                                        \"plil1keep\", \"plil1strm\", \"plil2keep\", \"plil2strm\",")
-        code.append("                                        \"plil3keep\", \"plil3strm\", \"#14\", \"#15\",")
+        code.append("                                        \"plil3keep\", \"plil3strm\", \"plislckeep\", \"plislcstrm\",")
         code.append("                                        \"pstl1keep\", \"pstl1strm\", \"pstl2keep\", \"pstl2strm\",")
-        code.append("                                        \"pstl3keep\", \"pstl3strm\", \"#22\", \"#23\"};")
+        code.append("                                        \"pstl3keep\", \"pstl3strm\", \"pstslckeep\", \"pstslcstrm\"};")
         code.append("                if (value < 24) return prfops[value];")
         code.append("                return \"#\" + std::to_string(value);")
         code.append("            }")
@@ -1958,6 +1970,26 @@ class ARM64XMLParser:
         code.append("                    if (i > 0) result += \", \";")
         code.append("                    uint32_t reg = (value + i) & 31;")
         code.append("                    result += \"v\" + std::to_string(reg);")
+        code.append("                    if (arrangement && arrangement[0] != '\\0') {")
+        code.append("                        result += \".\";")
+        code.append("                        result += arrangement;")
+        code.append("                    }")
+        code.append("                }")
+        code.append("                result += \" }\";")
+        code.append("                if (has_index) {")
+        code.append("                    result += \"[\" + std::to_string(amount) + \"]\";")
+        code.append("                }")
+        code.append("                return result;")
+        code.append("            }")
+        code.append("")
+        code.append("        case OperandType::SVERegisterList:")
+        code.append("            {")
+        code.append("                // value = first register, index = count, arrangement = element type")
+        code.append("                std::string result = \"{ \";")
+        code.append("                for (uint32_t i = 0; i < index; ++i) {")
+        code.append("                    if (i > 0) result += \", \";")
+        code.append("                    uint32_t reg = (value + i) & 31;")
+        code.append("                    result += \"z\" + std::to_string(reg);")
         code.append("                    if (arrangement && arrangement[0] != '\\0') {")
         code.append("                        result += \".\";")
         code.append("                        result += arrangement;")
@@ -2133,6 +2165,7 @@ class ARM64XMLParser:
         code.append("    Barrier,            // Barrier option")
         code.append("    FloatImmediate,     // Floating-point immediate (#0.0, etc.)")
         code.append("    VectorRegisterList, // Vector register list { Vt.T, Vt+1.T, ... }")
+        code.append("    SVERegisterList,    // SVE register list { Zt.T, Zt+1.T, ... }")
         code.append("    Unknown")
         code.append("};")
         code.append("")
@@ -5384,7 +5417,23 @@ class ARM64XMLParser:
             from collections import Counter
             field_template_count = Counter(top['field'] for top in template_ops)
             field_emit_count = Counter()
-            for top in template_ops:
+            # Pre-scan for register lists: { Zn1.B, Zn2.B } → SVERegisterList
+            # Collect list groups (consecutive is_list ops mapping to same base field)
+            list_groups = {}  # base_field → list of template indices
+            for i, top in enumerate(template_ops):
+                if top.get('is_list'):
+                    field = top['field']
+                    import re as _re
+                    base_match = _re.match(r'^(Z\w+?)(\d+)$', field)
+                    if base_match:
+                        base = base_match.group(1)
+                        if base not in list_groups:
+                            list_groups[base] = []
+                        list_groups[base].append(i)
+            # Fields that are part of a list group (will be emitted as SVERegisterList)
+            list_emitted = set()
+
+            for top_idx, top in enumerate(template_ops):
                 field = top['field']
                 arr = top.get('arrangement')
                 qual = top.get('qualifier')
@@ -5392,12 +5441,59 @@ class ARM64XMLParser:
                 # Skip if field already emitted its expected number of times
                 if field_emit_count[field] > field_template_count[field]:
                     continue
-                if field not in field_map or field_map[field]['is_fixed']:
-                    continue
-                field_cpp_name = field_map[field]['name']
-                emitted_fields.add(field)
 
-                if field in sve_z_names:
+                # Check if this is part of a register list group
+                import re as _re
+                base_match = _re.match(r'^(Z\w+?)(\d+)$', field)
+                if base_match and base_match.group(1) in list_groups:
+                    base = base_match.group(1)
+                    group_indices = list_groups[base]
+                    if base in list_emitted:
+                        continue  # Already emitted as list
+                    if top_idx == group_indices[0]:
+                        # First element of list group — emit as SVERegisterList
+                        list_emitted.add(base)
+                        count = len(group_indices)
+                        if base in field_map and not field_map[base]['is_fixed']:
+                            field_cpp_name = field_map[base]['name']
+                        else:
+                            # Base not in field_map but base without trailing letter might be (Zn)
+                            # Try stripping last char: Zn1 → base=Zn
+                            if base not in field_map:
+                                continue
+                            field_cpp_name = field_map[base]['name']
+                        if arr and arr not in ('T', 'Tb', 'Ts'):
+                            arr_expr = f'"{arr}"'
+                        elif has_sve_size:
+                            arr_expr = '_sve_arr'
+                        else:
+                            arr_expr = 'nullptr'
+                        code.append(f"{ind}{{ Operand op(OperandType::SVERegisterList, enc.{member_name}.{field_cpp_name}, true); op.arrangement = {arr_expr}; op.index = {count}; result.operands.push_back(op); }}")
+                        emitted_fields.add(base)
+                        continue
+                    else:
+                        continue  # Skip non-first elements of list
+
+                # Handle register pair fields: Zn1→Zn, Zn2→Zn+1
+                is_pair_second = False
+                actual_field = field
+                if field not in field_map and field.endswith('1') and field[:-1] in field_map:
+                    actual_field = field[:-1]
+                elif field not in field_map and field.endswith('2') and field[:-1] in field_map:
+                    actual_field = field[:-1]
+                    is_pair_second = True
+
+                if actual_field not in field_map or field_map[actual_field]['is_fixed']:
+                    continue
+                field_cpp_name = field_map[actual_field]['name']
+                emitted_fields.add(actual_field)
+
+                # Register value expression (handles pair second: Zn+1)
+                reg_val_expr = f"enc.{member_name}.{field_cpp_name}"
+                if is_pair_second:
+                    reg_val_expr = f"(enc.{member_name}.{field_cpp_name} + 1) % 32"
+
+                if actual_field in sve_z_names:
                     if arr == 'Tb' and has_sve_size and needs_narrow:
                         arr_expr = '_sve_arr_narrow'
                     elif arr and arr not in ('T', 'Tb', 'Ts'):
@@ -5410,12 +5506,12 @@ class ARM64XMLParser:
                         # Indexed register: Zm.T[idx] — compute index from split fields
                         idx_code = self._generate_sve_index_expr(field_map, member_name, encoding_name)
                         if idx_code:
-                            code.append(f"{ind}{{ Operand op(OperandType::SVERegister, enc.{member_name}.{field_cpp_name}, true); op.arrangement = {arr_expr}; {idx_code} result.operands.push_back(op); }}")
+                            code.append(f"{ind}{{ Operand op(OperandType::SVERegister, {reg_val_expr}, true); op.arrangement = {arr_expr}; {idx_code} result.operands.push_back(op); }}")
                             sve_index_consumed = True
                         else:
-                            code.append(f"{ind}{{ Operand op(OperandType::SVERegister, enc.{member_name}.{field_cpp_name}, true); op.arrangement = {arr_expr}; result.operands.push_back(op); }}")
+                            code.append(f"{ind}{{ Operand op(OperandType::SVERegister, {reg_val_expr}, true); op.arrangement = {arr_expr}; result.operands.push_back(op); }}")
                     else:
-                        code.append(f"{ind}{{ Operand op(OperandType::SVERegister, enc.{member_name}.{field_cpp_name}, true); op.arrangement = {arr_expr}; result.operands.push_back(op); }}")
+                        code.append(f"{ind}{{ Operand op(OperandType::SVERegister, {reg_val_expr}, true); op.arrangement = {arr_expr}; result.operands.push_back(op); }}")
                 elif field in sve_p_names:
                     # For predicates: only apply arrangement if template explicitly shows it
                     if arr and arr not in ('T', 'Tb', 'Ts'):

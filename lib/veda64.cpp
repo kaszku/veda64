@@ -2035,7 +2035,7 @@ std::string Operand::to_string() const {
                 std::ostringstream oss;
                 // Use imm64 for 64-bit logical immediates
                 uint64_t display_val = imm64 ? imm64 : static_cast<uint64_t>(value);
-                if (display_val <= 15) {
+                if (display_val <= 9) {
                     oss << "#" << std::dec << display_val;
                 } else {
                     oss << "#0x" << std::hex << display_val;
@@ -2048,13 +2048,13 @@ std::string Operand::to_string() const {
                 std::ostringstream oss;
                 int32_t sval = static_cast<int32_t>(value);
                 if (sval < 0) {
-                    if (sval >= -15) {
+                    if (sval >= -9) {
                         oss << "#" << std::dec << sval;
                     } else {
                         oss << "#-0x" << std::hex << (-sval);
                     }
                 } else {
-                    if (sval <= 15) {
+                    if (sval <= 9) {
                         oss << "#" << std::dec << sval;
                     } else {
                         oss << "#0x" << std::hex << sval;
@@ -3159,11 +3159,11 @@ std::string Operand::to_string() const {
             // Prefetch operation
             {
                 const char* prfops[] = {"pldl1keep", "pldl1strm", "pldl2keep", "pldl2strm",
-                                        "pldl3keep", "pldl3strm", "#6", "#7",
+                                        "pldl3keep", "pldl3strm", "pldslckeep", "pldslcstrm",
                                         "plil1keep", "plil1strm", "plil2keep", "plil2strm",
-                                        "plil3keep", "plil3strm", "#14", "#15",
+                                        "plil3keep", "plil3strm", "plislckeep", "plislcstrm",
                                         "pstl1keep", "pstl1strm", "pstl2keep", "pstl2strm",
-                                        "pstl3keep", "pstl3strm", "#22", "#23"};
+                                        "pstl3keep", "pstl3strm", "pstslckeep", "pstslcstrm"};
                 if (value < 24) return prfops[value];
                 return "#" + std::to_string(value);
             }
@@ -3209,6 +3209,26 @@ std::string Operand::to_string() const {
                     if (i > 0) result += ", ";
                     uint32_t reg = (value + i) & 31;
                     result += "v" + std::to_string(reg);
+                    if (arrangement && arrangement[0] != '\0') {
+                        result += ".";
+                        result += arrangement;
+                    }
+                }
+                result += " }";
+                if (has_index) {
+                    result += "[" + std::to_string(amount) + "]";
+                }
+                return result;
+            }
+
+        case OperandType::SVERegisterList:
+            {
+                // value = first register, index = count, arrangement = element type
+                std::string result = "{ ";
+                for (uint32_t i = 0; i < index; ++i) {
+                    if (i > 0) result += ", ";
+                    uint32_t reg = (value + i) & 31;
+                    result += "z" + std::to_string(reg);
                     if (arrangement && arrangement[0] != '\0') {
                         result += ".";
                         result += arrangement;

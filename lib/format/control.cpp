@@ -5812,7 +5812,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cbgt32regs.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbgt32regs.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -5826,7 +5826,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cbbgt8regs.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbbgt8regs.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -5840,7 +5840,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhgt16regs.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbhgt16regs.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -5854,7 +5854,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cbge32regs.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbge32regs.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -5868,7 +5868,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cbbge8regs.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbbge8regs.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -5882,7 +5882,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhge16regs.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbhge16regs.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -5896,7 +5896,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhi32regs.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbhi32regs.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -5910,7 +5910,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cbbhi8regs.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbbhi8regs.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -5924,7 +5924,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhhi16regs.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbhhi16regs.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -5938,7 +5938,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhs32regs.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbhs32regs.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -5952,7 +5952,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cbbhs8regs.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbbhs8regs.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -5966,7 +5966,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhhs16regs.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbhhs16regs.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -5979,7 +5979,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cbeq32regs.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbeq32regs.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -5992,7 +5992,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cbbeq8regs.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbbeq8regs.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -6005,7 +6005,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cbheq16regs.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbheq16regs.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -6018,7 +6018,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cbne32regs.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbne32regs.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -6031,7 +6031,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cbbne8regs.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbbne8regs.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -6044,7 +6044,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhne16regs.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbhne16regs.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -6058,7 +6058,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cbgt64regs.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbgt64regs.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -6072,7 +6072,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cbge64regs.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbge64regs.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -6086,7 +6086,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhi64regs.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbhi64regs.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -6100,7 +6100,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cbhs64regs.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbhs64regs.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -6113,7 +6113,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cbeq64regs.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbeq64regs.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -6126,7 +6126,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.cbne64regs.Rt, is_64bit));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbne64regs.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -6145,7 +6145,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cbgt32imm.imm6, true));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbgt32imm.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -6159,7 +6159,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cblt32imm.imm6, true));
                         {
                             int32_t val = static_cast<int32_t>(enc.cblt32imm.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -6173,7 +6173,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cbhi32imm.imm6, true));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbhi32imm.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -6187,7 +6187,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cblo32imm.imm6, true));
                         {
                             int32_t val = static_cast<int32_t>(enc.cblo32imm.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -6200,7 +6200,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cbeq32imm.imm6, true));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbeq32imm.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -6213,7 +6213,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cbne32imm.imm6, true));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbne32imm.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -6227,7 +6227,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cbgt64imm.imm6, true));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbgt64imm.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -6241,7 +6241,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cblt64imm.imm6, true));
                         {
                             int32_t val = static_cast<int32_t>(enc.cblt64imm.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -6255,7 +6255,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cbhi64imm.imm6, true));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbhi64imm.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -6269,7 +6269,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cblo64imm.imm6, true));
                         {
                             int32_t val = static_cast<int32_t>(enc.cblo64imm.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -6282,7 +6282,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cbeq64imm.imm6, true));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbeq64imm.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
@@ -6295,7 +6295,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cbne64imm.imm6, true));
                         {
                             int32_t val = static_cast<int32_t>(enc.cbne64imm.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::Immediate, static_cast<uint32_t>(val), true));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
                         }
                         return result;
         }
