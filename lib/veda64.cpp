@@ -2081,6 +2081,9 @@ std::string Operand::to_string() const {
                 r += ".";
                 r += arrangement;
             }
+            if (has_index) {
+                r += "[" + std::to_string(index) + "]";
+            }
             return r;
         }
 

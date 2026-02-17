@@ -398,15 +398,38 @@ class ARM64XMLParser:
             # Check if it's in a list { }
             is_list = '{' in token
 
+            # Check for element index: [<imm>] suffix on the register
+            idx_match = re.search(r'\[<(\w+)>\]', token)
+            has_elem_index = idx_match is not None
+            index_field = idx_match.group(1) if idx_match else None
+
             result.append({
                 'field': field,
                 'arrangement': arr,
                 'qualifier': qual,
                 'is_list': is_list,
+                'has_elem_index': has_elem_index,
+                'index_field': index_field,
                 'type': 'reg'
             })
 
         return result
+
+    def _generate_sve_index_expr(self, field_map, member_name, encoding_name):
+        """Generate C++ expression to compute SVE element index from split i2/i3 fields."""
+        # Try common index field patterns: i3h:i3l, i2h:i2l, i2, i3, imm
+        for hi, lo, hi_w in [('i3h', 'i3l', None), ('i2h', 'i2l', None)]:
+            if hi in field_map and not field_map[hi]['is_fixed'] and lo in field_map and not field_map[lo]['is_fixed']:
+                hi_f = field_map[hi]['name']
+                lo_f = field_map[lo]['name']
+                lo_width = field_map[lo]['width']
+                return f"op.index = (enc.{member_name}.{hi_f} << {lo_width}) | enc.{member_name}.{lo_f}; op.has_index = true;"
+        # Single index fields
+        for idx_name in ['i2', 'i3', 'i1']:
+            if idx_name in field_map and not field_map[idx_name]['is_fixed']:
+                idx_f = field_map[idx_name]['name']
+                return f"op.index = enc.{member_name}.{idx_f}; op.has_index = true;"
+        return None
 
     def _parse_operands(self, explanations_elem: ET.Element) -> List[Dict]:
         """Parse operand explanations."""
@@ -1695,6 +1718,9 @@ class ARM64XMLParser:
         code.append("            if (arrangement && arrangement[0] != '\\0') {")
         code.append("                r += \".\";")
         code.append("                r += arrangement;")
+        code.append("            }")
+        code.append("            if (has_index) {")
+        code.append("                r += \"[\" + std::to_string(index) + \"]\";")
         code.append("            }")
         code.append("            return r;")
         code.append("        }")
@@ -3695,6 +3721,39 @@ class ARM64XMLParser:
             code.append(f"{ind}return result;")
             return code
 
+        # Special case: Memory tagging loads/stores (STG, ST2G, STZG, STZ2G, LDG, LDGM, STGM)
+        # Encoding: ldsttags - uses Xt (64-bit GP, can be SP for stores), Xn (base), imm9 (scaled ×16)
+        if is_load_store and 'ldsttags' in encoding_name and 'Rt' in field_map and 'Rn' in field_map:
+            rt_field = field_map['Rt']['name']
+            rn_field = field_map['Rn']['name']
+            # Rt can be SP for store tags (STG/ST2G/STZG/STZ2G)
+            rt_can_sp = mnemonic in ['STG', 'ST2G', 'STZG', 'STZ2G']
+            if rt_can_sp:
+                code.append(f"{ind}{{ Operand op(OperandType::Register, enc.{member_name}.{rt_field}, true); op.is_sp = true; result.operands.push_back(op); }}")
+            else:
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, true));")
+            # Memory operand: [Xn|SP, #simm9*16] or [Xn|SP] for bulk variants
+            imm_field = None
+            for imm_name in ['imm9', 'simm9']:
+                if imm_name in field_map:
+                    imm_field = field_map[imm_name]['name']
+                    break
+            if imm_field:
+                # Determine addressing mode from encoding name
+                is_post = 'post' in encoding_name
+                is_pre = 'pre' in encoding_name
+                code.append(f"{ind}int32_t imm = (static_cast<int32_t>(enc.{member_name}.{imm_field} << 23) >> 23) * 16;")
+                if is_post:
+                    code.append(f"{ind}result.operands.push_back(Operand::memory_post_index(enc.{member_name}.{rn_field}, imm));")
+                elif is_pre:
+                    code.append(f"{ind}result.operands.push_back(Operand::memory_pre_index(enc.{member_name}.{rn_field}, imm));")
+                else:
+                    code.append(f"{ind}result.operands.push_back(Operand::memory_offset(enc.{member_name}.{rn_field}, imm));")
+            else:
+                code.append(f"{ind}result.operands.push_back(Operand::memory_base(enc.{member_name}.{rn_field}));")
+            code.append(f"{ind}return result;")
+            return code
+
         # Special case: Load/store exclusive, ordered, and atomic operations
         # Covers: LDAR/STLR, LDXR/STXR, LDAXR/STLXR, LDLAR/STLLR, CAS, LDADD, LDCLR, LDSET, LDEOR, SWP, LDAPR
         excl_ord_names = ['ldstord', 'ldstexcl', 'comswap', 'memop']
@@ -3729,6 +3788,27 @@ class ARM64XMLParser:
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt2_field}, is_64bit));")
             code.append(f"{ind}result.operands.push_back(Operand::memory_base(enc.{member_name}.{rn_field}));")
 
+            code.append(f"{ind}return result;")
+            return code
+
+        # Special case: LDAPUR/STLUR (load-acquire/store-release unscaled) - ldapstl_unscaled encoding
+        if is_load_store and 'ldapstl' in encoding_name and 'Rt' in field_map and 'Rn' in field_map:
+            rt_field = field_map['Rt']['name']
+            rn_field = field_map['Rn']['name']
+            # Register width from encoding name: _64_ = X, _32_ = W
+            rt_is_64 = '_64_' in encoding_name
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, {str(rt_is_64).lower()}));")
+            # Memory operand: [Xn|SP, #simm9]
+            imm_field = None
+            for imm_name in ['imm9', 'simm9']:
+                if imm_name in field_map:
+                    imm_field = field_map[imm_name]['name']
+                    break
+            if imm_field:
+                code.append(f"{ind}int32_t imm = static_cast<int32_t>(enc.{member_name}.{imm_field} << 23) >> 23;")
+                code.append(f"{ind}result.operands.push_back(Operand::memory_offset(enc.{member_name}.{rn_field}, imm));")
+            else:
+                code.append(f"{ind}result.operands.push_back(Operand::memory_base(enc.{member_name}.{rn_field}));")
             code.append(f"{ind}return result;")
             return code
 
@@ -4978,14 +5058,35 @@ class ARM64XMLParser:
         if mnemonic == 'SHA1H':
             scalar_fp_arr = 's'
 
+        # FCVT between precisions: Rd and Rn use different scalar FP types
+        # Encoding name: FCVT_<dst><src>_floatdp1 (e.g., FCVT_SH = single→half, FCVT_DS = double→single)
+        fcvt_rd_arr = None
+        fcvt_rn_arr = None
+        if mnemonic == 'FCVT' and 'float' in encoding_name:
+            enc_upper = encoding_name.upper()
+            # Extract the two-character code after FCVT_
+            if 'FCVT_' in enc_upper:
+                code_part = enc_upper.split('FCVT_')[1][:2]
+                type_map = {'S': 's', 'D': 'd', 'H': 'h'}
+                if len(code_part) == 2 and code_part[0] in type_map and code_part[1] in type_map:
+                    fcvt_rd_arr = type_map[code_part[0]]
+                    fcvt_rn_arr = type_map[code_part[1]]
+
         for reg_name in ['Rd', 'Rn', 'Rm', 'Ra', 'Rt', 'Rs', 'Rt2', 'Rdn']:
             if reg_name in field_map and not field_map[reg_name]['is_fixed']:
                 field_cpp_name = field_map[reg_name]['name']
                 # Skip Rm for FCMP/FCMPE zero variants (replaced by #0.0 below)
                 if scalar_fp_arr and is_fp_cmp_zero and reg_name == 'Rm':
                     continue
+                # FCVT: Rd and Rn use different FP types
+                if fcvt_rd_arr and reg_name == 'Rd':
+                    code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = \"{fcvt_rd_arr}\"; result.operands.push_back(op); }}")
+                    continue
+                elif fcvt_rn_arr and reg_name == 'Rn':
+                    code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = \"{fcvt_rn_arr}\"; result.operands.push_back(op); }}")
+                    continue
                 # Scalar FP: use arrangement from encoding name (s/d/h)
-                if scalar_fp_arr:
+                elif scalar_fp_arr:
                     code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = \"{scalar_fp_arr}\"; result.operands.push_back(op); }}")
                 elif is_advsimd_vector:
                     # Across-lane reduction: Rd is scalar of appropriate width
@@ -5102,6 +5203,7 @@ class ARM64XMLParser:
             code.append(f"{ind}{{ Operand op(OperandType::FloatImmediate, 0, true); op.imm64 = UINT64_MAX; result.operands.push_back(op); }}")
 
         # SVE/SME operand extraction using template-based ordering
+        sve_index_consumed = False  # True if index fields (i3h:i3l etc.) were used as element index
         sve_z_names = {'Zd', 'Zn', 'Zm', 'Za', 'Zk', 'Zt', 'Zda', 'Zdn'}
         sve_p_names = {'Pd', 'Pn', 'Pm', 'Pg', 'Pt', 'Pv', 'Pdm', 'Pdn', 'PNd', 'PNn', 'PNg', 'PNv'}
         has_sve_regs = any(rn in field_map and not field_map[rn]['is_fixed'] for rn in sve_z_names)
@@ -5168,7 +5270,16 @@ class ARM64XMLParser:
                         arr_expr = '_sve_arr'
                     else:
                         arr_expr = 'nullptr'
-                    code.append(f"{ind}{{ Operand op(OperandType::SVERegister, enc.{member_name}.{field_cpp_name}, true); op.arrangement = {arr_expr}; result.operands.push_back(op); }}")
+                    if top.get('has_elem_index'):
+                        # Indexed register: Zm.T[idx] — compute index from split fields
+                        idx_code = self._generate_sve_index_expr(field_map, member_name, encoding_name)
+                        if idx_code:
+                            code.append(f"{ind}{{ Operand op(OperandType::SVERegister, enc.{member_name}.{field_cpp_name}, true); op.arrangement = {arr_expr}; {idx_code} result.operands.push_back(op); }}")
+                            sve_index_consumed = True
+                        else:
+                            code.append(f"{ind}{{ Operand op(OperandType::SVERegister, enc.{member_name}.{field_cpp_name}, true); op.arrangement = {arr_expr}; result.operands.push_back(op); }}")
+                    else:
+                        code.append(f"{ind}{{ Operand op(OperandType::SVERegister, enc.{member_name}.{field_cpp_name}, true); op.arrangement = {arr_expr}; result.operands.push_back(op); }}")
                 elif field in sve_p_names:
                     # For predicates: only apply arrangement if template explicitly shows it
                     if arr and arr not in ('T', 'Tb', 'Ts'):
@@ -5224,22 +5335,22 @@ class ARM64XMLParser:
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rv_field} + 8, false));")
 
         # Combine split immediate fields before extracting individual immediates
-        # i3h + i3l -> combined 3-bit index
-        if 'i3h' in field_map and not field_map['i3h']['is_fixed'] and 'i3l' in field_map and not field_map['i3l']['is_fixed']:
+        # i3h + i3l -> combined 3-bit index (skip if consumed as element index)
+        if not sve_index_consumed and 'i3h' in field_map and not field_map['i3h']['is_fixed'] and 'i3l' in field_map and not field_map['i3l']['is_fixed']:
             i3h_field = field_map['i3h']['name']
             i3l_field = field_map['i3l']['name']
             i3l_width = field_map['i3l']['width']
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, (enc.{member_name}.{i3h_field} << {i3l_width}) | enc.{member_name}.{i3l_field}, true));")
 
-        # i4h + i4l -> combined 4-bit index
-        if 'i4h' in field_map and not field_map['i4h']['is_fixed'] and 'i4l' in field_map and not field_map['i4l']['is_fixed']:
+        # i4h + i4l -> combined 4-bit index (skip if consumed as element index)
+        if not sve_index_consumed and 'i4h' in field_map and not field_map['i4h']['is_fixed'] and 'i4l' in field_map and not field_map['i4l']['is_fixed']:
             i4h_field = field_map['i4h']['name']
             i4l_field = field_map['i4l']['name']
             i4l_width = field_map['i4l']['width']
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, (enc.{member_name}.{i4h_field} << {i4l_width}) | enc.{member_name}.{i4l_field}, true));")
 
-        # i2h + i2l -> combined 2-bit index
-        if 'i2h' in field_map and not field_map['i2h']['is_fixed'] and 'i2l' in field_map and not field_map['i2l']['is_fixed']:
+        # i2h + i2l -> combined 2-bit index (skip if consumed as element index)
+        if not sve_index_consumed and 'i2h' in field_map and not field_map['i2h']['is_fixed'] and 'i2l' in field_map and not field_map['i2l']['is_fixed']:
             i2h_field = field_map['i2h']['name']
             i2l_field = field_map['i2l']['name']
             i2l_width = field_map['i2l']['width']

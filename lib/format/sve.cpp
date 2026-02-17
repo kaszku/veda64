@@ -50942,7 +50942,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::PMOV, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegister, enc.pmov_zpi_h.Zd, true); op.arrangement = nullptr; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.pmov_zpi_h.Zd, true); op.arrangement = nullptr; op.index = enc.pmov_zpi_h.i1; op.has_index = true; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.pmov_zpi_h.Pn, true); op.arrangement = "h"; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.pmov_zpi_h.i1, true));
                         return result;
@@ -50957,7 +50957,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::PredicateRegister, enc.pmov_pzi_h.Pd, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.pmov_pzi_h.Zn, true); op.arrangement = nullptr; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.pmov_pzi_h.Zn, true); op.arrangement = nullptr; op.index = enc.pmov_pzi_h.i1; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.pmov_pzi_h.i1, true));
                         return result;
         }
@@ -51056,7 +51056,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::PMOV, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegister, enc.pmov_zpi_s.Zd, true); op.arrangement = nullptr; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.pmov_zpi_s.Zd, true); op.arrangement = nullptr; op.index = enc.pmov_zpi_s.i2; op.has_index = true; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.pmov_zpi_s.Pn, true); op.arrangement = "s"; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.pmov_zpi_s.i2, true));
                         return result;
@@ -51071,7 +51071,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::PredicateRegister, enc.pmov_pzi_s.Pd, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.pmov_pzi_s.Zn, true); op.arrangement = nullptr; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.pmov_pzi_s.Zn, true); op.arrangement = nullptr; op.index = enc.pmov_pzi_s.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.pmov_pzi_s.i2, true));
                         return result;
         }
@@ -52821,8 +52821,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::PredicateRegister, enc.mov_pporr_pppp_z.Pd, true); op.arrangement = "b"; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.mov_pporr_pppp_z.Pn, true); op.arrangement = "b"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.mov_pporr_pppp_z.Pg, true));
                         result.operands.push_back(Operand(OperandType::PredicateRegister, enc.mov_pporr_pppp_z.Pm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.mov_pporr_pppp_z.Pg, true));
                         return result;
         }
         case 0x25804010u: { // orn_p_p_pp_z
@@ -52862,8 +52862,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::PredicateRegister, enc.movs_pporrs_pppp_z.Pd, true); op.arrangement = "b"; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.movs_pporrs_pppp_z.Pn, true); op.arrangement = "b"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.movs_pporrs_pppp_z.Pg, true));
                         result.operands.push_back(Operand(OperandType::PredicateRegister, enc.movs_pporrs_pppp_z.Pm, true));
+                        result.operands.push_back(Operand(OperandType::PredicateRegister, enc.movs_pporrs_pppp_z.Pg, true));
                         return result;
         }
         case 0x25C04010u: { // orns_p_p_pp_z
@@ -52905,7 +52905,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::AESE, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegister, enc.aese_mz_zzi4x1.Zm, true); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.aese_mz_zzi4x1.Zm, true); op.arrangement = "q"; op.index = enc.aese_mz_zzi4x1.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.aese_mz_zzi4x1.Zdn, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.aese_mz_zzi4x1.i2, true));
                         return result;
@@ -52914,7 +52914,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::AESD, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegister, enc.aesd_mz_zzi4x1.Zm, true); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.aesd_mz_zzi4x1.Zm, true); op.arrangement = "q"; op.index = enc.aesd_mz_zzi4x1.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.aesd_mz_zzi4x1.Zdn, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.aesd_mz_zzi4x1.i2, true));
                         return result;
@@ -52923,7 +52923,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::AESEMC, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegister, enc.aesemc_mz_zzi4x1.Zm, true); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.aesemc_mz_zzi4x1.Zm, true); op.arrangement = "q"; op.index = enc.aesemc_mz_zzi4x1.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.aesemc_mz_zzi4x1.Zdn, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.aesemc_mz_zzi4x1.i2, true));
                         return result;
@@ -52932,7 +52932,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::AESDIMC, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegister, enc.aesdimc_mz_zzi4x1.Zm, true); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.aesdimc_mz_zzi4x1.Zm, true); op.arrangement = "q"; op.index = enc.aesdimc_mz_zzi4x1.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.aesdimc_mz_zzi4x1.Zdn, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.aesdimc_mz_zzi4x1.i2, true));
                         return result;
@@ -52946,7 +52946,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::AESE, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegister, enc.aese_mz_zzi2x1.Zm, true); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.aese_mz_zzi2x1.Zm, true); op.arrangement = "q"; op.index = enc.aese_mz_zzi2x1.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.aese_mz_zzi2x1.Zdn, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.aese_mz_zzi2x1.i2, true));
                         return result;
@@ -52955,7 +52955,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::AESD, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegister, enc.aesd_mz_zzi2x1.Zm, true); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.aesd_mz_zzi2x1.Zm, true); op.arrangement = "q"; op.index = enc.aesd_mz_zzi2x1.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.aesd_mz_zzi2x1.Zdn, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.aesd_mz_zzi2x1.i2, true));
                         return result;
@@ -52964,7 +52964,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::AESEMC, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegister, enc.aesemc_mz_zzi2x1.Zm, true); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.aesemc_mz_zzi2x1.Zm, true); op.arrangement = "q"; op.index = enc.aesemc_mz_zzi2x1.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.aesemc_mz_zzi2x1.Zdn, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.aesemc_mz_zzi2x1.i2, true));
                         return result;
@@ -52973,7 +52973,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::AESDIMC, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegister, enc.aesdimc_mz_zzi2x1.Zm, true); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.aesdimc_mz_zzi2x1.Zm, true); op.arrangement = "q"; op.index = enc.aesdimc_mz_zzi2x1.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.aesdimc_mz_zzi2x1.Zdn, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.aesdimc_mz_zzi2x1.i2, true));
                         return result;
@@ -53161,7 +53161,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.dupq_zzi.Zd, true); op.arrangement = nullptr; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.dupq_zzi.Zn, true); op.arrangement = nullptr; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.dupq_zzi.Zn, true); op.arrangement = nullptr; op.index = enc.dupq_zzi.i1; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.dupq_zzi.i1, true));
                         return result;
         }
@@ -53270,7 +53270,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sdot_z32zzzi.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sdot_z32zzzi.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sdot_z32zzzi.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.sdot_z32zzzi.Zm, true); op.arrangement = "h"; op.index = enc.sdot_z32zzzi.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sdot_z32zzzi.i2, true));
                         return result;
         }
@@ -53280,7 +53280,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.udot_z32zzzi.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.udot_z32zzzi.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.udot_z32zzzi.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.udot_z32zzzi.Zm, true); op.arrangement = "h"; op.index = enc.udot_z32zzzi.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.udot_z32zzzi.i2, true));
                         return result;
         }
@@ -53290,7 +53290,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sdot_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sdot_zzzzi_s.Zn, true); op.arrangement = "b"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sdot_zzzzi_s.Zm, true); op.arrangement = "b"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.sdot_zzzzi_s.Zm, true); op.arrangement = "b"; op.index = enc.sdot_zzzzi_s.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sdot_zzzzi_s.i2, true));
                         return result;
         }
@@ -53300,7 +53300,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.udot_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.udot_zzzzi_s.Zn, true); op.arrangement = "b"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.udot_zzzzi_s.Zm, true); op.arrangement = "b"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.udot_zzzzi_s.Zm, true); op.arrangement = "b"; op.index = enc.udot_zzzzi_s.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.udot_zzzzi_s.i2, true));
                         return result;
         }
@@ -53310,7 +53310,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.mla_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.mla_zzzzi_s.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.mla_zzzzi_s.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.mla_zzzzi_s.Zm, true); op.arrangement = "s"; op.index = enc.mla_zzzzi_s.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.mla_zzzzi_s.i2, true));
                         return result;
         }
@@ -53320,7 +53320,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.mls_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.mls_zzzzi_s.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.mls_zzzzi_s.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.mls_zzzzi_s.Zm, true); op.arrangement = "s"; op.index = enc.mls_zzzzi_s.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.mls_zzzzi_s.i2, true));
                         return result;
         }
@@ -53330,7 +53330,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqrdmlah_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqrdmlah_zzzzi_s.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqrdmlah_zzzzi_s.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.sqrdmlah_zzzzi_s.Zm, true); op.arrangement = "s"; op.index = enc.sqrdmlah_zzzzi_s.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqrdmlah_zzzzi_s.i2, true));
                         return result;
         }
@@ -53340,7 +53340,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqrdmlsh_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqrdmlsh_zzzzi_s.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqrdmlsh_zzzzi_s.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.sqrdmlsh_zzzzi_s.Zm, true); op.arrangement = "s"; op.index = enc.sqrdmlsh_zzzzi_s.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqrdmlsh_zzzzi_s.i2, true));
                         return result;
         }
@@ -53350,7 +53350,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.usdot_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.usdot_zzzzi_s.Zn, true); op.arrangement = "b"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.usdot_zzzzi_s.Zm, true); op.arrangement = "b"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.usdot_zzzzi_s.Zm, true); op.arrangement = "b"; op.index = enc.usdot_zzzzi_s.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.usdot_zzzzi_s.i2, true));
                         return result;
         }
@@ -53360,7 +53360,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sudot_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sudot_zzzzi_s.Zn, true); op.arrangement = "b"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sudot_zzzzi_s.Zm, true); op.arrangement = "b"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.sudot_zzzzi_s.Zm, true); op.arrangement = "b"; op.index = enc.sudot_zzzzi_s.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sudot_zzzzi_s.i2, true));
                         return result;
         }
@@ -53370,7 +53370,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqdmulh_zzzi_s.Zd, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqdmulh_zzzi_s.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqdmulh_zzzi_s.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.sqdmulh_zzzi_s.Zm, true); op.arrangement = "s"; op.index = enc.sqdmulh_zzzi_s.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqdmulh_zzzi_s.i2, true));
                         return result;
         }
@@ -53380,7 +53380,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqrdmulh_zzzi_s.Zd, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqrdmulh_zzzi_s.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqrdmulh_zzzi_s.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.sqrdmulh_zzzi_s.Zm, true); op.arrangement = "s"; op.index = enc.sqrdmulh_zzzi_s.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqrdmulh_zzzi_s.i2, true));
                         return result;
         }
@@ -53390,7 +53390,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.mul_zzzi_s.Zd, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.mul_zzzi_s.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.mul_zzzi_s.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.mul_zzzi_s.Zm, true); op.arrangement = "s"; op.index = enc.mul_zzzi_s.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.mul_zzzi_s.i2, true));
                         return result;
         }
@@ -53418,7 +53418,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sdot_zzzzi_d.Zda, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sdot_zzzzi_d.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sdot_zzzzi_d.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.sdot_zzzzi_d.Zm, true); op.arrangement = "h"; op.index = enc.sdot_zzzzi_d.i1; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sdot_zzzzi_d.i1, true));
                         return result;
         }
@@ -53428,7 +53428,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.udot_zzzzi_d.Zda, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.udot_zzzzi_d.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.udot_zzzzi_d.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.udot_zzzzi_d.Zm, true); op.arrangement = "h"; op.index = enc.udot_zzzzi_d.i1; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.udot_zzzzi_d.i1, true));
                         return result;
         }
@@ -53438,7 +53438,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.mla_zzzzi_d.Zda, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.mla_zzzzi_d.Zn, true); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.mla_zzzzi_d.Zm, true); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.mla_zzzzi_d.Zm, true); op.arrangement = "d"; op.index = enc.mla_zzzzi_d.i1; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.mla_zzzzi_d.i1, true));
                         return result;
         }
@@ -53448,7 +53448,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.mls_zzzzi_d.Zda, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.mls_zzzzi_d.Zn, true); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.mls_zzzzi_d.Zm, true); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.mls_zzzzi_d.Zm, true); op.arrangement = "d"; op.index = enc.mls_zzzzi_d.i1; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.mls_zzzzi_d.i1, true));
                         return result;
         }
@@ -53458,7 +53458,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqrdmlah_zzzzi_d.Zda, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqrdmlah_zzzzi_d.Zn, true); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqrdmlah_zzzzi_d.Zm, true); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.sqrdmlah_zzzzi_d.Zm, true); op.arrangement = "d"; op.index = enc.sqrdmlah_zzzzi_d.i1; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqrdmlah_zzzzi_d.i1, true));
                         return result;
         }
@@ -53468,7 +53468,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqrdmlsh_zzzzi_d.Zda, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqrdmlsh_zzzzi_d.Zn, true); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqrdmlsh_zzzzi_d.Zm, true); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.sqrdmlsh_zzzzi_d.Zm, true); op.arrangement = "d"; op.index = enc.sqrdmlsh_zzzzi_d.i1; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqrdmlsh_zzzzi_d.i1, true));
                         return result;
         }
@@ -53478,7 +53478,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqdmulh_zzzi_d.Zd, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqdmulh_zzzi_d.Zn, true); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqdmulh_zzzi_d.Zm, true); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.sqdmulh_zzzi_d.Zm, true); op.arrangement = "d"; op.index = enc.sqdmulh_zzzi_d.i1; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqdmulh_zzzi_d.i1, true));
                         return result;
         }
@@ -53488,7 +53488,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqrdmulh_zzzi_d.Zd, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqrdmulh_zzzi_d.Zn, true); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqrdmulh_zzzi_d.Zm, true); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.sqrdmulh_zzzi_d.Zm, true); op.arrangement = "d"; op.index = enc.sqrdmulh_zzzi_d.i1; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqrdmulh_zzzi_d.i1, true));
                         return result;
         }
@@ -53498,7 +53498,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.mul_zzzi_d.Zd, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.mul_zzzi_d.Zn, true); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.mul_zzzi_d.Zm, true); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.mul_zzzi_d.Zm, true); op.arrangement = "d"; op.index = enc.mul_zzzi_d.i1; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.mul_zzzi_d.i1, true));
                         return result;
         }
@@ -53589,7 +53589,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.fdot_zzzzi.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fdot_zzzzi.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.fdot_zzzzi.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.fdot_zzzzi.Zm, true); op.arrangement = "h"; op.index = enc.fdot_zzzzi.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_zzzzi.i2, true));
                         return result;
         }
@@ -53671,7 +53671,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.bfdot_zzzzi.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.bfdot_zzzzi.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.bfdot_zzzzi.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.bfdot_zzzzi.Zm, true); op.arrangement = "h"; op.index = enc.bfdot_zzzzi.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.bfdot_zzzzi.i2, true));
                         return result;
         }
@@ -53681,7 +53681,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.fdot_z32zz8z8i.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fdot_z32zz8z8i.Zn, true); op.arrangement = "b"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.fdot_z32zz8z8i.Zm, true); op.arrangement = "b"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.fdot_z32zz8z8i.Zm, true); op.arrangement = "b"; op.index = enc.fdot_z32zz8z8i.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_z32zz8z8i.i2, true));
                         return result;
         }
@@ -53727,7 +53727,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.fmla_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmla_zzzzi_s.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.fmla_zzzzi_s.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.fmla_zzzzi_s.Zm, true); op.arrangement = "s"; op.index = enc.fmla_zzzzi_s.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmla_zzzzi_s.i2, true));
                         return result;
         }
@@ -53737,7 +53737,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.fmls_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmls_zzzzi_s.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.fmls_zzzzi_s.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.fmls_zzzzi_s.Zm, true); op.arrangement = "s"; op.index = enc.fmls_zzzzi_s.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmls_zzzzi_s.i2, true));
                         return result;
         }
@@ -53747,7 +53747,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.fmul_zzzi_s.Zd, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmul_zzzi_s.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.fmul_zzzi_s.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.fmul_zzzi_s.Zm, true); op.arrangement = "s"; op.index = enc.fmul_zzzi_s.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmul_zzzi_s.i2, true));
                         return result;
         }
@@ -53829,7 +53829,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.fmla_zzzzi_d.Zda, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmla_zzzzi_d.Zn, true); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.fmla_zzzzi_d.Zm, true); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.fmla_zzzzi_d.Zm, true); op.arrangement = "d"; op.index = enc.fmla_zzzzi_d.i1; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmla_zzzzi_d.i1, true));
                         return result;
         }
@@ -53839,7 +53839,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.fmls_zzzzi_d.Zda, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmls_zzzzi_d.Zn, true); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.fmls_zzzzi_d.Zm, true); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.fmls_zzzzi_d.Zm, true); op.arrangement = "d"; op.index = enc.fmls_zzzzi_d.i1; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmls_zzzzi_d.i1, true));
                         return result;
         }
@@ -53849,7 +53849,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.fmul_zzzi_d.Zd, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmul_zzzi_d.Zn, true); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.fmul_zzzi_d.Zm, true); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.fmul_zzzi_d.Zm, true); op.arrangement = "d"; op.index = enc.fmul_zzzi_d.i1; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fmul_zzzi_d.i1, true));
                         return result;
         }
@@ -53990,8 +53990,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqdmlalb_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqdmlalb_zzzzi_s.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqdmlalb_zzzzi_s.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmlalb_zzzzi_s.i3h << 1) | enc.sqdmlalb_zzzzi_s.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.sqdmlalb_zzzzi_s.Zm, true); op.arrangement = "h"; op.index = (enc.sqdmlalb_zzzzi_s.i3h << 1) | enc.sqdmlalb_zzzzi_s.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44A02400u: { // sqdmlalt_z_zzzi_s
@@ -54000,8 +53999,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqdmlalt_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqdmlalt_zzzzi_s.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqdmlalt_zzzzi_s.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmlalt_zzzzi_s.i3h << 1) | enc.sqdmlalt_zzzzi_s.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.sqdmlalt_zzzzi_s.Zm, true); op.arrangement = "h"; op.index = (enc.sqdmlalt_zzzzi_s.i3h << 1) | enc.sqdmlalt_zzzzi_s.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44A03000u: { // sqdmlslb_z_zzzi_s
@@ -54010,8 +54008,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqdmlslb_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqdmlslb_zzzzi_s.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqdmlslb_zzzzi_s.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmlslb_zzzzi_s.i3h << 1) | enc.sqdmlslb_zzzzi_s.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.sqdmlslb_zzzzi_s.Zm, true); op.arrangement = "h"; op.index = (enc.sqdmlslb_zzzzi_s.i3h << 1) | enc.sqdmlslb_zzzzi_s.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44A03400u: { // sqdmlslt_z_zzzi_s
@@ -54020,8 +54017,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqdmlslt_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqdmlslt_zzzzi_s.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqdmlslt_zzzzi_s.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmlslt_zzzzi_s.i3h << 1) | enc.sqdmlslt_zzzzi_s.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.sqdmlslt_zzzzi_s.Zm, true); op.arrangement = "h"; op.index = (enc.sqdmlslt_zzzzi_s.i3h << 1) | enc.sqdmlslt_zzzzi_s.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44A08000u: { // smlalb_z_zzzi_s
@@ -54030,8 +54026,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.smlalb_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.smlalb_zzzzi_s.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.smlalb_zzzzi_s.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlalb_zzzzi_s.i3h << 1) | enc.smlalb_zzzzi_s.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.smlalb_zzzzi_s.Zm, true); op.arrangement = "h"; op.index = (enc.smlalb_zzzzi_s.i3h << 1) | enc.smlalb_zzzzi_s.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44A08400u: { // smlalt_z_zzzi_s
@@ -54040,8 +54035,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.smlalt_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.smlalt_zzzzi_s.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.smlalt_zzzzi_s.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlalt_zzzzi_s.i3h << 1) | enc.smlalt_zzzzi_s.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.smlalt_zzzzi_s.Zm, true); op.arrangement = "h"; op.index = (enc.smlalt_zzzzi_s.i3h << 1) | enc.smlalt_zzzzi_s.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44A09000u: { // umlalb_z_zzzi_s
@@ -54050,8 +54044,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.umlalb_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.umlalb_zzzzi_s.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.umlalb_zzzzi_s.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlalb_zzzzi_s.i3h << 1) | enc.umlalb_zzzzi_s.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.umlalb_zzzzi_s.Zm, true); op.arrangement = "h"; op.index = (enc.umlalb_zzzzi_s.i3h << 1) | enc.umlalb_zzzzi_s.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44A09400u: { // umlalt_z_zzzi_s
@@ -54060,8 +54053,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.umlalt_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.umlalt_zzzzi_s.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.umlalt_zzzzi_s.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlalt_zzzzi_s.i3h << 1) | enc.umlalt_zzzzi_s.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.umlalt_zzzzi_s.Zm, true); op.arrangement = "h"; op.index = (enc.umlalt_zzzzi_s.i3h << 1) | enc.umlalt_zzzzi_s.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44A0A000u: { // smlslb_z_zzzi_s
@@ -54070,8 +54062,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.smlslb_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.smlslb_zzzzi_s.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.smlslb_zzzzi_s.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlslb_zzzzi_s.i3h << 1) | enc.smlslb_zzzzi_s.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.smlslb_zzzzi_s.Zm, true); op.arrangement = "h"; op.index = (enc.smlslb_zzzzi_s.i3h << 1) | enc.smlslb_zzzzi_s.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44A0A400u: { // smlslt_z_zzzi_s
@@ -54080,8 +54071,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.smlslt_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.smlslt_zzzzi_s.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.smlslt_zzzzi_s.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlslt_zzzzi_s.i3h << 1) | enc.smlslt_zzzzi_s.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.smlslt_zzzzi_s.Zm, true); op.arrangement = "h"; op.index = (enc.smlslt_zzzzi_s.i3h << 1) | enc.smlslt_zzzzi_s.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44A0B000u: { // umlslb_z_zzzi_s
@@ -54090,8 +54080,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.umlslb_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.umlslb_zzzzi_s.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.umlslb_zzzzi_s.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlslb_zzzzi_s.i3h << 1) | enc.umlslb_zzzzi_s.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.umlslb_zzzzi_s.Zm, true); op.arrangement = "h"; op.index = (enc.umlslb_zzzzi_s.i3h << 1) | enc.umlslb_zzzzi_s.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44A0B400u: { // umlslt_z_zzzi_s
@@ -54100,8 +54089,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.umlslt_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.umlslt_zzzzi_s.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.umlslt_zzzzi_s.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlslt_zzzzi_s.i3h << 1) | enc.umlslt_zzzzi_s.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.umlslt_zzzzi_s.Zm, true); op.arrangement = "h"; op.index = (enc.umlslt_zzzzi_s.i3h << 1) | enc.umlslt_zzzzi_s.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44A0C000u: { // smullb_z_zzi_s
@@ -54110,8 +54098,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.smullb_zzzi_s.Zd, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.smullb_zzzi_s.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.smullb_zzzi_s.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smullb_zzzi_s.i3h << 1) | enc.smullb_zzzi_s.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.smullb_zzzi_s.Zm, true); op.arrangement = "h"; op.index = (enc.smullb_zzzi_s.i3h << 1) | enc.smullb_zzzi_s.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44A0C400u: { // smullt_z_zzi_s
@@ -54120,8 +54107,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.smullt_zzzi_s.Zd, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.smullt_zzzi_s.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.smullt_zzzi_s.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smullt_zzzi_s.i3h << 1) | enc.smullt_zzzi_s.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.smullt_zzzi_s.Zm, true); op.arrangement = "h"; op.index = (enc.smullt_zzzi_s.i3h << 1) | enc.smullt_zzzi_s.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44A0D000u: { // umullb_z_zzi_s
@@ -54130,8 +54116,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.umullb_zzzi_s.Zd, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.umullb_zzzi_s.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.umullb_zzzi_s.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umullb_zzzi_s.i3h << 1) | enc.umullb_zzzi_s.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.umullb_zzzi_s.Zm, true); op.arrangement = "h"; op.index = (enc.umullb_zzzi_s.i3h << 1) | enc.umullb_zzzi_s.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44A0D400u: { // umullt_z_zzi_s
@@ -54140,8 +54125,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.umullt_zzzi_s.Zd, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.umullt_zzzi_s.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.umullt_zzzi_s.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umullt_zzzi_s.i3h << 1) | enc.umullt_zzzi_s.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.umullt_zzzi_s.Zm, true); op.arrangement = "h"; op.index = (enc.umullt_zzzi_s.i3h << 1) | enc.umullt_zzzi_s.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44A0E000u: { // sqdmullb_z_zzi_s
@@ -54150,8 +54134,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqdmullb_zzzi_s.Zd, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqdmullb_zzzi_s.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqdmullb_zzzi_s.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmullb_zzzi_s.i3h << 1) | enc.sqdmullb_zzzi_s.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.sqdmullb_zzzi_s.Zm, true); op.arrangement = "h"; op.index = (enc.sqdmullb_zzzi_s.i3h << 1) | enc.sqdmullb_zzzi_s.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44A0E400u: { // sqdmullt_z_zzi_s
@@ -54160,8 +54143,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqdmullt_zzzi_s.Zd, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqdmullt_zzzi_s.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqdmullt_zzzi_s.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmullt_zzzi_s.i3h << 1) | enc.sqdmullt_zzzi_s.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.sqdmullt_zzzi_s.Zm, true); op.arrangement = "h"; op.index = (enc.sqdmullt_zzzi_s.i3h << 1) | enc.sqdmullt_zzzi_s.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44E02000u: { // sqdmlalb_z_zzzi_d
@@ -54170,8 +54152,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqdmlalb_zzzzi_d.Zda, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqdmlalb_zzzzi_d.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqdmlalb_zzzzi_d.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmlalb_zzzzi_d.i2h << 1) | enc.sqdmlalb_zzzzi_d.i2l, true));
+                        { Operand op(OperandType::SVERegister, enc.sqdmlalb_zzzzi_d.Zm, true); op.arrangement = "s"; op.index = (enc.sqdmlalb_zzzzi_d.i2h << 1) | enc.sqdmlalb_zzzzi_d.i2l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44E02400u: { // sqdmlalt_z_zzzi_d
@@ -54180,8 +54161,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqdmlalt_zzzzi_d.Zda, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqdmlalt_zzzzi_d.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqdmlalt_zzzzi_d.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmlalt_zzzzi_d.i2h << 1) | enc.sqdmlalt_zzzzi_d.i2l, true));
+                        { Operand op(OperandType::SVERegister, enc.sqdmlalt_zzzzi_d.Zm, true); op.arrangement = "s"; op.index = (enc.sqdmlalt_zzzzi_d.i2h << 1) | enc.sqdmlalt_zzzzi_d.i2l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44E03000u: { // sqdmlslb_z_zzzi_d
@@ -54190,8 +54170,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqdmlslb_zzzzi_d.Zda, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqdmlslb_zzzzi_d.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqdmlslb_zzzzi_d.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmlslb_zzzzi_d.i2h << 1) | enc.sqdmlslb_zzzzi_d.i2l, true));
+                        { Operand op(OperandType::SVERegister, enc.sqdmlslb_zzzzi_d.Zm, true); op.arrangement = "s"; op.index = (enc.sqdmlslb_zzzzi_d.i2h << 1) | enc.sqdmlslb_zzzzi_d.i2l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44E03400u: { // sqdmlslt_z_zzzi_d
@@ -54200,8 +54179,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqdmlslt_zzzzi_d.Zda, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqdmlslt_zzzzi_d.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqdmlslt_zzzzi_d.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmlslt_zzzzi_d.i2h << 1) | enc.sqdmlslt_zzzzi_d.i2l, true));
+                        { Operand op(OperandType::SVERegister, enc.sqdmlslt_zzzzi_d.Zm, true); op.arrangement = "s"; op.index = (enc.sqdmlslt_zzzzi_d.i2h << 1) | enc.sqdmlslt_zzzzi_d.i2l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44E08000u: { // smlalb_z_zzzi_d
@@ -54210,8 +54188,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.smlalb_zzzzi_d.Zda, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.smlalb_zzzzi_d.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.smlalb_zzzzi_d.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlalb_zzzzi_d.i2h << 1) | enc.smlalb_zzzzi_d.i2l, true));
+                        { Operand op(OperandType::SVERegister, enc.smlalb_zzzzi_d.Zm, true); op.arrangement = "s"; op.index = (enc.smlalb_zzzzi_d.i2h << 1) | enc.smlalb_zzzzi_d.i2l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44E08400u: { // smlalt_z_zzzi_d
@@ -54220,8 +54197,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.smlalt_zzzzi_d.Zda, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.smlalt_zzzzi_d.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.smlalt_zzzzi_d.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlalt_zzzzi_d.i2h << 1) | enc.smlalt_zzzzi_d.i2l, true));
+                        { Operand op(OperandType::SVERegister, enc.smlalt_zzzzi_d.Zm, true); op.arrangement = "s"; op.index = (enc.smlalt_zzzzi_d.i2h << 1) | enc.smlalt_zzzzi_d.i2l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44E09000u: { // umlalb_z_zzzi_d
@@ -54230,8 +54206,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.umlalb_zzzzi_d.Zda, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.umlalb_zzzzi_d.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.umlalb_zzzzi_d.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlalb_zzzzi_d.i2h << 1) | enc.umlalb_zzzzi_d.i2l, true));
+                        { Operand op(OperandType::SVERegister, enc.umlalb_zzzzi_d.Zm, true); op.arrangement = "s"; op.index = (enc.umlalb_zzzzi_d.i2h << 1) | enc.umlalb_zzzzi_d.i2l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44E09400u: { // umlalt_z_zzzi_d
@@ -54240,8 +54215,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.umlalt_zzzzi_d.Zda, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.umlalt_zzzzi_d.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.umlalt_zzzzi_d.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlalt_zzzzi_d.i2h << 1) | enc.umlalt_zzzzi_d.i2l, true));
+                        { Operand op(OperandType::SVERegister, enc.umlalt_zzzzi_d.Zm, true); op.arrangement = "s"; op.index = (enc.umlalt_zzzzi_d.i2h << 1) | enc.umlalt_zzzzi_d.i2l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44E0A000u: { // smlslb_z_zzzi_d
@@ -54250,8 +54224,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.smlslb_zzzzi_d.Zda, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.smlslb_zzzzi_d.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.smlslb_zzzzi_d.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlslb_zzzzi_d.i2h << 1) | enc.smlslb_zzzzi_d.i2l, true));
+                        { Operand op(OperandType::SVERegister, enc.smlslb_zzzzi_d.Zm, true); op.arrangement = "s"; op.index = (enc.smlslb_zzzzi_d.i2h << 1) | enc.smlslb_zzzzi_d.i2l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44E0A400u: { // smlslt_z_zzzi_d
@@ -54260,8 +54233,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.smlslt_zzzzi_d.Zda, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.smlslt_zzzzi_d.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.smlslt_zzzzi_d.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smlslt_zzzzi_d.i2h << 1) | enc.smlslt_zzzzi_d.i2l, true));
+                        { Operand op(OperandType::SVERegister, enc.smlslt_zzzzi_d.Zm, true); op.arrangement = "s"; op.index = (enc.smlslt_zzzzi_d.i2h << 1) | enc.smlslt_zzzzi_d.i2l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44E0B000u: { // umlslb_z_zzzi_d
@@ -54270,8 +54242,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.umlslb_zzzzi_d.Zda, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.umlslb_zzzzi_d.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.umlslb_zzzzi_d.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlslb_zzzzi_d.i2h << 1) | enc.umlslb_zzzzi_d.i2l, true));
+                        { Operand op(OperandType::SVERegister, enc.umlslb_zzzzi_d.Zm, true); op.arrangement = "s"; op.index = (enc.umlslb_zzzzi_d.i2h << 1) | enc.umlslb_zzzzi_d.i2l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44E0B400u: { // umlslt_z_zzzi_d
@@ -54280,8 +54251,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.umlslt_zzzzi_d.Zda, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.umlslt_zzzzi_d.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.umlslt_zzzzi_d.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umlslt_zzzzi_d.i2h << 1) | enc.umlslt_zzzzi_d.i2l, true));
+                        { Operand op(OperandType::SVERegister, enc.umlslt_zzzzi_d.Zm, true); op.arrangement = "s"; op.index = (enc.umlslt_zzzzi_d.i2h << 1) | enc.umlslt_zzzzi_d.i2l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44E0C000u: { // smullb_z_zzi_d
@@ -54290,8 +54260,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.smullb_zzzi_d.Zd, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.smullb_zzzi_d.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.smullb_zzzi_d.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smullb_zzzi_d.i2h << 1) | enc.smullb_zzzi_d.i2l, true));
+                        { Operand op(OperandType::SVERegister, enc.smullb_zzzi_d.Zm, true); op.arrangement = "s"; op.index = (enc.smullb_zzzi_d.i2h << 1) | enc.smullb_zzzi_d.i2l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44E0C400u: { // smullt_z_zzi_d
@@ -54300,8 +54269,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.smullt_zzzi_d.Zd, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.smullt_zzzi_d.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.smullt_zzzi_d.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.smullt_zzzi_d.i2h << 1) | enc.smullt_zzzi_d.i2l, true));
+                        { Operand op(OperandType::SVERegister, enc.smullt_zzzi_d.Zm, true); op.arrangement = "s"; op.index = (enc.smullt_zzzi_d.i2h << 1) | enc.smullt_zzzi_d.i2l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44E0D000u: { // umullb_z_zzi_d
@@ -54310,8 +54278,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.umullb_zzzi_d.Zd, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.umullb_zzzi_d.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.umullb_zzzi_d.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umullb_zzzi_d.i2h << 1) | enc.umullb_zzzi_d.i2l, true));
+                        { Operand op(OperandType::SVERegister, enc.umullb_zzzi_d.Zm, true); op.arrangement = "s"; op.index = (enc.umullb_zzzi_d.i2h << 1) | enc.umullb_zzzi_d.i2l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44E0D400u: { // umullt_z_zzi_d
@@ -54320,8 +54287,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.umullt_zzzi_d.Zd, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.umullt_zzzi_d.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.umullt_zzzi_d.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.umullt_zzzi_d.i2h << 1) | enc.umullt_zzzi_d.i2l, true));
+                        { Operand op(OperandType::SVERegister, enc.umullt_zzzi_d.Zm, true); op.arrangement = "s"; op.index = (enc.umullt_zzzi_d.i2h << 1) | enc.umullt_zzzi_d.i2l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44E0E000u: { // sqdmullb_z_zzi_d
@@ -54330,8 +54296,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqdmullb_zzzi_d.Zd, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqdmullb_zzzi_d.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqdmullb_zzzi_d.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmullb_zzzi_d.i2h << 1) | enc.sqdmullb_zzzi_d.i2l, true));
+                        { Operand op(OperandType::SVERegister, enc.sqdmullb_zzzi_d.Zm, true); op.arrangement = "s"; op.index = (enc.sqdmullb_zzzi_d.i2h << 1) | enc.sqdmullb_zzzi_d.i2l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44E0E400u: { // sqdmullt_z_zzi_d
@@ -54340,8 +54305,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqdmullt_zzzi_d.Zd, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqdmullt_zzzi_d.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqdmullt_zzzi_d.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmullt_zzzi_d.i2h << 1) | enc.sqdmullt_zzzi_d.i2l, true));
+                        { Operand op(OperandType::SVERegister, enc.sqdmullt_zzzi_d.Zm, true); op.arrangement = "s"; op.index = (enc.sqdmullt_zzzi_d.i2h << 1) | enc.sqdmullt_zzzi_d.i2l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x64204400u: { // fdot_z_zz8z8i_
@@ -54350,8 +54314,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.fdot_zzz8z8i.Zda, true); op.arrangement = "h"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fdot_zzz8z8i.Zn, true); op.arrangement = "b"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.fdot_zzz8z8i.Zm, true); op.arrangement = "b"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fdot_zzz8z8i.i3h << 1) | enc.fdot_zzz8z8i.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.fdot_zzz8z8i.Zm, true); op.arrangement = "b"; op.index = (enc.fdot_zzz8z8i.i3h << 1) | enc.fdot_zzz8z8i.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x64A04000u: { // fmlalb_z_zzzi_s
@@ -54360,8 +54323,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.fmlalb_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmlalb_zzzzi_s.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.fmlalb_zzzzi_s.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmlalb_zzzzi_s.i3h << 1) | enc.fmlalb_zzzzi_s.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.fmlalb_zzzzi_s.Zm, true); op.arrangement = "h"; op.index = (enc.fmlalb_zzzzi_s.i3h << 1) | enc.fmlalb_zzzzi_s.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x64A04400u: { // fmlalt_z_zzzi_s
@@ -54370,8 +54332,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.fmlalt_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmlalt_zzzzi_s.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.fmlalt_zzzzi_s.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmlalt_zzzzi_s.i3h << 1) | enc.fmlalt_zzzzi_s.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.fmlalt_zzzzi_s.Zm, true); op.arrangement = "h"; op.index = (enc.fmlalt_zzzzi_s.i3h << 1) | enc.fmlalt_zzzzi_s.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x64A06000u: { // fmlslb_z_zzzi_s
@@ -54380,8 +54341,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.fmlslb_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmlslb_zzzzi_s.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.fmlslb_zzzzi_s.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmlslb_zzzzi_s.i3h << 1) | enc.fmlslb_zzzzi_s.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.fmlslb_zzzzi_s.Zm, true); op.arrangement = "h"; op.index = (enc.fmlslb_zzzzi_s.i3h << 1) | enc.fmlslb_zzzzi_s.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x64A06400u: { // fmlslt_z_zzzi_s
@@ -54390,8 +54350,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.fmlslt_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmlslt_zzzzi_s.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.fmlslt_zzzzi_s.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmlslt_zzzzi_s.i3h << 1) | enc.fmlslt_zzzzi_s.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.fmlslt_zzzzi_s.Zm, true); op.arrangement = "h"; op.index = (enc.fmlslt_zzzzi_s.i3h << 1) | enc.fmlslt_zzzzi_s.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x64E04000u: { // bfmlalb_z_zzzi_
@@ -54400,8 +54359,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.bfmlalb_zzzzi.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.bfmlalb_zzzzi.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.bfmlalb_zzzzi.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.bfmlalb_zzzzi.i3h << 1) | enc.bfmlalb_zzzzi.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.bfmlalb_zzzzi.Zm, true); op.arrangement = "h"; op.index = (enc.bfmlalb_zzzzi.i3h << 1) | enc.bfmlalb_zzzzi.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x64E04400u: { // bfmlalt_z_zzzi_
@@ -54410,8 +54368,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.bfmlalt_zzzzi.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.bfmlalt_zzzzi.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.bfmlalt_zzzzi.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.bfmlalt_zzzzi.i3h << 1) | enc.bfmlalt_zzzzi.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.bfmlalt_zzzzi.Zm, true); op.arrangement = "h"; op.index = (enc.bfmlalt_zzzzi.i3h << 1) | enc.bfmlalt_zzzzi.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x64E06000u: { // bfmlslb_z_zzzi_
@@ -54420,8 +54377,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.bfmlslb_zzzzi.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.bfmlslb_zzzzi.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.bfmlslb_zzzzi.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.bfmlslb_zzzzi.i3h << 1) | enc.bfmlslb_zzzzi.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.bfmlslb_zzzzi.Zm, true); op.arrangement = "h"; op.index = (enc.bfmlslb_zzzzi.i3h << 1) | enc.bfmlslb_zzzzi.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x64E06400u: { // bfmlslt_z_zzzi_
@@ -54430,8 +54386,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.bfmlslt_zzzzi.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.bfmlslt_zzzzi.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.bfmlslt_zzzzi.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.bfmlslt_zzzzi.i3h << 1) | enc.bfmlslt_zzzzi.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.bfmlslt_zzzzi.Zm, true); op.arrangement = "h"; op.index = (enc.bfmlslt_zzzzi.i3h << 1) | enc.bfmlslt_zzzzi.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         default: break;
@@ -54463,7 +54418,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.cdot_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.cdot_zzzzi_s.Zn, true); op.arrangement = "b"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.cdot_zzzzi_s.Zm, true); op.arrangement = "b"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.cdot_zzzzi_s.Zm, true); op.arrangement = "b"; op.index = enc.cdot_zzzzi_s.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cdot_zzzzi_s.i2, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cdot_zzzzi_s.rot * 90, true));
                         return result;
@@ -54474,7 +54429,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.cmla_zzzzi_h.Zda, true); op.arrangement = "h"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.cmla_zzzzi_h.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.cmla_zzzzi_h.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.cmla_zzzzi_h.Zm, true); op.arrangement = "h"; op.index = enc.cmla_zzzzi_h.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cmla_zzzzi_h.i2, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cmla_zzzzi_h.rot * 90, true));
                         return result;
@@ -54485,7 +54440,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqrdcmlah_zzzzi_h.Zda, true); op.arrangement = "h"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqrdcmlah_zzzzi_h.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqrdcmlah_zzzzi_h.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.sqrdcmlah_zzzzi_h.Zm, true); op.arrangement = "h"; op.index = enc.sqrdcmlah_zzzzi_h.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqrdcmlah_zzzzi_h.i2, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqrdcmlah_zzzzi_h.rot * 90, true));
                         return result;
@@ -54496,7 +54451,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.cdot_zzzzi_d.Zda, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.cdot_zzzzi_d.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.cdot_zzzzi_d.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.cdot_zzzzi_d.Zm, true); op.arrangement = "h"; op.index = enc.cdot_zzzzi_d.i1; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cdot_zzzzi_d.i1, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cdot_zzzzi_d.rot * 90, true));
                         return result;
@@ -54507,7 +54462,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.cmla_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.cmla_zzzzi_s.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.cmla_zzzzi_s.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.cmla_zzzzi_s.Zm, true); op.arrangement = "s"; op.index = enc.cmla_zzzzi_s.i1; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cmla_zzzzi_s.i1, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cmla_zzzzi_s.rot * 90, true));
                         return result;
@@ -54518,7 +54473,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqrdcmlah_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqrdcmlah_zzzzi_s.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqrdcmlah_zzzzi_s.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.sqrdcmlah_zzzzi_s.Zm, true); op.arrangement = "s"; op.index = enc.sqrdcmlah_zzzzi_s.i1; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqrdcmlah_zzzzi_s.i1, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqrdcmlah_zzzzi_s.rot * 90, true));
                         return result;
@@ -54559,7 +54514,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.fcmla_zzzzi_h.Zda, true); op.arrangement = "h"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fcmla_zzzzi_h.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.fcmla_zzzzi_h.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.fcmla_zzzzi_h.Zm, true); op.arrangement = "h"; op.index = enc.fcmla_zzzzi_h.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fcmla_zzzzi_h.i2, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fcmla_zzzzi_h.rot * 90, true));
                         return result;
@@ -54590,7 +54545,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.fcmla_zzzzi_s.Zda, true); op.arrangement = "s"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fcmla_zzzzi_s.Zn, true); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.fcmla_zzzzi_s.Zm, true); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.fcmla_zzzzi_s.Zm, true); op.arrangement = "s"; op.index = enc.fcmla_zzzzi_s.i1; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fcmla_zzzzi_s.i1, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.fcmla_zzzzi_s.rot * 90, true));
                         return result;
@@ -57158,9 +57113,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::PMOV, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegister, enc.pmov_zpi_d.Zd, true); op.arrangement = nullptr; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.pmov_zpi_d.Zd, true); op.arrangement = nullptr; op.index = (enc.pmov_zpi_d.i3h << 2) | enc.pmov_zpi_d.i3l; op.has_index = true; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.pmov_zpi_d.Pn, true); op.arrangement = "d"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.pmov_zpi_d.i3h << 2) | enc.pmov_zpi_d.i3l, true));
                         return result;
         }
         default: break;
@@ -57173,8 +57127,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::PredicateRegister, enc.pmov_pzi_d.Pd, true); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.pmov_pzi_d.Zn, true); op.arrangement = nullptr; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.pmov_pzi_d.i3h << 2) | enc.pmov_pzi_d.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.pmov_pzi_d.Zn, true); op.arrangement = nullptr; op.index = (enc.pmov_pzi_d.i3h << 2) | enc.pmov_pzi_d.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         default: break;
@@ -57264,8 +57217,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sdot_z16zzzi_h.Zda, true); op.arrangement = "h"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sdot_z16zzzi_h.Zn, true); op.arrangement = "b"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sdot_z16zzzi_h.Zm, true); op.arrangement = "b"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sdot_z16zzzi_h.i3h << 2) | enc.sdot_z16zzzi_h.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.sdot_z16zzzi_h.Zm, true); op.arrangement = "b"; op.index = (enc.sdot_z16zzzi_h.i3h << 2) | enc.sdot_z16zzzi_h.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44200400u: { // udot_z16_zzzi_h
@@ -57274,8 +57226,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.udot_z16zzzi_h.Zda, true); op.arrangement = "h"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.udot_z16zzzi_h.Zn, true); op.arrangement = "b"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.udot_z16zzzi_h.Zm, true); op.arrangement = "b"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.udot_z16zzzi_h.i3h << 2) | enc.udot_z16zzzi_h.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.udot_z16zzzi_h.Zm, true); op.arrangement = "b"; op.index = (enc.udot_z16zzzi_h.i3h << 2) | enc.udot_z16zzzi_h.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44200800u: { // mla_z_zzzi_h
@@ -57284,8 +57235,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.mla_zzzzi_h.Zda, true); op.arrangement = "h"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.mla_zzzzi_h.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.mla_zzzzi_h.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.mla_zzzzi_h.i3h << 2) | enc.mla_zzzzi_h.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.mla_zzzzi_h.Zm, true); op.arrangement = "h"; op.index = (enc.mla_zzzzi_h.i3h << 2) | enc.mla_zzzzi_h.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44200C00u: { // mls_z_zzzi_h
@@ -57294,8 +57244,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.mls_zzzzi_h.Zda, true); op.arrangement = "h"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.mls_zzzzi_h.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.mls_zzzzi_h.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.mls_zzzzi_h.i3h << 2) | enc.mls_zzzzi_h.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.mls_zzzzi_h.Zm, true); op.arrangement = "h"; op.index = (enc.mls_zzzzi_h.i3h << 2) | enc.mls_zzzzi_h.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44201000u: { // sqrdmlah_z_zzzi_h
@@ -57304,8 +57253,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqrdmlah_zzzzi_h.Zda, true); op.arrangement = "h"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqrdmlah_zzzzi_h.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqrdmlah_zzzzi_h.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqrdmlah_zzzzi_h.i3h << 2) | enc.sqrdmlah_zzzzi_h.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.sqrdmlah_zzzzi_h.Zm, true); op.arrangement = "h"; op.index = (enc.sqrdmlah_zzzzi_h.i3h << 2) | enc.sqrdmlah_zzzzi_h.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44201400u: { // sqrdmlsh_z_zzzi_h
@@ -57314,8 +57262,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqrdmlsh_zzzzi_h.Zda, true); op.arrangement = "h"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqrdmlsh_zzzzi_h.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqrdmlsh_zzzzi_h.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqrdmlsh_zzzzi_h.i3h << 2) | enc.sqrdmlsh_zzzzi_h.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.sqrdmlsh_zzzzi_h.Zm, true); op.arrangement = "h"; op.index = (enc.sqrdmlsh_zzzzi_h.i3h << 2) | enc.sqrdmlsh_zzzzi_h.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x4420F000u: { // sqdmulh_z_zzi_h
@@ -57324,8 +57271,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqdmulh_zzzi_h.Zd, true); op.arrangement = "h"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqdmulh_zzzi_h.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqdmulh_zzzi_h.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqdmulh_zzzi_h.i3h << 2) | enc.sqdmulh_zzzi_h.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.sqdmulh_zzzi_h.Zm, true); op.arrangement = "h"; op.index = (enc.sqdmulh_zzzi_h.i3h << 2) | enc.sqdmulh_zzzi_h.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x4420F400u: { // sqrdmulh_z_zzi_h
@@ -57334,8 +57280,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqrdmulh_zzzi_h.Zd, true); op.arrangement = "h"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sqrdmulh_zzzi_h.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.sqrdmulh_zzzi_h.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.sqrdmulh_zzzi_h.i3h << 2) | enc.sqrdmulh_zzzi_h.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.sqrdmulh_zzzi_h.Zm, true); op.arrangement = "h"; op.index = (enc.sqrdmulh_zzzi_h.i3h << 2) | enc.sqrdmulh_zzzi_h.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x4420F800u: { // mul_z_zzi_h
@@ -57344,8 +57289,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.mul_zzzi_h.Zd, true); op.arrangement = "h"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.mul_zzzi_h.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.mul_zzzi_h.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.mul_zzzi_h.i3h << 2) | enc.mul_zzzi_h.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.mul_zzzi_h.Zm, true); op.arrangement = "h"; op.index = (enc.mul_zzzi_h.i3h << 2) | enc.mul_zzzi_h.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x44800000u: { // sdot_z_zzz_
@@ -57620,8 +57564,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.fmla_zzzzi_h.Zda, true); op.arrangement = "h"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmla_zzzzi_h.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.fmla_zzzzi_h.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmla_zzzzi_h.i3h << 2) | enc.fmla_zzzzi_h.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.fmla_zzzzi_h.Zm, true); op.arrangement = "h"; op.index = (enc.fmla_zzzzi_h.i3h << 2) | enc.fmla_zzzzi_h.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x64200400u: { // fmls_z_zzzi_h
@@ -57630,8 +57573,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.fmls_zzzzi_h.Zda, true); op.arrangement = "h"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmls_zzzzi_h.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.fmls_zzzzi_h.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmls_zzzzi_h.i3h << 2) | enc.fmls_zzzzi_h.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.fmls_zzzzi_h.Zm, true); op.arrangement = "h"; op.index = (enc.fmls_zzzzi_h.i3h << 2) | enc.fmls_zzzzi_h.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x64200800u: { // bfmla_z_zzzi_h
@@ -57640,8 +57582,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.bfmla_zzzzi_h.Zda, true); op.arrangement = "h"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.bfmla_zzzzi_h.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.bfmla_zzzzi_h.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.bfmla_zzzzi_h.i3h << 2) | enc.bfmla_zzzzi_h.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.bfmla_zzzzi_h.Zm, true); op.arrangement = "h"; op.index = (enc.bfmla_zzzzi_h.i3h << 2) | enc.bfmla_zzzzi_h.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x64200C00u: { // bfmls_z_zzzi_h
@@ -57650,8 +57591,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.bfmls_zzzzi_h.Zda, true); op.arrangement = "h"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.bfmls_zzzzi_h.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.bfmls_zzzzi_h.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.bfmls_zzzzi_h.i3h << 2) | enc.bfmls_zzzzi_h.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.bfmls_zzzzi_h.Zm, true); op.arrangement = "h"; op.index = (enc.bfmls_zzzzi_h.i3h << 2) | enc.bfmls_zzzzi_h.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x64202000u: { // fmul_z_zzi_h
@@ -57660,8 +57600,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.fmul_zzzi_h.Zd, true); op.arrangement = "h"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmul_zzzi_h.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.fmul_zzzi_h.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmul_zzzi_h.i3h << 2) | enc.fmul_zzzi_h.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.fmul_zzzi_h.Zm, true); op.arrangement = "h"; op.index = (enc.fmul_zzzi_h.i3h << 2) | enc.fmul_zzzi_h.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x64202800u: { // bfmul_z_zzi_h
@@ -57670,8 +57609,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.bfmul_zzzi_h.Zd, true); op.arrangement = "h"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.bfmul_zzzi_h.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.bfmul_zzzi_h.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.bfmul_zzzi_h.i3h << 2) | enc.bfmul_zzzi_h.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.bfmul_zzzi_h.Zm, true); op.arrangement = "h"; op.index = (enc.bfmul_zzzi_h.i3h << 2) | enc.bfmul_zzzi_h.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         default: break;
@@ -58322,7 +58260,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.luti4zzz8.Zd, true); op.arrangement = "b"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.luti4zzz8.Zn, true); op.arrangement = "b"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.luti4zzz8.Zm, true); op.arrangement = nullptr; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.luti4zzz8.Zm, true); op.arrangement = nullptr; op.index = enc.luti4zzz8.i1; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.luti4zzz8.i1, true));
                         return result;
         }
@@ -58331,7 +58269,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.luti6zzzz16.Zd, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.luti6zzzz16.Zm, true); op.arrangement = nullptr; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.luti6zzzz16.Zm, true); op.arrangement = nullptr; op.index = enc.luti6zzzz16.i1; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.luti6zzzz16.Zn, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.luti6zzzz16.i1, true));
                         return result;
@@ -65575,7 +65513,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.luti2zzz8.Zd, true); op.arrangement = "b"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.luti2zzz8.Zn, true); op.arrangement = "b"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.luti2zzz8.Zm, true); op.arrangement = nullptr; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.luti2zzz8.Zm, true); op.arrangement = nullptr; op.index = enc.luti2zzz8.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.luti2zzz8.i2, true));
                         return result;
         }
@@ -65584,7 +65522,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.luti4zzz2x16.Zd, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.luti4zzz2x16.Zm, true); op.arrangement = nullptr; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.luti4zzz2x16.Zm, true); op.arrangement = nullptr; op.index = enc.luti4zzz2x16.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::SVERegister, enc.luti4zzz2x16.Zn, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.luti4zzz2x16.i2, true));
                         return result;
@@ -65595,7 +65533,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.luti4zzz1x16.Zd, true); op.arrangement = "h"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.luti4zzz1x16.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.luti4zzz1x16.Zm, true); op.arrangement = nullptr; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegister, enc.luti4zzz1x16.Zm, true); op.arrangement = nullptr; op.index = enc.luti4zzz1x16.i2; op.has_index = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.luti4zzz1x16.i2, true));
                         return result;
         }
@@ -65930,8 +65868,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.luti2zzz16.Zd, true); op.arrangement = "h"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.luti2zzz16.Zn, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegister, enc.luti2zzz16.Zm, true); op.arrangement = nullptr; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.luti2zzz16.i3h << 1) | enc.luti2zzz16.i3l, true));
+                        { Operand op(OperandType::SVERegister, enc.luti2zzz16.Zm, true); op.arrangement = nullptr; op.index = (enc.luti2zzz16.i3h << 1) | enc.luti2zzz16.i3l; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         default: break;
