@@ -53225,7 +53225,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::AESE, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.aese_mz_zzi4x1.Zdn * 4, true); op.arrangement = "b"; op.index = 4; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegisterList, enc.aese_mz_zzi4x1.Zdn, true); op.arrangement = "b"; op.index = 8; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.aese_mz_zzi4x1.Zm, true); op.arrangement = "q"; op.index = enc.aese_mz_zzi4x1.i2; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
@@ -53233,7 +53233,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::AESD, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.aesd_mz_zzi4x1.Zdn * 4, true); op.arrangement = "b"; op.index = 4; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegisterList, enc.aesd_mz_zzi4x1.Zdn, true); op.arrangement = "b"; op.index = 8; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.aesd_mz_zzi4x1.Zm, true); op.arrangement = "q"; op.index = enc.aesd_mz_zzi4x1.i2; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
@@ -53241,7 +53241,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::AESEMC, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.aesemc_mz_zzi4x1.Zdn * 4, true); op.arrangement = "b"; op.index = 4; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegisterList, enc.aesemc_mz_zzi4x1.Zdn, true); op.arrangement = "b"; op.index = 8; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.aesemc_mz_zzi4x1.Zm, true); op.arrangement = "q"; op.index = enc.aesemc_mz_zzi4x1.i2; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
@@ -53249,7 +53249,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::AESDIMC, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.aesdimc_mz_zzi4x1.Zdn * 4, true); op.arrangement = "b"; op.index = 4; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegisterList, enc.aesdimc_mz_zzi4x1.Zdn, true); op.arrangement = "b"; op.index = 8; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.aesdimc_mz_zzi4x1.Zm, true); op.arrangement = "q"; op.index = enc.aesdimc_mz_zzi4x1.i2; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
@@ -58955,7 +58955,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        { Operand op(OperandType::PredicateRegister, enc.ptrue_pn_i.PNd, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::PredicateNRegister, enc.ptrue_pn_i.PNd | 8u, true); result.operands.push_back(op); }
                         return result;
         }
         default: break;
@@ -59023,7 +59023,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        { Operand op(OperandType::PredicateRegister, enc.pext_pp_rr.PNn, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::PredicateNRegister, enc.pext_pp_rr.PNn | 8u, true); result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.pext_pp_rr.i1, true));
                         return result;
         }
@@ -59378,7 +59378,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 3: _sve_arr = "d"; break;
                         }
                         { Operand op(OperandType::PredicateRegister, enc.pext_pn_rr.Pd, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
-                        { Operand op(OperandType::PredicateRegister, enc.pext_pn_rr.PNn, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::PredicateNRegister, enc.pext_pn_rr.PNn | 8u, true); result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.pext_pn_rr.imm2, true));
                         return result;
         }
@@ -59689,7 +59689,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        { Operand op(OperandType::PredicateRegister, enc.cntp_rpn.PNn, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::PredicateNRegister, enc.cntp_rpn.PNn | 8u, true); result.operands.push_back(op); }
                         return result;
         }
         default: break;
@@ -67521,7 +67521,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        { Operand op(OperandType::PredicateRegister, enc.whilege_pn_rr.PNd, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::PredicateNRegister, enc.whilege_pn_rr.PNd | 8u, true); result.operands.push_back(op); }
                         return result;
         }
         case 0x25204018u: { // whilegt_pn_rr_
@@ -67538,7 +67538,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        { Operand op(OperandType::PredicateRegister, enc.whilegt_pn_rr.PNd, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::PredicateNRegister, enc.whilegt_pn_rr.PNd | 8u, true); result.operands.push_back(op); }
                         return result;
         }
         case 0x25204410u: { // whilelt_pn_rr_
@@ -67555,7 +67555,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        { Operand op(OperandType::PredicateRegister, enc.whilelt_pn_rr.PNd, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::PredicateNRegister, enc.whilelt_pn_rr.PNd | 8u, true); result.operands.push_back(op); }
                         return result;
         }
         case 0x25204418u: { // whilele_pn_rr_
@@ -67572,7 +67572,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        { Operand op(OperandType::PredicateRegister, enc.whilele_pn_rr.PNd, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::PredicateNRegister, enc.whilele_pn_rr.PNd | 8u, true); result.operands.push_back(op); }
                         return result;
         }
         case 0x25204810u: { // whilehs_pn_rr_
@@ -67589,7 +67589,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        { Operand op(OperandType::PredicateRegister, enc.whilehs_pn_rr.PNd, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::PredicateNRegister, enc.whilehs_pn_rr.PNd | 8u, true); result.operands.push_back(op); }
                         return result;
         }
         case 0x25204818u: { // whilehi_pn_rr_
@@ -67606,7 +67606,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        { Operand op(OperandType::PredicateRegister, enc.whilehi_pn_rr.PNd, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::PredicateNRegister, enc.whilehi_pn_rr.PNd | 8u, true); result.operands.push_back(op); }
                         return result;
         }
         case 0x25204C10u: { // whilelo_pn_rr_
@@ -67623,7 +67623,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        { Operand op(OperandType::PredicateRegister, enc.whilelo_pn_rr.PNd, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::PredicateNRegister, enc.whilelo_pn_rr.PNd | 8u, true); result.operands.push_back(op); }
                         return result;
         }
         case 0x25204C18u: { // whilels_pn_rr_
@@ -67640,7 +67640,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
-                        { Operand op(OperandType::PredicateRegister, enc.whilels_pn_rr.PNd, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::PredicateNRegister, enc.whilels_pn_rr.PNd | 8u, true); result.operands.push_back(op); }
                         return result;
         }
         default: break;

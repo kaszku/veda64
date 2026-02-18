@@ -413,6 +413,19 @@ class ARM64XMLParser:
                                  if not f.lower().startswith('imm') and f != mem_imm_field]
             complex_mem = is_in_mem and len(reg_field_matches) > 1
 
+            # Expand range notation: { <Zt1>.D-<Zt4>.D } → Zt1, Zt2, Zt3, Zt4
+            # This happens when a list token has exactly 2 numbered Z-reg matches with a dash between them
+            if is_list and len(field_matches) == 2:
+                m1 = re.match(r'^(Z\w+?)(\d+)$', field_matches[0][0])
+                m2 = re.match(r'^(Z\w+?)(\d+)$', field_matches[1][0])
+                if m1 and m2 and m1.group(1) == m2.group(1):
+                    n1, n2 = int(m1.group(2)), int(m2.group(2))
+                    if n2 > n1 + 1:
+                        # Range notation: expand intermediate registers
+                        base_name = m1.group(1)
+                        arr_char0 = field_matches[0][1]
+                        field_matches = [(f'{base_name}{i}', arr_char0, '') for i in range(n1, n2 + 1)]
+
             for field, arr_char, idx_field in field_matches:
                 # Check for arrangement: from <Field>.B capture or token-level search
                 arr = arr_char.lower() if arr_char else None
@@ -1018,6 +1031,7 @@ class ARM64XMLParser:
         code.append("    VectorRegister,     // Vector/SIMD register (Vn, Qn, Dn, Sn, Hn, Bn)")
         code.append("    SVERegister,        // SVE scalable vector register (Zn)")
         code.append("    PredicateRegister,  // SVE predicate register (Pn)")
+        code.append("    PredicateNRegister, // SVE predicate-as-counter register (PNn, pn8-pn15)")
         code.append("    SMETileRegister,    // SME tile register (ZAn)")
         code.append("    Immediate,          // Immediate value")
         code.append("    SignedImmediate,    // Signed immediate value")
@@ -1870,6 +1884,14 @@ class ARM64XMLParser:
         code.append("            }")
         code.append("            return \"za\" + std::to_string(value);")
         code.append("        ")
+        code.append("        case OperandType::PredicateNRegister: {")
+        code.append("            std::string r = \"pn\" + std::to_string(value);")
+        code.append("            if (is_sp) {")
+        code.append("                r += is_64bit ? \"/m\" : \"/z\";")
+        code.append("            }")
+        code.append("            return r;")
+        code.append("        }")
+        code.append("        ")
         code.append("        case OperandType::SMEZTRegister:")
         code.append("            return \"zt0\";")
         code.append("        ")
@@ -2328,6 +2350,7 @@ class ARM64XMLParser:
         code.append("    VectorRegister,     // Vector/SIMD register (Vn, Qn, Dn, Sn, Hn, Bn)")
         code.append("    SVERegister,        // SVE scalable vector register (Zn)")
         code.append("    PredicateRegister,  // SVE predicate register (Pn)")
+        code.append("    PredicateNRegister, // SVE predicate-as-counter register (PNn, pn8-pn15)")
         code.append("    SMETileRegister,    // SME tile register (ZAn)")
         code.append("    Immediate,          // Immediate value")
         code.append("    SignedImmediate,    // Signed immediate value")
@@ -6436,7 +6459,18 @@ class ARM64XMLParser:
                         arr_expr = '_sve_arr'
                     else:
                         arr_expr = 'nullptr'
-                    if qual == 'z':
+                    # PNg/PNd/PNn/PNv: predicate-as-counter registers (pn8-pn15)
+                    # Encoded as 3-bit field, actual register = 8 | field_value (g = UInt('1'::PNg))
+                    is_pn_reg = field.startswith('PN')
+                    if is_pn_reg:
+                        pn_val_expr = f"enc.{member_name}.{field_cpp_name} | 8u"
+                        if qual == 'z':
+                            code.append(f"{ind}{{ Operand op(OperandType::PredicateNRegister, {pn_val_expr}, false); op.is_sp = true; result.operands.push_back(op); }}")
+                        elif qual == 'm':
+                            code.append(f"{ind}{{ Operand op(OperandType::PredicateNRegister, {pn_val_expr}, true); op.is_sp = true; result.operands.push_back(op); }}")
+                        else:
+                            code.append(f"{ind}{{ Operand op(OperandType::PredicateNRegister, {pn_val_expr}, true); result.operands.push_back(op); }}")
+                    elif qual == 'z':
                         code.append(f"{ind}{{ Operand op(OperandType::PredicateRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = nullptr; op.is_sp = true; result.operands.push_back(op); }}")
                     elif qual == 'm':
                         code.append(f"{ind}{{ Operand op(OperandType::PredicateRegister, enc.{member_name}.{field_cpp_name}, true); op.arrangement = nullptr; op.is_sp = true; result.operands.push_back(op); }}")
@@ -6449,6 +6483,8 @@ class ARM64XMLParser:
                     field_cpp_name = field_map[reg_name]['name']
                     if reg_name in sve_z_names:
                         code.append(f"{ind}result.operands.push_back(Operand(OperandType::SVERegister, enc.{member_name}.{field_cpp_name}, true));")
+                    elif reg_name.startswith('PN'):
+                        code.append(f"{ind}result.operands.push_back(Operand(OperandType::PredicateNRegister, enc.{member_name}.{field_cpp_name} | 8u, true));")
                     else:
                         code.append(f"{ind}result.operands.push_back(Operand(OperandType::PredicateRegister, enc.{member_name}.{field_cpp_name}, true));")
         else:

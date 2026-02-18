@@ -1605,6 +1605,7 @@ enum class OperandType {
     VectorRegister,     // Vector/SIMD register (Vn, Qn, Dn, Sn, Hn, Bn)
     SVERegister,        // SVE scalable vector register (Zn)
     PredicateRegister,  // SVE predicate register (Pn)
+    PredicateNRegister, // SVE predicate-as-counter register (PNn, pn8-pn15)
     SMETileRegister,    // SME tile register (ZAn)
     Immediate,          // Immediate value
     SignedImmediate,    // Signed immediate value

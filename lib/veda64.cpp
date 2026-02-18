@@ -2189,6 +2189,14 @@ std::string Operand::to_string() const {
             }
             return "za" + std::to_string(value);
 
+        case OperandType::PredicateNRegister: {
+            std::string r = "pn" + std::to_string(value);
+            if (is_sp) {
+                r += is_64bit ? "/m" : "/z";
+            }
+            return r;
+        }
+
         case OperandType::SMEZTRegister:
             return "zt0";
 
