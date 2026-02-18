@@ -2172,15 +2172,15 @@ std::string Operand::to_string() const {
                 r += "]";
                 return r;
             }
-            // has_index=true: ZA tile slice {zaXv/h.T[wN, offs]}
+            // has_index=true: ZA tile slice {zaXv/h.T[wN, offs]} (no spaces inside braces)
             if (has_index) {
-                std::string r = "{ za" + std::to_string(value);
+                std::string r = "{za" + std::to_string(value);
                 r += is_sp ? "v" : "h";
                 if (arrangement && arrangement[0] != '\0') { r += "."; r += arrangement; }
                 r += "[w" + std::to_string(index) + ", ";
                 if (amount >= 10) { std::ostringstream oss; oss << "0x" << std::hex << amount; r += oss.str(); }
                 else r += std::to_string(amount);
-                r += "] }";
+                r += "]}";
                 return r;
             }
             return "za" + std::to_string(value);
