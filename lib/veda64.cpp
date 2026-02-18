@@ -2148,6 +2148,16 @@ std::string Operand::to_string() const {
         }
 
         case OperandType::SMETileRegister:
+            // extend==2: VGx mode: za.T[wN, offs{, vgxN}]
+            if (has_index && extend == 2) {
+                std::string r = "za";
+                if (arrangement && arrangement[0] != '\0') { r += "."; r += arrangement; }
+                r += "[w" + std::to_string(index) + ", " + std::to_string(amount);
+                int32_t vgx = (int32_t)offset;
+                if (vgx > 1) r += ", vgx" + std::to_string(vgx);
+                r += "]";
+                return r;
+            }
             // extend!=0: ZA accumulator range za.T[wN, start:end]
             if (has_index && extend) {
                 std::string r = "za";

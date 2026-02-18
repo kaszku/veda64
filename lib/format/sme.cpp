@@ -37798,18 +37798,34 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.mov_mz_za41mova_mz_za41.Zd, true); op.arrangement = "d"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.mov_mz_za41mova_mz_za41.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.mov_mz_za41mova_mz_za41.off3, true));
+                        {
+                            uint32_t _off = enc.mov_mz_za41mova_mz_za41.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "d";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.mov_mz_za41mova_mz_za41.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         return result;
         }
         case 0xC0060E00u: { // movaz_mz_za4_1
                         Instruction result(Mnemonic::MOVAZ, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.movaz_mz_za41.Zd, true); op.arrangement = "d"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.movaz_mz_za41.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.movaz_mz_za41.off3, true));
+                        {
+                            uint32_t _off = enc.movaz_mz_za41.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "d";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.movaz_mz_za41.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         return result;
         }
         default: break;
@@ -37822,18 +37838,34 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.mov_mz_za21mova_mz_za21.Zd, true); op.arrangement = "d"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.mov_mz_za21mova_mz_za21.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.mov_mz_za21mova_mz_za21.off3, true));
+                        {
+                            uint32_t _off = enc.mov_mz_za21mova_mz_za21.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "d";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.mov_mz_za21mova_mz_za21.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         return result;
         }
         case 0xC0060A00u: { // movaz_mz_za2_1
                         Instruction result(Mnemonic::MOVAZ, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.movaz_mz_za21.Zd, true); op.arrangement = "d"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.movaz_mz_za21.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.movaz_mz_za21.off3, true));
+                        {
+                            uint32_t _off = enc.movaz_mz_za21.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "d";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.movaz_mz_za21.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         return result;
         }
         default: break;
@@ -37846,45 +37878,90 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.mov_za_mz41mova_za_mz41.Zn, true); op.arrangement = "d"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.mov_za_mz41mova_za_mz41.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.mov_za_mz41mova_za_mz41.off3, true));
+                        {
+                            uint32_t _off = enc.mov_za_mz41mova_za_mz41.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "d";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.mov_za_mz41mova_za_mz41.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.mov_za_mz41mova_za_mz41.Zn, true); op.arrangement = "d"; op.index = 4; result.operands.push_back(op); }
                         return result;
         }
         case 0xC1A51C00u: { // fadd_za_zw_4x4_16
                         Instruction result(Mnemonic::FADD, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.fadd_za_zw4x416.Zm, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fadd_za_zw4x416.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fadd_za_zw4x416.off3, true));
+                        {
+                            uint32_t _off = enc.fadd_za_zw4x416.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fadd_za_zw4x416.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.fadd_za_zw4x416.Zm, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         return result;
         }
         case 0xC1A51C08u: { // fsub_za_zw_4x4_16
                         Instruction result(Mnemonic::FSUB, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.fsub_za_zw4x416.Zm, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fsub_za_zw4x416.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fsub_za_zw4x416.off3, true));
+                        {
+                            uint32_t _off = enc.fsub_za_zw4x416.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fsub_za_zw4x416.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.fsub_za_zw4x416.Zm, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         return result;
         }
         case 0xC1E51C00u: { // bfadd_za_zw_4x4_16
                         Instruction result(Mnemonic::BFADD, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.bfadd_za_zw4x416.Zm, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfadd_za_zw4x416.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfadd_za_zw4x416.off3, true));
+                        {
+                            uint32_t _off = enc.bfadd_za_zw4x416.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.bfadd_za_zw4x416.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.bfadd_za_zw4x416.Zm, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         return result;
         }
         case 0xC1E51C08u: { // bfsub_za_zw_4x4_16
                         Instruction result(Mnemonic::BFSUB, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.bfsub_za_zw4x416.Zm, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfsub_za_zw4x416.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfsub_za_zw4x416.off3, true));
+                        {
+                            uint32_t _off = enc.bfsub_za_zw4x416.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.bfsub_za_zw4x416.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.bfsub_za_zw4x416.Zm, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         return result;
         }
         default: break;
@@ -37897,45 +37974,90 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::MOVA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.mov_za_mz21mova_za_mz21.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "d";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.mov_za_mz21mova_za_mz21.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.mov_za_mz21mova_za_mz21.Zn, true); op.arrangement = "d"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.mov_za_mz21mova_za_mz21.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.mov_za_mz21mova_za_mz21.off3, true));
                         return result;
         }
         case 0xC1A41C00u: { // fadd_za_zw_2x2_16
                         Instruction result(Mnemonic::FADD, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.fadd_za_zw2x216.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fadd_za_zw2x216.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.fadd_za_zw2x216.Zm, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fadd_za_zw2x216.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fadd_za_zw2x216.off3, true));
                         return result;
         }
         case 0xC1A41C08u: { // fsub_za_zw_2x2_16
                         Instruction result(Mnemonic::FSUB, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.fsub_za_zw2x216.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fsub_za_zw2x216.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.fsub_za_zw2x216.Zm, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fsub_za_zw2x216.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fsub_za_zw2x216.off3, true));
                         return result;
         }
         case 0xC1E41C00u: { // bfadd_za_zw_2x2_16
                         Instruction result(Mnemonic::BFADD, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.bfadd_za_zw2x216.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.bfadd_za_zw2x216.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.bfadd_za_zw2x216.Zm, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfadd_za_zw2x216.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfadd_za_zw2x216.off3, true));
                         return result;
         }
         case 0xC1E41C08u: { // bfsub_za_zw_2x2_16
                         Instruction result(Mnemonic::BFSUB, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.bfsub_za_zw2x216.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.bfsub_za_zw2x216.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.bfsub_za_zw2x216.Zm, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfsub_za_zw2x216.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfsub_za_zw2x216.off3, true));
                         return result;
         }
         default: break;
@@ -41818,80 +41940,152 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.fdot_za_zzv2x1.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fdot_za_zzv2x1.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.fdot_za_zzv2x1.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fdot_za_zzv2x1.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fdot_za_zzv2x1.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_za_zzv2x1.off3, true));
                         return result;
         }
         case 0xC1201008u: { // fdot_za_z8z8v_2x1
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.fdot_za_z8z8v2x1.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fdot_za_z8z8v2x1.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.fdot_za_z8z8v2x1.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fdot_za_z8z8v2x1.Zm, true); op.arrangement = "b"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fdot_za_z8z8v2x1.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_za_z8z8v2x1.off3, true));
                         return result;
         }
         case 0xC1201010u: { // bfdot_za_zzv_2x1
                         Instruction result(Mnemonic::BFDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.bfdot_za_zzv2x1.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.bfdot_za_zzv2x1.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.bfdot_za_zzv2x1.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.bfdot_za_zzv2x1.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfdot_za_zzv2x1.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfdot_za_zzv2x1.off3, true));
                         return result;
         }
         case 0xC1201018u: { // fdot_za32_z8z8v_2x1
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.fdot_za32z8z8v2x1.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fdot_za32z8z8v2x1.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.fdot_za32z8z8v2x1.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fdot_za32z8z8v2x1.Zm, true); op.arrangement = "b"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fdot_za32z8z8v2x1.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_za32z8z8v2x1.off3, true));
                         return result;
         }
         case 0xC1201408u: { // usdot_za_zzv_s2x1
                         Instruction result(Mnemonic::USDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.usdot_za_zzv_s2x1.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.usdot_za_zzv_s2x1.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.usdot_za_zzv_s2x1.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.usdot_za_zzv_s2x1.Zm, true); op.arrangement = "b"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.usdot_za_zzv_s2x1.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.usdot_za_zzv_s2x1.off3, true));
                         return result;
         }
         case 0xC1201418u: { // sudot_za_zzv_s2x1
                         Instruction result(Mnemonic::SUDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.sudot_za_zzv_s2x1.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.sudot_za_zzv_s2x1.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.sudot_za_zzv_s2x1.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sudot_za_zzv_s2x1.Zm, true); op.arrangement = "b"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.sudot_za_zzv_s2x1.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sudot_za_zzv_s2x1.off3, true));
                         return result;
         }
         case 0xC1201C00u: { // fmla_za_zzv_2x1_16
                         Instruction result(Mnemonic::FMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.fmla_za_zzv2x116.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fmla_za_zzv2x116.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.fmla_za_zzv2x116.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmla_za_zzv2x116.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fmla_za_zzv2x116.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmla_za_zzv2x116.off3, true));
                         return result;
         }
         case 0xC1201C08u: { // fmls_za_zzv_2x1_16
                         Instruction result(Mnemonic::FMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.fmls_za_zzv2x116.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fmls_za_zzv2x116.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.fmls_za_zzv2x116.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmls_za_zzv2x116.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fmls_za_zzv2x116.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmls_za_zzv2x116.off3, true));
                         return result;
         }
         case 0xC1300C00u: { // fmlal_za_z8z8v_1
@@ -41920,80 +42114,152 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.fdot_za_zzv4x1.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.fdot_za_zzv4x1.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fdot_za_zzv4x1.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.fdot_za_zzv4x1.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fdot_za_zzv4x1.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fdot_za_zzv4x1.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_za_zzv4x1.off3, true));
                         return result;
         }
         case 0xC1301008u: { // fdot_za_z8z8v_4x1
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.fdot_za_z8z8v4x1.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.fdot_za_z8z8v4x1.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fdot_za_z8z8v4x1.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.fdot_za_z8z8v4x1.Zn, true); op.arrangement = "b"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fdot_za_z8z8v4x1.Zm, true); op.arrangement = "b"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fdot_za_z8z8v4x1.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_za_z8z8v4x1.off3, true));
                         return result;
         }
         case 0xC1301010u: { // bfdot_za_zzv_4x1
                         Instruction result(Mnemonic::BFDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.bfdot_za_zzv4x1.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.bfdot_za_zzv4x1.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.bfdot_za_zzv4x1.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.bfdot_za_zzv4x1.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.bfdot_za_zzv4x1.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfdot_za_zzv4x1.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfdot_za_zzv4x1.off3, true));
                         return result;
         }
         case 0xC1301018u: { // fdot_za32_z8z8v_4x1
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.fdot_za32z8z8v4x1.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.fdot_za32z8z8v4x1.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fdot_za32z8z8v4x1.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.fdot_za32z8z8v4x1.Zn, true); op.arrangement = "b"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fdot_za32z8z8v4x1.Zm, true); op.arrangement = "b"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fdot_za32z8z8v4x1.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_za32z8z8v4x1.off3, true));
                         return result;
         }
         case 0xC1301408u: { // usdot_za_zzv_s4x1
                         Instruction result(Mnemonic::USDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.usdot_za_zzv_s4x1.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.usdot_za_zzv_s4x1.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.usdot_za_zzv_s4x1.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.usdot_za_zzv_s4x1.Zn, true); op.arrangement = "b"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.usdot_za_zzv_s4x1.Zm, true); op.arrangement = "b"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.usdot_za_zzv_s4x1.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.usdot_za_zzv_s4x1.off3, true));
                         return result;
         }
         case 0xC1301418u: { // sudot_za_zzv_s4x1
                         Instruction result(Mnemonic::SUDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.sudot_za_zzv_s4x1.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.sudot_za_zzv_s4x1.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.sudot_za_zzv_s4x1.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.sudot_za_zzv_s4x1.Zn, true); op.arrangement = "b"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sudot_za_zzv_s4x1.Zm, true); op.arrangement = "b"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.sudot_za_zzv_s4x1.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sudot_za_zzv_s4x1.off3, true));
                         return result;
         }
         case 0xC1301C00u: { // fmla_za_zzv_4x1_16
                         Instruction result(Mnemonic::FMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.fmla_za_zzv4x116.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.fmla_za_zzv4x116.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fmla_za_zzv4x116.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.fmla_za_zzv4x116.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmla_za_zzv4x116.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fmla_za_zzv4x116.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmla_za_zzv4x116.off3, true));
                         return result;
         }
         case 0xC1301C08u: { // fmls_za_zzv_4x1_16
                         Instruction result(Mnemonic::FMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.fmls_za_zzv4x116.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.fmls_za_zzv4x116.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fmls_za_zzv4x116.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.fmls_za_zzv4x116.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmls_za_zzv4x116.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fmls_za_zzv4x116.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmls_za_zzv4x116.off3, true));
                         return result;
         }
         case 0xC1600C00u: { // smlal_za_zzv_1
@@ -42088,80 +42354,152 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.sdot_za32zzv2x1.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.sdot_za32zzv2x1.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.sdot_za32zzv2x1.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sdot_za32zzv2x1.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.sdot_za32zzv2x1.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sdot_za32zzv2x1.off3, true));
                         return result;
         }
         case 0xC1601418u: { // udot_za32_zzv_2x1
                         Instruction result(Mnemonic::UDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.udot_za32zzv2x1.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.udot_za32zzv2x1.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.udot_za32zzv2x1.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.udot_za32zzv2x1.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.udot_za32zzv2x1.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.udot_za32zzv2x1.off3, true));
                         return result;
         }
         case 0xC1601C00u: { // bfmla_za_zzv_2x1_16
                         Instruction result(Mnemonic::BFMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.bfmla_za_zzv2x116.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.bfmla_za_zzv2x116.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.bfmla_za_zzv2x116.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.bfmla_za_zzv2x116.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfmla_za_zzv2x116.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfmla_za_zzv2x116.off3, true));
                         return result;
         }
         case 0xC1601C08u: { // bfmls_za_zzv_2x1_16
                         Instruction result(Mnemonic::BFMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.bfmls_za_zzv2x116.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.bfmls_za_zzv2x116.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.bfmls_za_zzv2x116.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.bfmls_za_zzv2x116.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfmls_za_zzv2x116.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfmls_za_zzv2x116.off3, true));
                         return result;
         }
         case 0xC1701408u: { // sdot_za32_zzv_4x1
                         Instruction result(Mnemonic::SDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.sdot_za32zzv4x1.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.sdot_za32zzv4x1.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.sdot_za32zzv4x1.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.sdot_za32zzv4x1.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sdot_za32zzv4x1.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.sdot_za32zzv4x1.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sdot_za32zzv4x1.off3, true));
                         return result;
         }
         case 0xC1701418u: { // udot_za32_zzv_4x1
                         Instruction result(Mnemonic::UDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.udot_za32zzv4x1.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.udot_za32zzv4x1.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.udot_za32zzv4x1.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.udot_za32zzv4x1.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.udot_za32zzv4x1.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.udot_za32zzv4x1.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.udot_za32zzv4x1.off3, true));
                         return result;
         }
         case 0xC1701C00u: { // bfmla_za_zzv_4x1_16
                         Instruction result(Mnemonic::BFMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.bfmla_za_zzv4x116.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.bfmla_za_zzv4x116.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.bfmla_za_zzv4x116.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.bfmla_za_zzv4x116.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.bfmla_za_zzv4x116.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfmla_za_zzv4x116.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfmla_za_zzv4x116.off3, true));
                         return result;
         }
         case 0xC1701C08u: { // bfmls_za_zzv_4x1_16
                         Instruction result(Mnemonic::BFMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.bfmls_za_zzv4x116.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.bfmls_za_zzv4x116.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.bfmls_za_zzv4x116.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.bfmls_za_zzv4x116.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.bfmls_za_zzv4x116.Zm, true); op.arrangement = "h"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfmls_za_zzv4x116.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfmls_za_zzv4x116.off3, true));
                         return result;
         }
         default: break;
@@ -42257,66 +42595,114 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.fmla_za_zzi_d4xi.Zn, true); op.arrangement = "d"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.fmla_za_zzi_d4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "d";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fmla_za_zzi_d4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.fmla_za_zzi_d4xi.Zn, true); op.arrangement = "d"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmla_za_zzi_d4xi.Zm, true); op.arrangement = "d"; op.index = enc.fmla_za_zzi_d4xi.i1; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fmla_za_zzi_d4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmla_za_zzi_d4xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmla_za_zzi_d4xi.i1, true));
                         return result;
         }
         case 0xC1D08008u: { // sdot_za_zzi_d4xi
                         Instruction result(Mnemonic::SDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.sdot_za_zzi_d4xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.sdot_za_zzi_d4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "d";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.sdot_za_zzi_d4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.sdot_za_zzi_d4xi.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sdot_za_zzi_d4xi.Zm, true); op.arrangement = "h"; op.index = enc.sdot_za_zzi_d4xi.i1; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.sdot_za_zzi_d4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sdot_za_zzi_d4xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sdot_za_zzi_d4xi.i1, true));
                         return result;
         }
         case 0xC1D08010u: { // fmls_za_zzi_d4xi
                         Instruction result(Mnemonic::FMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.fmls_za_zzi_d4xi.Zn, true); op.arrangement = "d"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.fmls_za_zzi_d4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "d";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fmls_za_zzi_d4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.fmls_za_zzi_d4xi.Zn, true); op.arrangement = "d"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmls_za_zzi_d4xi.Zm, true); op.arrangement = "d"; op.index = enc.fmls_za_zzi_d4xi.i1; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fmls_za_zzi_d4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmls_za_zzi_d4xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmls_za_zzi_d4xi.i1, true));
                         return result;
         }
         case 0xC1D08018u: { // udot_za_zzi_d4xi
                         Instruction result(Mnemonic::UDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.udot_za_zzi_d4xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.udot_za_zzi_d4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "d";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.udot_za_zzi_d4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.udot_za_zzi_d4xi.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.udot_za_zzi_d4xi.Zm, true); op.arrangement = "h"; op.index = enc.udot_za_zzi_d4xi.i1; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.udot_za_zzi_d4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.udot_za_zzi_d4xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.udot_za_zzi_d4xi.i1, true));
                         return result;
         }
         case 0xC1D08808u: { // svdot_za_zzi_d4xi
                         Instruction result(Mnemonic::SVDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.svdot_za_zzi_d4xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.svdot_za_zzi_d4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "d";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.svdot_za_zzi_d4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.svdot_za_zzi_d4xi.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.svdot_za_zzi_d4xi.Zm, true); op.arrangement = "h"; op.index = enc.svdot_za_zzi_d4xi.i1; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.svdot_za_zzi_d4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.svdot_za_zzi_d4xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.svdot_za_zzi_d4xi.i1, true));
                         return result;
         }
         case 0xC1D08818u: { // uvdot_za_zzi_d4xi
                         Instruction result(Mnemonic::UVDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.uvdot_za_zzi_d4xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.uvdot_za_zzi_d4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "d";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.uvdot_za_zzi_d4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.uvdot_za_zzi_d4xi.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.uvdot_za_zzi_d4xi.Zm, true); op.arrangement = "h"; op.index = enc.uvdot_za_zzi_d4xi.i1; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.uvdot_za_zzi_d4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uvdot_za_zzi_d4xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uvdot_za_zzi_d4xi.i1, true));
                         return result;
         }
         default: break;
@@ -42412,44 +42798,76 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.fmla_za_zzi_d2xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "d";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fmla_za_zzi_d2xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.fmla_za_zzi_d2xi.Zn, true); op.arrangement = "d"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmla_za_zzi_d2xi.Zm, true); op.arrangement = "d"; op.index = enc.fmla_za_zzi_d2xi.i1; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fmla_za_zzi_d2xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmla_za_zzi_d2xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmla_za_zzi_d2xi.i1, true));
                         return result;
         }
         case 0xC1D00008u: { // sdot_za_zzi_d2xi
                         Instruction result(Mnemonic::SDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.sdot_za_zzi_d2xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "d";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.sdot_za_zzi_d2xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.sdot_za_zzi_d2xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sdot_za_zzi_d2xi.Zm, true); op.arrangement = "h"; op.index = enc.sdot_za_zzi_d2xi.i1; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.sdot_za_zzi_d2xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sdot_za_zzi_d2xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sdot_za_zzi_d2xi.i1, true));
                         return result;
         }
         case 0xC1D00010u: { // fmls_za_zzi_d2xi
                         Instruction result(Mnemonic::FMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.fmls_za_zzi_d2xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "d";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fmls_za_zzi_d2xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.fmls_za_zzi_d2xi.Zn, true); op.arrangement = "d"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmls_za_zzi_d2xi.Zm, true); op.arrangement = "d"; op.index = enc.fmls_za_zzi_d2xi.i1; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fmls_za_zzi_d2xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmls_za_zzi_d2xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmls_za_zzi_d2xi.i1, true));
                         return result;
         }
         case 0xC1D00018u: { // udot_za_zzi_d2xi
                         Instruction result(Mnemonic::UDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.udot_za_zzi_d2xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "d";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.udot_za_zzi_d2xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.udot_za_zzi_d2xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.udot_za_zzi_d2xi.Zm, true); op.arrangement = "h"; op.index = enc.udot_za_zzi_d2xi.i1; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.udot_za_zzi_d2xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.udot_za_zzi_d2xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.udot_za_zzi_d2xi.i1, true));
                         return result;
         }
         default: break;
@@ -42633,165 +43051,285 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.fmla_za_zzi_s4xi.Zn, true); op.arrangement = "s"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.fmla_za_zzi_s4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fmla_za_zzi_s4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.fmla_za_zzi_s4xi.Zn, true); op.arrangement = "s"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmla_za_zzi_s4xi.Zm, true); op.arrangement = "s"; op.index = enc.fmla_za_zzi_s4xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fmla_za_zzi_s4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmla_za_zzi_s4xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmla_za_zzi_s4xi.i2, true));
                         return result;
         }
         case 0xC1508008u: { // fdot_za32_z8z8i_4xi
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.fdot_za32z8z8i4xi.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.fdot_za32z8z8i4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fdot_za32z8z8i4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.fdot_za32z8z8i4xi.Zn, true); op.arrangement = "b"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fdot_za32z8z8i4xi.Zm, true); op.arrangement = "b"; op.index = enc.fdot_za32z8z8i4xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fdot_za32z8z8i4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_za32z8z8i4xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_za32z8z8i4xi.i2, true));
                         return result;
         }
         case 0xC1508010u: { // fmls_za_zzi_s4xi
                         Instruction result(Mnemonic::FMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.fmls_za_zzi_s4xi.Zn, true); op.arrangement = "s"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.fmls_za_zzi_s4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fmls_za_zzi_s4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.fmls_za_zzi_s4xi.Zn, true); op.arrangement = "s"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmls_za_zzi_s4xi.Zm, true); op.arrangement = "s"; op.index = enc.fmls_za_zzi_s4xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fmls_za_zzi_s4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmls_za_zzi_s4xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmls_za_zzi_s4xi.i2, true));
                         return result;
         }
         case 0xC1508020u: { // svdot_za_zzi_s4xi
                         Instruction result(Mnemonic::SVDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.svdot_za_zzi_s4xi.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.svdot_za_zzi_s4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.svdot_za_zzi_s4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.svdot_za_zzi_s4xi.Zn, true); op.arrangement = "b"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.svdot_za_zzi_s4xi.Zm, true); op.arrangement = "b"; op.index = enc.svdot_za_zzi_s4xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.svdot_za_zzi_s4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.svdot_za_zzi_s4xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.svdot_za_zzi_s4xi.i2, true));
                         return result;
         }
         case 0xC1508028u: { // usvdot_za_zzi_s4xi
                         Instruction result(Mnemonic::USVDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.usvdot_za_zzi_s4xi.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.usvdot_za_zzi_s4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.usvdot_za_zzi_s4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.usvdot_za_zzi_s4xi.Zn, true); op.arrangement = "b"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.usvdot_za_zzi_s4xi.Zm, true); op.arrangement = "b"; op.index = enc.usvdot_za_zzi_s4xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.usvdot_za_zzi_s4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.usvdot_za_zzi_s4xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.usvdot_za_zzi_s4xi.i2, true));
                         return result;
         }
         case 0xC1508030u: { // uvdot_za_zzi_s4xi
                         Instruction result(Mnemonic::UVDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.uvdot_za_zzi_s4xi.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.uvdot_za_zzi_s4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.uvdot_za_zzi_s4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.uvdot_za_zzi_s4xi.Zn, true); op.arrangement = "b"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.uvdot_za_zzi_s4xi.Zm, true); op.arrangement = "b"; op.index = enc.uvdot_za_zzi_s4xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.uvdot_za_zzi_s4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uvdot_za_zzi_s4xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uvdot_za_zzi_s4xi.i2, true));
                         return result;
         }
         case 0xC1508038u: { // suvdot_za_zzi_s4xi
                         Instruction result(Mnemonic::SUVDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.suvdot_za_zzi_s4xi.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.suvdot_za_zzi_s4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.suvdot_za_zzi_s4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.suvdot_za_zzi_s4xi.Zn, true); op.arrangement = "b"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.suvdot_za_zzi_s4xi.Zm, true); op.arrangement = "b"; op.index = enc.suvdot_za_zzi_s4xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.suvdot_za_zzi_s4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.suvdot_za_zzi_s4xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.suvdot_za_zzi_s4xi.i2, true));
                         return result;
         }
         case 0xC1509000u: { // sdot_za32_zzi_4xi
                         Instruction result(Mnemonic::SDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.sdot_za32zzi4xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.sdot_za32zzi4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.sdot_za32zzi4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.sdot_za32zzi4xi.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sdot_za32zzi4xi.Zm, true); op.arrangement = "h"; op.index = enc.sdot_za32zzi4xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.sdot_za32zzi4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sdot_za32zzi4xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sdot_za32zzi4xi.i2, true));
                         return result;
         }
         case 0xC1509008u: { // fdot_za_zzi_4xi
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.fdot_za_zzi4xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.fdot_za_zzi4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fdot_za_zzi4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.fdot_za_zzi4xi.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fdot_za_zzi4xi.Zm, true); op.arrangement = "h"; op.index = enc.fdot_za_zzi4xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fdot_za_zzi4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_za_zzi4xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_za_zzi4xi.i2, true));
                         return result;
         }
         case 0xC1509010u: { // udot_za32_zzi_4xi
                         Instruction result(Mnemonic::UDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.udot_za32zzi4xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.udot_za32zzi4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.udot_za32zzi4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.udot_za32zzi4xi.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.udot_za32zzi4xi.Zm, true); op.arrangement = "h"; op.index = enc.udot_za32zzi4xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.udot_za32zzi4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.udot_za32zzi4xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.udot_za32zzi4xi.i2, true));
                         return result;
         }
         case 0xC1509018u: { // bfdot_za_zzi_4xi
                         Instruction result(Mnemonic::BFDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.bfdot_za_zzi4xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.bfdot_za_zzi4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.bfdot_za_zzi4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.bfdot_za_zzi4xi.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.bfdot_za_zzi4xi.Zm, true); op.arrangement = "h"; op.index = enc.bfdot_za_zzi4xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfdot_za_zzi4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfdot_za_zzi4xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfdot_za_zzi4xi.i2, true));
                         return result;
         }
         case 0xC1509020u: { // sdot_za_zzi_s4xi
                         Instruction result(Mnemonic::SDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.sdot_za_zzi_s4xi.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.sdot_za_zzi_s4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.sdot_za_zzi_s4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.sdot_za_zzi_s4xi.Zn, true); op.arrangement = "b"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sdot_za_zzi_s4xi.Zm, true); op.arrangement = "b"; op.index = enc.sdot_za_zzi_s4xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.sdot_za_zzi_s4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sdot_za_zzi_s4xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sdot_za_zzi_s4xi.i2, true));
                         return result;
         }
         case 0xC1509028u: { // usdot_za_zzi_s4xi
                         Instruction result(Mnemonic::USDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.usdot_za_zzi_s4xi.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.usdot_za_zzi_s4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.usdot_za_zzi_s4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.usdot_za_zzi_s4xi.Zn, true); op.arrangement = "b"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.usdot_za_zzi_s4xi.Zm, true); op.arrangement = "b"; op.index = enc.usdot_za_zzi_s4xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.usdot_za_zzi_s4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.usdot_za_zzi_s4xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.usdot_za_zzi_s4xi.i2, true));
                         return result;
         }
         case 0xC1509030u: { // udot_za_zzi_s4xi
                         Instruction result(Mnemonic::UDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.udot_za_zzi_s4xi.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.udot_za_zzi_s4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.udot_za_zzi_s4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.udot_za_zzi_s4xi.Zn, true); op.arrangement = "b"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.udot_za_zzi_s4xi.Zm, true); op.arrangement = "b"; op.index = enc.udot_za_zzi_s4xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.udot_za_zzi_s4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.udot_za_zzi_s4xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.udot_za_zzi_s4xi.i2, true));
                         return result;
         }
         case 0xC1509038u: { // sudot_za_zzi_s4xi
                         Instruction result(Mnemonic::SUDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.sudot_za_zzi_s4xi.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.sudot_za_zzi_s4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.sudot_za_zzi_s4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.sudot_za_zzi_s4xi.Zn, true); op.arrangement = "b"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sudot_za_zzi_s4xi.Zm, true); op.arrangement = "b"; op.index = enc.sudot_za_zzi_s4xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.sudot_za_zzi_s4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sudot_za_zzi_s4xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sudot_za_zzi_s4xi.i2, true));
                         return result;
         }
         case 0xC1909000u: { // fmlal_za_zzi_4xi
@@ -42971,50 +43509,95 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.fmla_za_zzi_h4xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.fmla_za_zzi_h4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fmla_za_zzi_h4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.fmla_za_zzi_h4xi.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmla_za_zzi_h4xi.Zm, true); op.arrangement = "h"; op.index = (enc.fmla_za_zzi_h4xi.i3h << 1) | enc.fmla_za_zzi_h4xi.i3l; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fmla_za_zzi_h4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmla_za_zzi_h4xi.off3, true));
                         return result;
         }
         case 0xC1109010u: { // fmls_za_zzi_h4xi
                         Instruction result(Mnemonic::FMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.fmls_za_zzi_h4xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.fmls_za_zzi_h4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fmls_za_zzi_h4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.fmls_za_zzi_h4xi.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmls_za_zzi_h4xi.Zm, true); op.arrangement = "h"; op.index = (enc.fmls_za_zzi_h4xi.i3h << 1) | enc.fmls_za_zzi_h4xi.i3l; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fmls_za_zzi_h4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmls_za_zzi_h4xi.off3, true));
                         return result;
         }
         case 0xC1109020u: { // bfmla_za_zzi_h4xi
                         Instruction result(Mnemonic::BFMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.bfmla_za_zzi_h4xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.bfmla_za_zzi_h4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.bfmla_za_zzi_h4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.bfmla_za_zzi_h4xi.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.bfmla_za_zzi_h4xi.Zm, true); op.arrangement = "h"; op.index = (enc.bfmla_za_zzi_h4xi.i3h << 1) | enc.bfmla_za_zzi_h4xi.i3l; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfmla_za_zzi_h4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfmla_za_zzi_h4xi.off3, true));
                         return result;
         }
         case 0xC1109030u: { // bfmls_za_zzi_h4xi
                         Instruction result(Mnemonic::BFMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.bfmls_za_zzi_h4xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.bfmls_za_zzi_h4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.bfmls_za_zzi_h4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.bfmls_za_zzi_h4xi.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.bfmls_za_zzi_h4xi.Zm, true); op.arrangement = "h"; op.index = (enc.bfmls_za_zzi_h4xi.i3h << 1) | enc.bfmls_za_zzi_h4xi.i3l; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfmls_za_zzi_h4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfmls_za_zzi_h4xi.off3, true));
                         return result;
         }
         case 0xC1109040u: { // fdot_za_z8z8i_4xi
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.fdot_za_z8z8i4xi.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
+                        {
+                            uint32_t _off = enc.fdot_za_z8z8i4xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fdot_za_z8z8i4xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.fdot_za_z8z8i4xi.Zn, true); op.arrangement = "b"; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fdot_za_z8z8i4xi.Zm, true); op.arrangement = "b"; op.index = (enc.fdot_za_z8z8i4xi.i3h << 1) | enc.fdot_za_z8z8i4xi.i3l; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fdot_za_z8z8i4xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_za_z8z8i4xi.off3, true));
                         return result;
         }
         case 0xC1909020u: { // fmlal_za_z8z8i_4xi
@@ -43173,165 +43756,285 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.fmla_za_zzi_s2xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fmla_za_zzi_s2xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.fmla_za_zzi_s2xi.Zn, true); op.arrangement = "s"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmla_za_zzi_s2xi.Zm, true); op.arrangement = "s"; op.index = enc.fmla_za_zzi_s2xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fmla_za_zzi_s2xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmla_za_zzi_s2xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmla_za_zzi_s2xi.i2, true));
                         return result;
         }
         case 0xC1500008u: { // fvdot_za_zzi_2xi
                         Instruction result(Mnemonic::FVDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.fvdot_za_zzi2xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fvdot_za_zzi2xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.fvdot_za_zzi2xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fvdot_za_zzi2xi.Zm, true); op.arrangement = "h"; op.index = enc.fvdot_za_zzi2xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fvdot_za_zzi2xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fvdot_za_zzi2xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fvdot_za_zzi2xi.i2, true));
                         return result;
         }
         case 0xC1500010u: { // fmls_za_zzi_s2xi
                         Instruction result(Mnemonic::FMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.fmls_za_zzi_s2xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fmls_za_zzi_s2xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.fmls_za_zzi_s2xi.Zn, true); op.arrangement = "s"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmls_za_zzi_s2xi.Zm, true); op.arrangement = "s"; op.index = enc.fmls_za_zzi_s2xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fmls_za_zzi_s2xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmls_za_zzi_s2xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmls_za_zzi_s2xi.i2, true));
                         return result;
         }
         case 0xC1500018u: { // bfvdot_za_zzi_2xi
                         Instruction result(Mnemonic::BFVDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.bfvdot_za_zzi2xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.bfvdot_za_zzi2xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.bfvdot_za_zzi2xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.bfvdot_za_zzi2xi.Zm, true); op.arrangement = "h"; op.index = enc.bfvdot_za_zzi2xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfvdot_za_zzi2xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfvdot_za_zzi2xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfvdot_za_zzi2xi.i2, true));
                         return result;
         }
         case 0xC1500020u: { // svdot_za32_zzi_2xi
                         Instruction result(Mnemonic::SVDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.svdot_za32zzi2xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.svdot_za32zzi2xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.svdot_za32zzi2xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.svdot_za32zzi2xi.Zm, true); op.arrangement = "h"; op.index = enc.svdot_za32zzi2xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.svdot_za32zzi2xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.svdot_za32zzi2xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.svdot_za32zzi2xi.i2, true));
                         return result;
         }
         case 0xC1500030u: { // uvdot_za32_zzi_2xi
                         Instruction result(Mnemonic::UVDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.uvdot_za32zzi2xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.uvdot_za32zzi2xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.uvdot_za32zzi2xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.uvdot_za32zzi2xi.Zm, true); op.arrangement = "h"; op.index = enc.uvdot_za32zzi2xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.uvdot_za32zzi2xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uvdot_za32zzi2xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uvdot_za32zzi2xi.i2, true));
                         return result;
         }
         case 0xC1500038u: { // fdot_za32_z8z8i_2xi
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.fdot_za32z8z8i2xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fdot_za32z8z8i2xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.fdot_za32z8z8i2xi.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fdot_za32z8z8i2xi.Zm, true); op.arrangement = "b"; op.index = enc.fdot_za32z8z8i2xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fdot_za32z8z8i2xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_za32z8z8i2xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_za32z8z8i2xi.i2, true));
                         return result;
         }
         case 0xC1501000u: { // sdot_za32_zzi_2xi
                         Instruction result(Mnemonic::SDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.sdot_za32zzi2xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.sdot_za32zzi2xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.sdot_za32zzi2xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sdot_za32zzi2xi.Zm, true); op.arrangement = "h"; op.index = enc.sdot_za32zzi2xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.sdot_za32zzi2xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sdot_za32zzi2xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sdot_za32zzi2xi.i2, true));
                         return result;
         }
         case 0xC1501008u: { // fdot_za_zzi_2xi
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.fdot_za_zzi2xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fdot_za_zzi2xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.fdot_za_zzi2xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fdot_za_zzi2xi.Zm, true); op.arrangement = "h"; op.index = enc.fdot_za_zzi2xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fdot_za_zzi2xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_za_zzi2xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_za_zzi2xi.i2, true));
                         return result;
         }
         case 0xC1501010u: { // udot_za32_zzi_2xi
                         Instruction result(Mnemonic::UDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.udot_za32zzi2xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.udot_za32zzi2xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.udot_za32zzi2xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.udot_za32zzi2xi.Zm, true); op.arrangement = "h"; op.index = enc.udot_za32zzi2xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.udot_za32zzi2xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.udot_za32zzi2xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.udot_za32zzi2xi.i2, true));
                         return result;
         }
         case 0xC1501018u: { // bfdot_za_zzi_2xi
                         Instruction result(Mnemonic::BFDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.bfdot_za_zzi2xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.bfdot_za_zzi2xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.bfdot_za_zzi2xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.bfdot_za_zzi2xi.Zm, true); op.arrangement = "h"; op.index = enc.bfdot_za_zzi2xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfdot_za_zzi2xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfdot_za_zzi2xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfdot_za_zzi2xi.i2, true));
                         return result;
         }
         case 0xC1501020u: { // sdot_za_zzi_s2xi
                         Instruction result(Mnemonic::SDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.sdot_za_zzi_s2xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.sdot_za_zzi_s2xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.sdot_za_zzi_s2xi.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sdot_za_zzi_s2xi.Zm, true); op.arrangement = "b"; op.index = enc.sdot_za_zzi_s2xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.sdot_za_zzi_s2xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sdot_za_zzi_s2xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sdot_za_zzi_s2xi.i2, true));
                         return result;
         }
         case 0xC1501028u: { // usdot_za_zzi_s2xi
                         Instruction result(Mnemonic::USDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.usdot_za_zzi_s2xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.usdot_za_zzi_s2xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.usdot_za_zzi_s2xi.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.usdot_za_zzi_s2xi.Zm, true); op.arrangement = "b"; op.index = enc.usdot_za_zzi_s2xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.usdot_za_zzi_s2xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.usdot_za_zzi_s2xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.usdot_za_zzi_s2xi.i2, true));
                         return result;
         }
         case 0xC1501030u: { // udot_za_zzi_s2xi
                         Instruction result(Mnemonic::UDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.udot_za_zzi_s2xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.udot_za_zzi_s2xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.udot_za_zzi_s2xi.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.udot_za_zzi_s2xi.Zm, true); op.arrangement = "b"; op.index = enc.udot_za_zzi_s2xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.udot_za_zzi_s2xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.udot_za_zzi_s2xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.udot_za_zzi_s2xi.i2, true));
                         return result;
         }
         case 0xC1501038u: { // sudot_za_zzi_s2xi
                         Instruction result(Mnemonic::SUDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.sudot_za_zzi_s2xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.sudot_za_zzi_s2xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.sudot_za_zzi_s2xi.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.sudot_za_zzi_s2xi.Zm, true); op.arrangement = "b"; op.index = enc.sudot_za_zzi_s2xi.i2; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.sudot_za_zzi_s2xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sudot_za_zzi_s2xi.off3, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sudot_za_zzi_s2xi.i2, true));
                         return result;
         }
         case 0xC1900020u: { // fmlall_za32_z8z8i_2xi
@@ -43532,40 +44235,76 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.fmla_za_zzi_h2xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fmla_za_zzi_h2xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.fmla_za_zzi_h2xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmla_za_zzi_h2xi.Zm, true); op.arrangement = "h"; op.index = (enc.fmla_za_zzi_h2xi.i3h << 1) | enc.fmla_za_zzi_h2xi.i3l; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fmla_za_zzi_h2xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmla_za_zzi_h2xi.off3, true));
                         return result;
         }
         case 0xC1101010u: { // fmls_za_zzi_h2xi
                         Instruction result(Mnemonic::FMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.fmls_za_zzi_h2xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fmls_za_zzi_h2xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.fmls_za_zzi_h2xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fmls_za_zzi_h2xi.Zm, true); op.arrangement = "h"; op.index = (enc.fmls_za_zzi_h2xi.i3h << 1) | enc.fmls_za_zzi_h2xi.i3l; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fmls_za_zzi_h2xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmls_za_zzi_h2xi.off3, true));
                         return result;
         }
         case 0xC1101020u: { // bfmla_za_zzi_h2xi
                         Instruction result(Mnemonic::BFMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.bfmla_za_zzi_h2xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.bfmla_za_zzi_h2xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.bfmla_za_zzi_h2xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.bfmla_za_zzi_h2xi.Zm, true); op.arrangement = "h"; op.index = (enc.bfmla_za_zzi_h2xi.i3h << 1) | enc.bfmla_za_zzi_h2xi.i3l; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfmla_za_zzi_h2xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfmla_za_zzi_h2xi.off3, true));
                         return result;
         }
         case 0xC1101030u: { // bfmls_za_zzi_h2xi
                         Instruction result(Mnemonic::BFMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.bfmls_za_zzi_h2xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.bfmls_za_zzi_h2xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.bfmls_za_zzi_h2xi.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.bfmls_za_zzi_h2xi.Zm, true); op.arrangement = "h"; op.index = (enc.bfmls_za_zzi_h2xi.i3h << 1) | enc.bfmls_za_zzi_h2xi.i3l; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfmls_za_zzi_h2xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfmls_za_zzi_h2xi.off3, true));
                         return result;
         }
         case 0xC1901030u: { // fmlal_za_z8z8i_2xi
@@ -43593,20 +44332,38 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.fdot_za_z8z8i2xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fdot_za_z8z8i2xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.fdot_za_z8z8i2xi.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fdot_za_z8z8i2xi.Zm, true); op.arrangement = "b"; op.index = (enc.fdot_za_z8z8i2xi.i3h << 1) | enc.fdot_za_z8z8i2xi.i3l; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fdot_za_z8z8i2xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_za_z8z8i2xi.off3, true));
                         return result;
         }
         case 0xC1D01020u: { // fvdot_za_z8z8i_2xi
                         Instruction result(Mnemonic::FVDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.fvdot_za_z8z8i2xi.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fvdot_za_z8z8i2xi.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.fvdot_za_z8z8i2xi.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.fvdot_za_z8z8i2xi.Zm, true); op.arrangement = "b"; op.index = (enc.fvdot_za_z8z8i2xi.i3h << 1) | enc.fvdot_za_z8z8i2xi.i3l; op.has_index = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fvdot_za_z8z8i2xi.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fvdot_za_z8z8i2xi.off3, true));
                         return result;
         }
         default: break;
@@ -44367,110 +45124,209 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.fdot_za_zzw4x4.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegisterList, enc.fdot_za_zzw4x4.Zm, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fdot_za_zzw4x4.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_za_zzw4x4.off3, true));
+                        {
+                            uint32_t _off = enc.fdot_za_zzw4x4.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fdot_za_zzw4x4.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.fdot_za_zzw4x4.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegisterList, enc.fdot_za_zzw4x4.Zm, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         return result;
         }
         case 0xC1A11008u: { // fmla_za_zzw_4x4_16
                         Instruction result(Mnemonic::FMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.fmla_za_zzw4x416.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegisterList, enc.fmla_za_zzw4x416.Zm, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fmla_za_zzw4x416.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmla_za_zzw4x416.off3, true));
+                        {
+                            uint32_t _off = enc.fmla_za_zzw4x416.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fmla_za_zzw4x416.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.fmla_za_zzw4x416.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegisterList, enc.fmla_za_zzw4x416.Zm, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         return result;
         }
         case 0xC1A11010u: { // bfdot_za_zzw_4x4
                         Instruction result(Mnemonic::BFDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.bfdot_za_zzw4x4.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegisterList, enc.bfdot_za_zzw4x4.Zm, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfdot_za_zzw4x4.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfdot_za_zzw4x4.off3, true));
+                        {
+                            uint32_t _off = enc.bfdot_za_zzw4x4.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.bfdot_za_zzw4x4.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.bfdot_za_zzw4x4.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegisterList, enc.bfdot_za_zzw4x4.Zm, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         return result;
         }
         case 0xC1A11018u: { // fmls_za_zzw_4x4_16
                         Instruction result(Mnemonic::FMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.fmls_za_zzw4x416.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegisterList, enc.fmls_za_zzw4x416.Zm, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fmls_za_zzw4x416.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmls_za_zzw4x416.off3, true));
+                        {
+                            uint32_t _off = enc.fmls_za_zzw4x416.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fmls_za_zzw4x416.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.fmls_za_zzw4x416.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegisterList, enc.fmls_za_zzw4x416.Zm, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         return result;
         }
         case 0xC1A11020u: { // fdot_za_z8z8w_4x4
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.fdot_za_z8z8w4x4.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegisterList, enc.fdot_za_z8z8w4x4.Zm, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fdot_za_z8z8w4x4.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_za_z8z8w4x4.off3, true));
+                        {
+                            uint32_t _off = enc.fdot_za_z8z8w4x4.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fdot_za_z8z8w4x4.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.fdot_za_z8z8w4x4.Zn, true); op.arrangement = "b"; op.index = 4; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegisterList, enc.fdot_za_z8z8w4x4.Zm, true); op.arrangement = "b"; op.index = 4; result.operands.push_back(op); }
                         return result;
         }
         case 0xC1A11030u: { // fdot_za32_z8z8w_4x4
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.fdot_za32z8z8w4x4.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegisterList, enc.fdot_za32z8z8w4x4.Zm, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fdot_za32z8z8w4x4.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_za32z8z8w4x4.off3, true));
+                        {
+                            uint32_t _off = enc.fdot_za32z8z8w4x4.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fdot_za32z8z8w4x4.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.fdot_za32z8z8w4x4.Zn, true); op.arrangement = "b"; op.index = 4; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegisterList, enc.fdot_za32z8z8w4x4.Zm, true); op.arrangement = "b"; op.index = 4; result.operands.push_back(op); }
                         return result;
         }
         case 0xC1A11408u: { // usdot_za_zzw_s4x4
                         Instruction result(Mnemonic::USDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.usdot_za_zzw_s4x4.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegisterList, enc.usdot_za_zzw_s4x4.Zm, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.usdot_za_zzw_s4x4.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.usdot_za_zzw_s4x4.off3, true));
+                        {
+                            uint32_t _off = enc.usdot_za_zzw_s4x4.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.usdot_za_zzw_s4x4.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.usdot_za_zzw_s4x4.Zn, true); op.arrangement = "b"; op.index = 4; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegisterList, enc.usdot_za_zzw_s4x4.Zm, true); op.arrangement = "b"; op.index = 4; result.operands.push_back(op); }
                         return result;
         }
         case 0xC1E11008u: { // bfmla_za_zzw_4x4_16
                         Instruction result(Mnemonic::BFMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.bfmla_za_zzw4x416.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegisterList, enc.bfmla_za_zzw4x416.Zm, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfmla_za_zzw4x416.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfmla_za_zzw4x416.off3, true));
+                        {
+                            uint32_t _off = enc.bfmla_za_zzw4x416.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.bfmla_za_zzw4x416.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.bfmla_za_zzw4x416.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegisterList, enc.bfmla_za_zzw4x416.Zm, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         return result;
         }
         case 0xC1E11018u: { // bfmls_za_zzw_4x4_16
                         Instruction result(Mnemonic::BFMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.bfmls_za_zzw4x416.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegisterList, enc.bfmls_za_zzw4x416.Zm, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfmls_za_zzw4x416.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfmls_za_zzw4x416.off3, true));
+                        {
+                            uint32_t _off = enc.bfmls_za_zzw4x416.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.bfmls_za_zzw4x416.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.bfmls_za_zzw4x416.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegisterList, enc.bfmls_za_zzw4x416.Zm, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         return result;
         }
         case 0xC1E11408u: { // sdot_za32_zzw_4x4
                         Instruction result(Mnemonic::SDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.sdot_za32zzw4x4.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegisterList, enc.sdot_za32zzw4x4.Zm, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.sdot_za32zzw4x4.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sdot_za32zzw4x4.off3, true));
+                        {
+                            uint32_t _off = enc.sdot_za32zzw4x4.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.sdot_za32zzw4x4.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.sdot_za32zzw4x4.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegisterList, enc.sdot_za32zzw4x4.Zm, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         return result;
         }
         case 0xC1E11418u: { // udot_za32_zzw_4x4
                         Instruction result(Mnemonic::UDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::SVERegisterList, enc.udot_za32zzw4x4.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        { Operand op(OperandType::SVERegisterList, enc.udot_za32zzw4x4.Zm, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.udot_za32zzw4x4.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.udot_za32zzw4x4.off3, true));
+                        {
+                            uint32_t _off = enc.udot_za32zzw4x4.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.udot_za32zzw4x4.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 4;  // VGx count
+                            result.operands.push_back(op);
+                        }
+                        { Operand op(OperandType::SVERegisterList, enc.udot_za32zzw4x4.Zn, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
+                        { Operand op(OperandType::SVERegisterList, enc.udot_za32zzw4x4.Zm, true); op.arrangement = "h"; op.index = 4; result.operands.push_back(op); }
                         return result;
         }
         default: break;
@@ -44794,110 +45650,209 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.fdot_za_zzw2x2.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fdot_za_zzw2x2.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.fdot_za_zzw2x2.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegisterList, enc.fdot_za_zzw2x2.Zm, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fdot_za_zzw2x2.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_za_zzw2x2.off3, true));
                         return result;
         }
         case 0xC1A01008u: { // fmla_za_zzw_2x2_16
                         Instruction result(Mnemonic::FMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.fmla_za_zzw2x216.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fmla_za_zzw2x216.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.fmla_za_zzw2x216.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegisterList, enc.fmla_za_zzw2x216.Zm, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fmla_za_zzw2x216.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmla_za_zzw2x216.off3, true));
                         return result;
         }
         case 0xC1A01010u: { // bfdot_za_zzw_2x2
                         Instruction result(Mnemonic::BFDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.bfdot_za_zzw2x2.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.bfdot_za_zzw2x2.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.bfdot_za_zzw2x2.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegisterList, enc.bfdot_za_zzw2x2.Zm, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfdot_za_zzw2x2.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfdot_za_zzw2x2.off3, true));
                         return result;
         }
         case 0xC1A01018u: { // fmls_za_zzw_2x2_16
                         Instruction result(Mnemonic::FMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.fmls_za_zzw2x216.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fmls_za_zzw2x216.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.fmls_za_zzw2x216.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegisterList, enc.fmls_za_zzw2x216.Zm, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fmls_za_zzw2x216.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fmls_za_zzw2x216.off3, true));
                         return result;
         }
         case 0xC1A01020u: { // fdot_za_z8z8w_2x2
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.fdot_za_z8z8w2x2.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fdot_za_z8z8w2x2.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.fdot_za_z8z8w2x2.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegisterList, enc.fdot_za_z8z8w2x2.Zm, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fdot_za_z8z8w2x2.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_za_z8z8w2x2.off3, true));
                         return result;
         }
         case 0xC1A01030u: { // fdot_za32_z8z8w_2x2
                         Instruction result(Mnemonic::FDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.fdot_za32z8z8w2x2.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.fdot_za32z8z8w2x2.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.fdot_za32z8z8w2x2.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegisterList, enc.fdot_za32z8z8w2x2.Zm, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.fdot_za32z8z8w2x2.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fdot_za32z8z8w2x2.off3, true));
                         return result;
         }
         case 0xC1A01408u: { // usdot_za_zzw_s2x2
                         Instruction result(Mnemonic::USDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.usdot_za_zzw_s2x2.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.usdot_za_zzw_s2x2.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.usdot_za_zzw_s2x2.Zn, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegisterList, enc.usdot_za_zzw_s2x2.Zm, true); op.arrangement = "b"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.usdot_za_zzw_s2x2.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.usdot_za_zzw_s2x2.off3, true));
                         return result;
         }
         case 0xC1E01008u: { // bfmla_za_zzw_2x2_16
                         Instruction result(Mnemonic::BFMLA, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.bfmla_za_zzw2x216.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.bfmla_za_zzw2x216.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.bfmla_za_zzw2x216.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegisterList, enc.bfmla_za_zzw2x216.Zm, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfmla_za_zzw2x216.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfmla_za_zzw2x216.off3, true));
                         return result;
         }
         case 0xC1E01018u: { // bfmls_za_zzw_2x2_16
                         Instruction result(Mnemonic::BFMLS, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.bfmls_za_zzw2x216.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "h";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.bfmls_za_zzw2x216.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.bfmls_za_zzw2x216.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegisterList, enc.bfmls_za_zzw2x216.Zm, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.bfmls_za_zzw2x216.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.bfmls_za_zzw2x216.off3, true));
                         return result;
         }
         case 0xC1E01408u: { // sdot_za32_zzw_2x2
                         Instruction result(Mnemonic::SDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.sdot_za32zzw2x2.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.sdot_za32zzw2x2.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.sdot_za32zzw2x2.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegisterList, enc.sdot_za32zzw2x2.Zm, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.sdot_za32zzw2x2.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sdot_za32zzw2x2.off3, true));
                         return result;
         }
         case 0xC1E01418u: { // udot_za32_zzw_2x2
                         Instruction result(Mnemonic::UDOT, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        {
+                            uint32_t _off = enc.udot_za32zzw2x2.off3;
+                            Operand op(OperandType::SMETileRegister, 0, false);
+                            op.arrangement = "s";
+                            op.has_index = true;
+                            op.extend = 2;  // VGx mode
+                            op.index = enc.udot_za32zzw2x2.Rv + 8;
+                            op.amount = _off;
+                            op.offset = 2;  // VGx count
+                            result.operands.push_back(op);
+                        }
                         { Operand op(OperandType::SVERegisterList, enc.udot_za32zzw2x2.Zn, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegisterList, enc.udot_za32zzw2x2.Zm, true); op.arrangement = "h"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.udot_za32zzw2x2.Rv + 8, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.udot_za32zzw2x2.off3, true));
                         return result;
         }
         default: break;

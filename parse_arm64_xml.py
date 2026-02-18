@@ -1823,6 +1823,16 @@ class ARM64XMLParser:
         code.append("        }")
         code.append("        ")
         code.append("        case OperandType::SMETileRegister:")
+        code.append("            // extend==2: VGx mode: za.T[wN, offs{, vgxN}]")
+        code.append("            if (has_index && extend == 2) {")
+        code.append("                std::string r = \"za\";")
+        code.append("                if (arrangement && arrangement[0] != '\\0') { r += \".\"; r += arrangement; }")
+        code.append("                r += \"[w\" + std::to_string(index) + \", \" + std::to_string(amount);")
+        code.append("                int32_t vgx = (int32_t)offset;")
+        code.append("                if (vgx > 1) r += \", vgx\" + std::to_string(vgx);")
+        code.append("                r += \"]\";")
+        code.append("                return r;")
+        code.append("            }")
         code.append("            // extend!=0: ZA accumulator range za.T[wN, start:end]")
         code.append("            if (has_index && extend) {")
         code.append("                std::string r = \"za\";")
@@ -5644,6 +5654,109 @@ class ARM64XMLParser:
                             code.append(f"{ind}{{ Operand op(OperandType::SVERegister, enc.{member_name}.{_fn}, true); op.arrangement = \"{_arr or _src_arr}\"; {_idx_expr} result.operands.push_back(op); }}")
                         else:
                             code.append(f"{ind}{{ Operand op(OperandType::SVERegister, enc.{member_name}.{_fn}, true); op.arrangement = \"{_arr or _src_arr}\"; result.operands.push_back(op); }}")
+            code.append(f"{ind}return result;")
+            return code
+
+        # Special case: ZA accumulator VGx format: ZA.T[Wv, offs{, VGxN}], Zn..., Zm...
+        # Detected by: ASM template first operand is ZA.T with {, VGx2} or {, VGx4}
+        # Affected: usdot/sudot/bfdot/fmopa etc. _za_zzv_/_za_zzw_ with VGx qualifier
+        _has_za_vgx = (
+            not _has_za_range and
+            'Rv' in field_map and not field_map['Rv']['is_fixed'] and
+            _re.search(r'\bZA\.[BHSDQ]\[<Wv>', _asm_tmpl) is not None and
+            '{, VGx' in _asm_tmpl
+        )
+        if _has_za_vgx:
+            rv_field = field_map['Rv']['name']
+            # Determine element size from template
+            _za_arr_match = _re.search(r'\bZA\.([BHSDQ])\[', _asm_tmpl)
+            _za_arr = _za_arr_match.group(1).lower() if _za_arr_match else 's'
+            # Determine VGx count from template
+            _vgx_m = _re.search(r'\{, VGx(\d+)\}', _asm_tmpl)
+            _vgx = int(_vgx_m.group(1)) if _vgx_m else 2
+            # Determine offset field
+            _off_field = None
+            for _f in ['off3', 'off2', 'off1']:
+                if _f in field_map and not field_map[_f]['is_fixed']:
+                    _off_field = field_map[_f]['name']
+                    break
+            # Determine arrangement for SVE sources from template
+            _src_arr_m = _re.search(r'<Zn\d?>\.([BHSDQ])', _asm_tmpl)
+            _src_arr = _src_arr_m.group(1).lower() if _src_arr_m else 'b'
+            # Emit ZA VGx accumulator operand first
+            code.append(f"{ind}{{")
+            if _off_field:
+                code.append(f"{ind}    uint32_t _off = enc.{member_name}.{_off_field};")
+            else:
+                code.append(f"{ind}    uint32_t _off = 0;")
+            code.append(f"{ind}    Operand op(OperandType::SMETileRegister, 0, false);")
+            code.append(f"{ind}    op.arrangement = \"{_za_arr}\";")
+            code.append(f"{ind}    op.has_index = true;")
+            code.append(f"{ind}    op.extend = 2;  // VGx mode")
+            code.append(f"{ind}    op.index = enc.{member_name}.{rv_field} + 8;")
+            code.append(f"{ind}    op.amount = _off;")
+            code.append(f"{ind}    op.offset = {_vgx};  // VGx count")
+            code.append(f"{ind}    result.operands.push_back(op);")
+            code.append(f"{ind}}}")
+            # Emit SVE source registers in template order.
+            # Use base-stripping for list groups: Zn1/Zn2 → base 'Zn' in field_map
+            _vgx_list_emitted = set()
+            for _top in _template_ops_pre:
+                _f = _top.get('field', '')
+                _is_zn = _re.match(r'^(Zn|Zda|Zdn)(\d*)$', _f)
+                _is_zm = _re.match(r'^(Zm)(\d*)$', _f)
+                if _is_zn:
+                    _base = _is_zn.group(1)  # 'Zn', 'Zda', 'Zdn'
+                    _digit = int(_is_zn.group(2)) if _is_zn.group(2) else 0
+                    # Skip non-first list elements (Zn2, Zn3, etc.)
+                    if _digit > 1:
+                        continue
+                    # Skip if already emitted (dedup)
+                    if _base in _vgx_list_emitted:
+                        continue
+                    _lookup = _base
+                    if _lookup not in field_map and _f in field_map:
+                        _lookup = _f
+                    if _lookup not in field_map or field_map[_lookup]['is_fixed']:
+                        continue
+                    _vgx_list_emitted.add(_base)
+                    _fn = field_map[_lookup]['name']
+                    _arr = _top.get('arrangement') or _src_arr
+                    _is_list = _top.get('is_list', False)
+                    _cnt = 1
+                    if _is_list:
+                        _cnt_m = _re.search(r'<' + _re.escape(_base) + r'1>.*<' + _re.escape(_base) + r'(\d+)>', _asm_tmpl)
+                        if _cnt_m: _cnt = int(_cnt_m.group(1))
+                    if _cnt > 1:
+                        code.append(f"{ind}{{ Operand op(OperandType::SVERegisterList, enc.{member_name}.{_fn}, true); op.arrangement = \"{_arr or _src_arr}\"; op.index = {_cnt}; result.operands.push_back(op); }}")
+                    else:
+                        code.append(f"{ind}{{ Operand op(OperandType::SVERegister, enc.{member_name}.{_fn}, true); op.arrangement = \"{_arr or _src_arr}\"; result.operands.push_back(op); }}")
+                elif _is_zm:
+                    _base = _is_zm.group(1)  # 'Zm'
+                    _digit = int(_is_zm.group(2)) if _is_zm.group(2) else 0
+                    if _digit > 1:
+                        continue
+                    if _base in _vgx_list_emitted:
+                        continue
+                    _lookup = _base
+                    if _lookup not in field_map or field_map[_lookup]['is_fixed']:
+                        continue
+                    _vgx_list_emitted.add(_base)
+                    _fn = field_map[_lookup]['name']
+                    _arr = _top.get('arrangement') or _src_arr
+                    _is_list = _top.get('is_list', False)
+                    _cnt = 1
+                    if _is_list:
+                        _cnt_m = _re.search(r'<Zm1>.*<Zm(\d+)>', _asm_tmpl)
+                        if _cnt_m: _cnt = int(_cnt_m.group(1))
+                    _has_idx = _top.get('has_elem_index', False)
+                    _idx_expr = self._generate_sve_index_expr(field_map, member_name, encoding_name)
+                    if _cnt > 1:
+                        code.append(f"{ind}{{ Operand op(OperandType::SVERegisterList, enc.{member_name}.{_fn}, true); op.arrangement = \"{_arr or _src_arr}\"; op.index = {_cnt}; result.operands.push_back(op); }}")
+                    elif _has_idx and _idx_expr:
+                        code.append(f"{ind}{{ Operand op(OperandType::SVERegister, enc.{member_name}.{_fn}, true); op.arrangement = \"{_arr or _src_arr}\"; {_idx_expr} result.operands.push_back(op); }}")
+                    else:
+                        code.append(f"{ind}{{ Operand op(OperandType::SVERegister, enc.{member_name}.{_fn}, true); op.arrangement = \"{_arr or _src_arr}\"; result.operands.push_back(op); }}")
             code.append(f"{ind}return result;")
             return code
 
