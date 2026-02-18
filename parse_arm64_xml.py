@@ -1905,23 +1905,29 @@ class ARM64XMLParser:
         code.append("            }")
         code.append("        ")
         code.append("        case OperandType::MemoryRegOffset:")
-        code.append("            // [Xn|SP, Rm{, extend {#amount}}]")
+        code.append("            // [Xn|SP, Rm{, extend {#amount}}] or [Xn|SP, Zm.T{, lsl #N}]")
         code.append("            {")
         code.append("                std::string result = \"[\" + format_register(base_reg, true, true) + \", \";")
-        code.append("                // Index register: W for UXTW(2)/SXTW(6), X for UXTX(3)/SXTX(7)/LSL")
-        code.append("                bool index_is_32 = (extend == 2 || extend == 6);")
-        code.append("                result += format_register(index_reg, !index_is_32, false);")
-        code.append("                // extend=3 (UXTX) is equivalent to LSL for 64-bit index")
-        code.append("                // Suppress extend=3 with amount=0 (it's the default)")
-        code.append("                if (extend == 3 && amount == 0) {")
-        code.append("                    // Default: no extend/shift needed")
-        code.append("                } else if (extend != 0 || amount != 0) {")
-        code.append("                    const char* extends[] = {\"uxtb\", \"uxth\", \"uxtw\", \"lsl\", ")
-        code.append("                                             \"sxtb\", \"sxth\", \"sxtw\", \"sxtx\"};")
-        code.append("                    if (extend < 8) {")
-        code.append("                        result += \", \" + std::string(extends[extend]);")
-        code.append("                        if (amount != 0) {")
-        code.append("                            result += \" #\" + std::to_string(amount);")
+        code.append("                if (arrangement && arrangement[0] != '\\0') {")
+        code.append("                    // SVE Z register index: [Xn, Zm.T{, lsl #N}]")
+        code.append("                    result += \"z\" + std::to_string(index_reg) + \".\" + arrangement;")
+        code.append("                    if (amount > 0) result += \", lsl #\" + std::to_string(amount);")
+        code.append("                } else {")
+        code.append("                    // Index register: W for UXTW(2)/SXTW(6), X for UXTX(3)/SXTX(7)/LSL")
+        code.append("                    bool index_is_32 = (extend == 2 || extend == 6);")
+        code.append("                    result += format_register(index_reg, !index_is_32, false);")
+        code.append("                    // extend=3 (UXTX) is equivalent to LSL for 64-bit index")
+        code.append("                    // Suppress extend=3 with amount=0 (it's the default)")
+        code.append("                    if (extend == 3 && amount == 0) {")
+        code.append("                        // Default: no extend/shift needed")
+        code.append("                    } else if (extend != 0 || amount != 0) {")
+        code.append("                        const char* extends[] = {\"uxtb\", \"uxth\", \"uxtw\", \"lsl\", ")
+        code.append("                                                 \"sxtb\", \"sxth\", \"sxtw\", \"sxtx\"};")
+        code.append("                        if (extend < 8) {")
+        code.append("                            result += \", \" + std::string(extends[extend]);")
+        code.append("                            if (amount != 0) {")
+        code.append("                                result += \" #\" + std::to_string(amount);")
+        code.append("                            }")
         code.append("                        }")
         code.append("                    }")
         code.append("                }")
@@ -5468,6 +5474,12 @@ class ARM64XMLParser:
                     sve_mem_base_regs.add('Rn')
                 if 'Rm' in field_map and not field_map['Rm']['is_fixed']:
                     sve_mem_base_regs.add('Rm')
+            elif len(_cx_gp) >= 1 and len(_cx_sve) >= 1:
+                # GP+SVE-Z complex bracket e.g. [Xn, Zm.D, lsl #N] or [Xn, Zm.S]
+                if 'Rn' in field_map and not field_map['Rn']['is_fixed']:
+                    sve_mem_base_regs.add('Rn')
+                elif 'Rt' in field_map and not field_map['Rt']['is_fixed']:
+                    sve_mem_base_regs.add('Rt')
 
         # Special case: SME ZA LD/ST register-register pattern (za_p_rrr_)
         # Format: {zaXv/h.T[wRs+12, offs]}, Pg/Z, [Xn{, Xm, lsl #scale}]
@@ -6075,7 +6087,8 @@ class ARM64XMLParser:
                         emitted_fields.add(rn_key)
                     continue
 
-                # --- Handle GP+GP complex memory bracket [Xn, Xm] (e.g. prfb/prfh/prfw/prfd_i_p_br_s) ---
+                # --- Handle GP+GP or GP+SVE-Z complex memory bracket ---
+                # [Xn, Xm] for prfb/prfh/prfw/prfd, [Xn, Zm.T{, lsl #N}] for SVE gather/scatter
                 if (top.get('in_mem_bracket') and top.get('complex_mem') and
                         field.startswith('X') and field not in sve_z_names and field not in sve_p_names):
                     rn_key = ('Rn' if 'Rn' in field_map and not field_map['Rn']['is_fixed'] else
@@ -6088,7 +6101,45 @@ class ARM64XMLParser:
                         code.append(f"{ind}result.operands.push_back(Operand::memory_reg_offset(enc.{member_name}.{rn_field_cpp}, enc.{member_name}.{rm_field_cpp}));")
                         emitted_fields.add(rn_key)
                         emitted_fields.add(rm_key)
-                    continue  # Skip Xm (already consumed) or fallthrough for GP+Z case
+                    elif rn_key and not rm_key and rn_key not in emitted_fields:
+                        # GP+SVE-Z bracket: [Xn, Zm.T{, lsl #N}]
+                        _zm_key = None
+                        _zm_arr_tmpl = None
+                        for _t in template_ops:
+                            _tf = _t.get('field', '')
+                            if (_t.get('in_mem_bracket') and _t.get('complex_mem') and
+                                    _tf in sve_z_names and _tf in field_map and
+                                    not field_map[_tf]['is_fixed']):
+                                _zm_key = _tf
+                                _zm_arr_tmpl = _t.get('arrangement')
+                                break
+                        if _zm_key:
+                            rn_field_cpp = field_map[rn_key]['name']
+                            zm_field_cpp = field_map[_zm_key]['name']
+                            # Determine lsl from encoding name
+                            _enc_lower = encoding_name.lower()
+                            _lsl = 0
+                            if '_64_scaled' in _enc_lower:
+                                _m = mnemonic.upper()
+                                if _m.endswith('D'): _lsl = 3
+                                elif _m.endswith('W') or _m.endswith('SW'): _lsl = 2
+                                elif _m.endswith('SH'): _lsl = 1
+                                elif _m.endswith('H'): _lsl = 1
+                                else: _lsl = 0
+                            # Z arrangement in memory bracket
+                            if _zm_arr_tmpl and _zm_arr_tmpl not in ('T', 'Tb', 'Ts'):
+                                _zm_arr_cpp = f'"{_zm_arr_tmpl}"'
+                            elif has_sve_size:
+                                _zm_arr_cpp = '_sve_arr'
+                            else:
+                                _zm_arr_cpp = 'nullptr'
+                            if _lsl > 0:
+                                code.append(f'{ind}{{ Operand op = Operand::memory_reg_offset(enc.{member_name}.{rn_field_cpp}, enc.{member_name}.{zm_field_cpp}, 3, {_lsl}); op.arrangement = {_zm_arr_cpp}; result.operands.push_back(op); }}')
+                            else:
+                                code.append(f'{ind}{{ Operand op = Operand::memory_reg_offset(enc.{member_name}.{rn_field_cpp}, enc.{member_name}.{zm_field_cpp}); op.arrangement = {_zm_arr_cpp}; result.operands.push_back(op); }}')
+                            emitted_fields.add(rn_key)
+                            emitted_fields.add(_zm_key)
+                    continue  # Skip Xm/Zm (already consumed as part of memory operand)
 
                 # --- Handle prfop in template order (SVE prefetch) ---
                 if field == 'prfop' and 'prfop' in field_map and not field_map['prfop']['is_fixed']:
@@ -6107,6 +6158,9 @@ class ARM64XMLParser:
                     is_pair_second = True
 
                 if actual_field not in field_map or field_map[actual_field]['is_fixed']:
+                    continue
+                # Skip if already consumed as part of a complex memory operand (e.g. Zm in [Xn, Zm.T])
+                if actual_field in emitted_fields:
                     continue
                 field_cpp_name = field_map[actual_field]['name']
                 emitted_fields.add(actual_field)

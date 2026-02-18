@@ -2230,23 +2230,29 @@ std::string Operand::to_string() const {
             }
 
         case OperandType::MemoryRegOffset:
-            // [Xn|SP, Rm{, extend {#amount}}]
+            // [Xn|SP, Rm{, extend {#amount}}] or [Xn|SP, Zm.T{, lsl #N}]
             {
                 std::string result = "[" + format_register(base_reg, true, true) + ", ";
-                // Index register: W for UXTW(2)/SXTW(6), X for UXTX(3)/SXTX(7)/LSL
-                bool index_is_32 = (extend == 2 || extend == 6);
-                result += format_register(index_reg, !index_is_32, false);
-                // extend=3 (UXTX) is equivalent to LSL for 64-bit index
-                // Suppress extend=3 with amount=0 (it's the default)
-                if (extend == 3 && amount == 0) {
-                    // Default: no extend/shift needed
-                } else if (extend != 0 || amount != 0) {
-                    const char* extends[] = {"uxtb", "uxth", "uxtw", "lsl",
-                                             "sxtb", "sxth", "sxtw", "sxtx"};
-                    if (extend < 8) {
-                        result += ", " + std::string(extends[extend]);
-                        if (amount != 0) {
-                            result += " #" + std::to_string(amount);
+                if (arrangement && arrangement[0] != '\0') {
+                    // SVE Z register index: [Xn, Zm.T{, lsl #N}]
+                    result += "z" + std::to_string(index_reg) + "." + arrangement;
+                    if (amount > 0) result += ", lsl #" + std::to_string(amount);
+                } else {
+                    // Index register: W for UXTW(2)/SXTW(6), X for UXTX(3)/SXTX(7)/LSL
+                    bool index_is_32 = (extend == 2 || extend == 6);
+                    result += format_register(index_reg, !index_is_32, false);
+                    // extend=3 (UXTX) is equivalent to LSL for 64-bit index
+                    // Suppress extend=3 with amount=0 (it's the default)
+                    if (extend == 3 && amount == 0) {
+                        // Default: no extend/shift needed
+                    } else if (extend != 0 || amount != 0) {
+                        const char* extends[] = {"uxtb", "uxth", "uxtw", "lsl",
+                                                 "sxtb", "sxth", "sxtw", "sxtx"};
+                        if (extend < 8) {
+                            result += ", " + std::string(extends[extend]);
+                            if (amount != 0) {
+                                result += " #" + std::to_string(amount);
+                            }
                         }
                     }
                 }
