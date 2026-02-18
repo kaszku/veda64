@@ -464,7 +464,7 @@ class ARM64XMLParser:
                 lo_width = field_map[lo]['width']
                 return f"op.index = (enc.{member_name}.{hi_f} << {lo_width}) | enc.{member_name}.{lo_f}; op.has_index = true;"
         # Single index fields
-        for idx_name in ['i2', 'i3', 'i1']:
+        for idx_name in ['i4', 'i2', 'i3', 'i1']:
             if idx_name in field_map and not field_map[idx_name]['is_fixed']:
                 idx_f = field_map[idx_name]['name']
                 return f"op.index = enc.{member_name}.{idx_f}; op.has_index = true;"

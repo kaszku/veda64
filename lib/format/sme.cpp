@@ -38936,8 +38936,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         }
                         { Operand op(OperandType::SVERegister, enc.luti2zztz.Zd, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::SMEZTRegister, 0u, true));
-                        { Operand op(OperandType::SVERegister, enc.luti2zztz.Zn, true); op.arrangement = nullptr; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.luti2zztz.i4, true));
+                        { Operand op(OperandType::SVERegister, enc.luti2zztz.Zn, true); op.arrangement = nullptr; op.index = enc.luti2zztz.i4; op.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         default: break;
