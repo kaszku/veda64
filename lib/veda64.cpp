@@ -2248,9 +2248,16 @@ std::string Operand::to_string() const {
             {
                 std::string result = "[" + format_register(base_reg, true, true) + ", ";
                 if (arrangement && arrangement[0] != '\0') {
-                    // SVE Z register index: [Xn, Zm.T{, lsl #N}]
+                    // SVE Z register index: [Xn, Zm.T{, mod #N}]
                     result += "z" + std::to_string(index_reg) + "." + arrangement;
-                    if (amount > 0) result += ", lsl #" + std::to_string(amount);
+                    const char* sve_extends[] = {"uxtb", "uxth", "uxtw", "lsl",
+                                                  "sxtb", "sxth", "sxtw", "sxtx"};
+                    if (extend < 8 && extend != 0) {
+                        result += std::string(", ") + sve_extends[extend];
+                        if (amount > 0) result += " #" + std::to_string(amount);
+                    } else if (amount > 0) {
+                        result += ", lsl #" + std::to_string(amount);
+                    }
                 } else {
                     // Index register: W for UXTW(2)/SXTW(6), X for UXTX(3)/SXTX(7)/LSL
                     bool index_is_32 = (extend == 2 || extend == 6);

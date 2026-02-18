@@ -452,7 +452,7 @@ class ARM64XMLParser:
     def _generate_sve_index_expr(self, field_map, member_name, encoding_name):
         """Generate C++ expression to compute SVE element index from split i2/i3 fields."""
         # Try common index field patterns: i3h:i3l, i2h:i2l, i2, i3, imm
-        for hi, lo, hi_w in [('i3h', 'i3l', None), ('i2h', 'i2l', None)]:
+        for hi, lo, hi_w in [('i4h', 'i4l', None), ('i3h', 'i3l', None), ('i2h', 'i2l', None)]:
             if hi in field_map and not field_map[hi]['is_fixed'] and lo in field_map and not field_map[lo]['is_fixed']:
                 hi_f = field_map[hi]['name']
                 lo_f = field_map[lo]['name']
@@ -1923,9 +1923,16 @@ class ARM64XMLParser:
         code.append("            {")
         code.append("                std::string result = \"[\" + format_register(base_reg, true, true) + \", \";")
         code.append("                if (arrangement && arrangement[0] != '\\0') {")
-        code.append("                    // SVE Z register index: [Xn, Zm.T{, lsl #N}]")
+        code.append("                    // SVE Z register index: [Xn, Zm.T{, mod #N}]")
         code.append("                    result += \"z\" + std::to_string(index_reg) + \".\" + arrangement;")
-        code.append("                    if (amount > 0) result += \", lsl #\" + std::to_string(amount);")
+        code.append("                    const char* sve_extends[] = {\"uxtb\", \"uxth\", \"uxtw\", \"lsl\",")
+        code.append("                                                  \"sxtb\", \"sxth\", \"sxtw\", \"sxtx\"};")
+        code.append("                    if (extend < 8 && extend != 0) {")
+        code.append("                        result += std::string(\", \") + sve_extends[extend];")
+        code.append("                        if (amount > 0) result += \" #\" + std::to_string(amount);")
+        code.append("                    } else if (amount > 0) {")
+        code.append("                        result += \", lsl #\" + std::to_string(amount);")
+        code.append("                    }")
         code.append("                } else {")
         code.append("                    // Index register: W for UXTW(2)/SXTW(6), X for UXTX(3)/SXTX(7)/LSL")
         code.append("                    bool index_is_32 = (extend == 2 || extend == 6);")
@@ -6215,7 +6222,13 @@ class ARM64XMLParser:
                         # GP+GP bracket: emit memory_reg_offset(Rn, Rm) with 64-bit registers
                         rn_field_cpp = field_map[rn_key]['name']
                         rm_field_cpp = field_map[rm_key]['name']
-                        code.append(f"{ind}result.operands.push_back(Operand::memory_reg_offset(enc.{member_name}.{rn_field_cpp}, enc.{member_name}.{rm_field_cpp}));")
+                        # Check for fixed LSL #N in template (e.g. ST4Q [Xn, Xm, LSL #4])
+                        _lsl_m = _re.search(r'\[.*,\s*LSL\s+#(\d+)\]', asm_template, _re.IGNORECASE)
+                        _fixed_lsl = int(_lsl_m.group(1)) if _lsl_m else 0
+                        if _fixed_lsl > 0:
+                            code.append(f"{ind}result.operands.push_back(Operand::memory_reg_offset(enc.{member_name}.{rn_field_cpp}, enc.{member_name}.{rm_field_cpp}, 3, {_fixed_lsl}));")
+                        else:
+                            code.append(f"{ind}result.operands.push_back(Operand::memory_reg_offset(enc.{member_name}.{rn_field_cpp}, enc.{member_name}.{rm_field_cpp}));")
                         emitted_fields.add(rn_key)
                         emitted_fields.add(rm_key)
                     elif rn_key and not rm_key and rn_key not in emitted_fields:
@@ -6233,9 +6246,11 @@ class ARM64XMLParser:
                         if _zm_key:
                             rn_field_cpp = field_map[rn_key]['name']
                             zm_field_cpp = field_map[_zm_key]['name']
-                            # Determine lsl from encoding name
+                            # Determine lsl/extend from encoding name
                             _enc_lower = encoding_name.lower()
                             _lsl = 0
+                            _xs_field = None  # 'xs' field: 0=uxtw(2), 1=sxtw(6)
+                            _xs_shift = 0
                             if '_64_scaled' in _enc_lower:
                                 _m = mnemonic.upper()
                                 if _m.endswith('D'): _lsl = 3
@@ -6243,6 +6258,17 @@ class ARM64XMLParser:
                                 elif _m.endswith('SH'): _lsl = 1
                                 elif _m.endswith('H'): _lsl = 1
                                 else: _lsl = 0
+                            elif '_x32_scaled' in _enc_lower or '_x32_unscaled' in _enc_lower:
+                                # 32-bit index with sxtw/uxtw extend from 'xs' field
+                                if 'xs' in field_map and not field_map['xs']['is_fixed']:
+                                    _xs_field = field_map['xs']['name']
+                                if '_x32_scaled' in _enc_lower:
+                                    _m = mnemonic.upper()
+                                    if _m.endswith('D'): _xs_shift = 3
+                                    elif _m.endswith('W') or _m.endswith('SW'): _xs_shift = 2
+                                    elif _m.endswith('SH'): _xs_shift = 1
+                                    elif _m.endswith('H'): _xs_shift = 1
+                                    else: _xs_shift = 0
                             # Z arrangement in memory bracket
                             if _zm_arr_tmpl and _zm_arr_tmpl not in ('T', 'Tb', 'Ts'):
                                 _zm_arr_cpp = f'"{_zm_arr_tmpl}"'
@@ -6250,7 +6276,14 @@ class ARM64XMLParser:
                                 _zm_arr_cpp = '_sve_arr'
                             else:
                                 _zm_arr_cpp = 'nullptr'
-                            if _lsl > 0:
+                            if _xs_field:
+                                # xs=0 → uxtw(2), xs=1 → sxtw(6)
+                                _ext_expr = f"(enc.{member_name}.{_xs_field} ? 6u : 2u)"
+                                if _xs_shift > 0:
+                                    code.append(f'{ind}{{ Operand op = Operand::memory_reg_offset(enc.{member_name}.{rn_field_cpp}, enc.{member_name}.{zm_field_cpp}, {_ext_expr}, {_xs_shift}); op.arrangement = {_zm_arr_cpp}; result.operands.push_back(op); }}')
+                                else:
+                                    code.append(f'{ind}{{ Operand op = Operand::memory_reg_offset(enc.{member_name}.{rn_field_cpp}, enc.{member_name}.{zm_field_cpp}, {_ext_expr}); op.arrangement = {_zm_arr_cpp}; result.operands.push_back(op); }}')
+                            elif _lsl > 0:
                                 code.append(f'{ind}{{ Operand op = Operand::memory_reg_offset(enc.{member_name}.{rn_field_cpp}, enc.{member_name}.{zm_field_cpp}, 3, {_lsl}); op.arrangement = {_zm_arr_cpp}; result.operands.push_back(op); }}')
                             else:
                                 code.append(f'{ind}{{ Operand op = Operand::memory_reg_offset(enc.{member_name}.{rn_field_cpp}, enc.{member_name}.{zm_field_cpp}); op.arrangement = {_zm_arr_cpp}; result.operands.push_back(op); }}')
@@ -6260,7 +6293,15 @@ class ARM64XMLParser:
 
                 # --- Handle prfop in template order (SVE prefetch) ---
                 if field == 'prfop' and 'prfop' in field_map and not field_map['prfop']['is_fixed']:
-                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::Prefetch, enc.{member_name}.{field_map['prfop']['name']}, true));")
+                    _prfop_cpp = field_map['prfop']['name']
+                    _prfop_width = field_map['prfop'].get('width', 5)
+                    if _prfop_width == 4:
+                        # 4-bit SVE scatter/gather prfop: bit3=0→PLD, bit3=1→PST (no PLI)
+                        # Map to 5-bit table: 0-7→PLD(0-7), 8-15→PST(16-23)
+                        _prfop_val = f"(enc.{member_name}.{_prfop_cpp} < 8 ? enc.{member_name}.{_prfop_cpp} : (enc.{member_name}.{_prfop_cpp} & 7u) | 16u)"
+                    else:
+                        _prfop_val = f"enc.{member_name}.{_prfop_cpp}"
+                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::Prefetch, {_prfop_val}, true));")
                     emitted_fields.add('prfop')
                     emitted_fields_pre.add('prfop')  # Mark for the standalone prfop handler below
                     continue
