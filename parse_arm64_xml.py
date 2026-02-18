@@ -398,6 +398,11 @@ class ARM64XMLParser:
                     if imm_match:
                         result.append({'field': imm_match.group(1), 'type': 'imm', 'arrangement': None, 'qualifier': None,
                                        'in_mem_bracket': False, 'mul_vl': False, 'mem_imm_field': None, 'complex_mem': False})
+                    elif re.search(r'\bZT0\b', token):
+                        # Literal ZT0 register operand (SME lookup table)
+                        result.append({'field': 'ZT0', 'type': 'zt0', 'arrangement': None, 'qualifier': None,
+                                       'in_mem_bracket': False, 'mul_vl': False, 'mem_imm_field': None, 'complex_mem': False,
+                                       'is_list': False, 'has_elem_index': False, 'index_field': None})
                     continue
                 field_matches = [(field_match.group(1), '', '')]
 
@@ -1035,6 +1040,7 @@ class ARM64XMLParser:
         code.append("    SVERegisterList,    // SVE register list { Zt.T, Zt+1.T, ... }")
         code.append("    MemoryOffsetMulVL,  // SVE memory [base, #offset, mul vl]")
         code.append("    MemorySVEOffset,    // SVE gather memory [Zn.T, #offset]")
+        code.append("    SMEZTRegister,      // SME ZT0 lookup table register")
         code.append("    Unknown")
         code.append("};")
         code.append("")
@@ -1864,6 +1870,9 @@ class ARM64XMLParser:
         code.append("            }")
         code.append("            return \"za\" + std::to_string(value);")
         code.append("        ")
+        code.append("        case OperandType::SMEZTRegister:")
+        code.append("            return \"zt0\";")
+        code.append("        ")
         code.append("        case OperandType::MemoryBase:")
         code.append("            // [Xn|SP]")
         code.append("            return \"[\" + format_register(base_reg, true, true) + \"]\";")
@@ -2341,6 +2350,7 @@ class ARM64XMLParser:
         code.append("    SVERegisterList,    // SVE register list { Zt.T, Zt+1.T, ... }")
         code.append("    MemoryOffsetMulVL,  // SVE memory [base, #offset, mul vl]")
         code.append("    MemorySVEOffset,    // SVE gather memory [Zn.T, #offset]")
+        code.append("    SMEZTRegister,      // SME ZT0 lookup table register")
         code.append("    Unknown")
         code.append("};")
         code.append("")
@@ -6126,6 +6136,11 @@ class ARM64XMLParser:
                 if field_emit_count[field] > field_template_count[field]:
                     continue
 
+                # Handle literal ZT0 register operand (SME lookup table)
+                if top.get('type') == 'zt0':
+                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::SMEZTRegister, 0u, true));")
+                    continue
+
                 # Check if this is part of a register list group
                 import re as _re
                 base_match = _re.match(r'^(Z\w+?)(\d+)$', field)
@@ -6152,7 +6167,17 @@ class ARM64XMLParser:
                             arr_expr = '_sve_arr'
                         else:
                             arr_expr = 'nullptr'
-                        code.append(f"{ind}{{ Operand op(OperandType::SVERegisterList, enc.{member_name}.{field_cpp_name}, true); op.arrangement = {arr_expr}; op.index = {count}; result.operands.push_back(op); }}")
+                        # For consecutive multi-register forms, Zd field may be narrower than 5 bits:
+                        # e.g., 4-bit Zd encodes register/2 (pairs), 3-bit Zd encodes register/4 (quads)
+                        # Detect: field_width + log2(count) == 5 → multiply by count
+                        import math as _math
+                        _field_width = field_map[base if base in field_map else field_cpp_name].get('width', 5) if base in field_map else 5
+                        _log2_count = int(_math.log2(count)) if count > 0 and (count & (count - 1)) == 0 else 0
+                        if _field_width + _log2_count == 5 and count > 1:
+                            reg_expr = f"enc.{member_name}.{field_cpp_name} * {count}"
+                        else:
+                            reg_expr = f"enc.{member_name}.{field_cpp_name}"
+                        code.append(f"{ind}{{ Operand op(OperandType::SVERegisterList, {reg_expr}, true); op.arrangement = {arr_expr}; op.index = {count}; result.operands.push_back(op); }}")
                         emitted_fields.add(base)
                         continue
                     else:
@@ -6385,12 +6410,14 @@ class ARM64XMLParser:
                         # Normal SVERegister (also used for complex_mem Z registers)
                         if top.get('has_elem_index'):
                             # Indexed register: Zm.T[idx] — compute index from split fields
+                            # If template has no explicit arrangement (arr=None), use nullptr (e.g., Zn[idx] in LUTI4)
+                            idx_arr_expr = arr_expr if arr else 'nullptr'
                             idx_code = self._generate_sve_index_expr(field_map, member_name, encoding_name)
                             if idx_code:
-                                code.append(f"{ind}{{ Operand op(OperandType::SVERegister, {reg_val_expr}, true); op.arrangement = {arr_expr}; {idx_code} result.operands.push_back(op); }}")
+                                code.append(f"{ind}{{ Operand op(OperandType::SVERegister, {reg_val_expr}, true); op.arrangement = {idx_arr_expr}; {idx_code} result.operands.push_back(op); }}")
                                 sve_index_consumed = True
                             else:
-                                code.append(f"{ind}{{ Operand op(OperandType::SVERegister, {reg_val_expr}, true); op.arrangement = {arr_expr}; result.operands.push_back(op); }}")
+                                code.append(f"{ind}{{ Operand op(OperandType::SVERegister, {reg_val_expr}, true); op.arrangement = {idx_arr_expr}; result.operands.push_back(op); }}")
                         else:
                             code.append(f"{ind}{{ Operand op(OperandType::SVERegister, {reg_val_expr}, true); op.arrangement = {arr_expr}; result.operands.push_back(op); }}")
                 elif field in sve_p_names:
@@ -6571,9 +6598,11 @@ class ARM64XMLParser:
                 field_cpp_name = field_map[off_name]['name']
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.{field_cpp_name}, true));")
 
-        # Extract SVE/SME split index fields
+        # Extract SVE/SME split index fields (skip if already consumed as element index)
         for idx_name in ['i1', 'i2', 'i3', 'i4']:
             if idx_name in field_map and not field_map[idx_name]['is_fixed']:
+                if sve_index_consumed:
+                    continue  # Already emitted as element index in Zm[idx]
                 field_cpp_name = field_map[idx_name]['name']
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.{field_cpp_name}, true));")
 

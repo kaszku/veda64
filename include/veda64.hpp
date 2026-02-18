@@ -1627,6 +1627,7 @@ enum class OperandType {
     SVERegisterList,    // SVE register list { Zt.T, Zt+1.T, ... }
     MemoryOffsetMulVL,  // SVE memory [base, #offset, mul vl]
     MemorySVEOffset,    // SVE gather memory [Zn.T, #offset]
+    SMEZTRegister,      // SME ZT0 lookup table register
     Unknown
 };
 

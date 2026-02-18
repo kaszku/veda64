@@ -2189,6 +2189,9 @@ std::string Operand::to_string() const {
             }
             return "za" + std::to_string(value);
 
+        case OperandType::SMEZTRegister:
+            return "zt0";
+
         case OperandType::MemoryBase:
             // [Xn|SP]
             return "[" + format_register(base_reg, true, true) + "]";
