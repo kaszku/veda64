@@ -3323,11 +3323,11 @@ std::string Operand::to_string() const {
         case OperandType::SVERegisterList:
             {
                 // value = first register, index = count, arrangement = element type
-                // Use range notation { Zn.T - Zn+2.T } for count==3 when non-wrapping
-                if (index == 3 && (value + 2) <= 31) {
+                // Use range notation { Zn.T - Zn+k.T } for count>=3 when non-wrapping
+                if (index >= 3 && (value + index - 1) <= 31) {
                     std::string result = "{ z" + std::to_string(value);
                     if (arrangement && arrangement[0] != '\0') { result += "."; result += arrangement; }
-                    result += " - z" + std::to_string(value + 2);
+                    result += " - z" + std::to_string(value + index - 1);
                     if (arrangement && arrangement[0] != '\0') { result += "."; result += arrangement; }
                     result += " }";
                     return result;
