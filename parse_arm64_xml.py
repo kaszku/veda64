@@ -6169,12 +6169,17 @@ class ARM64XMLParser:
                             arr_expr = 'nullptr'
                         # For consecutive multi-register forms, Zd field may be narrower than 5 bits:
                         # e.g., 4-bit Zd encodes register/2 (pairs), 3-bit Zd encodes register/4 (quads)
-                        # Detect: field_width + log2(count) == 5 → multiply by count
+                        # Detect: field_width < 5 AND count is power-of-2 AND field_width + log2(count) == 5
+                        # Standard SVE multi-reg (ld2b, ld3q etc.) have full 5-bit Zt → no scaling needed
                         import math as _math
-                        _field_width = field_map[base if base in field_map else field_cpp_name].get('width', 5) if base in field_map else 5
-                        _log2_count = int(_math.log2(count)) if count > 0 and (count & (count - 1)) == 0 else 0
-                        if _field_width + _log2_count == 5 and count > 1:
-                            reg_expr = f"enc.{member_name}.{field_cpp_name} * {count}"
+                        _field_width = field_map[base].get('width', 5) if base in field_map else 5
+                        _is_pow2_count = count > 1 and (count & (count - 1)) == 0
+                        if _field_width < 5 and _is_pow2_count:
+                            _log2_count = int(_math.log2(count))
+                            if _field_width + _log2_count == 5:
+                                reg_expr = f"enc.{member_name}.{field_cpp_name} * {count}"
+                            else:
+                                reg_expr = f"enc.{member_name}.{field_cpp_name}"
                         else:
                             reg_expr = f"enc.{member_name}.{field_cpp_name}"
                         code.append(f"{ind}{{ Operand op(OperandType::SVERegisterList, {reg_expr}, true); op.arrangement = {arr_expr}; op.index = {count}; result.operands.push_back(op); }}")
