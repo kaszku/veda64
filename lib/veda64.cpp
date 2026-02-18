@@ -2116,7 +2116,10 @@ std::string Operand::to_string() const {
             {
                 if (has_index && arrangement) {
                     // Indexed element: always use v<n>.<T>[<idx>] format
-                    return "v" + std::to_string(value) + "." + arrangement + "[" + std::to_string(index) + "]";
+                    std::string _idx_s;
+                    if (index >= 10) { std::ostringstream _oss; _oss << "0x" << std::hex << index; _idx_s = _oss.str(); }
+                    else _idx_s = std::to_string(index);
+                    return "v" + std::to_string(value) + "." + arrangement + "[" + _idx_s + "]";
                 }
                 std::string vr = format_vector_register(value, arrangement ? arrangement : "");
                 return vr;
@@ -2129,7 +2132,8 @@ std::string Operand::to_string() const {
                 r += arrangement;
             }
             if (has_index) {
-                r += "[" + std::to_string(index) + "]";
+                if (index >= 10) { std::ostringstream _oss; _oss << "[0x" << std::hex << index << "]"; r += _oss.str(); }
+                else r += "[" + std::to_string(index) + "]";
             }
             return r;
         }
@@ -3347,10 +3351,10 @@ std::string Operand::to_string() const {
                 std::ostringstream oss;
                 oss << "[" << format_register(base_reg, true, true) << ", #";
                 if (offset < 0) {
-                    if (offset >= -15) oss << std::dec << offset;
+                    if (offset >= -9) oss << std::dec << offset;
                     else oss << "-0x" << std::hex << (-offset);
                 } else {
-                    if (offset <= 15) oss << std::dec << offset;
+                    if (offset <= 9) oss << std::dec << offset;
                     else oss << "0x" << std::hex << offset;
                 }
                 oss << ", mul vl]";
@@ -3366,10 +3370,10 @@ std::string Operand::to_string() const {
                     std::ostringstream oss;
                     oss << ", #";
                     if (offset < 0) {
-                        if (offset >= -15) oss << std::dec << offset;
+                        if (offset >= -9) oss << std::dec << offset;
                         else oss << "-0x" << std::hex << (-offset);
                     } else {
-                        if (offset <= 15) oss << std::dec << offset;
+                        if (offset <= 9) oss << std::dec << offset;
                         else oss << "0x" << std::hex << offset;
                     }
                     result += oss.str();
