@@ -1875,33 +1875,45 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
     }
 
     // CSINC aliases: CSET (Rn=Rm=31), CINC (Rn==Rm)
-    if (insn.mnemonic == Mnemonic::CSINC && insn.operands.size() >= 3 && insn.condition != Condition::None) {
+    if (insn.mnemonic == Mnemonic::CSINC && insn.condition != Condition::None) {
         int cond_val = static_cast<int>(insn.condition);
         if ((cond_val & 0xE) != 0xE) {  // Not AL/NV
             const char* inv_cond = condition_to_string(static_cast<Condition>(cond_val ^ 1));
-            auto& rn = insn.operands[1];
-            auto& rm = insn.operands[2];
-            if (rn.value == 31 && rm.value == 31) {
+            // CSET: Rn=Rm=31 implied (1-operand form from alias-specific decoder)
+            if (insn.operands.size() == 1) {
                 return std::string("cset ") + insn.operands[0].to_string() + ", " + inv_cond;
             }
-            if (rn.value == rm.value) {
-                return std::string("cinc ") + insn.operands[0].to_string() + ", " + rn.to_string() + ", " + inv_cond;
+            if (insn.operands.size() >= 3) {
+                auto& rn = insn.operands[1];
+                auto& rm = insn.operands[2];
+                if (rn.value == 31 && rm.value == 31) {
+                    return std::string("cset ") + insn.operands[0].to_string() + ", " + inv_cond;
+                }
+                if (rn.value == rm.value) {
+                    return std::string("cinc ") + insn.operands[0].to_string() + ", " + rn.to_string() + ", " + inv_cond;
+                }
             }
         }
     }
 
     // CSINV aliases: CSETM (Rn=Rm=31), CINV (Rn==Rm)
-    if (insn.mnemonic == Mnemonic::CSINV && insn.operands.size() >= 3 && insn.condition != Condition::None) {
+    if (insn.mnemonic == Mnemonic::CSINV && insn.condition != Condition::None) {
         int cond_val = static_cast<int>(insn.condition);
         if ((cond_val & 0xE) != 0xE) {  // Not AL/NV
             const char* inv_cond = condition_to_string(static_cast<Condition>(cond_val ^ 1));
-            auto& rn = insn.operands[1];
-            auto& rm = insn.operands[2];
-            if (rn.value == 31 && rm.value == 31) {
+            // CSETM: Rn=Rm=31 implied (1-operand form from alias-specific decoder)
+            if (insn.operands.size() == 1) {
                 return std::string("csetm ") + insn.operands[0].to_string() + ", " + inv_cond;
             }
-            if (rn.value == rm.value) {
-                return std::string("cinv ") + insn.operands[0].to_string() + ", " + rn.to_string() + ", " + inv_cond;
+            if (insn.operands.size() >= 3) {
+                auto& rn = insn.operands[1];
+                auto& rm = insn.operands[2];
+                if (rn.value == 31 && rm.value == 31) {
+                    return std::string("csetm ") + insn.operands[0].to_string() + ", " + inv_cond;
+                }
+                if (rn.value == rm.value) {
+                    return std::string("cinv ") + insn.operands[0].to_string() + ", " + rn.to_string() + ", " + inv_cond;
+                }
             }
         }
     }

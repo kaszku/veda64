@@ -36778,20 +36778,15 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _simd_arr = "1d";
-                        uint32_t _sz = 3;
-                        { Operand op(OperandType::VectorRegister, enc.fmlalb_asimdelem_h.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.fmlalb_asimdelem_h.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.fmlalb_asimdelem_h.Rd, false); op.arrangement = "8h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.fmlalb_asimdelem_h.Rn, false); op.arrangement = "16b"; result.operands.push_back(op); }
                         {
-                            uint32_t _rm_reg = enc.fmlalb_asimdelem_h.Rm;
-                            if (_sz >= 2) _rm_reg |= (enc.fmlalb_asimdelem_h.M << 4);
-                            Operand op(OperandType::VectorRegister, _rm_reg, false);
-                            uint32_t _idx = 0;
-                            static const char* _elem_scalar[] = {"b", "h", "s", "d"};
-                            op.arrangement = _elem_scalar[_sz];
-                            if (_sz == 1) _idx = (enc.fmlalb_asimdelem_h.H << 2) | (enc.fmlalb_asimdelem_h.L << 1) | enc.fmlalb_asimdelem_h.M;
-                            else if (_sz == 2) _idx = (enc.fmlalb_asimdelem_h.H << 1) | enc.fmlalb_asimdelem_h.L;
-                            else if (_sz == 3) _idx = enc.fmlalb_asimdelem_h.H;
+                            // FP8 by-element: Vm=Rm[2:0] (v0-v7), index=H:L:M:Rm[3] (4-bit)
+                            uint32_t _rm_val = enc.fmlalb_asimdelem_h.Rm;
+                            uint32_t _vm_reg = _rm_val & 0x7;  // Rm[2:0]
+                            uint32_t _idx = (enc.fmlalb_asimdelem_h.H << 3) | (enc.fmlalb_asimdelem_h.L << 2) | (enc.fmlalb_asimdelem_h.M << 1) | ((_rm_val >> 3) & 1);
+                            Operand op(OperandType::VectorRegister, _vm_reg, false);
+                            op.arrangement = "b";
                             op.index = _idx;
                             op.has_index = true;
                             result.operands.push_back(op);
@@ -36853,20 +36848,15 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _simd_arr = "2d";
-                        uint32_t _sz = 3;
-                        { Operand op(OperandType::VectorRegister, enc.fmlalt_asimdelem_h.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.fmlalt_asimdelem_h.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.fmlalt_asimdelem_h.Rd, false); op.arrangement = "8h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.fmlalt_asimdelem_h.Rn, false); op.arrangement = "16b"; result.operands.push_back(op); }
                         {
-                            uint32_t _rm_reg = enc.fmlalt_asimdelem_h.Rm;
-                            if (_sz >= 2) _rm_reg |= (enc.fmlalt_asimdelem_h.M << 4);
-                            Operand op(OperandType::VectorRegister, _rm_reg, false);
-                            uint32_t _idx = 0;
-                            static const char* _elem_scalar[] = {"b", "h", "s", "d"};
-                            op.arrangement = _elem_scalar[_sz];
-                            if (_sz == 1) _idx = (enc.fmlalt_asimdelem_h.H << 2) | (enc.fmlalt_asimdelem_h.L << 1) | enc.fmlalt_asimdelem_h.M;
-                            else if (_sz == 2) _idx = (enc.fmlalt_asimdelem_h.H << 1) | enc.fmlalt_asimdelem_h.L;
-                            else if (_sz == 3) _idx = enc.fmlalt_asimdelem_h.H;
+                            // FP8 by-element: Vm=Rm[2:0] (v0-v7), index=H:L:M:Rm[3] (4-bit)
+                            uint32_t _rm_val = enc.fmlalt_asimdelem_h.Rm;
+                            uint32_t _vm_reg = _rm_val & 0x7;  // Rm[2:0]
+                            uint32_t _idx = (enc.fmlalt_asimdelem_h.H << 3) | (enc.fmlalt_asimdelem_h.L << 2) | (enc.fmlalt_asimdelem_h.M << 1) | ((_rm_val >> 3) & 1);
+                            Operand op(OperandType::VectorRegister, _vm_reg, false);
+                            op.arrangement = "b";
                             op.index = _idx;
                             op.has_index = true;
                             result.operands.push_back(op);
@@ -39366,20 +39356,14 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _simd_arr = enc.bfmlal_asimdelem_f.Q ? "2d" : "1d";
-                        uint32_t _sz = 3;
-                        { Operand op(OperandType::VectorRegister, enc.bfmlal_asimdelem_f.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.bfmlal_asimdelem_f.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        result.mnemonic = enc.bfmlal_asimdelem_f.Q ? Mnemonic::BFMLALT : Mnemonic::BFMLALB;
+                        { Operand op(OperandType::VectorRegister, enc.bfmlal_asimdelem_f.Rd, false); op.arrangement = "4s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.bfmlal_asimdelem_f.Rn, false); op.arrangement = "8h"; result.operands.push_back(op); }
                         {
-                            uint32_t _rm_reg = enc.bfmlal_asimdelem_f.Rm;
-                            if (_sz >= 2) _rm_reg |= (enc.bfmlal_asimdelem_f.M << 4);
-                            Operand op(OperandType::VectorRegister, _rm_reg, false);
-                            uint32_t _idx = 0;
-                            static const char* _elem_scalar[] = {"b", "h", "s", "d"};
-                            op.arrangement = _elem_scalar[_sz];
-                            if (_sz == 1) _idx = (enc.bfmlal_asimdelem_f.H << 2) | (enc.bfmlal_asimdelem_f.L << 1) | enc.bfmlal_asimdelem_f.M;
-                            else if (_sz == 2) _idx = (enc.bfmlal_asimdelem_f.H << 1) | enc.bfmlal_asimdelem_f.L;
-                            else if (_sz == 3) _idx = enc.bfmlal_asimdelem_f.H;
+                            // BF16 by-element: Vm=Rm (v0-v15, no M extension), index=H:L:M (3-bit)
+                            uint32_t _idx = (enc.bfmlal_asimdelem_f.H << 2) | (enc.bfmlal_asimdelem_f.L << 1) | enc.bfmlal_asimdelem_f.M;
+                            Operand op(OperandType::VectorRegister, enc.bfmlal_asimdelem_f.Rm, false);
+                            op.arrangement = "h";
                             op.index = _idx;
                             op.has_index = true;
                             result.operands.push_back(op);

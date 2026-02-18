@@ -1540,17 +1540,23 @@ class ARM64XMLParser:
         code.append("")
         # CSINC aliases: CSET (Rn=Rm=31), CINC (Rn==Rm)
         code.append("    // CSINC aliases: CSET (Rn=Rm=31), CINC (Rn==Rm)")
-        code.append("    if (insn.mnemonic == Mnemonic::CSINC && insn.operands.size() >= 3 && insn.condition != Condition::None) {")
+        code.append("    if (insn.mnemonic == Mnemonic::CSINC && insn.condition != Condition::None) {")
         code.append("        int cond_val = static_cast<int>(insn.condition);")
         code.append("        if ((cond_val & 0xE) != 0xE) {  // Not AL/NV")
         code.append("            const char* inv_cond = condition_to_string(static_cast<Condition>(cond_val ^ 1));")
-        code.append("            auto& rn = insn.operands[1];")
-        code.append("            auto& rm = insn.operands[2];")
-        code.append("            if (rn.value == 31 && rm.value == 31) {")
+        code.append("            // CSET: Rn=Rm=31 implied (1-operand form from alias-specific decoder)")
+        code.append("            if (insn.operands.size() == 1) {")
         code.append('                return std::string("cset ") + insn.operands[0].to_string() + ", " + inv_cond;')
         code.append("            }")
-        code.append("            if (rn.value == rm.value) {")
-        code.append('                return std::string("cinc ") + insn.operands[0].to_string() + ", " + rn.to_string() + ", " + inv_cond;')
+        code.append("            if (insn.operands.size() >= 3) {")
+        code.append("                auto& rn = insn.operands[1];")
+        code.append("                auto& rm = insn.operands[2];")
+        code.append("                if (rn.value == 31 && rm.value == 31) {")
+        code.append('                    return std::string("cset ") + insn.operands[0].to_string() + ", " + inv_cond;')
+        code.append("                }")
+        code.append("                if (rn.value == rm.value) {")
+        code.append('                    return std::string("cinc ") + insn.operands[0].to_string() + ", " + rn.to_string() + ", " + inv_cond;')
+        code.append("                }")
         code.append("            }")
         code.append("        }")
         code.append("    }")
@@ -1558,17 +1564,23 @@ class ARM64XMLParser:
 
         # CSINV aliases: CSETM (Rn=Rm=31), CINV (Rn==Rm)
         code.append("    // CSINV aliases: CSETM (Rn=Rm=31), CINV (Rn==Rm)")
-        code.append("    if (insn.mnemonic == Mnemonic::CSINV && insn.operands.size() >= 3 && insn.condition != Condition::None) {")
+        code.append("    if (insn.mnemonic == Mnemonic::CSINV && insn.condition != Condition::None) {")
         code.append("        int cond_val = static_cast<int>(insn.condition);")
         code.append("        if ((cond_val & 0xE) != 0xE) {  // Not AL/NV")
         code.append("            const char* inv_cond = condition_to_string(static_cast<Condition>(cond_val ^ 1));")
-        code.append("            auto& rn = insn.operands[1];")
-        code.append("            auto& rm = insn.operands[2];")
-        code.append("            if (rn.value == 31 && rm.value == 31) {")
+        code.append("            // CSETM: Rn=Rm=31 implied (1-operand form from alias-specific decoder)")
+        code.append("            if (insn.operands.size() == 1) {")
         code.append('                return std::string("csetm ") + insn.operands[0].to_string() + ", " + inv_cond;')
         code.append("            }")
-        code.append("            if (rn.value == rm.value) {")
-        code.append('                return std::string("cinv ") + insn.operands[0].to_string() + ", " + rn.to_string() + ", " + inv_cond;')
+        code.append("            if (insn.operands.size() >= 3) {")
+        code.append("                auto& rn = insn.operands[1];")
+        code.append("                auto& rm = insn.operands[2];")
+        code.append("                if (rn.value == 31 && rm.value == 31) {")
+        code.append('                    return std::string("csetm ") + insn.operands[0].to_string() + ", " + inv_cond;')
+        code.append("                }")
+        code.append("                if (rn.value == rm.value) {")
+        code.append('                    return std::string("cinv ") + insn.operands[0].to_string() + ", " + rn.to_string() + ", " + inv_cond;')
+        code.append("                }")
         code.append("            }")
         code.append("        }")
         code.append("    }")
@@ -4904,6 +4916,64 @@ class ARM64XMLParser:
             rd_field = field_map['Rd']['name']
             rn_field = field_map['Rn']['name']
             rm_field = field_map['Rm']['name']
+            _enc_lc = encoding_name.lower()
+
+            # Special case: FMLALB/FMLALT asimdelem_H (FP8 by-element)
+            # Template: FMLALB <Vd>.8H, <Vn>.16B, <Vm>.B[H:L:M:Rm[3]]
+            # Vm register = Rm[2:0] (v0-v7), index = H:L:M:Rm[3] (4-bit, 0-15)
+            if 'fmlalb_asimdelem_h' in _enc_lc or 'fmlalt_asimdelem_h' in _enc_lc:
+                _h_f = field_map['H']['name'] if 'H' in field_map else None
+                _l_f = field_map['L']['name'] if 'L' in field_map else None
+                _m_f = field_map['M']['name'] if 'M' in field_map else None
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = \"8h\"; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = \"16b\"; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{")
+                code.append(f"{ind}    // FP8 by-element: Vm=Rm[2:0] (v0-v7), index=H:L:M:Rm[3] (4-bit)")
+                code.append(f"{ind}    uint32_t _rm_val = enc.{member_name}.{rm_field};")
+                code.append(f"{ind}    uint32_t _vm_reg = _rm_val & 0x7;  // Rm[2:0]")
+                if _h_f and _l_f and _m_f:
+                    code.append(f"{ind}    uint32_t _idx = (enc.{member_name}.{_h_f} << 3) | (enc.{member_name}.{_l_f} << 2) | (enc.{member_name}.{_m_f} << 1) | ((_rm_val >> 3) & 1);")
+                else:
+                    code.append(f"{ind}    uint32_t _idx = 0;")
+                code.append(f"{ind}    Operand op(OperandType::VectorRegister, _vm_reg, false);")
+                code.append(f"{ind}    op.arrangement = \"b\";")
+                code.append(f"{ind}    op.index = _idx;")
+                code.append(f"{ind}    op.has_index = true;")
+                code.append(f"{ind}    result.operands.push_back(op);")
+                code.append(f"{ind}}}")
+                code.append(f"{ind}return result;")
+                return code
+
+            # Special case: BFMLAL asimdelem_F (BF16 by-element)
+            # Template: BFMLAL<bt> <Vd>.4S, <Vn>.8H, <Vm>.H[H:L:M]
+            # Q=0 → BFMLALB, Q=1 → BFMLALT; Vm = full 4-bit Rm (v0-v15), index = H:L:M (3-bit)
+            if 'bfmlal_asimdelem_f' in _enc_lc:
+                _q_f = field_map['Q']['name'] if 'Q' in field_map and not field_map['Q']['is_fixed'] else None
+                _h_f = field_map['H']['name'] if 'H' in field_map else None
+                _l_f = field_map['L']['name'] if 'L' in field_map else None
+                _m_f = field_map['M']['name'] if 'M' in field_map else None
+                if _q_f:
+                    code.append(f"{ind}result.mnemonic = enc.{member_name}.{_q_f} ? Mnemonic::BFMLALT : Mnemonic::BFMLALB;")
+                else:
+                    # Q is fixed: check value
+                    _q_v = int(field_map['Q']['fixed'], 2) if 'Q' in field_map and field_map['Q']['fixed'] else 0
+                    code.append(f"{ind}result.mnemonic = Mnemonic::{'BFMLALT' if _q_v else 'BFMLALB'};")
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = \"4s\"; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = \"8h\"; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{")
+                code.append(f"{ind}    // BF16 by-element: Vm=Rm (v0-v15, no M extension), index=H:L:M (3-bit)")
+                if _h_f and _l_f and _m_f:
+                    code.append(f"{ind}    uint32_t _idx = (enc.{member_name}.{_h_f} << 2) | (enc.{member_name}.{_l_f} << 1) | enc.{member_name}.{_m_f};")
+                else:
+                    code.append(f"{ind}    uint32_t _idx = 0;")
+                code.append(f"{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{rm_field}, false);")
+                code.append(f"{ind}    op.arrangement = \"h\";")
+                code.append(f"{ind}    op.index = _idx;")
+                code.append(f"{ind}    op.has_index = true;")
+                code.append(f"{ind}    result.operands.push_back(op);")
+                code.append(f"{ind}}}")
+                code.append(f"{ind}return result;")
+                return code
 
             # Compute arrangement from Q and size
             has_q = 'Q' in field_map
@@ -5388,6 +5458,16 @@ class ARM64XMLParser:
                             sve_mem_base_regs.add('Rn')
                         elif 'Rt' in field_map and not field_map['Rt']['is_fixed']:
                             sve_mem_base_regs.add('Rt')
+            # Also handle complex [Xn, Xm] GP+GP brackets (e.g. prfb/prfh/prfw/prfd_i_p_br_s)
+            _cx_fields = [_top.get('field', '') for _top in _template_ops_pre
+                          if _top.get('in_mem_bracket') and _top.get('complex_mem')]
+            _cx_gp = [f for f in _cx_fields if f.startswith('X')]
+            _cx_sve = [f for f in _cx_fields if f.startswith('Z') or f.startswith('P')]
+            if len(_cx_gp) >= 2 and not _cx_sve:
+                if 'Rn' in field_map and not field_map['Rn']['is_fixed']:
+                    sve_mem_base_regs.add('Rn')
+                if 'Rm' in field_map and not field_map['Rm']['is_fixed']:
+                    sve_mem_base_regs.add('Rm')
 
         # Special case: SME ZA LD/ST register-register pattern (za_p_rrr_)
         # Format: {zaXv/h.T[wRs+12, offs]}, Pg/Z, [Xn{, Xm, lsl #scale}]
@@ -5994,6 +6074,21 @@ class ARM64XMLParser:
                             code.append(f"{ind}result.operands.push_back(Operand::memory_base(enc.{member_name}.{rn_field_cpp}));")
                         emitted_fields.add(rn_key)
                     continue
+
+                # --- Handle GP+GP complex memory bracket [Xn, Xm] (e.g. prfb/prfh/prfw/prfd_i_p_br_s) ---
+                if (top.get('in_mem_bracket') and top.get('complex_mem') and
+                        field.startswith('X') and field not in sve_z_names and field not in sve_p_names):
+                    rn_key = ('Rn' if 'Rn' in field_map and not field_map['Rn']['is_fixed'] else
+                              ('Rt' if 'Rt' in field_map and not field_map['Rt']['is_fixed'] else None))
+                    rm_key = ('Rm' if 'Rm' in field_map and not field_map['Rm']['is_fixed'] else None)
+                    if rn_key and rm_key and rn_key not in emitted_fields:
+                        # GP+GP bracket: emit memory_reg_offset(Rn, Rm) with 64-bit registers
+                        rn_field_cpp = field_map[rn_key]['name']
+                        rm_field_cpp = field_map[rm_key]['name']
+                        code.append(f"{ind}result.operands.push_back(Operand::memory_reg_offset(enc.{member_name}.{rn_field_cpp}, enc.{member_name}.{rm_field_cpp}));")
+                        emitted_fields.add(rn_key)
+                        emitted_fields.add(rm_key)
+                    continue  # Skip Xm (already consumed) or fallthrough for GP+Z case
 
                 # --- Handle prfop in template order (SVE prefetch) ---
                 if field == 'prfop' and 'prfop' in field_map and not field_map['prfop']['is_fixed']:
