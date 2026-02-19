@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
-"""PE ARM64 disassembler and comparison tool using veda64_py binding and Capstone."""
+"""PE ARM64 disassembler and comparison tool using veda64_py binding."""
 
 import argparse
 import hashlib
-import os
 import pickle
 import re
 import struct
-import subprocess
 import sys
 from pathlib import Path
 
@@ -15,8 +13,6 @@ IMAGE_SCN_MEM_EXECUTE = 0x20000000
 MACHINE_ARM64 = 0xAA64
 
 # ── veda64_py binding ─────────────────────────────────────────────────────────
-# Try to load the native Python binding (veda64_py.pyd).
-# Falls back to subprocess-based veda64-disasm if not available.
 
 _veda64_py = None
 
@@ -25,7 +21,6 @@ def _try_load_binding() -> bool:
     global _veda64_py
     if _veda64_py is not None:
         return True
-    # Check default build output location
     candidates = [
         Path(__file__).parent / '__build_arm64' / 'Release',
         Path(__file__).parent,
@@ -41,10 +36,6 @@ def _try_load_binding() -> bool:
         return False
 
 _try_load_binding()
-
-# Subprocess fallback constants (used only when binding is unavailable)
-BATCH_SIZE = 2500
-_PARALLEL_WORKERS = max(4, os.cpu_count() or 4)
 
 # ── Opcode cache ──────────────────────────────────────────────────────────────
 # Maps uint32 opcode → disassembly string.  Keyed by binary hash so the cache
@@ -74,11 +65,10 @@ def _binding_path() -> Path | None:
         return None
 
 
-def load_cache(disasm_path: Path | None) -> None:
+def load_cache() -> None:
     """Load the opcode→text cache from disk."""
     global _cache, _cache_path, _cache_dirty
-    # Prefer keying on the .pyd when the binding is active
-    key_path = _binding_path() or disasm_path
+    key_path = _binding_path()
     if key_path is None:
         return
     key = _cache_key_for(key_path)
@@ -151,22 +141,8 @@ def parse_pe(data):
     return sections, image_base
 
 
-def _disasm_subprocess_batch(words, disasm_path):
-    """Fallback: disassemble a batch via veda64-disasm subprocess."""
-    args = [str(disasm_path)] + [f'0x{w:08X}' for w in words]
-    result = subprocess.run(args, capture_output=True, text=True)
-    output = []
-    for line in result.stdout.strip().splitlines():
-        colon_pos = line.find(':')
-        if colon_pos != -1:
-            output.append(line[colon_pos + 1:].strip())
-        else:
-            output.append(line.strip())
-    return output
-
-
-def veda64_disasm_all(words, disasm_path):
-    """Disassemble all words using cache + binding (or subprocess fallback).
+def veda64_disasm_all(words):
+    """Disassemble all words using cache + binding.
     Returns list of strings in the same order as input."""
     global _cache_dirty
     if not words:
@@ -176,30 +152,15 @@ def veda64_disasm_all(words, disasm_path):
     unique_miss = list(dict.fromkeys(w for w in words if w not in _cache))
 
     if unique_miss:
-        if _veda64_py is not None:
-            # Fast path: in-process C++ call, no subprocess overhead
-            for opcode in unique_miss:
-                result = _veda64_py.decode(opcode)
-                _cache[opcode] = result.to_string() if result is not None else '<unknown>'
-        else:
-            # Fallback: subprocess batches in parallel
-            from concurrent.futures import ThreadPoolExecutor, as_completed
-            batches = [unique_miss[i:i + BATCH_SIZE] for i in range(0, len(unique_miss), BATCH_SIZE)]
-            results = [None] * len(batches)
-            with ThreadPoolExecutor(max_workers=_PARALLEL_WORKERS) as ex:
-                fmap = {ex.submit(_disasm_subprocess_batch, b, disasm_path): i
-                        for i, b in enumerate(batches)}
-                for fut in as_completed(fmap):
-                    results[fmap[fut]] = fut.result()
-            flat = [text for batch in results for text in batch]
-            for opcode, text in zip(unique_miss, flat):
-                _cache[opcode] = text
+        for opcode in unique_miss:
+            result = _veda64_py.decode(opcode)
+            _cache[opcode] = result.to_string() if result is not None else '<unknown>'
         _cache_dirty = True
 
     return [_cache[w] for w in words]
 
 
-def disassemble_section(data, section, image_base, disasm_path):
+def disassemble_section(data, section, image_base):
     """Disassemble an executable section."""
     raw = data[section['raw_ptr']:section['raw_ptr'] + section['raw_size']]
     num_insns = len(raw) // 4
@@ -210,7 +171,7 @@ def disassemble_section(data, section, image_base, disasm_path):
 
     words = list(struct.unpack_from(f'<{num_insns}I', raw))
 
-    disasm_lines = veda64_disasm_all(words, disasm_path)
+    disasm_lines = veda64_disasm_all(words)
 
     for idx, text in enumerate(disasm_lines):
         va = base_va + idx * 4
@@ -511,8 +472,8 @@ def normalize(text, va=None):
 
 # ── Comparison mode ───────────────────────────────────────────────────────────
 
-def compare_section(data, section, image_base, disasm_path, cs_engine, max_diffs):
-    """Compare veda64-disasm vs Capstone for one executable section.
+def compare_section(data, section, image_base, cs_engine, max_diffs):
+    """Compare veda64 vs Capstone for one executable section.
 
     Returns (total_instructions, match_count, mismatch_count, veda64_only, capstone_only).
     """
@@ -530,8 +491,8 @@ def compare_section(data, section, image_base, disasm_path, cs_engine, max_diffs
     for insn in cs_engine.disasm(raw, base_va):
         capstone_map[insn.address] = f"{insn.mnemonic} {insn.op_str}".strip()
 
-    # veda64: disassemble all words in parallel batches
-    veda_lines = veda64_disasm_all(words, disasm_path)
+    # veda64: disassemble all words via binding
+    veda_lines = veda64_disasm_all(words)
 
     match_count = 0
     mismatch_count = 0
@@ -599,38 +560,27 @@ def compare_section(data, section, image_base, disasm_path, cs_engine, max_diffs
 
 def main():
     parser = argparse.ArgumentParser(
-        description='Disassemble ARM64 PE executables using veda64_py binding (or veda64-disasm fallback)')
+        description='Disassemble ARM64 PE executables using veda64_py binding')
     parser.add_argument('pe_file', help='Path to PE executable')
-    parser.add_argument('--disasm', help='Path to veda64-disasm.exe (fallback if binding unavailable)', default=None)
     parser.add_argument('--compare', action='store_true',
                         help='Compare veda64 output against Capstone and report differences')
     parser.add_argument('--max-diffs', type=int, default=50,
                         help='Max differences to print per section (0=unlimited, default=50)')
     args = parser.parse_args()
 
+    if _veda64_py is None:
+        print("Error: veda64_py binding not found.", file=sys.stderr)
+        print("Build the project first (cmake --build __build_arm64 --config Release).", file=sys.stderr)
+        return 1
+
     pe_path = Path(args.pe_file)
     if not pe_path.is_file():
         print(f"Error: File not found: {pe_path}", file=sys.stderr)
         return 1
 
-    # Resolve disasm path (only needed for subprocess fallback)
-    disasm_path = None
-    if _veda64_py is not None:
-        print(f"Using veda64_py binding ({Path(_veda64_py.__file__).name})")
-        if args.disasm:
-            disasm_path = Path(args.disasm)
-    else:
-        print("veda64_py binding not found, falling back to subprocess", file=sys.stderr)
-        if args.disasm:
-            disasm_path = Path(args.disasm)
-        else:
-            disasm_path = Path(__file__).parent / '__build_arm64' / 'Release' / 'veda64-disasm.exe'
-        if not disasm_path.is_file():
-            print(f"Error: veda64-disasm not found at: {disasm_path}", file=sys.stderr)
-            print("Build the project or use --disasm to specify its location.", file=sys.stderr)
-            return 1
+    print(f"Using veda64_py binding ({Path(_veda64_py.__file__).name})")
 
-    load_cache(disasm_path)
+    load_cache()
 
     data = pe_path.read_bytes()
 
@@ -668,7 +618,7 @@ def main():
                 continue
 
             insns, match, mismatch, veda_only, cs_only = compare_section(
-                data, section, image_base, disasm_path, cs, args.max_diffs
+                data, section, image_base, cs, args.max_diffs
             )
             totals['insns'] += insns
             totals['match'] += match
@@ -697,7 +647,7 @@ def main():
     else:
         for section in sections:
             if section['characteristics'] & IMAGE_SCN_MEM_EXECUTE:
-                disassemble_section(data, section, image_base, disasm_path)
+                disassemble_section(data, section, image_base)
             else:
                 print(f"\n=== {section['name']} (not executable, skipped) ===")
 
