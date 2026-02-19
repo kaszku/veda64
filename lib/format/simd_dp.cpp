@@ -41773,7 +41773,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             _simd_arr = arrs[enc.xtn_asimdmisc_n.Q][enc.xtn_asimdmisc_n.size];
                         }
                         { Operand op(OperandType::VectorRegister, enc.xtn_asimdmisc_n.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.xtn_asimdmisc_n.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.xtn_asimdmisc_n.Rn, false);
+                            static const char* _narrow_src[] = {"8h", "4s", "2d", "2d"};
+                            op.arrangement = _narrow_src[enc.xtn_asimdmisc_n.size];
+                            result.operands.push_back(op);
+                        }
                         return result;
         }
         case 0x0E214800u: { // SQXTN_asimdmisc_N
@@ -41790,7 +41795,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             _simd_arr = arrs[enc.sqxtn_asimdmisc_n.Q][enc.sqxtn_asimdmisc_n.size];
                         }
                         { Operand op(OperandType::VectorRegister, enc.sqxtn_asimdmisc_n.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.sqxtn_asimdmisc_n.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.sqxtn_asimdmisc_n.Rn, false);
+                            static const char* _narrow_src[] = {"8h", "4s", "2d", "2d"};
+                            op.arrangement = _narrow_src[enc.sqxtn_asimdmisc_n.size];
+                            result.operands.push_back(op);
+                        }
                         return result;
         }
         case 0x0E303800u: { // SADDLV_asimdall_only
@@ -42060,7 +42070,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             _simd_arr = arrs[enc.sqxtun_asimdmisc_n.Q][enc.sqxtun_asimdmisc_n.size];
                         }
                         { Operand op(OperandType::VectorRegister, enc.sqxtun_asimdmisc_n.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.sqxtun_asimdmisc_n.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.sqxtun_asimdmisc_n.Rn, false);
+                            static const char* _narrow_src[] = {"8h", "4s", "2d", "2d"};
+                            op.arrangement = _narrow_src[enc.sqxtun_asimdmisc_n.size];
+                            result.operands.push_back(op);
+                        }
                         return result;
         }
         case 0x2E213800u: { // SHLL_asimdmisc_S
@@ -42094,7 +42109,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             _simd_arr = arrs[enc.uqxtn_asimdmisc_n.Q][enc.uqxtn_asimdmisc_n.size];
                         }
                         { Operand op(OperandType::VectorRegister, enc.uqxtn_asimdmisc_n.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.uqxtn_asimdmisc_n.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        {
+                            Operand op(OperandType::VectorRegister, enc.uqxtn_asimdmisc_n.Rn, false);
+                            static const char* _narrow_src[] = {"8h", "4s", "2d", "2d"};
+                            op.arrangement = _narrow_src[enc.uqxtn_asimdmisc_n.size];
+                            result.operands.push_back(op);
+                        }
                         return result;
         }
         case 0x2E303800u: { // UADDLV_asimdall_only

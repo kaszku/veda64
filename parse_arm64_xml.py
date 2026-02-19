@@ -6147,6 +6147,20 @@ class ARM64XMLParser:
                             code.append(f"{ind}    op.arrangement = _simd_arr;  // fallback")
                         code.append(f"{ind}    result.operands.push_back(op);")
                         code.append(f"{ind}}}")
+                    elif mnemonic in ['XTN', 'SQXTN', 'UQXTN', 'SQXTUN'] and reg_name == 'Rn' and simd_arrangement == 'runtime':
+                        # Narrowing ops: Rn (source) uses wide arrangement, indexed by size only
+                        # (source is always the full 128-bit register regardless of Q)
+                        # size=0→"8h", size=1→"4s", size=2→"2d"
+                        code.append(f"{ind}{{")
+                        code.append(f"{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false);")
+                        if 'size' in field_map and not field_map['size']['is_fixed']:
+                            size_f = field_map['size']['name']
+                            code.append(f'{ind}    static const char* _narrow_src[] = {{"8h", "4s", "2d", "2d"}};')
+                            code.append(f"{ind}    op.arrangement = _narrow_src[enc.{member_name}.{size_f}];")
+                        else:
+                            code.append(f"{ind}    op.arrangement = _simd_arr;  // fallback")
+                        code.append(f"{ind}    result.operands.push_back(op);")
+                        code.append(f"{ind}}}")
                     elif (mnemonic in ['MOVI', 'MVNI'] or (mnemonic == 'FMOV' and 'asimdimm' in encoding_name)) and reg_name == 'Rd':
                         # MOVI/MVNI/FMOV-vector need arrangement from Q and cmode fields
                         code.append(f"{ind}{{")
