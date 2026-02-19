@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
-"""PE ARM64 disassembler and comparison tool using veda64-disasm and Capstone."""
+"""PE ARM64 disassembler and comparison tool using veda64_py binding and Capstone."""
 
 import argparse
+import hashlib
+import os
+import pickle
 import re
 import struct
 import subprocess
@@ -10,7 +13,96 @@ from pathlib import Path
 
 IMAGE_SCN_MEM_EXECUTE = 0x20000000
 MACHINE_ARM64 = 0xAA64
-BATCH_SIZE = 500
+
+# ── veda64_py binding ─────────────────────────────────────────────────────────
+# Try to load the native Python binding (veda64_py.pyd).
+# Falls back to subprocess-based veda64-disasm if not available.
+
+_veda64_py = None
+
+def _try_load_binding() -> bool:
+    """Attempt to import veda64_py from the default build directory."""
+    global _veda64_py
+    if _veda64_py is not None:
+        return True
+    # Check default build output location
+    candidates = [
+        Path(__file__).parent / '__build_arm64' / 'Release',
+        Path(__file__).parent,
+    ]
+    for d in candidates:
+        if d not in sys.path:
+            sys.path.insert(0, str(d))
+    try:
+        import veda64_py
+        _veda64_py = veda64_py
+        return True
+    except ImportError:
+        return False
+
+_try_load_binding()
+
+# Subprocess fallback constants (used only when binding is unavailable)
+BATCH_SIZE = 2500
+_PARALLEL_WORKERS = max(4, os.cpu_count() or 4)
+
+# ── Opcode cache ──────────────────────────────────────────────────────────────
+# Maps uint32 opcode → disassembly string.  Keyed by binary hash so the cache
+# is automatically invalidated when the binary changes.
+
+_cache: dict = {}          # in-memory: opcode(int) → text(str)
+_cache_path: Path | None = None
+_cache_dirty = False
+
+
+def _cache_key_for(path: Path) -> str:
+    """Return a short hex digest of a binary for cache namespacing."""
+    try:
+        data = path.read_bytes()
+        return hashlib.md5(data).hexdigest()[:12]
+    except OSError:
+        return 'unknown'
+
+
+def _binding_path() -> Path | None:
+    """Return path to the loaded .pyd, or None."""
+    if _veda64_py is None:
+        return None
+    try:
+        return Path(_veda64_py.__file__)
+    except AttributeError:
+        return None
+
+
+def load_cache(disasm_path: Path | None) -> None:
+    """Load the opcode→text cache from disk."""
+    global _cache, _cache_path, _cache_dirty
+    # Prefer keying on the .pyd when the binding is active
+    key_path = _binding_path() or disasm_path
+    if key_path is None:
+        return
+    key = _cache_key_for(key_path)
+    cache_dir = key_path.parent
+    _cache_path = cache_dir / f'.veda64_cache_{key}.pkl'
+    if _cache_path.is_file():
+        try:
+            with open(_cache_path, 'rb') as f:
+                _cache = pickle.load(f)
+        except Exception:
+            _cache = {}
+    _cache_dirty = False
+
+
+def save_cache() -> None:
+    """Persist the in-memory cache to disk if it changed."""
+    global _cache_dirty
+    if _cache_dirty and _cache_path is not None:
+        try:
+            with open(_cache_path, 'wb') as f:
+                pickle.dump(_cache, f, protocol=pickle.HIGHEST_PROTOCOL)
+            _cache_dirty = False
+        except Exception:
+            pass
 
 
 def parse_pe(data):
@@ -59,8 +151,8 @@ def parse_pe(data):
     return sections, image_base
 
 
-def veda64_disasm_batch(words, disasm_path):
-    """Disassemble a batch of uint32 words with veda64-disasm. Returns list of strings."""
+def _disasm_subprocess_batch(words, disasm_path):
+    """Fallback: disassemble a batch via veda64-disasm subprocess."""
     args = [str(disasm_path)] + [f'0x{w:08X}' for w in words]
     result = subprocess.run(args, capture_output=True, text=True)
     output = []
@@ -73,6 +165,40 @@ def veda64_disasm_batch(words, disasm_path):
     return output
 
 
+def veda64_disasm_all(words, disasm_path):
+    """Disassemble all words using cache + binding (or subprocess fallback).
+    Returns list of strings in the same order as input."""
+    global _cache_dirty
+    if not words:
+        return []
+
+    # Collect cache misses (deduplicated)
+    unique_miss = list(dict.fromkeys(w for w in words if w not in _cache))
+
+    if unique_miss:
+        if _veda64_py is not None:
+            # Fast path: in-process C++ call, no subprocess overhead
+            for opcode in unique_miss:
+                result = _veda64_py.decode(opcode)
+                _cache[opcode] = result.to_string() if result is not None else '<unknown>'
+        else:
+            # Fallback: subprocess batches in parallel
+            from concurrent.futures import ThreadPoolExecutor, as_completed
+            batches = [unique_miss[i:i + BATCH_SIZE] for i in range(0, len(unique_miss), BATCH_SIZE)]
+            results = [None] * len(batches)
+            with ThreadPoolExecutor(max_workers=_PARALLEL_WORKERS) as ex:
+                fmap = {ex.submit(_disasm_subprocess_batch, b, disasm_path): i
+                        for i, b in enumerate(batches)}
+                for fut in as_completed(fmap):
+                    results[fmap[fut]] = fut.result()
+            flat = [text for batch in results for text in batch]
+            for opcode, text in zip(unique_miss, flat):
+                _cache[opcode] = text
+        _cache_dirty = True
+
+    return [_cache[w] for w in words]
+
+
 def disassemble_section(data, section, image_base, disasm_path):
     """Disassemble an executable section."""
     raw = data[section['raw_ptr']:section['raw_ptr'] + section['raw_size']]
@@ -82,18 +208,13 @@ def disassemble_section(data, section, image_base, disasm_path):
     print(f"\n=== {section['name']} (RVA: 0x{section['virtual_address']:08X}, "
           f"Size: 0x{section['raw_size']:X}, {num_insns} instructions) ===")
 
-    words = []
-    for i in range(num_insns):
-        words.append(struct.unpack_from('<I', raw, i * 4)[0])
+    words = list(struct.unpack_from(f'<{num_insns}I', raw))
 
-    for batch_start in range(0, len(words), BATCH_SIZE):
-        batch = words[batch_start:batch_start + BATCH_SIZE]
-        disasm_lines = veda64_disasm_batch(batch, disasm_path)
+    disasm_lines = veda64_disasm_all(words, disasm_path)
 
-        for j, text in enumerate(disasm_lines):
-            idx = batch_start + j
-            va = base_va + idx * 4
-            print(f"0x{va:016X}: {words[idx]:08x}    {text}")
+    for idx, text in enumerate(disasm_lines):
+        va = base_va + idx * 4
+        print(f"0x{va:016X}: {words[idx]:08x}    {text}")
 
 
 # ── Normalization for comparison ──────────────────────────────────────────────
@@ -402,14 +523,15 @@ def compare_section(data, section, image_base, disasm_path, cs_engine, max_diffs
     print(f"\n=== {section['name']} (RVA: 0x{section['virtual_address']:08X}, "
           f"Size: 0x{section['raw_size']:X}, {num_insns} instructions) ===")
 
-    words = []
-    for i in range(num_insns):
-        words.append(struct.unpack_from('<I', raw, i * 4)[0])
+    words = list(struct.unpack_from(f'<{num_insns}I', raw))
 
     # Capstone: disassemble entire section at once
     capstone_map = {}  # offset -> (mnemonic, op_str)
     for insn in cs_engine.disasm(raw, base_va):
         capstone_map[insn.address] = f"{insn.mnemonic} {insn.op_str}".strip()
+
+    # veda64: disassemble all words in parallel batches
+    veda_lines = veda64_disasm_all(words, disasm_path)
 
     match_count = 0
     mismatch_count = 0
@@ -417,58 +539,53 @@ def compare_section(data, section, image_base, disasm_path, cs_engine, max_diffs
     capstone_only = 0
     diff_printed = 0
 
-    for batch_start in range(0, len(words), BATCH_SIZE):
-        batch = words[batch_start:batch_start + BATCH_SIZE]
-        veda_lines = veda64_disasm_batch(batch, disasm_path)
+    for idx, veda_text in enumerate(veda_lines):
+        va = base_va + idx * 4
+        word = words[idx]
 
-        for j, veda_text in enumerate(veda_lines):
-            idx = batch_start + j
-            va = base_va + idx * 4
-            word = words[idx]
+        cs_text = capstone_map.get(va)
 
-            cs_text = capstone_map.get(va)
+        # Normalize with VA for relative-to-absolute branch conversion
+        veda_norm = normalize(veda_text, va) if veda_text else ''
+        cs_norm = normalize(cs_text, va) if cs_text else ''
 
-            # Normalize with VA for relative-to-absolute branch conversion
-            veda_norm = normalize(veda_text, va) if veda_text else ''
-            cs_norm = normalize(cs_text, va) if cs_text else ''
+        # Detect "unknown" from each side
+        veda_is_unknown = 'unknown' in veda_text.lower() if veda_text else True
+        cs_is_unknown = cs_text is None or cs_text.startswith('.byte')
 
-            # Detect "unknown" from each side
-            veda_is_unknown = 'unknown' in veda_text.lower() if veda_text else True
-            cs_is_unknown = cs_text is None or cs_text.startswith('.byte')
+        if veda_is_unknown and cs_is_unknown:
+            # Both failed — not interesting
+            match_count += 1
+            continue
 
-            if veda_is_unknown and cs_is_unknown:
-                # Both failed — not interesting
-                match_count += 1
-                continue
+        if veda_is_unknown and not cs_is_unknown:
+            capstone_only += 1
+            if max_diffs == 0 or diff_printed < max_diffs:
+                print(f"  0x{va:016X}: {word:08x}  VEDA64_MISS")
+                print(f"      veda64:   {veda_text}")
+                print(f"      capstone: {cs_text}")
+                diff_printed += 1
+            continue
 
-            if veda_is_unknown and not cs_is_unknown:
-                capstone_only += 1
-                if max_diffs == 0 or diff_printed < max_diffs:
-                    print(f"  0x{va:016X}: {word:08x}  VEDA64_MISS")
-                    print(f"      veda64:   {veda_text}")
-                    print(f"      capstone: {cs_text}")
-                    diff_printed += 1
-                continue
+        if not veda_is_unknown and cs_is_unknown:
+            veda64_only += 1
+            if max_diffs == 0 or diff_printed < max_diffs:
+                print(f"  0x{va:016X}: {word:08x}  CAPSTONE_MISS")
+                print(f"      veda64:   {veda_text}")
+                print(f"      capstone: (failed)")
+                diff_printed += 1
+            continue
 
-            if not veda_is_unknown and cs_is_unknown:
-                veda64_only += 1
-                if max_diffs == 0 or diff_printed < max_diffs:
-                    print(f"  0x{va:016X}: {word:08x}  CAPSTONE_MISS")
-                    print(f"      veda64:   {veda_text}")
-                    print(f"      capstone: (failed)")
-                    diff_printed += 1
-                continue
-
-            # Both decoded — compare normalized
-            if veda_norm == cs_norm:
-                match_count += 1
-            else:
-                mismatch_count += 1
-                if max_diffs == 0 or diff_printed < max_diffs:
-                    print(f"  0x{va:016X}: {word:08x}  MISMATCH")
-                    print(f"      veda64:   {veda_text}")
-                    print(f"      capstone: {cs_text}")
-                    diff_printed += 1
+        # Both decoded — compare normalized
+        if veda_norm == cs_norm:
+            match_count += 1
+        else:
+            mismatch_count += 1
+            if max_diffs == 0 or diff_printed < max_diffs:
+                print(f"  0x{va:016X}: {word:08x}  MISMATCH")
+                print(f"      veda64:   {veda_text}")
+                print(f"      capstone: {cs_text}")
+                diff_printed += 1
 
     if max_diffs > 0 and diff_printed >= max_diffs:
         remaining = mismatch_count + veda64_only + capstone_only - diff_printed
@@ -482,9 +599,9 @@ def compare_section(data, section, image_base, disasm_path, cs_engine, max_diffs
 
 def main():
     parser = argparse.ArgumentParser(
-        description='Disassemble ARM64 PE executables using veda64-disasm')
+        description='Disassemble ARM64 PE executables using veda64_py binding (or veda64-disasm fallback)')
     parser.add_argument('pe_file', help='Path to PE executable')
-    parser.add_argument('--disasm', help='Path to veda64-disasm.exe', default=None)
+    parser.add_argument('--disasm', help='Path to veda64-disasm.exe (fallback if binding unavailable)', default=None)
     parser.add_argument('--compare', action='store_true',
                         help='Compare veda64 output against Capstone and report differences')
     parser.add_argument('--max-diffs', type=int, default=50,
@@ -496,15 +613,24 @@ def main():
         print(f"Error: File not found: {pe_path}", file=sys.stderr)
         return 1
 
-    if args.disasm:
-        disasm_path = Path(args.disasm)
+    # Resolve disasm path (only needed for subprocess fallback)
+    disasm_path = None
+    if _veda64_py is not None:
+        print(f"Using veda64_py binding ({Path(_veda64_py.__file__).name})")
+        if args.disasm:
+            disasm_path = Path(args.disasm)
     else:
-        disasm_path = Path(__file__).parent / '__build_arm64' / 'Release' / 'veda64-disasm.exe'
+        print("veda64_py binding not found, falling back to subprocess", file=sys.stderr)
+        if args.disasm:
+            disasm_path = Path(args.disasm)
+        else:
+            disasm_path = Path(__file__).parent / '__build_arm64' / 'Release' / 'veda64-disasm.exe'
+        if not disasm_path.is_file():
+            print(f"Error: veda64-disasm not found at: {disasm_path}", file=sys.stderr)
+            print("Build the project or use --disasm to specify its location.", file=sys.stderr)
+            return 1
 
-    if not disasm_path.is_file():
-        print(f"Error: veda64-disasm not found at: {disasm_path}", file=sys.stderr)
-        print("Use --disasm to specify its location.", file=sys.stderr)
-        return 1
+    load_cache(disasm_path)
 
     data = pe_path.read_bytes()
 
@@ -575,6 +701,7 @@ def main():
             else:
                 print(f"\n=== {section['name']} (not executable, skipped) ===")
 
+    save_cache()
     return 0
 
 

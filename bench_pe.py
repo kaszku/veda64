@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Benchmark ARM64 disassembly: veda64-disasm vs Capstone."""
+"""Benchmark ARM64 disassembly: veda64_py binding vs veda64-disasm subprocess vs Capstone."""
 
 import argparse
 import struct
@@ -13,6 +13,28 @@ import capstone
 IMAGE_SCN_MEM_EXECUTE = 0x20000000
 MACHINE_ARM64 = 0xAA64
 BATCH_SIZE = 2000
+
+# ── veda64_py binding ─────────────────────────────────────────────────────────
+
+_veda64_py = None
+
+def _try_load_binding() -> bool:
+    global _veda64_py
+    candidates = [
+        Path(__file__).parent / '__build_arm64' / 'Release',
+        Path(__file__).parent,
+    ]
+    for d in candidates:
+        if d not in sys.path:
+            sys.path.insert(0, str(d))
+    try:
+        import veda64_py
+        _veda64_py = veda64_py
+        return True
+    except ImportError:
+        return False
+
+_try_load_binding()
 
 
 def parse_pe(data):
@@ -76,8 +98,36 @@ def extract_code(data, sections):
 
 # -- Benchmarks ----------------------------------------------------------------
 
-def bench_veda64(words, disasm_path, iterations, batch_size):
-    """Benchmark veda64-disasm over all words."""
+def bench_veda64_binding(words, iterations):
+    """Benchmark veda64_py binding: decode + to_string per instruction."""
+    decode = _veda64_py.decode
+    times = []
+    for _ in range(iterations):
+        t0 = time.perf_counter()
+        for w in words:
+            r = decode(w)
+            if r is not None:
+                r.to_string()
+        t1 = time.perf_counter()
+        times.append(t1 - t0)
+    return times
+
+
+def bench_veda64_binding_decode_only(words, iterations):
+    """Benchmark veda64_py binding: decode only (no string formatting)."""
+    decode = _veda64_py.decode
+    times = []
+    for _ in range(iterations):
+        t0 = time.perf_counter()
+        for w in words:
+            decode(w)
+        t1 = time.perf_counter()
+        times.append(t1 - t0)
+    return times
+
+
+def bench_veda64_subprocess(words, disasm_path, iterations, batch_size):
+    """Benchmark veda64-disasm subprocess over all words."""
     times = []
     for _ in range(iterations):
         t0 = time.perf_counter()
@@ -91,7 +141,7 @@ def bench_veda64(words, disasm_path, iterations, batch_size):
 
 
 def measure_spawn_overhead(disasm_path, num_spawns):
-    """Measure average subprocess spawn overhead by running minimal invocations."""
+    """Measure average subprocess spawn overhead."""
     t0 = time.perf_counter()
     for _ in range(num_spawns):
         subprocess.run([str(disasm_path), '0xD503201F'], capture_output=True)
@@ -108,23 +158,6 @@ def bench_capstone(raw, iterations):
         t0 = time.perf_counter()
         for _ in cs.disasm(raw, 0):
             pass
-        t1 = time.perf_counter()
-        times.append(t1 - t0)
-    return times
-
-
-def bench_capstone_batch(raw, iterations):
-    """Benchmark Capstone one instruction at a time (4-byte chunks)."""
-    cs = capstone.Cs(capstone.CS_ARCH_AARCH64, capstone.CS_MODE_ARM)
-    cs.skipdata = True
-    num_insns = len(raw) // 4
-    times = []
-    for _ in range(iterations):
-        t0 = time.perf_counter()
-        for i in range(num_insns):
-            chunk = raw[i * 4:(i + 1) * 4]
-            for _ in cs.disasm(chunk, 0):
-                pass
         t1 = time.perf_counter()
         times.append(t1 - t0)
     return times
@@ -153,8 +186,8 @@ def fmt_rate(insns, seconds):
 
 def print_results(label, times, num_insns):
     best = min(times)
-    worst = max(times)
     avg = sum(times) / len(times)
+    worst = max(times)
     print(f"  {label}:")
     print(f"    Best:  {fmt_time(best):>12}  ({fmt_rate(num_insns, best)})")
     print(f"    Avg:   {fmt_time(avg):>12}  ({fmt_rate(num_insns, avg)})")
@@ -164,13 +197,15 @@ def print_results(label, times, num_insns):
 
 def main():
     parser = argparse.ArgumentParser(
-        description='Benchmark ARM64 disassembly: veda64-disasm vs Capstone')
+        description='Benchmark ARM64 disassembly: veda64_py binding vs subprocess vs Capstone')
     parser.add_argument('pe_file', help='Path to PE executable')
     parser.add_argument('--disasm', help='Path to veda64-disasm.exe', default=None)
     parser.add_argument('--iterations', '-n', type=int, default=3,
                         help='Number of iterations per benchmark (default: 3)')
     parser.add_argument('--batch-size', '-b', type=int, default=BATCH_SIZE,
                         help=f'Instructions per veda64-disasm invocation (default: {BATCH_SIZE})')
+    parser.add_argument('--no-subprocess', action='store_true',
+                        help='Skip subprocess benchmark (faster when binding is available)')
     args = parser.parse_args()
 
     pe_path = Path(args.pe_file)
@@ -178,16 +213,16 @@ def main():
         print(f"Error: File not found: {pe_path}", file=sys.stderr)
         return 1
 
-    if args.disasm:
-        disasm_path = Path(args.disasm)
-    else:
-        disasm_path = Path(__file__).parent / '__build_arm64' / 'Release' / 'veda64-disasm.exe'
-
-    if not disasm_path.is_file():
-        print(f"Error: veda64-disasm not found at: {disasm_path}", file=sys.stderr)
-        return 1
-
-    batch_size = args.batch_size
+    disasm_path = None
+    if not args.no_subprocess:
+        if args.disasm:
+            disasm_path = Path(args.disasm)
+        else:
+            disasm_path = Path(__file__).parent / '__build_arm64' / 'Release' / 'veda64-disasm.exe'
+        if not disasm_path.is_file():
+            print(f"Warning: veda64-disasm not found at {disasm_path}, skipping subprocess benchmark",
+                  file=sys.stderr)
+            disasm_path = None
 
     data = pe_path.read_bytes()
     try:
@@ -201,68 +236,85 @@ def main():
         print("Error: No executable code found.", file=sys.stderr)
         return 1
 
-    num_batches = (num_insns + batch_size - 1) // batch_size
     iters = args.iterations
+    batch_size = args.batch_size
+    num_batches = (num_insns + batch_size - 1) // batch_size
 
-    print(f"File: {pe_path.name}")
-    print(f"Code: {num_insns:,} instructions ({len(raw):,} bytes)")
-    print(f"veda64 batch size: {batch_size} ({num_batches} invocations)")
+    print(f"File:       {pe_path.name}")
+    print(f"Code:       {num_insns:,} instructions ({len(raw):,} bytes)")
     print(f"Iterations: {iters}")
+    if _veda64_py:
+        print(f"Binding:    {Path(_veda64_py.__file__).name}")
     print()
 
     # -- Warmup ----------------------------------------------------------------
     print("Warming up...", flush=True)
-    subprocess.run([str(disasm_path), '0xD503201F'], capture_output=True)
-    cs = capstone.Cs(capstone.CS_ARCH_AARCH64, capstone.CS_MODE_ARM)
-    for _ in cs.disasm(b'\x1f\x20\x03\xd5', 0):
+    if _veda64_py:
+        _veda64_py.decode(0xD503201F)
+    if disasm_path:
+        subprocess.run([str(disasm_path), '0xD503201F'], capture_output=True)
+    cs_warmup = capstone.Cs(capstone.CS_ARCH_AARCH64, capstone.CS_MODE_ARM)
+    for _ in cs_warmup.disasm(b'\x1f\x20\x03\xd5', 0):
         pass
 
-    # -- Measure subprocess spawn overhead -------------------------------------
-    print("Measuring subprocess overhead...", flush=True)
-    spawn_overhead = measure_spawn_overhead(disasm_path, 20)
+    results = {}
+
+    # -- veda64_py binding (decode + to_string) --------------------------------
+    if _veda64_py:
+        print("Benchmarking veda64_py (decode + to_string)...", flush=True)
+        results['binding'] = bench_veda64_binding(words, iters)
+
+        print("Benchmarking veda64_py (decode only)...", flush=True)
+        results['binding_decode'] = bench_veda64_binding_decode_only(words, iters)
+
+    # -- veda64-disasm subprocess ----------------------------------------------
+    if disasm_path:
+        print("Measuring subprocess spawn overhead...", flush=True)
+        spawn_overhead = measure_spawn_overhead(disasm_path, 20)
+
+        print("Benchmarking veda64-disasm (subprocess)...", flush=True)
+        results['subprocess'] = bench_veda64_subprocess(words, disasm_path, iters, batch_size)
 
     # -- Capstone (streaming) --------------------------------------------------
     print("Benchmarking Capstone (streaming)...", flush=True)
-    cs_times = bench_capstone(raw, iters)
-
-    # -- Capstone (per-instruction) --------------------------------------------
-    print("Benchmarking Capstone (per-instruction)...", flush=True)
-    cs_batch_times = bench_capstone_batch(raw, iters)
-
-    # -- veda64-disasm ---------------------------------------------------------
-    print("Benchmarking veda64-disasm (subprocess)...", flush=True)
-    veda_times = bench_veda64(words, disasm_path, iters, batch_size)
+    results['capstone'] = bench_capstone(raw, iters)
 
     # -- Results ---------------------------------------------------------------
-    veda_best = min(veda_times)
-    total_spawn = spawn_overhead * num_batches
-    veda_decode_est = max(veda_best - total_spawn, 0.001)
-
     print(f"\n{'=' * 64}")
     print(f"Results ({num_insns:,} instructions, best of {iters})")
     print(f"{'=' * 64}")
 
-    cs_best = print_results("Capstone (streaming)", cs_times, num_insns)
-    cs_batch_best = print_results("Capstone (per-instruction)", cs_batch_times, num_insns)
-    print_results("veda64-disasm (total)", veda_times, num_insns)
+    cs_best = print_results("Capstone (streaming)", results['capstone'], num_insns)
 
-    print(f"\n  veda64 overhead breakdown:")
-    print(f"    Spawn overhead:  {fmt_time(spawn_overhead)}/process x {num_batches} = {fmt_time(total_spawn)}")
-    print(f"    Estimated decode: {fmt_time(veda_decode_est)}  ({fmt_rate(num_insns, veda_decode_est)})")
+    binding_best = None
+    if 'binding' in results:
+        binding_best = print_results("veda64_py  (decode + to_string)", results['binding'], num_insns)
+        print_results("veda64_py  (decode only)       ", results['binding_decode'], num_insns)
+
+    if 'subprocess' in results:
+        veda_best = print_results(
+            f"veda64-disasm (subprocess, {batch_size}/batch)", results['subprocess'], num_insns)
+        total_spawn = spawn_overhead * num_batches
+        veda_decode_est = max(veda_best - total_spawn, 0.001)
+        print(f"\n  Subprocess overhead: {fmt_time(spawn_overhead)}/spawn x {num_batches} = {fmt_time(total_spawn)}")
+        print(f"  Estimated decode:    {fmt_time(veda_decode_est)}  ({fmt_rate(num_insns, veda_decode_est)})")
 
     print(f"\n{'-' * 64}")
-    print(f"  Comparison (best times):")
+    print(f"  Comparison vs Capstone (best times):")
 
-    def cmp_line(label, a, b):
-        if a > b:
-            print(f"    {label}: {a / b:.1f}x slower than Capstone")
+    def cmp_line(label, t):
+        if t > cs_best:
+            print(f"    {label}: {t / cs_best:.1f}x slower")
         else:
-            print(f"    {label}: {b / a:.1f}x faster than Capstone")
+            print(f"    {label}: {cs_best / t:.1f}x faster")
 
-    cmp_line("veda64 total     vs Capstone streaming      ", veda_best, cs_best)
-    cmp_line("veda64 total     vs Capstone per-instruction", veda_best, cs_batch_best)
-    cmp_line("veda64 decode    vs Capstone streaming      ", veda_decode_est, cs_best)
-    cmp_line("veda64 decode    vs Capstone per-instruction", veda_decode_est, cs_batch_best)
+    if binding_best is not None:
+        cmp_line("veda64_py (decode+str)", binding_best)
+        decode_best = min(results['binding_decode'])
+        cmp_line("veda64_py (decode only)", decode_best)
+
+    if 'subprocess' in results:
+        cmp_line(f"veda64-disasm subprocess", min(results['subprocess']))
 
     return 0
 
