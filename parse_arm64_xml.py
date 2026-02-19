@@ -1266,6 +1266,11 @@ class ARM64XMLParser:
         code.append("    if ((cmode & 0xE) == 0xC) {")
         code.append("        return Q ? \"4s\" : \"2s\";")
         code.append("    }")
+        code.append("    // FP modified immediate (cmode=1111) — FMOV vector variants")
+        code.append("    if (cmode == 0xF) {")
+        code.append("        if (op == 0) return Q ? \"4s\" : \"2s\";  // Single-precision (.4s/.2s)")
+        code.append("        return Q ? \"2d\" : \"4h\";  // Double-precision (.2D) or FP16 (.8H/.4H)")
+        code.append("    }")
         code.append("    return nullptr;")
         code.append("}")
         code.append("")
@@ -4891,9 +4896,10 @@ class ARM64XMLParser:
             code.append(f"{ind}return result;")
             return code
 
-        # Special case: SIMD shift-by-immediate (asimdshf) — arrangement from immh, shift from immh:immb
-        is_asimdshf = 'asimdshf' in encoding_name and 'Rd' in field_map and 'Rn' in field_map and 'immh' in field_map
-        if is_asimdshf:
+        # Special case: SIMD/scalar shift-by-immediate (asimdshf/asisdshf) — arrangement from immh, shift from immh:immb
+        is_shift_by_imm = ('asimdshf' in encoding_name or 'asisdshf' in encoding_name) \
+                          and 'Rd' in field_map and 'Rn' in field_map and 'immh' in field_map
+        if is_shift_by_imm:
             rd_field = field_map['Rd']['name']
             rn_field = field_map['Rn']['name']
             immh_field = field_map['immh']['name']
@@ -4901,6 +4907,29 @@ class ARM64XMLParser:
             has_q = 'Q' in field_map and not field_map['Q']['is_fixed']
             q_field = field_map['Q']['name'] if has_q else None
             q_fixed_val = int(field_map['Q']['fixed'], 2) if 'Q' in field_map and field_map['Q']['is_fixed'] and field_map['Q']['fixed'] else 0
+
+            # Scalar shift-by-immediate (asisdshf): no Q field at all — emit scalar FP registers
+            is_scalar_shf = 'Q' not in field_map
+            if is_scalar_shf:
+                is_fp_convert = any(m in mnemonic for m in ['FCVT', 'SCVTF', 'UCVTF'])
+                code.append(f"{ind}uint32_t _immh = enc.{member_name}.{immh_field};")
+                if immb_field:
+                    code.append(f"{ind}uint32_t _immb = enc.{member_name}.{immb_field};")
+                else:
+                    code.append(f"{ind}uint32_t _immb = 0;")
+                code.append(f"{ind}uint32_t _immhb = (_immh << 3) | _immb;")
+                code.append(f"{ind}int _esize = 0; const char* _fp_arr = nullptr;")
+                code.append(f"{ind}if (_immh & 0x8) {{ _esize = 64; _fp_arr = \"d\"; }}")
+                code.append(f"{ind}else if (_immh & 0x4) {{ _esize = 32; _fp_arr = \"s\"; }}")
+                code.append(f"{ind}else if (_immh & 0x2) {{ _esize = 16; _fp_arr = \"h\"; }}")
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = _fp_arr; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = _fp_arr; result.operands.push_back(op); }}")
+                if is_fp_convert:
+                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, (_esize * 2) - (int)_immhb, true));  // fbits")
+                else:
+                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, (int)_immhb - _esize, true));  // shift left")
+                code.append(f"{ind}return result;")
+                return code
 
             # Determine if this is narrowing (SHRN, RSHRN, SQSHRN, etc.) or widening (SSHLL, USHLL)
             narrowing_ops = ['SHRN', 'RSHRN', 'SQSHRN', 'UQSHRN', 'SQRSHRN', 'UQRSHRN', 'SQSHRUN', 'SQRSHRUN', 'XTN']
@@ -5084,8 +5113,34 @@ class ARM64XMLParser:
                     code.append(f'{ind}const char* _simd_arr = "{arrs[q_val][size_val]}";')
                     code.append(f"{ind}uint32_t _sz = {size_val};")
             else:
-                code.append(f'{ind}const char* _simd_arr = nullptr;')
-                code.append(f"{ind}uint32_t _sz = 0;")
+                # No 2-bit size field — check for 1-bit sz (FP precision selector)
+                if 'sz' in field_map and has_q:
+                    sz_fixed = field_map['sz']['is_fixed']
+                    sz_field_name = field_map['sz']['name']
+                    if not sz_fixed:
+                        # Variable sz: sz=0→single(.2s/.4s), sz=1→double(.1d/.2d)
+                        code.append(f"{ind}const char* _simd_arr;")
+                        code.append(f'{ind}static const char* _fp_arrs[2][2] = {{{{"2s","4s"}},{{"1d","2d"}}}};')
+                        if q_field:
+                            code.append(f"{ind}_simd_arr = _fp_arrs[enc.{member_name}.{sz_field_name}][enc.{member_name}.{q_field}];")
+                        else:
+                            q_fv = int(field_map['Q']['fixed'], 2) if q_fixed and field_map['Q']['fixed'] else 0
+                            code.append(f"{ind}_simd_arr = _fp_arrs[enc.{member_name}.{sz_field_name}][{q_fv}];")
+                        code.append(f"{ind}uint32_t _sz = enc.{member_name}.{sz_field_name} + 2;  // 0→single(2), 1→double(3)")
+                    else:
+                        # Fixed sz: sz=0→H→S widening (_sz=1/halfword), sz=1→S→D (_sz=2/single)
+                        sz_val = int(field_map['sz']['fixed'], 2) if field_map['sz']['fixed'] else 0
+                        _sz_idx = sz_val + 1  # 0→1(half→single widening), 1→2(single→double widening)
+                        src_arrs = [["2h", "4h"], ["2s", "4s"]]
+                        if q_field:
+                            code.append(f'{ind}const char* _simd_arr = enc.{member_name}.{q_field} ? "{src_arrs[sz_val][1]}" : "{src_arrs[sz_val][0]}";')
+                        else:
+                            q_fv = int(field_map['Q']['fixed'], 2) if q_fixed and field_map['Q']['fixed'] else 0
+                            code.append(f'{ind}const char* _simd_arr = "{src_arrs[sz_val][q_fv]}";')
+                        code.append(f"{ind}uint32_t _sz = {_sz_idx};")
+                else:
+                    code.append(f'{ind}const char* _simd_arr = nullptr;')
+                    code.append(f"{ind}uint32_t _sz = 0;")
 
             # Override arrangement for FP16 by-element encodings (size=0 but halfword elements)
             enc_lower_arr = encoding_name.lower()
@@ -5249,6 +5304,40 @@ class ARM64XMLParser:
             code.append(f"{ind}    op.has_index = true;")
             code.append(f"{ind}    result.operands.push_back(op);")
             code.append(f"{ind}}}")
+            code.append(f"{ind}return result;")
+            return code
+
+        # Special case: FCVTL/FCVTL2 — widening FP conversion (sz gives dest size, Q selects half)
+        # Dest is always widened (4s for sz=0, 2d for sz=1); source depends on Q (lower/upper half)
+        is_fcvtl = mnemonic in ['FCVTL', 'FCVTL2'] and 'sz' in field_map and 'Rd' in field_map and 'Rn' in field_map
+        if is_fcvtl:
+            sz_f = field_map['sz']['name']
+            rd_f = field_map['Rd']['name']
+            rn_f = field_map['Rn']['name']
+            sz_is_fixed = field_map['sz']['is_fixed']
+            q_var = 'Q' in field_map and not field_map['Q']['is_fixed']
+            q_field_n = field_map['Q']['name'] if q_var else None
+            q_fixed_v = int(field_map['Q']['fixed'], 2) if 'Q' in field_map and field_map['Q']['is_fixed'] and field_map['Q']['fixed'] else 0
+            if not sz_is_fixed:
+                code.append(f"{ind}uint32_t _sz_v = enc.{member_name}.{sz_f};")
+                code.append(f'{ind}const char* _dst_arr = _sz_v ? "2d" : "4s";')
+                if q_var:
+                    # src: [["4h","8h"],["2s","4s"]][sz][Q]
+                    code.append(f'{ind}static const char* _fcvtl_src[2][2] = {{{{"4h","8h"}},{{"2s","4s"}}}};')
+                    code.append(f"{ind}const char* _src_arr = _fcvtl_src[_sz_v][enc.{member_name}.{q_field_n}];")
+                else:
+                    src_arrs = [["4h", "8h"], ["2s", "4s"]]
+                    code.append(f'{ind}const char* _src_arr = _sz_v ? "{src_arrs[1][q_fixed_v]}" : "{src_arrs[0][q_fixed_v]}";')
+            else:
+                sz_val = int(field_map['sz']['fixed'], 2) if field_map['sz']['fixed'] else 0
+                src_arrs = [["4h", "8h"], ["2s", "4s"]]
+                code.append(f'{ind}const char* _dst_arr = "{("2d" if sz_val else "4s")}";')
+                if q_var:
+                    code.append(f"{ind}const char* _src_arr = enc.{member_name}.{q_field_n} ? \"{src_arrs[sz_val][1]}\" : \"{src_arrs[sz_val][0]}\";")
+                else:
+                    code.append(f'{ind}const char* _src_arr = "{src_arrs[sz_val][q_fixed_v]}";')
+            code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_f}, false); op.arrangement = _dst_arr; result.operands.push_back(op); }}")
+            code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_f}, false); op.arrangement = _src_arr; result.operands.push_back(op); }}")
             code.append(f"{ind}return result;")
             return code
 
@@ -6058,8 +6147,8 @@ class ARM64XMLParser:
                             code.append(f"{ind}    op.arrangement = _simd_arr;  // fallback")
                         code.append(f"{ind}    result.operands.push_back(op);")
                         code.append(f"{ind}}}")
-                    elif mnemonic in ['MOVI', 'MVNI'] and reg_name == 'Rd':
-                        # MOVI/MVNI need arrangement from Q and cmode fields
+                    elif (mnemonic in ['MOVI', 'MVNI'] or (mnemonic == 'FMOV' and 'asimdimm' in encoding_name)) and reg_name == 'Rd':
+                        # MOVI/MVNI/FMOV-vector need arrangement from Q and cmode fields
                         code.append(f"{ind}{{")
                         code.append(f"{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false);")
                         code.append(f"{ind}    op.arrangement = get_movi_arrangement(insn);")
@@ -6609,7 +6698,11 @@ class ARM64XMLParser:
             for bit_idx, f in enumerate(abcdefgh_fields):
                 parts.append(f"(enc.{member_name}.{field_map[f]['name']} << {7 - bit_idx})")
             combined = ' | '.join(parts)
-            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, {combined}, true));")
+            # FMOV vector uses FloatImmediate; all other (MOVI/MVNI/BIC/ORR) use plain Immediate
+            if mnemonic == 'FMOV':
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::FloatImmediate, {combined}, true));")
+            else:
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, {combined}, true));")
             # Add shift operand for MOVI/MVNI (LSL/MSL based on cmode) — must come after immediate
             if mnemonic in ['MOVI', 'MVNI']:
                 code.append(f"{ind}{{")

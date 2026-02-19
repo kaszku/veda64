@@ -35142,8 +35142,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.fmov_asimdimm_d2d.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmov_asimdimm_d2d.a << 7) | (enc.fmov_asimdimm_d2d.b << 6) | (enc.fmov_asimdimm_d2d.c << 5) | (enc.fmov_asimdimm_d2d.d << 4) | (enc.fmov_asimdimm_d2d.e << 3) | (enc.fmov_asimdimm_d2d.f << 2) | (enc.fmov_asimdimm_d2d.g << 1) | (enc.fmov_asimdimm_d2d.h << 0), true));
+                        {
+                            Operand op(OperandType::VectorRegister, enc.fmov_asimdimm_d2d.Rd, false);
+                            op.arrangement = get_movi_arrangement(insn);
+                            result.operands.push_back(op);
+                        }
+                        result.operands.push_back(Operand(OperandType::FloatImmediate, (enc.fmov_asimdimm_d2d.a << 7) | (enc.fmov_asimdimm_d2d.b << 6) | (enc.fmov_asimdimm_d2d.c << 5) | (enc.fmov_asimdimm_d2d.d << 4) | (enc.fmov_asimdimm_d2d.e << 3) | (enc.fmov_asimdimm_d2d.f << 2) | (enc.fmov_asimdimm_d2d.g << 1) | (enc.fmov_asimdimm_d2d.h << 0), true));
                         return result;
         }
         default: break;
@@ -36663,9 +36667,16 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sshr_asisdshf_r.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sshr_asisdshf_r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sshr_asisdshf_r.immb, true));
+                        uint32_t _immh = enc.sshr_asisdshf_r.immh;
+                        uint32_t _immb = enc.sshr_asisdshf_r.immb;
+                        uint32_t _immhb = (_immh << 3) | _immb;
+                        int _esize = 0; const char* _fp_arr = nullptr;
+                        if (_immh & 0x8) { _esize = 64; _fp_arr = "d"; }
+                        else if (_immh & 0x4) { _esize = 32; _fp_arr = "s"; }
+                        else if (_immh & 0x2) { _esize = 16; _fp_arr = "h"; }
+                        { Operand op(OperandType::VectorRegister, enc.sshr_asisdshf_r.Rd, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sshr_asisdshf_r.Rn, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, (int)_immhb - _esize, true));  // shift left
                         return result;
         }
         case 0x5F401400u: { // SSRA_asisdshf_R
@@ -36673,9 +36684,16 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ssra_asisdshf_r.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ssra_asisdshf_r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.ssra_asisdshf_r.immb, true));
+                        uint32_t _immh = enc.ssra_asisdshf_r.immh;
+                        uint32_t _immb = enc.ssra_asisdshf_r.immb;
+                        uint32_t _immhb = (_immh << 3) | _immb;
+                        int _esize = 0; const char* _fp_arr = nullptr;
+                        if (_immh & 0x8) { _esize = 64; _fp_arr = "d"; }
+                        else if (_immh & 0x4) { _esize = 32; _fp_arr = "s"; }
+                        else if (_immh & 0x2) { _esize = 16; _fp_arr = "h"; }
+                        { Operand op(OperandType::VectorRegister, enc.ssra_asisdshf_r.Rd, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ssra_asisdshf_r.Rn, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, (int)_immhb - _esize, true));  // shift left
                         return result;
         }
         case 0x5F402400u: { // SRSHR_asisdshf_R
@@ -36683,9 +36701,16 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.srshr_asisdshf_r.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.srshr_asisdshf_r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.srshr_asisdshf_r.immb, true));
+                        uint32_t _immh = enc.srshr_asisdshf_r.immh;
+                        uint32_t _immb = enc.srshr_asisdshf_r.immb;
+                        uint32_t _immhb = (_immh << 3) | _immb;
+                        int _esize = 0; const char* _fp_arr = nullptr;
+                        if (_immh & 0x8) { _esize = 64; _fp_arr = "d"; }
+                        else if (_immh & 0x4) { _esize = 32; _fp_arr = "s"; }
+                        else if (_immh & 0x2) { _esize = 16; _fp_arr = "h"; }
+                        { Operand op(OperandType::VectorRegister, enc.srshr_asisdshf_r.Rd, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.srshr_asisdshf_r.Rn, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, (int)_immhb - _esize, true));  // shift left
                         return result;
         }
         case 0x5F403400u: { // SRSRA_asisdshf_R
@@ -36693,9 +36718,16 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.srsra_asisdshf_r.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.srsra_asisdshf_r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.srsra_asisdshf_r.immb, true));
+                        uint32_t _immh = enc.srsra_asisdshf_r.immh;
+                        uint32_t _immb = enc.srsra_asisdshf_r.immb;
+                        uint32_t _immhb = (_immh << 3) | _immb;
+                        int _esize = 0; const char* _fp_arr = nullptr;
+                        if (_immh & 0x8) { _esize = 64; _fp_arr = "d"; }
+                        else if (_immh & 0x4) { _esize = 32; _fp_arr = "s"; }
+                        else if (_immh & 0x2) { _esize = 16; _fp_arr = "h"; }
+                        { Operand op(OperandType::VectorRegister, enc.srsra_asisdshf_r.Rd, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.srsra_asisdshf_r.Rn, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, (int)_immhb - _esize, true));  // shift left
                         return result;
         }
         case 0x5F405400u: { // SHL_asisdshf_R
@@ -36703,9 +36735,16 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.shl_asisdshf_r.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.shl_asisdshf_r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.shl_asisdshf_r.immb, true));
+                        uint32_t _immh = enc.shl_asisdshf_r.immh;
+                        uint32_t _immb = enc.shl_asisdshf_r.immb;
+                        uint32_t _immhb = (_immh << 3) | _immb;
+                        int _esize = 0; const char* _fp_arr = nullptr;
+                        if (_immh & 0x8) { _esize = 64; _fp_arr = "d"; }
+                        else if (_immh & 0x4) { _esize = 32; _fp_arr = "s"; }
+                        else if (_immh & 0x2) { _esize = 16; _fp_arr = "h"; }
+                        { Operand op(OperandType::VectorRegister, enc.shl_asisdshf_r.Rd, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.shl_asisdshf_r.Rn, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, (int)_immhb - _esize, true));  // shift left
                         return result;
         }
         case 0x7F400400u: { // USHR_asisdshf_R
@@ -36713,9 +36752,16 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ushr_asisdshf_r.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ushr_asisdshf_r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.ushr_asisdshf_r.immb, true));
+                        uint32_t _immh = enc.ushr_asisdshf_r.immh;
+                        uint32_t _immb = enc.ushr_asisdshf_r.immb;
+                        uint32_t _immhb = (_immh << 3) | _immb;
+                        int _esize = 0; const char* _fp_arr = nullptr;
+                        if (_immh & 0x8) { _esize = 64; _fp_arr = "d"; }
+                        else if (_immh & 0x4) { _esize = 32; _fp_arr = "s"; }
+                        else if (_immh & 0x2) { _esize = 16; _fp_arr = "h"; }
+                        { Operand op(OperandType::VectorRegister, enc.ushr_asisdshf_r.Rd, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ushr_asisdshf_r.Rn, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, (int)_immhb - _esize, true));  // shift left
                         return result;
         }
         case 0x7F401400u: { // USRA_asisdshf_R
@@ -36723,9 +36769,16 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.usra_asisdshf_r.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.usra_asisdshf_r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.usra_asisdshf_r.immb, true));
+                        uint32_t _immh = enc.usra_asisdshf_r.immh;
+                        uint32_t _immb = enc.usra_asisdshf_r.immb;
+                        uint32_t _immhb = (_immh << 3) | _immb;
+                        int _esize = 0; const char* _fp_arr = nullptr;
+                        if (_immh & 0x8) { _esize = 64; _fp_arr = "d"; }
+                        else if (_immh & 0x4) { _esize = 32; _fp_arr = "s"; }
+                        else if (_immh & 0x2) { _esize = 16; _fp_arr = "h"; }
+                        { Operand op(OperandType::VectorRegister, enc.usra_asisdshf_r.Rd, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.usra_asisdshf_r.Rn, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, (int)_immhb - _esize, true));  // shift left
                         return result;
         }
         case 0x7F402400u: { // URSHR_asisdshf_R
@@ -36733,9 +36786,16 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.urshr_asisdshf_r.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.urshr_asisdshf_r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.urshr_asisdshf_r.immb, true));
+                        uint32_t _immh = enc.urshr_asisdshf_r.immh;
+                        uint32_t _immb = enc.urshr_asisdshf_r.immb;
+                        uint32_t _immhb = (_immh << 3) | _immb;
+                        int _esize = 0; const char* _fp_arr = nullptr;
+                        if (_immh & 0x8) { _esize = 64; _fp_arr = "d"; }
+                        else if (_immh & 0x4) { _esize = 32; _fp_arr = "s"; }
+                        else if (_immh & 0x2) { _esize = 16; _fp_arr = "h"; }
+                        { Operand op(OperandType::VectorRegister, enc.urshr_asisdshf_r.Rd, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.urshr_asisdshf_r.Rn, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, (int)_immhb - _esize, true));  // shift left
                         return result;
         }
         case 0x7F403400u: { // URSRA_asisdshf_R
@@ -36743,9 +36803,16 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ursra_asisdshf_r.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ursra_asisdshf_r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.ursra_asisdshf_r.immb, true));
+                        uint32_t _immh = enc.ursra_asisdshf_r.immh;
+                        uint32_t _immb = enc.ursra_asisdshf_r.immb;
+                        uint32_t _immhb = (_immh << 3) | _immb;
+                        int _esize = 0; const char* _fp_arr = nullptr;
+                        if (_immh & 0x8) { _esize = 64; _fp_arr = "d"; }
+                        else if (_immh & 0x4) { _esize = 32; _fp_arr = "s"; }
+                        else if (_immh & 0x2) { _esize = 16; _fp_arr = "h"; }
+                        { Operand op(OperandType::VectorRegister, enc.ursra_asisdshf_r.Rd, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ursra_asisdshf_r.Rn, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, (int)_immhb - _esize, true));  // shift left
                         return result;
         }
         case 0x7F404400u: { // SRI_asisdshf_R
@@ -36753,9 +36820,16 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sri_asisdshf_r.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sri_asisdshf_r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sri_asisdshf_r.immb, true));
+                        uint32_t _immh = enc.sri_asisdshf_r.immh;
+                        uint32_t _immb = enc.sri_asisdshf_r.immb;
+                        uint32_t _immhb = (_immh << 3) | _immb;
+                        int _esize = 0; const char* _fp_arr = nullptr;
+                        if (_immh & 0x8) { _esize = 64; _fp_arr = "d"; }
+                        else if (_immh & 0x4) { _esize = 32; _fp_arr = "s"; }
+                        else if (_immh & 0x2) { _esize = 16; _fp_arr = "h"; }
+                        { Operand op(OperandType::VectorRegister, enc.sri_asisdshf_r.Rd, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sri_asisdshf_r.Rn, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, (int)_immhb - _esize, true));  // shift left
                         return result;
         }
         case 0x7F405400u: { // SLI_asisdshf_R
@@ -36763,9 +36837,16 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sli_asisdshf_r.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sli_asisdshf_r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sli_asisdshf_r.immb, true));
+                        uint32_t _immh = enc.sli_asisdshf_r.immh;
+                        uint32_t _immb = enc.sli_asisdshf_r.immb;
+                        uint32_t _immhb = (_immh << 3) | _immb;
+                        int _esize = 0; const char* _fp_arr = nullptr;
+                        if (_immh & 0x8) { _esize = 64; _fp_arr = "d"; }
+                        else if (_immh & 0x4) { _esize = 32; _fp_arr = "s"; }
+                        else if (_immh & 0x2) { _esize = 16; _fp_arr = "h"; }
+                        { Operand op(OperandType::VectorRegister, enc.sli_asisdshf_r.Rd, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sli_asisdshf_r.Rn, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, (int)_immhb - _esize, true));  // shift left
                         return result;
         }
         default: break;
@@ -37289,9 +37370,16 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sqshl_asisdshf_r.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sqshl_asisdshf_r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqshl_asisdshf_r.immb, true));
+                        uint32_t _immh = enc.sqshl_asisdshf_r.immh;
+                        uint32_t _immb = enc.sqshl_asisdshf_r.immb;
+                        uint32_t _immhb = (_immh << 3) | _immb;
+                        int _esize = 0; const char* _fp_arr = nullptr;
+                        if (_immh & 0x8) { _esize = 64; _fp_arr = "d"; }
+                        else if (_immh & 0x4) { _esize = 32; _fp_arr = "s"; }
+                        else if (_immh & 0x2) { _esize = 16; _fp_arr = "h"; }
+                        { Operand op(OperandType::VectorRegister, enc.sqshl_asisdshf_r.Rd, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sqshl_asisdshf_r.Rn, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, (int)_immhb - _esize, true));  // shift left
                         return result;
         }
         case 0x5F009400u: { // SQSHRN_asisdshf_N
@@ -37300,9 +37388,16 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sqshrn_asisdshf_n.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sqshrn_asisdshf_n.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqshrn_asisdshf_n.immb, true));
+                        uint32_t _immh = enc.sqshrn_asisdshf_n.immh;
+                        uint32_t _immb = enc.sqshrn_asisdshf_n.immb;
+                        uint32_t _immhb = (_immh << 3) | _immb;
+                        int _esize = 0; const char* _fp_arr = nullptr;
+                        if (_immh & 0x8) { _esize = 64; _fp_arr = "d"; }
+                        else if (_immh & 0x4) { _esize = 32; _fp_arr = "s"; }
+                        else if (_immh & 0x2) { _esize = 16; _fp_arr = "h"; }
+                        { Operand op(OperandType::VectorRegister, enc.sqshrn_asisdshf_n.Rd, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sqshrn_asisdshf_n.Rn, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, (int)_immhb - _esize, true));  // shift left
                         return result;
         }
         case 0x5F009C00u: { // SQRSHRN_asisdshf_N
@@ -37311,9 +37406,16 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sqrshrn_asisdshf_n.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sqrshrn_asisdshf_n.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqrshrn_asisdshf_n.immb, true));
+                        uint32_t _immh = enc.sqrshrn_asisdshf_n.immh;
+                        uint32_t _immb = enc.sqrshrn_asisdshf_n.immb;
+                        uint32_t _immhb = (_immh << 3) | _immb;
+                        int _esize = 0; const char* _fp_arr = nullptr;
+                        if (_immh & 0x8) { _esize = 64; _fp_arr = "d"; }
+                        else if (_immh & 0x4) { _esize = 32; _fp_arr = "s"; }
+                        else if (_immh & 0x2) { _esize = 16; _fp_arr = "h"; }
+                        { Operand op(OperandType::VectorRegister, enc.sqrshrn_asisdshf_n.Rd, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sqrshrn_asisdshf_n.Rn, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, (int)_immhb - _esize, true));  // shift left
                         return result;
         }
         case 0x5F00E400u: { // SCVTF_asisdshf_C
@@ -37322,9 +37424,16 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.scvtf_asisdshf_c.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.scvtf_asisdshf_c.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.scvtf_asisdshf_c.immb, true));
+                        uint32_t _immh = enc.scvtf_asisdshf_c.immh;
+                        uint32_t _immb = enc.scvtf_asisdshf_c.immb;
+                        uint32_t _immhb = (_immh << 3) | _immb;
+                        int _esize = 0; const char* _fp_arr = nullptr;
+                        if (_immh & 0x8) { _esize = 64; _fp_arr = "d"; }
+                        else if (_immh & 0x4) { _esize = 32; _fp_arr = "s"; }
+                        else if (_immh & 0x2) { _esize = 16; _fp_arr = "h"; }
+                        { Operand op(OperandType::VectorRegister, enc.scvtf_asisdshf_c.Rd, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.scvtf_asisdshf_c.Rn, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, (_esize * 2) - (int)_immhb, true));  // fbits
                         return result;
         }
         case 0x5F00FC00u: { // FCVTZS_asisdshf_C
@@ -37333,9 +37442,16 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_asisdshf_c.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.fcvtzs_asisdshf_c.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fcvtzs_asisdshf_c.immb, true));
+                        uint32_t _immh = enc.fcvtzs_asisdshf_c.immh;
+                        uint32_t _immb = enc.fcvtzs_asisdshf_c.immb;
+                        uint32_t _immhb = (_immh << 3) | _immb;
+                        int _esize = 0; const char* _fp_arr = nullptr;
+                        if (_immh & 0x8) { _esize = 64; _fp_arr = "d"; }
+                        else if (_immh & 0x4) { _esize = 32; _fp_arr = "s"; }
+                        else if (_immh & 0x2) { _esize = 16; _fp_arr = "h"; }
+                        { Operand op(OperandType::VectorRegister, enc.fcvtzs_asisdshf_c.Rd, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.fcvtzs_asisdshf_c.Rn, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, (_esize * 2) - (int)_immhb, true));  // fbits
                         return result;
         }
         case 0x7F006400u: { // SQSHLU_asisdshf_R
@@ -37344,9 +37460,16 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sqshlu_asisdshf_r.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sqshlu_asisdshf_r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqshlu_asisdshf_r.immb, true));
+                        uint32_t _immh = enc.sqshlu_asisdshf_r.immh;
+                        uint32_t _immb = enc.sqshlu_asisdshf_r.immb;
+                        uint32_t _immhb = (_immh << 3) | _immb;
+                        int _esize = 0; const char* _fp_arr = nullptr;
+                        if (_immh & 0x8) { _esize = 64; _fp_arr = "d"; }
+                        else if (_immh & 0x4) { _esize = 32; _fp_arr = "s"; }
+                        else if (_immh & 0x2) { _esize = 16; _fp_arr = "h"; }
+                        { Operand op(OperandType::VectorRegister, enc.sqshlu_asisdshf_r.Rd, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sqshlu_asisdshf_r.Rn, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, (int)_immhb - _esize, true));  // shift left
                         return result;
         }
         case 0x7F007400u: { // UQSHL_asisdshf_R
@@ -37355,9 +37478,16 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.uqshl_asisdshf_r.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.uqshl_asisdshf_r.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqshl_asisdshf_r.immb, true));
+                        uint32_t _immh = enc.uqshl_asisdshf_r.immh;
+                        uint32_t _immb = enc.uqshl_asisdshf_r.immb;
+                        uint32_t _immhb = (_immh << 3) | _immb;
+                        int _esize = 0; const char* _fp_arr = nullptr;
+                        if (_immh & 0x8) { _esize = 64; _fp_arr = "d"; }
+                        else if (_immh & 0x4) { _esize = 32; _fp_arr = "s"; }
+                        else if (_immh & 0x2) { _esize = 16; _fp_arr = "h"; }
+                        { Operand op(OperandType::VectorRegister, enc.uqshl_asisdshf_r.Rd, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.uqshl_asisdshf_r.Rn, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, (int)_immhb - _esize, true));  // shift left
                         return result;
         }
         case 0x7F008400u: { // SQSHRUN_asisdshf_N
@@ -37366,9 +37496,16 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sqshrun_asisdshf_n.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sqshrun_asisdshf_n.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqshrun_asisdshf_n.immb, true));
+                        uint32_t _immh = enc.sqshrun_asisdshf_n.immh;
+                        uint32_t _immb = enc.sqshrun_asisdshf_n.immb;
+                        uint32_t _immhb = (_immh << 3) | _immb;
+                        int _esize = 0; const char* _fp_arr = nullptr;
+                        if (_immh & 0x8) { _esize = 64; _fp_arr = "d"; }
+                        else if (_immh & 0x4) { _esize = 32; _fp_arr = "s"; }
+                        else if (_immh & 0x2) { _esize = 16; _fp_arr = "h"; }
+                        { Operand op(OperandType::VectorRegister, enc.sqshrun_asisdshf_n.Rd, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sqshrun_asisdshf_n.Rn, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, (int)_immhb - _esize, true));  // shift left
                         return result;
         }
         case 0x7F008C00u: { // SQRSHRUN_asisdshf_N
@@ -37377,9 +37514,16 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sqrshrun_asisdshf_n.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sqrshrun_asisdshf_n.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqrshrun_asisdshf_n.immb, true));
+                        uint32_t _immh = enc.sqrshrun_asisdshf_n.immh;
+                        uint32_t _immb = enc.sqrshrun_asisdshf_n.immb;
+                        uint32_t _immhb = (_immh << 3) | _immb;
+                        int _esize = 0; const char* _fp_arr = nullptr;
+                        if (_immh & 0x8) { _esize = 64; _fp_arr = "d"; }
+                        else if (_immh & 0x4) { _esize = 32; _fp_arr = "s"; }
+                        else if (_immh & 0x2) { _esize = 16; _fp_arr = "h"; }
+                        { Operand op(OperandType::VectorRegister, enc.sqrshrun_asisdshf_n.Rd, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sqrshrun_asisdshf_n.Rn, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, (int)_immhb - _esize, true));  // shift left
                         return result;
         }
         case 0x7F009400u: { // UQSHRN_asisdshf_N
@@ -37388,9 +37532,16 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.uqshrn_asisdshf_n.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.uqshrn_asisdshf_n.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqshrn_asisdshf_n.immb, true));
+                        uint32_t _immh = enc.uqshrn_asisdshf_n.immh;
+                        uint32_t _immb = enc.uqshrn_asisdshf_n.immb;
+                        uint32_t _immhb = (_immh << 3) | _immb;
+                        int _esize = 0; const char* _fp_arr = nullptr;
+                        if (_immh & 0x8) { _esize = 64; _fp_arr = "d"; }
+                        else if (_immh & 0x4) { _esize = 32; _fp_arr = "s"; }
+                        else if (_immh & 0x2) { _esize = 16; _fp_arr = "h"; }
+                        { Operand op(OperandType::VectorRegister, enc.uqshrn_asisdshf_n.Rd, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.uqshrn_asisdshf_n.Rn, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, (int)_immhb - _esize, true));  // shift left
                         return result;
         }
         case 0x7F009C00u: { // UQRSHRN_asisdshf_N
@@ -37399,9 +37550,16 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.uqrshrn_asisdshf_n.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.uqrshrn_asisdshf_n.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqrshrn_asisdshf_n.immb, true));
+                        uint32_t _immh = enc.uqrshrn_asisdshf_n.immh;
+                        uint32_t _immb = enc.uqrshrn_asisdshf_n.immb;
+                        uint32_t _immhb = (_immh << 3) | _immb;
+                        int _esize = 0; const char* _fp_arr = nullptr;
+                        if (_immh & 0x8) { _esize = 64; _fp_arr = "d"; }
+                        else if (_immh & 0x4) { _esize = 32; _fp_arr = "s"; }
+                        else if (_immh & 0x2) { _esize = 16; _fp_arr = "h"; }
+                        { Operand op(OperandType::VectorRegister, enc.uqrshrn_asisdshf_n.Rd, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.uqrshrn_asisdshf_n.Rn, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, (int)_immhb - _esize, true));  // shift left
                         return result;
         }
         case 0x7F00E400u: { // UCVTF_asisdshf_C
@@ -37410,9 +37568,16 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_asisdshf_c.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ucvtf_asisdshf_c.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.ucvtf_asisdshf_c.immb, true));
+                        uint32_t _immh = enc.ucvtf_asisdshf_c.immh;
+                        uint32_t _immb = enc.ucvtf_asisdshf_c.immb;
+                        uint32_t _immhb = (_immh << 3) | _immb;
+                        int _esize = 0; const char* _fp_arr = nullptr;
+                        if (_immh & 0x8) { _esize = 64; _fp_arr = "d"; }
+                        else if (_immh & 0x4) { _esize = 32; _fp_arr = "s"; }
+                        else if (_immh & 0x2) { _esize = 16; _fp_arr = "h"; }
+                        { Operand op(OperandType::VectorRegister, enc.ucvtf_asisdshf_c.Rd, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ucvtf_asisdshf_c.Rn, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, (_esize * 2) - (int)_immhb, true));  // fbits
                         return result;
         }
         case 0x7F00FC00u: { // FCVTZU_asisdshf_C
@@ -37421,9 +37586,16 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_asisdshf_c.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.fcvtzu_asisdshf_c.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.fcvtzu_asisdshf_c.immb, true));
+                        uint32_t _immh = enc.fcvtzu_asisdshf_c.immh;
+                        uint32_t _immb = enc.fcvtzu_asisdshf_c.immb;
+                        uint32_t _immhb = (_immh << 3) | _immb;
+                        int _esize = 0; const char* _fp_arr = nullptr;
+                        if (_immh & 0x8) { _esize = 64; _fp_arr = "d"; }
+                        else if (_immh & 0x4) { _esize = 32; _fp_arr = "s"; }
+                        else if (_immh & 0x2) { _esize = 16; _fp_arr = "h"; }
+                        { Operand op(OperandType::VectorRegister, enc.fcvtzu_asisdshf_c.Rd, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.fcvtzu_asisdshf_c.Rn, false); op.arrangement = _fp_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Immediate, (_esize * 2) - (int)_immhb, true));  // fbits
                         return result;
         }
         default: break;
@@ -38183,8 +38355,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.fmov_asimdimm_ss.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmov_asimdimm_ss.a << 7) | (enc.fmov_asimdimm_ss.b << 6) | (enc.fmov_asimdimm_ss.c << 5) | (enc.fmov_asimdimm_ss.d << 4) | (enc.fmov_asimdimm_ss.e << 3) | (enc.fmov_asimdimm_ss.f << 2) | (enc.fmov_asimdimm_ss.g << 1) | (enc.fmov_asimdimm_ss.h << 0), true));
+                        {
+                            Operand op(OperandType::VectorRegister, enc.fmov_asimdimm_ss.Rd, false);
+                            op.arrangement = get_movi_arrangement(insn);
+                            result.operands.push_back(op);
+                        }
+                        result.operands.push_back(Operand(OperandType::FloatImmediate, (enc.fmov_asimdimm_ss.a << 7) | (enc.fmov_asimdimm_ss.b << 6) | (enc.fmov_asimdimm_ss.c << 5) | (enc.fmov_asimdimm_ss.d << 4) | (enc.fmov_asimdimm_ss.e << 3) | (enc.fmov_asimdimm_ss.f << 2) | (enc.fmov_asimdimm_ss.g << 1) | (enc.fmov_asimdimm_ss.h << 0), true));
                         return result;
         }
         case 0x0F00FC00u: { // FMOV_asimdimm_H_h
@@ -38192,8 +38368,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.fmov_asimdimm_hh.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.fmov_asimdimm_hh.a << 7) | (enc.fmov_asimdimm_hh.b << 6) | (enc.fmov_asimdimm_hh.c << 5) | (enc.fmov_asimdimm_hh.d << 4) | (enc.fmov_asimdimm_hh.e << 3) | (enc.fmov_asimdimm_hh.f << 2) | (enc.fmov_asimdimm_hh.g << 1) | (enc.fmov_asimdimm_hh.h << 0), true));
+                        {
+                            Operand op(OperandType::VectorRegister, enc.fmov_asimdimm_hh.Rd, false);
+                            op.arrangement = get_movi_arrangement(insn);
+                            result.operands.push_back(op);
+                        }
+                        result.operands.push_back(Operand(OperandType::FloatImmediate, (enc.fmov_asimdimm_hh.a << 7) | (enc.fmov_asimdimm_hh.b << 6) | (enc.fmov_asimdimm_hh.c << 5) | (enc.fmov_asimdimm_hh.d << 4) | (enc.fmov_asimdimm_hh.e << 3) | (enc.fmov_asimdimm_hh.f << 2) | (enc.fmov_asimdimm_hh.g << 1) | (enc.fmov_asimdimm_hh.h << 0), true));
                         return result;
         }
         default: break;
@@ -39272,8 +39452,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _simd_arr = nullptr;
-                        uint32_t _sz = 0;
+                        const char* _simd_arr = enc.fmlal_asimdelem_lh.Q ? "4h" : "2h";
+                        uint32_t _sz = 1;
                         const char* _wide_arr = _simd_arr;
                         switch (_sz) {
                             case 1: _wide_arr = "4s"; break;  // H→S (always 4 elements)
@@ -39303,8 +39483,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _simd_arr = nullptr;
-                        uint32_t _sz = 0;
+                        const char* _simd_arr = enc.fmlsl_asimdelem_lh.Q ? "4h" : "2h";
+                        uint32_t _sz = 1;
                         const char* _wide_arr = _simd_arr;
                         switch (_sz) {
                             case 1: _wide_arr = "4s"; break;  // H→S (always 4 elements)
@@ -39406,8 +39586,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _simd_arr = nullptr;
-                        uint32_t _sz = 0;
+                        const char* _simd_arr = enc.fmlal2asimdelem_lh.Q ? "4h" : "2h";
+                        uint32_t _sz = 1;
                         const char* _wide_arr = _simd_arr;
                         switch (_sz) {
                             case 1: _wide_arr = "4s"; break;  // H→S (always 4 elements)
@@ -39437,8 +39617,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _simd_arr = nullptr;
-                        uint32_t _sz = 0;
+                        const char* _simd_arr = enc.fmlsl2asimdelem_lh.Q ? "4h" : "2h";
+                        uint32_t _sz = 1;
                         const char* _wide_arr = _simd_arr;
                         switch (_sz) {
                             case 1: _wide_arr = "4s"; break;  // H→S (always 4 elements)
@@ -39487,13 +39667,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _simd_arr;
-                        {
-                            static const char* _fp_arrs[2][2] = {{"2s", "4s"}, {"1d", "2d"}};
-                            _simd_arr = _fp_arrs[enc.fcvtl_asimdmisc_l.sz][enc.fcvtl_asimdmisc_l.Q];
-                        }
-                        { Operand op(OperandType::VectorRegister, enc.fcvtl_asimdmisc_l.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.fcvtl_asimdmisc_l.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        uint32_t _sz_v = enc.fcvtl_asimdmisc_l.sz;
+                        const char* _dst_arr = _sz_v ? "2d" : "4s";
+                        static const char* _fcvtl_src[2][2] = {{"4h","8h"},{"2s","4s"}};
+                        const char* _src_arr = _fcvtl_src[_sz_v][enc.fcvtl_asimdmisc_l.Q];
+                        { Operand op(OperandType::VectorRegister, enc.fcvtl_asimdmisc_l.Rd, false); op.arrangement = _dst_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.fcvtl_asimdmisc_l.Rn, false); op.arrangement = _src_arr; result.operands.push_back(op); }
                         return result;
         }
         case 0x0E218800u: { // FRINTN_asimdmisc_R
@@ -41255,8 +41434,10 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _simd_arr = nullptr;
-                        uint32_t _sz = 0;
+                        const char* _simd_arr;
+                        static const char* _fp_arrs[2][2] = {{"2s","4s"},{"1d","2d"}};
+                        _simd_arr = _fp_arrs[enc.fmla_asimdelem_rsd.sz][enc.fmla_asimdelem_rsd.Q];
+                        uint32_t _sz = enc.fmla_asimdelem_rsd.sz + 2;  // 0→single(2), 1→double(3)
                         { Operand op(OperandType::VectorRegister, enc.fmla_asimdelem_rsd.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.fmla_asimdelem_rsd.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         {
@@ -41280,8 +41461,10 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _simd_arr = nullptr;
-                        uint32_t _sz = 0;
+                        const char* _simd_arr;
+                        static const char* _fp_arrs[2][2] = {{"2s","4s"},{"1d","2d"}};
+                        _simd_arr = _fp_arrs[enc.fmls_asimdelem_rsd.sz][enc.fmls_asimdelem_rsd.Q];
+                        uint32_t _sz = enc.fmls_asimdelem_rsd.sz + 2;  // 0→single(2), 1→double(3)
                         { Operand op(OperandType::VectorRegister, enc.fmls_asimdelem_rsd.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.fmls_asimdelem_rsd.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         {
@@ -41305,8 +41488,10 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _simd_arr = nullptr;
-                        uint32_t _sz = 0;
+                        const char* _simd_arr;
+                        static const char* _fp_arrs[2][2] = {{"2s","4s"},{"1d","2d"}};
+                        _simd_arr = _fp_arrs[enc.fmul_asimdelem_rsd.sz][enc.fmul_asimdelem_rsd.Q];
+                        uint32_t _sz = enc.fmul_asimdelem_rsd.sz + 2;  // 0→single(2), 1→double(3)
                         { Operand op(OperandType::VectorRegister, enc.fmul_asimdelem_rsd.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.fmul_asimdelem_rsd.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         {
@@ -41330,8 +41515,10 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _simd_arr = nullptr;
-                        uint32_t _sz = 0;
+                        const char* _simd_arr;
+                        static const char* _fp_arrs[2][2] = {{"2s","4s"},{"1d","2d"}};
+                        _simd_arr = _fp_arrs[enc.fmulx_asimdelem_rsd.sz][enc.fmulx_asimdelem_rsd.Q];
+                        uint32_t _sz = enc.fmulx_asimdelem_rsd.sz + 2;  // 0→single(2), 1→double(3)
                         { Operand op(OperandType::VectorRegister, enc.fmulx_asimdelem_rsd.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.fmulx_asimdelem_rsd.Rn, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
                         {

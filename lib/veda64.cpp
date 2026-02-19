@@ -1587,6 +1587,11 @@ const char* get_movi_arrangement(uint32_t insn) {
     if ((cmode & 0xE) == 0xC) {
         return Q ? "4s" : "2s";
     }
+    // FP modified immediate (cmode=1111) — FMOV vector variants
+    if (cmode == 0xF) {
+        if (op == 0) return Q ? "4s" : "2s";  // Single-precision (.4s/.2s)
+        return Q ? "2d" : "4h";  // Double-precision (.2D) or FP16 (.8H/.4H)
+    }
     return nullptr;
 }
 
