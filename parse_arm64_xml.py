@@ -4070,7 +4070,18 @@ class ARM64XMLParser:
             rn_field = field_map['Rn']['name']
             # Register width from encoding name: _64_ = X, _32_ = W
             rt_is_64 = '_64_' in encoding_name
-            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, {str(rt_is_64).lower()}));")
+            # SIMD&FP variant uses FP register (Bt/Ht/St/Dt/Qt) instead of GP register
+            if 'simd' in encoding_name:
+                import re as _re_fp
+                _asm_tmpl = encoding_info.get('asm_template', '')
+                _fp_m = _re_fp.search(r'<([BHSDQ])t(?:\d+)?>', _asm_tmpl)
+                if _fp_m:
+                    _fp_arr = _fp_m.group(1).lower()
+                    code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rt_field}, false); op.arrangement = \"{_fp_arr}\"; result.operands.push_back(op); }}")
+                else:
+                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, {str(rt_is_64).lower()}));")
+            else:
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, {str(rt_is_64).lower()}));")
             # Memory operand: [Xn|SP, #simm9]
             imm_field = None
             for imm_name in ['imm9', 'simm9']:
@@ -5481,6 +5492,13 @@ class ARM64XMLParser:
         # SHA1H is a scalar crypto op: SHA1H Sd, Sn
         if mnemonic == 'SHA1H':
             scalar_fp_arr = 's'
+        # Detect scalar FP register from asm_template (for SIMD LD/ST, e.g. _ldapstl_simd)
+        if not scalar_fp_arr:
+            import re as _re_fp
+            _asm_tmpl = encoding_info.get('asm_template', '')
+            _fp_m = _re_fp.search(r'<([BHSDQ])t(?:\d+)?>', _asm_tmpl)
+            if _fp_m:
+                scalar_fp_arr = _fp_m.group(1).lower()
 
         # FCVT between precisions: Rd and Rn use different scalar FP types
         # Encoding name: FCVT_<dst><src>_floatdp1 (e.g., FCVT_SH = single→half, FCVT_DS = double→single)
@@ -6371,7 +6389,8 @@ class ARM64XMLParser:
                 if actual_field not in field_map or field_map[actual_field]['is_fixed']:
                     continue
                 # Skip if already consumed as part of a complex memory operand (e.g. Zm in [Xn, Zm.T])
-                if actual_field in emitted_fields:
+                # Allow re-emission for fields that appear multiple times in the template (e.g. NBSL Zdn)
+                if actual_field in emitted_fields and field_template_count.get(actual_field, 0) <= 1:
                     continue
                 field_cpp_name = field_map[actual_field]['name']
                 emitted_fields.add(actual_field)

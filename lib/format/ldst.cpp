@@ -41000,9 +41000,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfadd16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfadd16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfadd16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldbfadd16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfadd16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfadd16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x3C204000u: { // LDBFMAX_16
@@ -41010,9 +41010,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmax16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmax16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmax16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmax16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmax16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmax16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x3C205000u: { // LDBFMIN_16
@@ -41020,9 +41020,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmin16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmin16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmin16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmin16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmin16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmin16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x3C206000u: { // LDBFMAXNM_16
@@ -41030,9 +41030,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxnm16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxnm16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxnm16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnm16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnm16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnm16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x3C207000u: { // LDBFMINNM_16
@@ -41040,9 +41040,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfminnm16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfminnm16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfminnm16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminnm16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminnm16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminnm16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x3C600000u: { // LDBFADDL_16
@@ -41050,9 +41050,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfaddl16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfaddl16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfaddl16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldbfaddl16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfaddl16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfaddl16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x3C604000u: { // LDBFMAXL_16
@@ -41060,9 +41060,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxl16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxl16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxl16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxl16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxl16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxl16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x3C605000u: { // LDBFMINL_16
@@ -41070,9 +41070,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfminl16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfminl16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfminl16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminl16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminl16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminl16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x3C606000u: { // LDBFMAXNML_16
@@ -41080,9 +41080,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxnml16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxnml16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxnml16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnml16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnml16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnml16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x3C607000u: { // LDBFMINNML_16
@@ -41090,9 +41090,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfminnml16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfminnml16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfminnml16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminnml16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminnml16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminnml16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x3CA00000u: { // LDBFADDA_16
@@ -41100,9 +41100,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfadda16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfadda16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfadda16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldbfadda16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfadda16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfadda16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x3CA04000u: { // LDBFMAXA_16
@@ -41110,9 +41110,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxa16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxa16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxa16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxa16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxa16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxa16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x3CA05000u: { // LDBFMINA_16
@@ -41120,9 +41120,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmina16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmina16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmina16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmina16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmina16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmina16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x3CA06000u: { // LDBFMAXNMA_16
@@ -41130,9 +41130,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxnma16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxnma16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxnma16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnma16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnma16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnma16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x3CA07000u: { // LDBFMINNMA_16
@@ -41140,9 +41140,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfminnma16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfminnma16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfminnma16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminnma16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminnma16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminnma16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x3CE00000u: { // LDBFADDAL_16
@@ -41150,9 +41150,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfaddal16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfaddal16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfaddal16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldbfaddal16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfaddal16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfaddal16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x3CE04000u: { // LDBFMAXAL_16
@@ -41160,9 +41160,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxal16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxal16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxal16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxal16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxal16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxal16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x3CE05000u: { // LDBFMINAL_16
@@ -41170,9 +41170,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfminal16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfminal16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfminal16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminal16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminal16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminal16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x3CE06000u: { // LDBFMAXNMAL_16
@@ -41180,9 +41180,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxnmal16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxnmal16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfmaxnmal16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnmal16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnmal16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnmal16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x3CE07000u: { // LDBFMINNMAL_16
@@ -41190,9 +41190,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfminnmal16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfminnmal16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldbfminnmal16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminnmal16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminnmal16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminnmal16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x48207C00u: { // CASP_CP64_comswappr
@@ -42185,9 +42185,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfadd16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfadd16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfadd16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfadd16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadd16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadd16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x7C204000u: { // LDFMAX_16
@@ -42195,9 +42195,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmax16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmax16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmax16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmax16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmax16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmax16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x7C205000u: { // LDFMIN_16
@@ -42205,9 +42205,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmin16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmin16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmin16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmin16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmin16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmin16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x7C206000u: { // LDFMAXNM_16
@@ -42215,9 +42215,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnm16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnm16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnm16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x7C207000u: { // LDFMINNM_16
@@ -42225,9 +42225,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnm16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnm16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnm16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnm16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnm16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnm16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x7C600000u: { // LDFADDL_16
@@ -42235,9 +42235,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfaddl16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfaddl16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfaddl16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddl16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddl16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddl16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x7C604000u: { // LDFMAXL_16
@@ -42245,9 +42245,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxl16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxl16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxl16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x7C605000u: { // LDFMINL_16
@@ -42255,9 +42255,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminl16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminl16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminl16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfminl16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminl16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminl16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x7C606000u: { // LDFMAXNML_16
@@ -42265,9 +42265,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnml16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnml16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnml16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x7C607000u: { // LDFMINNML_16
@@ -42275,9 +42275,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnml16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnml16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnml16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnml16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnml16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnml16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x7CA00000u: { // LDFADDA_16
@@ -42285,9 +42285,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfadda16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfadda16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfadda16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfadda16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadda16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadda16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x7CA04000u: { // LDFMAXA_16
@@ -42295,9 +42295,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxa16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxa16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxa16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x7CA05000u: { // LDFMINA_16
@@ -42305,9 +42305,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmina16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmina16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmina16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmina16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmina16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmina16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x7CA06000u: { // LDFMAXNMA_16
@@ -42315,9 +42315,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnma16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnma16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnma16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x7CA07000u: { // LDFMINNMA_16
@@ -42325,9 +42325,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnma16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnma16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnma16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnma16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnma16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnma16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x7CE00000u: { // LDFADDAL_16
@@ -42335,9 +42335,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfaddal16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfaddal16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfaddal16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddal16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddal16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddal16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x7CE04000u: { // LDFMAXAL_16
@@ -42345,9 +42345,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxal16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxal16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxal16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x7CE05000u: { // LDFMINAL_16
@@ -42355,9 +42355,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminal16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminal16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminal16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfminal16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminal16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminal16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x7CE06000u: { // LDFMAXNMAL_16
@@ -42365,9 +42365,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnmal16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnmal16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnmal16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x7CE07000u: { // LDFMINNMAL_16
@@ -42375,9 +42375,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnmal16.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnmal16.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnmal16.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
                         return result;
         }
         case 0x88A07C00u: { // CAS_C32_comswap
@@ -42834,9 +42834,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfadd32.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfadd32.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfadd32.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfadd32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadd32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadd32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
                         return result;
         }
         case 0xBC204000u: { // LDFMAX_32
@@ -42844,9 +42844,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmax32.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmax32.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmax32.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmax32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmax32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmax32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
                         return result;
         }
         case 0xBC205000u: { // LDFMIN_32
@@ -42854,9 +42854,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmin32.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmin32.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmin32.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmin32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmin32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmin32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
                         return result;
         }
         case 0xBC206000u: { // LDFMAXNM_32
@@ -42864,9 +42864,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnm32.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnm32.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnm32.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
                         return result;
         }
         case 0xBC207000u: { // LDFMINNM_32
@@ -42874,9 +42874,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnm32.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnm32.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnm32.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnm32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnm32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnm32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
                         return result;
         }
         case 0xBC600000u: { // LDFADDL_32
@@ -42884,9 +42884,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfaddl32.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfaddl32.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfaddl32.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddl32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddl32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddl32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
                         return result;
         }
         case 0xBC604000u: { // LDFMAXL_32
@@ -42894,9 +42894,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxl32.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxl32.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxl32.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
                         return result;
         }
         case 0xBC605000u: { // LDFMINL_32
@@ -42904,9 +42904,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminl32.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminl32.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminl32.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfminl32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminl32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminl32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
                         return result;
         }
         case 0xBC606000u: { // LDFMAXNML_32
@@ -42914,9 +42914,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnml32.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnml32.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnml32.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
                         return result;
         }
         case 0xBC607000u: { // LDFMINNML_32
@@ -42924,9 +42924,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnml32.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnml32.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnml32.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnml32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnml32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnml32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
                         return result;
         }
         case 0xBCA00000u: { // LDFADDA_32
@@ -42934,9 +42934,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfadda32.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfadda32.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfadda32.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfadda32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadda32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadda32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
                         return result;
         }
         case 0xBCA04000u: { // LDFMAXA_32
@@ -42944,9 +42944,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxa32.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxa32.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxa32.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
                         return result;
         }
         case 0xBCA05000u: { // LDFMINA_32
@@ -42954,9 +42954,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmina32.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmina32.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmina32.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmina32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmina32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmina32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
                         return result;
         }
         case 0xBCA06000u: { // LDFMAXNMA_32
@@ -42964,9 +42964,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnma32.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnma32.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnma32.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
                         return result;
         }
         case 0xBCA07000u: { // LDFMINNMA_32
@@ -42974,9 +42974,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnma32.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnma32.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnma32.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnma32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnma32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnma32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
                         return result;
         }
         case 0xBCE00000u: { // LDFADDAL_32
@@ -42984,9 +42984,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfaddal32.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfaddal32.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfaddal32.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddal32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddal32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddal32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
                         return result;
         }
         case 0xBCE04000u: { // LDFMAXAL_32
@@ -42994,9 +42994,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxal32.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxal32.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxal32.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
                         return result;
         }
         case 0xBCE05000u: { // LDFMINAL_32
@@ -43004,9 +43004,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminal32.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminal32.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminal32.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfminal32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminal32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminal32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
                         return result;
         }
         case 0xBCE06000u: { // LDFMAXNMAL_32
@@ -43014,9 +43014,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnmal32.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnmal32.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnmal32.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
                         return result;
         }
         case 0xBCE07000u: { // LDFMINNMAL_32
@@ -43024,9 +43024,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnmal32.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnmal32.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnmal32.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
                         return result;
         }
         case 0xC8A07C00u: { // CAS_C64_comswap
@@ -43573,9 +43573,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfadd64.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfadd64.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfadd64.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfadd64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadd64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadd64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
                         return result;
         }
         case 0xFC204000u: { // LDFMAX_64
@@ -43583,9 +43583,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmax64.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmax64.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmax64.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmax64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmax64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmax64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
                         return result;
         }
         case 0xFC205000u: { // LDFMIN_64
@@ -43593,9 +43593,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmin64.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmin64.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmin64.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmin64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmin64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmin64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
                         return result;
         }
         case 0xFC206000u: { // LDFMAXNM_64
@@ -43603,9 +43603,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnm64.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnm64.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnm64.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
                         return result;
         }
         case 0xFC207000u: { // LDFMINNM_64
@@ -43613,9 +43613,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnm64.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnm64.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnm64.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnm64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnm64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnm64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
                         return result;
         }
         case 0xFC600000u: { // LDFADDL_64
@@ -43623,9 +43623,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfaddl64.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfaddl64.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfaddl64.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddl64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddl64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddl64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
                         return result;
         }
         case 0xFC604000u: { // LDFMAXL_64
@@ -43633,9 +43633,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxl64.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxl64.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxl64.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
                         return result;
         }
         case 0xFC605000u: { // LDFMINL_64
@@ -43643,9 +43643,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminl64.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminl64.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminl64.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfminl64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminl64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminl64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
                         return result;
         }
         case 0xFC606000u: { // LDFMAXNML_64
@@ -43653,9 +43653,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnml64.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnml64.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnml64.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
                         return result;
         }
         case 0xFC607000u: { // LDFMINNML_64
@@ -43663,9 +43663,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnml64.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnml64.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnml64.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnml64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnml64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnml64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
                         return result;
         }
         case 0xFCA00000u: { // LDFADDA_64
@@ -43673,9 +43673,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfadda64.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfadda64.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfadda64.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfadda64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadda64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadda64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
                         return result;
         }
         case 0xFCA04000u: { // LDFMAXA_64
@@ -43683,9 +43683,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxa64.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxa64.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxa64.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
                         return result;
         }
         case 0xFCA05000u: { // LDFMINA_64
@@ -43693,9 +43693,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmina64.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmina64.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmina64.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmina64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmina64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmina64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
                         return result;
         }
         case 0xFCA06000u: { // LDFMAXNMA_64
@@ -43703,9 +43703,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnma64.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnma64.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnma64.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
                         return result;
         }
         case 0xFCA07000u: { // LDFMINNMA_64
@@ -43713,9 +43713,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnma64.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnma64.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnma64.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnma64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnma64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnma64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
                         return result;
         }
         case 0xFCE00000u: { // LDFADDAL_64
@@ -43723,9 +43723,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfaddal64.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfaddal64.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfaddal64.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddal64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddal64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddal64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
                         return result;
         }
         case 0xFCE04000u: { // LDFMAXAL_64
@@ -43733,9 +43733,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxal64.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxal64.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxal64.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
                         return result;
         }
         case 0xFCE05000u: { // LDFMINAL_64
@@ -43743,9 +43743,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminal64.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminal64.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminal64.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfminal64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminal64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminal64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
                         return result;
         }
         case 0xFCE06000u: { // LDFMAXNMAL_64
@@ -43753,9 +43753,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnmal64.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnmal64.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfmaxnmal64.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
                         return result;
         }
         case 0xFCE07000u: { // LDFMINNMAL_64
@@ -43763,9 +43763,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnmal64.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnmal64.Rt, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldfminnmal64.Rs, is_64bit));
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
                         return result;
         }
         default: break;
@@ -44358,7 +44358,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlur_bldapstl_simd.Rt, false));
+                        { Operand op(OperandType::VectorRegister, enc.stlur_bldapstl_simd.Rt, false); op.arrangement = "b"; result.operands.push_back(op); }
                         int32_t imm = static_cast<int32_t>(enc.stlur_bldapstl_simd.imm9 << 23) >> 23;
                         result.operands.push_back(Operand::memory_offset(enc.stlur_bldapstl_simd.Rn, imm));
                         return result;
@@ -44367,7 +44367,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur_bldapstl_simd.Rt, false));
+                        { Operand op(OperandType::VectorRegister, enc.ldapur_bldapstl_simd.Rt, false); op.arrangement = "b"; result.operands.push_back(op); }
                         int32_t imm = static_cast<int32_t>(enc.ldapur_bldapstl_simd.imm9 << 23) >> 23;
                         result.operands.push_back(Operand::memory_offset(enc.ldapur_bldapstl_simd.Rn, imm));
                         return result;
@@ -44376,7 +44376,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlur_qldapstl_simd.Rt, false));
+                        { Operand op(OperandType::VectorRegister, enc.stlur_qldapstl_simd.Rt, false); op.arrangement = "q"; result.operands.push_back(op); }
                         int32_t imm = static_cast<int32_t>(enc.stlur_qldapstl_simd.imm9 << 23) >> 23;
                         result.operands.push_back(Operand::memory_offset(enc.stlur_qldapstl_simd.Rn, imm));
                         return result;
@@ -44385,7 +44385,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur_qldapstl_simd.Rt, false));
+                        { Operand op(OperandType::VectorRegister, enc.ldapur_qldapstl_simd.Rt, false); op.arrangement = "q"; result.operands.push_back(op); }
                         int32_t imm = static_cast<int32_t>(enc.ldapur_qldapstl_simd.imm9 << 23) >> 23;
                         result.operands.push_back(Operand::memory_offset(enc.ldapur_qldapstl_simd.Rn, imm));
                         return result;
@@ -44798,7 +44798,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlur_hldapstl_simd.Rt, false));
+                        { Operand op(OperandType::VectorRegister, enc.stlur_hldapstl_simd.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
                         int32_t imm = static_cast<int32_t>(enc.stlur_hldapstl_simd.imm9 << 23) >> 23;
                         result.operands.push_back(Operand::memory_offset(enc.stlur_hldapstl_simd.Rn, imm));
                         return result;
@@ -44807,7 +44807,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur_hldapstl_simd.Rt, false));
+                        { Operand op(OperandType::VectorRegister, enc.ldapur_hldapstl_simd.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
                         int32_t imm = static_cast<int32_t>(enc.ldapur_hldapstl_simd.imm9 << 23) >> 23;
                         result.operands.push_back(Operand::memory_offset(enc.ldapur_hldapstl_simd.Rn, imm));
                         return result;
@@ -45131,7 +45131,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlur_sldapstl_simd.Rt, false));
+                        { Operand op(OperandType::VectorRegister, enc.stlur_sldapstl_simd.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
                         int32_t imm = static_cast<int32_t>(enc.stlur_sldapstl_simd.imm9 << 23) >> 23;
                         result.operands.push_back(Operand::memory_offset(enc.stlur_sldapstl_simd.Rn, imm));
                         return result;
@@ -45140,7 +45140,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur_sldapstl_simd.Rt, false));
+                        { Operand op(OperandType::VectorRegister, enc.ldapur_sldapstl_simd.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
                         int32_t imm = static_cast<int32_t>(enc.ldapur_sldapstl_simd.imm9 << 23) >> 23;
                         result.operands.push_back(Operand::memory_offset(enc.ldapur_sldapstl_simd.Rn, imm));
                         return result;
@@ -45551,7 +45551,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stlur_dldapstl_simd.Rt, false));
+                        { Operand op(OperandType::VectorRegister, enc.stlur_dldapstl_simd.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
                         int32_t imm = static_cast<int32_t>(enc.stlur_dldapstl_simd.imm9 << 23) >> 23;
                         result.operands.push_back(Operand::memory_offset(enc.stlur_dldapstl_simd.Rn, imm));
                         return result;
@@ -45560,7 +45560,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldapur_dldapstl_simd.Rt, false));
+                        { Operand op(OperandType::VectorRegister, enc.ldapur_dldapstl_simd.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
                         int32_t imm = static_cast<int32_t>(enc.ldapur_dldapstl_simd.imm9 << 23) >> 23;
                         result.operands.push_back(Operand::memory_offset(enc.ldapur_dldapstl_simd.Rn, imm));
                         return result;
