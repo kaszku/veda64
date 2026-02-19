@@ -6980,10 +6980,14 @@ class ARM64XMLParser:
         code.append("set(CMAKE_CXX_STANDARD_REQUIRED ON)")
         code.append("set(CMAKE_CXX_EXTENSIONS OFF)")
         code.append("")
+        code.append("# IDE folder grouping")
+        code.append("set_property(GLOBAL PROPERTY USE_FOLDERS ON)")
+        code.append("")
         code.append("# Option to reduce binary size and remove strings")
         code.append("option(VEDA64_NO_STRINGS \"Disable all string functions (to_string, mnemonic_to_string, status_to_string, dump_hook)\" OFF)")
         code.append("option(VEDA64_BUILD_TESTS \"Build test executables\" ON)")
         code.append("option(VEDA64_HOOK \"Enable inline hooking support (Windows only)\" ON)")
+        code.append("option(VEDA64_PYTHON \"Build Python bindings via nanobind (requires vcpkg toolchain)\" ON)")
         code.append("")
         code.append("# Compiler warnings")
         code.append("if(MSVC)")
@@ -6997,8 +7001,9 @@ class ARM64XMLParser:
         code.append("    add_compile_definitions(VEDA64_NO_STRINGS)")
         code.append("endif()")
         code.append("")
-        code.append("# Collect all source files")
+        code.append("# Collect all source and header files")
         code.append("file(GLOB_RECURSE VEDA64_SOURCES \"lib/*.cpp\")")
+        code.append("file(GLOB_RECURSE VEDA64_HEADERS \"include/*.hpp\")")
         code.append("")
         code.append("# Hook support")
         code.append("if(NOT VEDA64_HOOK)")
@@ -7007,11 +7012,14 @@ class ARM64XMLParser:
         code.append("endif()")
         code.append("")
         code.append("# Create library")
-        code.append("add_library(veda64 ${VEDA64_SOURCES})")
+        code.append("add_library(veda64 ${VEDA64_SOURCES} ${VEDA64_HEADERS})")
         code.append("target_include_directories(veda64 PUBLIC")
         code.append("    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>")
         code.append("    $<INSTALL_INTERFACE:include>")
         code.append(")")
+        code.append("set_target_properties(veda64 PROPERTIES FOLDER \"lib\")")
+        code.append("source_group(TREE \"${CMAKE_CURRENT_SOURCE_DIR}/lib\" PREFIX \"Source Files\" FILES ${VEDA64_SOURCES})")
+        code.append("source_group(TREE \"${CMAKE_CURRENT_SOURCE_DIR}/include\" PREFIX \"Header Files\" FILES ${VEDA64_HEADERS})")
         code.append("")
         code.append("# Link ntdll for NT syscalls on Windows (only when hooks are enabled)")
         code.append("if(WIN32 AND VEDA64_HOOK)")
@@ -7021,11 +7029,22 @@ class ARM64XMLParser:
         code.append("# Tools")
         code.append("add_executable(veda64-disasm tools/veda64-disasm.cpp)")
         code.append("target_link_libraries(veda64-disasm PRIVATE veda64)")
+        code.append("set_target_properties(veda64-disasm PROPERTIES FOLDER \"tools\")")
         code.append("")
         code.append("# Enable testing")
         code.append("if(VEDA64_BUILD_TESTS)")
         code.append("    enable_testing()")
         code.append("    add_subdirectory(test)")
+        code.append("endif()")
+        code.append("")
+        code.append("# Python bindings via nanobind (use vcpkg toolchain to satisfy dependency)")
+        code.append("if(VEDA64_PYTHON)")
+        code.append("    find_package(Python 3 COMPONENTS Interpreter Development.Module REQUIRED)")
+        code.append("    find_package(nanobind CONFIG REQUIRED)")
+        code.append("    nanobind_add_module(veda64_py NB_STATIC python/veda64_py.cpp)")
+        code.append("    target_link_libraries(veda64_py PRIVATE veda64)")
+        code.append("    set_target_properties(veda64_py PROPERTIES FOLDER \"python\")")
+        code.append("    install(TARGETS veda64_py LIBRARY DESTINATION python)")
         code.append("endif()")
         code.append("")
         code.append("# Installation")
@@ -7055,11 +7074,176 @@ class ARM64XMLParser:
         code.append("    add_executable(${test_name} ${test_src})")
         code.append("    target_link_libraries(${test_name} veda64)")
         code.append("    add_test(NAME ${test_name} COMMAND ${test_name})")
+        code.append("    set_target_properties(${test_name} PROPERTIES FOLDER \"test\")")
         code.append("endforeach()")
         code.append("")
 
         output_file = test_dir / "CMakeLists.txt"
         self._write_file(output_file, code)
+
+    def generate_python_bindings(self, base_dir: Path):
+        """Generate python/veda64_py.cpp with nanobind bindings and vcpkg.json."""
+
+        python_dir = base_dir / "python"
+        python_dir.mkdir(exist_ok=True)
+
+        # Collect sorted mnemonics (same logic as generate_header_files)
+        mnemonics = set()
+        for instr in self.instructions:
+            if instr.mnemonic:
+                mnemonics.add(instr.mnemonic)
+            for encoding in instr.encodings:
+                enc_mnem = encoding.docvars.get('mnemonic', '')
+                if enc_mnem:
+                    mnemonics.add(enc_mnem)
+        hint_aliases = ['NOP', 'YIELD', 'WFE', 'WFI', 'SEV', 'SEVL', 'DGH', 'XPACLRI',
+                        'PACIA1716', 'PACIB1716', 'AUTIA1716', 'AUTIB1716',
+                        'ESB', 'PSB', 'TSB', 'GCSB', 'CSDB', 'CLRBHB',
+                        'PACIAZ', 'PACIASP', 'PACIBZ', 'PACIBSP',
+                        'AUTIAZ', 'AUTIASP', 'AUTIBZ', 'AUTIBSP']
+        mnemonics.update(hint_aliases)
+        sorted_mnemonics = sorted(mnemonics)
+
+        operand_types = [
+            'Register', 'VectorRegister', 'SVERegister', 'PredicateRegister',
+            'PredicateNRegister', 'SMETileRegister', 'Immediate', 'SignedImmediate',
+            'MemoryBase', 'MemoryOffset', 'MemoryPreIndex', 'MemoryPostIndex',
+            'MemoryRegOffset', 'Label', 'Relative', 'SystemRegister', 'Shift',
+            'Extend', 'Index', 'Pattern', 'Prefetch', 'Barrier', 'FloatImmediate',
+            'VectorRegisterList', 'SVERegisterList', 'MemoryOffsetMulVL',
+            'MemorySVEOffset', 'SMEZTRegister', 'Unknown',
+        ]
+        conditions = ['EQ', 'NE', 'CS', 'CC', 'MI', 'PL', 'VS', 'VC',
+                      'HI', 'LS', 'GE', 'LT', 'GT', 'LE', 'AL', 'NV']
+
+        code = []
+        code.append("// Python bindings for veda64 — generated by parse_arm64_xml.py")
+        code.append("// Do not edit manually.")
+        code.append("")
+        code.append("#include <nanobind/nanobind.h>")
+        code.append("#include <nanobind/stl/optional.h>")
+        code.append("#include <nanobind/stl/vector.h>")
+        code.append("#include <nanobind/stl/string.h>")
+        code.append("#include <veda64.hpp>")
+        code.append("")
+        code.append("namespace nb = nanobind;")
+        code.append("using namespace nb::literals;")
+        code.append("")
+        code.append("NB_MODULE(veda64_py, m) {")
+        code.append("    m.doc() = \"veda64 ARM64 disassembler Python bindings\";")
+        code.append("")
+
+        # Mnemonic enum
+        code.append("    nb::enum_<veda64::Mnemonic>(m, \"Mnemonic\")")
+        for mnem in sorted_mnemonics:
+            code.append(f"        .value(\"{mnem}\", veda64::Mnemonic::{mnem})")
+        code.append("        .value(\"UNKNOWN\", veda64::Mnemonic::UNKNOWN);")
+        code.append("")
+
+        # Condition enum
+        code.append("    nb::enum_<veda64::Condition>(m, \"Condition\")")
+        code.append("        .value(\"NONE\", veda64::Condition::None)")
+        for cond in conditions:
+            code.append(f"        .value(\"{cond}\", veda64::Condition::{cond})")
+        code.append("        ;")
+        code.append("")
+
+        # OperandType enum
+        code.append("    nb::enum_<veda64::OperandType>(m, \"OperandType\")")
+        for ot in operand_types:
+            code.append(f"        .value(\"{ot}\", veda64::OperandType::{ot})")
+        code.append("        ;")
+        code.append("")
+
+        # Operand class
+        code.append("    nb::class_<veda64::Operand>(m, \"Operand\")")
+        code.append("        .def_ro(\"type\",       &veda64::Operand::type)")
+        code.append("        .def_ro(\"value\",      &veda64::Operand::value)")
+        code.append("        .def_ro(\"imm64\",      &veda64::Operand::imm64)")
+        code.append("        .def_ro(\"is_64bit\",   &veda64::Operand::is_64bit)")
+        code.append("        .def_ro(\"is_sp\",      &veda64::Operand::is_sp)")
+        code.append("        .def_prop_ro(\"arrangement\", [](const veda64::Operand& op) -> nb::object {")
+        code.append("            if (!op.arrangement) return nb::none();")
+        code.append("            return nb::str(op.arrangement);")
+        code.append("        })")
+        code.append("        .def_ro(\"index\",      &veda64::Operand::index)")
+        code.append("        .def_ro(\"has_index\",  &veda64::Operand::has_index)")
+        code.append("        .def_ro(\"base_reg\",   &veda64::Operand::base_reg)")
+        code.append("        .def_ro(\"offset\",     &veda64::Operand::offset)")
+        code.append("        .def_ro(\"index_reg\",  &veda64::Operand::index_reg)")
+        code.append("        .def_ro(\"extend\",     &veda64::Operand::extend)")
+        code.append("        .def_ro(\"amount\",     &veda64::Operand::amount)")
+        code.append("        .def(\"to_string\",     &veda64::Operand::to_string)")
+        code.append("        .def(\"__repr__\",      &veda64::Operand::to_string)")
+        code.append("        ;")
+        code.append("")
+
+        # Instruction class
+        code.append("    nb::class_<veda64::Instruction>(m, \"Instruction\")")
+        code.append("        .def_ro(\"mnemonic\",   &veda64::Instruction::mnemonic)")
+        code.append("        .def_ro(\"condition\",  &veda64::Instruction::condition)")
+        code.append("        .def_ro(\"raw_value\",  &veda64::Instruction::raw_value)")
+        code.append("        .def_ro(\"operands\",   &veda64::Instruction::operands)")
+        code.append("        .def(\"to_string\",     &veda64::Instruction::to_string)")
+        code.append("        .def(\"__repr__\",      &veda64::Instruction::to_string)")
+        code.append("        ;")
+        code.append("")
+
+        # Free functions
+        code.append("    // Decode from raw 32-bit instruction word")
+        code.append("    m.def(\"decode\", [](uint32_t insn) { return veda64::decode(insn); },")
+        code.append("          \"insn\"_a, \"Decode a single ARM64 instruction from a uint32_t\");")
+        code.append("")
+        code.append("    // Decode from 4 little-endian bytes")
+        code.append("    m.def(\"decode_bytes\", [](nb::bytes data) -> std::optional<veda64::Instruction> {")
+        code.append("        if (data.size() < 4) return std::nullopt;")
+        code.append("        return veda64::decode(reinterpret_cast<const uint8_t*>(data.data()));")
+        code.append("    }, \"data\"_a, \"Decode a single ARM64 instruction from 4 little-endian bytes\");")
+        code.append("")
+        code.append("    // Convert raw 4 bytes to uint32 (little-endian)")
+        code.append("    m.def(\"from_bytes\", [](nb::bytes data) -> uint32_t {")
+        code.append("        if (data.size() < 4) return 0;")
+        code.append("        return veda64::from_bytes(reinterpret_cast<const uint8_t*>(data.data()));")
+        code.append("    }, \"data\"_a, \"Read a little-endian uint32_t from 4 bytes\");")
+        code.append("")
+        code.append("    m.def(\"mnemonic_to_string\", &veda64::mnemonic_to_string,")
+        code.append("          \"mnem\"_a, \"Convert a Mnemonic enum value to its string representation\");")
+        code.append("")
+        code.append("    m.def(\"condition_to_string\", &veda64::condition_to_string,")
+        code.append("          \"cond\"_a, \"Convert a Condition enum value to its string representation\");")
+        code.append("")
+        code.append("    // Version info")
+        code.append("    m.attr(\"VERSION_MAJOR\") = veda64::VERSION_MAJOR;")
+        code.append("    m.attr(\"VERSION_MINOR\") = veda64::VERSION_MINOR;")
+        code.append("    m.attr(\"VERSION_PATCH\") = veda64::VERSION_PATCH;")
+        code.append("}")
+        code.append("")
+
+        output_file = python_dir / "veda64_py.cpp"
+        self._write_file(output_file, code)
+        print(f"Generated {output_file}")
+
+        # Generate vcpkg.json manifest
+        # Note: the overlay port at vcpkg_overlay_ports/nanobind/ removes the
+        # python3 vcpkg dependency so that CMake find_package(Python) uses the
+        # system Python instead of letting vcpkg build Python from source.
+        # Configure with:
+        #   cmake -DCMAKE_TOOLCHAIN_FILE=/c/vcpkg/scripts/buildsystems/vcpkg.cmake
+        #         -DVCPKG_OVERLAY_PORTS=vcpkg_overlay_ports
+        #         -DVCPKG_TARGET_TRIPLET=arm64-windows ...
+        vcpkg_json = [
+            '{',
+            '    "name": "veda64",',
+            '    "version": "0.1.0",',
+            '    "dependencies": [',
+            '        "nanobind"',
+            '    ]',
+            '}',
+            '',
+        ]
+        vcpkg_file = base_dir / "vcpkg.json"
+        self._write_file(vcpkg_file, vcpkg_json)
+        print(f"Generated {vcpkg_file}")
 
     def generate_test_suite(self, test_dir: Path):
         """Generate test files for each instruction class."""
@@ -10111,6 +10295,10 @@ def main():
     print(f"\n=== Generating Tools ===")
     tools_dir = base_dir / "tools"
     parser.generate_disasm_tool(tools_dir)
+
+    # Generate Python bindings
+    print(f"\n=== Generating Python Bindings ===")
+    parser.generate_python_bindings(base_dir)
 
 
 if __name__ == '__main__':
