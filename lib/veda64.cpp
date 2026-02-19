@@ -1567,25 +1567,25 @@ const char* get_movi_arrangement(uint32_t insn) {
     uint32_t op = (insn >> 29) & 1;
     uint32_t cmode = (insn >> 12) & 0xF;
 
-    // 8-bit (cmode=1110, op=0)
+    // 8-bit (cmode=1110, op=0 MOVI)
     if (op == 0 && cmode == 0xE) {
         return Q ? "16b" : "8b";
     }
-    // 16-bit shifted (cmode=10x0, op=0)
-    if (op == 0 && (cmode & 0xD) == 0x8) {
-        return Q ? "8h" : "4h";
-    }
-    // 32-bit shifted (cmode=0xx0, op=0)
-    if (op == 0 && (cmode & 0x9) == 0x0) {
-        return Q ? "4s" : "2s";
-    }
-    // 32-bit shifting ones (cmode=110x, op=0)
-    if (op == 0 && (cmode & 0xE) == 0xC) {
-        return Q ? "4s" : "2s";
-    }
-    // 64-bit (cmode=1110, op=1)
+    // 64-bit (cmode=1110, op=1 MOVI)
     if (op == 1 && cmode == 0xE) {
         return Q ? "2d" : "d";  // Scalar D register form
+    }
+    // 16-bit shifted (cmode=10x0) — MOVI op=0 and MVNI op=1
+    if ((cmode & 0xD) == 0x8) {
+        return Q ? "8h" : "4h";
+    }
+    // 32-bit shifted (cmode=0xx0) — MOVI op=0 and MVNI op=1
+    if ((cmode & 0x9) == 0x0) {
+        return Q ? "4s" : "2s";
+    }
+    // 32-bit shifting ones (cmode=110x) — MOVI op=0 and MVNI op=1
+    if ((cmode & 0xE) == 0xC) {
+        return Q ? "4s" : "2s";
     }
     return nullptr;
 }
@@ -1594,19 +1594,19 @@ const char* get_movi_arrangement(uint32_t insn) {
 int get_movi_shift(uint32_t insn) {
     uint32_t cmode = (insn >> 12) & 0xF;
     uint32_t op = (insn >> 29) & 1;
-    // 16-bit shifted (cmode=10x0): shift = cmode[1] * 8
-    if (op == 0 && (cmode & 0xD) == 0x8) {
+    // 16-bit shifted (cmode=10x0): shift = cmode[1] * 8 — MOVI op=0 and MVNI op=1
+    if ((cmode & 0xD) == 0x8) {
         return ((cmode >> 1) & 1) * 8;
     }
-    // 32-bit shifted (cmode=0xx0): shift = cmode[2:1] * 8
-    if (op == 0 && (cmode & 0x9) == 0x0) {
+    // 32-bit shifted (cmode=0xx0): shift = cmode[2:1] * 8 — MOVI op=0 and MVNI op=1
+    if ((cmode & 0x9) == 0x0) {
         return ((cmode >> 1) & 3) * 8;
     }
-    // 32-bit shifting ones (cmode=110x): MSL, return special
-    if (op == 0 && (cmode & 0xE) == 0xC) {
+    // 32-bit shifting ones (cmode=110x): MSL — MOVI op=0 and MVNI op=1
+    if ((cmode & 0xE) == 0xC) {
         return -((cmode & 1) ? 16 : 8);  // Negative = MSL
     }
-    // 8-bit, 64-bit: no shift
+    // 8-bit, 64-bit, FMOV: no shift
     return 0;
 }
 

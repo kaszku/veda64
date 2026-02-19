@@ -1246,25 +1246,25 @@ class ARM64XMLParser:
         code.append("    uint32_t op = (insn >> 29) & 1;")
         code.append("    uint32_t cmode = (insn >> 12) & 0xF;")
         code.append("    ")
-        code.append("    // 8-bit (cmode=1110, op=0)")
+        code.append("    // 8-bit (cmode=1110, op=0 MOVI)")
         code.append("    if (op == 0 && cmode == 0xE) {")
         code.append("        return Q ? \"16b\" : \"8b\";")
         code.append("    }")
-        code.append("    // 16-bit shifted (cmode=10x0, op=0)")
-        code.append("    if (op == 0 && (cmode & 0xD) == 0x8) {")
-        code.append("        return Q ? \"8h\" : \"4h\";")
-        code.append("    }")
-        code.append("    // 32-bit shifted (cmode=0xx0, op=0)")
-        code.append("    if (op == 0 && (cmode & 0x9) == 0x0) {")
-        code.append("        return Q ? \"4s\" : \"2s\";")
-        code.append("    }")
-        code.append("    // 32-bit shifting ones (cmode=110x, op=0)")
-        code.append("    if (op == 0 && (cmode & 0xE) == 0xC) {")
-        code.append("        return Q ? \"4s\" : \"2s\";")
-        code.append("    }")
-        code.append("    // 64-bit (cmode=1110, op=1)")
+        code.append("    // 64-bit (cmode=1110, op=1 MOVI)")
         code.append("    if (op == 1 && cmode == 0xE) {")
         code.append("        return Q ? \"2d\" : \"d\";  // Scalar D register form")
+        code.append("    }")
+        code.append("    // 16-bit shifted (cmode=10x0) — MOVI op=0 and MVNI op=1")
+        code.append("    if ((cmode & 0xD) == 0x8) {")
+        code.append("        return Q ? \"8h\" : \"4h\";")
+        code.append("    }")
+        code.append("    // 32-bit shifted (cmode=0xx0) — MOVI op=0 and MVNI op=1")
+        code.append("    if ((cmode & 0x9) == 0x0) {")
+        code.append("        return Q ? \"4s\" : \"2s\";")
+        code.append("    }")
+        code.append("    // 32-bit shifting ones (cmode=110x) — MOVI op=0 and MVNI op=1")
+        code.append("    if ((cmode & 0xE) == 0xC) {")
+        code.append("        return Q ? \"4s\" : \"2s\";")
         code.append("    }")
         code.append("    return nullptr;")
         code.append("}")
@@ -1274,19 +1274,19 @@ class ARM64XMLParser:
         code.append("int get_movi_shift(uint32_t insn) {")
         code.append("    uint32_t cmode = (insn >> 12) & 0xF;")
         code.append("    uint32_t op = (insn >> 29) & 1;")
-        code.append("    // 16-bit shifted (cmode=10x0): shift = cmode[1] * 8")
-        code.append("    if (op == 0 && (cmode & 0xD) == 0x8) {")
+        code.append("    // 16-bit shifted (cmode=10x0): shift = cmode[1] * 8 — MOVI op=0 and MVNI op=1")
+        code.append("    if ((cmode & 0xD) == 0x8) {")
         code.append("        return ((cmode >> 1) & 1) * 8;")
         code.append("    }")
-        code.append("    // 32-bit shifted (cmode=0xx0): shift = cmode[2:1] * 8")
-        code.append("    if (op == 0 && (cmode & 0x9) == 0x0) {")
+        code.append("    // 32-bit shifted (cmode=0xx0): shift = cmode[2:1] * 8 — MOVI op=0 and MVNI op=1")
+        code.append("    if ((cmode & 0x9) == 0x0) {")
         code.append("        return ((cmode >> 1) & 3) * 8;")
         code.append("    }")
-        code.append("    // 32-bit shifting ones (cmode=110x): MSL, return special")
-        code.append("    if (op == 0 && (cmode & 0xE) == 0xC) {")
+        code.append("    // 32-bit shifting ones (cmode=110x): MSL — MOVI op=0 and MVNI op=1")
+        code.append("    if ((cmode & 0xE) == 0xC) {")
         code.append("        return -((cmode & 1) ? 16 : 8);  // Negative = MSL")
         code.append("    }")
-        code.append("    // 8-bit, 64-bit: no shift")
+        code.append("    // 8-bit, 64-bit, FMOV: no shift")
         code.append("    return 0;")
         code.append("}")
         code.append("")
@@ -5257,7 +5257,8 @@ class ARM64XMLParser:
         # Detect based on encoding name pattern: asimd* = vector, crypto* = vector
         # Scalar FP (float*) and FP<->integer (float2int, floatfix) use GPR/scalar FP
         encoding_name_lower = encoding_name.lower()
-        _advsimd_patterns = ['asimd', 'asisdpair', 'asisdone', 'asisdlse', 'crypto', 'asisdmiscfp16']
+        _advsimd_patterns = ['asimd', 'asisdpair', 'asisdone', 'asisdlse', 'crypto', 'asisdmiscfp16',
+                             'asimdmisc', 'asimdsame']
         is_advsimd_vector = (class_name in ['advsimd', 'simd_dp'] and
             any(pat in encoding_name_lower for pat in _advsimd_patterns))
         
@@ -5320,6 +5321,37 @@ class ARM64XMLParser:
                 all_arrs = [["8b", "4h", "2s", "1d"], ["16b", "8h", "4s", "2d"]]
                 simd_arrangement = 'static'
                 static_arr = all_arrs[q_val][size_val]
+        elif is_advsimd_vector and 'Q' in field_map and 'sz' in field_map and 'size' not in field_map:
+            # FP vector ops: sz=0→single(.2s/.4s), sz=1→double(.1d/.2d)
+            q_field = field_map['Q']['name']
+            sz_field = field_map['sz']['name']
+            q_is_fixed = field_map['Q']['is_fixed']
+            sz_is_fixed = field_map['sz']['is_fixed']
+            fp_arrs_2d = [["2s", "4s"], ["1d", "2d"]]
+            if not q_is_fixed and not sz_is_fixed:
+                simd_arrangement = 'runtime'
+                code.append(f"{ind}const char* _simd_arr;")
+                code.append(f"{ind}{{")
+                code.append(f'{ind}    static const char* _fp_arrs[2][2] = {{{{"2s", "4s"}}, {{"1d", "2d"}}}};')
+                code.append(f"{ind}    _simd_arr = _fp_arrs[enc.{member_name}.{sz_field}][enc.{member_name}.{q_field}];")
+                code.append(f"{ind}}}")
+            elif sz_is_fixed and not q_is_fixed:
+                sz_val = int(field_map['sz']['fixed'], 2) if field_map['sz']['fixed'] else 0
+                simd_arrangement = 'runtime'
+                code.append(f"{ind}const char* _simd_arr = enc.{member_name}.{q_field} ? \"{fp_arrs_2d[sz_val][1]}\" : \"{fp_arrs_2d[sz_val][0]}\";")
+            elif not sz_is_fixed and q_is_fixed:
+                q_val = int(field_map['Q']['fixed'], 2) if field_map['Q']['fixed'] else 0
+                simd_arrangement = 'runtime'
+                code.append(f"{ind}const char* _simd_arr;")
+                code.append(f"{ind}{{")
+                code.append(f'{ind}    static const char* _fp_arrs[] = {{"{fp_arrs_2d[0][q_val]}", "{fp_arrs_2d[1][q_val]}"}};')
+                code.append(f"{ind}    _simd_arr = _fp_arrs[enc.{member_name}.{sz_field}];")
+                code.append(f"{ind}}}")
+            else:
+                sz_val = int(field_map['sz']['fixed'], 2) if field_map['sz']['fixed'] else 0
+                q_val = int(field_map['Q']['fixed'], 2) if field_map['Q']['fixed'] else 0
+                simd_arrangement = 'static'
+                static_arr = fp_arrs_2d[sz_val][q_val]
 
         # Crypto instructions without Q/size fields: fixed arrangement from encoding name
         if is_advsimd_vector and simd_arrangement is None:
