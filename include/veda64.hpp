@@ -1670,6 +1670,7 @@ public:
     const char* arrangement = nullptr;  // Vector arrangement specifier (.16b, .4s, etc.)
     uint32_t index = 0;           // Element index for indexed vector operands (v0.b[3])
     bool has_index = false;       // True if index field is valid
+    bool prefer_decimal = false;  // True if immediate should always be formatted as decimal
 
     // Memory operand fields
     uint32_t base_reg = 0;       // Base register number

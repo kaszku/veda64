@@ -2038,7 +2038,8 @@ std::string Instruction::to_string() const {
             mnemonic == Mnemonic::UADDL || mnemonic == Mnemonic::SSUBL || mnemonic == Mnemonic::USUBL ||
             mnemonic == Mnemonic::SSHLL || mnemonic == Mnemonic::USHLL ||
             mnemonic == Mnemonic::ADDHN || mnemonic == Mnemonic::SUBHN ||
-            mnemonic == Mnemonic::RADDHN || mnemonic == Mnemonic::RSUBHN) {
+            mnemonic == Mnemonic::RADDHN || mnemonic == Mnemonic::RSUBHN ||
+            mnemonic == Mnemonic::FCVTXN) {
             result += "2";
         }
     }
@@ -2087,7 +2088,7 @@ std::string Operand::to_string() const {
                 std::ostringstream oss;
                 // Use imm64 for 64-bit logical immediates
                 uint64_t display_val = imm64 ? imm64 : static_cast<uint64_t>(value);
-                if (display_val <= 9) {
+                if (prefer_decimal || display_val <= 9) {
                     oss << "#" << std::dec << display_val;
                 } else {
                     oss << "#0x" << std::hex << display_val;

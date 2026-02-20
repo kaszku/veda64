@@ -1098,6 +1098,7 @@ class ARM64XMLParser:
         code.append("    const char* arrangement = nullptr;  // Vector arrangement specifier (.16b, .4s, etc.)")
         code.append("    uint32_t index = 0;           // Element index for indexed vector operands (v0.b[3])")
         code.append("    bool has_index = false;       // True if index field is valid")
+        code.append("    bool prefer_decimal = false;  // True if immediate should always be formatted as decimal")
         code.append("")
         code.append("    // Memory operand fields")
         code.append("    uint32_t base_reg = 0;       // Base register number")
@@ -1731,7 +1732,8 @@ class ARM64XMLParser:
         code.append("            mnemonic == Mnemonic::UADDL || mnemonic == Mnemonic::SSUBL || mnemonic == Mnemonic::USUBL ||")
         code.append("            mnemonic == Mnemonic::SSHLL || mnemonic == Mnemonic::USHLL ||")
         code.append("            mnemonic == Mnemonic::ADDHN || mnemonic == Mnemonic::SUBHN ||")
-        code.append("            mnemonic == Mnemonic::RADDHN || mnemonic == Mnemonic::RSUBHN) {")
+        code.append("            mnemonic == Mnemonic::RADDHN || mnemonic == Mnemonic::RSUBHN ||")
+        code.append("            mnemonic == Mnemonic::FCVTXN) {")
         code.append('            result += "2";')
         code.append("        }")
         code.append("    }")
@@ -1782,7 +1784,7 @@ class ARM64XMLParser:
         code.append("                std::ostringstream oss;")
         code.append("                // Use imm64 for 64-bit logical immediates")
         code.append("                uint64_t display_val = imm64 ? imm64 : static_cast<uint64_t>(value);")
-        code.append("                if (display_val <= 9) {")
+        code.append("                if (prefer_decimal || display_val <= 9) {")
         code.append("                    oss << \"#\" << std::dec << display_val;")
         code.append("                } else {")
         code.append("                    oss << \"#0x\" << std::hex << display_val;")
@@ -2422,6 +2424,7 @@ class ARM64XMLParser:
         code.append("    const char* arrangement = nullptr;  // Vector arrangement specifier (.16b, .4s, etc.)")
         code.append("    uint32_t index = 0;           // Element index for indexed vector operands (v0.b[3])")
         code.append("    bool has_index = false;       // True if index field is valid")
+        code.append("    bool prefer_decimal = false;  // True if immediate should always be formatted as decimal")
         code.append("")
         code.append("    // Memory operand fields")
         code.append("    uint32_t base_reg = 0;       // Base register number")
@@ -4176,7 +4179,7 @@ class ARM64XMLParser:
             return code
 
         # Special case: General load/store (LDR, STR, LDRSW 32/64-bit) - only if required fields exist
-        if is_load_store and mnemonic in ['LDR', 'STR', 'LDUR', 'STUR', 'LDTR', 'STTR', 'LDRSW', 'LDTRSW',
+        if is_load_store and mnemonic in ['LDR', 'STR', 'LDUR', 'STUR', 'LDTR', 'STTR', 'LDRSW', 'LDURSW', 'LDTRSW',
                 'LDRSH', 'LDRSB', 'LDRH', 'LDRB', 'STRH', 'STRB',
                 'LDURSH', 'LDURSB', 'LDURH', 'LDURB', 'STURH', 'STURB',
                 'LDTRSH', 'LDTRSB', 'LDTRH', 'LDTRB', 'STTRH', 'STTRB',
@@ -4250,7 +4253,7 @@ class ARM64XMLParser:
                     code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, is_64bit));")
 
             # Check if this is an unscaled load/store (LDUR/STUR/LDTR/STTR use signed imm9, no scaling)
-            is_unscaled = mnemonic in ['LDUR', 'STUR', 'LDTR', 'STTR', 'LDTRSW',
+            is_unscaled = mnemonic in ['LDUR', 'STUR', 'LDTR', 'STTR', 'LDURSW', 'LDTRSW',
                 'LDURSH', 'LDURSB', 'LDURH', 'LDURB', 'STURH', 'STURB',
                 'LDTRSH', 'LDTRSB', 'LDTRH', 'LDTRB', 'STTRH', 'STTRB',
                 'PRFUM']
@@ -5010,6 +5013,70 @@ class ARM64XMLParser:
             code.append(f"{ind}return result;")
             return code
 
+        # Special case: FCMLA indexed element (FCMLA_advsimd_elt)
+        # Template: FCMLA <Vd>.<T>, <Vn>.<T>, <Vm>.<Ts>[<index>], #<rotate>
+        # m = UInt(M::Rm) always (M is always part of register, not index)
+        # size=01 (FP16): T=.4h/.8h, Ts=.h, index=H::L (2-bit)
+        # size=10 (FP32): T=.2s/.4s, Ts=.s, index=H (1-bit)
+        # rot field: 0→#0, 1→#90, 2→#180, 3→#270
+        is_fcmla_elt = mnemonic == 'FCMLA' and 'advsimd_elt' in encoding_name.lower() and \
+                       'Rd' in field_map and 'Rn' in field_map and 'Rm' in field_map
+        if is_fcmla_elt:
+            rd_f = field_map['Rd']['name']
+            rn_f = field_map['Rn']['name']
+            rm_f = field_map['Rm']['name']
+            q_var = 'Q' in field_map and not field_map['Q']['is_fixed']
+            q_field_n = field_map['Q']['name'] if q_var else None
+            size_f = field_map['size']['name'] if 'size' in field_map and not field_map['size']['is_fixed'] else None
+            m_f = field_map['M']['name'] if 'M' in field_map and not field_map['M']['is_fixed'] else None
+            h_f = field_map['H']['name'] if 'H' in field_map and not field_map['H']['is_fixed'] else None
+            l_f = field_map['L']['name'] if 'L' in field_map and not field_map['L']['is_fixed'] else None
+            rot_f = field_map['rot']['name'] if 'rot' in field_map and not field_map['rot']['is_fixed'] else None
+            # Vector arrangement from Q and size
+            if q_var and size_f:
+                code.append(f"{ind}static const char* _fcmla_arrs[2][4] = {{{{\"8b\",\"4h\",\"2s\",\"1d\"}},{{\"16b\",\"8h\",\"4s\",\"2d\"}}}};")
+                code.append(f"{ind}const char* _arr = _fcmla_arrs[enc.{member_name}.{q_field_n}][enc.{member_name}.{size_f}];")
+            else:
+                code.append(f'{ind}const char* _arr = "8h";  // fallback')
+            # Rd and Rn use the same arrangement T
+            code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_f}, false); op.arrangement = _arr; result.operands.push_back(op); }}")
+            code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_f}, false); op.arrangement = _arr; result.operands.push_back(op); }}")
+            # Vm: register = M::Rm (always), scalar arrangement Ts, index from H/L or H
+            code.append(f"{ind}{{")
+            if m_f:
+                code.append(f"{ind}    uint32_t _vm_reg = (enc.{member_name}.{m_f} << 4) | enc.{member_name}.{rm_f};")
+            else:
+                code.append(f"{ind}    uint32_t _vm_reg = enc.{member_name}.{rm_f};")
+            # Scalar type: h for size=01, s for size=10
+            if size_f:
+                code.append(f"{ind}    const char* _ts = (enc.{member_name}.{size_f} == 1) ? \"h\" : \"s\";")
+            else:
+                code.append(f'{ind}    const char* _ts = "h";')
+            # index: H:L for size=01 (2-bit), H for size=10 (1-bit)
+            code.append(f"{ind}    uint32_t _idx = 0;")
+            if h_f and l_f and size_f:
+                code.append(f"{ind}    if (enc.{member_name}.{size_f} == 1) _idx = (enc.{member_name}.{h_f} << 1) | enc.{member_name}.{l_f};")
+                code.append(f"{ind}    else _idx = enc.{member_name}.{h_f};")
+            elif h_f and l_f:
+                code.append(f"{ind}    _idx = (enc.{member_name}.{h_f} << 1) | enc.{member_name}.{l_f};")
+            elif h_f:
+                code.append(f"{ind}    _idx = enc.{member_name}.{h_f};")
+            code.append(f"{ind}    Operand op(OperandType::VectorRegister, _vm_reg, false);")
+            code.append(f"{ind}    op.arrangement = _ts;")
+            code.append(f"{ind}    op.index = _idx;")
+            code.append(f"{ind}    op.has_index = true;")
+            code.append(f"{ind}    result.operands.push_back(op);")
+            code.append(f"{ind}}}")
+            # Rotation immediate: 0→0, 1→90, 2→180, 3→270
+            if rot_f:
+                code.append(f"{ind}{{")
+                code.append(f"{ind}    static const int32_t _rot_vals[] = {{0, 90, 180, 270}};")
+                code.append(f"{ind}    result.operands.push_back(Operand(OperandType::Immediate, _rot_vals[enc.{member_name}.{rot_f}], true));")
+                code.append(f"{ind}    result.operands.back().prefer_decimal = true;")
+                code.append(f"{ind}}}")
+            code.append(f"{ind}return result;")
+            return code
+
         # Special case: SIMD by-element (asimdelem) — Rm has element index from H/L/M fields
         is_asimdelem = 'asimdelem' in encoding_name and 'Rd' in field_map and 'Rn' in field_map and 'Rm' in field_map
         if is_asimdelem:
@@ -5338,6 +5405,25 @@ class ARM64XMLParser:
                     code.append(f'{ind}const char* _src_arr = "{src_arrs[sz_val][q_fixed_v]}";')
             code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_f}, false); op.arrangement = _dst_arr; result.operands.push_back(op); }}")
             code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_f}, false); op.arrangement = _src_arr; result.operands.push_back(op); }}")
+            code.append(f"{ind}return result;")
+            return code
+
+        # Special case: FCVTXN/FCVTXN2 — narrowing FP conversion (fixed esize=32)
+        # Vector form: dest=.2s/.4s (Q-dependent), source always .2d
+        # Q=0 → FCVTXN (lower 2 lanes), Q=1 → FCVTXN2 (upper 2 lanes)
+        is_fcvtxn = mnemonic == 'FCVTXN' and 'asimdmisc' in encoding_name.lower() and 'Rd' in field_map and 'Rn' in field_map
+        if is_fcvtxn:
+            rd_f = field_map['Rd']['name']
+            rn_f = field_map['Rn']['name']
+            q_var = 'Q' in field_map and not field_map['Q']['is_fixed']
+            q_field_n = field_map['Q']['name'] if q_var else None
+            q_fixed_v = int(field_map['Q']['fixed'], 2) if 'Q' in field_map and field_map['Q']['is_fixed'] and field_map['Q']['fixed'] else 0
+            if q_var:
+                code.append(f"{ind}const char* _dst_arr = enc.{member_name}.{q_field_n} ? \"4s\" : \"2s\";")
+            else:
+                code.append(f'{ind}const char* _dst_arr = "{("4s" if q_fixed_v else "2s")}";')
+            code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_f}, false); op.arrangement = _dst_arr; result.operands.push_back(op); }}")
+            code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_f}, false); op.arrangement = \"2d\"; result.operands.push_back(op); }}")
             code.append(f"{ind}return result;")
             return code
 
@@ -6129,8 +6215,21 @@ class ARM64XMLParser:
                             code.append(f"{ind}    op.arrangement = _simd_arr;  // fallback")
                         code.append(f"{ind}    result.operands.push_back(op);")
                         code.append(f"{ind}}}")
-                    elif mnemonic in ['SMLAL', 'SMLSL', 'UMLAL', 'UMLSL', 'SMULL', 'UMULL', 'SQDMLAL', 'SQDMLSL', 'SQDMULL', 'SABAL', 'UABAL', 'SABDL', 'UABDL', 'SADDL', 'UADDL', 'SSUBL', 'USUBL', 'SSHLL', 'USHLL', 'ADDHN', 'SUBHN', 'RADDHN', 'RSUBHN', 'SADDW', 'UADDW', 'SSUBW', 'USUBW'] and (reg_name == 'Rd' or (reg_name == 'Rn' and mnemonic in ['SADDW', 'UADDW', 'SSUBW', 'USUBW'])) and simd_arrangement == 'runtime':
-                        # Widening/narrowing: Rd uses next wider arrangement
+                    elif mnemonic in ['ADDHN', 'SUBHN', 'RADDHN', 'RSUBHN'] and reg_name in ('Rn', 'Rm') and simd_arrangement == 'runtime':
+                        # Narrowing ops: Rn/Rm (sources) use the WIDE arrangement (one step up from dest)
+                        # dest uses _simd_arr (Q+size → narrow result), sources are always wide (size-indexed)
+                        code.append(f"{ind}{{")
+                        code.append(f"{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false);")
+                        if 'size' in field_map and not field_map['size']['is_fixed']:
+                            size_f = field_map['size']['name']
+                            code.append(f'{ind}    static const char* _wide_arrs[] = {{"8h", "4s", "2d", "2d"}};')
+                            code.append(f"{ind}    op.arrangement = _wide_arrs[enc.{member_name}.{size_f}];")
+                        else:
+                            code.append(f"{ind}    op.arrangement = _simd_arr;  // fallback")
+                        code.append(f"{ind}    result.operands.push_back(op);")
+                        code.append(f"{ind}}}")
+                    elif mnemonic in ['SMLAL', 'SMLSL', 'UMLAL', 'UMLSL', 'SMULL', 'UMULL', 'SQDMLAL', 'SQDMLSL', 'SQDMULL', 'SABAL', 'UABAL', 'SABDL', 'UABDL', 'SADDL', 'UADDL', 'SSUBL', 'USUBL', 'SSHLL', 'USHLL', 'SADDW', 'UADDW', 'SSUBW', 'USUBW'] and (reg_name == 'Rd' or (reg_name == 'Rn' and mnemonic in ['SADDW', 'UADDW', 'SSUBW', 'USUBW'])) and simd_arrangement == 'runtime':
+                        # Widening: Rd uses next wider arrangement
                         # Source arr is set via _simd_arr; Rd needs wider version
                         code.append(f"{ind}{{")
                         code.append(f"{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false);")

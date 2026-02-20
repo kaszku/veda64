@@ -45252,12 +45252,10 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldursw64ldst_unscaled.Rn, is_64bit));
+                        int scale = 8;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldursw64ldst_unscaled.Rt, is_64bit));
-                        {
-                            int32_t val = static_cast<int32_t>(enc.ldursw64ldst_unscaled.imm9 << 23) >> 23;
-                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(val), true));
-                        }
+                        int32_t imm = (static_cast<int32_t>(enc.ldursw64ldst_unscaled.imm9) << 23) >> 23;
+                        result.operands.push_back(Operand::memory_offset(enc.ldursw64ldst_unscaled.Rn, imm));
                         return result;
         }
         case 0xB8800400u: { // LDRSW_64_ldst_immpost
