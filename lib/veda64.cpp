@@ -1594,7 +1594,6 @@ const char* get_movi_arrangement(uint32_t insn) {
 // Returns shift amount for MOVI/MVNI, or -1 if no shift / MSL encoding
 int get_movi_shift(uint32_t insn) {
     uint32_t cmode = (insn >> 12) & 0xF;
-    uint32_t op = (insn >> 29) & 1;
     // 16-bit shifted (cmode=10x0): shift = cmode[1] * 8 — MOVI op=0 and MVNI op=1
     if ((cmode & 0xD) == 0x8) {
         return ((cmode >> 1) & 1) * 8;

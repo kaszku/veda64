@@ -1,5 +1,10 @@
 #include "format/dpimm.hpp"
 
+// Suppress MSVC warning for is_64bit declared but unused in some decode stubs
+#ifdef _MSC_VER
+#pragma warning(disable: 4189)
+#endif
+
 namespace veda64 {
 namespace format {
 namespace dpimm {
