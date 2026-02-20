@@ -7959,7 +7959,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         uint32_t imm3 = enc.cmn_adds32s_addsub_ext.imm3;
                         bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));
+                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), is_64bit));
                         }
                         return result;
         }
@@ -7975,7 +7975,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         uint32_t imm3 = enc.cmp_subs32s_addsub_ext.imm3;
                         bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));
+                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), is_64bit));
                         }
                         return result;
         }
@@ -7991,7 +7991,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         uint32_t imm3 = enc.cmn_adds64s_addsub_ext.imm3;
                         bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));
+                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), is_64bit));
                         }
                         return result;
         }
@@ -8007,7 +8007,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         uint32_t imm3 = enc.cmp_subs64s_addsub_ext.imm3;
                         bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));
+                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), is_64bit));
                         }
                         return result;
         }
@@ -8029,7 +8029,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         uint32_t imm3 = enc.add32addsub_ext.imm3;
                         bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));
+                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), is_64bit));
                         }
                         return result;
         }
@@ -8046,7 +8046,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         uint32_t imm3 = enc.adds32s_addsub_ext.imm3;
                         bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));
+                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), is_64bit));
                         }
                         return result;
         }
@@ -8063,7 +8063,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         uint32_t imm3 = enc.sub32addsub_ext.imm3;
                         bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));
+                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), is_64bit));
                         }
                         return result;
         }
@@ -8080,7 +8080,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         uint32_t imm3 = enc.subs32s_addsub_ext.imm3;
                         bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));
+                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), is_64bit));
                         }
                         return result;
         }
@@ -8097,7 +8097,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         uint32_t imm3 = enc.add64addsub_ext.imm3;
                         bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));
+                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), is_64bit));
                         }
                         return result;
         }
@@ -8114,7 +8114,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         uint32_t imm3 = enc.adds64s_addsub_ext.imm3;
                         bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));
+                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), is_64bit));
                         }
                         return result;
         }
@@ -8131,7 +8131,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         uint32_t imm3 = enc.sub64addsub_ext.imm3;
                         bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));
+                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), is_64bit));
                         }
                         return result;
         }
@@ -8148,7 +8148,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         uint32_t imm3 = enc.subs64s_addsub_ext.imm3;
                         bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));
+                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), is_64bit));
                         }
                         return result;
         }

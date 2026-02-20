@@ -51188,8 +51188,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cntb_rs.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cntb_rs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.cntb_rs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.cntb_rs.imm4 + 1u, true));
                         return result;
         }
         case 0x0420F000u: { // sqincb_r_rs_sx
@@ -51198,8 +51198,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqincb_rrs_sx.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqincb_rrs_sx.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqincb_rrs_sx.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqincb_rrs_sx.imm4 + 1u, true));
                         return result;
         }
         case 0x0420F400u: { // uqincb_r_rs_uw
@@ -51208,8 +51208,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqincb_rrs_uw.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqincb_rrs_uw.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqincb_rrs_uw.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqincb_rrs_uw.imm4 + 1u, true));
                         return result;
         }
         case 0x0420F800u: { // sqdecb_r_rs_sx
@@ -51218,8 +51218,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdecb_rrs_sx.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqdecb_rrs_sx.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecb_rrs_sx.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqdecb_rrs_sx.imm4 + 1u, true));
                         return result;
         }
         case 0x0420FC00u: { // uqdecb_r_rs_uw
@@ -51228,8 +51228,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqdecb_rrs_uw.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqdecb_rrs_uw.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecb_rrs_uw.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqdecb_rrs_uw.imm4 + 1u, true));
                         return result;
         }
         case 0x0430E000u: { // incb_r_rs_
@@ -51238,8 +51238,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.incb_rrs.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.incb_rrs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.incb_rrs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.incb_rrs.imm4 + 1u, true));
                         return result;
         }
         case 0x0430E400u: { // decb_r_rs_
@@ -51248,8 +51248,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.decb_rrs.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.decb_rrs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.decb_rrs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.decb_rrs.imm4 + 1u, true));
                         return result;
         }
         case 0x0430F000u: { // sqincb_r_rs_x
@@ -51258,8 +51258,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqincb_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqincb_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqincb_rrs_x.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqincb_rrs_x.imm4 + 1u, true));
                         return result;
         }
         case 0x0430F400u: { // uqincb_r_rs_x
@@ -51268,8 +51268,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqincb_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqincb_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqincb_rrs_x.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqincb_rrs_x.imm4 + 1u, true));
                         return result;
         }
         case 0x0430F800u: { // sqdecb_r_rs_x
@@ -51278,8 +51278,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdecb_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqdecb_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecb_rrs_x.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqdecb_rrs_x.imm4 + 1u, true));
                         return result;
         }
         case 0x0430FC00u: { // uqdecb_r_rs_x
@@ -51288,8 +51288,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqdecb_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqdecb_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecb_rrs_x.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqdecb_rrs_x.imm4 + 1u, true));
                         return result;
         }
         case 0x0460C000u: { // sqinch_z_zs_
@@ -51297,8 +51297,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.sqinch_zzs.Zdn, true); op.arrangement = "h"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqinch_zzs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqinch_zzs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqinch_zzs.imm4 + 1u, true));
                         return result;
         }
         case 0x0460C400u: { // uqinch_z_zs_
@@ -51306,8 +51306,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.uqinch_zzs.Zdn, true); op.arrangement = "h"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqinch_zzs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqinch_zzs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqinch_zzs.imm4 + 1u, true));
                         return result;
         }
         case 0x0460C800u: { // sqdech_z_zs_
@@ -51315,8 +51315,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.sqdech_zzs.Zdn, true); op.arrangement = "h"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqdech_zzs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqdech_zzs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqdech_zzs.imm4 + 1u, true));
                         return result;
         }
         case 0x0460CC00u: { // uqdech_z_zs_
@@ -51324,8 +51324,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.uqdech_zzs.Zdn, true); op.arrangement = "h"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqdech_zzs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqdech_zzs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqdech_zzs.imm4 + 1u, true));
                         return result;
         }
         case 0x0460E000u: { // cnth_r_s_
@@ -51334,8 +51334,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cnth_rs.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cnth_rs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.cnth_rs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.cnth_rs.imm4 + 1u, true));
                         return result;
         }
         case 0x0460F000u: { // sqinch_r_rs_sx
@@ -51344,8 +51344,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqinch_rrs_sx.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqinch_rrs_sx.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqinch_rrs_sx.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqinch_rrs_sx.imm4 + 1u, true));
                         return result;
         }
         case 0x0460F400u: { // uqinch_r_rs_uw
@@ -51354,8 +51354,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqinch_rrs_uw.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqinch_rrs_uw.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqinch_rrs_uw.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqinch_rrs_uw.imm4 + 1u, true));
                         return result;
         }
         case 0x0460F800u: { // sqdech_r_rs_sx
@@ -51364,8 +51364,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdech_rrs_sx.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqdech_rrs_sx.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqdech_rrs_sx.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqdech_rrs_sx.imm4 + 1u, true));
                         return result;
         }
         case 0x0460FC00u: { // uqdech_r_rs_uw
@@ -51374,8 +51374,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqdech_rrs_uw.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqdech_rrs_uw.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqdech_rrs_uw.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqdech_rrs_uw.imm4 + 1u, true));
                         return result;
         }
         case 0x0470C000u: { // inch_z_zs_
@@ -51383,8 +51383,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.inch_zzs.Zdn, true); op.arrangement = "h"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.inch_zzs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.inch_zzs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.inch_zzs.imm4 + 1u, true));
                         return result;
         }
         case 0x0470C400u: { // dech_z_zs_
@@ -51392,8 +51392,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.dech_zzs.Zdn, true); op.arrangement = "h"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.dech_zzs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.dech_zzs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.dech_zzs.imm4 + 1u, true));
                         return result;
         }
         case 0x0470E000u: { // inch_r_rs_
@@ -51402,8 +51402,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.inch_rrs.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.inch_rrs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.inch_rrs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.inch_rrs.imm4 + 1u, true));
                         return result;
         }
         case 0x0470E400u: { // dech_r_rs_
@@ -51412,8 +51412,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.dech_rrs.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.dech_rrs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.dech_rrs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.dech_rrs.imm4 + 1u, true));
                         return result;
         }
         case 0x0470F000u: { // sqinch_r_rs_x
@@ -51422,8 +51422,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqinch_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqinch_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqinch_rrs_x.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqinch_rrs_x.imm4 + 1u, true));
                         return result;
         }
         case 0x0470F400u: { // uqinch_r_rs_x
@@ -51432,8 +51432,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqinch_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqinch_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqinch_rrs_x.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqinch_rrs_x.imm4 + 1u, true));
                         return result;
         }
         case 0x0470F800u: { // sqdech_r_rs_x
@@ -51442,8 +51442,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdech_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqdech_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqdech_rrs_x.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqdech_rrs_x.imm4 + 1u, true));
                         return result;
         }
         case 0x0470FC00u: { // uqdech_r_rs_x
@@ -51452,8 +51452,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqdech_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqdech_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqdech_rrs_x.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqdech_rrs_x.imm4 + 1u, true));
                         return result;
         }
         case 0x04A0C000u: { // sqincw_z_zs_
@@ -51461,8 +51461,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.sqincw_zzs.Zdn, true); op.arrangement = "s"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqincw_zzs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqincw_zzs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqincw_zzs.imm4 + 1u, true));
                         return result;
         }
         case 0x04A0C400u: { // uqincw_z_zs_
@@ -51470,8 +51470,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.uqincw_zzs.Zdn, true); op.arrangement = "s"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqincw_zzs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqincw_zzs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqincw_zzs.imm4 + 1u, true));
                         return result;
         }
         case 0x04A0C800u: { // sqdecw_z_zs_
@@ -51479,8 +51479,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.sqdecw_zzs.Zdn, true); op.arrangement = "s"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqdecw_zzs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecw_zzs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqdecw_zzs.imm4 + 1u, true));
                         return result;
         }
         case 0x04A0CC00u: { // uqdecw_z_zs_
@@ -51488,8 +51488,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.uqdecw_zzs.Zdn, true); op.arrangement = "s"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqdecw_zzs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecw_zzs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqdecw_zzs.imm4 + 1u, true));
                         return result;
         }
         case 0x04A0E000u: { // cntw_r_s_
@@ -51498,8 +51498,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cntw_rs.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cntw_rs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.cntw_rs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.cntw_rs.imm4 + 1u, true));
                         return result;
         }
         case 0x04A0F000u: { // sqincw_r_rs_sx
@@ -51508,8 +51508,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqincw_rrs_sx.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqincw_rrs_sx.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqincw_rrs_sx.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqincw_rrs_sx.imm4 + 1u, true));
                         return result;
         }
         case 0x04A0F400u: { // uqincw_r_rs_uw
@@ -51518,8 +51518,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqincw_rrs_uw.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqincw_rrs_uw.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqincw_rrs_uw.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqincw_rrs_uw.imm4 + 1u, true));
                         return result;
         }
         case 0x04A0F800u: { // sqdecw_r_rs_sx
@@ -51528,8 +51528,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdecw_rrs_sx.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqdecw_rrs_sx.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecw_rrs_sx.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqdecw_rrs_sx.imm4 + 1u, true));
                         return result;
         }
         case 0x04A0FC00u: { // uqdecw_r_rs_uw
@@ -51538,8 +51538,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqdecw_rrs_uw.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqdecw_rrs_uw.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecw_rrs_uw.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqdecw_rrs_uw.imm4 + 1u, true));
                         return result;
         }
         case 0x04B0C000u: { // incw_z_zs_
@@ -51547,8 +51547,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.incw_zzs.Zdn, true); op.arrangement = "s"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.incw_zzs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.incw_zzs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.incw_zzs.imm4 + 1u, true));
                         return result;
         }
         case 0x04B0C400u: { // decw_z_zs_
@@ -51556,8 +51556,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.decw_zzs.Zdn, true); op.arrangement = "s"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.decw_zzs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.decw_zzs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.decw_zzs.imm4 + 1u, true));
                         return result;
         }
         case 0x04B0E000u: { // incw_r_rs_
@@ -51566,8 +51566,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.incw_rrs.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.incw_rrs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.incw_rrs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.incw_rrs.imm4 + 1u, true));
                         return result;
         }
         case 0x04B0E400u: { // decw_r_rs_
@@ -51576,8 +51576,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.decw_rrs.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.decw_rrs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.decw_rrs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.decw_rrs.imm4 + 1u, true));
                         return result;
         }
         case 0x04B0F000u: { // sqincw_r_rs_x
@@ -51586,8 +51586,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqincw_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqincw_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqincw_rrs_x.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqincw_rrs_x.imm4 + 1u, true));
                         return result;
         }
         case 0x04B0F400u: { // uqincw_r_rs_x
@@ -51596,8 +51596,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqincw_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqincw_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqincw_rrs_x.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqincw_rrs_x.imm4 + 1u, true));
                         return result;
         }
         case 0x04B0F800u: { // sqdecw_r_rs_x
@@ -51606,8 +51606,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdecw_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqdecw_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecw_rrs_x.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqdecw_rrs_x.imm4 + 1u, true));
                         return result;
         }
         case 0x04B0FC00u: { // uqdecw_r_rs_x
@@ -51616,8 +51616,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqdecw_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqdecw_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecw_rrs_x.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqdecw_rrs_x.imm4 + 1u, true));
                         return result;
         }
         case 0x04E0C000u: { // sqincd_z_zs_
@@ -51625,8 +51625,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.sqincd_zzs.Zdn, true); op.arrangement = "d"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqincd_zzs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqincd_zzs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqincd_zzs.imm4 + 1u, true));
                         return result;
         }
         case 0x04E0C400u: { // uqincd_z_zs_
@@ -51634,8 +51634,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.uqincd_zzs.Zdn, true); op.arrangement = "d"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqincd_zzs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqincd_zzs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqincd_zzs.imm4 + 1u, true));
                         return result;
         }
         case 0x04E0C800u: { // sqdecd_z_zs_
@@ -51643,8 +51643,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.sqdecd_zzs.Zdn, true); op.arrangement = "d"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqdecd_zzs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecd_zzs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqdecd_zzs.imm4 + 1u, true));
                         return result;
         }
         case 0x04E0CC00u: { // uqdecd_z_zs_
@@ -51652,8 +51652,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.uqdecd_zzs.Zdn, true); op.arrangement = "d"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqdecd_zzs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecd_zzs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqdecd_zzs.imm4 + 1u, true));
                         return result;
         }
         case 0x04E0E000u: { // cntd_r_s_
@@ -51662,8 +51662,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cntd_rs.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cntd_rs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.cntd_rs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.cntd_rs.imm4 + 1u, true));
                         return result;
         }
         case 0x04E0F000u: { // sqincd_r_rs_sx
@@ -51672,8 +51672,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqincd_rrs_sx.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqincd_rrs_sx.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqincd_rrs_sx.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqincd_rrs_sx.imm4 + 1u, true));
                         return result;
         }
         case 0x04E0F400u: { // uqincd_r_rs_uw
@@ -51682,8 +51682,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqincd_rrs_uw.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqincd_rrs_uw.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqincd_rrs_uw.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqincd_rrs_uw.imm4 + 1u, true));
                         return result;
         }
         case 0x04E0F800u: { // sqdecd_r_rs_sx
@@ -51692,8 +51692,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdecd_rrs_sx.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqdecd_rrs_sx.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecd_rrs_sx.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqdecd_rrs_sx.imm4 + 1u, true));
                         return result;
         }
         case 0x04E0FC00u: { // uqdecd_r_rs_uw
@@ -51702,8 +51702,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqdecd_rrs_uw.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqdecd_rrs_uw.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecd_rrs_uw.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqdecd_rrs_uw.imm4 + 1u, true));
                         return result;
         }
         case 0x04F0C000u: { // incd_z_zs_
@@ -51711,8 +51711,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.incd_zzs.Zdn, true); op.arrangement = "d"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.incd_zzs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.incd_zzs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.incd_zzs.imm4 + 1u, true));
                         return result;
         }
         case 0x04F0C400u: { // decd_z_zs_
@@ -51720,8 +51720,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.decd_zzs.Zdn, true); op.arrangement = "d"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.decd_zzs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.decd_zzs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.decd_zzs.imm4 + 1u, true));
                         return result;
         }
         case 0x04F0E000u: { // incd_r_rs_
@@ -51730,8 +51730,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.incd_rrs.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.incd_rrs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.incd_rrs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.incd_rrs.imm4 + 1u, true));
                         return result;
         }
         case 0x04F0E400u: { // decd_r_rs_
@@ -51740,8 +51740,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.decd_rrs.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.decd_rrs.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.decd_rrs.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.decd_rrs.imm4 + 1u, true));
                         return result;
         }
         case 0x04F0F000u: { // sqincd_r_rs_x
@@ -51750,8 +51750,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqincd_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqincd_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqincd_rrs_x.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqincd_rrs_x.imm4 + 1u, true));
                         return result;
         }
         case 0x04F0F400u: { // uqincd_r_rs_x
@@ -51760,8 +51760,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqincd_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqincd_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqincd_rrs_x.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqincd_rrs_x.imm4 + 1u, true));
                         return result;
         }
         case 0x04F0F800u: { // sqdecd_r_rs_x
@@ -51770,8 +51770,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdecd_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqdecd_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecd_rrs_x.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqdecd_rrs_x.imm4 + 1u, true));
                         return result;
         }
         case 0x04F0FC00u: { // uqdecd_r_rs_x
@@ -51780,8 +51780,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqdecd_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqdecd_rrs_x.imm4, true));
                         result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecd_rrs_x.pattern, true));
+                        result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqdecd_rrs_x.imm4 + 1u, true));
                         return result;
         }
         case 0x05602400u: { // extq_z_zi_des
@@ -59719,6 +59719,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
+                        result.operands.push_back(Operand(OperandType::Register, enc.cntp_rpn.Rd, true));
                         { Operand op(OperandType::PredicateNRegister, enc.cntp_rpn.PNn | 8u, true); result.operands.push_back(op); }
                         return result;
         }
@@ -63572,7 +63573,6 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cntp_rpp.Rd, is_64bit));
                         const char* _sve_arr = nullptr;
                         switch (enc.cntp_rpp.size) {
                             case 0: _sve_arr = "b"; break;
@@ -63580,6 +63580,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
+                        result.operands.push_back(Operand(OperandType::Register, enc.cntp_rpp.Rd, true));
                         { Operand op(OperandType::PredicateRegister, enc.cntp_rpp.Pg, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.cntp_rpp.Pn, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
                         return result;
@@ -63589,7 +63590,6 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.firstp_rpp.Rd, is_64bit));
                         const char* _sve_arr = nullptr;
                         switch (enc.firstp_rpp.size) {
                             case 0: _sve_arr = "b"; break;
@@ -63597,6 +63597,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
+                        result.operands.push_back(Operand(OperandType::Register, enc.firstp_rpp.Rd, true));
                         { Operand op(OperandType::PredicateRegister, enc.firstp_rpp.Pg, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.firstp_rpp.Pn, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
                         return result;
@@ -63606,7 +63607,6 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.lastp_rpp.Rd, is_64bit));
                         const char* _sve_arr = nullptr;
                         switch (enc.lastp_rpp.size) {
                             case 0: _sve_arr = "b"; break;
@@ -63614,6 +63614,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
+                        result.operands.push_back(Operand(OperandType::Register, enc.lastp_rpp.Rd, true));
                         { Operand op(OperandType::PredicateRegister, enc.lastp_rpp.Pg, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.lastp_rpp.Pn, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
                         return result;
@@ -64004,8 +64005,6 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.whilege_pp_rr.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.whilege_pp_rr.Rm, is_64bit));
                         const char* _sve_arr = nullptr;
                         switch (enc.whilege_pp_rr.size) {
                             case 0: _sve_arr = "b"; break;
@@ -64013,6 +64012,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilege_pp_rr.Rn, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilege_pp_rr.Rm, true));
                         return result;
         }
         case 0x25205011u: { // whilegt_pp_rr_
@@ -64020,8 +64021,6 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.whilegt_pp_rr.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.whilegt_pp_rr.Rm, is_64bit));
                         const char* _sve_arr = nullptr;
                         switch (enc.whilegt_pp_rr.size) {
                             case 0: _sve_arr = "b"; break;
@@ -64029,6 +64028,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilegt_pp_rr.Rn, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilegt_pp_rr.Rm, true));
                         return result;
         }
         case 0x25205410u: { // whilelt_pp_rr_
@@ -64036,8 +64037,6 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.whilelt_pp_rr.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.whilelt_pp_rr.Rm, is_64bit));
                         const char* _sve_arr = nullptr;
                         switch (enc.whilelt_pp_rr.size) {
                             case 0: _sve_arr = "b"; break;
@@ -64045,6 +64044,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilelt_pp_rr.Rn, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilelt_pp_rr.Rm, true));
                         return result;
         }
         case 0x25205411u: { // whilele_pp_rr_
@@ -64052,8 +64053,6 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.whilele_pp_rr.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.whilele_pp_rr.Rm, is_64bit));
                         const char* _sve_arr = nullptr;
                         switch (enc.whilele_pp_rr.size) {
                             case 0: _sve_arr = "b"; break;
@@ -64061,6 +64060,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilele_pp_rr.Rn, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilele_pp_rr.Rm, true));
                         return result;
         }
         case 0x25205810u: { // whilehs_pp_rr_
@@ -64068,8 +64069,6 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.whilehs_pp_rr.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.whilehs_pp_rr.Rm, is_64bit));
                         const char* _sve_arr = nullptr;
                         switch (enc.whilehs_pp_rr.size) {
                             case 0: _sve_arr = "b"; break;
@@ -64077,6 +64076,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilehs_pp_rr.Rn, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilehs_pp_rr.Rm, true));
                         return result;
         }
         case 0x25205811u: { // whilehi_pp_rr_
@@ -64084,8 +64085,6 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.whilehi_pp_rr.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.whilehi_pp_rr.Rm, is_64bit));
                         const char* _sve_arr = nullptr;
                         switch (enc.whilehi_pp_rr.size) {
                             case 0: _sve_arr = "b"; break;
@@ -64093,6 +64092,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilehi_pp_rr.Rn, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilehi_pp_rr.Rm, true));
                         return result;
         }
         case 0x25205C10u: { // whilelo_pp_rr_
@@ -64100,8 +64101,6 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.whilelo_pp_rr.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.whilelo_pp_rr.Rm, is_64bit));
                         const char* _sve_arr = nullptr;
                         switch (enc.whilelo_pp_rr.size) {
                             case 0: _sve_arr = "b"; break;
@@ -64109,6 +64108,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilelo_pp_rr.Rn, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilelo_pp_rr.Rm, true));
                         return result;
         }
         case 0x25205C11u: { // whilels_pp_rr_
@@ -64116,8 +64117,6 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.whilels_pp_rr.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.whilels_pp_rr.Rm, is_64bit));
                         const char* _sve_arr = nullptr;
                         switch (enc.whilels_pp_rr.size) {
                             case 0: _sve_arr = "b"; break;
@@ -64125,6 +64124,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 2: _sve_arr = "s"; break;
                             case 3: _sve_arr = "d"; break;
                         }
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilels_pp_rr.Rn, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilels_pp_rr.Rm, true));
                         return result;
         }
         default: break;
@@ -64137,8 +64138,6 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.whilewr_prr.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.whilewr_prr.Rm, is_64bit));
                         const char* _sve_arr = nullptr;
                         switch (enc.whilewr_prr.size) {
                             case 0: _sve_arr = "b"; break;
@@ -64147,6 +64146,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 3: _sve_arr = "d"; break;
                         }
                         { Operand op(OperandType::PredicateRegister, enc.whilewr_prr.Pd, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilewr_prr.Rn, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilewr_prr.Rm, true));
                         return result;
         }
         case 0x25203010u: { // whilerw_p_rr_
@@ -64154,8 +64155,6 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.whilerw_prr.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.whilerw_prr.Rm, is_64bit));
                         const char* _sve_arr = nullptr;
                         switch (enc.whilerw_prr.size) {
                             case 0: _sve_arr = "b"; break;
@@ -64164,6 +64163,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 3: _sve_arr = "d"; break;
                         }
                         { Operand op(OperandType::PredicateRegister, enc.whilerw_prr.Pd, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilerw_prr.Rn, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilerw_prr.Rm, true));
                         return result;
         }
         default: break;
@@ -67672,6 +67673,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 3: _sve_arr = "d"; break;
                         }
                         { Operand op(OperandType::PredicateNRegister, enc.whilege_pn_rr.PNd | 8u, true); result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilege_pn_rr.Rn, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilege_pn_rr.Rm, true));
                         return result;
         }
         case 0x25204018u: { // whilegt_pn_rr_
@@ -67689,6 +67692,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 3: _sve_arr = "d"; break;
                         }
                         { Operand op(OperandType::PredicateNRegister, enc.whilegt_pn_rr.PNd | 8u, true); result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilegt_pn_rr.Rn, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilegt_pn_rr.Rm, true));
                         return result;
         }
         case 0x25204410u: { // whilelt_pn_rr_
@@ -67706,6 +67711,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 3: _sve_arr = "d"; break;
                         }
                         { Operand op(OperandType::PredicateNRegister, enc.whilelt_pn_rr.PNd | 8u, true); result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilelt_pn_rr.Rn, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilelt_pn_rr.Rm, true));
                         return result;
         }
         case 0x25204418u: { // whilele_pn_rr_
@@ -67723,6 +67730,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 3: _sve_arr = "d"; break;
                         }
                         { Operand op(OperandType::PredicateNRegister, enc.whilele_pn_rr.PNd | 8u, true); result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilele_pn_rr.Rn, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilele_pn_rr.Rm, true));
                         return result;
         }
         case 0x25204810u: { // whilehs_pn_rr_
@@ -67740,6 +67749,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 3: _sve_arr = "d"; break;
                         }
                         { Operand op(OperandType::PredicateNRegister, enc.whilehs_pn_rr.PNd | 8u, true); result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilehs_pn_rr.Rn, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilehs_pn_rr.Rm, true));
                         return result;
         }
         case 0x25204818u: { // whilehi_pn_rr_
@@ -67757,6 +67768,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 3: _sve_arr = "d"; break;
                         }
                         { Operand op(OperandType::PredicateNRegister, enc.whilehi_pn_rr.PNd | 8u, true); result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilehi_pn_rr.Rn, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilehi_pn_rr.Rm, true));
                         return result;
         }
         case 0x25204C10u: { // whilelo_pn_rr_
@@ -67774,6 +67787,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 3: _sve_arr = "d"; break;
                         }
                         { Operand op(OperandType::PredicateNRegister, enc.whilelo_pn_rr.PNd | 8u, true); result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilelo_pn_rr.Rn, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilelo_pn_rr.Rm, true));
                         return result;
         }
         case 0x25204C18u: { // whilels_pn_rr_
@@ -67791,6 +67806,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 3: _sve_arr = "d"; break;
                         }
                         { Operand op(OperandType::PredicateNRegister, enc.whilels_pn_rr.PNd | 8u, true); result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilels_pn_rr.Rn, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.whilels_pn_rr.Rm, true));
                         return result;
         }
         default: break;

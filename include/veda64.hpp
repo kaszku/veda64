@@ -1621,6 +1621,7 @@ enum class OperandType {
     Extend,             // Extend specifier (UXTB, SXTW, etc.)
     Index,              // Element index
     Pattern,            // SVE pattern specifier
+    SVEMulImm,          // SVE mul multiplier (MUL #N where N=imm4+1)
     Prefetch,           // Prefetch operation
     Barrier,            // Barrier option
     FloatImmediate,     // Floating-point immediate (#0.0, etc.)

@@ -1047,6 +1047,7 @@ class ARM64XMLParser:
         code.append("    Extend,             // Extend specifier (UXTB, SXTW, etc.)")
         code.append("    Index,              // Element index")
         code.append("    Pattern,            // SVE pattern specifier")
+        code.append("    SVEMulImm,          // SVE mul multiplier (MUL #N where N=imm4+1)")
         code.append("    Prefetch,           // Prefetch operation")
         code.append("    Barrier,            // Barrier option")
         code.append("    FloatImmediate,     // Floating-point immediate (#0.0, etc.)")
@@ -1211,11 +1212,7 @@ class ARM64XMLParser:
         code.append("            return is_64bit ? \"xzr\" : \"wzr\";")
         code.append("        }")
         code.append("    }")
-        code.append("    // Use register aliases for x29 (fp) and x30 (lr)")
-        code.append("    if (is_64bit) {")
-        code.append("        if (reg == 29) return \"fp\";")
-        code.append("        if (reg == 30) return \"lr\";")
-        code.append("    }")
+        code.append("    // Note: x29/x30 shown as x29/x30, not fp/lr (ARM disassembly convention)")
         code.append("    char prefix = is_64bit ? 'x' : 'w';")
         code.append("    return std::string(1, prefix) + std::to_string(reg);")
         code.append("}")
@@ -2043,9 +2040,13 @@ class ARM64XMLParser:
         code.append("                // Legacy format (value < 8): option only, amount=0")
         code.append("                uint32_t ext_type = value & 0x7;")
         code.append("                uint32_t ext_amount = (value >> 8) & 0x7;")
-        code.append("                const char* extends[] = {\"uxtb\", \"uxth\", \"uxtw\", \"lsl\", ")
-        code.append("                                         \"sxtb\", \"sxth\", \"sxtw\", \"sxtx\"};")
-        code.append("                std::string result = extends[ext_type];")
+        code.append("                // Index 3: 'lsl' for 64-bit (UXTX alias), 'uxtx' for 32-bit")
+        code.append("                const char* extends_64[] = {\"uxtb\", \"uxth\", \"uxtw\", \"lsl\",")
+        code.append("                                            \"sxtb\", \"sxth\", \"sxtw\", \"sxtx\"};")
+        code.append("                const char* extends_32[] = {\"uxtb\", \"uxth\", \"uxtw\", \"uxtx\",")
+        code.append("                                            \"sxtb\", \"sxth\", \"sxtw\", \"sxtx\"};")
+        code.append("                const char* const* ext_table = is_64bit ? extends_64 : extends_32;")
+        code.append("                std::string result = ext_table[ext_type];")
         code.append("                if (ext_amount != 0) result += \" #\" + std::to_string(ext_amount);")
         code.append("                return result;")
         code.append("            }")
@@ -2075,8 +2076,21 @@ class ARM64XMLParser:
         code.append("            }")
         code.append("        ")
         code.append("        case OperandType::Pattern:")
-        code.append("            // SVE pattern specifier")
-        code.append("            return \"#\" + std::to_string(value);")
+        code.append("            // SVE predicate pattern specifier (named values per ARM spec)")
+        code.append("            {")
+        code.append("                static const char* named_pats[32] = {")
+        code.append("                    \"pow2\",\"vl1\",\"vl2\",\"vl3\",\"vl4\",\"vl5\",\"vl6\",\"vl7\",")
+        code.append("                    \"vl8\",\"vl16\",\"vl32\",\"vl64\",\"vl128\",\"vl256\",nullptr,nullptr,")
+        code.append("                    nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,")
+        code.append("                    nullptr,nullptr,nullptr,nullptr,nullptr,\"mul4\",\"mul3\",\"all\"};")
+        code.append("                if (value < 32 && named_pats[value])")
+        code.append("                    return named_pats[value];")
+        code.append("                return \"#\" + std::to_string(value);")
+        code.append("            }")
+        code.append("        ")
+        code.append("        case OperandType::SVEMulImm:")
+        code.append("            // SVE multiplier: 'mul #N' where value is already N (=imm4+1)")
+        code.append("            return \"mul #\" + std::to_string(value);")
         code.append("        ")
         code.append("        case OperandType::Prefetch:")
         code.append("            // Prefetch operation")
@@ -2373,6 +2387,7 @@ class ARM64XMLParser:
         code.append("    Extend,             // Extend specifier (UXTB, SXTW, etc.)")
         code.append("    Index,              // Element index")
         code.append("    Pattern,            // SVE pattern specifier")
+        code.append("    SVEMulImm,          // SVE mul multiplier (MUL #N where N=imm4+1)")
         code.append("    Prefetch,           // Prefetch operation")
         code.append("    Barrier,            // Barrier option")
         code.append("    FloatImmediate,     // Floating-point immediate (#0.0, etc.)")
@@ -4359,10 +4374,10 @@ class ARM64XMLParser:
                 # Suppress default extend: option=3 (LSL) with imm3=0 for 64-bit, option=2 (UXTW=LSL) with imm3=0 for 32-bit
                 code.append(f"{ind}bool is_default = (is_64bit ? (option == 3) : (option == 2)) && imm3 == 0;")
                 code.append(f"{ind}if (!is_default) {{")
-                code.append(f"{ind}    result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), true));")
+                code.append(f"{ind}    result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), is_64bit));")
                 code.append(f"{ind}}}")
             elif option_field:
-                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Extend, option, true));")
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Extend, option, is_64bit));")
 
             code.append(f"{ind}return result;")
             return code
@@ -6137,11 +6152,35 @@ class ARM64XMLParser:
             code.append(f"{ind}return result;")
             return code
 
+        # Pre-compute: which GP registers appear in the SVE/predicate template (will be emitted in template order)
+        # Mapping from template token names (Xn, Xm, Wn...) to field_map keys (Rn, Rm...)
+        _gp_tok_to_field = {
+            'Xn': 'Rn', 'Xm': 'Rm', 'Xd': 'Rd', 'Xt': 'Rt', 'Xs': 'Rs',
+            'Wn': 'Rn', 'Wm': 'Rm', 'Wd': 'Rd', 'Wt': 'Rt',
+            'XnSP': 'Rn', 'XdSP': 'Rd', 'XnOrXZR': 'Rn',
+        }
+        _gp_tok_is_64 = {
+            'Xn': True, 'Xm': True, 'Xd': True, 'Xt': True, 'Xs': True,
+            'Wn': False, 'Wm': False, 'Wd': False, 'Wt': False,
+            'XnSP': True, 'XdSP': True, 'XnOrXZR': True,
+        }
+        _sve_has_pred_or_z = any(rn in field_map and not field_map[rn]['is_fixed'] for rn in
+            ('Zd','Zn','Zm','Za','Zk','Zt','Zda','Zdn','Pd','Pn','Pm','Pg','Pt','Pv'))
+        _tmpl_for_gp = self._parse_template_operands(encoding_info.get('asm_template','')) if _sve_has_pred_or_z else []
+        _gp_in_sve_template = set()  # field_map keys (Rn, Rm) handled in SVE template order
+        for _top in _tmpl_for_gp:
+            _tf = _top.get('field','')
+            if _tf in _gp_tok_to_field and not _top.get('in_mem_bracket', False):
+                _gp_in_sve_template.add(_gp_tok_to_field[_tf])
+
         for reg_name in ['Rd', 'Rn', 'Rm', 'Ra', 'Rt', 'Rs', 'Rt2', 'Rdn']:
             if reg_name in field_map and not field_map[reg_name]['is_fixed']:
                 field_cpp_name = field_map[reg_name]['name']
                 # Skip GP registers that are SVE memory bases (emitted later in SVE template loop)
                 if reg_name in sve_mem_base_regs:
+                    continue
+                # Skip GP registers that appear in SVE/predicate template (emitted in template order)
+                if reg_name in _gp_in_sve_template:
                     continue
                 # Skip Rm for FCMP/FCMPE zero variants (replaced by #0.0 below)
                 if scalar_fp_arr and is_fp_cmp_zero and reg_name == 'Rm':
@@ -6621,6 +6660,14 @@ class ARM64XMLParser:
                     is_pair_second = True
 
                 if actual_field not in field_map or field_map[actual_field]['is_fixed']:
+                    # Handle GP register tokens like Xn→Rn (64-bit), Wn→Rn (32-bit) in SVE templates
+                    if field in _gp_tok_to_field and not top.get('in_mem_bracket', False):
+                        _gp_key = _gp_tok_to_field[field]
+                        _gp_64 = _gp_tok_is_64[field]
+                        if _gp_key in field_map and not field_map[_gp_key]['is_fixed'] and _gp_key not in emitted_fields:
+                            _gp_cpp = field_map[_gp_key]['name']
+                            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{_gp_cpp}, {str(_gp_64).lower()}));")
+                            emitted_fields.add(_gp_key)
                     continue
                 # Skip if already consumed as part of a complex memory operand (e.g. Zm in [Xn, Zm.T])
                 # Allow re-emission for fields that appear multiple times in the template (e.g. NBSL Zdn)
@@ -6857,6 +6904,10 @@ class ARM64XMLParser:
                 if imm_name == 'imm6' and has_shift_field:
                     continue
 
+                # Skip imm4 when SVE pattern is present - it's the MUL multiplier, handled after pattern
+                if imm_name == 'imm4' and 'pattern' in field_map and not field_map['pattern']['is_fixed']:
+                    continue
+
                 # For SVE shift-by-immediate: replace raw imm3 with computed shift amount
                 if imm_name == 'imm3' and has_tsz_size:
                     # Determine shift direction from mnemonic
@@ -6936,9 +6987,13 @@ class ARM64XMLParser:
             code.append(f"{ind}result.condition = static_cast<Condition>(enc.{member_name}.{cc_field});")
 
         # Handle SVE pattern operand (pow2, vl1..vl256, mul3, mul4, all)
+        # Followed by optional MUL #N multiplier (imm4+1) when imm4 is present
         if 'pattern' in field_map and not field_map['pattern']['is_fixed']:
             pattern_field = field_map['pattern']['name']
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::Pattern, enc.{member_name}.{pattern_field}, true));")
+            if 'imm4' in field_map and not field_map['imm4']['is_fixed']:
+                imm4_field = field_map['imm4']['name']
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::SVEMulImm, enc.{member_name}.{imm4_field} + 1u, true));")
 
         # Handle prefetch operation (pldl1keep, pstl2strm, etc.)
         # Skip if already emitted in SVE template loop (e.g., SVE PRFB with Pg/[Xn,#imm,mul vl])

@@ -1535,11 +1535,7 @@ std::string Operand::format_register(uint32_t reg, bool is_64bit, bool is_sp) {
             return is_64bit ? "xzr" : "wzr";
         }
     }
-    // Use register aliases for x29 (fp) and x30 (lr)
-    if (is_64bit) {
-        if (reg == 29) return "fp";
-        if (reg == 30) return "lr";
-    }
+    // Note: x29/x30 shown as x29/x30, not fp/lr (ARM disassembly convention)
     char prefix = is_64bit ? 'x' : 'w';
     return std::string(1, prefix) + std::to_string(reg);
 }
@@ -3236,9 +3232,13 @@ std::string Operand::to_string() const {
                 // Legacy format (value < 8): option only, amount=0
                 uint32_t ext_type = value & 0x7;
                 uint32_t ext_amount = (value >> 8) & 0x7;
-                const char* extends[] = {"uxtb", "uxth", "uxtw", "lsl",
-                                         "sxtb", "sxth", "sxtw", "sxtx"};
-                std::string result = extends[ext_type];
+                // Index 3: 'lsl' for 64-bit (UXTX alias), 'uxtx' for 32-bit
+                const char* extends_64[] = {"uxtb", "uxth", "uxtw", "lsl",
+                                            "sxtb", "sxth", "sxtw", "sxtx"};
+                const char* extends_32[] = {"uxtb", "uxth", "uxtw", "uxtx",
+                                            "sxtb", "sxth", "sxtw", "sxtx"};
+                const char* const* ext_table = is_64bit ? extends_64 : extends_32;
+                std::string result = ext_table[ext_type];
                 if (ext_amount != 0) result += " #" + std::to_string(ext_amount);
                 return result;
             }
@@ -3268,8 +3268,21 @@ std::string Operand::to_string() const {
             }
 
         case OperandType::Pattern:
-            // SVE pattern specifier
-            return "#" + std::to_string(value);
+            // SVE predicate pattern specifier (named values per ARM spec)
+            {
+                static const char* named_pats[32] = {
+                    "pow2","vl1","vl2","vl3","vl4","vl5","vl6","vl7",
+                    "vl8","vl16","vl32","vl64","vl128","vl256",nullptr,nullptr,
+                    nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,
+                    nullptr,nullptr,nullptr,nullptr,nullptr,"mul4","mul3","all"};
+                if (value < 32 && named_pats[value])
+                    return named_pats[value];
+                return "#" + std::to_string(value);
+            }
+
+        case OperandType::SVEMulImm:
+            // SVE multiplier: 'mul #N' where value is already N (=imm4+1)
+            return "mul #" + std::to_string(value);
 
         case OperandType::Prefetch:
             // Prefetch operation
