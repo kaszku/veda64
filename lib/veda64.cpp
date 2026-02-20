@@ -2201,6 +2201,35 @@ std::string Operand::to_string() const {
         case OperandType::SMEZTRegister:
             return "zt0";
 
+        case OperandType::PstateField:
+            {
+                // value encoding: bits[9:7]=op1, bits[6:3]=CRm, bits[2:0]=op2
+                uint8_t op1v = (value >> 7) & 7;
+                uint8_t CRmv = (value >> 3) & 0xF;
+                uint8_t op2v = value & 7;
+                if (op1v == 0 && op2v == 3) return "uao";
+                if (op1v == 0 && op2v == 4) return "pan";
+                if (op1v == 0 && op2v == 5) return "spsel";
+                if (op1v == 1 && op2v == 0 && (CRmv >> 1) == 0) return "allint";
+                if (op1v == 1 && op2v == 0 && (CRmv >> 1) == 1) return "pm";
+                if (op1v == 3 && op2v == 1) return "ssbs";
+                if (op1v == 3 && op2v == 2) return "dit";
+                if (op1v == 3 && op2v == 3 && (CRmv >> 1) == 1) return "svcrsm";
+                if (op1v == 3 && op2v == 3 && (CRmv >> 1) == 2) return "svcrza";
+                if (op1v == 3 && op2v == 3 && (CRmv >> 1) == 3) return "svcrsmza";
+                if (op1v == 3 && op2v == 4) return "tco";
+                if (op1v == 3 && op2v == 6) return "daifset";
+                if (op1v == 3 && op2v == 7) return "daifclr";
+                return "#" + std::to_string(value);
+            }
+
+        case OperandType::FixedSym:
+            {
+                static const char* fixed_syms[] = {"csync", "dsync"};
+                if (value < 2) return fixed_syms[value];
+                return "?";
+            }
+
         case OperandType::MemoryBase:
             // [Xn|SP]
             return "[" + format_register(base_reg, true, true) + "]";

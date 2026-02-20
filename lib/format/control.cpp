@@ -5081,20 +5081,17 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD503223Fu: { // PSB_HC_hints
                         Instruction result(Mnemonic::PSB, insn);
-                        ControlEncoding enc = {};
-                        enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::FixedSym, 0u, false)); // csync
                         return result;
         }
         case 0xD503225Fu: { // TSB_HC_hints
                         Instruction result(Mnemonic::TSB, insn);
-                        ControlEncoding enc = {};
-                        enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::FixedSym, 0u, false)); // csync
                         return result;
         }
         case 0xD503227Fu: { // GCSB_HD_hints
                         Instruction result(Mnemonic::GCSB, insn);
-                        ControlEncoding enc = {};
-                        enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::FixedSym, 1u, false)); // dsync
                         return result;
         }
         case 0xD503229Fu: { // CSDB_HI_hints
@@ -5555,12 +5552,30 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     switch (insn & 0xFFFFF9FFu) {
         case 0xD503407Fu: { // SMSTOP_MSR_SI_pstate
                         Instruction result(Mnemonic::MSR, insn);
+                        {
+                            uint32_t _op1 = (insn >> 16) & 7;
+                            uint32_t _CRm = (insn >> 8) & 0xF;
+                            uint32_t _op2 = (insn >> 5) & 7;
+                            uint32_t _pf_val = (_op1 << 7) | (_CRm << 3) | _op2;
+                            result.operands.push_back(Operand(OperandType::PstateField, _pf_val, false));
+                            result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));
+                            return result;
+                        }
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD503417Fu: { // SMSTART_MSR_SI_pstate
                         Instruction result(Mnemonic::MSR, insn);
+                        {
+                            uint32_t _op1 = (insn >> 16) & 7;
+                            uint32_t _CRm = (insn >> 8) & 0xF;
+                            uint32_t _op2 = (insn >> 5) & 7;
+                            uint32_t _pf_val = (_op1 << 7) | (_CRm << 3) | _op2;
+                            result.operands.push_back(Operand(OperandType::PstateField, _pf_val, false));
+                            result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));
+                            return result;
+                        }
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
@@ -5658,9 +5673,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                             case 12: result.mnemonic = Mnemonic::AUTIA1716; break;
                             case 14: result.mnemonic = Mnemonic::AUTIB1716; break;
                             case 16: result.mnemonic = Mnemonic::ESB; break;
-                            case 17: result.mnemonic = Mnemonic::PSB; break;
-                            case 18: result.mnemonic = Mnemonic::TSB; break;
-                            case 19: result.mnemonic = Mnemonic::GCSB; break;
+                            case 17: result.mnemonic = Mnemonic::PSB; result.operands.push_back(Operand(OperandType::FixedSym, 0, false)); break;  // csync
+                            case 18: result.mnemonic = Mnemonic::TSB; result.operands.push_back(Operand(OperandType::FixedSym, 0, false)); break;  // csync
+                            case 19: result.mnemonic = Mnemonic::GCSB; result.operands.push_back(Operand(OperandType::FixedSym, 1, false)); break; // dsync
                             case 20: result.mnemonic = Mnemonic::CSDB; break;
                             case 22: result.mnemonic = Mnemonic::CLRBHB; break;
                             case 24: result.mnemonic = Mnemonic::PACIAZ; break;
@@ -5695,6 +5710,15 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     switch (insn & 0xFFF8F01Fu) {
         case 0xD500401Fu: { // MSR_SI_pstate
                         Instruction result(Mnemonic::MSR, insn);
+                        {
+                            uint32_t _op1 = (insn >> 16) & 7;
+                            uint32_t _CRm = (insn >> 8) & 0xF;
+                            uint32_t _op2 = (insn >> 5) & 7;
+                            uint32_t _pf_val = (_op1 << 7) | (_CRm << 3) | _op2;
+                            result.operands.push_back(Operand(OperandType::PstateField, _pf_val, false));
+                            result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));
+                            return result;
+                        }
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;

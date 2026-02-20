@@ -1630,6 +1630,8 @@ enum class OperandType {
     MemoryOffsetMulVL,  // SVE memory [base, #offset, mul vl]
     MemorySVEOffset,    // SVE gather memory [Zn.T, #offset]
     SMEZTRegister,      // SME ZT0 lookup table register
+    PstateField,        // PSTATE field name for MSR/MRS immediate (SPSel, DAIFSet, etc.)
+    FixedSym,           // Fixed symbolic operand (e.g. CSYNC, DSYNC)
     Unknown
 };
 

@@ -1061,6 +1061,8 @@ class ARM64XMLParser:
         code.append("    MemoryOffsetMulVL,  // SVE memory [base, #offset, mul vl]")
         code.append("    MemorySVEOffset,    // SVE gather memory [Zn.T, #offset]")
         code.append("    SMEZTRegister,      // SME ZT0 lookup table register")
+        code.append("    PstateField,        // PSTATE field name for MSR/MRS immediate (SPSel, DAIFSet, etc.)")
+        code.append("    FixedSym,           // Fixed symbolic operand (e.g. CSYNC, DSYNC)")
         code.append("    Unknown")
         code.append("};")
         code.append("")
@@ -1903,6 +1905,35 @@ class ARM64XMLParser:
         code.append("        case OperandType::SMEZTRegister:")
         code.append("            return \"zt0\";")
         code.append("        ")
+        code.append("        case OperandType::PstateField:")
+        code.append("            {")
+        code.append("                // value encoding: bits[9:7]=op1, bits[6:3]=CRm, bits[2:0]=op2")
+        code.append("                uint8_t op1v = (value >> 7) & 7;")
+        code.append("                uint8_t CRmv = (value >> 3) & 0xF;")
+        code.append("                uint8_t op2v = value & 7;")
+        code.append("                if (op1v == 0 && op2v == 3) return \"uao\";")
+        code.append("                if (op1v == 0 && op2v == 4) return \"pan\";")
+        code.append("                if (op1v == 0 && op2v == 5) return \"spsel\";")
+        code.append("                if (op1v == 1 && op2v == 0 && (CRmv >> 1) == 0) return \"allint\";")
+        code.append("                if (op1v == 1 && op2v == 0 && (CRmv >> 1) == 1) return \"pm\";")
+        code.append("                if (op1v == 3 && op2v == 1) return \"ssbs\";")
+        code.append("                if (op1v == 3 && op2v == 2) return \"dit\";")
+        code.append("                if (op1v == 3 && op2v == 3 && (CRmv >> 1) == 1) return \"svcrsm\";")
+        code.append("                if (op1v == 3 && op2v == 3 && (CRmv >> 1) == 2) return \"svcrza\";")
+        code.append("                if (op1v == 3 && op2v == 3 && (CRmv >> 1) == 3) return \"svcrsmza\";")
+        code.append("                if (op1v == 3 && op2v == 4) return \"tco\";")
+        code.append("                if (op1v == 3 && op2v == 6) return \"daifset\";")
+        code.append("                if (op1v == 3 && op2v == 7) return \"daifclr\";")
+        code.append("                return \"#\" + std::to_string(value);")
+        code.append("            }")
+        code.append("        ")
+        code.append("        case OperandType::FixedSym:")
+        code.append("            {")
+        code.append("                static const char* fixed_syms[] = {\"csync\", \"dsync\"};")
+        code.append("                if (value < 2) return fixed_syms[value];")
+        code.append("                return \"?\";")
+        code.append("            }")
+        code.append("        ")
         code.append("        case OperandType::MemoryBase:")
         code.append("            // [Xn|SP]")
         code.append("            return \"[\" + format_register(base_reg, true, true) + \"]\";")
@@ -2400,6 +2431,8 @@ class ARM64XMLParser:
         code.append("    MemoryOffsetMulVL,  // SVE memory [base, #offset, mul vl]")
         code.append("    MemorySVEOffset,    // SVE gather memory [Zn.T, #offset]")
         code.append("    SMEZTRegister,      // SME ZT0 lookup table register")
+        code.append("    PstateField,        // PSTATE field name for MSR/MRS immediate (SPSel, DAIFSet, etc.)")
+        code.append("    FixedSym,           // Fixed symbolic operand (e.g. CSYNC, DSYNC)")
         code.append("    Unknown")
         code.append("};")
         code.append("")
@@ -3609,6 +3642,7 @@ class ARM64XMLParser:
         is_branch = mnemonic in ['B', 'BL', 'CBZ', 'CBNZ', 'TBZ', 'TBNZ', 'BC']
         is_ret = mnemonic == 'RET'
         is_hint = mnemonic == 'HINT'
+        is_msr_pstate = 'pstate' in encoding_name and mnemonic == 'MSR' and 'si' in encoding_name
         is_movz = mnemonic == 'MOVZ'
         is_movn = mnemonic == 'MOVN'
         is_movk = mnemonic == 'MOVK'
@@ -3654,9 +3688,9 @@ class ARM64XMLParser:
             code.append(f"{ind}    case 12: result.mnemonic = Mnemonic::AUTIA1716; break;")
             code.append(f"{ind}    case 14: result.mnemonic = Mnemonic::AUTIB1716; break;")
             code.append(f"{ind}    case 16: result.mnemonic = Mnemonic::ESB; break;")
-            code.append(f"{ind}    case 17: result.mnemonic = Mnemonic::PSB; break;")
-            code.append(f"{ind}    case 18: result.mnemonic = Mnemonic::TSB; break;")
-            code.append(f"{ind}    case 19: result.mnemonic = Mnemonic::GCSB; break;")
+            code.append(f"{ind}    case 17: result.mnemonic = Mnemonic::PSB; result.operands.push_back(Operand(OperandType::FixedSym, 0, false)); break;  // csync")
+            code.append(f"{ind}    case 18: result.mnemonic = Mnemonic::TSB; result.operands.push_back(Operand(OperandType::FixedSym, 0, false)); break;  // csync")
+            code.append(f"{ind}    case 19: result.mnemonic = Mnemonic::GCSB; result.operands.push_back(Operand(OperandType::FixedSym, 1, false)); break; // dsync")
             code.append(f"{ind}    case 20: result.mnemonic = Mnemonic::CSDB; break;")
             code.append(f"{ind}    case 22: result.mnemonic = Mnemonic::CLRBHB; break;")
             code.append(f"{ind}    case 24: result.mnemonic = Mnemonic::PACIAZ; break;")
@@ -3677,6 +3711,28 @@ class ARM64XMLParser:
             code.append(f"{ind}// RET - X30 is implicit, no operands needed")
             code.append(f"{ind}return result;")
             return code
+
+        # Special case: barrier hint instructions with fixed symbolic operands
+        if mnemonic in ('PSB', 'TSB'):
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::FixedSym, 0u, false)); // csync")
+            code.append(f"{ind}return result;")
+            return code
+        if mnemonic == 'GCSB':
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::FixedSym, 1u, false)); // dsync")
+            code.append(f"{ind}return result;")
+            return code
+
+        # Special case: MSR (immediate) - PSTATE field write
+        if is_msr_pstate:
+            code.append(f"{ind}{{")
+            code.append(f"{ind}    uint32_t _op1 = (insn >> 16) & 7;")
+            code.append(f"{ind}    uint32_t _CRm = (insn >> 8) & 0xF;")
+            code.append(f"{ind}    uint32_t _op2 = (insn >> 5) & 7;")
+            code.append(f"{ind}    uint32_t _pf_val = (_op1 << 7) | (_CRm << 3) | _op2;")
+            code.append(f"{ind}    result.operands.push_back(Operand(OperandType::PstateField, _pf_val, false));")
+            code.append(f"{ind}    result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));")
+            code.append(f"{ind}    return result;")
+            code.append(f"{ind}}}")
 
         # Decode struct for field extraction (after early returns that don't need it)
         code.append(f"{ind}{union_name} enc = {{}};")
@@ -6782,11 +6838,22 @@ class ARM64XMLParser:
                         code.append(f"{ind}{{ Operand op(OperandType::PredicateRegister, enc.{member_name}.{field_cpp_name}, true); op.arrangement = {arr_expr}; result.operands.push_back(op); }}")
 
             # Emit any remaining SVE/P fields not found in template
+            # Compute fallback arrangement for Z regs not in template
+            _fallback_arr_expr = 'nullptr'
+            if has_sve_size:
+                _fallback_arr_expr = '_sve_arr'
+            else:
+                # Look for explicit fixed arrangement in template_ops (e.g. .D from MOV <Zd>.D)
+                for _top in template_ops:
+                    _tarr = _top.get('arrangement')
+                    if _tarr and _tarr not in ('T', 'Tb', 'Ts'):
+                        _fallback_arr_expr = f'"{_tarr}"'
+                        break
             for reg_name in list(sve_z_names) + list(sve_p_names):
                 if reg_name in field_map and not field_map[reg_name]['is_fixed'] and reg_name not in emitted_fields:
                     field_cpp_name = field_map[reg_name]['name']
                     if reg_name in sve_z_names:
-                        code.append(f"{ind}result.operands.push_back(Operand(OperandType::SVERegister, enc.{member_name}.{field_cpp_name}, true));")
+                        code.append(f"{ind}{{ Operand op(OperandType::SVERegister, enc.{member_name}.{field_cpp_name}, true); op.arrangement = {_fallback_arr_expr}; result.operands.push_back(op); }}")
                     elif reg_name.startswith('PN'):
                         code.append(f"{ind}result.operands.push_back(Operand(OperandType::PredicateNRegister, enc.{member_name}.{field_cpp_name} | 8u, true));")
                     else:
@@ -6994,7 +7061,14 @@ class ARM64XMLParser:
         # Followed by optional MUL #N multiplier (imm4+1) when imm4 is present
         if 'pattern' in field_map and not field_map['pattern']['is_fixed']:
             pattern_field = field_map['pattern']['name']
-            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Pattern, enc.{member_name}.{pattern_field}, true));")
+            # Suppress ALL(31) when pattern is optional (template uses {, <pattern>} notation)
+            _pat_optional = '{' in asm_template and 'pattern' in asm_template
+            if _pat_optional:
+                code.append(f"{ind}if (enc.{member_name}.{pattern_field} != 31) {{")
+                code.append(f"{ind}    result.operands.push_back(Operand(OperandType::Pattern, enc.{member_name}.{pattern_field}, true));")
+                code.append(f"{ind}}}")
+            else:
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Pattern, enc.{member_name}.{pattern_field}, true));")
             if 'imm4' in field_map and not field_map['imm4']['is_fixed']:
                 imm4_field = field_map['imm4']['name']
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::SVEMulImm, enc.{member_name}.{imm4_field} + 1u, true));")

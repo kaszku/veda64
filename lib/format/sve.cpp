@@ -51193,7 +51193,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cntb_rs.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.cntb_rs.pattern, true));
+                        if (enc.cntb_rs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.cntb_rs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.cntb_rs.imm4 + 1u, true));
                         return result;
         }
@@ -51203,7 +51205,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqincb_rrs_sx.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.sqincb_rrs_sx.pattern, true));
+                        if (enc.sqincb_rrs_sx.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.sqincb_rrs_sx.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqincb_rrs_sx.imm4 + 1u, true));
                         return result;
         }
@@ -51213,7 +51217,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqincb_rrs_uw.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.uqincb_rrs_uw.pattern, true));
+                        if (enc.uqincb_rrs_uw.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.uqincb_rrs_uw.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqincb_rrs_uw.imm4 + 1u, true));
                         return result;
         }
@@ -51223,7 +51229,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdecb_rrs_sx.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecb_rrs_sx.pattern, true));
+                        if (enc.sqdecb_rrs_sx.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecb_rrs_sx.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqdecb_rrs_sx.imm4 + 1u, true));
                         return result;
         }
@@ -51233,7 +51241,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqdecb_rrs_uw.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecb_rrs_uw.pattern, true));
+                        if (enc.uqdecb_rrs_uw.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecb_rrs_uw.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqdecb_rrs_uw.imm4 + 1u, true));
                         return result;
         }
@@ -51243,7 +51253,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.incb_rrs.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.incb_rrs.pattern, true));
+                        if (enc.incb_rrs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.incb_rrs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.incb_rrs.imm4 + 1u, true));
                         return result;
         }
@@ -51253,7 +51265,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.decb_rrs.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.decb_rrs.pattern, true));
+                        if (enc.decb_rrs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.decb_rrs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.decb_rrs.imm4 + 1u, true));
                         return result;
         }
@@ -51263,7 +51277,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqincb_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.sqincb_rrs_x.pattern, true));
+                        if (enc.sqincb_rrs_x.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.sqincb_rrs_x.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqincb_rrs_x.imm4 + 1u, true));
                         return result;
         }
@@ -51273,7 +51289,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqincb_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.uqincb_rrs_x.pattern, true));
+                        if (enc.uqincb_rrs_x.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.uqincb_rrs_x.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqincb_rrs_x.imm4 + 1u, true));
                         return result;
         }
@@ -51283,7 +51301,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdecb_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecb_rrs_x.pattern, true));
+                        if (enc.sqdecb_rrs_x.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecb_rrs_x.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqdecb_rrs_x.imm4 + 1u, true));
                         return result;
         }
@@ -51293,7 +51313,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqdecb_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecb_rrs_x.pattern, true));
+                        if (enc.uqdecb_rrs_x.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecb_rrs_x.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqdecb_rrs_x.imm4 + 1u, true));
                         return result;
         }
@@ -51302,7 +51324,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.sqinch_zzs.Zdn, true); op.arrangement = "h"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.sqinch_zzs.pattern, true));
+                        if (enc.sqinch_zzs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.sqinch_zzs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqinch_zzs.imm4 + 1u, true));
                         return result;
         }
@@ -51311,7 +51335,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.uqinch_zzs.Zdn, true); op.arrangement = "h"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.uqinch_zzs.pattern, true));
+                        if (enc.uqinch_zzs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.uqinch_zzs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqinch_zzs.imm4 + 1u, true));
                         return result;
         }
@@ -51320,7 +51346,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.sqdech_zzs.Zdn, true); op.arrangement = "h"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.sqdech_zzs.pattern, true));
+                        if (enc.sqdech_zzs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.sqdech_zzs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqdech_zzs.imm4 + 1u, true));
                         return result;
         }
@@ -51329,7 +51357,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.uqdech_zzs.Zdn, true); op.arrangement = "h"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.uqdech_zzs.pattern, true));
+                        if (enc.uqdech_zzs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.uqdech_zzs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqdech_zzs.imm4 + 1u, true));
                         return result;
         }
@@ -51339,7 +51369,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cnth_rs.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.cnth_rs.pattern, true));
+                        if (enc.cnth_rs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.cnth_rs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.cnth_rs.imm4 + 1u, true));
                         return result;
         }
@@ -51349,7 +51381,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqinch_rrs_sx.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.sqinch_rrs_sx.pattern, true));
+                        if (enc.sqinch_rrs_sx.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.sqinch_rrs_sx.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqinch_rrs_sx.imm4 + 1u, true));
                         return result;
         }
@@ -51359,7 +51393,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqinch_rrs_uw.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.uqinch_rrs_uw.pattern, true));
+                        if (enc.uqinch_rrs_uw.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.uqinch_rrs_uw.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqinch_rrs_uw.imm4 + 1u, true));
                         return result;
         }
@@ -51369,7 +51405,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdech_rrs_sx.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.sqdech_rrs_sx.pattern, true));
+                        if (enc.sqdech_rrs_sx.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.sqdech_rrs_sx.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqdech_rrs_sx.imm4 + 1u, true));
                         return result;
         }
@@ -51379,7 +51417,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqdech_rrs_uw.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.uqdech_rrs_uw.pattern, true));
+                        if (enc.uqdech_rrs_uw.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.uqdech_rrs_uw.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqdech_rrs_uw.imm4 + 1u, true));
                         return result;
         }
@@ -51388,7 +51428,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.inch_zzs.Zdn, true); op.arrangement = "h"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.inch_zzs.pattern, true));
+                        if (enc.inch_zzs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.inch_zzs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.inch_zzs.imm4 + 1u, true));
                         return result;
         }
@@ -51397,7 +51439,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.dech_zzs.Zdn, true); op.arrangement = "h"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.dech_zzs.pattern, true));
+                        if (enc.dech_zzs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.dech_zzs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.dech_zzs.imm4 + 1u, true));
                         return result;
         }
@@ -51407,7 +51451,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.inch_rrs.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.inch_rrs.pattern, true));
+                        if (enc.inch_rrs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.inch_rrs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.inch_rrs.imm4 + 1u, true));
                         return result;
         }
@@ -51417,7 +51463,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.dech_rrs.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.dech_rrs.pattern, true));
+                        if (enc.dech_rrs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.dech_rrs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.dech_rrs.imm4 + 1u, true));
                         return result;
         }
@@ -51427,7 +51475,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqinch_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.sqinch_rrs_x.pattern, true));
+                        if (enc.sqinch_rrs_x.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.sqinch_rrs_x.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqinch_rrs_x.imm4 + 1u, true));
                         return result;
         }
@@ -51437,7 +51487,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqinch_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.uqinch_rrs_x.pattern, true));
+                        if (enc.uqinch_rrs_x.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.uqinch_rrs_x.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqinch_rrs_x.imm4 + 1u, true));
                         return result;
         }
@@ -51447,7 +51499,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdech_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.sqdech_rrs_x.pattern, true));
+                        if (enc.sqdech_rrs_x.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.sqdech_rrs_x.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqdech_rrs_x.imm4 + 1u, true));
                         return result;
         }
@@ -51457,7 +51511,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqdech_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.uqdech_rrs_x.pattern, true));
+                        if (enc.uqdech_rrs_x.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.uqdech_rrs_x.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqdech_rrs_x.imm4 + 1u, true));
                         return result;
         }
@@ -51466,7 +51522,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.sqincw_zzs.Zdn, true); op.arrangement = "s"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.sqincw_zzs.pattern, true));
+                        if (enc.sqincw_zzs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.sqincw_zzs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqincw_zzs.imm4 + 1u, true));
                         return result;
         }
@@ -51475,7 +51533,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.uqincw_zzs.Zdn, true); op.arrangement = "s"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.uqincw_zzs.pattern, true));
+                        if (enc.uqincw_zzs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.uqincw_zzs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqincw_zzs.imm4 + 1u, true));
                         return result;
         }
@@ -51484,7 +51544,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.sqdecw_zzs.Zdn, true); op.arrangement = "s"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecw_zzs.pattern, true));
+                        if (enc.sqdecw_zzs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecw_zzs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqdecw_zzs.imm4 + 1u, true));
                         return result;
         }
@@ -51493,7 +51555,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.uqdecw_zzs.Zdn, true); op.arrangement = "s"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecw_zzs.pattern, true));
+                        if (enc.uqdecw_zzs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecw_zzs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqdecw_zzs.imm4 + 1u, true));
                         return result;
         }
@@ -51503,7 +51567,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cntw_rs.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.cntw_rs.pattern, true));
+                        if (enc.cntw_rs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.cntw_rs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.cntw_rs.imm4 + 1u, true));
                         return result;
         }
@@ -51513,7 +51579,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqincw_rrs_sx.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.sqincw_rrs_sx.pattern, true));
+                        if (enc.sqincw_rrs_sx.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.sqincw_rrs_sx.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqincw_rrs_sx.imm4 + 1u, true));
                         return result;
         }
@@ -51523,7 +51591,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqincw_rrs_uw.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.uqincw_rrs_uw.pattern, true));
+                        if (enc.uqincw_rrs_uw.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.uqincw_rrs_uw.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqincw_rrs_uw.imm4 + 1u, true));
                         return result;
         }
@@ -51533,7 +51603,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdecw_rrs_sx.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecw_rrs_sx.pattern, true));
+                        if (enc.sqdecw_rrs_sx.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecw_rrs_sx.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqdecw_rrs_sx.imm4 + 1u, true));
                         return result;
         }
@@ -51543,7 +51615,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqdecw_rrs_uw.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecw_rrs_uw.pattern, true));
+                        if (enc.uqdecw_rrs_uw.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecw_rrs_uw.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqdecw_rrs_uw.imm4 + 1u, true));
                         return result;
         }
@@ -51552,7 +51626,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.incw_zzs.Zdn, true); op.arrangement = "s"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.incw_zzs.pattern, true));
+                        if (enc.incw_zzs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.incw_zzs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.incw_zzs.imm4 + 1u, true));
                         return result;
         }
@@ -51561,7 +51637,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.decw_zzs.Zdn, true); op.arrangement = "s"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.decw_zzs.pattern, true));
+                        if (enc.decw_zzs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.decw_zzs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.decw_zzs.imm4 + 1u, true));
                         return result;
         }
@@ -51571,7 +51649,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.incw_rrs.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.incw_rrs.pattern, true));
+                        if (enc.incw_rrs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.incw_rrs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.incw_rrs.imm4 + 1u, true));
                         return result;
         }
@@ -51581,7 +51661,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.decw_rrs.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.decw_rrs.pattern, true));
+                        if (enc.decw_rrs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.decw_rrs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.decw_rrs.imm4 + 1u, true));
                         return result;
         }
@@ -51591,7 +51673,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqincw_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.sqincw_rrs_x.pattern, true));
+                        if (enc.sqincw_rrs_x.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.sqincw_rrs_x.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqincw_rrs_x.imm4 + 1u, true));
                         return result;
         }
@@ -51601,7 +51685,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqincw_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.uqincw_rrs_x.pattern, true));
+                        if (enc.uqincw_rrs_x.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.uqincw_rrs_x.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqincw_rrs_x.imm4 + 1u, true));
                         return result;
         }
@@ -51611,7 +51697,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdecw_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecw_rrs_x.pattern, true));
+                        if (enc.sqdecw_rrs_x.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecw_rrs_x.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqdecw_rrs_x.imm4 + 1u, true));
                         return result;
         }
@@ -51621,7 +51709,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqdecw_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecw_rrs_x.pattern, true));
+                        if (enc.uqdecw_rrs_x.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecw_rrs_x.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqdecw_rrs_x.imm4 + 1u, true));
                         return result;
         }
@@ -51630,7 +51720,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.sqincd_zzs.Zdn, true); op.arrangement = "d"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.sqincd_zzs.pattern, true));
+                        if (enc.sqincd_zzs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.sqincd_zzs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqincd_zzs.imm4 + 1u, true));
                         return result;
         }
@@ -51639,7 +51731,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.uqincd_zzs.Zdn, true); op.arrangement = "d"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.uqincd_zzs.pattern, true));
+                        if (enc.uqincd_zzs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.uqincd_zzs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqincd_zzs.imm4 + 1u, true));
                         return result;
         }
@@ -51648,7 +51742,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.sqdecd_zzs.Zdn, true); op.arrangement = "d"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecd_zzs.pattern, true));
+                        if (enc.sqdecd_zzs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecd_zzs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqdecd_zzs.imm4 + 1u, true));
                         return result;
         }
@@ -51657,7 +51753,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.uqdecd_zzs.Zdn, true); op.arrangement = "d"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecd_zzs.pattern, true));
+                        if (enc.uqdecd_zzs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecd_zzs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqdecd_zzs.imm4 + 1u, true));
                         return result;
         }
@@ -51667,7 +51765,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.cntd_rs.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.cntd_rs.pattern, true));
+                        if (enc.cntd_rs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.cntd_rs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.cntd_rs.imm4 + 1u, true));
                         return result;
         }
@@ -51677,7 +51777,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqincd_rrs_sx.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.sqincd_rrs_sx.pattern, true));
+                        if (enc.sqincd_rrs_sx.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.sqincd_rrs_sx.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqincd_rrs_sx.imm4 + 1u, true));
                         return result;
         }
@@ -51687,7 +51789,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqincd_rrs_uw.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.uqincd_rrs_uw.pattern, true));
+                        if (enc.uqincd_rrs_uw.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.uqincd_rrs_uw.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqincd_rrs_uw.imm4 + 1u, true));
                         return result;
         }
@@ -51697,7 +51801,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdecd_rrs_sx.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecd_rrs_sx.pattern, true));
+                        if (enc.sqdecd_rrs_sx.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecd_rrs_sx.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqdecd_rrs_sx.imm4 + 1u, true));
                         return result;
         }
@@ -51707,7 +51813,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqdecd_rrs_uw.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecd_rrs_uw.pattern, true));
+                        if (enc.uqdecd_rrs_uw.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecd_rrs_uw.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqdecd_rrs_uw.imm4 + 1u, true));
                         return result;
         }
@@ -51716,7 +51824,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.incd_zzs.Zdn, true); op.arrangement = "d"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.incd_zzs.pattern, true));
+                        if (enc.incd_zzs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.incd_zzs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.incd_zzs.imm4 + 1u, true));
                         return result;
         }
@@ -51725,7 +51835,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegisterList, enc.decd_zzs.Zdn, true); op.arrangement = "d"; op.index = 1; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.decd_zzs.pattern, true));
+                        if (enc.decd_zzs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.decd_zzs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.decd_zzs.imm4 + 1u, true));
                         return result;
         }
@@ -51735,7 +51847,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.incd_rrs.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.incd_rrs.pattern, true));
+                        if (enc.incd_rrs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.incd_rrs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.incd_rrs.imm4 + 1u, true));
                         return result;
         }
@@ -51745,7 +51859,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.decd_rrs.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.decd_rrs.pattern, true));
+                        if (enc.decd_rrs.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.decd_rrs.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.decd_rrs.imm4 + 1u, true));
                         return result;
         }
@@ -51755,7 +51871,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqincd_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.sqincd_rrs_x.pattern, true));
+                        if (enc.sqincd_rrs_x.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.sqincd_rrs_x.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqincd_rrs_x.imm4 + 1u, true));
                         return result;
         }
@@ -51765,7 +51883,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqincd_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.uqincd_rrs_x.pattern, true));
+                        if (enc.uqincd_rrs_x.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.uqincd_rrs_x.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqincd_rrs_x.imm4 + 1u, true));
                         return result;
         }
@@ -51775,7 +51895,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqdecd_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecd_rrs_x.pattern, true));
+                        if (enc.sqdecd_rrs_x.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.sqdecd_rrs_x.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.sqdecd_rrs_x.imm4 + 1u, true));
                         return result;
         }
@@ -51785,7 +51907,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqdecd_rrs_x.Rdn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecd_rrs_x.pattern, true));
+                        if (enc.uqdecd_rrs_x.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.uqdecd_rrs_x.pattern, true));
+                        }
                         result.operands.push_back(Operand(OperandType::SVEMulImm, enc.uqdecd_rrs_x.imm4 + 1u, true));
                         return result;
         }
@@ -53422,7 +53546,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.mov_zzorr_zzz.Zd, true); op.arrangement = "d"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.mov_zzorr_zzz.Zn, true); op.arrangement = "d"; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.mov_zzorr_zzz.Zm, true));
+                        { Operand op(OperandType::SVERegister, enc.mov_zzorr_zzz.Zm, true); op.arrangement = "d"; result.operands.push_back(op); }
                         return result;
         }
         case 0x04603800u: { // bcax_z_zzz_
@@ -59383,7 +59507,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 3: _sve_arr = "d"; break;
                         }
                         { Operand op(OperandType::PredicateRegister, enc.ptrue_ps.Pd, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.ptrue_ps.pattern, true));
+                        if (enc.ptrue_ps.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.ptrue_ps.pattern, true));
+                        }
                         return result;
         }
         case 0x2519E000u: { // ptrues_p_s_
@@ -59398,7 +59524,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 3: _sve_arr = "d"; break;
                         }
                         { Operand op(OperandType::PredicateRegister, enc.ptrues_ps.Pd, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Pattern, enc.ptrues_ps.pattern, true));
+                        if (enc.ptrues_ps.pattern != 31) {
+                            result.operands.push_back(Operand(OperandType::Pattern, enc.ptrues_ps.pattern, true));
+                        }
                         return result;
         }
         case 0x25207010u: { // pext_pn_rr_
@@ -67858,7 +67986,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { Operand op(OperandType::SVERegister, enc.mov_zpzsel_zpzz.Zd, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.mov_zpzsel_zpzz.Pv, true); op.arrangement = nullptr; op.is_sp = true; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.mov_zpzsel_zpzz.Zn, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::SVERegister, enc.mov_zpzsel_zpzz.Zm, true));
+                        { Operand op(OperandType::SVERegister, enc.mov_zpzsel_zpzz.Zm, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
                         return result;
         }
         default: break;
