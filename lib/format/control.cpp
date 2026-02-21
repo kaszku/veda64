@@ -4996,6 +4996,291 @@ uint32_t encode_yield_hi_hints() {
     return insn.raw;
 }
 
+#if !defined(VEDA64_NO_STRINGS) && !defined(VEDA64_NO_MNEMONIC_OPERANDS)
+// SYS alias operation name string table
+static const char* sys_ops[] = {"vmalle1os", "vae1os", "aside1os", "vaae1os", "vale1os", "vaale1os", "rvae1is", "rvaae1is", "rvale1is", "rvaale1is", "vmalle1is", "vae1is", "aside1is", "vaae1is", "vale1is", "vaale1is", "rvae1os", "rvaae1os", "rvale1os", "rvaale1os", "rvae1", "rvaae1", "rvale1", "rvaale1", "vmalle1", "vae1", "aside1", "vaae1", "vale1", "vaale1", "vmalle1osnxs", "vae1osnxs", "aside1osnxs", "vaae1osnxs", "vale1osnxs", "vaale1osnxs", "rvae1isnxs", "rvaae1isnxs", "rvale1isnxs", "rvaale1isnxs", "vmalle1isnxs", "vae1isnxs", "aside1isnxs", "vaae1isnxs", "vale1isnxs", "vaale1isnxs", "rvae1osnxs", "rvaae1osnxs", "rvale1osnxs", "rvaale1osnxs", "rvae1nxs", "rvaae1nxs", "rvale1nxs", "rvaale1nxs", "vmalle1nxs", "vae1nxs", "aside1nxs", "vaae1nxs", "vale1nxs", "vaale1nxs", "ipas2e1is", "ripas2e1is", "ipas2le1is", "ripas2le1is", "alle2os", "vae2os", "alle1os", "vale2os", "vmalls12e1os", "rvae2is", "vmallws2e1is", "rvale2is", "alle2is", "vae2is", "alle1is", "vale2is", "vmalls12e1is", "ipas2e1os", "ipas2e1", "ripas2e1", "ripas2e1os", "ipas2le1os", "ipas2le1", "ripas2le1", "ripas2le1os", "rvae2os", "vmallws2e1os", "rvale2os", "rvae2", "vmallws2e1", "rvale2", "alle2", "vae2", "alle1", "vale2", "vmalls12e1", "ipas2e1isnxs", "ripas2e1isnxs", "ipas2le1isnxs", "ripas2le1isnxs", "alle2osnxs", "vae2osnxs", "alle1osnxs", "vale2osnxs", "vmalls12e1osnxs", "rvae2isnxs", "vmallws2e1isnxs", "rvale2isnxs", "alle2isnxs", "vae2isnxs", "alle1isnxs", "vale2isnxs", "vmalls12e1isnxs", "ipas2e1osnxs", "ipas2e1nxs", "ripas2e1nxs", "ripas2e1osnxs", "ipas2le1osnxs", "ipas2le1nxs", "ripas2le1nxs", "ripas2le1osnxs", "rvae2osnxs", "vmallws2e1osnxs", "rvale2osnxs", "rvae2nxs", "vmallws2e1nxs", "rvale2nxs", "alle2nxs", "vae2nxs", "alle1nxs", "vale2nxs", "vmalls12e1nxs", "alle3os", "vae3os", "paallos", "vale3os", "rvae3is", "rvale3is", "alle3is", "vae3is", "vale3is", "rpaos", "rpalos", "rvae3os", "rvale3os", "rvae3", "rvale3", "alle3", "vae3", "paall", "vale3", "alle3osnxs", "vae3osnxs", "vale3osnxs", "rvae3isnxs", "rvale3isnxs", "alle3isnxs", "vae3isnxs", "vale3isnxs", "rvae3osnxs", "rvale3osnxs", "rvae3nxs", "rvale3nxs", "alle3nxs", "vae3nxs", "vale3nxs", "ivac", "isw", "igvac", "igsw", "igdvac", "igdsw", "csw", "cgsw", "cgdsw", "cisw", "cigsw", "cigdsw", "civaps", "cigdvaps", "zva", "gva", "gzva", "zgbva", "gbva", "cvac", "cgvac", "cgdvac", "cvaoc", "cvau", "cgdvaoc", "cvap", "cgvap", "cgdvap", "cvadp", "cgvadp", "cgdvadp", "civac", "cigvac", "cigdvac", "civaoc", "cigdvaoc", "cipae", "cigdpae", "cipapa", "cigdpapa", "s1e1r", "s1e1w", "s1e0r", "s1e0w", "s1e1rp", "s1e1wp", "s1e1a", "s1e2r", "s1e2w", "s12e1r", "s12e1w", "s12e0r", "s12e0w", "s1e2a", "s1e3r", "s1e3w", "s1e3a", "ialluis", "iallu", "ivau", "cddis", "cden", "cdpri", "cdaff", "cdpend", "cdrcfg", "cdeoi", "cddi", "cdhm", "vddis", "vden", "vdpri", "vdaff", "vdpend", "vdrcfg", "vddi", "vdhm", "lddis", "lden", "ldpri", "ldaff", "ldpend", "ldrcfg", "lddi", "ldhm", "iall", "inj", "rctx", "s2poc"};
+
+// SYS alias lookup table entry
+struct SysTableEntry { uint16_t key; Mnemonic mnem; uint16_t op_idx; bool has_xt; };
+static const SysTableEntry sys_table[] = {
+    {0x0408u, Mnemonic::TLBI, 0u, false},  // tlbi vmalle1os
+    {0x0409u, Mnemonic::TLBI, 1u, false},  // tlbi vae1os
+    {0x040au, Mnemonic::TLBI, 2u, false},  // tlbi aside1os
+    {0x040bu, Mnemonic::TLBI, 3u, false},  // tlbi vaae1os
+    {0x040du, Mnemonic::TLBI, 4u, false},  // tlbi vale1os
+    {0x040fu, Mnemonic::TLBI, 5u, false},  // tlbi vaale1os
+    {0x0411u, Mnemonic::TLBI, 6u, false},  // tlbi rvae1is
+    {0x0413u, Mnemonic::TLBI, 7u, false},  // tlbi rvaae1is
+    {0x0415u, Mnemonic::TLBI, 8u, false},  // tlbi rvale1is
+    {0x0417u, Mnemonic::TLBI, 9u, false},  // tlbi rvaale1is
+    {0x0418u, Mnemonic::TLBI, 10u, false},  // tlbi vmalle1is
+    {0x0419u, Mnemonic::TLBI, 11u, false},  // tlbi vae1is
+    {0x041au, Mnemonic::TLBI, 12u, false},  // tlbi aside1is
+    {0x041bu, Mnemonic::TLBI, 13u, false},  // tlbi vaae1is
+    {0x041du, Mnemonic::TLBI, 14u, false},  // tlbi vale1is
+    {0x041fu, Mnemonic::TLBI, 15u, false},  // tlbi vaale1is
+    {0x0429u, Mnemonic::TLBI, 16u, false},  // tlbi rvae1os
+    {0x042bu, Mnemonic::TLBI, 17u, false},  // tlbi rvaae1os
+    {0x042du, Mnemonic::TLBI, 18u, false},  // tlbi rvale1os
+    {0x042fu, Mnemonic::TLBI, 19u, false},  // tlbi rvaale1os
+    {0x0431u, Mnemonic::TLBI, 20u, false},  // tlbi rvae1
+    {0x0433u, Mnemonic::TLBI, 21u, false},  // tlbi rvaae1
+    {0x0435u, Mnemonic::TLBI, 22u, false},  // tlbi rvale1
+    {0x0437u, Mnemonic::TLBI, 23u, false},  // tlbi rvaale1
+    {0x0438u, Mnemonic::TLBI, 24u, false},  // tlbi vmalle1
+    {0x0439u, Mnemonic::TLBI, 25u, false},  // tlbi vae1
+    {0x043au, Mnemonic::TLBI, 26u, false},  // tlbi aside1
+    {0x043bu, Mnemonic::TLBI, 27u, false},  // tlbi vaae1
+    {0x043du, Mnemonic::TLBI, 28u, false},  // tlbi vale1
+    {0x043fu, Mnemonic::TLBI, 29u, false},  // tlbi vaale1
+    {0x0488u, Mnemonic::TLBI, 30u, false},  // tlbi vmalle1osnxs
+    {0x0489u, Mnemonic::TLBI, 31u, false},  // tlbi vae1osnxs
+    {0x048au, Mnemonic::TLBI, 32u, false},  // tlbi aside1osnxs
+    {0x048bu, Mnemonic::TLBI, 33u, false},  // tlbi vaae1osnxs
+    {0x048du, Mnemonic::TLBI, 34u, false},  // tlbi vale1osnxs
+    {0x048fu, Mnemonic::TLBI, 35u, false},  // tlbi vaale1osnxs
+    {0x0491u, Mnemonic::TLBI, 36u, false},  // tlbi rvae1isnxs
+    {0x0493u, Mnemonic::TLBI, 37u, false},  // tlbi rvaae1isnxs
+    {0x0495u, Mnemonic::TLBI, 38u, false},  // tlbi rvale1isnxs
+    {0x0497u, Mnemonic::TLBI, 39u, false},  // tlbi rvaale1isnxs
+    {0x0498u, Mnemonic::TLBI, 40u, false},  // tlbi vmalle1isnxs
+    {0x0499u, Mnemonic::TLBI, 41u, false},  // tlbi vae1isnxs
+    {0x049au, Mnemonic::TLBI, 42u, false},  // tlbi aside1isnxs
+    {0x049bu, Mnemonic::TLBI, 43u, false},  // tlbi vaae1isnxs
+    {0x049du, Mnemonic::TLBI, 44u, false},  // tlbi vale1isnxs
+    {0x049fu, Mnemonic::TLBI, 45u, false},  // tlbi vaale1isnxs
+    {0x04a9u, Mnemonic::TLBI, 46u, false},  // tlbi rvae1osnxs
+    {0x04abu, Mnemonic::TLBI, 47u, false},  // tlbi rvaae1osnxs
+    {0x04adu, Mnemonic::TLBI, 48u, false},  // tlbi rvale1osnxs
+    {0x04afu, Mnemonic::TLBI, 49u, false},  // tlbi rvaale1osnxs
+    {0x04b1u, Mnemonic::TLBI, 50u, false},  // tlbi rvae1nxs
+    {0x04b3u, Mnemonic::TLBI, 51u, false},  // tlbi rvaae1nxs
+    {0x04b5u, Mnemonic::TLBI, 52u, false},  // tlbi rvale1nxs
+    {0x04b7u, Mnemonic::TLBI, 53u, false},  // tlbi rvaale1nxs
+    {0x04b8u, Mnemonic::TLBI, 54u, false},  // tlbi vmalle1nxs
+    {0x04b9u, Mnemonic::TLBI, 55u, false},  // tlbi vae1nxs
+    {0x04bau, Mnemonic::TLBI, 56u, false},  // tlbi aside1nxs
+    {0x04bbu, Mnemonic::TLBI, 57u, false},  // tlbi vaae1nxs
+    {0x04bdu, Mnemonic::TLBI, 58u, false},  // tlbi vale1nxs
+    {0x04bfu, Mnemonic::TLBI, 59u, false},  // tlbi vaale1nxs
+    {0x2401u, Mnemonic::TLBI, 60u, false},  // tlbi ipas2e1is
+    {0x2402u, Mnemonic::TLBI, 61u, false},  // tlbi ripas2e1is
+    {0x2405u, Mnemonic::TLBI, 62u, false},  // tlbi ipas2le1is
+    {0x2406u, Mnemonic::TLBI, 63u, false},  // tlbi ripas2le1is
+    {0x2408u, Mnemonic::TLBI, 64u, false},  // tlbi alle2os
+    {0x2409u, Mnemonic::TLBI, 65u, false},  // tlbi vae2os
+    {0x240cu, Mnemonic::TLBI, 66u, false},  // tlbi alle1os
+    {0x240du, Mnemonic::TLBI, 67u, false},  // tlbi vale2os
+    {0x240eu, Mnemonic::TLBI, 68u, false},  // tlbi vmalls12e1os
+    {0x2411u, Mnemonic::TLBI, 69u, false},  // tlbi rvae2is
+    {0x2412u, Mnemonic::TLBI, 70u, false},  // tlbi vmallws2e1is
+    {0x2415u, Mnemonic::TLBI, 71u, false},  // tlbi rvale2is
+    {0x2418u, Mnemonic::TLBI, 72u, false},  // tlbi alle2is
+    {0x2419u, Mnemonic::TLBI, 73u, false},  // tlbi vae2is
+    {0x241cu, Mnemonic::TLBI, 74u, false},  // tlbi alle1is
+    {0x241du, Mnemonic::TLBI, 75u, false},  // tlbi vale2is
+    {0x241eu, Mnemonic::TLBI, 76u, false},  // tlbi vmalls12e1is
+    {0x2420u, Mnemonic::TLBI, 77u, false},  // tlbi ipas2e1os
+    {0x2421u, Mnemonic::TLBI, 78u, false},  // tlbi ipas2e1
+    {0x2422u, Mnemonic::TLBI, 79u, false},  // tlbi ripas2e1
+    {0x2423u, Mnemonic::TLBI, 80u, false},  // tlbi ripas2e1os
+    {0x2424u, Mnemonic::TLBI, 81u, false},  // tlbi ipas2le1os
+    {0x2425u, Mnemonic::TLBI, 82u, false},  // tlbi ipas2le1
+    {0x2426u, Mnemonic::TLBI, 83u, false},  // tlbi ripas2le1
+    {0x2427u, Mnemonic::TLBI, 84u, false},  // tlbi ripas2le1os
+    {0x2429u, Mnemonic::TLBI, 85u, false},  // tlbi rvae2os
+    {0x242au, Mnemonic::TLBI, 86u, false},  // tlbi vmallws2e1os
+    {0x242du, Mnemonic::TLBI, 87u, false},  // tlbi rvale2os
+    {0x2431u, Mnemonic::TLBI, 88u, false},  // tlbi rvae2
+    {0x2432u, Mnemonic::TLBI, 89u, false},  // tlbi vmallws2e1
+    {0x2435u, Mnemonic::TLBI, 90u, false},  // tlbi rvale2
+    {0x2438u, Mnemonic::TLBI, 91u, false},  // tlbi alle2
+    {0x2439u, Mnemonic::TLBI, 92u, false},  // tlbi vae2
+    {0x243cu, Mnemonic::TLBI, 93u, false},  // tlbi alle1
+    {0x243du, Mnemonic::TLBI, 94u, false},  // tlbi vale2
+    {0x243eu, Mnemonic::TLBI, 95u, false},  // tlbi vmalls12e1
+    {0x2481u, Mnemonic::TLBI, 96u, false},  // tlbi ipas2e1isnxs
+    {0x2482u, Mnemonic::TLBI, 97u, false},  // tlbi ripas2e1isnxs
+    {0x2485u, Mnemonic::TLBI, 98u, false},  // tlbi ipas2le1isnxs
+    {0x2486u, Mnemonic::TLBI, 99u, false},  // tlbi ripas2le1isnxs
+    {0x2488u, Mnemonic::TLBI, 100u, false},  // tlbi alle2osnxs
+    {0x2489u, Mnemonic::TLBI, 101u, false},  // tlbi vae2osnxs
+    {0x248cu, Mnemonic::TLBI, 102u, false},  // tlbi alle1osnxs
+    {0x248du, Mnemonic::TLBI, 103u, false},  // tlbi vale2osnxs
+    {0x248eu, Mnemonic::TLBI, 104u, false},  // tlbi vmalls12e1osnxs
+    {0x2491u, Mnemonic::TLBI, 105u, false},  // tlbi rvae2isnxs
+    {0x2492u, Mnemonic::TLBI, 106u, false},  // tlbi vmallws2e1isnxs
+    {0x2495u, Mnemonic::TLBI, 107u, false},  // tlbi rvale2isnxs
+    {0x2498u, Mnemonic::TLBI, 108u, false},  // tlbi alle2isnxs
+    {0x2499u, Mnemonic::TLBI, 109u, false},  // tlbi vae2isnxs
+    {0x249cu, Mnemonic::TLBI, 110u, false},  // tlbi alle1isnxs
+    {0x249du, Mnemonic::TLBI, 111u, false},  // tlbi vale2isnxs
+    {0x249eu, Mnemonic::TLBI, 112u, false},  // tlbi vmalls12e1isnxs
+    {0x24a0u, Mnemonic::TLBI, 113u, false},  // tlbi ipas2e1osnxs
+    {0x24a1u, Mnemonic::TLBI, 114u, false},  // tlbi ipas2e1nxs
+    {0x24a2u, Mnemonic::TLBI, 115u, false},  // tlbi ripas2e1nxs
+    {0x24a3u, Mnemonic::TLBI, 116u, false},  // tlbi ripas2e1osnxs
+    {0x24a4u, Mnemonic::TLBI, 117u, false},  // tlbi ipas2le1osnxs
+    {0x24a5u, Mnemonic::TLBI, 118u, false},  // tlbi ipas2le1nxs
+    {0x24a6u, Mnemonic::TLBI, 119u, false},  // tlbi ripas2le1nxs
+    {0x24a7u, Mnemonic::TLBI, 120u, false},  // tlbi ripas2le1osnxs
+    {0x24a9u, Mnemonic::TLBI, 121u, false},  // tlbi rvae2osnxs
+    {0x24aau, Mnemonic::TLBI, 122u, false},  // tlbi vmallws2e1osnxs
+    {0x24adu, Mnemonic::TLBI, 123u, false},  // tlbi rvale2osnxs
+    {0x24b1u, Mnemonic::TLBI, 124u, false},  // tlbi rvae2nxs
+    {0x24b2u, Mnemonic::TLBI, 125u, false},  // tlbi vmallws2e1nxs
+    {0x24b5u, Mnemonic::TLBI, 126u, false},  // tlbi rvale2nxs
+    {0x24b8u, Mnemonic::TLBI, 127u, false},  // tlbi alle2nxs
+    {0x24b9u, Mnemonic::TLBI, 128u, false},  // tlbi vae2nxs
+    {0x24bcu, Mnemonic::TLBI, 129u, false},  // tlbi alle1nxs
+    {0x24bdu, Mnemonic::TLBI, 130u, false},  // tlbi vale2nxs
+    {0x24beu, Mnemonic::TLBI, 131u, false},  // tlbi vmalls12e1nxs
+    {0x3408u, Mnemonic::TLBI, 132u, false},  // tlbi alle3os
+    {0x3409u, Mnemonic::TLBI, 133u, false},  // tlbi vae3os
+    {0x340cu, Mnemonic::TLBI, 134u, false},  // tlbi paallos
+    {0x340du, Mnemonic::TLBI, 135u, false},  // tlbi vale3os
+    {0x3411u, Mnemonic::TLBI, 136u, false},  // tlbi rvae3is
+    {0x3415u, Mnemonic::TLBI, 137u, false},  // tlbi rvale3is
+    {0x3418u, Mnemonic::TLBI, 138u, false},  // tlbi alle3is
+    {0x3419u, Mnemonic::TLBI, 139u, false},  // tlbi vae3is
+    {0x341du, Mnemonic::TLBI, 140u, false},  // tlbi vale3is
+    {0x3423u, Mnemonic::TLBI, 141u, false},  // tlbi rpaos
+    {0x3427u, Mnemonic::TLBI, 142u, false},  // tlbi rpalos
+    {0x3429u, Mnemonic::TLBI, 143u, false},  // tlbi rvae3os
+    {0x342du, Mnemonic::TLBI, 144u, false},  // tlbi rvale3os
+    {0x3431u, Mnemonic::TLBI, 145u, false},  // tlbi rvae3
+    {0x3435u, Mnemonic::TLBI, 146u, false},  // tlbi rvale3
+    {0x3438u, Mnemonic::TLBI, 147u, false},  // tlbi alle3
+    {0x3439u, Mnemonic::TLBI, 148u, false},  // tlbi vae3
+    {0x343cu, Mnemonic::TLBI, 149u, false},  // tlbi paall
+    {0x343du, Mnemonic::TLBI, 150u, false},  // tlbi vale3
+    {0x3488u, Mnemonic::TLBI, 151u, false},  // tlbi alle3osnxs
+    {0x3489u, Mnemonic::TLBI, 152u, false},  // tlbi vae3osnxs
+    {0x348du, Mnemonic::TLBI, 153u, false},  // tlbi vale3osnxs
+    {0x3491u, Mnemonic::TLBI, 154u, false},  // tlbi rvae3isnxs
+    {0x3495u, Mnemonic::TLBI, 155u, false},  // tlbi rvale3isnxs
+    {0x3498u, Mnemonic::TLBI, 156u, false},  // tlbi alle3isnxs
+    {0x3499u, Mnemonic::TLBI, 157u, false},  // tlbi vae3isnxs
+    {0x349du, Mnemonic::TLBI, 158u, false},  // tlbi vale3isnxs
+    {0x34a9u, Mnemonic::TLBI, 159u, false},  // tlbi rvae3osnxs
+    {0x34adu, Mnemonic::TLBI, 160u, false},  // tlbi rvale3osnxs
+    {0x34b1u, Mnemonic::TLBI, 161u, false},  // tlbi rvae3nxs
+    {0x34b5u, Mnemonic::TLBI, 162u, false},  // tlbi rvale3nxs
+    {0x34b8u, Mnemonic::TLBI, 163u, false},  // tlbi alle3nxs
+    {0x34b9u, Mnemonic::TLBI, 164u, false},  // tlbi vae3nxs
+    {0x34bdu, Mnemonic::TLBI, 165u, false},  // tlbi vale3nxs
+    {0x03b1u, Mnemonic::DC, 166u, true},  // dc ivac
+    {0x03b2u, Mnemonic::DC, 167u, true},  // dc isw
+    {0x03b3u, Mnemonic::DC, 168u, true},  // dc igvac
+    {0x03b4u, Mnemonic::DC, 169u, true},  // dc igsw
+    {0x03b5u, Mnemonic::DC, 170u, true},  // dc igdvac
+    {0x03b6u, Mnemonic::DC, 171u, true},  // dc igdsw
+    {0x03d2u, Mnemonic::DC, 172u, true},  // dc csw
+    {0x03d4u, Mnemonic::DC, 173u, true},  // dc cgsw
+    {0x03d6u, Mnemonic::DC, 174u, true},  // dc cgdsw
+    {0x03f2u, Mnemonic::DC, 175u, true},  // dc cisw
+    {0x03f4u, Mnemonic::DC, 176u, true},  // dc cigsw
+    {0x03f6u, Mnemonic::DC, 177u, true},  // dc cigdsw
+    {0x03f9u, Mnemonic::DC, 178u, true},  // dc civaps
+    {0x03fdu, Mnemonic::DC, 179u, true},  // dc cigdvaps
+    {0x1ba1u, Mnemonic::DC, 180u, true},  // dc zva
+    {0x1ba3u, Mnemonic::DC, 181u, true},  // dc gva
+    {0x1ba4u, Mnemonic::DC, 182u, true},  // dc gzva
+    {0x1ba5u, Mnemonic::DC, 183u, true},  // dc zgbva
+    {0x1ba7u, Mnemonic::DC, 184u, true},  // dc gbva
+    {0x1bd1u, Mnemonic::DC, 185u, true},  // dc cvac
+    {0x1bd3u, Mnemonic::DC, 186u, true},  // dc cgvac
+    {0x1bd5u, Mnemonic::DC, 187u, true},  // dc cgdvac
+    {0x1bd8u, Mnemonic::DC, 188u, true},  // dc cvaoc
+    {0x1bd9u, Mnemonic::DC, 189u, true},  // dc cvau
+    {0x1bdfu, Mnemonic::DC, 190u, true},  // dc cgdvaoc
+    {0x1be1u, Mnemonic::DC, 191u, true},  // dc cvap
+    {0x1be3u, Mnemonic::DC, 192u, true},  // dc cgvap
+    {0x1be5u, Mnemonic::DC, 193u, true},  // dc cgdvap
+    {0x1be9u, Mnemonic::DC, 194u, true},  // dc cvadp
+    {0x1bebu, Mnemonic::DC, 195u, true},  // dc cgvadp
+    {0x1bedu, Mnemonic::DC, 196u, true},  // dc cgdvadp
+    {0x1bf1u, Mnemonic::DC, 197u, true},  // dc civac
+    {0x1bf3u, Mnemonic::DC, 198u, true},  // dc cigvac
+    {0x1bf5u, Mnemonic::DC, 199u, true},  // dc cigdvac
+    {0x1bf8u, Mnemonic::DC, 200u, true},  // dc civaoc
+    {0x1bffu, Mnemonic::DC, 201u, true},  // dc cigdvaoc
+    {0x23f0u, Mnemonic::DC, 202u, true},  // dc cipae
+    {0x23f7u, Mnemonic::DC, 203u, true},  // dc cigdpae
+    {0x33f1u, Mnemonic::DC, 204u, true},  // dc cipapa
+    {0x33f5u, Mnemonic::DC, 205u, true},  // dc cigdpapa
+    {0x03c0u, Mnemonic::AT, 206u, true},  // at s1e1r
+    {0x03c1u, Mnemonic::AT, 207u, true},  // at s1e1w
+    {0x03c2u, Mnemonic::AT, 208u, true},  // at s1e0r
+    {0x03c3u, Mnemonic::AT, 209u, true},  // at s1e0w
+    {0x03c8u, Mnemonic::AT, 210u, true},  // at s1e1rp
+    {0x03c9u, Mnemonic::AT, 211u, true},  // at s1e1wp
+    {0x03cau, Mnemonic::AT, 212u, true},  // at s1e1a
+    {0x23c0u, Mnemonic::AT, 213u, true},  // at s1e2r
+    {0x23c1u, Mnemonic::AT, 214u, true},  // at s1e2w
+    {0x23c4u, Mnemonic::AT, 215u, true},  // at s12e1r
+    {0x23c5u, Mnemonic::AT, 216u, true},  // at s12e1w
+    {0x23c6u, Mnemonic::AT, 217u, true},  // at s12e0r
+    {0x23c7u, Mnemonic::AT, 218u, true},  // at s12e0w
+    {0x23cau, Mnemonic::AT, 219u, true},  // at s1e2a
+    {0x33c0u, Mnemonic::AT, 220u, true},  // at s1e3r
+    {0x33c1u, Mnemonic::AT, 221u, true},  // at s1e3w
+    {0x33cau, Mnemonic::AT, 222u, true},  // at s1e3a
+    {0x0388u, Mnemonic::IC, 223u, false},  // ic ialluis
+    {0x03a8u, Mnemonic::IC, 224u, false},  // ic iallu
+    {0x1ba9u, Mnemonic::IC, 225u, false},  // ic ivau
+    {0x0608u, Mnemonic::GIC, 226u, false},  // gic cddis
+    {0x0609u, Mnemonic::GIC, 227u, false},  // gic cden
+    {0x060au, Mnemonic::GIC, 228u, false},  // gic cdpri
+    {0x060bu, Mnemonic::GIC, 229u, false},  // gic cdaff
+    {0x060cu, Mnemonic::GIC, 230u, false},  // gic cdpend
+    {0x060du, Mnemonic::GIC, 231u, false},  // gic cdrcfg
+    {0x060fu, Mnemonic::GIC, 232u, false},  // gic cdeoi
+    {0x0610u, Mnemonic::GIC, 233u, false},  // gic cddi
+    {0x0611u, Mnemonic::GIC, 234u, false},  // gic cdhm
+    {0x2608u, Mnemonic::GIC, 235u, false},  // gic vddis
+    {0x2609u, Mnemonic::GIC, 236u, false},  // gic vden
+    {0x260au, Mnemonic::GIC, 237u, false},  // gic vdpri
+    {0x260bu, Mnemonic::GIC, 238u, false},  // gic vdaff
+    {0x260cu, Mnemonic::GIC, 239u, false},  // gic vdpend
+    {0x260du, Mnemonic::GIC, 240u, false},  // gic vdrcfg
+    {0x2610u, Mnemonic::GIC, 241u, false},  // gic vddi
+    {0x2611u, Mnemonic::GIC, 242u, false},  // gic vdhm
+    {0x3608u, Mnemonic::GIC, 243u, false},  // gic lddis
+    {0x3609u, Mnemonic::GIC, 244u, false},  // gic lden
+    {0x360au, Mnemonic::GIC, 245u, false},  // gic ldpri
+    {0x360bu, Mnemonic::GIC, 246u, false},  // gic ldaff
+    {0x360cu, Mnemonic::GIC, 247u, false},  // gic ldpend
+    {0x360du, Mnemonic::GIC, 248u, false},  // gic ldrcfg
+    {0x3610u, Mnemonic::GIC, 249u, false},  // gic lddi
+    {0x3611u, Mnemonic::GIC, 250u, false},  // gic ldhm
+    {0x0b94u, Mnemonic::BRB, 251u, false},  // brb iall
+    {0x0b95u, Mnemonic::BRB, 252u, false},  // brb inj
+    {0x1b9cu, Mnemonic::CFP, 253u, true},  // cfp rctx
+    {0x3380u, Mnemonic::APAS, 254u, true},  // apas s2poc
+};
+static const size_t sys_table_size = sizeof(sys_table)/sizeof(sys_table[0]);
+
+static bool decode_sys_alias(uint32_t insn, Instruction& result) {
+    uint32_t op1 = (insn >> 16) & 7;
+    uint32_t CRn = (insn >> 12) & 0xF;
+    uint32_t CRm = (insn >> 8) & 0xF;
+    uint32_t op2 = (insn >> 5) & 7;
+    uint32_t Rt  = insn & 0x1F;
+    uint16_t key = static_cast<uint16_t>((op1 << 11) | (CRn << 7) | (CRm << 3) | op2);
+    for (size_t i = 0; i < sys_table_size; i++) {
+        if (sys_table[i].key == key) {
+            result.mnemonic = sys_table[i].mnem;
+            result.operands.push_back(Operand(OperandType::SysOp, sys_table[i].op_idx, false));
+            if (sys_table[i].has_xt || Rt != 31)
+                result.operands.push_back(Operand(OperandType::Register, Rt, true));
+            return true;
+        }
+    }
+    return false;
+}
+#endif  // !VEDA64_NO_STRINGS && !VEDA64_NO_MNEMONIC_OPERANDS
+
 // Decode a control instruction
 // Input is in native ARM64 format (as read from memory)
 std::optional<Instruction> decode_control(uint32_t insn) {
@@ -5275,10 +5560,23 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD50B7380u: { // CFP_SYS_CR_systeminstrs
                         Instruction result(Mnemonic::SYS, insn);
-                        ControlEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cfp_sys_cr_systeminstrs.Rt, is_64bit));
+            #if !defined(VEDA64_NO_STRINGS) && !defined(VEDA64_NO_MNEMONIC_OPERANDS)
+                        if (decode_sys_alias(insn, result)) return result;
+            #endif
+                        // Fallback: unknown SYS alias - emit raw fields
+                        {
+                            uint32_t _op1 = (insn >> 16) & 7;
+                            uint32_t _CRn = (insn >> 12) & 0xF;
+                            uint32_t _CRm = (insn >> 8) & 0xF;
+                            uint32_t _op2 = (insn >> 5) & 7;
+                            uint32_t _Rt  = insn & 0x1F;
+                            result.operands.push_back(Operand(OperandType::Immediate, _op1, false));
+                            result.operands.push_back(Operand(OperandType::Immediate, _CRn, false));
+                            result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));
+                            result.operands.push_back(Operand(OperandType::Immediate, _op2, false));
+                            if (_Rt != 31)
+                                result.operands.push_back(Operand(OperandType::Register, _Rt, true));
+                        }
                         return result;
         }
         case 0xD50B73A0u: { // DVP_SYS_CR_systeminstrs
@@ -5323,10 +5621,23 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD50E7000u: { // APAS_SYS_CR_systeminstrs
                         Instruction result(Mnemonic::SYS, insn);
-                        ControlEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.apas_sys_cr_systeminstrs.Rt, is_64bit));
+            #if !defined(VEDA64_NO_STRINGS) && !defined(VEDA64_NO_MNEMONIC_OPERANDS)
+                        if (decode_sys_alias(insn, result)) return result;
+            #endif
+                        // Fallback: unknown SYS alias - emit raw fields
+                        {
+                            uint32_t _op1 = (insn >> 16) & 7;
+                            uint32_t _CRn = (insn >> 12) & 0xF;
+                            uint32_t _CRm = (insn >> 8) & 0xF;
+                            uint32_t _op2 = (insn >> 5) & 7;
+                            uint32_t _Rt  = insn & 0x1F;
+                            result.operands.push_back(Operand(OperandType::Immediate, _op1, false));
+                            result.operands.push_back(Operand(OperandType::Immediate, _CRn, false));
+                            result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));
+                            result.operands.push_back(Operand(OperandType::Immediate, _op2, false));
+                            if (_Rt != 31)
+                                result.operands.push_back(Operand(OperandType::Register, _Rt, true));
+                        }
                         return result;
         }
         case 0xD52B7720u: { // GCSPOPM_SYSL_RC_systeminstrs
@@ -5419,10 +5730,23 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD5097200u: { // BRB_SYS_CR_systeminstrs
                         Instruction result(Mnemonic::SYS, insn);
-                        ControlEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.brb_sys_cr_systeminstrs.Rt, is_64bit));
+            #if !defined(VEDA64_NO_STRINGS) && !defined(VEDA64_NO_MNEMONIC_OPERANDS)
+                        if (decode_sys_alias(insn, result)) return result;
+            #endif
+                        // Fallback: unknown SYS alias - emit raw fields
+                        {
+                            uint32_t _op1 = (insn >> 16) & 7;
+                            uint32_t _CRn = (insn >> 12) & 0xF;
+                            uint32_t _CRm = (insn >> 8) & 0xF;
+                            uint32_t _op2 = (insn >> 5) & 7;
+                            uint32_t _Rt  = insn & 0x1F;
+                            result.operands.push_back(Operand(OperandType::Immediate, _op1, false));
+                            result.operands.push_back(Operand(OperandType::Immediate, _CRn, false));
+                            result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));
+                            result.operands.push_back(Operand(OperandType::Immediate, _op2, false));
+                            if (_Rt != 31)
+                                result.operands.push_back(Operand(OperandType::Register, _Rt, true));
+                        }
                         return result;
         }
         case 0xD528C300u: { // GICR_SYSL_RC_systeminstrs
@@ -5440,10 +5764,23 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     switch (insn & 0xFFFFFE00u) {
         case 0xD508C400u: { // GIC_SYS_CR_systeminstrs
                         Instruction result(Mnemonic::SYS, insn);
-                        ControlEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.gic_sys_cr_systeminstrs.Rt, is_64bit));
+            #if !defined(VEDA64_NO_STRINGS) && !defined(VEDA64_NO_MNEMONIC_OPERANDS)
+                        if (decode_sys_alias(insn, result)) return result;
+            #endif
+                        // Fallback: unknown SYS alias - emit raw fields
+                        {
+                            uint32_t _op1 = (insn >> 16) & 7;
+                            uint32_t _CRn = (insn >> 12) & 0xF;
+                            uint32_t _CRm = (insn >> 8) & 0xF;
+                            uint32_t _op2 = (insn >> 5) & 7;
+                            uint32_t _Rt  = insn & 0x1F;
+                            result.operands.push_back(Operand(OperandType::Immediate, _op1, false));
+                            result.operands.push_back(Operand(OperandType::Immediate, _CRn, false));
+                            result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));
+                            result.operands.push_back(Operand(OperandType::Immediate, _op2, false));
+                            if (_Rt != 31)
+                                result.operands.push_back(Operand(OperandType::Register, _Rt, true));
+                        }
                         return result;
         }
         default: break;
@@ -5697,10 +6034,23 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     switch (insn & 0xFFF8FE00u) {
         case 0xD5087800u: { // AT_SYS_CR_systeminstrs
                         Instruction result(Mnemonic::SYS, insn);
-                        ControlEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.at_sys_cr_systeminstrs.Rt, is_64bit));
+            #if !defined(VEDA64_NO_STRINGS) && !defined(VEDA64_NO_MNEMONIC_OPERANDS)
+                        if (decode_sys_alias(insn, result)) return result;
+            #endif
+                        // Fallback: unknown SYS alias - emit raw fields
+                        {
+                            uint32_t _op1 = (insn >> 16) & 7;
+                            uint32_t _CRn = (insn >> 12) & 0xF;
+                            uint32_t _CRm = (insn >> 8) & 0xF;
+                            uint32_t _op2 = (insn >> 5) & 7;
+                            uint32_t _Rt  = insn & 0x1F;
+                            result.operands.push_back(Operand(OperandType::Immediate, _op1, false));
+                            result.operands.push_back(Operand(OperandType::Immediate, _CRn, false));
+                            result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));
+                            result.operands.push_back(Operand(OperandType::Immediate, _op2, false));
+                            if (_Rt != 31)
+                                result.operands.push_back(Operand(OperandType::Register, _Rt, true));
+                        }
                         return result;
         }
         default: break;
@@ -5731,10 +6081,23 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         case 0xD5087000u: { // DC_SYS_CR_systeminstrs
             // Also matches: IC_SYS_CR_systeminstrs (SYS)
                         Instruction result(Mnemonic::SYS, insn);
-                        ControlEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.dc_sys_cr_systeminstrs.Rt, is_64bit));
+            #if !defined(VEDA64_NO_STRINGS) && !defined(VEDA64_NO_MNEMONIC_OPERANDS)
+                        if (decode_sys_alias(insn, result)) return result;
+            #endif
+                        // Fallback: unknown SYS alias - emit raw fields
+                        {
+                            uint32_t _op1 = (insn >> 16) & 7;
+                            uint32_t _CRn = (insn >> 12) & 0xF;
+                            uint32_t _CRm = (insn >> 8) & 0xF;
+                            uint32_t _op2 = (insn >> 5) & 7;
+                            uint32_t _Rt  = insn & 0x1F;
+                            result.operands.push_back(Operand(OperandType::Immediate, _op1, false));
+                            result.operands.push_back(Operand(OperandType::Immediate, _CRn, false));
+                            result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));
+                            result.operands.push_back(Operand(OperandType::Immediate, _op2, false));
+                            if (_Rt != 31)
+                                result.operands.push_back(Operand(OperandType::Register, _Rt, true));
+                        }
                         return result;
         }
         default: break;
@@ -5744,10 +6107,23 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     switch (insn & 0xFFF8E000u) {
         case 0xD5088000u: { // TLBI_SYS_CR_systeminstrs
                         Instruction result(Mnemonic::SYS, insn);
-                        ControlEncoding enc = {};
-                        enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.tlbi_sys_cr_systeminstrs.Rt, is_64bit));
+            #if !defined(VEDA64_NO_STRINGS) && !defined(VEDA64_NO_MNEMONIC_OPERANDS)
+                        if (decode_sys_alias(insn, result)) return result;
+            #endif
+                        // Fallback: unknown SYS alias - emit raw fields
+                        {
+                            uint32_t _op1 = (insn >> 16) & 7;
+                            uint32_t _CRn = (insn >> 12) & 0xF;
+                            uint32_t _CRm = (insn >> 8) & 0xF;
+                            uint32_t _op2 = (insn >> 5) & 7;
+                            uint32_t _Rt  = insn & 0x1F;
+                            result.operands.push_back(Operand(OperandType::Immediate, _op1, false));
+                            result.operands.push_back(Operand(OperandType::Immediate, _CRn, false));
+                            result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));
+                            result.operands.push_back(Operand(OperandType::Immediate, _op2, false));
+                            if (_Rt != 31)
+                                result.operands.push_back(Operand(OperandType::Register, _Rt, true));
+                        }
                         return result;
         }
         case 0xD5488000u: { // TLBIP_SYSP_CR_syspairinstrs

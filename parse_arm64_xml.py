@@ -870,6 +870,52 @@ class ARM64XMLParser:
             ))
             code.append("")
 
+        # For the control group, inject the SYS alias lookup table before the decode function
+        if group_name == 'control':
+            sys_entries = self._build_sys_table()
+            op_names = []
+            op_name_idx = {}
+            for (key, mnem, op_name, has_xt) in sys_entries:
+                if op_name not in op_name_idx:
+                    op_name_idx[op_name] = len(op_names)
+                    op_names.append(op_name)
+            code.append("#if !defined(VEDA64_NO_STRINGS) && !defined(VEDA64_NO_MNEMONIC_OPERANDS)")
+            code.append("// SYS alias operation name string table")
+            names_str = ', '.join(f'"{n.lower()}"' for n in op_names) if op_names else '"<unknown>"'
+            code.append(f"static const char* sys_ops[] = {{{names_str}}};")
+            code.append("")
+            code.append("// SYS alias lookup table entry")
+            code.append("struct SysTableEntry { uint16_t key; Mnemonic mnem; uint16_t op_idx; bool has_xt; };")
+            code.append("static const SysTableEntry sys_table[] = {")
+            for (key, mnem, op_name, has_xt) in sys_entries:
+                idx = op_name_idx[op_name]
+                xt_str = "true" if has_xt else "false"
+                comment = f"// {mnem.lower()} {op_name.lower()}"
+                code.append(f"    {{0x{key:04x}u, Mnemonic::{mnem}, {idx}u, {xt_str}}},  {comment}")
+            code.append("};")
+            code.append("static const size_t sys_table_size = sizeof(sys_table)/sizeof(sys_table[0]);")
+            code.append("")
+            code.append("static bool decode_sys_alias(uint32_t insn, Instruction& result) {")
+            code.append("    uint32_t op1 = (insn >> 16) & 7;")
+            code.append("    uint32_t CRn = (insn >> 12) & 0xF;")
+            code.append("    uint32_t CRm = (insn >> 8) & 0xF;")
+            code.append("    uint32_t op2 = (insn >> 5) & 7;")
+            code.append("    uint32_t Rt  = insn & 0x1F;")
+            code.append("    uint16_t key = static_cast<uint16_t>((op1 << 11) | (CRn << 7) | (CRm << 3) | op2);")
+            code.append("    for (size_t i = 0; i < sys_table_size; i++) {")
+            code.append("        if (sys_table[i].key == key) {")
+            code.append("            result.mnemonic = sys_table[i].mnem;")
+            code.append("            result.operands.push_back(Operand(OperandType::SysOp, sys_table[i].op_idx, false));")
+            code.append("            if (sys_table[i].has_xt || Rt != 31)")
+            code.append("                result.operands.push_back(Operand(OperandType::Register, Rt, true));")
+            code.append("            return true;")
+            code.append("        }")
+            code.append("    }")
+            code.append("    return false;")
+            code.append("}")
+            code.append("#endif  // !VEDA64_NO_STRINGS && !VEDA64_NO_MNEMONIC_OPERANDS")
+            code.append("")
+
         # Generate decode function
         code.extend(self._generate_decode_function(group_name, encoding_info))
         code.append("")
@@ -1021,6 +1067,7 @@ class ARM64XMLParser:
                         'PACIAZ', 'PACIASP', 'PACIBZ', 'PACIBSP',
                         'AUTIAZ', 'AUTIASP', 'AUTIBZ', 'AUTIBSP']
         mnemonics.update(hint_aliases)
+        mnemonics.update(['TLBI', 'DC', 'AT', 'IC', 'GIC', 'BRB', 'CFP', 'APAS'])
 
         for mnem in sorted(mnemonics):
             code.append(f"    {mnem},")
@@ -1063,6 +1110,7 @@ class ARM64XMLParser:
         code.append("    SMEZTRegister,      // SME ZT0 lookup table register")
         code.append("    PstateField,        // PSTATE field name for MSR/MRS immediate (SPSel, DAIFSet, etc.)")
         code.append("    FixedSym,           // Fixed symbolic operand (e.g. CSYNC, DSYNC)")
+        code.append("    SysOp,              // SYS alias operation name (tlbi vmalle1 etc.)")
         code.append("    Unknown")
         code.append("};")
         code.append("")
@@ -1163,6 +1211,145 @@ class ARM64XMLParser:
 
         self._write_file(output_file, code)
 
+    def _build_sys_table(self) -> list:
+        """Parse ARM XML files to build SYS alias lookup table.
+        Returns list of (key, mnem, op_name, has_xt) tuples.
+        key = (op1<<11)|(CRn<<7)|(CRm<<3)|op2
+        has_xt: True=always emit Rt, False=only emit if Rt!=31
+        """
+        import xml.etree.ElementTree as ET
+
+        # Find the XML directory
+        xml_dirs = sorted(p for p in Path('arm64').glob('ISA_A64_xml_A_profile-*') if p.is_dir())
+        if not xml_dirs:
+            return []
+        xml_dir = xml_dirs[-1]  # Use latest
+
+        entries = []
+
+        def parse_binary(s):
+            """Parse binary string, return int or None if has non-binary chars."""
+            s = s.strip()
+            if all(c in '01' for c in s) and s:
+                return int(s, 2)
+            return None
+
+        def add_entry(op1, CRn, CRm, op2, mnem, op_name, has_xt):
+            key = (op1 << 11) | (CRn << 7) | (CRm << 3) | op2
+            entries.append((key, mnem, op_name.upper(), has_xt))
+
+        # TLBI: 4-column table (op1, CRn, CRm, op2, name)
+        tlbi_file = xml_dir / 'tlbi_sys.xml'
+        if tlbi_file.exists():
+            tree = ET.parse(str(tlbi_file))
+            root = tree.getroot()
+            for tbl in root.iter('table'):
+                for row in tbl.iter('row'):
+                    cells = [c.text or '' for c in row.findall('entry')]
+                    if len(cells) >= 5:
+                        op1 = parse_binary(cells[0])
+                        CRn = parse_binary(cells[1])
+                        CRm = parse_binary(cells[2])
+                        op2 = parse_binary(cells[3])
+                        name = cells[4].strip()
+                        if op1 is not None and CRn is not None and CRm is not None and op2 is not None and name and not name.startswith('<'):
+                            add_entry(op1, CRn, CRm, op2, 'TLBI', name, False)
+
+        # DC: 3-column table (op1, CRm, op2, name), CRn=7 fixed
+        dc_file = xml_dir / 'dc_sys.xml'
+        if dc_file.exists():
+            tree = ET.parse(str(dc_file))
+            root = tree.getroot()
+            for tbl in root.iter('table'):
+                for row in tbl.iter('row'):
+                    cells = [c.text or '' for c in row.findall('entry')]
+                    if len(cells) >= 4:
+                        op1 = parse_binary(cells[0])
+                        CRm = parse_binary(cells[1])
+                        op2 = parse_binary(cells[2])
+                        name = cells[3].strip()
+                        if op1 is not None and CRm is not None and op2 is not None and name and not name.startswith('<'):
+                            add_entry(op1, 7, CRm, op2, 'DC', name, True)
+
+        # AT: 3-column table (op1, CRm, op2, name), CRn=7 fixed
+        at_file = xml_dir / 'at_sys.xml'
+        if at_file.exists():
+            tree = ET.parse(str(at_file))
+            root = tree.getroot()
+            for tbl in root.iter('table'):
+                for row in tbl.iter('row'):
+                    cells = [c.text or '' for c in row.findall('entry')]
+                    if len(cells) >= 4:
+                        op1 = parse_binary(cells[0])
+                        CRm_s = cells[1].strip()
+                        # CRm may have 'x' wildcard (AT uses 100x), take fixed prefix
+                        CRm_clean = CRm_s.replace('x', '0')
+                        CRm = parse_binary(CRm_clean)
+                        op2 = parse_binary(cells[2])
+                        name = cells[3].strip()
+                        if op1 is not None and CRm is not None and op2 is not None and name and not name.startswith('<'):
+                            add_entry(op1, 7, CRm, op2, 'AT', name, True)
+
+        # IC: 3-column table (op1, CRm, op2, name), CRn=7 fixed
+        ic_file = xml_dir / 'ic_sys.xml'
+        if ic_file.exists():
+            tree = ET.parse(str(ic_file))
+            root = tree.getroot()
+            for tbl in root.iter('table'):
+                for row in tbl.iter('row'):
+                    cells = [c.text or '' for c in row.findall('entry')]
+                    if len(cells) >= 4:
+                        op1 = parse_binary(cells[0])
+                        CRm = parse_binary(cells[1])
+                        op2 = parse_binary(cells[2])
+                        name = cells[3].strip()
+                        if op1 is not None and CRm is not None and op2 is not None and name and not name.startswith('<'):
+                            add_entry(op1, 7, CRm, op2, 'IC', name, False)
+
+        # GIC: 3-column table (op1, CRm, op2, name), CRn=12 fixed
+        gic_file = xml_dir / 'gic_sys.xml'
+        if gic_file.exists():
+            tree = ET.parse(str(gic_file))
+            root = tree.getroot()
+            for tbl in root.iter('table'):
+                for row in tbl.iter('row'):
+                    cells = [c.text or '' for c in row.findall('entry')]
+                    if len(cells) >= 4:
+                        op1 = parse_binary(cells[0])
+                        CRm_s = cells[1].strip()
+                        # CRm may be "IN {0001, 0010}" - skip non-simple
+                        CRm = parse_binary(CRm_s)
+                        op2 = parse_binary(cells[2])
+                        name = cells[3].strip()
+                        if op1 is not None and CRm is not None and op2 is not None and name and not name.startswith('<'):
+                            add_entry(op1, 12, CRm, op2, 'GIC', name, False)
+
+        # BRB: 1-column table (op2, name), op1=1 CRn=7 CRm=2 fixed
+        brb_file = xml_dir / 'brb_sys.xml'
+        if brb_file.exists():
+            tree = ET.parse(str(brb_file))
+            root = tree.getroot()
+            for tbl in root.iter('table'):
+                for row in tbl.iter('row'):
+                    cells = [c.text or '' for c in row.findall('entry')]
+                    if len(cells) >= 2:
+                        op2 = parse_binary(cells[0])
+                        name = cells[1].strip()
+                        if op2 is not None and name and not name.startswith('<'):
+                            add_entry(1, 7, 2, op2, 'BRB', name, False)
+
+        # CFP: single encoding op1=3, CRn=7, CRm=3, op2=4 -> "RCTX"
+        cfp_file = xml_dir / 'cfp_sys.xml'
+        if cfp_file.exists():
+            add_entry(3, 7, 3, 4, 'CFP', 'RCTX', True)
+
+        # APAS: single encoding op1=6, CRn=7, CRm=0, op2=0
+        apas_file = xml_dir / 'apas_sys.xml'
+        if apas_file.exists():
+            add_entry(6, 7, 0, 0, 'APAS', 'S2POC', True)
+
+        return entries
+
     def _generate_veda64_implementation(self, output_file: Path):
         """Generate veda64.cpp with implementations."""
         code = []
@@ -1193,6 +1380,7 @@ class ARM64XMLParser:
                         'PACIAZ', 'PACIASP', 'PACIBZ', 'PACIBSP',
                         'AUTIAZ', 'AUTIASP', 'AUTIBZ', 'AUTIBSP']
         mnemonics.update(hint_aliases)
+        mnemonics.update(['TLBI', 'DC', 'AT', 'IC', 'GIC', 'BRB', 'CFP', 'APAS'])
 
         sorted_mnemonics = sorted(mnemonics)
 
@@ -1207,6 +1395,29 @@ class ARM64XMLParser:
         code.append("        default: return \"<invalid>\";")
         code.append("    }")
         code.append("}")
+        code.append("")
+
+        # Generate SYS alias lookup table and decode helper
+        sys_entries = self._build_sys_table()
+
+        # Collect all unique op_names
+        op_names = []
+        op_name_idx = {}
+        for (key, mnem, op_name, has_xt) in sys_entries:
+            if op_name not in op_name_idx:
+                op_name_idx[op_name] = len(op_names)
+                op_names.append(op_name)
+
+        # Only emit sys_ops[] here (used by Operand::to_string). The full table and
+        # decode_sys_alias function are emitted in control.cpp where they are called.
+        code.append("#if !defined(VEDA64_NO_STRINGS) && !defined(VEDA64_NO_MNEMONIC_OPERANDS)")
+        code.append("// SYS alias operation name string table (used by Operand::to_string)")
+        if op_names:
+            names_str = ', '.join(f'"{n.lower()}"' for n in op_names)
+        else:
+            names_str = '"<unknown>"'  # fallback if XML not present
+        code.append(f"static const char* sys_ops[] = {{{names_str}}};")
+        code.append("#endif  // !VEDA64_NO_STRINGS && !VEDA64_NO_MNEMONIC_OPERANDS")
         code.append("")
 
         # Generate format_register helper (now in Operand class)
@@ -1934,6 +2145,9 @@ class ARM64XMLParser:
         code.append("                return \"?\";")
         code.append("            }")
         code.append("        ")
+        code.append("        case OperandType::SysOp:")
+        code.append("            return sys_ops[value];")
+        code.append("        ")
         code.append("        case OperandType::MemoryBase:")
         code.append("            // [Xn|SP]")
         code.append("            return \"[\" + format_register(base_reg, true, true) + \"]\";")
@@ -2370,6 +2584,7 @@ class ARM64XMLParser:
                 if encoding_mnemonic:
                     mnemonics.add(encoding_mnemonic)
 
+        mnemonics.update(['TLBI', 'DC', 'AT', 'IC', 'GIC', 'BRB', 'CFP', 'APAS'])
         for mnem in sorted(mnemonics):
             code.append(f"    {mnem},")
         code.append("    UNKNOWN")
@@ -2433,6 +2648,7 @@ class ARM64XMLParser:
         code.append("    SMEZTRegister,      // SME ZT0 lookup table register")
         code.append("    PstateField,        // PSTATE field name for MSR/MRS immediate (SPSel, DAIFSet, etc.)")
         code.append("    FixedSym,           // Fixed symbolic operand (e.g. CSYNC, DSYNC)")
+        code.append("    SysOp,              // SYS alias operation name (tlbi vmalle1 etc.)")
         code.append("    Unknown")
         code.append("};")
         code.append("")
@@ -3719,6 +3935,35 @@ class ARM64XMLParser:
             return code
         if mnemonic == 'GCSB':
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::FixedSym, 1u, false)); // dsync")
+            code.append(f"{ind}return result;")
+            return code
+
+        # Special case: SYS instruction aliases (TLBI/DC/AT/IC/GIC/BRB/CFP/APAS)
+        _sys_alias_encodings = {
+            'tlbi_sys_cr_systeminstrs', 'dc_sys_cr_systeminstrs',
+            'at_sys_cr_systeminstrs', 'ic_sys_cr_systeminstrs',
+            'gic_sys_cr_systeminstrs', 'brb_sys_cr_systeminstrs',
+            'cfp_sys_cr_systeminstrs', 'apas_sys_cr_systeminstrs',
+        }
+        is_sys_alias = encoding_name in _sys_alias_encodings
+        if is_sys_alias:
+            code.append(f"#if !defined(VEDA64_NO_STRINGS) && !defined(VEDA64_NO_MNEMONIC_OPERANDS)")
+            code.append(f"{ind}if (decode_sys_alias(insn, result)) return result;")
+            code.append(f"#endif")
+            code.append(f"{ind}// Fallback: unknown SYS alias - emit raw fields")
+            code.append(f"{ind}{{")
+            code.append(f"{ind}    uint32_t _op1 = (insn >> 16) & 7;")
+            code.append(f"{ind}    uint32_t _CRn = (insn >> 12) & 0xF;")
+            code.append(f"{ind}    uint32_t _CRm = (insn >> 8) & 0xF;")
+            code.append(f"{ind}    uint32_t _op2 = (insn >> 5) & 7;")
+            code.append(f"{ind}    uint32_t _Rt  = insn & 0x1F;")
+            code.append(f"{ind}    result.operands.push_back(Operand(OperandType::Immediate, _op1, false));")
+            code.append(f"{ind}    result.operands.push_back(Operand(OperandType::Immediate, _CRn, false));")
+            code.append(f"{ind}    result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));")
+            code.append(f"{ind}    result.operands.push_back(Operand(OperandType::Immediate, _op2, false));")
+            code.append(f"{ind}    if (_Rt != 31)")
+            code.append(f"{ind}        result.operands.push_back(Operand(OperandType::Register, _Rt, true));")
+            code.append(f"{ind}}}")
             code.append(f"{ind}return result;")
             return code
 
@@ -7334,6 +7579,7 @@ class ARM64XMLParser:
                         'PACIAZ', 'PACIASP', 'PACIBZ', 'PACIBSP',
                         'AUTIAZ', 'AUTIASP', 'AUTIBZ', 'AUTIBSP']
         mnemonics.update(hint_aliases)
+        mnemonics.update(['TLBI', 'DC', 'AT', 'IC', 'GIC', 'BRB', 'CFP', 'APAS'])
         sorted_mnemonics = sorted(mnemonics)
 
         operand_types = [
@@ -7343,7 +7589,7 @@ class ARM64XMLParser:
             'MemoryRegOffset', 'Label', 'Relative', 'SystemRegister', 'Shift',
             'Extend', 'Index', 'Pattern', 'Prefetch', 'Barrier', 'FloatImmediate',
             'VectorRegisterList', 'SVERegisterList', 'MemoryOffsetMulVL',
-            'MemorySVEOffset', 'SMEZTRegister', 'Unknown',
+            'MemorySVEOffset', 'SMEZTRegister', 'PstateField', 'FixedSym', 'SysOp', 'Unknown',
         ]
         conditions = ['EQ', 'NE', 'CS', 'CC', 'MI', 'PL', 'VS', 'VC',
                       'HI', 'LS', 'GE', 'LT', 'GT', 'LE', 'AL', 'NV']
@@ -8611,8 +8857,9 @@ class ARM64XMLParser:
         code.append("// Hook installation")
         code.append("// ============================================================================")
         code.append("")
-        code.append("static Trampoline create_trampoline(void* target, size_t hook_size, HookStatus* status) {")
-        code.append("    Trampoline tramp = {};")
+        code.append("static HookStatus create_trampoline(void* target, size_t hook_size, Trampoline* out_tramp) {")
+        code.append("    *out_tramp = {};")
+        code.append("    Trampoline& tramp = *out_tramp;")
         code.append("")
         code.append("    // Allocate space for relocated instructions + jump back")
         code.append("    // Each instruction might expand to multiple instructions during relocation")
@@ -8621,8 +8868,7 @@ class ARM64XMLParser:
         code.append("    // Allocate near the target for PC-relative instruction relocation")
         code.append("    tramp.code = static_cast<uint8_t*>(detail::alloc_executable_near(target, max_size));")
         code.append("    if (!tramp.code) {")
-        code.append("        *status = HookStatus::AllocationFailed;")
-        code.append("        return tramp;")
+        code.append("        return HookStatus::AllocationFailed;")
         code.append("    }")
         code.append("    tramp.code_size = max_size;")
         code.append("")
@@ -8641,8 +8887,7 @@ class ARM64XMLParser:
         code.append("        tramp.used_size = 8;")
         code.append("        tramp.insn_count = 2;")
         code.append("        detail::flush_icache(tramp.code, tramp.used_size);")
-        code.append("        *status = HookStatus::Success;")
-        code.append("        return tramp;")
+        code.append("        return HookStatus::Success;")
         code.append("    }")
         code.append("")
         code.append("    // General case: disassemble and relocate instructions")
@@ -8662,10 +8907,9 @@ class ARM64XMLParser:
         code.append("")
         code.append("        // Check if we can relocate this instruction")
         code.append("        if (!detail::can_relocate(insn)) {")
-        code.append("            *status = HookStatus::InstructionTooComplex;")
         code.append("            detail::free_executable(tramp.code, tramp.code_size);")
         code.append("            tramp.code = nullptr;")
-        code.append("            return tramp;")
+        code.append("            return HookStatus::InstructionTooComplex;")
         code.append("        }")
         code.append("")
         code.append("        // Track if we hit a RET — no jump-back needed after it")
@@ -8682,10 +8926,9 @@ class ARM64XMLParser:
         code.append("            relocated,")
         code.append("            &relocated_count")
         code.append("        )) {")
-        code.append("            *status = HookStatus::RelocationFailed;")
         code.append("            detail::free_executable(tramp.code, tramp.code_size);")
         code.append("            tramp.code = nullptr;")
-        code.append("            return tramp;")
+        code.append("            return HookStatus::RelocationFailed;")
         code.append("        }")
         code.append("")
         code.append("        // Copy relocated instructions to trampoline")
@@ -8709,8 +8952,7 @@ class ARM64XMLParser:
         code.append("    // Flush instruction cache for trampoline")
         code.append("    detail::flush_icache(tramp.code, tramp.used_size);")
         code.append("")
-        code.append("    *status = HookStatus::Success;")
-        code.append("    return tramp;")
+        code.append("    return HookStatus::Success;")
         code.append("}")
         code.append("")
         code.append("HookStatus install_impl(void* target, void* detour, void** original, HookHandle* handle) {")
@@ -8762,9 +9004,8 @@ class ARM64XMLParser:
         code.append("    std::memcpy(ctx->original_bytes, target, ctx->hook_size);")
         code.append("")
         code.append("    // Create trampoline")
-        code.append("    HookStatus tramp_status;")
-        code.append("    ctx->trampoline = create_trampoline(target, ctx->hook_size, &tramp_status);")
-        code.append("    if (!ctx->trampoline.code) {")
+        code.append("    HookStatus tramp_status = create_trampoline(target, ctx->hook_size, &ctx->trampoline);")
+        code.append("    if (tramp_status != HookStatus::Success) {")
         code.append("        delete ctx;")
         code.append("        return tramp_status;")
         code.append("    }")

@@ -99,10 +99,12 @@ enum class Mnemonic {
     ANDQV,
     ANDS,
     ANDV,
+    APAS,
     ASR,
     ASRD,
     ASRR,
     ASRV,
+    AT,
     AUTDA,
     AUTDB,
     AUTDZA,
@@ -182,6 +184,7 @@ enum class Mnemonic {
     BRAAZ,
     BRAB,
     BRABZ,
+    BRB,
     BRK,
     BRKA,
     BRKAS,
@@ -248,6 +251,7 @@ enum class Mnemonic {
     CCMP,
     CDOT,
     CFINV,
+    CFP,
     CHKFEAT,
     CLASTA,
     CLASTB,
@@ -395,6 +399,7 @@ enum class Mnemonic {
     CTERMEQ,
     CTERMNE,
     CTZ,
+    DC,
     DCPS1,
     DCPS2,
     DCPS3,
@@ -569,12 +574,14 @@ enum class Mnemonic {
     GCSB,
     GCSSTR,
     GCSSTTR,
+    GIC,
     GMI,
     HINT,
     HISTCNT,
     HISTSEG,
     HLT,
     HVC,
+    IC,
     INCB,
     INCD,
     INCH,
@@ -1416,6 +1423,7 @@ enum class Mnemonic {
     TBX,
     TBXQ,
     TBZ,
+    TLBI,
     TRN1,
     TRN2,
     TSB,
@@ -1632,6 +1640,7 @@ enum class OperandType {
     SMEZTRegister,      // SME ZT0 lookup table register
     PstateField,        // PSTATE field name for MSR/MRS immediate (SPSel, DAIFSet, etc.)
     FixedSym,           // Fixed symbolic operand (e.g. CSYNC, DSYNC)
+    SysOp,              // SYS alias operation name (tlbi vmalle1 etc.)
     Unknown
 };
 

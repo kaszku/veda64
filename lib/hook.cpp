@@ -920,8 +920,9 @@ bool relocate_instruction(
 // Hook installation
 // ============================================================================
 
-static Trampoline create_trampoline(void* target, size_t hook_size, HookStatus* status) {
-    Trampoline tramp = {};
+static HookStatus create_trampoline(void* target, size_t hook_size, Trampoline* out_tramp) {
+    *out_tramp = {};
+    Trampoline& tramp = *out_tramp;
 
     // Allocate space for relocated instructions + jump back
     // Each instruction might expand to multiple instructions during relocation
@@ -930,8 +931,7 @@ static Trampoline create_trampoline(void* target, size_t hook_size, HookStatus* 
     // Allocate near the target for PC-relative instruction relocation
     tramp.code = static_cast<uint8_t*>(detail::alloc_executable_near(target, max_size));
     if (!tramp.code) {
-        *status = HookStatus::AllocationFailed;
-        return tramp;
+        return HookStatus::AllocationFailed;
     }
     tramp.code_size = max_size;
 
@@ -950,8 +950,7 @@ static Trampoline create_trampoline(void* target, size_t hook_size, HookStatus* 
         tramp.used_size = 8;
         tramp.insn_count = 2;
         detail::flush_icache(tramp.code, tramp.used_size);
-        *status = HookStatus::Success;
-        return tramp;
+        return HookStatus::Success;
     }
 
     // General case: disassemble and relocate instructions
@@ -971,10 +970,9 @@ static Trampoline create_trampoline(void* target, size_t hook_size, HookStatus* 
 
         // Check if we can relocate this instruction
         if (!detail::can_relocate(insn)) {
-            *status = HookStatus::InstructionTooComplex;
             detail::free_executable(tramp.code, tramp.code_size);
             tramp.code = nullptr;
-            return tramp;
+            return HookStatus::InstructionTooComplex;
         }
 
         // Track if we hit a RET — no jump-back needed after it
@@ -991,10 +989,9 @@ static Trampoline create_trampoline(void* target, size_t hook_size, HookStatus* 
             relocated,
             &relocated_count
         )) {
-            *status = HookStatus::RelocationFailed;
             detail::free_executable(tramp.code, tramp.code_size);
             tramp.code = nullptr;
-            return tramp;
+            return HookStatus::RelocationFailed;
         }
 
         // Copy relocated instructions to trampoline
@@ -1018,8 +1015,7 @@ static Trampoline create_trampoline(void* target, size_t hook_size, HookStatus* 
     // Flush instruction cache for trampoline
     detail::flush_icache(tramp.code, tramp.used_size);
 
-    *status = HookStatus::Success;
-    return tramp;
+    return HookStatus::Success;
 }
 
 HookStatus install_impl(void* target, void* detour, void** original, HookHandle* handle) {
@@ -1071,9 +1067,8 @@ HookStatus install_impl(void* target, void* detour, void** original, HookHandle*
     std::memcpy(ctx->original_bytes, target, ctx->hook_size);
 
     // Create trampoline
-    HookStatus tramp_status;
-    ctx->trampoline = create_trampoline(target, ctx->hook_size, &tramp_status);
-    if (!ctx->trampoline.code) {
+    HookStatus tramp_status = create_trampoline(target, ctx->hook_size, &ctx->trampoline);
+    if (tramp_status != HookStatus::Success) {
         delete ctx;
         return tramp_status;
     }
