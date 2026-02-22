@@ -1648,6 +1648,15 @@ enum class OperandType {
     Unknown
 };
 
+// Vector arrangement specifier
+enum class Arrangement : uint8_t {
+    None = 0,
+    B, H, S, D, Q,           // Scalar element sizes
+    B8, H4, S2, D1,           // 64-bit vector
+    B16, H8, S4, D2,          // 128-bit vector
+    Q1, B2, B4, H2,           // Special
+};
+
 // Operand representation
 class Operand {
 public:
@@ -1683,7 +1692,7 @@ public:
     uint64_t imm64 = 0;          // 64-bit immediate value (for logical immediates)
     bool is_64bit = true;        // True for 64-bit registers (X), false for 32-bit (W)
     bool is_sp = false;          // True if reg 31 should be SP/WSP, false for XZR/WZR
-    const char* arrangement = nullptr;  // Vector arrangement specifier (.16b, .4s, etc.)
+    Arrangement arrangement = Arrangement::None;  // Vector arrangement specifier (.16b, .4s, etc.)
     uint32_t index = 0;           // Element index for indexed vector operands (v0.b[3])
     bool has_index = false;       // True if index field is valid
     bool prefer_decimal = false;  // True if immediate should always be formatted as decimal
@@ -1698,11 +1707,16 @@ public:
 #ifndef VEDA64_NO_STRINGS
     // Format operand for disassembly
     std::string to_string() const;
+    static const char* arrangement_to_string(Arrangement a);
 
 private:
     // Helper functions for formatting
     static std::string format_register(uint32_t reg, bool is_64bit, bool is_sp = false);
-    static std::string format_vector_register(uint32_t reg, const char* arrangement);
+    static std::string format_vector_register(uint32_t reg, Arrangement arrangement);
+    static Arrangement arr_from_size(uint32_t size);
+    static Arrangement arr_narrow_from_size(uint32_t size);
+    static Arrangement arr_wide_from_size(uint32_t size);
+    static Arrangement vec_arr(uint32_t size, uint32_t q);
 #endif
 };
 
@@ -1711,7 +1725,7 @@ private:
 const char* mnemonic_to_string(Mnemonic mnem);
 
 // Determine vector arrangement for MOVI/MVNI based on Q and cmode fields
-const char* get_movi_arrangement(uint32_t insn);
+Arrangement get_movi_arrangement(uint32_t insn);
 int get_movi_shift(uint32_t insn);
 
 // Convert condition code to string ("eq", "ne", etc.)

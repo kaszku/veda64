@@ -1601,8 +1601,8 @@ NB_MODULE(veda64_py, m) {
         .def_ro("is_64bit",   &veda64::Operand::is_64bit)
         .def_ro("is_sp",      &veda64::Operand::is_sp)
         .def_prop_ro("arrangement", [](const veda64::Operand& op) -> nb::object {
-            if (!op.arrangement) return nb::none();
-            return nb::str(op.arrangement);
+            if (op.arrangement == veda64::Arrangement::None) return nb::none();
+            return nb::str(veda64::Operand::arrangement_to_string(op.arrangement));
         })
         .def_ro("index",      &veda64::Operand::index)
         .def_ro("has_index",  &veda64::Operand::has_index)

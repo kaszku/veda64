@@ -83,7 +83,7 @@ static void* detour_alloc(size_t size) {
     if (size > max_alloc_size) {
         rejected_count++;
         if (log_allocations) std::cerr << "[ValidationHook] Rejected: " << size << std::endl;
-        return nullptr;
+        return Arrangement::None;
     }
     void* result = original_alloc(size);
     if (result) { total_allocated += size; allocation_count++; }

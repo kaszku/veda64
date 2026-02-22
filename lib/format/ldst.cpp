@@ -40752,9 +40752,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldbfadd16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfadd16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfadd16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfadd16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfadd16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfadd16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x3C204000u: { // LDBFMAX_16
@@ -40762,9 +40762,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmax16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmax16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmax16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmax16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmax16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmax16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x3C205000u: { // LDBFMIN_16
@@ -40772,9 +40772,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmin16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmin16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmin16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmin16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmin16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmin16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x3C206000u: { // LDBFMAXNM_16
@@ -40782,9 +40782,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnm16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnm16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnm16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnm16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnm16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnm16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x3C207000u: { // LDBFMINNM_16
@@ -40792,9 +40792,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldbfminnm16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfminnm16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfminnm16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminnm16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminnm16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminnm16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x3C600000u: { // LDBFADDL_16
@@ -40802,9 +40802,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldbfaddl16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfaddl16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfaddl16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfaddl16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfaddl16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfaddl16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x3C604000u: { // LDBFMAXL_16
@@ -40812,9 +40812,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxl16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxl16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxl16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxl16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxl16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxl16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x3C605000u: { // LDBFMINL_16
@@ -40822,9 +40822,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldbfminl16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfminl16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfminl16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminl16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminl16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminl16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x3C606000u: { // LDBFMAXNML_16
@@ -40832,9 +40832,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnml16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnml16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnml16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnml16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnml16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnml16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x3C607000u: { // LDBFMINNML_16
@@ -40842,9 +40842,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldbfminnml16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfminnml16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfminnml16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminnml16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminnml16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminnml16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x3CA00000u: { // LDBFADDA_16
@@ -40852,9 +40852,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldbfadda16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfadda16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfadda16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfadda16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfadda16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfadda16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x3CA04000u: { // LDBFMAXA_16
@@ -40862,9 +40862,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxa16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxa16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxa16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxa16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxa16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxa16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x3CA05000u: { // LDBFMINA_16
@@ -40872,9 +40872,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmina16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmina16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmina16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmina16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmina16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmina16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x3CA06000u: { // LDBFMAXNMA_16
@@ -40882,9 +40882,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnma16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnma16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnma16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnma16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnma16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnma16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x3CA07000u: { // LDBFMINNMA_16
@@ -40892,9 +40892,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldbfminnma16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfminnma16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfminnma16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminnma16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminnma16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminnma16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x3CE00000u: { // LDBFADDAL_16
@@ -40902,9 +40902,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldbfaddal16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfaddal16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfaddal16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfaddal16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfaddal16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfaddal16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x3CE04000u: { // LDBFMAXAL_16
@@ -40912,9 +40912,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxal16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxal16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxal16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxal16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxal16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxal16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x3CE05000u: { // LDBFMINAL_16
@@ -40922,9 +40922,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldbfminal16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfminal16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfminal16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminal16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminal16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminal16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x3CE06000u: { // LDBFMAXNMAL_16
@@ -40932,9 +40932,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnmal16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnmal16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnmal16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnmal16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnmal16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfmaxnmal16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x3CE07000u: { // LDBFMINNMAL_16
@@ -40942,9 +40942,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldbfminnmal16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfminnmal16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldbfminnmal16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminnmal16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminnmal16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldbfminnmal16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x48207C00u: { // CASP_CP64_comswappr
@@ -41852,9 +41852,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfadd16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfadd16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfadd16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadd16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadd16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadd16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x7C204000u: { // LDFMAX_16
@@ -41862,9 +41862,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmax16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmax16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmax16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmax16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmax16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmax16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x7C205000u: { // LDFMIN_16
@@ -41872,9 +41872,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmin16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmin16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmin16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmin16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmin16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmin16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x7C206000u: { // LDFMAXNM_16
@@ -41882,9 +41882,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x7C207000u: { // LDFMINNM_16
@@ -41892,9 +41892,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnm16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnm16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnm16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnm16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnm16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnm16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x7C600000u: { // LDFADDL_16
@@ -41902,9 +41902,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfaddl16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfaddl16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfaddl16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddl16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddl16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddl16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x7C604000u: { // LDFMAXL_16
@@ -41912,9 +41912,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x7C605000u: { // LDFMINL_16
@@ -41922,9 +41922,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfminl16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminl16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminl16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminl16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminl16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminl16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x7C606000u: { // LDFMAXNML_16
@@ -41932,9 +41932,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x7C607000u: { // LDFMINNML_16
@@ -41942,9 +41942,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnml16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnml16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnml16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnml16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnml16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnml16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x7CA00000u: { // LDFADDA_16
@@ -41952,9 +41952,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfadda16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfadda16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfadda16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadda16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadda16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadda16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x7CA04000u: { // LDFMAXA_16
@@ -41962,9 +41962,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x7CA05000u: { // LDFMINA_16
@@ -41972,9 +41972,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmina16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmina16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmina16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmina16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmina16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmina16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x7CA06000u: { // LDFMAXNMA_16
@@ -41982,9 +41982,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x7CA07000u: { // LDFMINNMA_16
@@ -41992,9 +41992,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnma16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnma16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnma16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnma16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnma16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnma16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x7CE00000u: { // LDFADDAL_16
@@ -42002,9 +42002,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfaddal16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfaddal16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfaddal16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddal16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddal16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddal16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x7CE04000u: { // LDFMAXAL_16
@@ -42012,9 +42012,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x7CE05000u: { // LDFMINAL_16
@@ -42022,9 +42022,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfminal16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminal16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminal16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminal16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminal16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminal16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x7CE06000u: { // LDFMAXNMAL_16
@@ -42032,9 +42032,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x7CE07000u: { // LDFMINNMAL_16
@@ -42042,9 +42042,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal16.Rn, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal16.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal16.Rs, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         return result;
         }
         case 0x88A07C00u: { // CAS_C32_comswap
@@ -42456,9 +42456,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfadd32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfadd32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfadd32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadd32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadd32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadd32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         return result;
         }
         case 0xBC204000u: { // LDFMAX_32
@@ -42466,9 +42466,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmax32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmax32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmax32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmax32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmax32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmax32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         return result;
         }
         case 0xBC205000u: { // LDFMIN_32
@@ -42476,9 +42476,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmin32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmin32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmin32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmin32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmin32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmin32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         return result;
         }
         case 0xBC206000u: { // LDFMAXNM_32
@@ -42486,9 +42486,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         return result;
         }
         case 0xBC207000u: { // LDFMINNM_32
@@ -42496,9 +42496,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnm32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnm32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnm32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnm32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnm32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnm32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         return result;
         }
         case 0xBC600000u: { // LDFADDL_32
@@ -42506,9 +42506,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfaddl32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfaddl32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfaddl32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddl32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddl32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddl32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         return result;
         }
         case 0xBC604000u: { // LDFMAXL_32
@@ -42516,9 +42516,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         return result;
         }
         case 0xBC605000u: { // LDFMINL_32
@@ -42526,9 +42526,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfminl32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminl32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminl32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminl32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminl32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminl32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         return result;
         }
         case 0xBC606000u: { // LDFMAXNML_32
@@ -42536,9 +42536,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         return result;
         }
         case 0xBC607000u: { // LDFMINNML_32
@@ -42546,9 +42546,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnml32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnml32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnml32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnml32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnml32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnml32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         return result;
         }
         case 0xBCA00000u: { // LDFADDA_32
@@ -42556,9 +42556,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfadda32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfadda32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfadda32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadda32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadda32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadda32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         return result;
         }
         case 0xBCA04000u: { // LDFMAXA_32
@@ -42566,9 +42566,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         return result;
         }
         case 0xBCA05000u: { // LDFMINA_32
@@ -42576,9 +42576,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmina32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmina32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmina32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmina32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmina32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmina32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         return result;
         }
         case 0xBCA06000u: { // LDFMAXNMA_32
@@ -42586,9 +42586,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         return result;
         }
         case 0xBCA07000u: { // LDFMINNMA_32
@@ -42596,9 +42596,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnma32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnma32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnma32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnma32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnma32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnma32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         return result;
         }
         case 0xBCE00000u: { // LDFADDAL_32
@@ -42606,9 +42606,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfaddal32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfaddal32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfaddal32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddal32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddal32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddal32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         return result;
         }
         case 0xBCE04000u: { // LDFMAXAL_32
@@ -42616,9 +42616,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         return result;
         }
         case 0xBCE05000u: { // LDFMINAL_32
@@ -42626,9 +42626,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfminal32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminal32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminal32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminal32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminal32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminal32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         return result;
         }
         case 0xBCE06000u: { // LDFMAXNMAL_32
@@ -42636,9 +42636,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         return result;
         }
         case 0xBCE07000u: { // LDFMINNMAL_32
@@ -42646,9 +42646,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal32.Rn, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal32.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal32.Rs, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         return result;
         }
         case 0xC8A07C00u: { // CAS_C64_comswap
@@ -43141,9 +43141,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::VectorRegister, enc.ldfadd64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfadd64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfadd64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadd64.Rn, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadd64.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadd64.Rs, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         return result;
         }
         case 0xFC204000u: { // LDFMAX_64
@@ -43151,9 +43151,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmax64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmax64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmax64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmax64.Rn, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmax64.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmax64.Rs, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         return result;
         }
         case 0xFC205000u: { // LDFMIN_64
@@ -43161,9 +43161,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmin64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmin64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmin64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmin64.Rn, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmin64.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmin64.Rs, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         return result;
         }
         case 0xFC206000u: { // LDFMAXNM_64
@@ -43171,9 +43171,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm64.Rn, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm64.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnm64.Rs, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         return result;
         }
         case 0xFC207000u: { // LDFMINNM_64
@@ -43181,9 +43181,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnm64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnm64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnm64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnm64.Rn, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnm64.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnm64.Rs, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         return result;
         }
         case 0xFC600000u: { // LDFADDL_64
@@ -43191,9 +43191,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::VectorRegister, enc.ldfaddl64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfaddl64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfaddl64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddl64.Rn, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddl64.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddl64.Rs, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         return result;
         }
         case 0xFC604000u: { // LDFMAXL_64
@@ -43201,9 +43201,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl64.Rn, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl64.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxl64.Rs, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         return result;
         }
         case 0xFC605000u: { // LDFMINL_64
@@ -43211,9 +43211,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::VectorRegister, enc.ldfminl64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminl64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminl64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminl64.Rn, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminl64.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminl64.Rs, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         return result;
         }
         case 0xFC606000u: { // LDFMAXNML_64
@@ -43221,9 +43221,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml64.Rn, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml64.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnml64.Rs, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         return result;
         }
         case 0xFC607000u: { // LDFMINNML_64
@@ -43231,9 +43231,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnml64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnml64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnml64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnml64.Rn, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnml64.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnml64.Rs, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         return result;
         }
         case 0xFCA00000u: { // LDFADDA_64
@@ -43241,9 +43241,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::VectorRegister, enc.ldfadda64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfadda64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfadda64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadda64.Rn, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadda64.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfadda64.Rs, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         return result;
         }
         case 0xFCA04000u: { // LDFMAXA_64
@@ -43251,9 +43251,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa64.Rn, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa64.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxa64.Rs, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         return result;
         }
         case 0xFCA05000u: { // LDFMINA_64
@@ -43261,9 +43261,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmina64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmina64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmina64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmina64.Rn, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmina64.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmina64.Rs, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         return result;
         }
         case 0xFCA06000u: { // LDFMAXNMA_64
@@ -43271,9 +43271,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma64.Rn, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma64.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnma64.Rs, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         return result;
         }
         case 0xFCA07000u: { // LDFMINNMA_64
@@ -43281,9 +43281,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnma64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnma64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnma64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnma64.Rn, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnma64.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnma64.Rs, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         return result;
         }
         case 0xFCE00000u: { // LDFADDAL_64
@@ -43291,9 +43291,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::VectorRegister, enc.ldfaddal64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfaddal64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfaddal64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddal64.Rn, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddal64.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfaddal64.Rs, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         return result;
         }
         case 0xFCE04000u: { // LDFMAXAL_64
@@ -43301,9 +43301,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal64.Rn, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal64.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxal64.Rs, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         return result;
         }
         case 0xFCE05000u: { // LDFMINAL_64
@@ -43311,9 +43311,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::VectorRegister, enc.ldfminal64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminal64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminal64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminal64.Rn, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminal64.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminal64.Rs, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         return result;
         }
         case 0xFCE06000u: { // LDFMAXNMAL_64
@@ -43321,9 +43321,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal64.Rn, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal64.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal64.Rs, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         return result;
         }
         case 0xFCE07000u: { // LDFMINNMAL_64
@@ -43331,9 +43331,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal64.Rn, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal64.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal64.Rs, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal64.Rn, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal64.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldfminnmal64.Rs, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         return result;
         }
         default: break;
@@ -43874,7 +43874,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::VectorRegister, enc.stlur_bldapstl_simd.Rt, false); op.arrangement = "b"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stlur_bldapstl_simd.Rt, false); op.arrangement = Arrangement::B; result.operands.push_back(op); }
                         int32_t imm = static_cast<int32_t>(enc.stlur_bldapstl_simd.imm9 << 23) >> 23;
                         result.operands.push_back(Operand::memory_offset(enc.stlur_bldapstl_simd.Rn, imm));
                         return result;
@@ -43883,7 +43883,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::VectorRegister, enc.ldapur_bldapstl_simd.Rt, false); op.arrangement = "b"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldapur_bldapstl_simd.Rt, false); op.arrangement = Arrangement::B; result.operands.push_back(op); }
                         int32_t imm = static_cast<int32_t>(enc.ldapur_bldapstl_simd.imm9 << 23) >> 23;
                         result.operands.push_back(Operand::memory_offset(enc.ldapur_bldapstl_simd.Rn, imm));
                         return result;
@@ -43892,7 +43892,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::VectorRegister, enc.stlur_qldapstl_simd.Rt, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stlur_qldapstl_simd.Rt, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
                         int32_t imm = static_cast<int32_t>(enc.stlur_qldapstl_simd.imm9 << 23) >> 23;
                         result.operands.push_back(Operand::memory_offset(enc.stlur_qldapstl_simd.Rn, imm));
                         return result;
@@ -43901,7 +43901,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::VectorRegister, enc.ldapur_qldapstl_simd.Rt, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldapur_qldapstl_simd.Rt, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
                         int32_t imm = static_cast<int32_t>(enc.ldapur_qldapstl_simd.imm9 << 23) >> 23;
                         result.operands.push_back(Operand::memory_offset(enc.ldapur_qldapstl_simd.Rn, imm));
                         return result;
@@ -44090,7 +44090,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         int scale = 1;
                         {
                             Operand op(OperandType::VectorRegister, enc.stur_bldst_unscaled.Rt, false);
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             result.operands.push_back(op);
                         }
                         int32_t imm = (static_cast<int32_t>(enc.stur_bldst_unscaled.imm9) << 23) >> 23;
@@ -44104,7 +44104,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         // SIMD/FP B register variant (scale=1)
                         {
                             Operand op(OperandType::VectorRegister, enc.str_bldst_immpost.Rt, false);
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             result.operands.push_back(op);
                         }
                         int32_t imm = (static_cast<int32_t>(enc.str_bldst_immpost.imm9) << 23) >> 23;
@@ -44118,7 +44118,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         // SIMD/FP B register variant (scale=1)
                         {
                             Operand op(OperandType::VectorRegister, enc.str_bldst_immpre.Rt, false);
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             result.operands.push_back(op);
                         }
                         int32_t imm = (static_cast<int32_t>(enc.str_bldst_immpre.imm9) << 23) >> 23;
@@ -44132,7 +44132,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         // SIMD/FP B register variant (scale=1)
                         {
                             Operand op(OperandType::VectorRegister, enc.str_bldst_regoff.Rt, false);
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_reg_offset(enc.str_bldst_regoff.Rn, enc.str_bldst_regoff.Rm, enc.str_bldst_regoff.option, enc.str_bldst_regoff.S ? 0 : 0));
@@ -44146,7 +44146,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         int scale = 1;
                         {
                             Operand op(OperandType::VectorRegister, enc.ldur_bldst_unscaled.Rt, false);
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             result.operands.push_back(op);
                         }
                         int32_t imm = (static_cast<int32_t>(enc.ldur_bldst_unscaled.imm9) << 23) >> 23;
@@ -44160,7 +44160,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         // SIMD/FP B register variant (scale=1)
                         {
                             Operand op(OperandType::VectorRegister, enc.ldr_bldst_immpost.Rt, false);
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             result.operands.push_back(op);
                         }
                         int32_t imm = (static_cast<int32_t>(enc.ldr_bldst_immpost.imm9) << 23) >> 23;
@@ -44174,7 +44174,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         // SIMD/FP B register variant (scale=1)
                         {
                             Operand op(OperandType::VectorRegister, enc.ldr_bldst_immpre.Rt, false);
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             result.operands.push_back(op);
                         }
                         int32_t imm = (static_cast<int32_t>(enc.ldr_bldst_immpre.imm9) << 23) >> 23;
@@ -44188,7 +44188,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         // SIMD/FP B register variant (scale=1)
                         {
                             Operand op(OperandType::VectorRegister, enc.ldr_bldst_regoff.Rt, false);
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_reg_offset(enc.ldr_bldst_regoff.Rn, enc.ldr_bldst_regoff.Rm, enc.ldr_bldst_regoff.option, enc.ldr_bldst_regoff.S ? 0 : 0));
@@ -44310,7 +44310,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::VectorRegister, enc.stlur_hldapstl_simd.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stlur_hldapstl_simd.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         int32_t imm = static_cast<int32_t>(enc.stlur_hldapstl_simd.imm9 << 23) >> 23;
                         result.operands.push_back(Operand::memory_offset(enc.stlur_hldapstl_simd.Rn, imm));
                         return result;
@@ -44319,7 +44319,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::VectorRegister, enc.ldapur_hldapstl_simd.Rt, false); op.arrangement = "h"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldapur_hldapstl_simd.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         int32_t imm = static_cast<int32_t>(enc.ldapur_hldapstl_simd.imm9 << 23) >> 23;
                         result.operands.push_back(Operand::memory_offset(enc.ldapur_hldapstl_simd.Rn, imm));
                         return result;
@@ -44508,7 +44508,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         int scale = 2;
                         {
                             Operand op(OperandType::VectorRegister, enc.stur_hldst_unscaled.Rt, false);
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             result.operands.push_back(op);
                         }
                         int32_t imm = (static_cast<int32_t>(enc.stur_hldst_unscaled.imm9) << 23) >> 23;
@@ -44522,7 +44522,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         // SIMD/FP H register variant (scale=2)
                         {
                             Operand op(OperandType::VectorRegister, enc.str_hldst_immpost.Rt, false);
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             result.operands.push_back(op);
                         }
                         int32_t imm = (static_cast<int32_t>(enc.str_hldst_immpost.imm9) << 23) >> 23;
@@ -44536,7 +44536,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         // SIMD/FP H register variant (scale=2)
                         {
                             Operand op(OperandType::VectorRegister, enc.str_hldst_immpre.Rt, false);
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             result.operands.push_back(op);
                         }
                         int32_t imm = (static_cast<int32_t>(enc.str_hldst_immpre.imm9) << 23) >> 23;
@@ -44550,7 +44550,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         // SIMD/FP H register variant (scale=2)
                         {
                             Operand op(OperandType::VectorRegister, enc.str_hldst_regoff.Rt, false);
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_reg_offset(enc.str_hldst_regoff.Rn, enc.str_hldst_regoff.Rm, enc.str_hldst_regoff.option, enc.str_hldst_regoff.S ? 1 : 0));
@@ -44564,7 +44564,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         int scale = 2;
                         {
                             Operand op(OperandType::VectorRegister, enc.ldur_hldst_unscaled.Rt, false);
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             result.operands.push_back(op);
                         }
                         int32_t imm = (static_cast<int32_t>(enc.ldur_hldst_unscaled.imm9) << 23) >> 23;
@@ -44578,7 +44578,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         // SIMD/FP H register variant (scale=2)
                         {
                             Operand op(OperandType::VectorRegister, enc.ldr_hldst_immpost.Rt, false);
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             result.operands.push_back(op);
                         }
                         int32_t imm = (static_cast<int32_t>(enc.ldr_hldst_immpost.imm9) << 23) >> 23;
@@ -44592,7 +44592,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         // SIMD/FP H register variant (scale=2)
                         {
                             Operand op(OperandType::VectorRegister, enc.ldr_hldst_immpre.Rt, false);
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             result.operands.push_back(op);
                         }
                         int32_t imm = (static_cast<int32_t>(enc.ldr_hldst_immpre.imm9) << 23) >> 23;
@@ -44606,7 +44606,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         // SIMD/FP H register variant (scale=2)
                         {
                             Operand op(OperandType::VectorRegister, enc.ldr_hldst_regoff.Rt, false);
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_reg_offset(enc.ldr_hldst_regoff.Rn, enc.ldr_hldst_regoff.Rm, enc.ldr_hldst_regoff.option, enc.ldr_hldst_regoff.S ? 1 : 0));
@@ -44640,7 +44640,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::VectorRegister, enc.stlur_sldapstl_simd.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stlur_sldapstl_simd.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         int32_t imm = static_cast<int32_t>(enc.stlur_sldapstl_simd.imm9 << 23) >> 23;
                         result.operands.push_back(Operand::memory_offset(enc.stlur_sldapstl_simd.Rn, imm));
                         return result;
@@ -44649,7 +44649,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::VectorRegister, enc.ldapur_sldapstl_simd.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldapur_sldapstl_simd.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         int32_t imm = static_cast<int32_t>(enc.ldapur_sldapstl_simd.imm9 << 23) >> 23;
                         result.operands.push_back(Operand::memory_offset(enc.ldapur_sldapstl_simd.Rn, imm));
                         return result;
@@ -44797,7 +44797,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         int scale = 4;
                         {
                             Operand op(OperandType::VectorRegister, enc.stur_sldst_unscaled.Rt, false);
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             result.operands.push_back(op);
                         }
                         int32_t imm = (static_cast<int32_t>(enc.stur_sldst_unscaled.imm9) << 23) >> 23;
@@ -44811,7 +44811,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         // SIMD/FP S register variant (scale=4)
                         {
                             Operand op(OperandType::VectorRegister, enc.str_sldst_immpost.Rt, false);
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             result.operands.push_back(op);
                         }
                         int32_t imm = (static_cast<int32_t>(enc.str_sldst_immpost.imm9) << 23) >> 23;
@@ -44825,7 +44825,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         // SIMD/FP S register variant (scale=4)
                         {
                             Operand op(OperandType::VectorRegister, enc.str_sldst_immpre.Rt, false);
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             result.operands.push_back(op);
                         }
                         int32_t imm = (static_cast<int32_t>(enc.str_sldst_immpre.imm9) << 23) >> 23;
@@ -44839,7 +44839,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         // SIMD/FP S register variant (scale=4)
                         {
                             Operand op(OperandType::VectorRegister, enc.str_sldst_regoff.Rt, false);
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_reg_offset(enc.str_sldst_regoff.Rn, enc.str_sldst_regoff.Rm, enc.str_sldst_regoff.option, enc.str_sldst_regoff.S ? 2 : 0));
@@ -44853,7 +44853,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         int scale = 4;
                         {
                             Operand op(OperandType::VectorRegister, enc.ldur_sldst_unscaled.Rt, false);
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             result.operands.push_back(op);
                         }
                         int32_t imm = (static_cast<int32_t>(enc.ldur_sldst_unscaled.imm9) << 23) >> 23;
@@ -44867,7 +44867,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         // SIMD/FP S register variant (scale=4)
                         {
                             Operand op(OperandType::VectorRegister, enc.ldr_sldst_immpost.Rt, false);
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             result.operands.push_back(op);
                         }
                         int32_t imm = (static_cast<int32_t>(enc.ldr_sldst_immpost.imm9) << 23) >> 23;
@@ -44881,7 +44881,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         // SIMD/FP S register variant (scale=4)
                         {
                             Operand op(OperandType::VectorRegister, enc.ldr_sldst_immpre.Rt, false);
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             result.operands.push_back(op);
                         }
                         int32_t imm = (static_cast<int32_t>(enc.ldr_sldst_immpre.imm9) << 23) >> 23;
@@ -44895,7 +44895,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         // SIMD/FP S register variant (scale=4)
                         {
                             Operand op(OperandType::VectorRegister, enc.ldr_sldst_regoff.Rt, false);
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_reg_offset(enc.ldr_sldst_regoff.Rn, enc.ldr_sldst_regoff.Rm, enc.ldr_sldst_regoff.option, enc.ldr_sldst_regoff.S ? 2 : 0));
@@ -45038,7 +45038,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::STLUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::VectorRegister, enc.stlur_dldapstl_simd.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stlur_dldapstl_simd.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         int32_t imm = static_cast<int32_t>(enc.stlur_dldapstl_simd.imm9 << 23) >> 23;
                         result.operands.push_back(Operand::memory_offset(enc.stlur_dldapstl_simd.Rn, imm));
                         return result;
@@ -45047,7 +45047,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDAPUR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::VectorRegister, enc.ldapur_dldapstl_simd.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldapur_dldapstl_simd.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         int32_t imm = static_cast<int32_t>(enc.ldapur_dldapstl_simd.imm9 << 23) >> 23;
                         result.operands.push_back(Operand::memory_offset(enc.ldapur_dldapstl_simd.Rn, imm));
                         return result;
@@ -45159,7 +45159,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         int scale = 8;
                         {
                             Operand op(OperandType::VectorRegister, enc.stur_dldst_unscaled.Rt, false);
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             result.operands.push_back(op);
                         }
                         int32_t imm = (static_cast<int32_t>(enc.stur_dldst_unscaled.imm9) << 23) >> 23;
@@ -45173,7 +45173,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         // SIMD/FP D register variant (scale=8)
                         {
                             Operand op(OperandType::VectorRegister, enc.str_dldst_immpost.Rt, false);
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             result.operands.push_back(op);
                         }
                         int32_t imm = (static_cast<int32_t>(enc.str_dldst_immpost.imm9) << 23) >> 23;
@@ -45187,7 +45187,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         // SIMD/FP D register variant (scale=8)
                         {
                             Operand op(OperandType::VectorRegister, enc.str_dldst_immpre.Rt, false);
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             result.operands.push_back(op);
                         }
                         int32_t imm = (static_cast<int32_t>(enc.str_dldst_immpre.imm9) << 23) >> 23;
@@ -45201,7 +45201,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         // SIMD/FP D register variant (scale=8)
                         {
                             Operand op(OperandType::VectorRegister, enc.str_dldst_regoff.Rt, false);
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_reg_offset(enc.str_dldst_regoff.Rn, enc.str_dldst_regoff.Rm, enc.str_dldst_regoff.option, enc.str_dldst_regoff.S ? 3 : 0));
@@ -45215,7 +45215,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         int scale = 8;
                         {
                             Operand op(OperandType::VectorRegister, enc.ldur_dldst_unscaled.Rt, false);
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             result.operands.push_back(op);
                         }
                         int32_t imm = (static_cast<int32_t>(enc.ldur_dldst_unscaled.imm9) << 23) >> 23;
@@ -45229,7 +45229,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         // SIMD/FP D register variant (scale=8)
                         {
                             Operand op(OperandType::VectorRegister, enc.ldr_dldst_immpost.Rt, false);
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             result.operands.push_back(op);
                         }
                         int32_t imm = (static_cast<int32_t>(enc.ldr_dldst_immpost.imm9) << 23) >> 23;
@@ -45243,7 +45243,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         // SIMD/FP D register variant (scale=8)
                         {
                             Operand op(OperandType::VectorRegister, enc.ldr_dldst_immpre.Rt, false);
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             result.operands.push_back(op);
                         }
                         int32_t imm = (static_cast<int32_t>(enc.ldr_dldst_immpre.imm9) << 23) >> 23;
@@ -45257,7 +45257,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         // SIMD/FP D register variant (scale=8)
                         {
                             Operand op(OperandType::VectorRegister, enc.ldr_dldst_regoff.Rt, false);
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_reg_offset(enc.ldr_dldst_regoff.Rn, enc.ldr_dldst_regoff.Rm, enc.ldr_dldst_regoff.option, enc.ldr_dldst_regoff.S ? 3 : 0));
@@ -45361,8 +45361,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
-                        { Operand op(OperandType::VectorRegister, enc.stnp_sldstnapair_offs.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.stnp_sldstnapair_offs.Rt2, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stnp_sldstnapair_offs.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stnp_sldstnapair_offs.Rt2, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.stnp_sldstnapair_offs.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.stnp_sldstnapair_offs.Rn, imm * scale));
                         return result;
@@ -45372,8 +45372,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
-                        { Operand op(OperandType::VectorRegister, enc.ldnp_sldstnapair_offs.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldnp_sldstnapair_offs.Rt2, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldnp_sldstnapair_offs.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldnp_sldstnapair_offs.Rt2, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.ldnp_sldstnapair_offs.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.ldnp_sldstnapair_offs.Rn, imm * scale));
                         return result;
@@ -45383,8 +45383,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
-                        { Operand op(OperandType::VectorRegister, enc.stp_sldstpair_post.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.stp_sldstpair_post.Rt2, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stp_sldstpair_post.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stp_sldstpair_post.Rt2, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.stp_sldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.stp_sldstpair_post.Rn, imm * scale));
                         return result;
@@ -45394,8 +45394,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
-                        { Operand op(OperandType::VectorRegister, enc.ldp_sldstpair_post.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldp_sldstpair_post.Rt2, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldp_sldstpair_post.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldp_sldstpair_post.Rt2, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.ldp_sldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.ldp_sldstpair_post.Rn, imm * scale));
                         return result;
@@ -45405,8 +45405,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
-                        { Operand op(OperandType::VectorRegister, enc.stp_sldstpair_off.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.stp_sldstpair_off.Rt2, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stp_sldstpair_off.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stp_sldstpair_off.Rt2, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.stp_sldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.stp_sldstpair_off.Rn, imm * scale));
                         return result;
@@ -45416,8 +45416,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
-                        { Operand op(OperandType::VectorRegister, enc.ldp_sldstpair_off.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldp_sldstpair_off.Rt2, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldp_sldstpair_off.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldp_sldstpair_off.Rt2, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.ldp_sldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.ldp_sldstpair_off.Rn, imm * scale));
                         return result;
@@ -45427,8 +45427,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
-                        { Operand op(OperandType::VectorRegister, enc.stp_sldstpair_pre.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.stp_sldstpair_pre.Rt2, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stp_sldstpair_pre.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stp_sldstpair_pre.Rt2, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.stp_sldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.stp_sldstpair_pre.Rn, imm * scale));
                         return result;
@@ -45438,8 +45438,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
-                        { Operand op(OperandType::VectorRegister, enc.ldp_sldstpair_pre.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldp_sldstpair_pre.Rt2, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldp_sldstpair_pre.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldp_sldstpair_pre.Rt2, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.ldp_sldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.ldp_sldstpair_pre.Rn, imm * scale));
                         return result;
@@ -45488,7 +45488,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         int scale = 1;
                         {
                             Operand op(OperandType::VectorRegister, enc.str_bldst_pos.Rt, false);
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_offset(enc.str_bldst_pos.Rn, enc.str_bldst_pos.imm12 * scale));
@@ -45502,7 +45502,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         int scale = 1;
                         {
                             Operand op(OperandType::VectorRegister, enc.ldr_bldst_pos.Rt, false);
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_offset(enc.ldr_bldst_pos.Rn, enc.ldr_bldst_pos.imm12 * scale));
@@ -45599,8 +45599,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
-                        { Operand op(OperandType::VectorRegister, enc.stnp_dldstnapair_offs.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.stnp_dldstnapair_offs.Rt2, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stnp_dldstnapair_offs.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stnp_dldstnapair_offs.Rt2, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.stnp_dldstnapair_offs.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.stnp_dldstnapair_offs.Rn, imm * scale));
                         return result;
@@ -45610,8 +45610,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
-                        { Operand op(OperandType::VectorRegister, enc.ldnp_dldstnapair_offs.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldnp_dldstnapair_offs.Rt2, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldnp_dldstnapair_offs.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldnp_dldstnapair_offs.Rt2, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.ldnp_dldstnapair_offs.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.ldnp_dldstnapair_offs.Rn, imm * scale));
                         return result;
@@ -45621,8 +45621,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
-                        { Operand op(OperandType::VectorRegister, enc.stp_dldstpair_post.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.stp_dldstpair_post.Rt2, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stp_dldstpair_post.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stp_dldstpair_post.Rt2, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.stp_dldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.stp_dldstpair_post.Rn, imm * scale));
                         return result;
@@ -45632,8 +45632,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
-                        { Operand op(OperandType::VectorRegister, enc.ldp_dldstpair_post.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldp_dldstpair_post.Rt2, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldp_dldstpair_post.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldp_dldstpair_post.Rt2, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.ldp_dldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.ldp_dldstpair_post.Rn, imm * scale));
                         return result;
@@ -45643,8 +45643,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
-                        { Operand op(OperandType::VectorRegister, enc.stp_dldstpair_off.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.stp_dldstpair_off.Rt2, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stp_dldstpair_off.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stp_dldstpair_off.Rt2, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.stp_dldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.stp_dldstpair_off.Rn, imm * scale));
                         return result;
@@ -45654,8 +45654,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
-                        { Operand op(OperandType::VectorRegister, enc.ldp_dldstpair_off.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldp_dldstpair_off.Rt2, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldp_dldstpair_off.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldp_dldstpair_off.Rt2, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.ldp_dldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.ldp_dldstpair_off.Rn, imm * scale));
                         return result;
@@ -45665,8 +45665,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
-                        { Operand op(OperandType::VectorRegister, enc.stp_dldstpair_pre.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.stp_dldstpair_pre.Rt2, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stp_dldstpair_pre.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stp_dldstpair_pre.Rt2, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.stp_dldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.stp_dldstpair_pre.Rn, imm * scale));
                         return result;
@@ -45676,8 +45676,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
-                        { Operand op(OperandType::VectorRegister, enc.ldp_dldstpair_pre.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldp_dldstpair_pre.Rt2, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldp_dldstpair_pre.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldp_dldstpair_pre.Rt2, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.ldp_dldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.ldp_dldstpair_pre.Rn, imm * scale));
                         return result;
@@ -45726,7 +45726,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         int scale = 2;
                         {
                             Operand op(OperandType::VectorRegister, enc.str_hldst_pos.Rt, false);
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_offset(enc.str_hldst_pos.Rn, enc.str_hldst_pos.imm12 * scale));
@@ -45740,7 +45740,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         int scale = 2;
                         {
                             Operand op(OperandType::VectorRegister, enc.ldr_hldst_pos.Rt, false);
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_offset(enc.ldr_hldst_pos.Rn, enc.ldr_hldst_pos.imm12 * scale));
@@ -45839,8 +45839,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
-                        { Operand op(OperandType::VectorRegister, enc.stnp_qldstnapair_offs.Rt, false); op.arrangement = "q"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.stnp_qldstnapair_offs.Rt2, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stnp_qldstnapair_offs.Rt, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stnp_qldstnapair_offs.Rt2, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.stnp_qldstnapair_offs.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.stnp_qldstnapair_offs.Rn, imm * scale));
                         return result;
@@ -45850,8 +45850,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
-                        { Operand op(OperandType::VectorRegister, enc.ldnp_qldstnapair_offs.Rt, false); op.arrangement = "q"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldnp_qldstnapair_offs.Rt2, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldnp_qldstnapair_offs.Rt, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldnp_qldstnapair_offs.Rt2, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.ldnp_qldstnapair_offs.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.ldnp_qldstnapair_offs.Rn, imm * scale));
                         return result;
@@ -45861,8 +45861,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
-                        { Operand op(OperandType::VectorRegister, enc.stp_qldstpair_post.Rt, false); op.arrangement = "q"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.stp_qldstpair_post.Rt2, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stp_qldstpair_post.Rt, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stp_qldstpair_post.Rt2, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.stp_qldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.stp_qldstpair_post.Rn, imm * scale));
                         return result;
@@ -45872,8 +45872,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
-                        { Operand op(OperandType::VectorRegister, enc.ldp_qldstpair_post.Rt, false); op.arrangement = "q"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldp_qldstpair_post.Rt2, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldp_qldstpair_post.Rt, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldp_qldstpair_post.Rt2, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.ldp_qldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.ldp_qldstpair_post.Rn, imm * scale));
                         return result;
@@ -45883,8 +45883,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
-                        { Operand op(OperandType::VectorRegister, enc.stp_qldstpair_off.Rt, false); op.arrangement = "q"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.stp_qldstpair_off.Rt2, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stp_qldstpair_off.Rt, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stp_qldstpair_off.Rt2, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.stp_qldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.stp_qldstpair_off.Rn, imm * scale));
                         return result;
@@ -45894,8 +45894,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
-                        { Operand op(OperandType::VectorRegister, enc.ldp_qldstpair_off.Rt, false); op.arrangement = "q"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldp_qldstpair_off.Rt2, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldp_qldstpair_off.Rt, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldp_qldstpair_off.Rt2, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.ldp_qldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.ldp_qldstpair_off.Rn, imm * scale));
                         return result;
@@ -45905,8 +45905,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
-                        { Operand op(OperandType::VectorRegister, enc.stp_qldstpair_pre.Rt, false); op.arrangement = "q"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.stp_qldstpair_pre.Rt2, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stp_qldstpair_pre.Rt, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.stp_qldstpair_pre.Rt2, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.stp_qldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.stp_qldstpair_pre.Rn, imm * scale));
                         return result;
@@ -45916,8 +45916,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
-                        { Operand op(OperandType::VectorRegister, enc.ldp_qldstpair_pre.Rt, false); op.arrangement = "q"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldp_qldstpair_pre.Rt2, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldp_qldstpair_pre.Rt, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldp_qldstpair_pre.Rt2, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.ldp_qldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.ldp_qldstpair_pre.Rn, imm * scale));
                         return result;
@@ -45957,7 +45957,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         int scale = 4;
                         {
                             Operand op(OperandType::VectorRegister, enc.str_sldst_pos.Rt, false);
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_offset(enc.str_sldst_pos.Rn, enc.str_sldst_pos.imm12 * scale));
@@ -45971,7 +45971,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         int scale = 4;
                         {
                             Operand op(OperandType::VectorRegister, enc.ldr_sldst_pos.Rt, false);
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_offset(enc.ldr_sldst_pos.Rn, enc.ldr_sldst_pos.imm12 * scale));
@@ -46070,8 +46070,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
-                        { Operand op(OperandType::VectorRegister, enc.sttnp_qldstnapair_offs.Rt, false); op.arrangement = "q"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.sttnp_qldstnapair_offs.Rt2, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sttnp_qldstnapair_offs.Rt, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sttnp_qldstnapair_offs.Rt2, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.sttnp_qldstnapair_offs.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.sttnp_qldstnapair_offs.Rn, imm * scale));
                         return result;
@@ -46081,8 +46081,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
-                        { Operand op(OperandType::VectorRegister, enc.ldtnp_qldstnapair_offs.Rt, false); op.arrangement = "q"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldtnp_qldstnapair_offs.Rt2, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldtnp_qldstnapair_offs.Rt, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldtnp_qldstnapair_offs.Rt2, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.ldtnp_qldstnapair_offs.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.ldtnp_qldstnapair_offs.Rn, imm * scale));
                         return result;
@@ -46092,8 +46092,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
-                        { Operand op(OperandType::VectorRegister, enc.sttp_qldstpair_post.Rt, false); op.arrangement = "q"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.sttp_qldstpair_post.Rt2, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sttp_qldstpair_post.Rt, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sttp_qldstpair_post.Rt2, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.sttp_qldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.sttp_qldstpair_post.Rn, imm * scale));
                         return result;
@@ -46103,8 +46103,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
-                        { Operand op(OperandType::VectorRegister, enc.ldtp_qldstpair_post.Rt, false); op.arrangement = "q"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldtp_qldstpair_post.Rt2, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldtp_qldstpair_post.Rt, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldtp_qldstpair_post.Rt2, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.ldtp_qldstpair_post.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_post_index(enc.ldtp_qldstpair_post.Rn, imm * scale));
                         return result;
@@ -46114,8 +46114,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
-                        { Operand op(OperandType::VectorRegister, enc.sttp_qldstpair_off.Rt, false); op.arrangement = "q"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.sttp_qldstpair_off.Rt2, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sttp_qldstpair_off.Rt, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sttp_qldstpair_off.Rt2, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.sttp_qldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.sttp_qldstpair_off.Rn, imm * scale));
                         return result;
@@ -46125,8 +46125,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
-                        { Operand op(OperandType::VectorRegister, enc.ldtp_qldstpair_off.Rt, false); op.arrangement = "q"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldtp_qldstpair_off.Rt2, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldtp_qldstpair_off.Rt, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldtp_qldstpair_off.Rt2, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.ldtp_qldstpair_off.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_offset(enc.ldtp_qldstpair_off.Rn, imm * scale));
                         return result;
@@ -46136,8 +46136,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
-                        { Operand op(OperandType::VectorRegister, enc.sttp_qldstpair_pre.Rt, false); op.arrangement = "q"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.sttp_qldstpair_pre.Rt2, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sttp_qldstpair_pre.Rt, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.sttp_qldstpair_pre.Rt2, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.sttp_qldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.sttp_qldstpair_pre.Rn, imm * scale));
                         return result;
@@ -46147,8 +46147,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
-                        { Operand op(OperandType::VectorRegister, enc.ldtp_qldstpair_pre.Rt, false); op.arrangement = "q"; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.ldtp_qldstpair_pre.Rt2, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldtp_qldstpair_pre.Rt, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldtp_qldstpair_pre.Rt2, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
                         int32_t imm = (static_cast<int32_t>(enc.ldtp_qldstpair_pre.imm7) << 25) >> 25;
                         result.operands.push_back(Operand::memory_pre_index(enc.ldtp_qldstpair_pre.Rn, imm * scale));
                         return result;
@@ -46188,7 +46188,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         int scale = 8;
                         {
                             Operand op(OperandType::VectorRegister, enc.str_dldst_pos.Rt, false);
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_offset(enc.str_dldst_pos.Rn, enc.str_dldst_pos.imm12 * scale));
@@ -46202,7 +46202,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         int scale = 8;
                         {
                             Operand op(OperandType::VectorRegister, enc.ldr_dldst_pos.Rt, false);
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_offset(enc.ldr_dldst_pos.Rn, enc.ldr_dldst_pos.imm12 * scale));
@@ -46272,7 +46272,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::VectorRegister, enc.ldr_sloadlit.Rt, false); op.arrangement = "s"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldr_sloadlit.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         int32_t offset = static_cast<int32_t>(enc.ldr_sloadlit.imm19 << 13) >> 13;
                         offset *= 4;
                         result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));
@@ -46294,7 +46294,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::VectorRegister, enc.ldr_dloadlit.Rt, false); op.arrangement = "d"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldr_dloadlit.Rt, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         int32_t offset = static_cast<int32_t>(enc.ldr_dloadlit.imm19 << 13) >> 13;
                         offset *= 4;
                         result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));
@@ -46316,7 +46316,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDR, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::VectorRegister, enc.ldr_qloadlit.Rt, false); op.arrangement = "q"; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.ldr_qloadlit.Rt, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }
                         int32_t offset = static_cast<int32_t>(enc.ldr_qloadlit.imm19 << 13) >> 13;
                         offset *= 4;
                         result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));
@@ -46347,7 +46347,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st1asisdlso_d11d.Rt, false);
                             op.index = 1;
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -46365,7 +46365,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st3asisdlso_d33d.Rt, false);
                             op.index = 3;
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -46392,7 +46392,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st2asisdlso_d22d.Rt, false);
                             op.index = 2;
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -46410,7 +46410,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st4asisdlso_d44d.Rt, false);
                             op.index = 4;
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -46428,7 +46428,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld1asisdlso_d11d.Rt, false);
                             op.index = 1;
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -46446,7 +46446,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld3asisdlso_d33d.Rt, false);
                             op.index = 3;
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -46473,7 +46473,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld2asisdlso_d22d.Rt, false);
                             op.index = 2;
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -46491,7 +46491,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld4asisdlso_d44d.Rt, false);
                             op.index = 4;
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -46509,7 +46509,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st1asisdlsop_d1i1d.Rt, false);
                             op.index = 1;
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -46527,7 +46527,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st3asisdlsop_d3i3d.Rt, false);
                             op.index = 3;
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -46545,7 +46545,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st2asisdlsop_d2i2d.Rt, false);
                             op.index = 2;
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -46563,7 +46563,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st4asisdlsop_d4i4d.Rt, false);
                             op.index = 4;
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -46581,7 +46581,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld1asisdlsop_d1i1d.Rt, false);
                             op.index = 1;
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -46599,7 +46599,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld3asisdlsop_d3i3d.Rt, false);
                             op.index = 3;
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -46617,7 +46617,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld2asisdlsop_d2i2d.Rt, false);
                             op.index = 2;
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -46635,7 +46635,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld4asisdlsop_d4i4d.Rt, false);
                             op.index = 4;
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -46653,11 +46653,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.st4asisdlse_r4.Q][enc.st4asisdlse_r4.size];
                         }
@@ -46671,11 +46671,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.st1asisdlse_r44v.Q][enc.st1asisdlse_r44v.size];
                         }
@@ -46689,11 +46689,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.st3asisdlse_r3.Q][enc.st3asisdlse_r3.size];
                         }
@@ -46707,11 +46707,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.st1asisdlse_r33v.Q][enc.st1asisdlse_r33v.size];
                         }
@@ -46725,11 +46725,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.st1asisdlse_r11v.Q][enc.st1asisdlse_r11v.size];
                         }
@@ -46743,11 +46743,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.st2asisdlse_r2.Q][enc.st2asisdlse_r2.size];
                         }
@@ -46761,11 +46761,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.st1asisdlse_r22v.Q][enc.st1asisdlse_r22v.size];
                         }
@@ -46779,11 +46779,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.ld4asisdlse_r4.Q][enc.ld4asisdlse_r4.size];
                         }
@@ -46797,11 +46797,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.ld1asisdlse_r44v.Q][enc.ld1asisdlse_r44v.size];
                         }
@@ -46815,11 +46815,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.ld3asisdlse_r3.Q][enc.ld3asisdlse_r3.size];
                         }
@@ -46833,11 +46833,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.ld1asisdlse_r33v.Q][enc.ld1asisdlse_r33v.size];
                         }
@@ -46851,11 +46851,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.ld1asisdlse_r11v.Q][enc.ld1asisdlse_r11v.size];
                         }
@@ -46869,11 +46869,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.ld2asisdlse_r2.Q][enc.ld2asisdlse_r2.size];
                         }
@@ -46887,11 +46887,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.ld1asisdlse_r22v.Q][enc.ld1asisdlse_r22v.size];
                         }
@@ -46905,11 +46905,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.st4asisdlsep_i4i.Q][enc.st4asisdlsep_i4i.size];
                         }
@@ -46924,11 +46924,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.st1asisdlsep_i4i4.Q][enc.st1asisdlsep_i4i4.size];
                         }
@@ -46943,11 +46943,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.st3asisdlsep_i3i.Q][enc.st3asisdlsep_i3i.size];
                         }
@@ -46962,11 +46962,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.st1asisdlsep_i3i3.Q][enc.st1asisdlsep_i3i3.size];
                         }
@@ -46981,11 +46981,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.st1asisdlsep_i1i1.Q][enc.st1asisdlsep_i1i1.size];
                         }
@@ -47000,11 +47000,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.st2asisdlsep_i2i.Q][enc.st2asisdlsep_i2i.size];
                         }
@@ -47019,11 +47019,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.st1asisdlsep_i2i2.Q][enc.st1asisdlsep_i2i2.size];
                         }
@@ -47038,11 +47038,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.ld4asisdlsep_i4i.Q][enc.ld4asisdlsep_i4i.size];
                         }
@@ -47057,11 +47057,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.ld1asisdlsep_i4i4.Q][enc.ld1asisdlsep_i4i4.size];
                         }
@@ -47076,11 +47076,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.ld3asisdlsep_i3i.Q][enc.ld3asisdlsep_i3i.size];
                         }
@@ -47095,11 +47095,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.ld1asisdlsep_i3i3.Q][enc.ld1asisdlsep_i3i3.size];
                         }
@@ -47114,11 +47114,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.ld1asisdlsep_i1i1.Q][enc.ld1asisdlsep_i1i1.size];
                         }
@@ -47133,11 +47133,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.ld2asisdlsep_i2i.Q][enc.ld2asisdlsep_i2i.size];
                         }
@@ -47152,11 +47152,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.ld1asisdlsep_i2i2.Q][enc.ld1asisdlsep_i2i2.size];
                         }
@@ -47171,11 +47171,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        static const char* _rep_arrs[2][4] = {
-                            {"8b", "4h", "2s", "1d"},
-                            {"16b", "8h", "4s", "2d"}
+                        static const Arrangement _rep_arrs[2][4] = {
+                            {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                            {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                         };
-                        const char* _rep_arr = _rep_arrs[enc.ld1r_asisdlso_r1.Q][enc.ld1r_asisdlso_r1.size];
+                        Arrangement _rep_arr = _rep_arrs[enc.ld1r_asisdlso_r1.Q][enc.ld1r_asisdlso_r1.size];
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld1r_asisdlso_r1.Rt, false);
                             op.index = 1;
@@ -47190,11 +47190,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        static const char* _rep_arrs[2][4] = {
-                            {"8b", "4h", "2s", "1d"},
-                            {"16b", "8h", "4s", "2d"}
+                        static const Arrangement _rep_arrs[2][4] = {
+                            {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                            {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                         };
-                        const char* _rep_arr = _rep_arrs[enc.ld3r_asisdlso_r3.Q][enc.ld3r_asisdlso_r3.size];
+                        Arrangement _rep_arr = _rep_arrs[enc.ld3r_asisdlso_r3.Q][enc.ld3r_asisdlso_r3.size];
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld3r_asisdlso_r3.Rt, false);
                             op.index = 3;
@@ -47209,11 +47209,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        static const char* _rep_arrs[2][4] = {
-                            {"8b", "4h", "2s", "1d"},
-                            {"16b", "8h", "4s", "2d"}
+                        static const Arrangement _rep_arrs[2][4] = {
+                            {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                            {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                         };
-                        const char* _rep_arr = _rep_arrs[enc.ld2r_asisdlso_r2.Q][enc.ld2r_asisdlso_r2.size];
+                        Arrangement _rep_arr = _rep_arrs[enc.ld2r_asisdlso_r2.Q][enc.ld2r_asisdlso_r2.size];
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld2r_asisdlso_r2.Rt, false);
                             op.index = 2;
@@ -47228,11 +47228,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        static const char* _rep_arrs[2][4] = {
-                            {"8b", "4h", "2s", "1d"},
-                            {"16b", "8h", "4s", "2d"}
+                        static const Arrangement _rep_arrs[2][4] = {
+                            {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                            {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                         };
-                        const char* _rep_arr = _rep_arrs[enc.ld4r_asisdlso_r4.Q][enc.ld4r_asisdlso_r4.size];
+                        Arrangement _rep_arr = _rep_arrs[enc.ld4r_asisdlso_r4.Q][enc.ld4r_asisdlso_r4.size];
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld4r_asisdlso_r4.Rt, false);
                             op.index = 4;
@@ -47247,11 +47247,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        static const char* _rep_arrs[2][4] = {
-                            {"8b", "4h", "2s", "1d"},
-                            {"16b", "8h", "4s", "2d"}
+                        static const Arrangement _rep_arrs[2][4] = {
+                            {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                            {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                         };
-                        const char* _rep_arr = _rep_arrs[enc.ld1r_asisdlsop_r1i.Q][enc.ld1r_asisdlsop_r1i.size];
+                        Arrangement _rep_arr = _rep_arrs[enc.ld1r_asisdlsop_r1i.Q][enc.ld1r_asisdlsop_r1i.size];
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld1r_asisdlsop_r1i.Rt, false);
                             op.index = 1;
@@ -47270,11 +47270,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        static const char* _rep_arrs[2][4] = {
-                            {"8b", "4h", "2s", "1d"},
-                            {"16b", "8h", "4s", "2d"}
+                        static const Arrangement _rep_arrs[2][4] = {
+                            {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                            {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                         };
-                        const char* _rep_arr = _rep_arrs[enc.ld3r_asisdlsop_r3i.Q][enc.ld3r_asisdlsop_r3i.size];
+                        Arrangement _rep_arr = _rep_arrs[enc.ld3r_asisdlsop_r3i.Q][enc.ld3r_asisdlsop_r3i.size];
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld3r_asisdlsop_r3i.Rt, false);
                             op.index = 3;
@@ -47293,11 +47293,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        static const char* _rep_arrs[2][4] = {
-                            {"8b", "4h", "2s", "1d"},
-                            {"16b", "8h", "4s", "2d"}
+                        static const Arrangement _rep_arrs[2][4] = {
+                            {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                            {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                         };
-                        const char* _rep_arr = _rep_arrs[enc.ld2r_asisdlsop_r2i.Q][enc.ld2r_asisdlsop_r2i.size];
+                        Arrangement _rep_arr = _rep_arrs[enc.ld2r_asisdlsop_r2i.Q][enc.ld2r_asisdlsop_r2i.size];
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld2r_asisdlsop_r2i.Rt, false);
                             op.index = 2;
@@ -47316,11 +47316,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        static const char* _rep_arrs[2][4] = {
-                            {"8b", "4h", "2s", "1d"},
-                            {"16b", "8h", "4s", "2d"}
+                        static const Arrangement _rep_arrs[2][4] = {
+                            {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                            {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                         };
-                        const char* _rep_arr = _rep_arrs[enc.ld4r_asisdlsop_r4i.Q][enc.ld4r_asisdlsop_r4i.size];
+                        Arrangement _rep_arr = _rep_arrs[enc.ld4r_asisdlsop_r4i.Q][enc.ld4r_asisdlsop_r4i.size];
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld4r_asisdlsop_r4i.Rt, false);
                             op.index = 4;
@@ -47349,7 +47349,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st1asisdlso_s11s.Rt, false);
                             op.index = 1;
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47367,7 +47367,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st3asisdlso_s33s.Rt, false);
                             op.index = 3;
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47385,7 +47385,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st2asisdlso_s22s.Rt, false);
                             op.index = 2;
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47403,7 +47403,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st4asisdlso_s44s.Rt, false);
                             op.index = 4;
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47421,7 +47421,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld1asisdlso_s11s.Rt, false);
                             op.index = 1;
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47439,7 +47439,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld3asisdlso_s33s.Rt, false);
                             op.index = 3;
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47457,7 +47457,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld2asisdlso_s22s.Rt, false);
                             op.index = 2;
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47475,7 +47475,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld4asisdlso_s44s.Rt, false);
                             op.index = 4;
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47493,7 +47493,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st1asisdlsop_s1i1s.Rt, false);
                             op.index = 1;
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47511,7 +47511,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st3asisdlsop_s3i3s.Rt, false);
                             op.index = 3;
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47529,7 +47529,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st2asisdlsop_s2i2s.Rt, false);
                             op.index = 2;
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47547,7 +47547,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st4asisdlsop_s4i4s.Rt, false);
                             op.index = 4;
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47565,7 +47565,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld1asisdlsop_s1i1s.Rt, false);
                             op.index = 1;
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47583,7 +47583,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld3asisdlsop_s3i3s.Rt, false);
                             op.index = 3;
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47601,7 +47601,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld2asisdlsop_s2i2s.Rt, false);
                             op.index = 2;
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47619,7 +47619,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld4asisdlsop_s4i4s.Rt, false);
                             op.index = 4;
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47642,7 +47642,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st1asisdlso_h11h.Rt, false);
                             op.index = 1;
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47660,7 +47660,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st3asisdlso_h33h.Rt, false);
                             op.index = 3;
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47678,7 +47678,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st2asisdlso_h22h.Rt, false);
                             op.index = 2;
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47696,7 +47696,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st4asisdlso_h44h.Rt, false);
                             op.index = 4;
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47714,7 +47714,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld1asisdlso_h11h.Rt, false);
                             op.index = 1;
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47732,7 +47732,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld3asisdlso_h33h.Rt, false);
                             op.index = 3;
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47750,7 +47750,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld2asisdlso_h22h.Rt, false);
                             op.index = 2;
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47768,7 +47768,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld4asisdlso_h44h.Rt, false);
                             op.index = 4;
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47786,7 +47786,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st1asisdlsop_h1i1h.Rt, false);
                             op.index = 1;
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47804,7 +47804,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st3asisdlsop_h3i3h.Rt, false);
                             op.index = 3;
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47822,7 +47822,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st2asisdlsop_h2i2h.Rt, false);
                             op.index = 2;
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47840,7 +47840,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st4asisdlsop_h4i4h.Rt, false);
                             op.index = 4;
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47858,7 +47858,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld1asisdlsop_h1i1h.Rt, false);
                             op.index = 1;
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47876,7 +47876,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld3asisdlsop_h3i3h.Rt, false);
                             op.index = 3;
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47894,7 +47894,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld2asisdlsop_h2i2h.Rt, false);
                             op.index = 2;
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47912,7 +47912,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld4asisdlsop_h4i4h.Rt, false);
                             op.index = 4;
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47935,7 +47935,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st1asisdlso_b11b.Rt, false);
                             op.index = 1;
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47953,7 +47953,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st3asisdlso_b33b.Rt, false);
                             op.index = 3;
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47971,7 +47971,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st2asisdlso_b22b.Rt, false);
                             op.index = 2;
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -47989,7 +47989,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st4asisdlso_b44b.Rt, false);
                             op.index = 4;
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48007,7 +48007,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld1asisdlso_b11b.Rt, false);
                             op.index = 1;
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48025,7 +48025,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld3asisdlso_b33b.Rt, false);
                             op.index = 3;
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48043,7 +48043,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld2asisdlso_b22b.Rt, false);
                             op.index = 2;
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48061,7 +48061,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld4asisdlso_b44b.Rt, false);
                             op.index = 4;
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48079,7 +48079,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st1asisdlsop_b1i1b.Rt, false);
                             op.index = 1;
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48097,7 +48097,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st3asisdlsop_b3i3b.Rt, false);
                             op.index = 3;
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48115,7 +48115,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st2asisdlsop_b2i2b.Rt, false);
                             op.index = 2;
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48133,7 +48133,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st4asisdlsop_b4i4b.Rt, false);
                             op.index = 4;
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48151,7 +48151,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld1asisdlsop_b1i1b.Rt, false);
                             op.index = 1;
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48169,7 +48169,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld3asisdlsop_b3i3b.Rt, false);
                             op.index = 3;
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48187,7 +48187,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld2asisdlsop_b2i2b.Rt, false);
                             op.index = 2;
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48205,7 +48205,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld4asisdlsop_b4i4b.Rt, false);
                             op.index = 4;
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48228,7 +48228,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st1asisdlsop_dx1r1d.Rt, false);
                             op.index = 1;
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48247,7 +48247,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st3asisdlsop_dx3r3d.Rt, false);
                             op.index = 3;
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48266,7 +48266,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st2asisdlsop_dx2r2d.Rt, false);
                             op.index = 2;
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48285,7 +48285,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st4asisdlsop_dx4r4d.Rt, false);
                             op.index = 4;
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48304,7 +48304,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld1asisdlsop_dx1r1d.Rt, false);
                             op.index = 1;
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48323,7 +48323,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld3asisdlsop_dx3r3d.Rt, false);
                             op.index = 3;
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48342,7 +48342,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld2asisdlsop_dx2r2d.Rt, false);
                             op.index = 2;
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48361,7 +48361,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld4asisdlsop_dx4r4d.Rt, false);
                             op.index = 4;
-                            op.arrangement = "d";
+                            op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48380,11 +48380,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.st4asisdlsep_r4r.Q][enc.st4asisdlsep_r4r.size];
                         }
@@ -48399,11 +48399,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.st1asisdlsep_r4r4.Q][enc.st1asisdlsep_r4r4.size];
                         }
@@ -48418,11 +48418,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.st3asisdlsep_r3r.Q][enc.st3asisdlsep_r3r.size];
                         }
@@ -48437,11 +48437,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.st1asisdlsep_r3r3.Q][enc.st1asisdlsep_r3r3.size];
                         }
@@ -48456,11 +48456,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.st1asisdlsep_r1r1.Q][enc.st1asisdlsep_r1r1.size];
                         }
@@ -48475,11 +48475,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.st2asisdlsep_r2r.Q][enc.st2asisdlsep_r2r.size];
                         }
@@ -48494,11 +48494,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.st1asisdlsep_r2r2.Q][enc.st1asisdlsep_r2r2.size];
                         }
@@ -48513,11 +48513,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.ld4asisdlsep_r4r.Q][enc.ld4asisdlsep_r4r.size];
                         }
@@ -48532,11 +48532,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.ld1asisdlsep_r4r4.Q][enc.ld1asisdlsep_r4r4.size];
                         }
@@ -48551,11 +48551,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.ld3asisdlsep_r3r.Q][enc.ld3asisdlsep_r3r.size];
                         }
@@ -48570,11 +48570,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.ld1asisdlsep_r3r3.Q][enc.ld1asisdlsep_r3r3.size];
                         }
@@ -48589,11 +48589,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.ld1asisdlsep_r1r1.Q][enc.ld1asisdlsep_r1r1.size];
                         }
@@ -48608,11 +48608,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.ld2asisdlsep_r2r.Q][enc.ld2asisdlsep_r2r.size];
                         }
@@ -48627,11 +48627,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        const char* _arr = nullptr;
+                        Arrangement _arr = Arrangement::None;
                         {
-                            static const char* arrs[2][4] = {
-                                {"8b", "4h", "2s", "1d"},
-                                {"16b", "8h", "4s", "2d"}
+                            static const Arrangement arrs[2][4] = {
+                                {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                                {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                             };
                             _arr = arrs[enc.ld1asisdlsep_r2r2.Q][enc.ld1asisdlsep_r2r2.size];
                         }
@@ -48646,11 +48646,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        static const char* _rep_arrs[2][4] = {
-                            {"8b", "4h", "2s", "1d"},
-                            {"16b", "8h", "4s", "2d"}
+                        static const Arrangement _rep_arrs[2][4] = {
+                            {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                            {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                         };
-                        const char* _rep_arr = _rep_arrs[enc.ld1r_asisdlsop_rx1r.Q][enc.ld1r_asisdlsop_rx1r.size];
+                        Arrangement _rep_arr = _rep_arrs[enc.ld1r_asisdlsop_rx1r.Q][enc.ld1r_asisdlsop_rx1r.size];
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld1r_asisdlsop_rx1r.Rt, false);
                             op.index = 1;
@@ -48666,11 +48666,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        static const char* _rep_arrs[2][4] = {
-                            {"8b", "4h", "2s", "1d"},
-                            {"16b", "8h", "4s", "2d"}
+                        static const Arrangement _rep_arrs[2][4] = {
+                            {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                            {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                         };
-                        const char* _rep_arr = _rep_arrs[enc.ld3r_asisdlsop_rx3r.Q][enc.ld3r_asisdlsop_rx3r.size];
+                        Arrangement _rep_arr = _rep_arrs[enc.ld3r_asisdlsop_rx3r.Q][enc.ld3r_asisdlsop_rx3r.size];
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld3r_asisdlsop_rx3r.Rt, false);
                             op.index = 3;
@@ -48686,11 +48686,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        static const char* _rep_arrs[2][4] = {
-                            {"8b", "4h", "2s", "1d"},
-                            {"16b", "8h", "4s", "2d"}
+                        static const Arrangement _rep_arrs[2][4] = {
+                            {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                            {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                         };
-                        const char* _rep_arr = _rep_arrs[enc.ld2r_asisdlsop_rx2r.Q][enc.ld2r_asisdlsop_rx2r.size];
+                        Arrangement _rep_arr = _rep_arrs[enc.ld2r_asisdlsop_rx2r.Q][enc.ld2r_asisdlsop_rx2r.size];
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld2r_asisdlsop_rx2r.Rt, false);
                             op.index = 2;
@@ -48706,11 +48706,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        static const char* _rep_arrs[2][4] = {
-                            {"8b", "4h", "2s", "1d"},
-                            {"16b", "8h", "4s", "2d"}
+                        static const Arrangement _rep_arrs[2][4] = {
+                            {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
+                            {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
                         };
-                        const char* _rep_arr = _rep_arrs[enc.ld4r_asisdlsop_rx4r.Q][enc.ld4r_asisdlsop_rx4r.size];
+                        Arrangement _rep_arr = _rep_arrs[enc.ld4r_asisdlsop_rx4r.Q][enc.ld4r_asisdlsop_rx4r.size];
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld4r_asisdlsop_rx4r.Rt, false);
                             op.index = 4;
@@ -48736,7 +48736,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st1asisdlsop_sx1r1s.Rt, false);
                             op.index = 1;
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48755,7 +48755,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st3asisdlsop_sx3r3s.Rt, false);
                             op.index = 3;
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48774,7 +48774,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st2asisdlsop_sx2r2s.Rt, false);
                             op.index = 2;
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48793,7 +48793,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st4asisdlsop_sx4r4s.Rt, false);
                             op.index = 4;
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48812,7 +48812,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld1asisdlsop_sx1r1s.Rt, false);
                             op.index = 1;
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48831,7 +48831,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld3asisdlsop_sx3r3s.Rt, false);
                             op.index = 3;
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48850,7 +48850,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld2asisdlsop_sx2r2s.Rt, false);
                             op.index = 2;
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48869,7 +48869,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld4asisdlsop_sx4r4s.Rt, false);
                             op.index = 4;
-                            op.arrangement = "s";
+                            op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48893,7 +48893,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st1asisdlsop_hx1r1h.Rt, false);
                             op.index = 1;
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48912,7 +48912,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st3asisdlsop_hx3r3h.Rt, false);
                             op.index = 3;
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48931,7 +48931,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st2asisdlsop_hx2r2h.Rt, false);
                             op.index = 2;
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48950,7 +48950,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st4asisdlsop_hx4r4h.Rt, false);
                             op.index = 4;
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48969,7 +48969,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld1asisdlsop_hx1r1h.Rt, false);
                             op.index = 1;
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -48988,7 +48988,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld3asisdlsop_hx3r3h.Rt, false);
                             op.index = 3;
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -49007,7 +49007,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld2asisdlsop_hx2r2h.Rt, false);
                             op.index = 2;
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -49026,7 +49026,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld4asisdlsop_hx4r4h.Rt, false);
                             op.index = 4;
-                            op.arrangement = "h";
+                            op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -49050,7 +49050,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st1asisdlsop_bx1r1b.Rt, false);
                             op.index = 1;
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -49069,7 +49069,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st3asisdlsop_bx3r3b.Rt, false);
                             op.index = 3;
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -49088,7 +49088,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st2asisdlsop_bx2r2b.Rt, false);
                             op.index = 2;
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -49107,7 +49107,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.st4asisdlsop_bx4r4b.Rt, false);
                             op.index = 4;
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -49126,7 +49126,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld1asisdlsop_bx1r1b.Rt, false);
                             op.index = 1;
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -49145,7 +49145,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld3asisdlsop_bx3r3b.Rt, false);
                             op.index = 3;
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -49164,7 +49164,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld2asisdlsop_bx2r2b.Rt, false);
                             op.index = 2;
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);
@@ -49183,7 +49183,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         {
                             Operand op(OperandType::VectorRegisterList, enc.ld4asisdlsop_bx4r4b.Rt, false);
                             op.index = 4;
-                            op.arrangement = "b";
+                            op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.amount = _elem_idx;
                             result.operands.push_back(op);

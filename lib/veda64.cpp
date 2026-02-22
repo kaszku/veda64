@@ -1556,54 +1556,99 @@ std::string Operand::format_register(uint32_t reg, bool is_64bit, bool is_sp) {
 }
 
 // Format a vector register
-std::string Operand::format_vector_register(uint32_t reg, const char* arrangement) {
-    // Single-char scalar prefixes: d, s, h, b → "d7", "s7", etc.
-    if (arrangement && arrangement[0] != '\0' && arrangement[1] == '\0') {
-        char c = arrangement[0];
-        if (c == 'q' || c == 'd' || c == 's' || c == 'h' || c == 'b') {
-            return std::string(1, c) + std::to_string(reg);
-        }
+std::string Operand::format_vector_register(uint32_t reg, Arrangement arrangement) {
+    // Scalar prefixes: B→b, H→h, S→s, D→d, Q→q
+    if (arrangement >= Arrangement::B && arrangement <= Arrangement::Q) {
+        const char prefix[] = {0, 'b', 'h', 's', 'd', 'q'};
+        return std::string(1, prefix[static_cast<int>(arrangement)]) + std::to_string(reg);
     }
     std::string result = "v" + std::to_string(reg);
-    if (arrangement && arrangement[0] != '\0') {
+    if (arrangement != Arrangement::None) {
         result += ".";
-        result += arrangement;
+        result += arrangement_to_string(arrangement);
     }
     return result;
 }
 
+Arrangement Operand::arr_from_size(uint32_t size) {
+    static const Arrangement table[] = { Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D };
+    return size < 4 ? table[size] : Arrangement::None;
+}
+
+Arrangement Operand::arr_narrow_from_size(uint32_t size) {
+    static const Arrangement table[] = { Arrangement::None, Arrangement::B, Arrangement::H, Arrangement::S };
+    return size < 4 ? table[size] : Arrangement::None;
+}
+
+Arrangement Operand::arr_wide_from_size(uint32_t size) {
+    static const Arrangement table[] = { Arrangement::H, Arrangement::S, Arrangement::D };
+    return size < 3 ? table[size] : Arrangement::None;
+}
+
+Arrangement Operand::vec_arr(uint32_t size, uint32_t q) {
+    static const Arrangement table[2][4] = {
+        { Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1 },
+        { Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2 }
+    };
+    return (size < 4 && q < 2) ? table[q][size] : Arrangement::None;
+}
+
+const char* Operand::arrangement_to_string(Arrangement a) {
+    switch (a) {
+        case Arrangement::None: return "";
+        case Arrangement::B: return "b";
+        case Arrangement::H: return "h";
+        case Arrangement::S: return "s";
+        case Arrangement::D: return "d";
+        case Arrangement::Q: return "q";
+        case Arrangement::B8: return "8b";
+        case Arrangement::H4: return "4h";
+        case Arrangement::S2: return "2s";
+        case Arrangement::D1: return "1d";
+        case Arrangement::B16: return "16b";
+        case Arrangement::H8: return "8h";
+        case Arrangement::S4: return "4s";
+        case Arrangement::D2: return "2d";
+        case Arrangement::Q1: return "1q";
+        case Arrangement::B2: return "2b";
+        case Arrangement::B4: return "4b";
+        case Arrangement::H2: return "2h";
+        default: return "";
+    }
+}
+
 // Determine vector arrangement for MOVI/MVNI based on Q and cmode fields
-const char* get_movi_arrangement(uint32_t insn) {
+Arrangement get_movi_arrangement(uint32_t insn) {
     uint32_t Q = (insn >> 30) & 1;
     uint32_t op = (insn >> 29) & 1;
     uint32_t cmode = (insn >> 12) & 0xF;
 
     // 8-bit (cmode=1110, op=0 MOVI)
     if (op == 0 && cmode == 0xE) {
-        return Q ? "16b" : "8b";
+        return Q ? Arrangement::B16 : Arrangement::B8;
     }
     // 64-bit (cmode=1110, op=1 MOVI)
     if (op == 1 && cmode == 0xE) {
-        return Q ? "2d" : "d";  // Scalar D register form
+        return Q ? Arrangement::D2 : Arrangement::D;  // Scalar D register form
     }
     // 16-bit shifted (cmode=10x0) — MOVI op=0 and MVNI op=1
     if ((cmode & 0xD) == 0x8) {
-        return Q ? "8h" : "4h";
+        return Q ? Arrangement::H8 : Arrangement::H4;
     }
     // 32-bit shifted (cmode=0xx0) — MOVI op=0 and MVNI op=1
     if ((cmode & 0x9) == 0x0) {
-        return Q ? "4s" : "2s";
+        return Q ? Arrangement::S4 : Arrangement::S2;
     }
     // 32-bit shifting ones (cmode=110x) — MOVI op=0 and MVNI op=1
     if ((cmode & 0xE) == 0xC) {
-        return Q ? "4s" : "2s";
+        return Q ? Arrangement::S4 : Arrangement::S2;
     }
     // FP modified immediate (cmode=1111) — FMOV vector variants
     if (cmode == 0xF) {
-        if (op == 0) return Q ? "4s" : "2s";  // Single-precision (.4s/.2s)
-        return Q ? "2d" : "4h";  // Double-precision (.2D) or FP16 (.8H/.4H)
+        if (op == 0) return Q ? Arrangement::S4 : Arrangement::S2;  // Single-precision (.4s/.2s)
+        return Q ? Arrangement::D2 : Arrangement::H4;  // Double-precision (.2D) or FP16 (.8H/.4H)
     }
-    return nullptr;
+    return Arrangement::None;
 }
 
 // Returns shift amount for MOVI/MVNI, or -1 if no shift / MSL encoding
@@ -2182,22 +2227,22 @@ std::string Operand::to_string() const {
             // is_64bit used to select Q prefix for 128-bit context (STP/LDP Q)
             if (is_64bit) return "q" + std::to_string(value);
             {
-                if (has_index && arrangement) {
+                if (has_index && arrangement != Arrangement::None) {
                     // Indexed element: always use v<n>.<T>[<idx>] format
                     std::string _idx_s;
                     if (index >= 10) { std::ostringstream _oss; _oss << "0x" << std::hex << index; _idx_s = _oss.str(); }
                     else _idx_s = std::to_string(index);
-                    return "v" + std::to_string(value) + "." + arrangement + "[" + _idx_s + "]";
+                    return "v" + std::to_string(value) + "." + arrangement_to_string(arrangement) + "[" + _idx_s + "]";
                 }
-                std::string vr = format_vector_register(value, arrangement ? arrangement : "");
+                std::string vr = format_vector_register(value, arrangement);
                 return vr;
             }
 
         case OperandType::SVERegister: {
             std::string r = "z" + std::to_string(value);
-            if (arrangement && arrangement[0] != '\0') {
+            if (arrangement != Arrangement::None) {
                 r += ".";
-                r += arrangement;
+                r += Operand::arrangement_to_string(arrangement);
             }
             if (has_index) {
                 if (index >= 10) { std::ostringstream _oss; _oss << "[0x" << std::hex << index << "]"; r += _oss.str(); }
@@ -2208,9 +2253,9 @@ std::string Operand::to_string() const {
 
         case OperandType::PredicateRegister: {
             std::string r = "p" + std::to_string(value);
-            if (arrangement && arrangement[0] != '\0') {
+            if (arrangement != Arrangement::None) {
                 r += ".";
-                r += arrangement;
+                r += Operand::arrangement_to_string(arrangement);
             }
             // is_sp is reused for predicate qualifier: 0=none, 1=/z, 2=/m
             if (is_sp) {
@@ -2225,7 +2270,7 @@ std::string Operand::to_string() const {
             // extend==2: VGx mode: za.T[wN, offs{, vgxN}]
             if (has_index && extend == 2) {
                 std::string r = "za";
-                if (arrangement && arrangement[0] != '\0') { r += "."; r += arrangement; }
+                if (arrangement != Arrangement::None) { r += "."; r += Operand::arrangement_to_string(arrangement); }
                 r += "[w" + std::to_string(index) + ", " + std::to_string(amount);
                 int32_t vgx = (int32_t)offset;
                 if (vgx > 1) r += ", vgx" + std::to_string(vgx);
@@ -2235,7 +2280,7 @@ std::string Operand::to_string() const {
             // extend!=0: ZA accumulator range za.T[wN, start:end]
             if (has_index && extend) {
                 std::string r = "za";
-                if (arrangement && arrangement[0] != '\0') { r += "."; r += arrangement; }
+                if (arrangement != Arrangement::None) { r += "."; r += Operand::arrangement_to_string(arrangement); }
                 r += "[w" + std::to_string(index) + ", ";
                 if (amount >= 10) { std::ostringstream oss; oss << "0x" << std::hex << amount; r += oss.str(); }
                 else r += std::to_string(amount);
@@ -2250,7 +2295,7 @@ std::string Operand::to_string() const {
             if (has_index) {
                 std::string r = "{za" + std::to_string(value);
                 r += is_sp ? "v" : "h";
-                if (arrangement && arrangement[0] != '\0') { r += "."; r += arrangement; }
+                if (arrangement != Arrangement::None) { r += "."; r += Operand::arrangement_to_string(arrangement); }
                 r += "[w" + std::to_string(index) + ", ";
                 if (amount >= 10) { std::ostringstream oss; oss << "0x" << std::hex << amount; r += oss.str(); }
                 else r += std::to_string(amount);
@@ -2263,7 +2308,7 @@ std::string Operand::to_string() const {
             std::string r = "pn";
             if (value >= 10) { std::ostringstream oss; oss << "0x" << std::hex << value; r += oss.str(); }
             else r += std::to_string(value);
-            if (arrangement && arrangement[0] != '\0') { r += "."; r += arrangement; }
+            if (arrangement != Arrangement::None) { r += "."; r += Operand::arrangement_to_string(arrangement); }
             if (has_index) r += "[" + std::to_string(index) + "]";
             if (is_sp) { r += is_64bit ? "/m" : "/z"; }
             return r;
@@ -2362,9 +2407,9 @@ std::string Operand::to_string() const {
             // [Xn|SP, Rm{, extend {#amount}}] or [Xn|SP, Zm.T{, lsl #N}]
             {
                 std::string result = "[" + format_register(base_reg, true, true) + ", ";
-                if (arrangement && arrangement[0] != '\0') {
+                if (arrangement != Arrangement::None) {
                     // SVE Z register index: [Xn, Zm.T{, mod #N}]
-                    result += "z" + std::to_string(index_reg) + "." + arrangement;
+                    result += "z" + std::to_string(index_reg) + "." + Operand::arrangement_to_string(arrangement);
                     const char* sve_extends[] = {"uxtb", "uxth", "uxtw", "lsl",
                                                   "sxtb", "sxth", "sxtw", "sxtx"};
                     if (extend < 8 && extend != 0) {
@@ -3402,7 +3447,7 @@ std::string Operand::to_string() const {
                     if (i > 0) result += ", ";
                     uint32_t reg = (value + i) & 15;
                     result += "p" + std::to_string(reg);
-                    if (arrangement && arrangement[0] != '\0') { result += "."; result += arrangement; }
+                    if (arrangement != Arrangement::None) { result += "."; result += Operand::arrangement_to_string(arrangement); }
                 }
                 result += " }";
                 return result;
@@ -3462,9 +3507,9 @@ std::string Operand::to_string() const {
                     if (i > 0) result += ", ";
                     uint32_t reg = (value + i) & 31;
                     result += "v" + std::to_string(reg);
-                    if (arrangement && arrangement[0] != '\0') {
+                    if (arrangement != Arrangement::None) {
                         result += ".";
-                        result += arrangement;
+                        result += Operand::arrangement_to_string(arrangement);
                     }
                 }
                 result += " }";
@@ -3480,9 +3525,9 @@ std::string Operand::to_string() const {
                 // Use range notation { Zn.T - Zn+k.T } for count>=3 when non-wrapping
                 if (index >= 3 && (value + index - 1) <= 31) {
                     std::string result = "{ z" + std::to_string(value);
-                    if (arrangement && arrangement[0] != '\0') { result += "."; result += arrangement; }
+                    if (arrangement != Arrangement::None) { result += "."; result += Operand::arrangement_to_string(arrangement); }
                     result += " - z" + std::to_string(value + index - 1);
-                    if (arrangement && arrangement[0] != '\0') { result += "."; result += arrangement; }
+                    if (arrangement != Arrangement::None) { result += "."; result += Operand::arrangement_to_string(arrangement); }
                     result += " }";
                     return result;
                 }
@@ -3491,9 +3536,9 @@ std::string Operand::to_string() const {
                     if (i > 0) result += ", ";
                     uint32_t reg = (value + i) & 31;
                     result += "z" + std::to_string(reg);
-                    if (arrangement && arrangement[0] != '\0') {
+                    if (arrangement != Arrangement::None) {
                         result += ".";
-                        result += arrangement;
+                        result += Operand::arrangement_to_string(arrangement);
                     }
                 }
                 result += " }";
@@ -3526,7 +3571,7 @@ std::string Operand::to_string() const {
             // [Zn.T, #offset] or [Zn.T] when offset==0
             {
                 std::string result = "[z" + std::to_string(base_reg);
-                if (arrangement && arrangement[0] != '\0') { result += "."; result += arrangement; }
+                if (arrangement != Arrangement::None) { result += "."; result += Operand::arrangement_to_string(arrangement); }
                 if (offset != 0) {
                     std::ostringstream oss;
                     oss << ", #";
