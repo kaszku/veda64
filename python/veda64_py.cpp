@@ -236,6 +236,7 @@ NB_MODULE(veda64_py, m) {
         .value("CNTP", veda64::Mnemonic::CNTP)
         .value("CNTW", veda64::Mnemonic::CNTW)
         .value("COMPACT", veda64::Mnemonic::COMPACT)
+        .value("CPP", veda64::Mnemonic::CPP)
         .value("CPY", veda64::Mnemonic::CPY)
         .value("CPYE", veda64::Mnemonic::CPYE)
         .value("CPYEN", veda64::Mnemonic::CPYEN)
@@ -365,6 +366,7 @@ NB_MODULE(veda64_py, m) {
         .value("DUP", veda64::Mnemonic::DUP)
         .value("DUPM", veda64::Mnemonic::DUPM)
         .value("DUPQ", veda64::Mnemonic::DUPQ)
+        .value("DVP", veda64::Mnemonic::DVP)
         .value("EON", veda64::Mnemonic::EON)
         .value("EOR", veda64::Mnemonic::EOR)
         .value("EOR3", veda64::Mnemonic::EOR3)
@@ -1587,6 +1589,8 @@ NB_MODULE(veda64_py, m) {
         .value("PstateField", veda64::OperandType::PstateField)
         .value("FixedSym", veda64::OperandType::FixedSym)
         .value("SysOp", veda64::OperandType::SysOp)
+        .value("SVEVLxImm", veda64::OperandType::SVEVLxImm)
+        .value("PredicateRegisterList", veda64::OperandType::PredicateRegisterList)
         .value("Unknown", veda64::OperandType::Unknown)
         ;
 

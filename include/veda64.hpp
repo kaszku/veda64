@@ -286,6 +286,7 @@ enum class Mnemonic {
     CNTP,
     CNTW,
     COMPACT,
+    CPP,
     CPY,
     CPYE,
     CPYEN,
@@ -415,6 +416,7 @@ enum class Mnemonic {
     DUP,
     DUPM,
     DUPQ,
+    DVP,
     EON,
     EOR,
     EOR3,
@@ -1641,6 +1643,8 @@ enum class OperandType {
     PstateField,        // PSTATE field name for MSR/MRS immediate (SPSel, DAIFSet, etc.)
     FixedSym,           // Fixed symbolic operand (e.g. CSYNC, DSYNC)
     SysOp,              // SYS alias operation name (tlbi vmalle1 etc.)
+    SVEVLxImm,          // SVE VL specifier (vlx2 or vlx4) for WHILE* pn_rr
+    PredicateRegisterList, // Predicate register list { Pn.T, Pn+1.T, ... }
     Unknown
 };
 

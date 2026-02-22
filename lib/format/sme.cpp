@@ -40284,7 +40284,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqrshr_zmz2.Zd, true); op.arrangement = "h"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegisterList, enc.sqrshr_zmz2.Zn * 2, true); op.arrangement = "s"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqrshr_zmz2.imm4, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, 16u - enc.sqrshr_zmz2.imm4, true));
                         return result;
         }
         case 0xC1E0D420u: { // uqrshr_z_mz2_
@@ -40293,7 +40293,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.uqrshr_zmz2.Zd, true); op.arrangement = "h"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegisterList, enc.uqrshr_zmz2.Zn * 2, true); op.arrangement = "s"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.uqrshr_zmz2.imm4, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, 16u - enc.uqrshr_zmz2.imm4, true));
                         return result;
         }
         case 0xC1F0D400u: { // sqrshru_z_mz2_
@@ -40302,7 +40302,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::SVERegister, enc.sqrshru_zmz2.Zd, true); op.arrangement = "h"; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegisterList, enc.sqrshru_zmz2.Zn * 2, true); op.arrangement = "s"; op.index = 2; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sqrshru_zmz2.imm4, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, 16u - enc.sqrshru_zmz2.imm4, true));
                         return result;
         }
         default: break;

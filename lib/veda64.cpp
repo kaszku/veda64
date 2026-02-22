@@ -232,6 +232,7 @@ const char* mnemonic_to_string(Mnemonic mnem) {
         case Mnemonic::CNTP: return "cntp";
         case Mnemonic::CNTW: return "cntw";
         case Mnemonic::COMPACT: return "compact";
+        case Mnemonic::CPP: return "cpp";
         case Mnemonic::CPY: return "cpy";
         case Mnemonic::CPYE: return "cpye";
         case Mnemonic::CPYEN: return "cpyen";
@@ -361,6 +362,7 @@ const char* mnemonic_to_string(Mnemonic mnem) {
         case Mnemonic::DUP: return "dup";
         case Mnemonic::DUPM: return "dupm";
         case Mnemonic::DUPQ: return "dupq";
+        case Mnemonic::DVP: return "dvp";
         case Mnemonic::EON: return "eon";
         case Mnemonic::EOR: return "eor";
         case Mnemonic::EOR3: return "eor3";
@@ -1624,7 +1626,7 @@ int get_movi_shift(uint32_t insn) {
 }
 
 const char* condition_to_string(Condition cond) {
-    static const char* names[] = {"eq", "ne", "cs", "cc", "mi", "pl", "vs", "vc",
+    static const char* names[] = {"eq", "ne", "hs", "lo", "mi", "pl", "vs", "vc",
                                    "hi", "ls", "ge", "lt", "gt", "le", "al", "nv"};
     auto idx = static_cast<int8_t>(cond);
     if (idx >= 0 && idx < 16) return names[idx];
@@ -1634,13 +1636,29 @@ const char* condition_to_string(Condition cond) {
 // Synthesize pseudo-instruction aliases
 std::optional<std::string> synthesize_alias(const Instruction& insn) {
     // MOV Aliases: ADD/ORR with sp or Rn==Rm pattern
-    if (insn.mnemonic == Mnemonic::ADD && insn.operands.size() >= 3) {
+    if (insn.mnemonic == Mnemonic::ADD) {
+        // MOV: 2-operand form (alias decoder emitted Rd, Rn with imm=0 implied)
+        // Alias condition: Rd==31 || Rn==31 (one must be SP)
+        if (insn.operands.size() == 2) {
+            auto& op0 = insn.operands[0]; auto& op1 = insn.operands[1];
+            if (op0.type == OperandType::Register && op1.type == OperandType::Register) {
+                if (op0.value == 31 || op1.value == 31) {
+                    return std::string("mov ") + op0.to_string() + ", " + op1.to_string();
+                } else {
+                    // ADD Xd, Xn, #0 with neither being SP: show as add Xd, Xn, #0
+                    std::string r0 = op0.to_string(), r1 = op1.to_string();
+                    return std::string("add ") + r0 + ", " + r1 + ", #0";
+                }
+            }
+        }
+        if (insn.operands.size() >= 3) {
         auto& op0 = insn.operands[0];
         auto& op1 = insn.operands[1];
         auto& op2 = insn.operands[2];
         if ((op0.value == 31 || op1.value == 31) &&
             op2.type == OperandType::Immediate && op2.value == 0) {
             return std::string("mov ") + op0.to_string() + ", " + op1.to_string();
+        }
         }
     }
 
@@ -1660,40 +1678,38 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
 
     // MOVZ/MOVN/MOVK with or without shifts -> MOV/MVN alias
     if (insn.mnemonic == Mnemonic::MOVZ && insn.operands.size() >= 2) {
-        // Check if there's a shift operand
-        bool has_shift = insn.operands.size() >= 3 && insn.operands[2].type == OperandType::Shift;
-        if (has_shift) {
-            // Compute the final shifted value
-            uint64_t imm = insn.operands[1].value;
-            uint32_t shift_amt = insn.operands[2].value & 0xFF;
-            uint64_t final_val = imm << shift_amt;
-            std::ostringstream oss;
-            oss << "mov " << insn.operands[0].to_string() << ", #0x" << std::hex << final_val;
-            return oss.str();
-        } else {
-            std::ostringstream oss;
-            oss << "mov " << insn.operands[0].to_string() << ", #0x" << std::hex << insn.operands[1].value;
-            return oss.str();
-        }
+        // hw = bits 22:21 of raw instruction; shift_amt = hw * 16
+        uint32_t hw_val = (insn.raw_value >> 21) & 0x3;
+        uint64_t imm_val = insn.operands[1].value;
+        bool is_64z = insn.operands[0].is_64bit;
+        uint64_t final_val = imm_val << (hw_val * 16);
+        std::ostringstream oss;
+        oss << "mov " << insn.operands[0].to_string() << ", #";
+        if (!is_64z && final_val >= 0x80000000ULL)
+            oss << "-0x" << std::hex << (0x100000000ULL - final_val);
+        else if (is_64z && final_val >= 0x8000000000000000ULL)
+            oss << "-0x" << std::hex << (0ULL - final_val);
+        else
+            oss << "0x" << std::hex << final_val;
+        return oss.str();
     }
 
     if (insn.mnemonic == Mnemonic::MOVN && insn.operands.size() >= 2) {
-        bool has_shift = insn.operands.size() >= 3 && insn.operands[2].type == OperandType::Shift;
-        if (has_shift) {
-            // Compute the final shifted and inverted value
-            uint64_t imm = insn.operands[1].value;
-            uint32_t shift_amt = insn.operands[2].value & 0xFF;
-            uint64_t final_val = ~(imm << shift_amt);
-            // Mask to register size
-            if (!insn.operands[0].is_64bit) final_val &= 0xFFFFFFFFULL;
-            std::ostringstream oss;
-            oss << "mov " << insn.operands[0].to_string() << ", #0x" << std::hex << final_val;
-            return oss.str();
-        } else {
-            std::ostringstream oss;
-            oss << "mvn " << insn.operands[0].to_string() << ", #0x" << std::hex << insn.operands[1].value;
-            return oss.str();
-        }
+        // hw = bits 22:21 of raw instruction; shift_amt = hw * 16
+        uint32_t hw_val = (insn.raw_value >> 21) & 0x3;
+        uint64_t imm_val = insn.operands[1].value;
+        bool is_64n = insn.operands[0].is_64bit;
+        uint64_t final_val = ~(imm_val << (hw_val * 16));
+        if (!is_64n) final_val &= 0xFFFFFFFFULL;
+        std::ostringstream oss;
+        oss << "mov " << insn.operands[0].to_string() << ", #";
+        if (!is_64n && final_val >= 0x80000000ULL)
+            oss << "-0x" << std::hex << (0x100000000ULL - final_val);
+        else if (is_64n && final_val >= 0x8000000000000000ULL)
+            oss << "-0x" << std::hex << (0ULL - final_val);
+        else
+            oss << "0x" << std::hex << final_val;
+        return oss.str();
     }
 
     // CMP/CMN/TST aliases: Rd (bits [4:0]) == 31 (XZR)
@@ -1701,14 +1717,11 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
     if (insn.mnemonic == Mnemonic::SUBS && (insn.raw_value & 0x1F) == 0x1F) {
         // CMP alias: skip Rd if present in operands
         size_t start = (insn.operands.size() >= 3 && insn.operands[0].type == OperandType::Register && insn.operands[0].value == 31) ? 1 : 0;
-        // Only alias if not also NEGS (Rn==31)
-        if (((insn.raw_value >> 5) & 0x1F) != 0x1F) {
-            std::string result = "cmp";
-            for (size_t i = start; i < insn.operands.size(); ++i) {
-                result += (i == start ? " " : ", ") + insn.operands[i].to_string();
-            }
-            return result;
+        std::string result = "cmp";
+        for (size_t i = start; i < insn.operands.size(); ++i) {
+            result += (i == start ? " " : ", ") + insn.operands[i].to_string();
         }
+        return result;
     }
 
     if (insn.mnemonic == Mnemonic::ADDS && (insn.raw_value & 0x1F) == 0x1F) {
@@ -1896,6 +1909,19 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
             if (insn.operands.size() == 1) {
                 return std::string("cset ") + insn.operands[0].to_string() + ", " + inv_cond;
             }
+            // 2-operand form: Rm from raw instruction, check Rn==Rm for CINC
+            if (insn.operands.size() == 2) {
+                uint32_t raw_rn = (insn.raw_value >> 5) & 0x1F;
+                uint32_t raw_rm = (insn.raw_value >> 16) & 0x1F;
+                bool is_64 = insn.operands[1].is_64bit;
+                if (raw_rn == raw_rm) {
+                    return std::string("cinc ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + inv_cond;
+                } else {
+                    // Rn!=Rm: full CSINC form, reconstruct Rm operand from raw
+                    Operand rm_op(OperandType::Register, raw_rm, is_64);
+                    return std::string("csinc ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + rm_op.to_string() + ", " + condition_to_string(insn.condition);
+                }
+            }
             if (insn.operands.size() >= 3) {
                 auto& rn = insn.operands[1];
                 auto& rm = insn.operands[2];
@@ -1918,6 +1944,18 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
             if (insn.operands.size() == 1) {
                 return std::string("csetm ") + insn.operands[0].to_string() + ", " + inv_cond;
             }
+            // 2-operand form: check Rn==Rm from raw for CINV
+            if (insn.operands.size() == 2) {
+                uint32_t raw_rn = (insn.raw_value >> 5) & 0x1F;
+                uint32_t raw_rm = (insn.raw_value >> 16) & 0x1F;
+                bool is_64 = insn.operands[1].is_64bit;
+                if (raw_rn == raw_rm) {
+                    return std::string("cinv ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + inv_cond;
+                } else {
+                    Operand rm_op(OperandType::Register, raw_rm, is_64);
+                    return std::string("csinv ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + rm_op.to_string() + ", " + condition_to_string(insn.condition);
+                }
+            }
             if (insn.operands.size() >= 3) {
                 auto& rn = insn.operands[1];
                 auto& rm = insn.operands[2];
@@ -1932,14 +1970,28 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
     }
 
     // CSNEG alias: CNEG (Rn==Rm)
-    if (insn.mnemonic == Mnemonic::CSNEG && insn.operands.size() >= 3 && insn.condition != Condition::None) {
+    if (insn.mnemonic == Mnemonic::CSNEG && insn.condition != Condition::None) {
         int cond_val = static_cast<int>(insn.condition);
         if ((cond_val & 0xE) != 0xE) {  // Not AL/NV
+            const char* inv_cond = condition_to_string(static_cast<Condition>(cond_val ^ 1));
+            // 2-operand form: check Rn==Rm from raw for CNEG
+            if (insn.operands.size() == 2) {
+                uint32_t raw_rn = (insn.raw_value >> 5) & 0x1F;
+                uint32_t raw_rm = (insn.raw_value >> 16) & 0x1F;
+                bool is_64 = insn.operands[1].is_64bit;
+                if (raw_rn == raw_rm) {
+                    return std::string("cneg ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + inv_cond;
+                } else {
+                    Operand rm_op(OperandType::Register, raw_rm, is_64);
+                    return std::string("csneg ") + insn.operands[0].to_string() + ", " + insn.operands[1].to_string() + ", " + rm_op.to_string() + ", " + condition_to_string(insn.condition);
+                }
+            }
+            if (insn.operands.size() >= 3) {
             auto& rn = insn.operands[1];
             auto& rm = insn.operands[2];
             if (rn.value == rm.value) {
-                const char* inv_cond = condition_to_string(static_cast<Condition>(cond_val ^ 1));
                 return std::string("cneg ") + insn.operands[0].to_string() + ", " + rn.to_string() + ", " + inv_cond;
+            }
             }
         }
     }
@@ -2047,7 +2099,9 @@ std::string Instruction::to_string() const {
             mnemonic == Mnemonic::SSHLL || mnemonic == Mnemonic::USHLL ||
             mnemonic == Mnemonic::ADDHN || mnemonic == Mnemonic::SUBHN ||
             mnemonic == Mnemonic::RADDHN || mnemonic == Mnemonic::RSUBHN ||
-            mnemonic == Mnemonic::FCVTXN) {
+            mnemonic == Mnemonic::FCVTXN ||
+            mnemonic == Mnemonic::XTN || mnemonic == Mnemonic::SQXTN ||
+            mnemonic == Mnemonic::UQXTN || mnemonic == Mnemonic::SQXTUN) {
             result += "2";
         }
     }
@@ -2162,6 +2216,8 @@ std::string Operand::to_string() const {
             if (is_sp) {
                 r += is_64bit ? "/m" : "/z";
             }
+            // has_index: PSEL Pm compound index [wN, imm]
+            if (has_index) r += "[w" + std::to_string(index_reg) + ", " + std::to_string(index) + "]";
             return r;
         }
 
@@ -2204,10 +2260,12 @@ std::string Operand::to_string() const {
             return "za" + std::to_string(value);
 
         case OperandType::PredicateNRegister: {
-            std::string r = "pn" + std::to_string(value);
-            if (is_sp) {
-                r += is_64bit ? "/m" : "/z";
-            }
+            std::string r = "pn";
+            if (value >= 10) { std::ostringstream oss; oss << "0x" << std::hex << value; r += oss.str(); }
+            else r += std::to_string(value);
+            if (arrangement && arrangement[0] != '\0') { r += "."; r += arrangement; }
+            if (has_index) r += "[" + std::to_string(index) + "]";
+            if (is_sp) { r += is_64bit ? "/m" : "/z"; }
             return r;
         }
 
@@ -3326,7 +3384,29 @@ std::string Operand::to_string() const {
 
         case OperandType::SVEMulImm:
             // SVE multiplier: 'mul #N' where value is already N (=imm4+1)
+            if (value >= 10) {
+                std::ostringstream _oss; _oss << "mul #0x" << std::hex << value;
+                return _oss.str();
+            }
             return "mul #" + std::to_string(value);
+
+        case OperandType::SVEVLxImm:
+            // SVE VL specifier: vlx2 or vlx4
+            return value == 4 ? "vlx4" : "vlx2";
+
+        case OperandType::PredicateRegisterList:
+            {
+                // value = first register, index = count, arrangement = element type
+                std::string result = "{ ";
+                for (uint32_t i = 0; i < index; ++i) {
+                    if (i > 0) result += ", ";
+                    uint32_t reg = (value + i) & 15;
+                    result += "p" + std::to_string(reg);
+                    if (arrangement && arrangement[0] != '\0') { result += "."; result += arrangement; }
+                }
+                result += " }";
+                return result;
+            }
 
         case OperandType::Prefetch:
             // Prefetch operation

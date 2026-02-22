@@ -2520,46 +2520,38 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::Register, enc.mov_add32addsub_imm.Rd, false); op.is_sp = true; result.operands.push_back(op); }
                         { Operand op(OperandType::Register, enc.mov_add32addsub_imm.Rn, false); op.is_sp = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.mov_add32addsub_imm.imm12, true));
-                        if (enc.mov_add32addsub_imm.sh != 0) {
-                            result.operands.push_back(Operand(OperandType::Shift, 12, true));
-                        }
                         return result;
         }
         case 0x13001C00u: { // SXTB_SBFM_32M_bitfield
                         Instruction result(Mnemonic::SBFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sxtb_sbfm32m_bitfield.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sxtb_sbfm32m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.sxtb_sbfm32m_bitfield.Rd, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.sxtb_sbfm32m_bitfield.Rn, false));
                         return result;
         }
         case 0x13003C00u: { // SXTH_SBFM_32M_bitfield
                         Instruction result(Mnemonic::SBFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sxth_sbfm32m_bitfield.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sxth_sbfm32m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.sxth_sbfm32m_bitfield.Rd, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.sxth_sbfm32m_bitfield.Rn, false));
                         return result;
         }
         case 0x53001C00u: { // UXTB_UBFM_32M_bitfield
                         Instruction result(Mnemonic::UBFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.uxtb_ubfm32m_bitfield.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.uxtb_ubfm32m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.uxtb_ubfm32m_bitfield.Rd, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.uxtb_ubfm32m_bitfield.Rn, false));
                         return result;
         }
         case 0x53003C00u: { // UXTH_UBFM_32M_bitfield
                         Instruction result(Mnemonic::UBFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.uxth_ubfm32m_bitfield.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.uxth_ubfm32m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.uxth_ubfm32m_bitfield.Rd, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.uxth_ubfm32m_bitfield.Rn, false));
                         return result;
         }
         case 0x91000000u: { // MOV_ADD_64_addsub_imm
@@ -2568,37 +2560,30 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op(OperandType::Register, enc.mov_add64addsub_imm.Rd, true); op.is_sp = true; result.operands.push_back(op); }
                         { Operand op(OperandType::Register, enc.mov_add64addsub_imm.Rn, true); op.is_sp = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.mov_add64addsub_imm.imm12, true));
-                        if (enc.mov_add64addsub_imm.sh != 0) {
-                            result.operands.push_back(Operand(OperandType::Shift, 12, true));
-                        }
                         return result;
         }
         case 0x93401C00u: { // SXTB_SBFM_64M_bitfield
                         Instruction result(Mnemonic::SBFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sxtb_sbfm64m_bitfield.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sxtb_sbfm64m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.sxtb_sbfm64m_bitfield.Rd, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.sxtb_sbfm64m_bitfield.Rn, false));
                         return result;
         }
         case 0x93403C00u: { // SXTH_SBFM_64M_bitfield
                         Instruction result(Mnemonic::SBFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sxth_sbfm64m_bitfield.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sxth_sbfm64m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.sxth_sbfm64m_bitfield.Rd, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.sxth_sbfm64m_bitfield.Rn, false));
                         return result;
         }
         case 0x93407C00u: { // SXTW_SBFM_64M_bitfield
                         Instruction result(Mnemonic::SBFM, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sxtw_sbfm64m_bitfield.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sxtw_sbfm64m_bitfield.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.sxtw_sbfm64m_bitfield.Rd, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.sxtw_sbfm64m_bitfield.Rn, false));
                         return result;
         }
         default: break;
@@ -2610,9 +2595,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::SMAX, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.smax32minmax_imm.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smax32minmax_imm.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.smax32minmax_imm.Rd, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.smax32minmax_imm.Rn, false));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.smax32minmax_imm.imm8, true));
                         return result;
         }
@@ -2620,9 +2604,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::UMAX, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.umax32u_minmax_imm.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umax32u_minmax_imm.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.umax32u_minmax_imm.Rd, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.umax32u_minmax_imm.Rn, false));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.umax32u_minmax_imm.imm8, true));
                         return result;
         }
@@ -2630,9 +2613,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::SMIN, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.smin32minmax_imm.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smin32minmax_imm.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.smin32minmax_imm.Rd, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.smin32minmax_imm.Rn, false));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.smin32minmax_imm.imm8, true));
                         return result;
         }
@@ -2640,9 +2622,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::UMIN, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.umin32u_minmax_imm.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umin32u_minmax_imm.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.umin32u_minmax_imm.Rd, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.umin32u_minmax_imm.Rn, false));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.umin32u_minmax_imm.imm8, true));
                         return result;
         }
@@ -2650,9 +2631,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::SMAX, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.smax64minmax_imm.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smax64minmax_imm.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.smax64minmax_imm.Rd, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.smax64minmax_imm.Rn, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.smax64minmax_imm.imm8, true));
                         return result;
         }
@@ -2660,9 +2640,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::UMAX, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.umax64u_minmax_imm.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umax64u_minmax_imm.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.umax64u_minmax_imm.Rd, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.umax64u_minmax_imm.Rn, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.umax64u_minmax_imm.imm8, true));
                         return result;
         }
@@ -2670,9 +2649,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::SMIN, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.smin64minmax_imm.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smin64minmax_imm.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.smin64minmax_imm.Rd, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.smin64minmax_imm.Rn, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.smin64minmax_imm.imm8, true));
                         return result;
         }
@@ -2680,9 +2658,8 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::UMIN, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.umin64u_minmax_imm.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umin64u_minmax_imm.Rn, is_64bit));
+                        result.operands.push_back(Operand(OperandType::Register, enc.umin64u_minmax_imm.Rd, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.umin64u_minmax_imm.Rn, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.umin64u_minmax_imm.imm8, true));
                         return result;
         }
@@ -2712,14 +2689,20 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::AUTIASPPC, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.autiasppc_only_dp1src_imm.imm16, true));
+                        {
+                            int32_t loff = static_cast<int32_t>(enc.autiasppc_only_dp1src_imm.imm16 << 16) >> 16;
+                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                        }
                         return result;
         }
         case 0xF3A0001Fu: { // AUTIBSPPC_only_dp_1src_imm
                         Instruction result(Mnemonic::AUTIBSPPC, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.autibsppc_only_dp1src_imm.imm16, true));
+                        {
+                            int32_t loff = static_cast<int32_t>(enc.autibsppc_only_dp1src_imm.imm16 << 16) >> 16;
+                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                        }
                         return result;
         }
         default: break;
@@ -2859,9 +2842,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_movn32movewide.Rd, false));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.mov_movn32movewide.imm16, true));
-                        if (enc.mov_movn32movewide.hw != 0) {
-                            result.operands.push_back(Operand(OperandType::Shift, enc.mov_movn32movewide.hw * 16, true));
-                        }
                         return result;
         }
         case 0x13000000u: { // SBFIZ_SBFM_32M_bitfield
@@ -2930,9 +2910,6 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_movz32movewide.Rd, false));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.mov_movz32movewide.imm16, true));
-                        if (enc.mov_movz32movewide.hw != 0) {
-                            result.operands.push_back(Operand(OperandType::Shift, enc.mov_movz32movewide.hw * 16, true));
-                        }
                         return result;
         }
         case 0x53000000u: { // LSL_UBFM_32M_bitfield
@@ -3069,48 +3046,36 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         Instruction result(Mnemonic::ADDS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::Register, enc.cmn_adds32s_addsub_imm.Rd, false); op.is_sp = true; result.operands.push_back(op); }
                         { Operand op(OperandType::Register, enc.cmn_adds32s_addsub_imm.Rn, false); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cmn_adds32s_addsub_imm.imm12, true));
-                        if (enc.cmn_adds32s_addsub_imm.sh != 0) {
-                            result.operands.push_back(Operand(OperandType::Shift, 12, true));
-                        }
+                        if (enc.cmn_adds32s_addsub_imm.sh != 0) result.operands.push_back(Operand(OperandType::Shift, 12, true));
                         return result;
         }
         case 0x7100001Fu: { // CMP_SUBS_32S_addsub_imm
                         Instruction result(Mnemonic::SUBS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::Register, enc.cmp_subs32s_addsub_imm.Rd, false); op.is_sp = true; result.operands.push_back(op); }
                         { Operand op(OperandType::Register, enc.cmp_subs32s_addsub_imm.Rn, false); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cmp_subs32s_addsub_imm.imm12, true));
-                        if (enc.cmp_subs32s_addsub_imm.sh != 0) {
-                            result.operands.push_back(Operand(OperandType::Shift, 12, true));
-                        }
+                        if (enc.cmp_subs32s_addsub_imm.sh != 0) result.operands.push_back(Operand(OperandType::Shift, 12, true));
                         return result;
         }
         case 0xB100001Fu: { // CMN_ADDS_64S_addsub_imm
                         Instruction result(Mnemonic::ADDS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::Register, enc.cmn_adds64s_addsub_imm.Rd, true); op.is_sp = true; result.operands.push_back(op); }
                         { Operand op(OperandType::Register, enc.cmn_adds64s_addsub_imm.Rn, true); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cmn_adds64s_addsub_imm.imm12, true));
-                        if (enc.cmn_adds64s_addsub_imm.sh != 0) {
-                            result.operands.push_back(Operand(OperandType::Shift, 12, true));
-                        }
+                        if (enc.cmn_adds64s_addsub_imm.sh != 0) result.operands.push_back(Operand(OperandType::Shift, 12, true));
                         return result;
         }
         case 0xF100001Fu: { // CMP_SUBS_64S_addsub_imm
                         Instruction result(Mnemonic::SUBS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::Register, enc.cmp_subs64s_addsub_imm.Rd, true); op.is_sp = true; result.operands.push_back(op); }
                         { Operand op(OperandType::Register, enc.cmp_subs64s_addsub_imm.Rn, true); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.cmp_subs64s_addsub_imm.imm12, true));
-                        if (enc.cmp_subs64s_addsub_imm.sh != 0) {
-                            result.operands.push_back(Operand(OperandType::Shift, 12, true));
-                        }
+                        if (enc.cmp_subs64s_addsub_imm.sh != 0) result.operands.push_back(Operand(OperandType::Shift, 12, true));
                         return result;
         }
         case 0xF200001Fu: { // TST_ANDS_64S_log_imm
@@ -3136,21 +3101,17 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         { Operand op(OperandType::Register, enc.add32addsub_imm.Rd, false); op.is_sp = true; result.operands.push_back(op); }
                         { Operand op(OperandType::Register, enc.add32addsub_imm.Rn, false); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.add32addsub_imm.imm12, true));
-                        if (enc.add32addsub_imm.sh != 0) {
-                            result.operands.push_back(Operand(OperandType::Shift, 12, true));
-                        }
+                        if (enc.add32addsub_imm.sh != 0) result.operands.push_back(Operand(OperandType::Shift, 12, true));
                         return result;
         }
         case 0x31000000u: { // ADDS_32S_addsub_imm
                         Instruction result(Mnemonic::ADDS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::Register, enc.adds32s_addsub_imm.Rd, false); op.is_sp = true; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Register, enc.adds32s_addsub_imm.Rd, false));
                         { Operand op(OperandType::Register, enc.adds32s_addsub_imm.Rn, false); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.adds32s_addsub_imm.imm12, true));
-                        if (enc.adds32s_addsub_imm.sh != 0) {
-                            result.operands.push_back(Operand(OperandType::Shift, 12, true));
-                        }
+                        if (enc.adds32s_addsub_imm.sh != 0) result.operands.push_back(Operand(OperandType::Shift, 12, true));
                         return result;
         }
         case 0x51000000u: { // SUB_32_addsub_imm
@@ -3160,21 +3121,17 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         { Operand op(OperandType::Register, enc.sub32addsub_imm.Rd, false); op.is_sp = true; result.operands.push_back(op); }
                         { Operand op(OperandType::Register, enc.sub32addsub_imm.Rn, false); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sub32addsub_imm.imm12, true));
-                        if (enc.sub32addsub_imm.sh != 0) {
-                            result.operands.push_back(Operand(OperandType::Shift, 12, true));
-                        }
+                        if (enc.sub32addsub_imm.sh != 0) result.operands.push_back(Operand(OperandType::Shift, 12, true));
                         return result;
         }
         case 0x71000000u: { // SUBS_32S_addsub_imm
                         Instruction result(Mnemonic::SUBS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::Register, enc.subs32s_addsub_imm.Rd, false); op.is_sp = true; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Register, enc.subs32s_addsub_imm.Rd, false));
                         { Operand op(OperandType::Register, enc.subs32s_addsub_imm.Rn, false); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.subs32s_addsub_imm.imm12, true));
-                        if (enc.subs32s_addsub_imm.sh != 0) {
-                            result.operands.push_back(Operand(OperandType::Shift, 12, true));
-                        }
+                        if (enc.subs32s_addsub_imm.sh != 0) result.operands.push_back(Operand(OperandType::Shift, 12, true));
                         return result;
         }
         case 0x91000000u: { // ADD_64_addsub_imm
@@ -3184,9 +3141,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         { Operand op(OperandType::Register, enc.add64addsub_imm.Rd, true); op.is_sp = true; result.operands.push_back(op); }
                         { Operand op(OperandType::Register, enc.add64addsub_imm.Rn, true); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.add64addsub_imm.imm12, true));
-                        if (enc.add64addsub_imm.sh != 0) {
-                            result.operands.push_back(Operand(OperandType::Shift, 12, true));
-                        }
+                        if (enc.add64addsub_imm.sh != 0) result.operands.push_back(Operand(OperandType::Shift, 12, true));
                         return result;
         }
         case 0x92000000u: { // AND_64_log_imm
@@ -3207,21 +3162,16 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_movn64movewide.Rd, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.mov_movn64movewide.imm16, true));
-                        if (enc.mov_movn64movewide.hw != 0) {
-                            result.operands.push_back(Operand(OperandType::Shift, enc.mov_movn64movewide.hw * 16, true));
-                        }
                         return result;
         }
         case 0xB1000000u: { // ADDS_64S_addsub_imm
                         Instruction result(Mnemonic::ADDS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::Register, enc.adds64s_addsub_imm.Rd, true); op.is_sp = true; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Register, enc.adds64s_addsub_imm.Rd, true));
                         { Operand op(OperandType::Register, enc.adds64s_addsub_imm.Rn, true); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.adds64s_addsub_imm.imm12, true));
-                        if (enc.adds64s_addsub_imm.sh != 0) {
-                            result.operands.push_back(Operand(OperandType::Shift, 12, true));
-                        }
+                        if (enc.adds64s_addsub_imm.sh != 0) result.operands.push_back(Operand(OperandType::Shift, 12, true));
                         return result;
         }
         case 0xB2000000u: { // ORR_64_log_imm
@@ -3242,9 +3192,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         { Operand op(OperandType::Register, enc.sub64addsub_imm.Rd, true); op.is_sp = true; result.operands.push_back(op); }
                         { Operand op(OperandType::Register, enc.sub64addsub_imm.Rn, true); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sub64addsub_imm.imm12, true));
-                        if (enc.sub64addsub_imm.sh != 0) {
-                            result.operands.push_back(Operand(OperandType::Shift, 12, true));
-                        }
+                        if (enc.sub64addsub_imm.sh != 0) result.operands.push_back(Operand(OperandType::Shift, 12, true));
                         return result;
         }
         case 0xD2000000u: { // EOR_64_log_imm
@@ -3265,21 +3213,16 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_movz64movewide.Rd, true));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.mov_movz64movewide.imm16, true));
-                        if (enc.mov_movz64movewide.hw != 0) {
-                            result.operands.push_back(Operand(OperandType::Shift, enc.mov_movz64movewide.hw * 16, true));
-                        }
                         return result;
         }
         case 0xF1000000u: { // SUBS_64S_addsub_imm
                         Instruction result(Mnemonic::SUBS, insn);
                         DpimmEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::Register, enc.subs64s_addsub_imm.Rd, true); op.is_sp = true; result.operands.push_back(op); }
+                        result.operands.push_back(Operand(OperandType::Register, enc.subs64s_addsub_imm.Rd, true));
                         { Operand op(OperandType::Register, enc.subs64s_addsub_imm.Rn, true); op.is_sp = true; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.subs64s_addsub_imm.imm12, true));
-                        if (enc.subs64s_addsub_imm.sh != 0) {
-                            result.operands.push_back(Operand(OperandType::Shift, 12, true));
-                        }
+                        if (enc.subs64s_addsub_imm.sh != 0) result.operands.push_back(Operand(OperandType::Shift, 12, true));
                         return result;
         }
         case 0xF2000000u: { // ANDS_64S_log_imm
