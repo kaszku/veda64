@@ -9,6 +9,13 @@ Tree build_ir_ADD_32_addsub_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "ADD_32_addsub_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op"] = (insn >> 30) & 0x1;
+    tree.fields["S"] = (insn >> 29) & 0x1;
+    tree.fields["sh"] = (insn >> 22) & 0x1;
+    tree.fields["imm12"] = (insn >> 10) & 0xFFF;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
@@ -27,18 +34,18 @@ Tree build_ir_ADD_32_addsub_imm(uint32_t insn) {
         stmts.push_back(ir::var_decl("result", "bits(datasize)", nullptr));
         stmts.push_back(ir::tuple_assign({"result", "-"}, ir::func_call("AddWithCarry", {ir::ident("datasize")}, {ir::ident("operand1"), ir::ident("operand2"), ir::bit_lit("0")})));
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                stmts.push_back(ir::assign(ir::func_call("SP", {ir::int_lit(64)}, {}), ir::func_call("ZeroExtend", {ir::int_lit(64)}, {ir::ident("result")})));
-                branches.push_back({ ir::bin_op("==", ir::ident("d"), ir::int_lit(31)), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                bb_2.push_back(ir::assign(ir::func_call("SP", {ir::int_lit(64)}, {}), ir::func_call("ZeroExtend", {ir::int_lit(64)}, {ir::ident("result")})));
+                br_1.push_back({ ir::bin_op("==", ir::ident("d"), ir::int_lit(31)), std::move(bb_2) });
             }
             {
-                std::vector<ir::StmtPtr> stmts;
-                stmts.push_back(ir::assign(ir::func_call("X", {ir::ident("datasize")}, {ir::ident("d")}), ir::ident("result")));
-                branches.push_back({ nullptr, std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_3;
+                bb_3.push_back(ir::assign(ir::func_call("X", {ir::ident("datasize")}, {ir::ident("d")}), ir::ident("result")));
+                br_1.push_back({ nullptr, std::move(bb_3) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
     }
 
@@ -49,6 +56,13 @@ Tree build_ir_ADD_64_addsub_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "ADD_64_addsub_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op"] = (insn >> 30) & 0x1;
+    tree.fields["S"] = (insn >> 29) & 0x1;
+    tree.fields["sh"] = (insn >> 22) & 0x1;
+    tree.fields["imm12"] = (insn >> 10) & 0xFFF;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
@@ -67,18 +81,18 @@ Tree build_ir_ADD_64_addsub_imm(uint32_t insn) {
         stmts.push_back(ir::var_decl("result", "bits(datasize)", nullptr));
         stmts.push_back(ir::tuple_assign({"result", "-"}, ir::func_call("AddWithCarry", {ir::ident("datasize")}, {ir::ident("operand1"), ir::ident("operand2"), ir::bit_lit("0")})));
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                stmts.push_back(ir::assign(ir::func_call("SP", {ir::int_lit(64)}, {}), ir::func_call("ZeroExtend", {ir::int_lit(64)}, {ir::ident("result")})));
-                branches.push_back({ ir::bin_op("==", ir::ident("d"), ir::int_lit(31)), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                bb_2.push_back(ir::assign(ir::func_call("SP", {ir::int_lit(64)}, {}), ir::func_call("ZeroExtend", {ir::int_lit(64)}, {ir::ident("result")})));
+                br_1.push_back({ ir::bin_op("==", ir::ident("d"), ir::int_lit(31)), std::move(bb_2) });
             }
             {
-                std::vector<ir::StmtPtr> stmts;
-                stmts.push_back(ir::assign(ir::func_call("X", {ir::ident("datasize")}, {ir::ident("d")}), ir::ident("result")));
-                branches.push_back({ nullptr, std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_3;
+                bb_3.push_back(ir::assign(ir::func_call("X", {ir::ident("datasize")}, {ir::ident("d")}), ir::ident("result")));
+                br_1.push_back({ nullptr, std::move(bb_3) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
     }
 
@@ -89,17 +103,25 @@ Tree build_ir_ADDG_64_addsub_immtags(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "ADDG_64_addsub_immtags";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op"] = (insn >> 30) & 0x1;
+    tree.fields["S"] = (insn >> 29) & 0x1;
+    tree.fields["imm6"] = (insn >> 16) & 0x3F;
+    tree.fields["op3"] = (insn >> 14) & 0x3;
+    tree.fields["imm4"] = (insn >> 10) & 0xF;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::unary_op("!", ir::func_call("IsFeatureImplemented", {}, {ir::ident("FEAT_MTE")})), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::unary_op("!", ir::func_call("IsFeatureImplemented", {}, {ir::ident("FEAT_MTE")})), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -118,18 +140,18 @@ Tree build_ir_ADDG_64_addsub_immtags(uint32_t insn) {
         stmts.push_back(ir::tuple_assign({"result", "-"}, ir::func_call("AddWithCarry", {ir::int_lit(64)}, {ir::ident("operand1"), ir::ident("offset"), ir::bit_lit("0")})));
         stmts.push_back(ir::assign(ir::ident("result"), ir::func_call("AArch64_AddressWithAllocationTag", {}, {ir::ident("result"), ir::ident("rtag")})));
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_3;
             {
-                std::vector<ir::StmtPtr> stmts;
-                stmts.push_back(ir::assign(ir::func_call("SP", {ir::int_lit(64)}, {}), ir::ident("result")));
-                branches.push_back({ ir::bin_op("==", ir::ident("d"), ir::int_lit(31)), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_4;
+                bb_4.push_back(ir::assign(ir::func_call("SP", {ir::int_lit(64)}, {}), ir::ident("result")));
+                br_3.push_back({ ir::bin_op("==", ir::ident("d"), ir::int_lit(31)), std::move(bb_4) });
             }
             {
-                std::vector<ir::StmtPtr> stmts;
-                stmts.push_back(ir::assign(ir::func_call("X", {ir::int_lit(64)}, {ir::ident("d")}), ir::ident("result")));
-                branches.push_back({ nullptr, std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_5;
+                bb_5.push_back(ir::assign(ir::func_call("X", {ir::int_lit(64)}, {ir::ident("d")}), ir::ident("result")));
+                br_3.push_back({ nullptr, std::move(bb_5) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_3)));
         }
     }
 
@@ -140,6 +162,13 @@ Tree build_ir_ADDS_32S_addsub_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "ADDS_32S_addsub_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op"] = (insn >> 30) & 0x1;
+    tree.fields["S"] = (insn >> 29) & 0x1;
+    tree.fields["sh"] = (insn >> 22) & 0x1;
+    tree.fields["imm12"] = (insn >> 10) & 0xFFF;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
@@ -169,6 +198,13 @@ Tree build_ir_ADDS_64S_addsub_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "ADDS_64S_addsub_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op"] = (insn >> 30) & 0x1;
+    tree.fields["S"] = (insn >> 29) & 0x1;
+    tree.fields["sh"] = (insn >> 22) & 0x1;
+    tree.fields["imm12"] = (insn >> 10) & 0xFFF;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
@@ -198,6 +234,10 @@ Tree build_ir_ADR_only_pcreladdr(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "ADR_only_pcreladdr";
 
+    tree.fields["op"] = (insn >> 31) & 0x1;
+    tree.fields["immlo"] = (insn >> 29) & 0x3;
+    tree.fields["immhi"] = (insn >> 5) & 0x7FFFF;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
@@ -219,6 +259,10 @@ Tree build_ir_ADRP_only_pcreladdr(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "ADRP_only_pcreladdr";
 
+    tree.fields["op"] = (insn >> 31) & 0x1;
+    tree.fields["immlo"] = (insn >> 29) & 0x3;
+    tree.fields["immhi"] = (insn >> 5) & 0x7FFFF;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
@@ -241,17 +285,24 @@ Tree build_ir_AND_32_log_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "AND_32_log_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0"))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0"))), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -267,18 +318,18 @@ Tree build_ir_AND_32_log_imm(uint32_t insn) {
         stmts.push_back(ir::let_decl("operand2", "bits(datasize)", ir::ident("imm")));
         stmts.push_back(ir::let_decl("result", "bits(datasize)", ir::bin_op("AND", ir::ident("operand1"), ir::ident("operand2"))));
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_3;
             {
-                std::vector<ir::StmtPtr> stmts;
-                stmts.push_back(ir::assign(ir::func_call("SP", {ir::int_lit(64)}, {}), ir::func_call("ZeroExtend", {ir::int_lit(64)}, {ir::ident("result")})));
-                branches.push_back({ ir::bin_op("==", ir::ident("d"), ir::int_lit(31)), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_4;
+                bb_4.push_back(ir::assign(ir::func_call("SP", {ir::int_lit(64)}, {}), ir::func_call("ZeroExtend", {ir::int_lit(64)}, {ir::ident("result")})));
+                br_3.push_back({ ir::bin_op("==", ir::ident("d"), ir::int_lit(31)), std::move(bb_4) });
             }
             {
-                std::vector<ir::StmtPtr> stmts;
-                stmts.push_back(ir::assign(ir::func_call("X", {ir::ident("datasize")}, {ir::ident("d")}), ir::ident("result")));
-                branches.push_back({ nullptr, std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_5;
+                bb_5.push_back(ir::assign(ir::func_call("X", {ir::ident("datasize")}, {ir::ident("d")}), ir::ident("result")));
+                br_3.push_back({ nullptr, std::move(bb_5) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_3)));
         }
     }
 
@@ -289,17 +340,24 @@ Tree build_ir_AND_64_log_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "AND_64_log_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0"))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0"))), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -315,18 +373,18 @@ Tree build_ir_AND_64_log_imm(uint32_t insn) {
         stmts.push_back(ir::let_decl("operand2", "bits(datasize)", ir::ident("imm")));
         stmts.push_back(ir::let_decl("result", "bits(datasize)", ir::bin_op("AND", ir::ident("operand1"), ir::ident("operand2"))));
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_3;
             {
-                std::vector<ir::StmtPtr> stmts;
-                stmts.push_back(ir::assign(ir::func_call("SP", {ir::int_lit(64)}, {}), ir::func_call("ZeroExtend", {ir::int_lit(64)}, {ir::ident("result")})));
-                branches.push_back({ ir::bin_op("==", ir::ident("d"), ir::int_lit(31)), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_4;
+                bb_4.push_back(ir::assign(ir::func_call("SP", {ir::int_lit(64)}, {}), ir::func_call("ZeroExtend", {ir::int_lit(64)}, {ir::ident("result")})));
+                br_3.push_back({ ir::bin_op("==", ir::ident("d"), ir::int_lit(31)), std::move(bb_4) });
             }
             {
-                std::vector<ir::StmtPtr> stmts;
-                stmts.push_back(ir::assign(ir::func_call("X", {ir::ident("datasize")}, {ir::ident("d")}), ir::ident("result")));
-                branches.push_back({ nullptr, std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_5;
+                bb_5.push_back(ir::assign(ir::func_call("X", {ir::ident("datasize")}, {ir::ident("d")}), ir::ident("result")));
+                br_3.push_back({ nullptr, std::move(bb_5) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_3)));
         }
     }
 
@@ -337,17 +395,24 @@ Tree build_ir_ANDS_32S_log_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "ANDS_32S_log_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0"))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0"))), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -373,17 +438,24 @@ Tree build_ir_ANDS_64S_log_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "ANDS_64S_log_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0"))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0"))), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -409,6 +481,13 @@ Tree build_ir_ASR_SBFM_32M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "ASR_SBFM_32M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -417,6 +496,13 @@ Tree build_ir_ASR_SBFM_64M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "ASR_SBFM_64M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -425,17 +511,21 @@ Tree build_ir_AUTIASPPC_only_dp_1src_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "AUTIASPPC_only_dp_1src_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 21) & 0x3;
+    tree.fields["imm16"] = (insn >> 5) & 0xFFFF;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::unary_op("!", ir::func_call("IsFeatureImplemented", {}, {ir::ident("FEAT_PAuth_LR")})), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::unary_op("!", ir::func_call("IsFeatureImplemented", {}, {ir::ident("FEAT_PAuth_LR")})), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::int_lit(30)));
         stmts.push_back(ir::let_decl("offset", "bits(64)", ir::func_call("ZeroExtend", {}, {ir::bit_concat({ir::ident("imm16"), ir::bit_lit("00")})})));
@@ -456,17 +546,21 @@ Tree build_ir_AUTIBSPPC_only_dp_1src_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "AUTIBSPPC_only_dp_1src_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 21) & 0x3;
+    tree.fields["imm16"] = (insn >> 5) & 0xFFFF;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::unary_op("!", ir::func_call("IsFeatureImplemented", {}, {ir::ident("FEAT_PAuth_LR")})), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::unary_op("!", ir::func_call("IsFeatureImplemented", {}, {ir::ident("FEAT_PAuth_LR")})), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::int_lit(30)));
         stmts.push_back(ir::let_decl("offset", "bits(64)", ir::func_call("ZeroExtend", {}, {ir::bit_concat({ir::ident("imm16"), ir::bit_lit("00")})})));
@@ -487,6 +581,13 @@ Tree build_ir_BFC_BFM_32M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "BFC_BFM_32M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -495,6 +596,13 @@ Tree build_ir_BFC_BFM_64M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "BFC_BFM_64M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -503,6 +611,13 @@ Tree build_ir_BFI_BFM_32M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "BFI_BFM_32M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -511,6 +626,13 @@ Tree build_ir_BFI_BFM_64M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "BFI_BFM_64M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -519,25 +641,32 @@ Tree build_ir_BFM_32M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "BFM_32M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("1")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("1"))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("1")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("1"))), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_3;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("||", ir::bin_op("||", ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0")), ir::bin_op("!=", ir::bit_slice(ir::ident("immr"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("0"))), ir::bin_op("!=", ir::bit_slice(ir::ident("imms"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("0")))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_4;
+                br_3.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("||", ir::bin_op("||", ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0")), ir::bin_op("!=", ir::bit_slice(ir::ident("immr"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("0"))), ir::bin_op("!=", ir::bit_slice(ir::ident("imms"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("0")))), std::move(bb_4) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_3)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -565,25 +694,32 @@ Tree build_ir_BFM_64M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "BFM_64M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("1")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("1"))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("1")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("1"))), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_3;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("||", ir::bin_op("||", ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0")), ir::bin_op("!=", ir::bit_slice(ir::ident("immr"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("0"))), ir::bin_op("!=", ir::bit_slice(ir::ident("imms"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("0")))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_4;
+                br_3.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("||", ir::bin_op("||", ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0")), ir::bin_op("!=", ir::bit_slice(ir::ident("immr"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("0"))), ir::bin_op("!=", ir::bit_slice(ir::ident("imms"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("0")))), std::move(bb_4) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_3)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -611,6 +747,13 @@ Tree build_ir_BFXIL_BFM_32M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "BFXIL_BFM_32M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -619,6 +762,13 @@ Tree build_ir_BFXIL_BFM_64M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "BFXIL_BFM_64M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -627,6 +777,13 @@ Tree build_ir_CMN_ADDS_32S_addsub_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "CMN_ADDS_32S_addsub_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op"] = (insn >> 30) & 0x1;
+    tree.fields["S"] = (insn >> 29) & 0x1;
+    tree.fields["sh"] = (insn >> 22) & 0x1;
+    tree.fields["imm12"] = (insn >> 10) & 0xFFF;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -635,6 +792,13 @@ Tree build_ir_CMN_ADDS_64S_addsub_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "CMN_ADDS_64S_addsub_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op"] = (insn >> 30) & 0x1;
+    tree.fields["S"] = (insn >> 29) & 0x1;
+    tree.fields["sh"] = (insn >> 22) & 0x1;
+    tree.fields["imm12"] = (insn >> 10) & 0xFFF;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -643,6 +807,13 @@ Tree build_ir_CMP_SUBS_32S_addsub_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "CMP_SUBS_32S_addsub_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op"] = (insn >> 30) & 0x1;
+    tree.fields["S"] = (insn >> 29) & 0x1;
+    tree.fields["sh"] = (insn >> 22) & 0x1;
+    tree.fields["imm12"] = (insn >> 10) & 0xFFF;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -651,6 +822,13 @@ Tree build_ir_CMP_SUBS_64S_addsub_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "CMP_SUBS_64S_addsub_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op"] = (insn >> 30) & 0x1;
+    tree.fields["S"] = (insn >> 29) & 0x1;
+    tree.fields["sh"] = (insn >> 22) & 0x1;
+    tree.fields["imm12"] = (insn >> 10) & 0xFFF;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -659,17 +837,24 @@ Tree build_ir_EOR_32_log_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "EOR_32_log_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0"))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0"))), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -685,18 +870,18 @@ Tree build_ir_EOR_32_log_imm(uint32_t insn) {
         stmts.push_back(ir::let_decl("operand2", "bits(datasize)", ir::ident("imm")));
         stmts.push_back(ir::let_decl("result", "bits(datasize)", ir::bin_op("XOR", ir::ident("operand1"), ir::ident("operand2"))));
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_3;
             {
-                std::vector<ir::StmtPtr> stmts;
-                stmts.push_back(ir::assign(ir::func_call("SP", {ir::int_lit(64)}, {}), ir::func_call("ZeroExtend", {ir::int_lit(64)}, {ir::ident("result")})));
-                branches.push_back({ ir::bin_op("==", ir::ident("d"), ir::int_lit(31)), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_4;
+                bb_4.push_back(ir::assign(ir::func_call("SP", {ir::int_lit(64)}, {}), ir::func_call("ZeroExtend", {ir::int_lit(64)}, {ir::ident("result")})));
+                br_3.push_back({ ir::bin_op("==", ir::ident("d"), ir::int_lit(31)), std::move(bb_4) });
             }
             {
-                std::vector<ir::StmtPtr> stmts;
-                stmts.push_back(ir::assign(ir::func_call("X", {ir::ident("datasize")}, {ir::ident("d")}), ir::ident("result")));
-                branches.push_back({ nullptr, std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_5;
+                bb_5.push_back(ir::assign(ir::func_call("X", {ir::ident("datasize")}, {ir::ident("d")}), ir::ident("result")));
+                br_3.push_back({ nullptr, std::move(bb_5) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_3)));
         }
     }
 
@@ -707,17 +892,24 @@ Tree build_ir_EOR_64_log_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "EOR_64_log_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0"))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0"))), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -733,18 +925,18 @@ Tree build_ir_EOR_64_log_imm(uint32_t insn) {
         stmts.push_back(ir::let_decl("operand2", "bits(datasize)", ir::ident("imm")));
         stmts.push_back(ir::let_decl("result", "bits(datasize)", ir::bin_op("XOR", ir::ident("operand1"), ir::ident("operand2"))));
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_3;
             {
-                std::vector<ir::StmtPtr> stmts;
-                stmts.push_back(ir::assign(ir::func_call("SP", {ir::int_lit(64)}, {}), ir::func_call("ZeroExtend", {ir::int_lit(64)}, {ir::ident("result")})));
-                branches.push_back({ ir::bin_op("==", ir::ident("d"), ir::int_lit(31)), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_4;
+                bb_4.push_back(ir::assign(ir::func_call("SP", {ir::int_lit(64)}, {}), ir::func_call("ZeroExtend", {ir::int_lit(64)}, {ir::ident("result")})));
+                br_3.push_back({ ir::bin_op("==", ir::ident("d"), ir::int_lit(31)), std::move(bb_4) });
             }
             {
-                std::vector<ir::StmtPtr> stmts;
-                stmts.push_back(ir::assign(ir::func_call("X", {ir::ident("datasize")}, {ir::ident("d")}), ir::ident("result")));
-                branches.push_back({ nullptr, std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_5;
+                bb_5.push_back(ir::assign(ir::func_call("X", {ir::ident("datasize")}, {ir::ident("d")}), ir::ident("result")));
+                br_3.push_back({ nullptr, std::move(bb_5) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_3)));
         }
     }
 
@@ -755,25 +947,33 @@ Tree build_ir_EXTR_32_extract(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "EXTR_32_extract";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op21"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["o0"] = (insn >> 21) & 0x1;
+    tree.fields["Rm"] = (insn >> 16) & 0x1F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("!=", ir::ident("N"), ir::ident("sf")), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::bin_op("!=", ir::ident("N"), ir::ident("sf")), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_3;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("==", ir::bit_slice(ir::ident("imms"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("1"))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_4;
+                br_3.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("==", ir::bit_slice(ir::ident("imms"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("1"))), std::move(bb_4) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_3)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -800,25 +1000,33 @@ Tree build_ir_EXTR_64_extract(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "EXTR_64_extract";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op21"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["o0"] = (insn >> 21) & 0x1;
+    tree.fields["Rm"] = (insn >> 16) & 0x1F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("!=", ir::ident("N"), ir::ident("sf")), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::bin_op("!=", ir::ident("N"), ir::ident("sf")), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_3;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("==", ir::bit_slice(ir::ident("imms"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("1"))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_4;
+                br_3.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("==", ir::bit_slice(ir::ident("imms"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("1"))), std::move(bb_4) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_3)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -845,6 +1053,13 @@ Tree build_ir_LSL_UBFM_32M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "LSL_UBFM_32M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -853,6 +1068,13 @@ Tree build_ir_LSL_UBFM_64M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "LSL_UBFM_64M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -861,6 +1083,13 @@ Tree build_ir_LSR_UBFM_32M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "LSR_UBFM_32M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -869,6 +1098,13 @@ Tree build_ir_LSR_UBFM_64M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "LSR_UBFM_64M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -877,6 +1113,13 @@ Tree build_ir_MOV_ADD_32_addsub_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "MOV_ADD_32_addsub_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op"] = (insn >> 30) & 0x1;
+    tree.fields["S"] = (insn >> 29) & 0x1;
+    tree.fields["sh"] = (insn >> 22) & 0x1;
+    tree.fields["imm12"] = (insn >> 10) & 0xFFF;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -885,6 +1128,13 @@ Tree build_ir_MOV_ADD_64_addsub_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "MOV_ADD_64_addsub_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op"] = (insn >> 30) & 0x1;
+    tree.fields["S"] = (insn >> 29) & 0x1;
+    tree.fields["sh"] = (insn >> 22) & 0x1;
+    tree.fields["imm12"] = (insn >> 10) & 0xFFF;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -893,6 +1143,11 @@ Tree build_ir_MOV_MOVN_32_movewide(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "MOV_MOVN_32_movewide";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["hw"] = (insn >> 21) & 0x3;
+    tree.fields["imm16"] = (insn >> 5) & 0xFFFF;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -901,6 +1156,11 @@ Tree build_ir_MOV_MOVN_64_movewide(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "MOV_MOVN_64_movewide";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["hw"] = (insn >> 21) & 0x3;
+    tree.fields["imm16"] = (insn >> 5) & 0xFFFF;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -909,6 +1169,11 @@ Tree build_ir_MOV_MOVZ_32_movewide(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "MOV_MOVZ_32_movewide";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["hw"] = (insn >> 21) & 0x3;
+    tree.fields["imm16"] = (insn >> 5) & 0xFFFF;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -917,6 +1182,11 @@ Tree build_ir_MOV_MOVZ_64_movewide(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "MOV_MOVZ_64_movewide";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["hw"] = (insn >> 21) & 0x3;
+    tree.fields["imm16"] = (insn >> 5) & 0xFFFF;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -925,6 +1195,13 @@ Tree build_ir_MOV_ORR_32_log_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "MOV_ORR_32_log_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -933,6 +1210,13 @@ Tree build_ir_MOV_ORR_64_log_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "MOV_ORR_64_log_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -941,17 +1225,22 @@ Tree build_ir_MOVK_32_movewide(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "MOVK_32_movewide";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["hw"] = (insn >> 21) & 0x3;
+    tree.fields["imm16"] = (insn >> 5) & 0xFFFF;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("==", ir::bit_slice(ir::ident("hw"), ir::int_lit(1), ir::int_lit(1), false), ir::bit_lit("1"))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("==", ir::bit_slice(ir::ident("hw"), ir::int_lit(1), ir::int_lit(1), false), ir::bit_lit("1"))), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("datasize", "integer", ir::bin_op("<<", ir::int_lit(32), ir::func_call("UInt", {}, {ir::ident("sf")}))));
@@ -974,17 +1263,22 @@ Tree build_ir_MOVK_64_movewide(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "MOVK_64_movewide";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["hw"] = (insn >> 21) & 0x3;
+    tree.fields["imm16"] = (insn >> 5) & 0xFFFF;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("==", ir::bit_slice(ir::ident("hw"), ir::int_lit(1), ir::int_lit(1), false), ir::bit_lit("1"))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("==", ir::bit_slice(ir::ident("hw"), ir::int_lit(1), ir::int_lit(1), false), ir::bit_lit("1"))), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("datasize", "integer", ir::bin_op("<<", ir::int_lit(32), ir::func_call("UInt", {}, {ir::ident("sf")}))));
@@ -1007,17 +1301,22 @@ Tree build_ir_MOVN_32_movewide(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "MOVN_32_movewide";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["hw"] = (insn >> 21) & 0x3;
+    tree.fields["imm16"] = (insn >> 5) & 0xFFFF;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("==", ir::bit_slice(ir::ident("hw"), ir::int_lit(1), ir::int_lit(1), false), ir::bit_lit("1"))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("==", ir::bit_slice(ir::ident("hw"), ir::int_lit(1), ir::int_lit(1), false), ir::bit_lit("1"))), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("datasize", "integer", ir::bin_op("<<", ir::int_lit(32), ir::func_call("UInt", {}, {ir::ident("sf")}))));
@@ -1040,17 +1339,22 @@ Tree build_ir_MOVN_64_movewide(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "MOVN_64_movewide";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["hw"] = (insn >> 21) & 0x3;
+    tree.fields["imm16"] = (insn >> 5) & 0xFFFF;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("==", ir::bit_slice(ir::ident("hw"), ir::int_lit(1), ir::int_lit(1), false), ir::bit_lit("1"))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("==", ir::bit_slice(ir::ident("hw"), ir::int_lit(1), ir::int_lit(1), false), ir::bit_lit("1"))), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("datasize", "integer", ir::bin_op("<<", ir::int_lit(32), ir::func_call("UInt", {}, {ir::ident("sf")}))));
@@ -1073,17 +1377,22 @@ Tree build_ir_MOVZ_32_movewide(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "MOVZ_32_movewide";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["hw"] = (insn >> 21) & 0x3;
+    tree.fields["imm16"] = (insn >> 5) & 0xFFFF;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("==", ir::bit_slice(ir::ident("hw"), ir::int_lit(1), ir::int_lit(1), false), ir::bit_lit("1"))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("==", ir::bit_slice(ir::ident("hw"), ir::int_lit(1), ir::int_lit(1), false), ir::bit_lit("1"))), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("datasize", "integer", ir::bin_op("<<", ir::int_lit(32), ir::func_call("UInt", {}, {ir::ident("sf")}))));
@@ -1106,17 +1415,22 @@ Tree build_ir_MOVZ_64_movewide(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "MOVZ_64_movewide";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["hw"] = (insn >> 21) & 0x3;
+    tree.fields["imm16"] = (insn >> 5) & 0xFFFF;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("==", ir::bit_slice(ir::ident("hw"), ir::int_lit(1), ir::int_lit(1), false), ir::bit_lit("1"))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("==", ir::bit_slice(ir::ident("hw"), ir::int_lit(1), ir::int_lit(1), false), ir::bit_lit("1"))), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("datasize", "integer", ir::bin_op("<<", ir::int_lit(32), ir::func_call("UInt", {}, {ir::ident("sf")}))));
@@ -1139,17 +1453,24 @@ Tree build_ir_ORR_32_log_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "ORR_32_log_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0"))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0"))), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -1165,18 +1486,18 @@ Tree build_ir_ORR_32_log_imm(uint32_t insn) {
         stmts.push_back(ir::let_decl("operand2", "bits(datasize)", ir::ident("imm")));
         stmts.push_back(ir::let_decl("result", "bits(datasize)", ir::bin_op("OR", ir::ident("operand1"), ir::ident("operand2"))));
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_3;
             {
-                std::vector<ir::StmtPtr> stmts;
-                stmts.push_back(ir::assign(ir::func_call("SP", {ir::int_lit(64)}, {}), ir::func_call("ZeroExtend", {ir::int_lit(64)}, {ir::ident("result")})));
-                branches.push_back({ ir::bin_op("==", ir::ident("d"), ir::int_lit(31)), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_4;
+                bb_4.push_back(ir::assign(ir::func_call("SP", {ir::int_lit(64)}, {}), ir::func_call("ZeroExtend", {ir::int_lit(64)}, {ir::ident("result")})));
+                br_3.push_back({ ir::bin_op("==", ir::ident("d"), ir::int_lit(31)), std::move(bb_4) });
             }
             {
-                std::vector<ir::StmtPtr> stmts;
-                stmts.push_back(ir::assign(ir::func_call("X", {ir::ident("datasize")}, {ir::ident("d")}), ir::ident("result")));
-                branches.push_back({ nullptr, std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_5;
+                bb_5.push_back(ir::assign(ir::func_call("X", {ir::ident("datasize")}, {ir::ident("d")}), ir::ident("result")));
+                br_3.push_back({ nullptr, std::move(bb_5) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_3)));
         }
     }
 
@@ -1187,17 +1508,24 @@ Tree build_ir_ORR_64_log_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "ORR_64_log_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0"))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0"))), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -1213,18 +1541,18 @@ Tree build_ir_ORR_64_log_imm(uint32_t insn) {
         stmts.push_back(ir::let_decl("operand2", "bits(datasize)", ir::ident("imm")));
         stmts.push_back(ir::let_decl("result", "bits(datasize)", ir::bin_op("OR", ir::ident("operand1"), ir::ident("operand2"))));
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_3;
             {
-                std::vector<ir::StmtPtr> stmts;
-                stmts.push_back(ir::assign(ir::func_call("SP", {ir::int_lit(64)}, {}), ir::func_call("ZeroExtend", {ir::int_lit(64)}, {ir::ident("result")})));
-                branches.push_back({ ir::bin_op("==", ir::ident("d"), ir::int_lit(31)), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_4;
+                bb_4.push_back(ir::assign(ir::func_call("SP", {ir::int_lit(64)}, {}), ir::func_call("ZeroExtend", {ir::int_lit(64)}, {ir::ident("result")})));
+                br_3.push_back({ ir::bin_op("==", ir::ident("d"), ir::int_lit(31)), std::move(bb_4) });
             }
             {
-                std::vector<ir::StmtPtr> stmts;
-                stmts.push_back(ir::assign(ir::func_call("X", {ir::ident("datasize")}, {ir::ident("d")}), ir::ident("result")));
-                branches.push_back({ nullptr, std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_5;
+                bb_5.push_back(ir::assign(ir::func_call("X", {ir::ident("datasize")}, {ir::ident("d")}), ir::ident("result")));
+                br_3.push_back({ nullptr, std::move(bb_5) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_3)));
         }
     }
 
@@ -1235,6 +1563,14 @@ Tree build_ir_ROR_EXTR_32_extract(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "ROR_EXTR_32_extract";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op21"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["o0"] = (insn >> 21) & 0x1;
+    tree.fields["Rm"] = (insn >> 16) & 0x1F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -1243,6 +1579,14 @@ Tree build_ir_ROR_EXTR_64_extract(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "ROR_EXTR_64_extract";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op21"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["o0"] = (insn >> 21) & 0x1;
+    tree.fields["Rm"] = (insn >> 16) & 0x1F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -1251,6 +1595,13 @@ Tree build_ir_SBFIZ_SBFM_32M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "SBFIZ_SBFM_32M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -1259,6 +1610,13 @@ Tree build_ir_SBFIZ_SBFM_64M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "SBFIZ_SBFM_64M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -1267,25 +1625,32 @@ Tree build_ir_SBFM_32M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "SBFM_32M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("1")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("1"))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("1")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("1"))), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_3;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("||", ir::bin_op("||", ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0")), ir::bin_op("!=", ir::bit_slice(ir::ident("immr"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("0"))), ir::bin_op("!=", ir::bit_slice(ir::ident("imms"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("0")))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_4;
+                br_3.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("||", ir::bin_op("||", ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0")), ir::bin_op("!=", ir::bit_slice(ir::ident("immr"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("0"))), ir::bin_op("!=", ir::bit_slice(ir::ident("imms"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("0")))), std::move(bb_4) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_3)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -1313,25 +1678,32 @@ Tree build_ir_SBFM_64M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "SBFM_64M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("1")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("1"))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("1")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("1"))), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_3;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("||", ir::bin_op("||", ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0")), ir::bin_op("!=", ir::bit_slice(ir::ident("immr"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("0"))), ir::bin_op("!=", ir::bit_slice(ir::ident("imms"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("0")))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_4;
+                br_3.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("||", ir::bin_op("||", ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0")), ir::bin_op("!=", ir::bit_slice(ir::ident("immr"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("0"))), ir::bin_op("!=", ir::bit_slice(ir::ident("imms"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("0")))), std::move(bb_4) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_3)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -1359,6 +1731,13 @@ Tree build_ir_SBFX_SBFM_32M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "SBFX_SBFM_32M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -1367,6 +1746,13 @@ Tree build_ir_SBFX_SBFM_64M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "SBFX_SBFM_64M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -1375,17 +1761,24 @@ Tree build_ir_SMAX_32_minmax_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "SMAX_32_minmax_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op"] = (insn >> 30) & 0x1;
+    tree.fields["S"] = (insn >> 29) & 0x1;
+    tree.fields["opc"] = (insn >> 18) & 0xF;
+    tree.fields["imm8"] = (insn >> 10) & 0xFF;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::unary_op("!", ir::func_call("IsFeatureImplemented", {}, {ir::ident("FEAT_CSSC")})), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::unary_op("!", ir::func_call("IsFeatureImplemented", {}, {ir::ident("FEAT_CSSC")})), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -1408,17 +1801,24 @@ Tree build_ir_SMAX_64_minmax_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "SMAX_64_minmax_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op"] = (insn >> 30) & 0x1;
+    tree.fields["S"] = (insn >> 29) & 0x1;
+    tree.fields["opc"] = (insn >> 18) & 0xF;
+    tree.fields["imm8"] = (insn >> 10) & 0xFF;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::unary_op("!", ir::func_call("IsFeatureImplemented", {}, {ir::ident("FEAT_CSSC")})), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::unary_op("!", ir::func_call("IsFeatureImplemented", {}, {ir::ident("FEAT_CSSC")})), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -1441,17 +1841,24 @@ Tree build_ir_SMIN_32_minmax_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "SMIN_32_minmax_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op"] = (insn >> 30) & 0x1;
+    tree.fields["S"] = (insn >> 29) & 0x1;
+    tree.fields["opc"] = (insn >> 18) & 0xF;
+    tree.fields["imm8"] = (insn >> 10) & 0xFF;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::unary_op("!", ir::func_call("IsFeatureImplemented", {}, {ir::ident("FEAT_CSSC")})), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::unary_op("!", ir::func_call("IsFeatureImplemented", {}, {ir::ident("FEAT_CSSC")})), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -1474,17 +1881,24 @@ Tree build_ir_SMIN_64_minmax_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "SMIN_64_minmax_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op"] = (insn >> 30) & 0x1;
+    tree.fields["S"] = (insn >> 29) & 0x1;
+    tree.fields["opc"] = (insn >> 18) & 0xF;
+    tree.fields["imm8"] = (insn >> 10) & 0xFF;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::unary_op("!", ir::func_call("IsFeatureImplemented", {}, {ir::ident("FEAT_CSSC")})), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::unary_op("!", ir::func_call("IsFeatureImplemented", {}, {ir::ident("FEAT_CSSC")})), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -1507,6 +1921,13 @@ Tree build_ir_SUB_32_addsub_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "SUB_32_addsub_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op"] = (insn >> 30) & 0x1;
+    tree.fields["S"] = (insn >> 29) & 0x1;
+    tree.fields["sh"] = (insn >> 22) & 0x1;
+    tree.fields["imm12"] = (insn >> 10) & 0xFFF;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
@@ -1525,18 +1946,18 @@ Tree build_ir_SUB_32_addsub_imm(uint32_t insn) {
         stmts.push_back(ir::var_decl("result", "bits(datasize)", nullptr));
         stmts.push_back(ir::tuple_assign({"result", "-"}, ir::func_call("AddWithCarry", {ir::ident("datasize")}, {ir::ident("operand1"), ir::unary_op("NOT", ir::ident("operand2")), ir::bit_lit("1")})));
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                stmts.push_back(ir::assign(ir::func_call("SP", {ir::int_lit(64)}, {}), ir::func_call("ZeroExtend", {ir::int_lit(64)}, {ir::ident("result")})));
-                branches.push_back({ ir::bin_op("==", ir::ident("d"), ir::int_lit(31)), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                bb_2.push_back(ir::assign(ir::func_call("SP", {ir::int_lit(64)}, {}), ir::func_call("ZeroExtend", {ir::int_lit(64)}, {ir::ident("result")})));
+                br_1.push_back({ ir::bin_op("==", ir::ident("d"), ir::int_lit(31)), std::move(bb_2) });
             }
             {
-                std::vector<ir::StmtPtr> stmts;
-                stmts.push_back(ir::assign(ir::func_call("X", {ir::ident("datasize")}, {ir::ident("d")}), ir::ident("result")));
-                branches.push_back({ nullptr, std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_3;
+                bb_3.push_back(ir::assign(ir::func_call("X", {ir::ident("datasize")}, {ir::ident("d")}), ir::ident("result")));
+                br_1.push_back({ nullptr, std::move(bb_3) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
     }
 
@@ -1547,6 +1968,13 @@ Tree build_ir_SUB_64_addsub_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "SUB_64_addsub_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op"] = (insn >> 30) & 0x1;
+    tree.fields["S"] = (insn >> 29) & 0x1;
+    tree.fields["sh"] = (insn >> 22) & 0x1;
+    tree.fields["imm12"] = (insn >> 10) & 0xFFF;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
@@ -1565,18 +1993,18 @@ Tree build_ir_SUB_64_addsub_imm(uint32_t insn) {
         stmts.push_back(ir::var_decl("result", "bits(datasize)", nullptr));
         stmts.push_back(ir::tuple_assign({"result", "-"}, ir::func_call("AddWithCarry", {ir::ident("datasize")}, {ir::ident("operand1"), ir::unary_op("NOT", ir::ident("operand2")), ir::bit_lit("1")})));
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                stmts.push_back(ir::assign(ir::func_call("SP", {ir::int_lit(64)}, {}), ir::func_call("ZeroExtend", {ir::int_lit(64)}, {ir::ident("result")})));
-                branches.push_back({ ir::bin_op("==", ir::ident("d"), ir::int_lit(31)), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                bb_2.push_back(ir::assign(ir::func_call("SP", {ir::int_lit(64)}, {}), ir::func_call("ZeroExtend", {ir::int_lit(64)}, {ir::ident("result")})));
+                br_1.push_back({ ir::bin_op("==", ir::ident("d"), ir::int_lit(31)), std::move(bb_2) });
             }
             {
-                std::vector<ir::StmtPtr> stmts;
-                stmts.push_back(ir::assign(ir::func_call("X", {ir::ident("datasize")}, {ir::ident("d")}), ir::ident("result")));
-                branches.push_back({ nullptr, std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_3;
+                bb_3.push_back(ir::assign(ir::func_call("X", {ir::ident("datasize")}, {ir::ident("d")}), ir::ident("result")));
+                br_1.push_back({ nullptr, std::move(bb_3) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
     }
 
@@ -1587,17 +2015,25 @@ Tree build_ir_SUBG_64_addsub_immtags(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "SUBG_64_addsub_immtags";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op"] = (insn >> 30) & 0x1;
+    tree.fields["S"] = (insn >> 29) & 0x1;
+    tree.fields["imm6"] = (insn >> 16) & 0x3F;
+    tree.fields["op3"] = (insn >> 14) & 0x3;
+    tree.fields["imm4"] = (insn >> 10) & 0xF;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::unary_op("!", ir::func_call("IsFeatureImplemented", {}, {ir::ident("FEAT_MTE")})), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::unary_op("!", ir::func_call("IsFeatureImplemented", {}, {ir::ident("FEAT_MTE")})), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -1616,18 +2052,18 @@ Tree build_ir_SUBG_64_addsub_immtags(uint32_t insn) {
         stmts.push_back(ir::tuple_assign({"result", "-"}, ir::func_call("AddWithCarry", {ir::int_lit(64)}, {ir::ident("operand1"), ir::unary_op("NOT", ir::ident("offset")), ir::bit_lit("1")})));
         stmts.push_back(ir::assign(ir::ident("result"), ir::func_call("AArch64_AddressWithAllocationTag", {}, {ir::ident("result"), ir::ident("rtag")})));
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_3;
             {
-                std::vector<ir::StmtPtr> stmts;
-                stmts.push_back(ir::assign(ir::func_call("SP", {ir::int_lit(64)}, {}), ir::ident("result")));
-                branches.push_back({ ir::bin_op("==", ir::ident("d"), ir::int_lit(31)), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_4;
+                bb_4.push_back(ir::assign(ir::func_call("SP", {ir::int_lit(64)}, {}), ir::ident("result")));
+                br_3.push_back({ ir::bin_op("==", ir::ident("d"), ir::int_lit(31)), std::move(bb_4) });
             }
             {
-                std::vector<ir::StmtPtr> stmts;
-                stmts.push_back(ir::assign(ir::func_call("X", {ir::int_lit(64)}, {ir::ident("d")}), ir::ident("result")));
-                branches.push_back({ nullptr, std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_5;
+                bb_5.push_back(ir::assign(ir::func_call("X", {ir::int_lit(64)}, {ir::ident("d")}), ir::ident("result")));
+                br_3.push_back({ nullptr, std::move(bb_5) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_3)));
         }
     }
 
@@ -1638,6 +2074,13 @@ Tree build_ir_SUBS_32S_addsub_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "SUBS_32S_addsub_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op"] = (insn >> 30) & 0x1;
+    tree.fields["S"] = (insn >> 29) & 0x1;
+    tree.fields["sh"] = (insn >> 22) & 0x1;
+    tree.fields["imm12"] = (insn >> 10) & 0xFFF;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
@@ -1667,6 +2110,13 @@ Tree build_ir_SUBS_64S_addsub_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "SUBS_64S_addsub_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op"] = (insn >> 30) & 0x1;
+    tree.fields["S"] = (insn >> 29) & 0x1;
+    tree.fields["sh"] = (insn >> 22) & 0x1;
+    tree.fields["imm12"] = (insn >> 10) & 0xFFF;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
@@ -1696,6 +2146,13 @@ Tree build_ir_SXTB_SBFM_32M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "SXTB_SBFM_32M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -1704,6 +2161,13 @@ Tree build_ir_SXTB_SBFM_64M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "SXTB_SBFM_64M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -1712,6 +2176,13 @@ Tree build_ir_SXTH_SBFM_32M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "SXTH_SBFM_32M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -1720,6 +2191,13 @@ Tree build_ir_SXTH_SBFM_64M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "SXTH_SBFM_64M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -1728,6 +2206,13 @@ Tree build_ir_SXTW_SBFM_64M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "SXTW_SBFM_64M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -1736,6 +2221,13 @@ Tree build_ir_TST_ANDS_32S_log_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "TST_ANDS_32S_log_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -1744,6 +2236,13 @@ Tree build_ir_TST_ANDS_64S_log_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "TST_ANDS_64S_log_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -1752,6 +2251,13 @@ Tree build_ir_UBFIZ_UBFM_32M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "UBFIZ_UBFM_32M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -1760,6 +2266,13 @@ Tree build_ir_UBFIZ_UBFM_64M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "UBFIZ_UBFM_64M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -1768,25 +2281,32 @@ Tree build_ir_UBFM_32M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "UBFM_32M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("1")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("1"))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("1")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("1"))), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_3;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("||", ir::bin_op("||", ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0")), ir::bin_op("!=", ir::bit_slice(ir::ident("immr"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("0"))), ir::bin_op("!=", ir::bit_slice(ir::ident("imms"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("0")))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_4;
+                br_3.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("||", ir::bin_op("||", ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0")), ir::bin_op("!=", ir::bit_slice(ir::ident("immr"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("0"))), ir::bin_op("!=", ir::bit_slice(ir::ident("imms"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("0")))), std::move(bb_4) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_3)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -1813,25 +2333,32 @@ Tree build_ir_UBFM_64M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "UBFM_64M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("1")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("1"))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("1")), ir::bin_op("!=", ir::ident("N"), ir::bit_lit("1"))), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_3;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("||", ir::bin_op("||", ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0")), ir::bin_op("!=", ir::bit_slice(ir::ident("immr"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("0"))), ir::bin_op("!=", ir::bit_slice(ir::ident("imms"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("0")))), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_4;
+                br_3.push_back({ ir::bin_op("&&", ir::bin_op("==", ir::ident("sf"), ir::bit_lit("0")), ir::bin_op("||", ir::bin_op("||", ir::bin_op("!=", ir::ident("N"), ir::bit_lit("0")), ir::bin_op("!=", ir::bit_slice(ir::ident("immr"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("0"))), ir::bin_op("!=", ir::bit_slice(ir::ident("imms"), ir::int_lit(5), ir::int_lit(5), false), ir::bit_lit("0")))), std::move(bb_4) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_3)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -1858,6 +2385,13 @@ Tree build_ir_UBFX_UBFM_32M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "UBFX_UBFM_32M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -1866,6 +2400,13 @@ Tree build_ir_UBFX_UBFM_64M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "UBFX_UBFM_64M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -1874,17 +2415,24 @@ Tree build_ir_UMAX_32U_minmax_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "UMAX_32U_minmax_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op"] = (insn >> 30) & 0x1;
+    tree.fields["S"] = (insn >> 29) & 0x1;
+    tree.fields["opc"] = (insn >> 18) & 0xF;
+    tree.fields["imm8"] = (insn >> 10) & 0xFF;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::unary_op("!", ir::func_call("IsFeatureImplemented", {}, {ir::ident("FEAT_CSSC")})), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::unary_op("!", ir::func_call("IsFeatureImplemented", {}, {ir::ident("FEAT_CSSC")})), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -1907,17 +2455,24 @@ Tree build_ir_UMAX_64U_minmax_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "UMAX_64U_minmax_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op"] = (insn >> 30) & 0x1;
+    tree.fields["S"] = (insn >> 29) & 0x1;
+    tree.fields["opc"] = (insn >> 18) & 0xF;
+    tree.fields["imm8"] = (insn >> 10) & 0xFF;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::unary_op("!", ir::func_call("IsFeatureImplemented", {}, {ir::ident("FEAT_CSSC")})), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::unary_op("!", ir::func_call("IsFeatureImplemented", {}, {ir::ident("FEAT_CSSC")})), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -1940,17 +2495,24 @@ Tree build_ir_UMIN_32U_minmax_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "UMIN_32U_minmax_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op"] = (insn >> 30) & 0x1;
+    tree.fields["S"] = (insn >> 29) & 0x1;
+    tree.fields["opc"] = (insn >> 18) & 0xF;
+    tree.fields["imm8"] = (insn >> 10) & 0xFF;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::unary_op("!", ir::func_call("IsFeatureImplemented", {}, {ir::ident("FEAT_CSSC")})), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::unary_op("!", ir::func_call("IsFeatureImplemented", {}, {ir::ident("FEAT_CSSC")})), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -1973,17 +2535,24 @@ Tree build_ir_UMIN_64U_minmax_imm(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "UMIN_64U_minmax_imm";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["op"] = (insn >> 30) & 0x1;
+    tree.fields["S"] = (insn >> 29) & 0x1;
+    tree.fields["opc"] = (insn >> 18) & 0xF;
+    tree.fields["imm8"] = (insn >> 10) & 0xFF;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     // Decode pseudocode
     {
         auto& stmts = tree.decode_stmts;
         {
-            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;
+            std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> br_1;
             {
-                std::vector<ir::StmtPtr> stmts;
-                branches.push_back({ ir::unary_op("!", ir::func_call("IsFeatureImplemented", {}, {ir::ident("FEAT_CSSC")})), std::move(stmts) });
+                std::vector<ir::StmtPtr> bb_2;
+                br_1.push_back({ ir::unary_op("!", ir::func_call("IsFeatureImplemented", {}, {ir::ident("FEAT_CSSC")})), std::move(bb_2) });
             }
-            stmts.push_back(ir::if_stmt(std::move(branches)));
+            stmts.push_back(ir::if_stmt(std::move(br_1)));
         }
         stmts.push_back(ir::let_decl("d", "integer", ir::func_call("UInt", {}, {ir::ident("Rd")})));
         stmts.push_back(ir::let_decl("n", "integer", ir::func_call("UInt", {}, {ir::ident("Rn")})));
@@ -2006,6 +2575,13 @@ Tree build_ir_UXTB_UBFM_32M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "UXTB_UBFM_32M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }
@@ -2014,6 +2590,13 @@ Tree build_ir_UXTH_UBFM_32M_bitfield(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "UXTH_UBFM_32M_bitfield";
 
+    tree.fields["sf"] = (insn >> 31) & 0x1;
+    tree.fields["opc"] = (insn >> 29) & 0x3;
+    tree.fields["N"] = (insn >> 22) & 0x1;
+    tree.fields["immr"] = (insn >> 16) & 0x3F;
+    tree.fields["imms"] = (insn >> 10) & 0x3F;
+    tree.fields["Rn"] = (insn >> 5) & 0x1F;
+    tree.fields["Rd"] = (insn >> 0) & 0x1F;
 
     return tree;
 }

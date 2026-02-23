@@ -17,7 +17,7 @@ option(VEDA64_PYTHON "Build Python bindings via nanobind (requires vcpkg toolcha
 
 # Compiler warnings
 if(MSVC)
-    add_compile_options(/W4)
+    add_compile_options(/W4 /bigobj)
 else()
     add_compile_options(-Wall -Wextra -Wpedantic)
 endif()

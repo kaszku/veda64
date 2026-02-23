@@ -10720,7 +10720,7 @@ class ARM64XMLParser:
         code.append("")
         code.append("# Compiler warnings")
         code.append("if(MSVC)")
-        code.append("    add_compile_options(/W4)")
+        code.append("    add_compile_options(/W4 /bigobj)")
         code.append("else()")
         code.append("    add_compile_options(-Wall -Wextra -Wpedantic)")
         code.append("endif()")
@@ -11406,22 +11406,36 @@ class ARM64XMLParser:
             return 'ir::ident("UNKNOWN")'
         return f'ir::ident("/*unknown_expr*/")'
 
-    def _emit_ir_stmt(self, stmt, indent=1) -> List[str]:
-        """Convert a Python ASL IR Stmt node to C++ lines that push_back StmtPtrs."""
+    _ir_counter = 0
+
+    def _ir_uid(self) -> int:
+        """Return a unique ID for generating unique C++ variable names."""
+        self._ir_counter += 1
+        return self._ir_counter
+
+    def _emit_ir_stmts(self, stmts_list, vec_name: str, indent: int) -> List[str]:
+        """Emit C++ code that builds a vector of StmtPtrs into vec_name."""
+        lines = []
+        for stmt in stmts_list:
+            lines.extend(self._emit_ir_stmt(stmt, vec_name, indent))
+        return lines
+
+    def _emit_ir_stmt(self, stmt, vec_name: str = 'stmts', indent: int = 1) -> List[str]:
+        """Convert a Python ASL IR Stmt node to C++ lines that push_back StmtPtrs into vec_name."""
         ind = '    ' * indent
         lines = []
         if isinstance(stmt, LetDecl):
             init = self._emit_ir_expr(stmt.init)
             type_str = self._asl_type_str(stmt.asl_type)
-            lines.append(f'{ind}stmts.push_back(ir::let_decl("{stmt.name}", "{type_str}", {init}));')
+            lines.append(f'{ind}{vec_name}.push_back(ir::let_decl("{stmt.name}", "{type_str}", {init}));')
         elif isinstance(stmt, VarDecl):
             init = self._emit_ir_expr(stmt.init)
             type_str = self._asl_type_str(stmt.asl_type)
-            lines.append(f'{ind}stmts.push_back(ir::var_decl("{stmt.name}", "{type_str}", {init}));')
+            lines.append(f'{ind}{vec_name}.push_back(ir::var_decl("{stmt.name}", "{type_str}", {init}));')
         elif isinstance(stmt, Assign):
             target = self._emit_ir_expr(stmt.target)
             value = self._emit_ir_expr(stmt.value)
-            lines.append(f'{ind}stmts.push_back(ir::assign({target}, {value}));')
+            lines.append(f'{ind}{vec_name}.push_back(ir::assign({target}, {value}));')
         elif isinstance(stmt, TupleAssign):
             targets = []
             for t in stmt.targets:
@@ -11435,96 +11449,72 @@ class ARM64XMLParser:
                     targets.append(f'"{t}"')
             targets_str = ', '.join(targets)
             value = self._emit_ir_expr(stmt.value)
-            lines.append(f'{ind}stmts.push_back(ir::tuple_assign({{{targets_str}}}, {value}));')
+            lines.append(f'{ind}{vec_name}.push_back(ir::tuple_assign({{{targets_str}}}, {value}));')
         elif isinstance(stmt, IfStmt):
-            # Build branches vector
+            uid = self._ir_uid()
+            br_name = f'br_{uid}'
             lines.append(f'{ind}{{')
-            lines.append(f'{ind}    std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;')
+            lines.append(f'{ind}    std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> {br_name};')
             for cond, body in stmt.branches:
                 cond_expr = self._emit_ir_expr(cond) if cond is not None else 'nullptr'
+                body_name = f'bb_{self._ir_uid()}'
                 lines.append(f'{ind}    {{')
-                lines.append(f'{ind}        std::vector<ir::StmtPtr> stmts;')
-                for s in body:
-                    lines.extend(self._emit_ir_stmt(s, indent + 2))
-                lines.append(f'{ind}        branches.push_back({{ {cond_expr}, std::move(stmts) }});')
+                lines.append(f'{ind}        std::vector<ir::StmtPtr> {body_name};')
+                lines.extend(self._emit_ir_stmts(body, body_name, indent + 2))
+                lines.append(f'{ind}        {br_name}.push_back({{ {cond_expr}, std::move({body_name}) }});')
                 lines.append(f'{ind}    }}')
-            lines.append(f'{ind}    stmts.push_back(ir::if_stmt(std::move(branches)));')
+            lines.append(f'{ind}    {vec_name}.push_back(ir::if_stmt(std::move({br_name})));')
             lines.append(f'{ind}}}')
         elif isinstance(stmt, CaseStmt):
             case_expr = self._emit_ir_expr(stmt.expr)
+            uid = self._ir_uid()
+            cs_name = f'cs_{uid}'
             lines.append(f'{ind}{{')
-            lines.append(f'{ind}    std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> cases;')
+            lines.append(f'{ind}    std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> {cs_name};')
             for pat, body in stmt.cases:
-                if pat == 'otherwise':
-                    pat_expr = 'nullptr'
-                else:
-                    pat_expr = self._emit_ir_expr(pat)
+                pat_expr = 'nullptr' if pat == 'otherwise' else self._emit_ir_expr(pat)
+                body_name = f'cb_{self._ir_uid()}'
                 lines.append(f'{ind}    {{')
-                lines.append(f'{ind}        std::vector<ir::StmtPtr> stmts;')
-                for s in body:
-                    lines.extend(self._emit_ir_stmt(s, indent + 2))
-                lines.append(f'{ind}        cases.push_back({{ {pat_expr}, std::move(stmts) }});')
+                lines.append(f'{ind}        std::vector<ir::StmtPtr> {body_name};')
+                lines.extend(self._emit_ir_stmts(body, body_name, indent + 2))
+                lines.append(f'{ind}        {cs_name}.push_back({{ {pat_expr}, std::move({body_name}) }});')
                 lines.append(f'{ind}    }}')
-            lines.append(f'{ind}    stmts.push_back(ir::case_stmt({case_expr}, std::move(cases)));')
+            lines.append(f'{ind}    {vec_name}.push_back(ir::case_stmt({case_expr}, std::move({cs_name})));')
             lines.append(f'{ind}}}')
         elif isinstance(stmt, ForStmt):
             start = self._emit_ir_expr(stmt.start)
             end = self._emit_ir_expr(stmt.end)
+            body_name = f'fb_{self._ir_uid()}'
             lines.append(f'{ind}{{')
-            lines.append(f'{ind}    std::vector<ir::StmtPtr> stmts_body;')
-            # Temporarily rebind stmts
-            lines.append(f'{ind}    auto& stmts = stmts_body;')
-            for s in stmt.body:
-                lines.extend(self._emit_ir_stmt(s, indent + 1))
-            lines.append(f'{ind}    auto& stmts_outer = *(&stmts_body - 0); (void)stmts_outer;')
-            # Undo rebind - actually, let's use a different approach
-            lines.pop()  # remove the hack
-            lines.pop()  # remove the auto& stmts
-            # Re-do: emit into stmts_body directly
-            body_lines = []
-            for s in stmt.body:
-                body_lines.extend(self._emit_ir_stmt_into(s, 'stmts_body', indent + 1))
-            lines.extend(body_lines)
-            lines.append(f'{ind}    stmts.push_back(ir::for_stmt("{stmt.var}", {start}, {end}, "{stmt.direction}", std::move(stmts_body)));')
+            lines.append(f'{ind}    std::vector<ir::StmtPtr> {body_name};')
+            lines.extend(self._emit_ir_stmts(stmt.body, body_name, indent + 1))
+            lines.append(f'{ind}    {vec_name}.push_back(ir::for_stmt("{stmt.var}", {start}, {end}, "{stmt.direction}", std::move({body_name})));')
             lines.append(f'{ind}}}')
         elif isinstance(stmt, WhileStmt):
             cond = self._emit_ir_expr(stmt.cond)
+            body_name = f'wb_{self._ir_uid()}'
             lines.append(f'{ind}{{')
-            lines.append(f'{ind}    std::vector<ir::StmtPtr> stmts_body;')
-            for s in stmt.body:
-                lines.extend(self._emit_ir_stmt_into(s, 'stmts_body', indent + 1))
-            lines.append(f'{ind}    stmts.push_back(ir::while_stmt({cond}, std::move(stmts_body)));')
+            lines.append(f'{ind}    std::vector<ir::StmtPtr> {body_name};')
+            lines.extend(self._emit_ir_stmts(stmt.body, body_name, indent + 1))
+            lines.append(f'{ind}    {vec_name}.push_back(ir::while_stmt({cond}, std::move({body_name})));')
             lines.append(f'{ind}}}')
         elif isinstance(stmt, ExprStmt):
             expr = self._emit_ir_expr(stmt.expr)
-            lines.append(f'{ind}stmts.push_back(ir::expr_stmt({expr}));')
+            lines.append(f'{ind}{vec_name}.push_back(ir::expr_stmt({expr}));')
         elif isinstance(stmt, AssertStmt):
             cond = self._emit_ir_expr(stmt.cond)
-            lines.append(f'{ind}stmts.push_back(ir::assert_stmt({cond}));')
+            lines.append(f'{ind}{vec_name}.push_back(ir::assert_stmt({cond}));')
         elif isinstance(stmt, Undefined):
-            lines.append(f'{ind}stmts.push_back(ir::undefined());')
+            lines.append(f'{ind}{vec_name}.push_back(ir::undefined());')
         elif isinstance(stmt, Unpredictable):
-            lines.append(f'{ind}stmts.push_back(ir::unpredictable());')
+            lines.append(f'{ind}{vec_name}.push_back(ir::unpredictable());')
         elif isinstance(stmt, ReturnStmt):
             val = self._emit_ir_expr(stmt.value) if stmt.value else 'nullptr'
-            lines.append(f'{ind}stmts.push_back(ir::return_stmt({val}));')
+            lines.append(f'{ind}{vec_name}.push_back(ir::return_stmt({val}));')
         elif isinstance(stmt, EndOfDecode):
             pass  # Skip EndOfDecode markers
         else:
             lines.append(f'{ind}// TODO: unhandled stmt type {type(stmt).__name__}')
-        return lines
-
-    def _emit_ir_stmt_into(self, stmt, vec_name: str, indent: int) -> List[str]:
-        """Emit IR stmt construction pushing into a named vector."""
-        # Generate using the standard method, then replace 'stmts' with vec_name
-        lines = self._emit_ir_stmt(stmt, indent)
-        if vec_name != 'stmts':
-            # Only replace the direct push_back calls on 'stmts', not nested ones
-            result = []
-            for line in lines:
-                # Replace only top-level stmts references (simple heuristic)
-                result.append(line)
-            return result
         return lines
 
     def _asl_type_str(self, asl_type) -> str:
@@ -11883,7 +11873,7 @@ class ARM64XMLParser:
                     code.append(f'    tree.encoding_name = "{enc.name}";')
                     # Still extract fields
                     for fname, finfo in enc.fields.items():
-                        if finfo.get('is_fixed', True):
+                        if fname.startswith('_unnamed'):
                             continue
                         hibit = finfo.get('hibit', 0)
                         width = finfo.get('width', 1)
@@ -11952,13 +11942,14 @@ class ARM64XMLParser:
         """Generate a single IR builder function for an encoding."""
         code = []
         code.append(f"Tree {func_name}(uint32_t insn) {{")
+        self._ir_counter = 0  # Reset per builder for clean variable names
         code.append(f'    Tree tree;')
         code.append(f'    tree.encoding_name = "{enc.name}";')
         code.append("")
 
         # Extract fields
         for fname, finfo in enc.fields.items():
-            if finfo.get('is_fixed', True):
+            if fname.startswith('_unnamed'):
                 continue
             hibit = finfo.get('hibit', 0)
             width = finfo.get('width', 1)

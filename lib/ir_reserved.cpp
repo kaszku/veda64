@@ -9,6 +9,7 @@ Tree build_ir_UDF_only_perm_undef(uint32_t insn) {
     Tree tree;
     tree.encoding_name = "UDF_only_perm_undef";
 
+    tree.fields["imm16"] = (insn >> 0) & 0xFFFF;
 
     // Decode pseudocode
     {
