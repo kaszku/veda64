@@ -6721,20 +6721,16 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::RETAASPPC, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        {
-                            int32_t loff = static_cast<int32_t>(enc.retaasppc_only_miscbranch.imm16 << 16) >> 16;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
-                        }
+                        int32_t offset = -(int32_t)(enc.retaasppc_only_miscbranch.imm16 * 4u);
+                        result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));
                         return result;
         }
         case 0x5520001Fu: { // RETABSPPC_only_miscbranch
                         Instruction result(Mnemonic::RETABSPPC, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        {
-                            int32_t loff = static_cast<int32_t>(enc.retabsppc_only_miscbranch.imm16 << 16) >> 16;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
-                        }
+                        int32_t offset = -(int32_t)(enc.retabsppc_only_miscbranch.imm16 * 4u);
+                        result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));
                         return result;
         }
         case 0xD4000001u: { // SVC_EX_exception
@@ -6911,7 +6907,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::TBZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.tbz_only_testbranch.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.tbz_only_testbranch.Rt, static_cast<bool>(enc.tbz_only_testbranch.b5)));
                         result.operands.push_back(Operand(OperandType::Immediate, (enc.tbz_only_testbranch.b5 << 5) | enc.tbz_only_testbranch.b40, true));
                         int32_t offset = static_cast<int32_t>(enc.tbz_only_testbranch.imm14 << 18) >> 18;
                         offset *= 4;
@@ -6922,7 +6918,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::TBNZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.tbnz_only_testbranch.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Register, enc.tbnz_only_testbranch.Rt, static_cast<bool>(enc.tbnz_only_testbranch.b5)));
                         result.operands.push_back(Operand(OperandType::Immediate, (enc.tbnz_only_testbranch.b5 << 5) | enc.tbnz_only_testbranch.b40, true));
                         int32_t offset = static_cast<int32_t>(enc.tbnz_only_testbranch.imm14 << 18) >> 18;
                         offset *= 4;

@@ -46218,7 +46218,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldraa64ldst_pac.Rt, true));
-                        int32_t imm = enc.ldraa64ldst_pac.imm9 * 8;  // sign-extended (imm9 is int32_t) and scaled
+                        uint32_t _raw10 = (enc.ldraa64ldst_pac.S << 9) | (enc.ldraa64ldst_pac.imm9 & 0x1FFu);
+                        int32_t imm = static_cast<int32_t>((_raw10 ^ (1u << 9)) - (1u << 9)) * 8;
                         if (imm == 0) result.operands.push_back(Operand::memory_base(enc.ldraa64ldst_pac.Rn));
                         else result.operands.push_back(Operand::memory_offset(enc.ldraa64ldst_pac.Rn, imm));
                         return result;
@@ -46228,7 +46229,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldraa64w_ldst_pac.Rt, true));
-                        int32_t imm = enc.ldraa64w_ldst_pac.imm9 * 8;  // sign-extended (imm9 is int32_t) and scaled
+                        uint32_t _raw10 = (enc.ldraa64w_ldst_pac.S << 9) | (enc.ldraa64w_ldst_pac.imm9 & 0x1FFu);
+                        int32_t imm = static_cast<int32_t>((_raw10 ^ (1u << 9)) - (1u << 9)) * 8;
                         result.operands.push_back(Operand::memory_pre_index(enc.ldraa64w_ldst_pac.Rn, imm));
                         return result;
         }
@@ -46237,7 +46239,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrab64ldst_pac.Rt, true));
-                        int32_t imm = enc.ldrab64ldst_pac.imm9 * 8;  // sign-extended (imm9 is int32_t) and scaled
+                        uint32_t _raw10 = (enc.ldrab64ldst_pac.S << 9) | (enc.ldrab64ldst_pac.imm9 & 0x1FFu);
+                        int32_t imm = static_cast<int32_t>((_raw10 ^ (1u << 9)) - (1u << 9)) * 8;
                         if (imm == 0) result.operands.push_back(Operand::memory_base(enc.ldrab64ldst_pac.Rn));
                         else result.operands.push_back(Operand::memory_offset(enc.ldrab64ldst_pac.Rn, imm));
                         return result;
@@ -46247,7 +46250,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldrab64w_ldst_pac.Rt, true));
-                        int32_t imm = enc.ldrab64w_ldst_pac.imm9 * 8;  // sign-extended (imm9 is int32_t) and scaled
+                        uint32_t _raw10 = (enc.ldrab64w_ldst_pac.S << 9) | (enc.ldrab64w_ldst_pac.imm9 & 0x1FFu);
+                        int32_t imm = static_cast<int32_t>((_raw10 ^ (1u << 9)) - (1u << 9)) * 8;
                         result.operands.push_back(Operand::memory_pre_index(enc.ldrab64w_ldst_pac.Rn, imm));
                         return result;
         }

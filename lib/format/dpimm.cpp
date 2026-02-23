@@ -2597,7 +2597,10 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.smax32minmax_imm.Rd, false));
                         result.operands.push_back(Operand(OperandType::Register, enc.smax32minmax_imm.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.smax32minmax_imm.imm8, true));
+                        {
+                            int32_t simm = (int32_t)((enc.smax32minmax_imm.imm8 ^ (1u << 7)) - (1u << 7));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, (uint32_t)simm, true));
+                        }
                         return result;
         }
         case 0x11C40000u: { // UMAX_32U_minmax_imm
@@ -2615,7 +2618,10 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.smin32minmax_imm.Rd, false));
                         result.operands.push_back(Operand(OperandType::Register, enc.smin32minmax_imm.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.smin32minmax_imm.imm8, true));
+                        {
+                            int32_t simm = (int32_t)((enc.smin32minmax_imm.imm8 ^ (1u << 7)) - (1u << 7));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, (uint32_t)simm, true));
+                        }
                         return result;
         }
         case 0x11CC0000u: { // UMIN_32U_minmax_imm
@@ -2633,7 +2639,10 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.smax64minmax_imm.Rd, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.smax64minmax_imm.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.smax64minmax_imm.imm8, true));
+                        {
+                            int32_t simm = (int32_t)((enc.smax64minmax_imm.imm8 ^ (1u << 7)) - (1u << 7));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, (uint32_t)simm, true));
+                        }
                         return result;
         }
         case 0x91C40000u: { // UMAX_64U_minmax_imm
@@ -2651,7 +2660,10 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.smin64minmax_imm.Rd, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.smin64minmax_imm.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.smin64minmax_imm.imm8, true));
+                        {
+                            int32_t simm = (int32_t)((enc.smin64minmax_imm.imm8 ^ (1u << 7)) - (1u << 7));
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, (uint32_t)simm, true));
+                        }
                         return result;
         }
         case 0x91CC0000u: { // UMIN_64U_minmax_imm

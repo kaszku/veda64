@@ -2233,6 +2233,9 @@ std::string Operand::to_string() const {
                     if (index >= 10) { std::ostringstream _oss; _oss << "0x" << std::hex << index; _idx_s = _oss.str(); }
                     else _idx_s = std::to_string(index);
                     return "v" + std::to_string(value) + "." + arrangement_to_string(arrangement) + "[" + _idx_s + "]";
+                } else if (has_index) {
+                    // Indexed without arrangement (LUTI4 Vm[idx])
+                    return "v" + std::to_string(value) + "[" + std::to_string(index) + "]";
                 }
                 std::string vr = format_vector_register(value, arrangement);
                 return vr;

@@ -722,6 +722,9 @@ class ARM64XMLParser:
 
         # Immediate classification
         if re.match(r'^imm\d*$', s) or s in ('simm', 'offset', 'pimm', 'uimm'):
+            # Symbol name 'simm' explicitly means signed immediate (e.g. SMAX/SMIN imm8)
+            if s == 'simm':
+                return ('imm_signed', field, {})
             # Check decode_ops for transform type — look for ops referencing this field
             for var, op in decode_ops.items():
                 if len(op) >= 2 and op[1] == field:
@@ -2411,6 +2414,9 @@ class ARM64XMLParser:
         code.append("                    if (index >= 10) { std::ostringstream _oss; _oss << \"0x\" << std::hex << index; _idx_s = _oss.str(); }")
         code.append("                    else _idx_s = std::to_string(index);")
         code.append("                    return \"v\" + std::to_string(value) + \".\" + arrangement_to_string(arrangement) + \"[\" + _idx_s + \"]\";")
+        code.append("                } else if (has_index) {")
+        code.append("                    // Indexed without arrangement (LUTI4 Vm[idx])")
+        code.append("                    return \"v\" + std::to_string(value) + \"[\" + std::to_string(index) + \"]\";")
         code.append("                }")
         code.append("                std::string vr = format_vector_register(value, arrangement);")
         code.append("                return vr;")
@@ -4516,7 +4522,8 @@ class ARM64XMLParser:
         if any(x in encoding_name for x in ['_z_', '_p_', 'sve', 'sme', 'mortlach',
                                               'asimd', 'float', 'fpsimd', 'advsimd',
                                               'asimdsame', 'asimdelem', 'asimdshf',
-                                              'asimddiff', 'asimdmiscfp', 'asimdmisc']):
+                                              'asimddiff', 'asimdmiscfp', 'asimdmisc',
+                                              'asisdelem', 'miscbranch']):
             return None
 
         # Reject LDP/STP and complex load/store pairs
@@ -4808,7 +4815,7 @@ class ARM64XMLParser:
                 has_sf = True
 
         # Determine instruction type for special handling
-        is_branch = mnemonic in ['B', 'BL', 'CBZ', 'CBNZ', 'TBZ', 'TBNZ', 'BC']
+        is_branch = mnemonic in ['B', 'BL', 'CBZ', 'CBNZ', 'TBZ', 'TBNZ', 'BC', 'RETAASPPC', 'RETABSPPC']
         is_ret = mnemonic == 'RET'
         is_hint = mnemonic == 'HINT'
         is_msr_pstate = 'pstate' in encoding_name and mnemonic == 'MSR' and 'si' in encoding_name
@@ -5093,13 +5100,21 @@ class ARM64XMLParser:
                 imm_field = field_map['imm14']['name']
                 b5_field = field_map['b5']['name']
                 b40_field = field_map['b40']['name']
-                # Always use X register for clarity (WinDbg convention) even though ARM spec uses b5
-                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, true));")
+                # b5 determines register width: b5=1 → X register (64-bit), b5=0 → W register (32-bit)
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, static_cast<bool>(enc.{member_name}.{b5_field})));")
                 # Bit number (6-bit value from b5:b40)
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, (enc.{member_name}.{b5_field} << 5) | enc.{member_name}.{b40_field}, true));")
                 # Sign-extend 14-bit immediate and multiply by 4
                 code.append(f"{ind}int32_t offset = static_cast<int32_t>(enc.{member_name}.{imm_field} << 18) >> 18;")
                 code.append(f"{ind}offset *= 4;")
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));")
+                code.append(f"{ind}return result;")
+                return code
+            # RETAASPPC/RETABSPPC: label = PC - ZeroExtend(imm16:'00')
+            # imm16 is unsigned, offset is negative, scaled by 4
+            elif mnemonic in ['RETAASPPC', 'RETABSPPC'] and 'imm16' in field_map:
+                imm_field = field_map['imm16']['name']
+                code.append(f"{ind}int32_t offset = -(int32_t)(enc.{member_name}.{imm_field} * 4u);")
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));")
                 code.append(f"{ind}return result;")
                 return code
@@ -5305,9 +5320,15 @@ class ARM64XMLParser:
             rt_field = field_map['Rt']['name']
             rn_field = field_map['Rn']['name']
             imm9_field = field_map['imm9']['name']
+            s_field = field_map['S']['name'] if 'S' in field_map and not field_map['S']['is_fixed'] else None
             is_writeback = '64w' in encoding_name.lower()
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, true));")
-            code.append(f"{ind}int32_t imm = enc.{member_name}.{imm9_field} * 8;  // sign-extended (imm9 is int32_t) and scaled")
+            if s_field:
+                # LDRAA/LDRAB: offset = SignExtend(S:imm9, 10) * 8 (S is MSB of 10-bit signed value)
+                code.append(f"{ind}uint32_t _raw10 = (enc.{member_name}.{s_field} << 9) | (enc.{member_name}.{imm9_field} & 0x1FFu);")
+                code.append(f"{ind}int32_t imm = static_cast<int32_t>((_raw10 ^ (1u << 9)) - (1u << 9)) * 8;")
+            else:
+                code.append(f"{ind}int32_t imm = enc.{member_name}.{imm9_field} * 8;  // sign-extended (imm9 is int32_t) and scaled")
             if is_writeback:
                 code.append(f"{ind}result.operands.push_back(Operand::memory_pre_index(enc.{member_name}.{rn_field}, imm));")
             else:
@@ -5925,6 +5946,36 @@ class ARM64XMLParser:
             code.append(f"{ind}return result;")
             return code
 
+        # Special case: LUTI4 — lookup table with 4-bit indices
+        # L5 (byte): LUTI4 <Vd>.16B, { <Vn>.16B }, <Vm>[<index>]  — len[1] is index (1 bit)
+        # L7 (halfword): LUTI4 <Vd>.8H, { <Vn1>.8H, <Vn2>.8H }, <Vm>[<index>]  — len is index (2 bits)
+        if mnemonic == 'LUTI4' and 'asimdtbl' in encoding_name and 'Rd' in field_map and 'Rn' in field_map and 'Rm' in field_map:
+            rd_field = field_map['Rd']['name']
+            rn_field = field_map['Rn']['name']
+            rm_field = field_map['Rm']['name']
+            len_field = field_map['len']['name'] if 'len' in field_map else None
+            _enc_lc = encoding_name.lower()
+            if '_l5' in _enc_lc:
+                # Byte variant: Vd.16B, { Vn.16B }, Vm[index]
+                # len field is partial (x1), index = len[1] (bit 14)
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = Arrangement::B16; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegisterList, enc.{member_name}.{rn_field}, false); op.arrangement = Arrangement::B16; op.index = 1; result.operands.push_back(op); }}")
+                if len_field:
+                    code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rm_field}, false); op.has_index = true; op.index = (enc.{member_name}.{len_field} >> 1); result.operands.push_back(op); }}")
+                else:
+                    code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rm_field}, false); result.operands.push_back(op); }}")
+            else:
+                # Halfword variant: Vd.8H, { Vn1.8H, Vn2.8H }, Vm[index]
+                # len field = index (2 bits)
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = Arrangement::H8; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ Operand op(OperandType::VectorRegisterList, enc.{member_name}.{rn_field}, false); op.arrangement = Arrangement::H8; op.index = 2; result.operands.push_back(op); }}")
+                if len_field:
+                    code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rm_field}, false); op.has_index = true; op.index = enc.{member_name}.{len_field}; result.operands.push_back(op); }}")
+                else:
+                    code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rm_field}, false); result.operands.push_back(op); }}")
+            code.append(f"{ind}return result;")
+            return code
+
         # Special case: TBL/TBX — byte arrangement, Rn is register list
         if mnemonic in ['TBL', 'TBX'] and 'asimdtbl' in encoding_name and 'Rd' in field_map and 'Rn' in field_map and 'Rm' in field_map:
             rd_field = field_map['Rd']['name']
@@ -6360,12 +6411,81 @@ class ARM64XMLParser:
             return code
 
         # Special case: SIMD by-element (asimdelem) — Rm has element index from H/L/M fields
-        is_asimdelem = 'asimdelem' in encoding_name and 'Rd' in field_map and 'Rn' in field_map and 'Rm' in field_map
+        is_asimdelem = ('asimdelem' in encoding_name or 'asisdelem' in encoding_name) and 'Rd' in field_map and 'Rn' in field_map and 'Rm' in field_map
         if is_asimdelem:
             rd_field = field_map['Rd']['name']
             rn_field = field_map['Rn']['name']
             rm_field = field_map['Rm']['name']
             _enc_lc = encoding_name.lower()
+            is_scalar_elem = 'asisdelem' in encoding_name
+
+            # Special case: Scalar by-element (asisdelem) — Rd/Rn are scalar FP regs
+            # RH_H: halfword scalar, index=H:L:M (3-bit), Rm=4-bit
+            # R_SD: single/double scalar, index depends on sz
+            if is_scalar_elem:
+                has_h = 'H' in field_map and not field_map['H']['is_fixed']
+                has_l = 'L' in field_map and not field_map['L']['is_fixed']
+                has_m = 'M' in field_map and not field_map['M']['is_fixed']
+                h_f = field_map['H']['name'] if has_h else None
+                l_f = field_map['L']['name'] if has_l else None
+                m_f = field_map['M']['name'] if has_m else None
+                if '_rh_h' in _enc_lc:
+                    # FP16 scalar: Hd, Hn, Vm.H[H:L:M]
+                    code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }}")
+                    code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }}")
+                    code.append(f"{ind}{{")
+                    code.append(f"{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{rm_field}, false);")
+                    code.append(f"{ind}    op.arrangement = Arrangement::H;")
+                    if h_f and l_f and m_f:
+                        code.append(f"{ind}    op.index = (enc.{member_name}.{h_f} << 2) | (enc.{member_name}.{l_f} << 1) | enc.{member_name}.{m_f};")
+                    else:
+                        code.append(f"{ind}    op.index = 0;")
+                    code.append(f"{ind}    op.has_index = true;")
+                    code.append(f"{ind}    result.operands.push_back(op);")
+                    code.append(f"{ind}}}")
+                else:
+                    # Single/Double scalar: <V><d>, <V><n>, <Vm>.<Ts>[<index>]
+                    # sz field determines precision: 0→S, 1→D
+                    sz_f = field_map['sz']['name'] if 'sz' in field_map and not field_map['sz']['is_fixed'] else None
+                    if sz_f:
+                        code.append(f"{ind}Arrangement _sc_arr = enc.{member_name}.{sz_f} ? Arrangement::D : Arrangement::S;")
+                    else:
+                        sz_val = int(field_map['sz']['fixed'], 2) if 'sz' in field_map and field_map['sz']['fixed'] else 0
+                        code.append(f"{ind}Arrangement _sc_arr = {'Arrangement::D' if sz_val else 'Arrangement::S'};")
+                    code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_field}, false); op.arrangement = _sc_arr; result.operands.push_back(op); }}")
+                    code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_field}, false); op.arrangement = _sc_arr; result.operands.push_back(op); }}")
+                    code.append(f"{ind}{{")
+                    if has_m:
+                        code.append(f"{ind}    uint32_t _rm_reg = enc.{member_name}.{rm_field};")
+                        code.append(f"{ind}    Arrangement _el_arr = _sc_arr;")
+                        if sz_f:
+                            code.append(f"{ind}    if (!enc.{member_name}.{sz_f}) _rm_reg |= (enc.{member_name}.{m_f} << 4);  // S: M extends Rm")
+                        else:
+                            if sz_val == 0:
+                                code.append(f"{ind}    _rm_reg |= (enc.{member_name}.{m_f} << 4);  // S: M extends Rm")
+                        code.append(f"{ind}    Operand op(OperandType::VectorRegister, _rm_reg, false);")
+                        code.append(f"{ind}    op.arrangement = _el_arr;")
+                    else:
+                        code.append(f"{ind}    Operand op(OperandType::VectorRegister, enc.{member_name}.{rm_field}, false);")
+                        code.append(f"{ind}    op.arrangement = _sc_arr;")
+                    # Index: sz=0(S) → H:L (2-bit), sz=1(D) → H (1-bit)
+                    if h_f and has_l:
+                        if sz_f:
+                            code.append(f"{ind}    op.index = enc.{member_name}.{sz_f} ? enc.{member_name}.{h_f} : ((enc.{member_name}.{h_f} << 1) | enc.{member_name}.{l_f});")
+                        else:
+                            if sz_val == 0:
+                                code.append(f"{ind}    op.index = (enc.{member_name}.{h_f} << 1) | enc.{member_name}.{l_f};")
+                            else:
+                                code.append(f"{ind}    op.index = enc.{member_name}.{h_f};")
+                    elif h_f:
+                        code.append(f"{ind}    op.index = enc.{member_name}.{h_f};")
+                    else:
+                        code.append(f"{ind}    op.index = 0;")
+                    code.append(f"{ind}    op.has_index = true;")
+                    code.append(f"{ind}    result.operands.push_back(op);")
+                    code.append(f"{ind}}}")
+                code.append(f"{ind}return result;")
+                return code
 
             # Special case: FMLALB/FMLALT asimdelem_H (FP8 by-element)
             # Template: FMLALB <Vd>.8H, <Vn>.16B, <Vm>.B[H:L:M:Rm[3]]
@@ -10705,7 +10825,7 @@ class ARM64XMLParser:
             ("0x52800221", "mov w1, #0x11"),              # alias: MOVZ 32-bit
             ("0x92800020", "mov x0, #-0x2"),              # alias: MOVN (imm16=1, hw=0, ~1=0xFFFFFFFFFFFFFFFE)
             ("0x97fa94a3", "bl .-0x15ad74"),               # -1420660 = -0x15ad74
-            ("0x37f800a0", "tbnz x0, #0x1f, .+0x14"),      # Always show X register (WinDbg convention)
+            ("0x37f800a0", "tbnz w0, #0x1f, .+0x14"),      # b5=0 → W register (bit < 32)
             ("0x394043a8", "ldrb w8, [x29, #0x10]"),       # byte: imm12 unscaled (size=0)
             ("0x35000068", "cbnz w8, .+0xc"),              # 12 = 0xc
             ("0xd43e0000", "brk #0xf000"),

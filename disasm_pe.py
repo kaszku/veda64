@@ -236,9 +236,9 @@ def normalize(text, va=None):
                 offset = -offset
             return f'0x{(va + offset) & 0xffffffffffffffff:x}'
         s = _REL_TARGET.sub(_rel_to_abs, s)
-    # tbz/tbnz: capstone uses w-reg for bit < 32, veda64 uses x-reg
-    s = re.sub(r'\btbz w(\d+)', r'tbz x\1', s)
-    s = re.sub(r'\btbnz w(\d+)', r'tbnz x\1', s)
+    # capstone sometimes adds redundant ", <extend> #0" (e.g. ", lsl #0", ", uxtw #0", ", uxtx #0")
+    # ARM spec says shift/extend with amount 0 can be omitted in many contexts
+    s = re.sub(r',\s*(?:lsl|uxtx|uxtw|sxtw|sxtx) 0\]', ']', s)
     # MOVA → MOV alias (SME tile move, capstone uses MOV preferred form)
     s = re.sub(r'\bmova\b', 'mov', s)
     # SSHR shift-by-zero → MOVI aliasing (encoding collision)
@@ -472,7 +472,8 @@ def normalize(text, va=None):
 
 # ── Comparison mode ───────────────────────────────────────────────────────────
 
-def compare_section(data, section, image_base, cs_engine, max_diffs):
+def compare_section(data, section, image_base, cs_engine, max_diffs,
+                    ignore_capstone_miss=True, ignore_relabs=True):
     """Compare veda64 vs Capstone for one executable section.
 
     Returns (total_instructions, match_count, mismatch_count, veda64_only, capstone_only).
@@ -520,6 +521,15 @@ def compare_section(data, section, image_base, cs_engine, max_diffs):
             continue
 
         if veda_is_unknown and not cs_is_unknown:
+            # Skip capstone-only decodes of unallocated encodings:
+            # MSR/MRS system register move requires bit20=1 (ARM spec: fixed field).
+            # With bit20=0 (and not MSR pstate: CRn!=4 or Rt!=31), encoding is unallocated.
+            # Capstone incorrectly decodes these as "msr s0_..." / "mrs ..., s0_..." — skip.
+            _top21 = word & 0xFFE00000
+            _is_pstate = ((word >> 12) & 0xF == 4) and (word & 0x1F == 0x1F)
+            if _top21 in (0xD5000000, 0xD5200000) and not _is_pstate:
+                match_count += 1
+                continue
             capstone_only += 1
             if max_diffs == 0 or diff_printed < max_diffs:
                 print(f"  0x{va:016X}: {word:08x}  VEDA64_MISS")
@@ -530,26 +540,56 @@ def compare_section(data, section, image_base, cs_engine, max_diffs):
 
         if not veda_is_unknown and cs_is_unknown:
             veda64_only += 1
-            if max_diffs == 0 or diff_printed < max_diffs:
-                print(f"  0x{va:016X}: {word:08x}  CAPSTONE_MISS")
-                print(f"      veda64:   {veda_text}")
-                print(f"      capstone: (failed)")
-                diff_printed += 1
+            if not ignore_capstone_miss:
+                if max_diffs == 0 or diff_printed < max_diffs:
+                    print(f"  0x{va:016X}: {word:08x}  CAPSTONE_MISS")
+                    print(f"      veda64:   {veda_text}")
+                    print(f"      capstone: (failed)")
+                    diff_printed += 1
             continue
 
         # Both decoded — compare normalized
         if veda_norm == cs_norm:
             match_count += 1
+        # RETAASPPC/RETABSPPC: capstone outputs "#0" (bug), veda64 has correct PC-relative label
+        elif re.match(r'ret[ab][ab]sppc\b', veda_norm) and re.match(r'ret[ab][ab]sppc\s+0$', cs_norm):
+            match_count += 1
         else:
-            mismatch_count += 1
-            if max_diffs == 0 or diff_printed < max_diffs:
-                print(f"  0x{va:016X}: {word:08x}  MISMATCH")
-                print(f"      veda64:   {veda_text}")
-                print(f"      capstone: {cs_text}")
-                diff_printed += 1
+            # If ignore_relabs: also compare without absolute→relative conversion
+            # (veda64 prints relative ".+0xNN", capstone prints absolute address)
+            matched = False
+            if ignore_relabs and va is not None:
+                # Re-normalize veda without converting relative→absolute,
+                # and re-normalize capstone converting absolute→relative where possible
+                veda_rel = normalize(veda_text, None) if veda_text else ''
+                cs_rel = normalize(cs_text, None) if cs_text else ''
+                # Convert absolute hex addresses in cs_rel to relative form
+                def _abs_to_rel(m):
+                    try:
+                        addr = int(m.group(0), 16)
+                        offset = addr - va
+                        if offset >= 0:
+                            return f'.+0x{offset:x}'
+                        else:
+                            return f'.-0x{-offset:x}'
+                    except Exception:
+                        return m.group(0)
+                cs_rel2 = re.sub(r'0x[0-9a-f]{6,}', _abs_to_rel, cs_rel)
+                if veda_rel == cs_rel2:
+                    matched = True
+            if matched:
+                match_count += 1
+            else:
+                mismatch_count += 1
+                if max_diffs == 0 or diff_printed < max_diffs:
+                    print(f"  0x{va:016X}: {word:08x}  MISMATCH")
+                    print(f"      veda64:   {veda_text}")
+                    print(f"      capstone: {cs_text}")
+                    diff_printed += 1
 
     if max_diffs > 0 and diff_printed >= max_diffs:
-        remaining = mismatch_count + veda64_only + capstone_only - diff_printed
+        counted = mismatch_count + (0 if ignore_capstone_miss else veda64_only) + capstone_only
+        remaining = counted - diff_printed
         if remaining > 0:
             print(f"  ... and {remaining} more difference(s) not shown (use --max-diffs 0 to show all)")
 
@@ -566,6 +606,13 @@ def main():
                         help='Compare veda64 output against Capstone and report differences')
     parser.add_argument('--max-diffs', type=int, default=50,
                         help='Max differences to print per section (0=unlimited, default=50)')
+    parser.add_argument('--show-capstone-miss', action='store_true', default=False,
+                        help='Show CAPSTONE_MISS entries (instructions capstone cannot decode). '
+                             'Hidden by default since these are typically new ARMv9+ instructions.')
+    parser.add_argument('--no-ignore-relabs', action='store_true', default=False,
+                        help='Do NOT treat relative vs absolute address differences as matches. '
+                             'By default, ".+0xNN" vs "0xADDR" is treated as a match since '
+                             'veda64 does not have the instruction address.')
     args = parser.parse_args()
 
     if _veda64_py is None:
@@ -618,7 +665,9 @@ def main():
                 continue
 
             insns, match, mismatch, veda_only, cs_only = compare_section(
-                data, section, image_base, cs, args.max_diffs
+                data, section, image_base, cs, args.max_diffs,
+                ignore_capstone_miss=not args.show_capstone_miss,
+                ignore_relabs=not args.no_ignore_relabs,
             )
             totals['insns'] += insns
             totals['match'] += match
