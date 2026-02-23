@@ -37428,6 +37428,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQSHL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqshl_asisdshf_r.immh == 0u) return std::nullopt;
                         bool is_64bit = false;
                         uint32_t _immh = enc.sqshl_asisdshf_r.immh;
                         uint32_t _immb = enc.sqshl_asisdshf_r.immb;
@@ -37446,6 +37447,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQSHRN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqshrn_asisdshf_n.immh == 0u) return std::nullopt;
                         bool is_64bit = false;
                         uint32_t _immh = enc.sqshrn_asisdshf_n.immh;
                         uint32_t _immb = enc.sqshrn_asisdshf_n.immb;
@@ -37464,6 +37466,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQRSHRN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqrshrn_asisdshf_n.immh == 0u) return std::nullopt;
                         bool is_64bit = false;
                         uint32_t _immh = enc.sqrshrn_asisdshf_n.immh;
                         uint32_t _immb = enc.sqrshrn_asisdshf_n.immb;
@@ -37518,6 +37521,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQSHLU, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqshlu_asisdshf_r.immh == 0u) return std::nullopt;
                         bool is_64bit = false;
                         uint32_t _immh = enc.sqshlu_asisdshf_r.immh;
                         uint32_t _immb = enc.sqshlu_asisdshf_r.immb;
@@ -37536,6 +37540,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UQSHL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uqshl_asisdshf_r.immh == 0u) return std::nullopt;
                         bool is_64bit = false;
                         uint32_t _immh = enc.uqshl_asisdshf_r.immh;
                         uint32_t _immb = enc.uqshl_asisdshf_r.immb;
@@ -37554,6 +37559,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQSHRUN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqshrun_asisdshf_n.immh == 0u) return std::nullopt;
                         bool is_64bit = false;
                         uint32_t _immh = enc.sqshrun_asisdshf_n.immh;
                         uint32_t _immb = enc.sqshrun_asisdshf_n.immb;
@@ -37572,6 +37578,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQRSHRUN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqrshrun_asisdshf_n.immh == 0u) return std::nullopt;
                         bool is_64bit = false;
                         uint32_t _immh = enc.sqrshrun_asisdshf_n.immh;
                         uint32_t _immb = enc.sqrshrun_asisdshf_n.immb;
@@ -37590,6 +37597,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UQSHRN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uqshrn_asisdshf_n.immh == 0u) return std::nullopt;
                         bool is_64bit = false;
                         uint32_t _immh = enc.uqshrn_asisdshf_n.immh;
                         uint32_t _immb = enc.uqshrn_asisdshf_n.immb;
@@ -37608,6 +37616,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UQRSHRN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uqrshrn_asisdshf_n.immh == 0u) return std::nullopt;
                         bool is_64bit = false;
                         uint32_t _immh = enc.uqrshrn_asisdshf_n.immh;
                         uint32_t _immb = enc.uqrshrn_asisdshf_n.immb;
@@ -37769,6 +37778,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQXTN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqxtn_asisdmisc_n.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqxtn_asisdmisc_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqxtn_asisdmisc_n.Rn, is_64bit));
@@ -37796,6 +37806,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQXTUN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqxtun_asisdmisc_n.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.sqxtun_asisdmisc_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.sqxtun_asisdmisc_n.Rn, is_64bit));
@@ -37805,6 +37816,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UQXTN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uqxtn_asisdmisc_n.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Register, enc.uqxtn_asisdmisc_n.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.uqxtn_asisdmisc_n.Rn, is_64bit));
@@ -38562,6 +38574,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FMOV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fmov_asimdimm_ss.Q == 0u) return std::nullopt;
                         bool is_64bit = false;
                         {
                             Operand op(OperandType::VectorRegister, enc.fmov_asimdimm_ss.Rd, false);
@@ -40168,6 +40181,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::URECPE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.urecpe_asimdmisc_r.sz == 1u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -40392,6 +40406,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::URSQRTE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ursqrte_asimdmisc_r.sz == 1u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -40589,6 +40604,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FAMAX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.famax_asimdsame_only.Q == 0u && enc.famax_asimdsame_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -40772,6 +40788,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FAMIN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.famin_asimdsame_only.Q == 0u && enc.famin_asimdsame_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -40835,6 +40852,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FSCALE, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fscale_asimdsame_only.Q == 0u && enc.fscale_asimdsame_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -41845,6 +41863,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SADDLP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.saddlp_asimdmisc_p.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -41884,6 +41903,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CLS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.cls_asimdmisc_r.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -41901,6 +41921,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CNT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.cnt_asimdmisc_r.size != 0u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -41918,6 +41939,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SADALP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sadalp_asimdmisc_p.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42028,6 +42050,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::XTN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.xtn_asimdmisc_n.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42050,6 +42073,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQXTN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqxtn_asimdmisc_n.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42072,6 +42096,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SADDLV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.saddlv_asimdall_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42094,6 +42119,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SMAXV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.smaxv_asimdall_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42116,6 +42142,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SMINV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sminv_asimdall_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42138,6 +42165,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::ADDV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.addv_asimdall_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42177,6 +42205,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UADDLP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uaddlp_asimdmisc_p.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42216,6 +42245,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::CLZ, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.clz_asimdmisc_r.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42233,6 +42263,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UADALP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uadalp_asimdmisc_p.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42325,6 +42356,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SQXTUN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqxtun_asimdmisc_n.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42347,6 +42379,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SHLL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.shll_asimdmisc_s.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42364,6 +42397,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UQXTN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uqxtn_asimdmisc_n.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42386,6 +42420,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UADDLV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uaddlv_asimdall_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42408,6 +42443,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UMAXV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.umaxv_asimdall_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42430,6 +42466,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UMINV, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uminv_asimdall_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42565,6 +42602,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SDOT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sdot_asimdsame2d.size != 2u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42583,6 +42621,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SADDL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.saddl_asimddiff_l.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42606,6 +42645,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SHADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.shadd_asimdsame_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42642,6 +42682,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SADDW, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.saddw_asimddiff_w.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42670,6 +42711,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SRHADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.srhadd_asimdsame_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42688,6 +42730,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SSUBL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ssubl_asimddiff_l.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42711,6 +42754,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SHSUB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.shsub_asimdsame_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42747,6 +42791,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SSUBW, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ssubw_asimddiff_w.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42811,6 +42856,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::ADDHN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.addhn_asimddiff_n.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42875,6 +42921,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SABAL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sabal_asimddiff_l.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42934,6 +42981,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SUBHN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.subhn_asimddiff_n.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42962,6 +43010,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SMAX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.smax_asimdsame_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42980,6 +43029,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SMIN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.smin_asimdsame_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -42998,6 +43048,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SABDL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sabdl_asimddiff_l.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43021,6 +43072,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SABD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sabd_asimdsame_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43039,6 +43091,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SABA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.saba_asimdsame_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43057,6 +43110,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SMLAL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.smlal_asimddiff_l.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43139,6 +43193,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::MLA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.mla_asimdsame_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43157,6 +43212,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::MUL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.mul_asimdsame_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43175,6 +43231,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SMLSL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.smlsl_asimddiff_l.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43198,6 +43255,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SMAXP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.smaxp_asimdsame_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43216,6 +43274,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SMINP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sminp_asimdsame_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43293,6 +43352,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SMULL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.smull_asimddiff_l.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43393,6 +43453,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UDOT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.udot_asimdsame2d.size != 2u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43411,6 +43472,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UADDL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uaddl_asimddiff_l.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43434,6 +43496,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UHADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uhadd_asimdsame_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43470,6 +43533,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UADDW, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uaddw_asimddiff_w.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43498,6 +43562,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::URHADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.urhadd_asimdsame_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43516,6 +43581,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::USUBL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.usubl_asimddiff_l.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43539,6 +43605,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UHSUB, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uhsub_asimdsame_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43575,6 +43642,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::USUBW, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.usubw_asimddiff_w.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43639,6 +43707,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::RADDHN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.raddhn_asimddiff_n.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43703,6 +43772,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UABAL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uabal_asimddiff_l.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43762,6 +43832,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::RSUBHN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rsubhn_asimddiff_n.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43790,6 +43861,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UMAX, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.umax_asimdsame_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43808,6 +43880,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UMIN, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.umin_asimdsame_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43826,6 +43899,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UABDL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uabdl_asimddiff_l.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43849,6 +43923,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UABD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uabd_asimdsame_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43867,6 +43942,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UABA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uaba_asimdsame_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43885,6 +43961,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UMLAL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.umlal_asimddiff_l.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43944,6 +44021,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::MLS, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.mls_asimdsame_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43962,6 +44040,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::PMUL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.pmul_asimdsame_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -43980,6 +44059,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UMLSL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.umlsl_asimddiff_l.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -44003,6 +44083,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UMAXP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.umaxp_asimdsame_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -44021,6 +44102,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UMINP, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uminp_asimdsame_only.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -44057,6 +44139,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UMULL, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.umull_asimddiff_l.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -44085,6 +44168,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCADD, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fcadd_asimdsame2c.size == 0u) return std::nullopt;
+                        if (enc.fcadd_asimdsame2c.Q == 0u && enc.fcadd_asimdsame2c.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -44109,6 +44194,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::FCMLA, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fcmla_asimdsame2c.size == 0u) return std::nullopt;
+                        if (enc.fcmla_asimdsame2c.Q == 0u && enc.fcmla_asimdsame2c.size == 3u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -44457,6 +44544,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::SDOT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sdot_asimdelem_d.size != 2u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {
@@ -44700,6 +44788,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Instruction result(Mnemonic::UDOT, insn);
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.udot_asimdelem_d.size != 2u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _simd_arr = Arrangement::None;
                         {

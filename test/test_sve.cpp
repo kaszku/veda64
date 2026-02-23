@@ -63,7 +63,7 @@ void test_add_z_zz_() {
 }
 
 void test_addhnb_z_zz_() {
-    uint32_t insn = 0x45206000u;
+    uint32_t insn = 0x45606000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ADDHNB);
@@ -71,7 +71,7 @@ void test_addhnb_z_zz_() {
 }
 
 void test_addhnt_z_zz_() {
-    uint32_t insn = 0x45206400u;
+    uint32_t insn = 0x45606400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ADDHNT);
@@ -1720,7 +1720,7 @@ void test_decp_r_p_r_() {
 }
 
 void test_decp_z_p_z_() {
-    uint32_t insn = 0x252D8000u;
+    uint32_t insn = 0x256D8000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::DECP);
@@ -1744,7 +1744,7 @@ void test_dup_z_r_() {
 }
 
 void test_dup_z_zi_() {
-    uint32_t insn = 0x05202000u;
+    uint32_t insn = 0x05212000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::DUP);
@@ -1760,7 +1760,7 @@ void test_dupm_z_i_() {
 }
 
 void test_dupq_z_zi_() {
-    uint32_t insn = 0x05202400u;
+    uint32_t insn = 0x05212400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::DUPQ);
@@ -1947,7 +1947,7 @@ void test_f2cvtlt_z_z8_b2h() {
 }
 
 void test_fabd_z_p_zz_() {
-    uint32_t insn = 0x65088000u;
+    uint32_t insn = 0x65488000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FABD);
@@ -1955,7 +1955,7 @@ void test_fabd_z_p_zz_() {
 }
 
 void test_fabs_z_p_z_m() {
-    uint32_t insn = 0x041CA000u;
+    uint32_t insn = 0x045CA000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FABS);
@@ -1963,7 +1963,7 @@ void test_fabs_z_p_z_m() {
 }
 
 void test_fabs_z_p_z_z() {
-    uint32_t insn = 0x040CA000u;
+    uint32_t insn = 0x044CA000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FABS);
@@ -1971,14 +1971,14 @@ void test_fabs_z_p_z_z() {
 }
 
 void test_facgt_p_p_zz_() {
-    uint32_t insn = 0x6500E010u;
+    uint32_t insn = 0x6540E010u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  facgt_p_p_zz_: " << result->to_string() << std::endl;
 }
 
 void test_facge_p_p_zz_() {
-    uint32_t insn = 0x6500C010u;
+    uint32_t insn = 0x6540C010u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  facge_p_p_zz_: " << result->to_string() << std::endl;
@@ -2001,7 +2001,7 @@ void test_faclt_p_p_zz__facgt_p_p_zz_() {
 }
 
 void test_fadd_z_p_zs_() {
-    uint32_t insn = 0x65188000u;
+    uint32_t insn = 0x65588000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FADD);
@@ -2025,7 +2025,7 @@ void test_fadd_z_zz_() {
 }
 
 void test_fadda_v_p_z_() {
-    uint32_t insn = 0x65182000u;
+    uint32_t insn = 0x65582000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FADDA);
@@ -2033,7 +2033,7 @@ void test_fadda_v_p_z_() {
 }
 
 void test_faddp_z_p_zz_() {
-    uint32_t insn = 0x64108000u;
+    uint32_t insn = 0x64508000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FADDP);
@@ -2041,7 +2041,7 @@ void test_faddp_z_p_zz_() {
 }
 
 void test_faddqv_z_p_z_() {
-    uint32_t insn = 0x6410A000u;
+    uint32_t insn = 0x6450A000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FADDQV);
@@ -2049,7 +2049,7 @@ void test_faddqv_z_p_z_() {
 }
 
 void test_faddv_v_p_z_() {
-    uint32_t insn = 0x65002000u;
+    uint32_t insn = 0x65402000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FADDV);
@@ -2057,7 +2057,7 @@ void test_faddv_v_p_z_() {
 }
 
 void test_famax_z_p_zz_() {
-    uint32_t insn = 0x650E8000u;
+    uint32_t insn = 0x654E8000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FAMAX);
@@ -2065,7 +2065,7 @@ void test_famax_z_p_zz_() {
 }
 
 void test_famin_z_p_zz_() {
-    uint32_t insn = 0x650F8000u;
+    uint32_t insn = 0x654F8000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FAMIN);
@@ -2073,7 +2073,7 @@ void test_famin_z_p_zz_() {
 }
 
 void test_fcadd_z_p_zz_() {
-    uint32_t insn = 0x64008000u;
+    uint32_t insn = 0x64408000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCADD);
@@ -2089,84 +2089,84 @@ void test_fclamp_z_zz_() {
 }
 
 void test_fcmeq_p_p_z0_() {
-    uint32_t insn = 0x65122000u;
+    uint32_t insn = 0x65522000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  fcmeq_p_p_z0_: " << result->to_string() << std::endl;
 }
 
 void test_fcmgt_p_p_z0_() {
-    uint32_t insn = 0x65102010u;
+    uint32_t insn = 0x65502010u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  fcmgt_p_p_z0_: " << result->to_string() << std::endl;
 }
 
 void test_fcmge_p_p_z0_() {
-    uint32_t insn = 0x65102000u;
+    uint32_t insn = 0x65502000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  fcmge_p_p_z0_: " << result->to_string() << std::endl;
 }
 
 void test_fcmlt_p_p_z0_() {
-    uint32_t insn = 0x65112000u;
+    uint32_t insn = 0x65512000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  fcmlt_p_p_z0_: " << result->to_string() << std::endl;
 }
 
 void test_fcmle_p_p_z0_() {
-    uint32_t insn = 0x65112010u;
+    uint32_t insn = 0x65512010u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  fcmle_p_p_z0_: " << result->to_string() << std::endl;
 }
 
 void test_fcmne_p_p_z0_() {
-    uint32_t insn = 0x65132000u;
+    uint32_t insn = 0x65532000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  fcmne_p_p_z0_: " << result->to_string() << std::endl;
 }
 
 void test_fcmeq_p_p_zz_() {
-    uint32_t insn = 0x65006000u;
+    uint32_t insn = 0x65406000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  fcmeq_p_p_zz_: " << result->to_string() << std::endl;
 }
 
 void test_fcmgt_p_p_zz_() {
-    uint32_t insn = 0x65004010u;
+    uint32_t insn = 0x65404010u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  fcmgt_p_p_zz_: " << result->to_string() << std::endl;
 }
 
 void test_fcmge_p_p_zz_() {
-    uint32_t insn = 0x65004000u;
+    uint32_t insn = 0x65404000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  fcmge_p_p_zz_: " << result->to_string() << std::endl;
 }
 
 void test_fcmne_p_p_zz_() {
-    uint32_t insn = 0x65006010u;
+    uint32_t insn = 0x65406010u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  fcmne_p_p_zz_: " << result->to_string() << std::endl;
 }
 
 void test_fcmuo_p_p_zz_() {
-    uint32_t insn = 0x6500C000u;
+    uint32_t insn = 0x6540C000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  fcmuo_p_p_zz_: " << result->to_string() << std::endl;
 }
 
 void test_fcmla_z_p_zzz_() {
-    uint32_t insn = 0x64000000u;
+    uint32_t insn = 0x64400000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCMLA);
@@ -2206,7 +2206,7 @@ void test_fcmlt_p_p_zz__fcmgt_p_p_zz_() {
 }
 
 void test_fcpy_z_p_i_() {
-    uint32_t insn = 0x0510C000u;
+    uint32_t insn = 0x0550C000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCPY);
@@ -2703,7 +2703,7 @@ void test_fcvtzs_z_p_z_d2xz() {
 }
 
 void test_fcvtzsn_z_mz2_() {
-    uint32_t insn = 0x650D3000u;
+    uint32_t insn = 0x654D3000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCVTZSN);
@@ -2879,7 +2879,7 @@ void test_fcvtzu_z_p_z_d2xz() {
 }
 
 void test_fcvtzun_z_mz2_() {
-    uint32_t insn = 0x650D3400u;
+    uint32_t insn = 0x654D3400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCVTZUN);
@@ -2887,7 +2887,7 @@ void test_fcvtzun_z_mz2_() {
 }
 
 void test_fdiv_z_p_zz_() {
-    uint32_t insn = 0x650D8000u;
+    uint32_t insn = 0x654D8000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FDIV);
@@ -2895,7 +2895,7 @@ void test_fdiv_z_p_zz_() {
 }
 
 void test_fdivr_z_p_zz_() {
-    uint32_t insn = 0x650C8000u;
+    uint32_t insn = 0x654C8000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FDIVR);
@@ -2975,7 +2975,7 @@ void test_fdot_z_zzzi_() {
 }
 
 void test_fdup_z_i_() {
-    uint32_t insn = 0x2539C000u;
+    uint32_t insn = 0x2579C000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FDUP);
@@ -2983,7 +2983,7 @@ void test_fdup_z_i_() {
 }
 
 void test_fexpa_z_z_() {
-    uint32_t insn = 0x0420B800u;
+    uint32_t insn = 0x0460B800u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FEXPA);
@@ -2999,7 +2999,7 @@ void test_firstp_r_p_p_() {
 }
 
 void test_flogb_z_p_z_m() {
-    uint32_t insn = 0x6518A000u;
+    uint32_t insn = 0x651AA000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FLOGB);
@@ -3007,7 +3007,7 @@ void test_flogb_z_p_z_m() {
 }
 
 void test_flogb_z_p_z_z() {
-    uint32_t insn = 0x641E8000u;
+    uint32_t insn = 0x641EA000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FLOGB);
@@ -3015,7 +3015,7 @@ void test_flogb_z_p_z_z() {
 }
 
 void test_fmad_z_p_zzz_() {
-    uint32_t insn = 0x65208000u;
+    uint32_t insn = 0x65608000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMAD);
@@ -3023,7 +3023,7 @@ void test_fmad_z_p_zzz_() {
 }
 
 void test_fmax_z_p_zs_() {
-    uint32_t insn = 0x651E8000u;
+    uint32_t insn = 0x655E8000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMAX);
@@ -3039,7 +3039,7 @@ void test_fmax_z_p_zz_() {
 }
 
 void test_fmaxnm_z_p_zs_() {
-    uint32_t insn = 0x651C8000u;
+    uint32_t insn = 0x655C8000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMAXNM);
@@ -3055,7 +3055,7 @@ void test_fmaxnm_z_p_zz_() {
 }
 
 void test_fmaxnmp_z_p_zz_() {
-    uint32_t insn = 0x64148000u;
+    uint32_t insn = 0x64548000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMAXNMP);
@@ -3063,7 +3063,7 @@ void test_fmaxnmp_z_p_zz_() {
 }
 
 void test_fmaxnmqv_z_p_z_() {
-    uint32_t insn = 0x6414A000u;
+    uint32_t insn = 0x6454A000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMAXNMQV);
@@ -3071,7 +3071,7 @@ void test_fmaxnmqv_z_p_z_() {
 }
 
 void test_fmaxnmv_v_p_z_() {
-    uint32_t insn = 0x65042000u;
+    uint32_t insn = 0x65442000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMAXNMV);
@@ -3079,7 +3079,7 @@ void test_fmaxnmv_v_p_z_() {
 }
 
 void test_fmaxp_z_p_zz_() {
-    uint32_t insn = 0x64168000u;
+    uint32_t insn = 0x64568000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMAXP);
@@ -3087,7 +3087,7 @@ void test_fmaxp_z_p_zz_() {
 }
 
 void test_fmaxqv_z_p_z_() {
-    uint32_t insn = 0x6416A000u;
+    uint32_t insn = 0x6456A000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMAXQV);
@@ -3095,7 +3095,7 @@ void test_fmaxqv_z_p_z_() {
 }
 
 void test_fmaxv_v_p_z_() {
-    uint32_t insn = 0x65062000u;
+    uint32_t insn = 0x65462000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMAXV);
@@ -3103,7 +3103,7 @@ void test_fmaxv_v_p_z_() {
 }
 
 void test_fmin_z_p_zs_() {
-    uint32_t insn = 0x651F8000u;
+    uint32_t insn = 0x655F8000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMIN);
@@ -3119,7 +3119,7 @@ void test_fmin_z_p_zz_() {
 }
 
 void test_fminnm_z_p_zs_() {
-    uint32_t insn = 0x651D8000u;
+    uint32_t insn = 0x655D8000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMINNM);
@@ -3135,7 +3135,7 @@ void test_fminnm_z_p_zz_() {
 }
 
 void test_fminnmp_z_p_zz_() {
-    uint32_t insn = 0x64158000u;
+    uint32_t insn = 0x64558000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMINNMP);
@@ -3143,7 +3143,7 @@ void test_fminnmp_z_p_zz_() {
 }
 
 void test_fminnmqv_z_p_z_() {
-    uint32_t insn = 0x6415A000u;
+    uint32_t insn = 0x6455A000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMINNMQV);
@@ -3151,7 +3151,7 @@ void test_fminnmqv_z_p_z_() {
 }
 
 void test_fminnmv_v_p_z_() {
-    uint32_t insn = 0x65052000u;
+    uint32_t insn = 0x65452000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMINNMV);
@@ -3159,7 +3159,7 @@ void test_fminnmv_v_p_z_() {
 }
 
 void test_fminp_z_p_zz_() {
-    uint32_t insn = 0x64178000u;
+    uint32_t insn = 0x64578000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMINP);
@@ -3167,7 +3167,7 @@ void test_fminp_z_p_zz_() {
 }
 
 void test_fminqv_z_p_z_() {
-    uint32_t insn = 0x6417A000u;
+    uint32_t insn = 0x6457A000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMINQV);
@@ -3175,7 +3175,7 @@ void test_fminqv_z_p_z_() {
 }
 
 void test_fminv_v_p_z_() {
-    uint32_t insn = 0x65072000u;
+    uint32_t insn = 0x65472000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMINV);
@@ -3615,7 +3615,7 @@ void test_fmov_z_i__fdup_z_i_() {
 }
 
 void test_fmsb_z_p_zzz_() {
-    uint32_t insn = 0x6520A000u;
+    uint32_t insn = 0x6560A000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMSB);
@@ -3623,7 +3623,7 @@ void test_fmsb_z_p_zzz_() {
 }
 
 void test_fmul_z_p_zs_() {
-    uint32_t insn = 0x651A8000u;
+    uint32_t insn = 0x655A8000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMUL);
@@ -3683,7 +3683,7 @@ void test_fmul_z_zzi_d() {
 }
 
 void test_fmulx_z_p_zz_() {
-    uint32_t insn = 0x650A8000u;
+    uint32_t insn = 0x654A8000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMULX);
@@ -3691,7 +3691,7 @@ void test_fmulx_z_p_zz_() {
 }
 
 void test_fneg_z_p_z_m() {
-    uint32_t insn = 0x041DA000u;
+    uint32_t insn = 0x045DA000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FNEG);
@@ -3699,7 +3699,7 @@ void test_fneg_z_p_z_m() {
 }
 
 void test_fneg_z_p_z_z() {
-    uint32_t insn = 0x040DA000u;
+    uint32_t insn = 0x044DA000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FNEG);
@@ -3707,7 +3707,7 @@ void test_fneg_z_p_z_z() {
 }
 
 void test_fnmad_z_p_zzz_() {
-    uint32_t insn = 0x6520C000u;
+    uint32_t insn = 0x6560C000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FNMAD);
@@ -3715,7 +3715,7 @@ void test_fnmad_z_p_zzz_() {
 }
 
 void test_fnmla_z_p_zzz_() {
-    uint32_t insn = 0x65204000u;
+    uint32_t insn = 0x65604000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FNMLA);
@@ -3723,7 +3723,7 @@ void test_fnmla_z_p_zzz_() {
 }
 
 void test_fnmls_z_p_zzz_() {
-    uint32_t insn = 0x65206000u;
+    uint32_t insn = 0x65606000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FNMLS);
@@ -3731,7 +3731,7 @@ void test_fnmls_z_p_zzz_() {
 }
 
 void test_fnmsb_z_p_zzz_() {
-    uint32_t insn = 0x6520E000u;
+    uint32_t insn = 0x6560E000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FNMSB);
@@ -3739,7 +3739,7 @@ void test_fnmsb_z_p_zzz_() {
 }
 
 void test_frecpe_z_z_() {
-    uint32_t insn = 0x650E3000u;
+    uint32_t insn = 0x654E3000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FRECPE);
@@ -3747,7 +3747,7 @@ void test_frecpe_z_z_() {
 }
 
 void test_frecps_z_zz_() {
-    uint32_t insn = 0x65001800u;
+    uint32_t insn = 0x65401800u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FRECPS);
@@ -3755,7 +3755,7 @@ void test_frecps_z_zz_() {
 }
 
 void test_frecpx_z_p_z_m() {
-    uint32_t insn = 0x650CA000u;
+    uint32_t insn = 0x654CA000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FRECPX);
@@ -3763,7 +3763,7 @@ void test_frecpx_z_p_z_m() {
 }
 
 void test_frecpx_z_p_z_z() {
-    uint32_t insn = 0x641B8000u;
+    uint32_t insn = 0x645B8000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FRECPX);
@@ -3835,105 +3835,105 @@ void test_frint64z_z_p_z_z() {
 }
 
 void test_frintx_z_p_z_m() {
-    uint32_t insn = 0x6506A000u;
+    uint32_t insn = 0x6546A000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  frintx_z_p_z_m: " << result->to_string() << std::endl;
 }
 
 void test_frintx_z_p_z_z() {
-    uint32_t insn = 0x6419C000u;
+    uint32_t insn = 0x6459C000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  frintx_z_p_z_z: " << result->to_string() << std::endl;
 }
 
 void test_frinti_z_p_z_m() {
-    uint32_t insn = 0x6507A000u;
+    uint32_t insn = 0x6547A000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  frinti_z_p_z_m: " << result->to_string() << std::endl;
 }
 
 void test_frinti_z_p_z_z() {
-    uint32_t insn = 0x6419E000u;
+    uint32_t insn = 0x6459E000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  frinti_z_p_z_z: " << result->to_string() << std::endl;
 }
 
 void test_frinta_z_p_z_m() {
-    uint32_t insn = 0x6504A000u;
+    uint32_t insn = 0x6544A000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  frinta_z_p_z_m: " << result->to_string() << std::endl;
 }
 
 void test_frinta_z_p_z_z() {
-    uint32_t insn = 0x64198000u;
+    uint32_t insn = 0x64598000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  frinta_z_p_z_z: " << result->to_string() << std::endl;
 }
 
 void test_frintn_z_p_z_m() {
-    uint32_t insn = 0x6500A000u;
+    uint32_t insn = 0x6540A000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  frintn_z_p_z_m: " << result->to_string() << std::endl;
 }
 
 void test_frintn_z_p_z_z() {
-    uint32_t insn = 0x64188000u;
+    uint32_t insn = 0x64588000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  frintn_z_p_z_z: " << result->to_string() << std::endl;
 }
 
 void test_frintz_z_p_z_m() {
-    uint32_t insn = 0x6503A000u;
+    uint32_t insn = 0x6543A000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  frintz_z_p_z_m: " << result->to_string() << std::endl;
 }
 
 void test_frintz_z_p_z_z() {
-    uint32_t insn = 0x6418E000u;
+    uint32_t insn = 0x6458E000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  frintz_z_p_z_z: " << result->to_string() << std::endl;
 }
 
 void test_frintm_z_p_z_m() {
-    uint32_t insn = 0x6502A000u;
+    uint32_t insn = 0x6542A000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  frintm_z_p_z_m: " << result->to_string() << std::endl;
 }
 
 void test_frintm_z_p_z_z() {
-    uint32_t insn = 0x6418C000u;
+    uint32_t insn = 0x6458C000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  frintm_z_p_z_z: " << result->to_string() << std::endl;
 }
 
 void test_frintp_z_p_z_m() {
-    uint32_t insn = 0x6501A000u;
+    uint32_t insn = 0x6541A000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  frintp_z_p_z_m: " << result->to_string() << std::endl;
 }
 
 void test_frintp_z_p_z_z() {
-    uint32_t insn = 0x6418A000u;
+    uint32_t insn = 0x6458A000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  frintp_z_p_z_z: " << result->to_string() << std::endl;
 }
 
 void test_frsqrte_z_z_() {
-    uint32_t insn = 0x650F3000u;
+    uint32_t insn = 0x654F3000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FRSQRTE);
@@ -3941,7 +3941,7 @@ void test_frsqrte_z_z_() {
 }
 
 void test_frsqrts_z_zz_() {
-    uint32_t insn = 0x65001C00u;
+    uint32_t insn = 0x65401C00u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FRSQRTS);
@@ -3957,7 +3957,7 @@ void test_fscale_z_p_zz_() {
 }
 
 void test_fsqrt_z_p_z_m() {
-    uint32_t insn = 0x650DA000u;
+    uint32_t insn = 0x654DA000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FSQRT);
@@ -3965,7 +3965,7 @@ void test_fsqrt_z_p_z_m() {
 }
 
 void test_fsqrt_z_p_z_z() {
-    uint32_t insn = 0x641BA000u;
+    uint32_t insn = 0x645BA000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FSQRT);
@@ -3973,7 +3973,7 @@ void test_fsqrt_z_p_z_z() {
 }
 
 void test_fsub_z_p_zs_() {
-    uint32_t insn = 0x65198000u;
+    uint32_t insn = 0x65598000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FSUB);
@@ -3997,7 +3997,7 @@ void test_fsub_z_zz_() {
 }
 
 void test_fsubr_z_p_zs_() {
-    uint32_t insn = 0x651B8000u;
+    uint32_t insn = 0x655B8000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FSUBR);
@@ -4005,7 +4005,7 @@ void test_fsubr_z_p_zs_() {
 }
 
 void test_fsubr_z_p_zz_() {
-    uint32_t insn = 0x65038000u;
+    uint32_t insn = 0x65438000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FSUBR);
@@ -4013,7 +4013,7 @@ void test_fsubr_z_p_zz_() {
 }
 
 void test_ftmad_z_zzi_() {
-    uint32_t insn = 0x65108000u;
+    uint32_t insn = 0x65508000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FTMAD);
@@ -4021,7 +4021,7 @@ void test_ftmad_z_zzi_() {
 }
 
 void test_ftsmul_z_zz_() {
-    uint32_t insn = 0x65000C00u;
+    uint32_t insn = 0x65400C00u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FTSMUL);
@@ -4029,7 +4029,7 @@ void test_ftsmul_z_zz_() {
 }
 
 void test_ftssel_z_zz_() {
-    uint32_t insn = 0x0420B000u;
+    uint32_t insn = 0x0460B000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FTSSEL);
@@ -4128,7 +4128,7 @@ void test_incp_r_p_r_() {
 }
 
 void test_incp_z_p_z_() {
-    uint32_t insn = 0x252C8000u;
+    uint32_t insn = 0x256C8000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::INCP);
@@ -8469,7 +8469,7 @@ void test_punpklo_p_p_() {
 }
 
 void test_raddhnb_z_zz_() {
-    uint32_t insn = 0x45206800u;
+    uint32_t insn = 0x45606800u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::RADDHNB);
@@ -8477,7 +8477,7 @@ void test_raddhnb_z_zz_() {
 }
 
 void test_raddhnt_z_zz_() {
-    uint32_t insn = 0x45206C00u;
+    uint32_t insn = 0x45606C00u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::RADDHNT);
@@ -8577,14 +8577,14 @@ void test_rev_z_z_() {
 }
 
 void test_revb_z_z_m() {
-    uint32_t insn = 0x05248000u;
+    uint32_t insn = 0x05648000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  revb_z_z_m: " << result->to_string() << std::endl;
 }
 
 void test_revb_z_z_z() {
-    uint32_t insn = 0x0524A000u;
+    uint32_t insn = 0x0564A000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  revb_z_z_z: " << result->to_string() << std::endl;
@@ -8667,7 +8667,7 @@ void test_rshrnt_z_zi_() {
 }
 
 void test_rsubhnb_z_zz_() {
-    uint32_t insn = 0x45207800u;
+    uint32_t insn = 0x45607800u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::RSUBHNB);
@@ -8675,7 +8675,7 @@ void test_rsubhnb_z_zz_() {
 }
 
 void test_rsubhnt_z_zz_() {
-    uint32_t insn = 0x45207C00u;
+    uint32_t insn = 0x45607C00u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::RSUBHNT);
@@ -8691,7 +8691,7 @@ void test_saba_z_zzz_() {
 }
 
 void test_sabal_z_zz_() {
-    uint32_t insn = 0x4400D400u;
+    uint32_t insn = 0x4440D400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SABAL);
@@ -8699,7 +8699,7 @@ void test_sabal_z_zz_() {
 }
 
 void test_sabalb_z_zzz_() {
-    uint32_t insn = 0x4500C000u;
+    uint32_t insn = 0x4540C000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SABALB);
@@ -8707,7 +8707,7 @@ void test_sabalb_z_zzz_() {
 }
 
 void test_sabalt_z_zzz_() {
-    uint32_t insn = 0x4500C400u;
+    uint32_t insn = 0x4540C400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SABALT);
@@ -8723,7 +8723,7 @@ void test_sabd_z_p_zz_() {
 }
 
 void test_sabdlb_z_zz_() {
-    uint32_t insn = 0x45003000u;
+    uint32_t insn = 0x45403000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SABDLB);
@@ -8731,7 +8731,7 @@ void test_sabdlb_z_zz_() {
 }
 
 void test_sabdlt_z_zz_() {
-    uint32_t insn = 0x45003400u;
+    uint32_t insn = 0x45403400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SABDLT);
@@ -8739,7 +8739,7 @@ void test_sabdlt_z_zz_() {
 }
 
 void test_sadalp_z_p_z_() {
-    uint32_t insn = 0x4404A000u;
+    uint32_t insn = 0x4444A000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SADALP);
@@ -8747,7 +8747,7 @@ void test_sadalp_z_p_z_() {
 }
 
 void test_saddlb_z_zz_() {
-    uint32_t insn = 0x45000000u;
+    uint32_t insn = 0x45400000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SADDLB);
@@ -8755,7 +8755,7 @@ void test_saddlb_z_zz_() {
 }
 
 void test_saddlbt_z_zz_() {
-    uint32_t insn = 0x45008000u;
+    uint32_t insn = 0x45408000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SADDLBT);
@@ -8763,7 +8763,7 @@ void test_saddlbt_z_zz_() {
 }
 
 void test_saddlt_z_zz_() {
-    uint32_t insn = 0x45000400u;
+    uint32_t insn = 0x45400400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SADDLT);
@@ -8779,7 +8779,7 @@ void test_saddv_r_p_z_() {
 }
 
 void test_saddwb_z_zz_() {
-    uint32_t insn = 0x45004000u;
+    uint32_t insn = 0x45404000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SADDWB);
@@ -8787,7 +8787,7 @@ void test_saddwb_z_zz_() {
 }
 
 void test_saddwt_z_zz_() {
-    uint32_t insn = 0x45004400u;
+    uint32_t insn = 0x45404400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SADDWT);
@@ -8987,7 +8987,7 @@ void test_scvtf_z_p_z_x2dz() {
 }
 
 void test_scvtf_z_z_() {
-    uint32_t insn = 0x650C3000u;
+    uint32_t insn = 0x654C3000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SCVTF);
@@ -8995,7 +8995,7 @@ void test_scvtf_z_z_() {
 }
 
 void test_scvtflt_z_z_() {
-    uint32_t insn = 0x650C3800u;
+    uint32_t insn = 0x654C3800u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SCVTFLT);
@@ -9280,7 +9280,7 @@ void test_sminv_r_p_z_() {
 }
 
 void test_smlalb_z_zzz_() {
-    uint32_t insn = 0x44004000u;
+    uint32_t insn = 0x44404000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLALB);
@@ -9312,7 +9312,7 @@ void test_smlalb_z_zzzi_d() {
 }
 
 void test_smlalt_z_zzz_() {
-    uint32_t insn = 0x44004400u;
+    uint32_t insn = 0x44404400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLALT);
@@ -9344,7 +9344,7 @@ void test_smlalt_z_zzzi_d() {
 }
 
 void test_smlslb_z_zzz_() {
-    uint32_t insn = 0x44005000u;
+    uint32_t insn = 0x44405000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLSLB);
@@ -9376,7 +9376,7 @@ void test_smlslb_z_zzzi_d() {
 }
 
 void test_smlslt_z_zzz_() {
-    uint32_t insn = 0x44005400u;
+    uint32_t insn = 0x44405400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLSLT);
@@ -9436,7 +9436,7 @@ void test_smulh_z_zz_() {
 }
 
 void test_smullb_z_zz_() {
-    uint32_t insn = 0x45007000u;
+    uint32_t insn = 0x45407000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMULLB);
@@ -9468,7 +9468,7 @@ void test_smullb_z_zzi_d() {
 }
 
 void test_smullt_z_zz_() {
-    uint32_t insn = 0x45007400u;
+    uint32_t insn = 0x45407400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMULLT);
@@ -9685,7 +9685,7 @@ void test_sqdecp_r_p_r_x() {
 }
 
 void test_sqdecp_z_p_z_() {
-    uint32_t insn = 0x252A8000u;
+    uint32_t insn = 0x256A8000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQDECP);
@@ -9724,7 +9724,7 @@ void test_sqdecw_z_zs_() {
 }
 
 void test_sqdmlalb_z_zzz_() {
-    uint32_t insn = 0x44006000u;
+    uint32_t insn = 0x44406000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQDMLALB);
@@ -9756,7 +9756,7 @@ void test_sqdmlalb_z_zzzi_d() {
 }
 
 void test_sqdmlalbt_z_zzz_() {
-    uint32_t insn = 0x44000800u;
+    uint32_t insn = 0x44400800u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQDMLALBT);
@@ -9764,7 +9764,7 @@ void test_sqdmlalbt_z_zzz_() {
 }
 
 void test_sqdmlalt_z_zzz_() {
-    uint32_t insn = 0x44006400u;
+    uint32_t insn = 0x44406400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQDMLALT);
@@ -9796,7 +9796,7 @@ void test_sqdmlalt_z_zzzi_d() {
 }
 
 void test_sqdmlslb_z_zzz_() {
-    uint32_t insn = 0x44006800u;
+    uint32_t insn = 0x44406800u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQDMLSLB);
@@ -9828,7 +9828,7 @@ void test_sqdmlslb_z_zzzi_d() {
 }
 
 void test_sqdmlslbt_z_zzz_() {
-    uint32_t insn = 0x44000C00u;
+    uint32_t insn = 0x44400C00u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQDMLSLBT);
@@ -9836,7 +9836,7 @@ void test_sqdmlslbt_z_zzz_() {
 }
 
 void test_sqdmlslt_z_zzz_() {
-    uint32_t insn = 0x44006C00u;
+    uint32_t insn = 0x44406C00u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQDMLSLT);
@@ -9912,7 +9912,7 @@ void test_sqdmulh_z_zzi_d() {
 }
 
 void test_sqdmullb_z_zz_() {
-    uint32_t insn = 0x45006000u;
+    uint32_t insn = 0x45406000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQDMULLB);
@@ -9944,7 +9944,7 @@ void test_sqdmullb_z_zzi_d() {
 }
 
 void test_sqdmullt_z_zz_() {
-    uint32_t insn = 0x45006400u;
+    uint32_t insn = 0x45406400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQDMULLT);
@@ -10075,7 +10075,7 @@ void test_sqincp_r_p_r_x() {
 }
 
 void test_sqincp_z_p_z_() {
-    uint32_t insn = 0x25288000u;
+    uint32_t insn = 0x25688000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQINCP);
@@ -10398,7 +10398,7 @@ void test_sqshlu_z_p_zi_() {
 }
 
 void test_sqshrn_z_mz2_() {
-    uint32_t insn = 0x45A00000u;
+    uint32_t insn = 0x45A80000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQSHRN);
@@ -10422,7 +10422,7 @@ void test_sqshrnt_z_zi_() {
 }
 
 void test_sqshrun_z_mz2_() {
-    uint32_t insn = 0x45A02000u;
+    uint32_t insn = 0x45A82000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQSHRUN);
@@ -10582,7 +10582,7 @@ void test_ssra_z_zi_() {
 }
 
 void test_ssublb_z_zz_() {
-    uint32_t insn = 0x45001000u;
+    uint32_t insn = 0x45401000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SSUBLB);
@@ -10590,7 +10590,7 @@ void test_ssublb_z_zz_() {
 }
 
 void test_ssublbt_z_zz_() {
-    uint32_t insn = 0x45008800u;
+    uint32_t insn = 0x45408800u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SSUBLBT);
@@ -10598,7 +10598,7 @@ void test_ssublbt_z_zz_() {
 }
 
 void test_ssublt_z_zz_() {
-    uint32_t insn = 0x45001400u;
+    uint32_t insn = 0x45401400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SSUBLT);
@@ -10606,7 +10606,7 @@ void test_ssublt_z_zz_() {
 }
 
 void test_ssubltb_z_zz_() {
-    uint32_t insn = 0x45008C00u;
+    uint32_t insn = 0x45408C00u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SSUBLTB);
@@ -10614,7 +10614,7 @@ void test_ssubltb_z_zz_() {
 }
 
 void test_ssubwb_z_zz_() {
-    uint32_t insn = 0x45005000u;
+    uint32_t insn = 0x45405000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SSUBWB);
@@ -10622,7 +10622,7 @@ void test_ssubwb_z_zz_() {
 }
 
 void test_ssubwt_z_zz_() {
-    uint32_t insn = 0x45005400u;
+    uint32_t insn = 0x45405400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SSUBWT);
@@ -10846,7 +10846,7 @@ void test_st1h_z_p_ai_d() {
 }
 
 void test_st1h_z_p_bi_() {
-    uint32_t insn = 0xE480E000u;
+    uint32_t insn = 0xE4A0E000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1H);
@@ -10858,7 +10858,7 @@ void test_st1h_z_p_bi_() {
 }
 
 void test_st1h_z_p_br_() {
-    uint32_t insn = 0xE4804000u;
+    uint32_t insn = 0xE4A04000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1H);
@@ -11681,7 +11681,7 @@ void test_sub_z_zz_() {
 }
 
 void test_subhnb_z_zz_() {
-    uint32_t insn = 0x45207000u;
+    uint32_t insn = 0x45607000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUBHNB);
@@ -11689,7 +11689,7 @@ void test_subhnb_z_zz_() {
 }
 
 void test_subhnt_z_zz_() {
-    uint32_t insn = 0x45207400u;
+    uint32_t insn = 0x45607400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUBHNT);
@@ -11758,14 +11758,14 @@ void test_sudot_z_zzzi_s() {
 }
 
 void test_sunpkhi_z_z_() {
-    uint32_t insn = 0x05313800u;
+    uint32_t insn = 0x05713800u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  sunpkhi_z_z_: " << result->to_string() << std::endl;
 }
 
 void test_sunpklo_z_z_() {
-    uint32_t insn = 0x05303800u;
+    uint32_t insn = 0x05703800u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  sunpklo_z_z_: " << result->to_string() << std::endl;
@@ -11780,14 +11780,14 @@ void test_suqadd_z_p_zz_() {
 }
 
 void test_sxtb_z_p_z_m() {
-    uint32_t insn = 0x0410A000u;
+    uint32_t insn = 0x0450A000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  sxtb_z_p_z_m: " << result->to_string() << std::endl;
 }
 
 void test_sxtb_z_p_z_z() {
-    uint32_t insn = 0x0400A000u;
+    uint32_t insn = 0x0440A000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  sxtb_z_p_z_z: " << result->to_string() << std::endl;
@@ -11928,7 +11928,7 @@ void test_uaba_z_zzz_() {
 }
 
 void test_uabal_z_zz_() {
-    uint32_t insn = 0x4400DC00u;
+    uint32_t insn = 0x4440DC00u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UABAL);
@@ -11936,7 +11936,7 @@ void test_uabal_z_zz_() {
 }
 
 void test_uabalb_z_zzz_() {
-    uint32_t insn = 0x4500C800u;
+    uint32_t insn = 0x4540C800u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UABALB);
@@ -11944,7 +11944,7 @@ void test_uabalb_z_zzz_() {
 }
 
 void test_uabalt_z_zzz_() {
-    uint32_t insn = 0x4500CC00u;
+    uint32_t insn = 0x4540CC00u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UABALT);
@@ -11960,7 +11960,7 @@ void test_uabd_z_p_zz_() {
 }
 
 void test_uabdlb_z_zz_() {
-    uint32_t insn = 0x45003800u;
+    uint32_t insn = 0x45403800u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UABDLB);
@@ -11968,7 +11968,7 @@ void test_uabdlb_z_zz_() {
 }
 
 void test_uabdlt_z_zz_() {
-    uint32_t insn = 0x45003C00u;
+    uint32_t insn = 0x45403C00u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UABDLT);
@@ -11976,7 +11976,7 @@ void test_uabdlt_z_zz_() {
 }
 
 void test_uadalp_z_p_z_() {
-    uint32_t insn = 0x4405A000u;
+    uint32_t insn = 0x4445A000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UADALP);
@@ -11984,7 +11984,7 @@ void test_uadalp_z_p_z_() {
 }
 
 void test_uaddlb_z_zz_() {
-    uint32_t insn = 0x45000800u;
+    uint32_t insn = 0x45400800u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UADDLB);
@@ -11992,7 +11992,7 @@ void test_uaddlb_z_zz_() {
 }
 
 void test_uaddlt_z_zz_() {
-    uint32_t insn = 0x45000C00u;
+    uint32_t insn = 0x45400C00u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UADDLT);
@@ -12008,7 +12008,7 @@ void test_uaddv_r_p_z_() {
 }
 
 void test_uaddwb_z_zz_() {
-    uint32_t insn = 0x45004800u;
+    uint32_t insn = 0x45404800u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UADDWB);
@@ -12016,7 +12016,7 @@ void test_uaddwb_z_zz_() {
 }
 
 void test_uaddwt_z_zz_() {
-    uint32_t insn = 0x45004C00u;
+    uint32_t insn = 0x45404C00u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UADDWT);
@@ -12200,7 +12200,7 @@ void test_ucvtf_z_p_z_x2dz() {
 }
 
 void test_ucvtf_z_z_() {
-    uint32_t insn = 0x650C3400u;
+    uint32_t insn = 0x654C3400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UCVTF);
@@ -12208,7 +12208,7 @@ void test_ucvtf_z_z_() {
 }
 
 void test_ucvtflt_z_z_() {
-    uint32_t insn = 0x650C3C00u;
+    uint32_t insn = 0x654C3C00u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UCVTFLT);
@@ -12416,7 +12416,7 @@ void test_uminv_r_p_z_() {
 }
 
 void test_umlalb_z_zzz_() {
-    uint32_t insn = 0x44004800u;
+    uint32_t insn = 0x44404800u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLALB);
@@ -12448,7 +12448,7 @@ void test_umlalb_z_zzzi_d() {
 }
 
 void test_umlalt_z_zzz_() {
-    uint32_t insn = 0x44004C00u;
+    uint32_t insn = 0x44404C00u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLALT);
@@ -12480,7 +12480,7 @@ void test_umlalt_z_zzzi_d() {
 }
 
 void test_umlslb_z_zzz_() {
-    uint32_t insn = 0x44005800u;
+    uint32_t insn = 0x44405800u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLSLB);
@@ -12512,7 +12512,7 @@ void test_umlslb_z_zzzi_d() {
 }
 
 void test_umlslt_z_zzz_() {
-    uint32_t insn = 0x44005C00u;
+    uint32_t insn = 0x44405C00u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLSLT);
@@ -12572,7 +12572,7 @@ void test_umulh_z_zz_() {
 }
 
 void test_umullb_z_zz_() {
-    uint32_t insn = 0x45007800u;
+    uint32_t insn = 0x45407800u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMULLB);
@@ -12604,7 +12604,7 @@ void test_umullb_z_zzi_d() {
 }
 
 void test_umullt_z_zz_() {
-    uint32_t insn = 0x45007C00u;
+    uint32_t insn = 0x45407C00u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMULLT);
@@ -12767,7 +12767,7 @@ void test_uqdecp_r_p_r_x() {
 }
 
 void test_uqdecp_z_p_z_() {
-    uint32_t insn = 0x252B8000u;
+    uint32_t insn = 0x256B8000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UQDECP);
@@ -12901,7 +12901,7 @@ void test_uqincp_r_p_r_x() {
 }
 
 void test_uqincp_z_p_z_() {
-    uint32_t insn = 0x25298000u;
+    uint32_t insn = 0x25698000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UQINCP);
@@ -13011,7 +13011,7 @@ void test_uqshlr_z_p_zz_() {
 }
 
 void test_uqshrn_z_mz2_() {
-    uint32_t insn = 0x45A01000u;
+    uint32_t insn = 0x45A81000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UQSHRN);
@@ -13239,7 +13239,7 @@ void test_usra_z_zi_() {
 }
 
 void test_usublb_z_zz_() {
-    uint32_t insn = 0x45001800u;
+    uint32_t insn = 0x45401800u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USUBLB);
@@ -13247,7 +13247,7 @@ void test_usublb_z_zz_() {
 }
 
 void test_usublt_z_zz_() {
-    uint32_t insn = 0x45001C00u;
+    uint32_t insn = 0x45401C00u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USUBLT);
@@ -13255,7 +13255,7 @@ void test_usublt_z_zz_() {
 }
 
 void test_usubwb_z_zz_() {
-    uint32_t insn = 0x45005800u;
+    uint32_t insn = 0x45405800u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USUBWB);
@@ -13263,7 +13263,7 @@ void test_usubwb_z_zz_() {
 }
 
 void test_usubwt_z_zz_() {
-    uint32_t insn = 0x45005C00u;
+    uint32_t insn = 0x45405C00u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USUBWT);
@@ -13271,28 +13271,28 @@ void test_usubwt_z_zz_() {
 }
 
 void test_uunpkhi_z_z_() {
-    uint32_t insn = 0x05333800u;
+    uint32_t insn = 0x05733800u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  uunpkhi_z_z_: " << result->to_string() << std::endl;
 }
 
 void test_uunpklo_z_z_() {
-    uint32_t insn = 0x05323800u;
+    uint32_t insn = 0x05723800u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  uunpklo_z_z_: " << result->to_string() << std::endl;
 }
 
 void test_uxtb_z_p_z_m() {
-    uint32_t insn = 0x0411A000u;
+    uint32_t insn = 0x0451A000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  uxtb_z_p_z_m: " << result->to_string() << std::endl;
 }
 
 void test_uxtb_z_p_z_z() {
-    uint32_t insn = 0x0401A000u;
+    uint32_t insn = 0x0441A000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     std::cout << "  uxtb_z_p_z_z: " << result->to_string() << std::endl;

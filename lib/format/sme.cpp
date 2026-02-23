@@ -37614,6 +37614,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI4, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.luti4mz4ztmz24.size != 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.luti4mz4ztmz24.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -37635,6 +37636,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI4, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.luti4mz4ztmz21.size != 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.luti4mz4ztmz21.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -38743,6 +38745,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI4, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.luti4mz4ztz4.size != 1u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.luti4mz4ztz4.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -38806,6 +38809,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI4, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.luti4mz2ztz1.size == 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.luti4mz2ztz1.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -38827,6 +38831,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI4, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.luti4zztz.size == 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.luti4zztz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -38869,6 +38874,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI2, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.luti2mz4ztz1.size == 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.luti2mz4ztz1.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -38911,6 +38917,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI2, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.luti2mz2ztz1.size == 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.luti2mz2ztz1.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -38932,6 +38939,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::LUTI2, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.luti2zztz.size == 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.luti2zztz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -48798,6 +48806,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SUNPK, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sunpk_mz_z4.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.sunpk_mz_z4.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -48820,6 +48829,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::UUNPK, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uunpk_mz_z4.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.uunpk_mz_z4.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -48847,6 +48857,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SUNPK, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sunpk_mz_z2.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.sunpk_mz_z2.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -48869,6 +48880,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::UUNPK, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uunpk_mz_z2.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.uunpk_mz_z2.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -49430,6 +49442,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FAMAX, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.famax_mz_zzw4x4.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.famax_mz_zzw4x4.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -49445,6 +49458,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FAMIN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.famin_mz_zzw4x4.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.famin_mz_zzw4x4.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -49694,6 +49708,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FAMAX, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.famax_mz_zzw2x2.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.famax_mz_zzw2x2.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -49709,6 +49724,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::FAMIN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.famin_mz_zzw2x2.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.famin_mz_zzw2x2.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -49873,6 +49889,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SQRSHR, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqrshr_zmz4.tsize == 0u) return std::nullopt;
                         { Operand op(OperandType::SVERegister, enc.sqrshr_zmz4.Zd, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegisterList, enc.sqrshr_zmz4.Zn, true); op.arrangement = Arrangement::None; op.index = 2; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqrshr_zmz4.imm5, true));
@@ -49882,6 +49899,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::UQRSHR, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uqrshr_zmz4.tsize == 0u) return std::nullopt;
                         { Operand op(OperandType::SVERegister, enc.uqrshr_zmz4.Zd, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegisterList, enc.uqrshr_zmz4.Zn, true); op.arrangement = Arrangement::None; op.index = 2; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.uqrshr_zmz4.imm5, true));
@@ -49891,6 +49909,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SQRSHRU, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqrshru_zmz4.tsize == 0u) return std::nullopt;
                         { Operand op(OperandType::SVERegister, enc.sqrshru_zmz4.Zd, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegisterList, enc.sqrshru_zmz4.Zn, true); op.arrangement = Arrangement::None; op.index = 2; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqrshru_zmz4.imm5, true));
@@ -49900,6 +49919,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SQRSHRN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqrshrn_zmz4.tsize == 0u) return std::nullopt;
                         { Operand op(OperandType::SVERegister, enc.sqrshrn_zmz4.Zd, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegisterList, enc.sqrshrn_zmz4.Zn, true); op.arrangement = Arrangement::None; op.index = 2; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqrshrn_zmz4.imm5, true));
@@ -49909,6 +49929,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::UQRSHRN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uqrshrn_zmz4.tsize == 0u) return std::nullopt;
                         { Operand op(OperandType::SVERegister, enc.uqrshrn_zmz4.Zd, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegisterList, enc.uqrshrn_zmz4.Zn, true); op.arrangement = Arrangement::None; op.index = 2; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.uqrshrn_zmz4.imm5, true));
@@ -49918,6 +49939,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         Instruction result(Mnemonic::SQRSHRUN, insn);
                         SmeEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqrshrun_zmz4.tsize == 0u) return std::nullopt;
                         { Operand op(OperandType::SVERegister, enc.sqrshrun_zmz4.Zd, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegisterList, enc.sqrshrun_zmz4.Zn, true); op.arrangement = Arrangement::None; op.index = 2; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqrshrun_zmz4.imm5, true));

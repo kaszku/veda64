@@ -784,7 +784,7 @@ void test_famin_asimdsame_only() {
 }
 
 void test_fcadd_asimdsame2_c() {
-    uint32_t insn = 0x2E00E400u;
+    uint32_t insn = 0x2E40E400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCADD);
@@ -1061,7 +1061,7 @@ void test_fcmla_advsimd_elt() {
 }
 
 void test_fcmla_asimdsame2_c() {
-    uint32_t insn = 0x2E00C400u;
+    uint32_t insn = 0x2E40C400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCMLA);
@@ -3445,7 +3445,7 @@ void test_fmov_asimdimm_h_h() {
 }
 
 void test_fmov_asimdimm_s_s() {
-    uint32_t insn = 0x0F00F400u;
+    uint32_t insn = 0x4F00F400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOV);
@@ -5899,7 +5899,7 @@ void test_sqrshl_asimdsame_only() {
 }
 
 void test_sqrshrn_asisdshf_n() {
-    uint32_t insn = 0x5F009C00u;
+    uint32_t insn = 0x5F089C00u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQRSHRN);
@@ -5915,7 +5915,7 @@ void test_sqrshrn_asimdshf_n() {
 }
 
 void test_sqrshrun_asisdshf_n() {
-    uint32_t insn = 0x7F008C00u;
+    uint32_t insn = 0x7F088C00u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQRSHRUN);
@@ -5931,7 +5931,7 @@ void test_sqrshrun_asimdshf_n() {
 }
 
 void test_sqshl_asisdshf_r() {
-    uint32_t insn = 0x5F007400u;
+    uint32_t insn = 0x5F087400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQSHL);
@@ -5967,7 +5967,7 @@ void test_sqshl_asimdsame_only() {
 }
 
 void test_sqshlu_asisdshf_r() {
-    uint32_t insn = 0x7F006400u;
+    uint32_t insn = 0x7F086400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQSHLU);
@@ -5983,7 +5983,7 @@ void test_sqshlu_asimdshf_r() {
 }
 
 void test_sqshrn_asisdshf_n() {
-    uint32_t insn = 0x5F009400u;
+    uint32_t insn = 0x5F089400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQSHRN);
@@ -5999,7 +5999,7 @@ void test_sqshrn_asimdshf_n() {
 }
 
 void test_sqshrun_asisdshf_n() {
-    uint32_t insn = 0x7F008400u;
+    uint32_t insn = 0x7F088400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQSHRUN);
@@ -6798,7 +6798,7 @@ void test_uqrshl_asimdsame_only() {
 }
 
 void test_uqrshrn_asisdshf_n() {
-    uint32_t insn = 0x7F009C00u;
+    uint32_t insn = 0x7F089C00u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UQRSHRN);
@@ -6814,7 +6814,7 @@ void test_uqrshrn_asimdshf_n() {
 }
 
 void test_uqshl_asisdshf_r() {
-    uint32_t insn = 0x7F007400u;
+    uint32_t insn = 0x7F087400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UQSHL);
@@ -6850,7 +6850,7 @@ void test_uqshl_asimdsame_only() {
 }
 
 void test_uqshrn_asisdshf_n() {
-    uint32_t insn = 0x7F009400u;
+    uint32_t insn = 0x7F089400u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UQSHRN);

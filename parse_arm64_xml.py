@@ -9,8 +9,871 @@ operands, and descriptions.
 
 import xml.etree.ElementTree as ET
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
+from dataclasses import dataclass, field
 import json
+import re as _re_module
+
+###############################################################################
+# ASL (Architecture Specification Language) IR, Tokenizer, and Parser
+###############################################################################
+
+# --- IR Type nodes ---
+@dataclass
+class AslType:
+    pass
+
+@dataclass
+class BitVecType(AslType):
+    width: object  # int or str (parametric like "datasize")
+
+@dataclass
+class IntegerType(AslType):
+    width: object = None  # None = plain integer, str/int = integer{}
+
+@dataclass
+class BooleanType(AslType):
+    pass
+
+@dataclass
+class OpaqueType(AslType):
+    name: str = ""
+
+# --- IR Expression nodes ---
+@dataclass
+class Expr:
+    pass
+
+@dataclass
+class IntLiteral(Expr):
+    value: int = 0
+
+@dataclass
+class BitLiteral(Expr):
+    bits: str = ""
+
+@dataclass
+class BoolLiteral(Expr):
+    value: bool = False
+
+@dataclass
+class Identifier(Expr):
+    name: str = ""
+
+@dataclass
+class BinOp(Expr):
+    op: str = ""
+    left: Expr = None
+    right: Expr = None
+
+@dataclass
+class UnaryOp(Expr):
+    op: str = ""
+    operand: Expr = None
+
+@dataclass
+class FuncCall(Expr):
+    name: str = ""
+    type_params: list = field(default_factory=list)
+    args: list = field(default_factory=list)
+
+@dataclass
+class BitSlice(Expr):
+    base: Expr = None
+    hi: Expr = None
+    lo: Expr = None
+    is_width: bool = False  # True = [lo +: width] form
+
+@dataclass
+class BitConcat(Expr):
+    parts: list = field(default_factory=list)
+
+@dataclass
+class IfExpr(Expr):
+    cond: Expr = None
+    then_expr: Expr = None
+    else_expr: Expr = None
+
+@dataclass
+class FieldAccess(Expr):
+    base: Expr = None
+    field_name: str = ""
+
+@dataclass
+class SetLiteral(Expr):
+    elements: list = field(default_factory=list)
+
+@dataclass
+class Arbitrary(Expr):
+    asl_type: AslType = None
+
+@dataclass
+class InExpr(Expr):
+    value: Expr = None
+    collection: Expr = None
+
+# --- IR Statement nodes ---
+@dataclass
+class Stmt:
+    pass
+
+@dataclass
+class LetDecl(Stmt):
+    name: str = ""
+    asl_type: AslType = None
+    init: Expr = None
+
+@dataclass
+class VarDecl(Stmt):
+    name: str = ""
+    asl_type: AslType = None
+    init: Expr = None
+
+@dataclass
+class Assign(Stmt):
+    target: Expr = None
+    value: Expr = None
+
+@dataclass
+class TupleAssign(Stmt):
+    targets: list = field(default_factory=list)  # None entries = wildcard '-'
+    value: Expr = None
+
+@dataclass
+class IfStmt(Stmt):
+    branches: list = field(default_factory=list)  # list of (cond_or_None, [Stmt])
+
+@dataclass
+class CaseStmt(Stmt):
+    expr: Expr = None
+    cases: list = field(default_factory=list)  # list of (pattern_expr_or_'otherwise', [Stmt])
+
+@dataclass
+class ForStmt(Stmt):
+    var: str = ""
+    start: Expr = None
+    end: Expr = None
+    body: list = field(default_factory=list)
+
+@dataclass
+class WhileStmt(Stmt):
+    cond: Expr = None
+    body: list = field(default_factory=list)
+
+@dataclass
+class ExprStmt(Stmt):
+    expr: Expr = None
+
+@dataclass
+class AssertStmt(Stmt):
+    cond: Expr = None
+
+@dataclass
+class EndOfDecode(Stmt):
+    kind: str = ""
+
+@dataclass
+class Undefined(Stmt):
+    pass
+
+@dataclass
+class Unpredictable(Stmt):
+    pass
+
+@dataclass
+class ReturnStmt(Stmt):
+    value: Expr = None
+
+# --- Tokenizer ---
+_ASL_KEYWORDS = {
+    'let', 'var', 'if', 'then', 'else', 'elsif', 'end', 'case', 'when', 'of',
+    'for', 'to', 'do', 'while', 'DIV', 'MOD', 'AND', 'OR', 'XOR', 'EOR',
+    'NOT', 'IN', 'assert', 'UNDEFINED', 'UNPREDICTABLE', 'ARBITRARY',
+    'TRUE', 'FALSE', 'otherwise', 'return', 'UNKNOWN', 'as',
+}
+
+@dataclass
+class AslToken:
+    kind: str  # 'INT', 'BITS', 'IDENT', 'KW', 'OP', 'EOF'
+    value: str
+    pos: int = 0
+
+class AslTokenizer:
+    """Tokenize ASL pseudocode text into a list of tokens."""
+
+    _TWO_CHAR_OPS = {'::','==','!=','<=','>=','<<','>>','&&','||','+:','*:','=>','..'}
+    _ONE_CHAR_OPS = set('+-*()[]{},:;.=<>!/')
+
+    def __init__(self, text: str):
+        self.text = text
+        self.pos = 0
+        self.tokens: List[AslToken] = []
+
+    def tokenize(self) -> List[AslToken]:
+        text = self.text
+        n = len(text)
+        i = 0
+        tokens = self.tokens
+        while i < n:
+            c = text[i]
+            # Skip whitespace
+            if c in ' \t\r\n':
+                i += 1
+                continue
+            # Skip comments (-- or //)
+            if i + 1 < n and ((c == '-' and text[i+1] == '-') or (c == '/' and text[i+1] == '/')):
+                while i < n and text[i] != '\n':
+                    i += 1
+                continue
+            # Bit string literal: '01...' (may contain spaces)
+            if c == "'":
+                j = i + 1
+                bits = []
+                while j < n and text[j] != "'":
+                    if text[j] in '01x':
+                        bits.append(text[j])
+                    elif text[j] == ' ':
+                        pass  # spaces inside bit literals are allowed
+                    else:
+                        break
+                    j += 1
+                if j < n and text[j] == "'":
+                    tokens.append(AslToken('BITS', ''.join(bits), i))
+                    i = j + 1
+                    continue
+                # Not a valid bitstring — treat quote as unknown, skip
+                i += 1
+                continue
+            # Hex literal: 0x...
+            if c == '0' and i + 1 < n and text[i+1] in 'xX':
+                j = i + 2
+                while j < n and (text[j].isdigit() or text[j] in 'abcdefABCDEF_'):
+                    j += 1
+                tokens.append(AslToken('INT', text[i:j].replace('_', ''), i))
+                i = j
+                continue
+            # Decimal integer
+            if c.isdigit():
+                j = i
+                while j < n and text[j].isdigit():
+                    j += 1
+                tokens.append(AslToken('INT', text[i:j], i))
+                i = j
+                continue
+            # Identifier or keyword
+            if c.isalpha() or c == '_':
+                j = i
+                while j < n and (text[j].isalnum() or text[j] == '_'):
+                    j += 1
+                word = text[i:j]
+                if word in _ASL_KEYWORDS:
+                    tokens.append(AslToken('KW', word, i))
+                else:
+                    tokens.append(AslToken('IDENT', word, i))
+                i = j
+                continue
+            # Two-char operators
+            if i + 1 < n and text[i:i+2] in self._TWO_CHAR_OPS:
+                tokens.append(AslToken('OP', text[i:i+2], i))
+                i += 2
+                continue
+            # Single-char operators
+            if c in self._ONE_CHAR_OPS:
+                tokens.append(AslToken('OP', c, i))
+                i += 1
+                continue
+            # Skip unknown characters
+            i += 1
+
+        tokens.append(AslToken('EOF', '', n))
+        return tokens
+
+# --- Recursive Descent Parser ---
+class AslParser:
+    """Parse ASL token stream into IR statement list."""
+
+    def __init__(self, tokens: List[AslToken]):
+        self.tokens = tokens
+        self.pos = 0
+
+    def _cur(self) -> AslToken:
+        return self.tokens[self.pos] if self.pos < len(self.tokens) else AslToken('EOF', '', -1)
+
+    def _peek(self, offset=0) -> AslToken:
+        p = self.pos + offset
+        return self.tokens[p] if p < len(self.tokens) else AslToken('EOF', '', -1)
+
+    def _advance(self) -> AslToken:
+        tok = self._cur()
+        self.pos += 1
+        return tok
+
+    def _expect(self, kind: str, value: str = None) -> AslToken:
+        tok = self._cur()
+        if tok.kind == 'EOF' and (kind != 'EOF'):
+            raise AslParseError(f"Unexpected end of input, expected {kind} {value!r}", tok.pos)
+        if kind and tok.kind != kind:
+            raise AslParseError(f"Expected {kind} {value!r}, got {tok.kind} {tok.value!r}", tok.pos)
+        if value is not None and tok.value != value:
+            raise AslParseError(f"Expected {value!r}, got {tok.value!r}", tok.pos)
+        self.pos += 1
+        return tok
+
+    def _match(self, kind: str, value: str = None) -> Optional[AslToken]:
+        tok = self._cur()
+        if tok.kind == kind and (value is None or tok.value == value):
+            self.pos += 1
+            return tok
+        return None
+
+    def _at(self, kind: str, value: str = None) -> bool:
+        tok = self._cur()
+        return tok.kind == kind and (value is None or tok.value == value)
+
+    # --- Top-level ---
+    def parse(self) -> List[Stmt]:
+        stmts = []
+        while not self._at('EOF'):
+            s = self._parse_stmt()
+            if s is not None:
+                stmts.append(s)
+        return stmts
+
+    def _parse_stmt(self) -> Optional[Stmt]:
+        tok = self._cur()
+
+        # Skip stray semicolons
+        if self._match('OP', ';'):
+            return None
+
+        # let declaration
+        if tok.kind == 'KW' and tok.value == 'let':
+            return self._parse_let()
+
+        # var declaration
+        if tok.kind == 'KW' and tok.value == 'var':
+            return self._parse_var()
+
+        # if statement
+        if tok.kind == 'KW' and tok.value == 'if':
+            return self._parse_if_stmt()
+
+        # case statement
+        if tok.kind == 'KW' and tok.value == 'case':
+            return self._parse_case_stmt()
+
+        # for loop
+        if tok.kind == 'KW' and tok.value == 'for':
+            return self._parse_for_stmt()
+
+        # while loop
+        if tok.kind == 'KW' and tok.value == 'while':
+            return self._parse_while_stmt()
+
+        # assert
+        if tok.kind == 'KW' and tok.value == 'assert':
+            self._advance()
+            cond = self._parse_expr()
+            self._match('OP', ';')
+            return AssertStmt(cond=cond)
+
+        # UNDEFINED
+        if tok.kind == 'KW' and tok.value == 'UNDEFINED':
+            self._advance()
+            self._match('OP', ';')
+            return Undefined()
+
+        # UNPREDICTABLE
+        if tok.kind == 'KW' and tok.value == 'UNPREDICTABLE':
+            self._advance()
+            self._match('OP', ';')
+            return Unpredictable()
+
+        # return
+        if tok.kind == 'KW' and tok.value == 'return':
+            self._advance()
+            val = None
+            if not self._at('OP', ';') and not self._at('EOF'):
+                val = self._parse_expr()
+            self._match('OP', ';')
+            return ReturnStmt(value=val)
+
+        # Tuple assign: (ident, ident, ...) = expr
+        if tok.kind == 'OP' and tok.value == '(':
+            return self._parse_tuple_or_expr_stmt()
+
+        # Otherwise: expression statement or assignment
+        return self._parse_expr_or_assign()
+
+    def _parse_let(self) -> Stmt:
+        self._expect('KW', 'let')
+        name = self._expect('IDENT').value
+        asl_type = None
+        if self._match('OP', ':'):
+            asl_type = self._parse_type()
+        self._expect('OP', '=')
+        init = self._parse_expr()
+        self._match('OP', ';')
+        return LetDecl(name=name, asl_type=asl_type, init=init)
+
+    def _parse_var(self) -> Stmt:
+        self._expect('KW', 'var')
+        name = self._expect('IDENT').value
+        asl_type = None
+        if self._match('OP', ':'):
+            asl_type = self._parse_type()
+        init = None
+        if self._match('OP', '='):
+            init = self._parse_expr()
+        self._match('OP', ';')
+        return VarDecl(name=name, asl_type=asl_type, init=init)
+
+    def _parse_type(self) -> AslType:
+        tok = self._cur()
+        if tok.kind == 'IDENT' and tok.value == 'bits':
+            self._advance()
+            self._expect('OP', '(')
+            width = self._parse_expr()
+            self._expect('OP', ')')
+            if isinstance(width, IntLiteral):
+                return BitVecType(width=width.value)
+            elif isinstance(width, Identifier):
+                return BitVecType(width=width.name)
+            return BitVecType(width=str(width))
+        if tok.kind == 'IDENT' and tok.value == 'integer':
+            self._advance()
+            w = None
+            if self._match('OP', '{'):
+                if not self._at('OP', '}'):
+                    w_expr = self._parse_expr()
+                    # Handle range: integer{0..4}
+                    if self._match('OP', '..'):
+                        self._parse_expr()  # consume upper bound, ignore for now
+                    if isinstance(w_expr, Identifier):
+                        w = w_expr.name
+                    elif isinstance(w_expr, IntLiteral):
+                        w = w_expr.value
+                self._expect('OP', '}')
+            return IntegerType(width=w)
+        if tok.kind == 'IDENT' and tok.value == 'boolean':
+            self._advance()
+            return BooleanType()
+        # Opaque type — any other identifier
+        if tok.kind == 'IDENT':
+            name = self._advance().value
+            return OpaqueType(name=name)
+        # Fallback
+        return OpaqueType(name=self._advance().value)
+
+    def _parse_if_stmt(self) -> IfStmt:
+        branches = []
+        self._expect('KW', 'if')
+        cond = self._parse_expr()
+        self._expect('KW', 'then')
+        body = self._parse_block('end', 'else', 'elsif')
+        branches.append((cond, body))
+
+        while self._match('KW', 'elsif'):
+            cond = self._parse_expr()
+            self._expect('KW', 'then')
+            body = self._parse_block('end', 'else', 'elsif')
+            branches.append((cond, body))
+
+        if self._match('KW', 'else'):
+            body = self._parse_block('end')
+            branches.append((None, body))
+
+        # end is optional for single-line if ... then ... ; patterns
+        self._match('KW', 'end')
+        self._match('OP', ';')
+        return IfStmt(branches=branches)
+
+    def _parse_case_stmt(self) -> CaseStmt:
+        self._expect('KW', 'case')
+        expr = self._parse_expr()
+        self._expect('KW', 'of')
+        cases = []
+        while self._at('KW', 'when') or self._at('KW', 'otherwise'):
+            if self._match('KW', 'when'):
+                pattern = self._parse_expr()
+                self._expect('OP', '=>')
+                body = self._parse_case_body()
+                cases.append((pattern, body))
+            elif self._match('KW', 'otherwise'):
+                self._match('OP', '=>')
+                body = self._parse_case_body()
+                cases.append(('otherwise', body))
+        self._match('KW', 'end')
+        self._match('OP', ';')
+        return CaseStmt(expr=expr, cases=cases)
+
+    def _parse_case_body(self) -> List[Stmt]:
+        """Parse statements until next 'when', 'otherwise', or 'end'."""
+        stmts = []
+        while not self._at('EOF') and not self._at('KW', 'when') and \
+              not self._at('KW', 'otherwise') and not self._at('KW', 'end'):
+            s = self._parse_stmt()
+            if s is not None:
+                stmts.append(s)
+        return stmts
+
+    def _parse_for_stmt(self) -> ForStmt:
+        self._expect('KW', 'for')
+        var = self._expect('IDENT').value
+        self._expect('OP', '=')
+        start = self._parse_expr()
+        self._expect('KW', 'to')
+        end = self._parse_expr()
+        self._expect('KW', 'do')
+        body = self._parse_block('end')
+        self._match('KW', 'end')
+        self._match('OP', ';')
+        return ForStmt(var=var, start=start, end=end, body=body)
+
+    def _parse_while_stmt(self) -> WhileStmt:
+        self._expect('KW', 'while')
+        cond = self._parse_expr()
+        self._expect('KW', 'do')
+        body = self._parse_block('end')
+        self._match('KW', 'end')
+        self._match('OP', ';')
+        return WhileStmt(cond=cond, body=body)
+
+    def _parse_block(self, *terminators) -> List[Stmt]:
+        stmts = []
+        while not self._at('EOF'):
+            if any(self._at('KW', t) for t in terminators):
+                break
+            s = self._parse_stmt()
+            if s is not None:
+                stmts.append(s)
+        return stmts
+
+    def _parse_tuple_or_expr_stmt(self) -> Stmt:
+        """Handle (a, b, -) = expr (tuple assign) or (expr) statement."""
+        save = self.pos
+        try:
+            self._expect('OP', '(')
+            targets = []
+            while True:
+                if self._match('OP', '-'):
+                    targets.append(None)  # wildcard
+                else:
+                    targets.append(self._parse_expr())
+                if not self._match('OP', ','):
+                    break
+            self._expect('OP', ')')
+            if self._match('OP', '='):
+                val = self._parse_expr()
+                self._match('OP', ';')
+                return TupleAssign(targets=targets, value=val)
+        except AslParseError:
+            pass
+        # Rollback and try as expression
+        self.pos = save
+        return self._parse_expr_or_assign()
+
+    def _parse_expr_or_assign(self) -> Stmt:
+        lhs = self._parse_expr()
+        if self._match('OP', '='):
+            rhs = self._parse_expr()
+            self._match('OP', ';')
+            return Assign(target=lhs, value=rhs)
+        self._match('OP', ';')
+        # Check for EndOfDecode pattern
+        if isinstance(lhs, FuncCall) and lhs.name == 'EndOfDecode':
+            kind = ''
+            if lhs.args and isinstance(lhs.args[0], Identifier):
+                kind = lhs.args[0].name
+            return EndOfDecode(kind=kind)
+        return ExprStmt(expr=lhs)
+
+    # --- Expression parsing (precedence climbing) ---
+    def _parse_expr(self) -> Expr:
+        return self._parse_or()
+
+    def _parse_or(self) -> Expr:
+        left = self._parse_and()
+        while self._match('OP', '||'):
+            right = self._parse_and()
+            left = BinOp(op='||', left=left, right=right)
+        return left
+
+    def _parse_and(self) -> Expr:
+        left = self._parse_bw_or()
+        while self._match('OP', '&&'):
+            right = self._parse_bw_or()
+            left = BinOp(op='&&', left=left, right=right)
+        return left
+
+    def _parse_bw_or(self) -> Expr:
+        left = self._parse_bw_xor()
+        while self._at('KW', 'OR'):
+            self._advance()
+            right = self._parse_bw_xor()
+            left = BinOp(op='OR', left=left, right=right)
+        return left
+
+    def _parse_bw_xor(self) -> Expr:
+        left = self._parse_bw_and()
+        while self._at('KW', 'XOR') or self._at('KW', 'EOR'):
+            op = self._advance().value
+            right = self._parse_bw_and()
+            left = BinOp(op=op, left=left, right=right)
+        return left
+
+    def _parse_bw_and(self) -> Expr:
+        left = self._parse_equality()
+        while self._at('KW', 'AND'):
+            self._advance()
+            right = self._parse_equality()
+            left = BinOp(op='AND', left=left, right=right)
+        return left
+
+    def _parse_equality(self) -> Expr:
+        left = self._parse_relational()
+        while self._at('OP', '==') or self._at('OP', '!='):
+            op = self._advance().value
+            right = self._parse_relational()
+            left = BinOp(op=op, left=left, right=right)
+        return left
+
+    def _parse_relational(self) -> Expr:
+        left = self._parse_concat()
+        while True:
+            if self._at('OP', '<') or self._at('OP', '>') or \
+               self._at('OP', '<=') or self._at('OP', '>='):
+                op = self._advance().value
+                right = self._parse_concat()
+                left = BinOp(op=op, left=left, right=right)
+            elif self._at('KW', 'IN'):
+                self._advance()
+                right = self._parse_concat()
+                left = InExpr(value=left, collection=right)
+            else:
+                break
+        return left
+
+    def _parse_concat(self) -> Expr:
+        left = self._parse_shift()
+        parts = [left]
+        while self._match('OP', '::'):
+            parts.append(self._parse_shift())
+        if len(parts) > 1:
+            return BitConcat(parts=parts)
+        return left
+
+    def _parse_shift(self) -> Expr:
+        left = self._parse_add()
+        while self._at('OP', '<<') or self._at('OP', '>>'):
+            op = self._advance().value
+            right = self._parse_add()
+            left = BinOp(op=op, left=left, right=right)
+        return left
+
+    def _parse_add(self) -> Expr:
+        left = self._parse_mul()
+        while self._at('OP', '+') or self._at('OP', '-'):
+            op = self._advance().value
+            right = self._parse_mul()
+            left = BinOp(op=op, left=left, right=right)
+        return left
+
+    def _parse_mul(self) -> Expr:
+        left = self._parse_unary()
+        while self._at('OP', '*') or self._at('KW', 'DIV') or self._at('KW', 'MOD'):
+            op = self._advance().value
+            right = self._parse_unary()
+            left = BinOp(op=op, left=left, right=right)
+        return left
+
+    def _parse_unary(self) -> Expr:
+        if self._at('OP', '!') or self._at('KW', 'NOT'):
+            op = self._advance().value
+            operand = self._parse_unary()
+            return UnaryOp(op=op, operand=operand)
+        if self._at('OP', '-'):
+            # Check it's unary minus (not binary)
+            self._advance()
+            operand = self._parse_unary()
+            return UnaryOp(op='-', operand=operand)
+        return self._parse_postfix()
+
+    def _parse_postfix(self) -> Expr:
+        base = self._parse_primary()
+        while True:
+            # Bit slice: x[hi:lo] or x[lo +: width] or x[e *: esize]
+            if self._at('OP', '['):
+                self._advance()
+                idx1 = self._parse_expr()
+                if self._match('OP', '+:'):
+                    width = self._parse_expr()
+                    self._expect('OP', ']')
+                    base = BitSlice(base=base, hi=width, lo=idx1, is_width=True)
+                elif self._match('OP', '*:'):
+                    # x[e*:esize] = x[e*esize +: esize]
+                    esize = self._parse_expr()
+                    self._expect('OP', ']')
+                    lo = BinOp(op='*', left=idx1, right=esize)
+                    base = BitSlice(base=base, hi=esize, lo=lo, is_width=True)
+                elif self._match('OP', ':'):
+                    lo = self._parse_expr()
+                    self._expect('OP', ']')
+                    base = BitSlice(base=base, hi=idx1, lo=lo, is_width=False)
+                else:
+                    # Single bit: x[n] = x[n:n]
+                    self._expect('OP', ']')
+                    base = BitSlice(base=base, hi=idx1, lo=idx1, is_width=False)
+                continue
+            # Function call with type params: Name{N}(args)
+            # or bare type params: Name{N}
+            if self._at('OP', '{'):
+                save = self.pos
+                self._advance()
+                type_params = []
+                while not self._at('OP', '}') and not self._at('EOF'):
+                    type_params.append(self._parse_expr())
+                    self._match('OP', ',')
+                if self._match('OP', '}'):
+                    if self._at('OP', '('):
+                        args = self._parse_args()
+                        if isinstance(base, Identifier):
+                            base = FuncCall(name=base.name, type_params=type_params, args=args)
+                        else:
+                            base = FuncCall(name=str(base), type_params=type_params, args=args)
+                    else:
+                        # Bare type-parameterized name like Zeros{N}
+                        if isinstance(base, Identifier):
+                            base = FuncCall(name=base.name, type_params=type_params, args=[])
+                        else:
+                            base = FuncCall(name=str(base), type_params=type_params, args=[])
+                    continue
+                else:
+                    self.pos = save
+                    break
+            # Regular function call: Name(args)
+            if self._at('OP', '(') and isinstance(base, (Identifier, FieldAccess)):
+                args = self._parse_args()
+                name = base.name if isinstance(base, Identifier) else str(base)
+                if isinstance(base, FieldAccess):
+                    name = f"{self._expr_to_name(base.base)}.{base.field_name}"
+                base = FuncCall(name=name, type_params=[], args=args)
+                continue
+            # Field access: x.field
+            if self._match('OP', '.'):
+                if self._at('OP', '.'):
+                    # Oops, this was '..' parsed as two '.' — shouldn't happen with .. as two-char op
+                    break
+                fname = self._expect('IDENT').value
+                base = FieldAccess(base=base, field_name=fname)
+                continue
+            # Type cast: expr as type  (e.g. UInt(x) as integer{0..4})
+            if self._at('KW', 'as'):
+                self._advance()
+                t = self._parse_type()
+                base = FuncCall(name='__as', type_params=[], args=[base, Identifier(name=str(t))])
+                continue
+            break
+        return base
+
+    def _expr_to_name(self, expr: Expr) -> str:
+        if isinstance(expr, Identifier):
+            return expr.name
+        if isinstance(expr, FieldAccess):
+            return f"{self._expr_to_name(expr.base)}.{expr.field_name}"
+        return '?'
+
+    def _parse_args(self) -> List[Expr]:
+        self._expect('OP', '(')
+        args = []
+        if not self._at('OP', ')'):
+            args.append(self._parse_expr())
+            while self._match('OP', ','):
+                args.append(self._parse_expr())
+        self._expect('OP', ')')
+        return args
+
+    def _parse_primary(self) -> Expr:
+        tok = self._cur()
+
+        # Integer literal
+        if tok.kind == 'INT':
+            self._advance()
+            return IntLiteral(value=int(tok.value, 0))
+
+        # Bit string literal
+        if tok.kind == 'BITS':
+            self._advance()
+            return BitLiteral(bits=tok.value)
+
+        # Boolean literals
+        if tok.kind == 'KW' and tok.value == 'TRUE':
+            self._advance()
+            return BoolLiteral(value=True)
+        if tok.kind == 'KW' and tok.value == 'FALSE':
+            self._advance()
+            return BoolLiteral(value=False)
+
+        # UNKNOWN : type
+        if tok.kind == 'KW' and tok.value == 'UNKNOWN':
+            self._advance()
+            if self._match('OP', ':'):
+                t = self._parse_type()
+                return Arbitrary(asl_type=t)
+            return Identifier(name='UNKNOWN')
+
+        # ARBITRARY : type
+        if tok.kind == 'KW' and tok.value == 'ARBITRARY':
+            self._advance()
+            self._expect('OP', ':')
+            t = self._parse_type()
+            return Arbitrary(asl_type=t)
+
+        # Inline if expression: if cond then e1 else e2
+        if tok.kind == 'KW' and tok.value == 'if':
+            self._advance()
+            cond = self._parse_expr()
+            self._expect('KW', 'then')
+            then_e = self._parse_expr()
+            self._expect('KW', 'else')
+            else_e = self._parse_expr()
+            return IfExpr(cond=cond, then_expr=then_e, else_expr=else_e)
+
+        # Set literal: { val1, val2, ... }
+        if tok.kind == 'OP' and tok.value == '{':
+            self._advance()
+            elems = []
+            if not self._at('OP', '}'):
+                elems.append(self._parse_expr())
+                while self._match('OP', ','):
+                    elems.append(self._parse_expr())
+            self._expect('OP', '}')
+            return SetLiteral(elements=elems)
+
+        # Parenthesized expression
+        if tok.kind == 'OP' and tok.value == '(':
+            self._advance()
+            expr = self._parse_expr()
+            self._expect('OP', ')')
+            return expr
+
+        # Identifier
+        if tok.kind == 'IDENT':
+            self._advance()
+            return Identifier(name=tok.value)
+
+        # Keywords used as identifiers in some contexts
+        if tok.kind == 'KW' and tok.value in ('UNDEFINED', 'UNPREDICTABLE', 'otherwise'):
+            self._advance()
+            return Identifier(name=tok.value)
+
+        raise AslParseError(f"Unexpected token {tok.kind} {tok.value!r}", tok.pos)
+
+class AslParseError(Exception):
+    def __init__(self, msg: str, pos: int = -1):
+        self.pos = pos
+        super().__init__(f"ASL parse error at pos {pos}: {msg}")
+
 
 # Map arrangement character to C++ Arrangement enum name
 _CHAR_TO_ARR = {'b': 'Arrangement::B', 'h': 'Arrangement::H', 's': 'Arrangement::S', 'd': 'Arrangement::D', 'q': 'Arrangement::Q'}
@@ -671,6 +1534,82 @@ class ARM64XMLParser:
                 shift_op = ops.get(shift_var)
                 if shift_op and shift_op[0] == 'uint':
                     # shift_var = UInt(some_field) → shift_left_field
+                    resolved[var] = ('shift_left_field', field_name, shift_op[1])
+                else:
+                    resolved[var] = ('opaque',)
+            else:
+                resolved[var] = op
+        return resolved
+
+    def _parse_asl(self, text: str) -> List[Stmt]:
+        """Parse ASL pseudocode text into an IR statement list."""
+        tokens = AslTokenizer(text).tokenize()
+        return AslParser(tokens).parse()
+
+    def _asl_ir_to_decode_ops(self, stmts: List[Stmt]) -> Dict[str, tuple]:
+        """Extract decode ops from IR tree, matching _parse_asl_decode_ops output format."""
+        ops: Dict[str, tuple] = {}
+        for s in stmts:
+            if not isinstance(s, LetDecl) or s.init is None:
+                continue
+            name = s.name
+            init = s.init
+            # UInt(field)
+            if isinstance(init, FuncCall) and init.name == 'UInt' and len(init.args) == 1:
+                arg = init.args[0]
+                if isinstance(arg, Identifier):
+                    ops[name] = ('uint', arg.name)
+                    continue
+            # SignExtend(field::'0'*n)
+            if isinstance(init, FuncCall) and init.name == 'SignExtend' and len(init.args) == 1:
+                arg = init.args[0]
+                if isinstance(arg, BitConcat) and len(arg.parts) == 2:
+                    f, z = arg.parts
+                    if isinstance(f, Identifier) and isinstance(z, BitLiteral) and all(c == '0' for c in z.bits):
+                        ops[name] = ('signext_shift', f.name, len(z.bits))
+                        continue
+                if isinstance(arg, Identifier):
+                    ops[name] = ('signext', arg.name)
+                    continue
+            # UInt(field) << n
+            if isinstance(init, BinOp) and init.op == '<<':
+                if isinstance(init.left, FuncCall) and init.left.name == 'UInt' and len(init.left.args) == 1:
+                    arg = init.left.args[0]
+                    if isinstance(arg, Identifier) and isinstance(init.right, IntLiteral):
+                        ops[name] = ('shift_left', arg.name, init.right.value)
+                        continue
+            # n << UInt(field)  — e.g. 32 << UInt(sf)
+            if isinstance(init, BinOp) and init.op == '<<':
+                if isinstance(init.right, FuncCall) and init.right.name == 'UInt' and len(init.right.args) == 1:
+                    # This is a computed value, not a simple field transform — skip
+                    pass
+            # LSL(ZeroExtend(field), shift_var)
+            if isinstance(init, FuncCall) and init.name == 'LSL' and len(init.args) == 2:
+                inner = init.args[0]
+                shift_arg = init.args[1]
+                field_name = None
+                if isinstance(inner, FuncCall) and 'ZeroExtend' in inner.name and len(inner.args) >= 1:
+                    if isinstance(inner.args[0], Identifier):
+                        field_name = inner.args[0].name
+                elif isinstance(inner, Identifier):
+                    field_name = inner.name
+                if field_name and isinstance(shift_arg, Identifier):
+                    ops[name] = ('shift_left_var', field_name, shift_arg.name)
+                    continue
+            # if field == 'x' then ... else ... (conditional)
+            if isinstance(init, IfExpr):
+                cond = init.cond
+                if isinstance(cond, BinOp) and cond.op == '==' and isinstance(cond.left, Identifier):
+                    ops[name] = ('conditional', cond.left.name)
+                    continue
+
+        # Second pass: resolve shift_left_var
+        resolved = {}
+        for var, op in ops.items():
+            if op[0] == 'shift_left_var':
+                _, field_name, shift_var = op
+                shift_op = ops.get(shift_var)
+                if shift_op and shift_op[0] == 'uint':
                     resolved[var] = ('shift_left_field', field_name, shift_op[1])
                 else:
                     resolved[var] = ('opaque',)
@@ -4508,6 +5447,48 @@ class ARM64XMLParser:
 
         return code
 
+    def _generate_undef_checks(self, encoding_info: Dict, member_name: str, indent: int = 2) -> List[str]:
+        """Parse decode_ps for 'if FIELD == VALUE then EndOfDecode(Decode_UNDEF)' and emit early returns."""
+        import re
+        decode_ps = encoding_info.get('decode_ps', '')
+        if not decode_ps:
+            return []
+
+        ind = "    " * indent
+        code = []
+
+        # Build set of available (non-fixed) field names for this encoding
+        field_names = set()
+        for f in encoding_info.get('field_list', []):
+            if not f['is_fixed']:
+                field_names.add(f['original_name'])
+
+        # Match simple: if FIELD == 'BITS' then EndOfDecode(Decode_UNDEF); end;
+        for m in re.finditer(r"if\s+(\w+)\s*==\s*'([01]+)'\s+then\s+EndOfDecode\(Decode_UNDEF\)", decode_ps):
+            field, bits = m.group(1), m.group(2)
+            if field in field_names:
+                val = int(bits, 2)
+                code.append(f"{ind}if (enc.{member_name}.{field} == {val}u) return std::nullopt;")
+
+        # Match simple: if FIELD != 'BITS' then EndOfDecode(Decode_UNDEF); end;
+        # (equivalent to: only BITS is valid)
+        for m in re.finditer(r"if\s+(\w+)\s*!=\s*'([01]+)'\s+then\s+EndOfDecode\(Decode_UNDEF\)", decode_ps):
+            field, bits = m.group(1), m.group(2)
+            if field in field_names:
+                val = int(bits, 2)
+                code.append(f"{ind}if (enc.{member_name}.{field} != {val}u) return std::nullopt;")
+
+        # Match: if sf == '0' && N != '0' (and similar two-field AND conditions)
+        for m in re.finditer(r"if\s+(\w+)\s*(==|!=)\s*'([01]+)'\s*&&\s*(\w+)\s*(==|!=)\s*'([01]+)'\s+then\s+EndOfDecode\(Decode_UNDEF\)", decode_ps):
+            f1, op1, b1, f2, op2, b2 = m.group(1), m.group(2), m.group(3), m.group(4), m.group(5), m.group(6)
+            if f1 in field_names and f2 in field_names:
+                v1, v2 = int(b1, 2), int(b2, 2)
+                c1 = f"enc.{member_name}.{f1} {'==' if op1 == '==' else '!='} {v1}u"
+                c2 = f"enc.{member_name}.{f2} {'==' if op2 == '==' else '!='} {v2}u"
+                code.append(f"{ind}if ({c1} && {c2}) return std::nullopt;")
+
+        return code
+
     def _generate_operand_extraction_v2(self, class_name: str, encoding_info: Dict, indent: int = 2) -> Optional[List[str]]:
         """XML-driven operand extraction. Returns None to signal fallback to heuristic path.
 
@@ -4636,6 +5617,7 @@ class ARM64XMLParser:
         code.append(f"{ind}Instruction result(Mnemonic::{mnemonic}, insn);")
         code.append(f"{ind}{union_name} enc = {{}};")
         code.append(f"{ind}enc.raw = insn;")
+        code.extend(self._generate_undef_checks(encoding_info, member_name, indent))
 
         # Find condition_table symbols NOT in template tokens (they're part of mnemonic suffix)
         token_syms = {t['sym'] for t in template_tokens}
@@ -4952,6 +5934,7 @@ class ARM64XMLParser:
         # Decode struct for field extraction (after early returns that don't need it)
         code.append(f"{ind}{union_name} enc = {{}};")
         code.append(f"{ind}enc.raw = insn;")
+        code.extend(self._generate_undef_checks(encoding_info, member_name, indent))
 
         # Special case: LDP/STP (load/store pair) - only if required fields exist
         if is_ldp_stp and 'Rt' in field_map and 'Rt2' in field_map and 'Rn' in field_map:
@@ -8031,7 +9014,7 @@ class ARM64XMLParser:
 
         # WHILE* pp_rr forms: { <Pd1>.<T>, <Pd2>.<T> }, <Xn>, <Xm>
         # (whilele_pp_rr_, whilehs_pp_rr_, whilehi_pp_rr_, whilelo_pp_rr_, whilelt_pp_rr_, whilege_pp_rr_)
-        _while_pp_rr_encs = {'whilele_pp_rr_', 'whilehs_pp_rr_', 'whilehi_pp_rr_', 'whilelo_pp_rr_', 'whilelt_pp_rr_', 'whilege_pp_rr_'}
+        _while_pp_rr_encs = {'whilele_pp_rr_', 'whilehs_pp_rr_', 'whilehi_pp_rr_', 'whilelo_pp_rr_', 'whilelt_pp_rr_', 'whilege_pp_rr_', 'whilegt_pp_rr_', 'whilels_pp_rr_'}
         if encoding_name in _while_pp_rr_encs and 'Pd' in field_map and 'Rn' in field_map and 'Rm' in field_map:
             pd_cpp = field_map['Pd']['name']
             rn_cpp = field_map['Rn']['name']
@@ -9453,6 +10436,43 @@ class ARM64XMLParser:
 
         return operand_types if operand_types else None
 
+    def _adjust_test_pattern_for_undef(self, pattern: int, fields: list, decode_ps: str) -> int:
+        """Adjust test instruction pattern to avoid Decode_UNDEF conditions.
+
+        When all variable bits are 0, some field values (e.g. size==00) trigger UNDEF.
+        This sets those fields to the smallest valid value instead.
+        """
+        import re
+        if not decode_ps:
+            return pattern
+
+        # Build field info: name → (lsb, width)
+        field_info = {}
+        for f in fields:
+            name = f.get('original_name') or f.get('name', '')
+            if name and not name.startswith('_') and not f.get('is_fixed', False):
+                field_info[name] = (f['lobit'], f['width'])
+
+        # Handle: if FIELD == 'BITS' then EndOfDecode(Decode_UNDEF)
+        for m in re.finditer(r"if\s+(\w+)\s*==\s*'([01]+)'\s+then\s+EndOfDecode\(Decode_UNDEF\)", decode_ps):
+            field, bits = m.group(1), m.group(2)
+            if field not in field_info:
+                continue
+            lsb, width = field_info[field]
+            undef_val = int(bits, 2)
+            current_val = (pattern >> lsb) & ((1 << width) - 1)
+            if current_val == undef_val:
+                # Clear field and set to smallest non-UNDEF value
+                mask = ((1 << width) - 1) << lsb
+                pattern &= ~mask
+                # Try values starting from undef_val+1, wrapping around
+                for candidate in range(1, 1 << width):
+                    test_val = (undef_val + candidate) & ((1 << width) - 1)
+                    pattern |= (test_val << lsb)
+                    break
+
+        return pattern
+
     def generate_encoding_tests(self, test_dir: Path):
         """Generate per-encoding test files grouped by format group."""
         # Clean up old test files (remove stale generated files)
@@ -9501,10 +10521,14 @@ class ARM64XMLParser:
             seen_names.add(func_name)
 
             # Compute instruction value with fixed bits set, variable bits = 0
-            _, _, _, _, full_pattern, _ = self._generate_encoding_struct(instr, encoding)
+            _, fields, _, _, full_pattern, _ = self._generate_encoding_struct(instr, encoding)
 
             if full_pattern is None:
                 continue
+
+            # Adjust test pattern to avoid Decode_UNDEF conditions
+            full_pattern = self._adjust_test_pattern_for_undef(
+                full_pattern, fields, encoding.decode_ps)
 
             # Predict operand types
             predicted = self._predict_operand_types(instr, encoding)
@@ -9548,6 +10572,94 @@ class ARM64XMLParser:
         code.append("")
 
         self._write_file(output_file, code)
+
+    def generate_undef_tests(self, test_dir: Path):
+        """Generate test_undef.cpp: verify that Decode_UNDEF conditions return nullopt."""
+        import re
+
+        code = []
+        code.append("// Auto-generated - do not edit")
+        code.append("// Tests that Decode_UNDEF conditions correctly reject invalid encodings")
+        code.append("#include \"veda64.hpp\"")
+        code.append("#include <cassert>")
+        code.append("#include <iostream>")
+        code.append("")
+        code.append("using namespace veda64;")
+        code.append("")
+
+        test_funcs = []
+        seen = set()
+
+        for instr in self.instructions:
+            for encoding in instr.encodings:
+                if not encoding.name or not encoding.decode_ps:
+                    continue
+
+                # Find simple UNDEF conditions: if FIELD == 'BITS' then EndOfDecode(Decode_UNDEF)
+                undef_conditions = []
+                for m in re.finditer(
+                    r"if\s+(\w+)\s*==\s*'([01]+)'\s+then\s+EndOfDecode\(Decode_UNDEF\)",
+                    encoding.decode_ps
+                ):
+                    undef_conditions.append((m.group(1), m.group(2)))
+
+                if not undef_conditions:
+                    continue
+
+                # Get encoding struct info
+                _, fields, _, _, full_pattern, _ = self._generate_encoding_struct(instr, encoding)
+                if full_pattern is None:
+                    continue
+
+                # Build field info: name → (lsb, width)
+                field_info = {}
+                for f in fields:
+                    name = f.get('original_name') or f.get('name', '')
+                    if name and not f.get('is_fixed', False):
+                        field_info[name] = (f['lobit'], f['width'])
+
+                for field, bits in undef_conditions:
+                    if field not in field_info:
+                        continue
+
+                    lsb, width = field_info[field]
+                    undef_val = int(bits, 2)
+
+                    # Build test instruction: base pattern with field set to UNDEF value
+                    test_insn = full_pattern
+                    mask = ((1 << width) - 1) << lsb
+                    test_insn = (test_insn & ~mask) | (undef_val << lsb)
+
+                    func_name = f"{self._sanitize_function_name(encoding.name)}_{field}_eq_{bits}"
+                    if func_name in seen:
+                        continue
+                    seen.add(func_name)
+
+                    test_funcs.append(func_name)
+                    code.append(f"void test_{func_name}() {{")
+                    code.append(f"    // {encoding.name}: {field}=='{bits}' should be UNDEFINED")
+                    code.append(f"    uint32_t insn = 0x{test_insn:08X}u;")
+                    code.append(f"    auto result = decode(insn);")
+                    code.append(f"    assert(!result.has_value());")
+                    code.append(f"}}")
+                    code.append("")
+
+        # main()
+        code.append("int main() {")
+        code.append(f"    std::cout << \"Running undef tests ({len(test_funcs)} cases)...\" << std::endl;")
+        code.append(f"    int failed = 0;")
+        code.append("")
+        for func_name in test_funcs:
+            code.append(f"    try {{ test_{func_name}(); }} catch (...) {{ std::cerr << \"FAIL: {func_name}\" << std::endl; failed++; }}")
+        code.append("")
+        code.append(f"    std::cout << ({len(test_funcs)} - failed) << \" / {len(test_funcs)} passed\" << std::endl;")
+        code.append(f"    return failed;")
+        code.append("}")
+        code.append("")
+
+        output_file = test_dir / "test_undef.cpp"
+        self._write_file(output_file, code)
+        print(f"Generated test_undef.cpp ({len(test_funcs)} undef cases)")
 
     def generate_disasm_tool(self, tools_dir: Path):
         """Generate the veda64-disasm tool."""
@@ -12539,6 +13651,7 @@ def main():
     # Generate test suite
     print(f"\n=== Generating Test Suite ===")
     parser.generate_encoding_tests(test_dir)
+    parser.generate_undef_tests(test_dir)
     parser.generate_reference_test(test_dir)
     parser.generate_hook_test(test_dir)
     parser.generate_hook_examples(test_dir)
@@ -12552,6 +13665,44 @@ def main():
     # Generate Python bindings
     print(f"\n=== Generating Python Bindings ===")
     parser.generate_python_bindings(base_dir)
+
+    # Validate ASL IR parser against all encodings
+    print(f"\n=== Validating ASL IR Parser ===")
+    success, fail, total_stmts = 0, 0, 0
+    fail_examples = []
+    # Also validate IR-based decode_ops matches regex-based
+    ops_match, ops_mismatch = 0, 0
+    for instr in parser.instructions:
+        for enc in instr.encodings:
+            if enc.decode_ps:
+                try:
+                    ir = parser._parse_asl(enc.decode_ps)
+                    success += 1
+                    total_stmts += len(ir)
+                    # Compare decode_ops
+                    regex_ops = parser._parse_asl_decode_ops(enc.decode_ps)
+                    ir_ops = parser._asl_ir_to_decode_ops(ir)
+                    if regex_ops == ir_ops:
+                        ops_match += 1
+                    else:
+                        ops_mismatch += 1
+                        if ops_mismatch <= 5:
+                            diff_keys = set(regex_ops.keys()) ^ set(ir_ops.keys())
+                            diff_vals = {k for k in regex_ops if k in ir_ops and regex_ops[k] != ir_ops[k]}
+                            print(f"  OPS DIFF {enc.name}: keys={diff_keys} vals={diff_vals}")
+                            if diff_vals:
+                                for k in list(diff_vals)[:2]:
+                                    print(f"    {k}: regex={regex_ops[k]} ir={ir_ops[k]}")
+                except Exception as e:
+                    fail += 1
+                    if len(fail_examples) < 10:
+                        fail_examples.append(f"  {enc.name}: {e}")
+    print(f"Decode parse: {success}/{success+fail} ({total_stmts} total stmts)")
+    if fail_examples:
+        print(f"First failures:")
+        for ex in fail_examples:
+            print(ex)
+    print(f"Decode ops: {ops_match} match, {ops_mismatch} mismatch (out of {success} parsed)")
 
 
 if __name__ == '__main__':

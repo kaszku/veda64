@@ -39903,6 +39903,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ldclrp128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.ldclrp128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrp128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrp128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.ldclrp128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -39921,6 +39923,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ldsetp128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.ldsetp128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetp128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetp128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.ldsetp128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -39939,6 +39943,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.swpp128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.swpp128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.swpp128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.swpp128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.swpp128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -39957,6 +39963,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWCLRP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rcwclrp128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.rcwclrp128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwclrp128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwclrp128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.rcwclrp128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -39966,6 +39974,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSWPP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rcwswpp128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.rcwswpp128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwswpp128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwswpp128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.rcwswpp128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -39975,6 +39985,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSETP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rcwsetp128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.rcwsetp128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsetp128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsetp128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.rcwsetp128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -40012,6 +40024,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ldclrpl128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.ldclrpl128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrpl128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrpl128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.ldclrpl128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -40030,6 +40044,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ldsetpl128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.ldsetpl128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetpl128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetpl128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.ldsetpl128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -40048,6 +40064,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.swppl128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.swppl128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.swppl128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.swppl128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.swppl128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -40066,6 +40084,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWCLRPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rcwclrpl128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.rcwclrpl128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwclrpl128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwclrpl128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.rcwclrpl128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -40075,6 +40095,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSWPPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rcwswppl128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.rcwswppl128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwswppl128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwswppl128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.rcwswppl128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -40084,6 +40106,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSETPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rcwsetpl128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.rcwsetpl128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsetpl128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsetpl128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.rcwsetpl128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -40121,6 +40145,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ldclrpa128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.ldclrpa128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrpa128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrpa128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.ldclrpa128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -40139,6 +40165,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ldsetpa128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.ldsetpa128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetpa128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetpa128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.ldsetpa128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -40157,6 +40185,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.swppa128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.swppa128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.swppa128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.swppa128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.swppa128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -40175,6 +40205,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWCLRPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rcwclrpa128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.rcwclrpa128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwclrpa128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwclrpa128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.rcwclrpa128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -40184,6 +40216,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSWPPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rcwswppa128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.rcwswppa128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwswppa128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwswppa128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.rcwswppa128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -40193,6 +40227,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSETPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rcwsetpa128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.rcwsetpa128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsetpa128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsetpa128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.rcwsetpa128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -40230,6 +40266,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDCLRPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ldclrpal128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.ldclrpal128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrpal128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldclrpal128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.ldclrpal128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -40248,6 +40286,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::LDSETPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ldsetpal128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.ldsetpal128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetpal128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldsetpal128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.ldsetpal128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -40266,6 +40306,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::SWPPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.swppal128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.swppal128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.swppal128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.swppal128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.swppal128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -40284,6 +40326,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWCLRPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rcwclrpal128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.rcwclrpal128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwclrpal128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwclrpal128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.rcwclrpal128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -40293,6 +40337,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSWPPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rcwswppal128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.rcwswppal128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwswppal128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwswppal128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.rcwswppal128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -40302,6 +40348,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSETPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rcwsetpal128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.rcwsetpal128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsetpal128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsetpal128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.rcwsetpal128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -41138,6 +41186,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSCLRP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rcwsclrp128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.rcwsclrp128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsclrp128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsclrp128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.rcwsclrp128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -41147,6 +41197,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSSWPP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rcwsswpp128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.rcwsswpp128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsswpp128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsswpp128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.rcwsswpp128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -41156,6 +41208,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSSETP, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rcwssetp128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.rcwssetp128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwssetp128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwssetp128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.rcwssetp128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -41220,6 +41274,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSCLRPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rcwsclrpl128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.rcwsclrpl128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsclrpl128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsclrpl128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.rcwsclrpl128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -41229,6 +41285,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSSWPPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rcwsswppl128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.rcwsswppl128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsswppl128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsswppl128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.rcwsswppl128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -41238,6 +41296,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSSETPL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rcwssetpl128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.rcwssetpl128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwssetpl128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwssetpl128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.rcwssetpl128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -41302,6 +41362,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSCLRPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rcwsclrpa128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.rcwsclrpa128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsclrpa128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsclrpa128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.rcwsclrpa128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -41311,6 +41373,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSSWPPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rcwsswppa128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.rcwsswppa128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsswppa128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsswppa128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.rcwsswppa128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -41320,6 +41384,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSSETPA, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rcwssetpa128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.rcwssetpa128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwssetpa128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwssetpa128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.rcwssetpa128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -41384,6 +41450,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSCLRPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rcwsclrpal128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.rcwsclrpal128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsclrpal128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsclrpal128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.rcwsclrpal128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -41393,6 +41461,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSSWPPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rcwsswppal128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.rcwsswppal128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsswppal128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwsswppal128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.rcwsswppal128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }
@@ -41402,6 +41472,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         Instruction result(Mnemonic::RCWSSETPAL, insn);
                         LdstEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rcwssetpal128memop128.Rt == 31u) return std::nullopt;
+                        if (enc.rcwssetpal128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwssetpal128memop128.Rt, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.rcwssetpal128memop128.Rt2, true));
                         { Operand op(OperandType::MemoryBase, enc.rcwssetpal128memop128.Rn, (int32_t)0); op.is_sp = true; result.operands.push_back(op); }

@@ -50942,6 +50942,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FLOGB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.flogb_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.flogb_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -51164,6 +51165,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FLOGB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.flogb_zpzm.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.flogb_zpzm.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -53554,6 +53556,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SQSHRN, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqshrn_zmz2.tsize == 0u) return std::nullopt;
                         { Operand op(OperandType::SVERegister, enc.sqshrn_zmz2.Zd, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegisterList, enc.sqshrn_zmz2.Zn * 2, true); op.arrangement = Arrangement::None; op.index = 2; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqshrn_zmz2.imm3, true));
@@ -53563,6 +53566,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UQSHRN, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uqshrn_zmz2.tsize == 0u) return std::nullopt;
                         { Operand op(OperandType::SVERegister, enc.uqshrn_zmz2.Zd, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegisterList, enc.uqshrn_zmz2.Zn * 2, true); op.arrangement = Arrangement::None; op.index = 2; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.uqshrn_zmz2.imm3, true));
@@ -53572,6 +53576,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SQSHRUN, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqshrun_zmz2.tsize == 0u) return std::nullopt;
                         { Operand op(OperandType::SVERegister, enc.sqshrun_zmz2.Zd, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegisterList, enc.sqshrun_zmz2.Zn * 2, true); op.arrangement = Arrangement::None; op.index = 2; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.sqshrun_zmz2.imm3, true));
@@ -53733,6 +53738,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::DUPQ, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.dupq_zzi.tsz == 0u) return std::nullopt;
                         { Operand op(OperandType::SVERegister, enc.dupq_zzi.Zd, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.dupq_zzi.Zn, true); op.arrangement = Arrangement::None; op.index = enc.dupq_zzi.i1; op.has_index = true; result.operands.push_back(op); }
                         return result;
@@ -55093,6 +55099,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::PRFB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.prfb_ipbr_s.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Prefetch, (enc.prfb_ipbr_s.prfop < 8 ? enc.prfb_ipbr_s.prfop : (enc.prfb_ipbr_s.prfop & 7u) | 16u), true));
                         { Operand op(OperandType::PredicateRegister, enc.prfb_ipbr_s.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -55118,6 +55125,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::PRFH, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.prfh_ipbr_s.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Prefetch, (enc.prfh_ipbr_s.prfop < 8 ? enc.prfh_ipbr_s.prfop : (enc.prfh_ipbr_s.prfop & 7u) | 16u), true));
                         { Operand op(OperandType::PredicateRegister, enc.prfh_ipbr_s.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -55143,6 +55151,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::PRFW, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.prfw_ipbr_s.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Prefetch, (enc.prfw_ipbr_s.prfop < 8 ? enc.prfw_ipbr_s.prfop : (enc.prfw_ipbr_s.prfop & 7u) | 16u), true));
                         { Operand op(OperandType::PredicateRegister, enc.prfw_ipbr_s.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -55168,6 +55177,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::PRFD, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.prfd_ipbr_s.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         result.operands.push_back(Operand(OperandType::Prefetch, (enc.prfd_ipbr_s.prfop < 8 ? enc.prfd_ipbr_s.prfop : (enc.prfd_ipbr_s.prfop & 7u) | 16u), true));
                         { Operand op(OperandType::PredicateRegister, enc.prfd_ipbr_s.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -55528,6 +55538,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1RQB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1rqb_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld1rqb_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::B; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1rqb_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55539,6 +55550,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1B, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1b_zpbr_u8.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld1b_zpbr_u8.Zt, true); op.arrangement = Arrangement::B; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1b_zpbr_u8.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55560,6 +55572,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1B, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ldnt1b_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ldnt1b_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::B; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ldnt1b_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55571,6 +55584,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1ROB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1rob_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld1rob_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::B; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1rob_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55582,6 +55596,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1B, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1b_zpbr_u16.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld1b_zpbr_u16.Zt, true); op.arrangement = Arrangement::H; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1b_zpbr_u16.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55603,6 +55618,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD2B, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld2b_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld2b_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::B; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld2b_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55614,6 +55630,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1B, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1b_zpbr_u32.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld1b_zpbr_u32.Zt, true); op.arrangement = Arrangement::S; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1b_zpbr_u32.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55635,6 +55652,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD3B, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld3b_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld3b_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::B; op.index = 3; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld3b_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55646,6 +55664,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1B, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1b_zpbr_u64.Rm == 31u) return std::nullopt;
                         bool is_64bit = true;
                         { Operand op(OperandType::SVERegisterList, enc.ld1b_zpbr_u64.Zt, true); op.arrangement = Arrangement::D; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1b_zpbr_u64.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55667,6 +55686,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD4B, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld4b_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld4b_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::B; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld4b_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55678,6 +55698,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1RQH, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1rqh_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld1rqh_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::H; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1rqh_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55689,6 +55710,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1SW, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1sw_zpbr_s64.Rm == 31u) return std::nullopt;
                         bool is_64bit = true;
                         { Operand op(OperandType::SVERegisterList, enc.ld1sw_zpbr_s64.Zt, true); op.arrangement = Arrangement::D; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1sw_zpbr_s64.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55710,6 +55732,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1H, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ldnt1h_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ldnt1h_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::H; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ldnt1h_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55721,6 +55744,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1ROH, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1roh_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld1roh_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::H; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1roh_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55732,6 +55756,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1H, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1h_zpbr_u16.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld1h_zpbr_u16.Zt, true); op.arrangement = Arrangement::H; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1h_zpbr_u16.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55753,6 +55778,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD2Q, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld2q_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld2q_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::Q; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld2q_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55764,6 +55790,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD2H, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld2h_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld2h_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::H; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld2h_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55775,6 +55802,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1H, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1h_zpbr_u32.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld1h_zpbr_u32.Zt, true); op.arrangement = Arrangement::S; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1h_zpbr_u32.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55796,6 +55824,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD3H, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld3h_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld3h_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::H; op.index = 3; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld3h_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55807,6 +55836,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1H, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1h_zpbr_u64.Rm == 31u) return std::nullopt;
                         bool is_64bit = true;
                         { Operand op(OperandType::SVERegisterList, enc.ld1h_zpbr_u64.Zt, true); op.arrangement = Arrangement::D; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1h_zpbr_u64.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55828,6 +55858,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD4H, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld4h_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld4h_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::H; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld4h_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55839,6 +55870,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1RQW, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1rqw_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld1rqw_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::S; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1rqw_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55850,6 +55882,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1SH, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1sh_zpbr_s64.Rm == 31u) return std::nullopt;
                         bool is_64bit = true;
                         { Operand op(OperandType::SVERegisterList, enc.ld1sh_zpbr_s64.Zt, true); op.arrangement = Arrangement::D; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1sh_zpbr_s64.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55871,6 +55904,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1W, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1w_zpbr_u128.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld1w_zpbr_u128.Zt, true); op.arrangement = Arrangement::Q; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1w_zpbr_u128.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55882,6 +55916,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1W, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ldnt1w_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ldnt1w_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::S; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ldnt1w_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55893,6 +55928,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1ROW, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1row_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld1row_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::S; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1row_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55904,6 +55940,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1SH, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1sh_zpbr_s32.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld1sh_zpbr_s32.Zt, true); op.arrangement = Arrangement::S; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1sh_zpbr_s32.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55925,6 +55962,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD3Q, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld3q_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld3q_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::Q; op.index = 3; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld3q_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55936,6 +55974,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD2W, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld2w_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld2w_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::S; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld2w_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55947,6 +55986,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1W, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1w_zpbr_u32.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld1w_zpbr_u32.Zt, true); op.arrangement = Arrangement::S; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1w_zpbr_u32.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55968,6 +56008,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD3W, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld3w_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld3w_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::S; op.index = 3; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld3w_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -55979,6 +56020,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1W, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1w_zpbr_u64.Rm == 31u) return std::nullopt;
                         bool is_64bit = true;
                         { Operand op(OperandType::SVERegisterList, enc.ld1w_zpbr_u64.Zt, true); op.arrangement = Arrangement::D; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1w_zpbr_u64.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -56000,6 +56042,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD4W, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld4w_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld4w_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::S; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld4w_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -56011,6 +56054,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1RQD, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1rqd_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld1rqd_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::D; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1rqd_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -56022,6 +56066,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1SB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1sb_zpbr_s64.Rm == 31u) return std::nullopt;
                         bool is_64bit = true;
                         { Operand op(OperandType::SVERegisterList, enc.ld1sb_zpbr_s64.Zt, true); op.arrangement = Arrangement::D; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1sb_zpbr_s64.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -56043,6 +56088,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1D, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1d_zpbr_u128.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld1d_zpbr_u128.Zt, true); op.arrangement = Arrangement::Q; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1d_zpbr_u128.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -56054,6 +56100,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LDNT1D, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ldnt1d_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ldnt1d_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::D; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ldnt1d_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -56065,6 +56112,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1ROD, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1rod_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld1rod_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::D; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1rod_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -56076,6 +56124,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1SB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1sb_zpbr_s32.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld1sb_zpbr_s32.Zt, true); op.arrangement = Arrangement::S; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1sb_zpbr_s32.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -56097,6 +56146,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD4Q, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld4q_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld4q_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::Q; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld4q_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -56108,6 +56158,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD2D, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld2d_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld2d_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::D; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld2d_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -56119,6 +56170,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1SB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1sb_zpbr_s16.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld1sb_zpbr_s16.Zt, true); op.arrangement = Arrangement::H; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1sb_zpbr_s16.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -56140,6 +56192,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD3D, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld3d_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld3d_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::D; op.index = 3; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld3d_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -56151,6 +56204,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD1D, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld1d_zpbr_u64.Rm == 31u) return std::nullopt;
                         bool is_64bit = true;
                         { Operand op(OperandType::SVERegisterList, enc.ld1d_zpbr_u64.Zt, true); op.arrangement = Arrangement::D; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld1d_zpbr_u64.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -56172,6 +56226,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LD4D, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ld4d_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.ld4d_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::D; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.ld4d_zpbr_contiguous.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
@@ -56718,6 +56773,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1B, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.stnt1b_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.stnt1b_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::B; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.stnt1b_zpbr_contiguous.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -56750,6 +56806,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ST2B, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.st2b_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.st2b_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::B; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.st2b_zpbr_contiguous.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -56772,6 +56829,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ST3B, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.st3b_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.st3b_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::B; op.index = 3; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.st3b_zpbr_contiguous.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -56797,6 +56855,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ST2Q, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.st2q_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.st2q_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::Q; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.st2q_zpbr_contiguous.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -56808,6 +56867,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ST4B, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.st4b_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.st4b_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::B; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.st4b_zpbr_contiguous.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -56844,6 +56904,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1H, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.stnt1h_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.stnt1h_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::H; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.stnt1h_zpbr_contiguous.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -56865,6 +56926,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ST3Q, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.st3q_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.st3q_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::Q; op.index = 3; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.st3q_zpbr_contiguous.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -56876,6 +56938,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ST2H, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.st2h_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.st2h_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::H; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.st2h_zpbr_contiguous.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -56908,6 +56971,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ST3H, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.st3h_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.st3h_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::H; op.index = 3; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.st3h_zpbr_contiguous.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -56933,6 +56997,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ST4Q, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.st4q_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.st4q_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::Q; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.st4q_zpbr_contiguous.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -56944,6 +57009,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ST4H, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.st4h_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.st4h_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::H; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.st4h_zpbr_contiguous.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -56980,6 +57046,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ST1W, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.st1w_zpbr_u128.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.st1w_zpbr_u128.Zt, true); op.arrangement = Arrangement::Q; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.st1w_zpbr_u128.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -56991,6 +57058,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1W, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.stnt1w_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.stnt1w_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::S; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.stnt1w_zpbr_contiguous.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -57012,6 +57080,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ST2W, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.st2w_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.st2w_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::S; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.st2w_zpbr_contiguous.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -57044,6 +57113,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ST3W, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.st3w_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.st3w_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::S; op.index = 3; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.st3w_zpbr_contiguous.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -57069,6 +57139,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ST4W, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.st4w_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.st4w_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::S; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.st4w_zpbr_contiguous.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -57105,6 +57176,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::STNT1D, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.stnt1d_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.stnt1d_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::D; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.stnt1d_zpbr_contiguous.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -57126,6 +57198,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ST2D, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.st2d_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.st2d_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::D; op.index = 2; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.st2d_zpbr_contiguous.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -57147,6 +57220,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ST1D, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.st1d_zpbr_u128.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.st1d_zpbr_u128.Zt, true); op.arrangement = Arrangement::Q; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.st1d_zpbr_u128.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -57158,6 +57232,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ST3D, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.st3d_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.st3d_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::D; op.index = 3; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.st3d_zpbr_contiguous.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -57183,6 +57258,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ST1D, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.st1d_zpbr.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.st1d_zpbr.Zt, true); op.arrangement = Arrangement::D; op.index = 1; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.st1d_zpbr.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -57194,6 +57270,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ST4D, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.st4d_zpbr_contiguous.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         { Operand op(OperandType::SVERegisterList, enc.st4d_zpbr_contiguous.Zt, true); op.arrangement = Arrangement::D; op.index = 4; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.st4d_zpbr_contiguous.Pg, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -57690,6 +57767,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ST1W, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.st1w_zpbr.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _sve_arr = enc.st1w_zpbr.sz ? Arrangement::D : Arrangement::S;
                         { Operand op(OperandType::SVERegisterList, enc.st1w_zpbr.Zt, true); op.arrangement = _sve_arr; op.index = 1; result.operands.push_back(op); }
@@ -59115,6 +59193,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ST1H, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.st1h_zpbi.size == 0u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.st1h_zpbi.size) {
@@ -59143,6 +59222,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ST1B, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.st1b_zpbr.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.st1b_zpbr.size) {
@@ -59161,6 +59241,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ST1H, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.st1h_zpbr.size == 0u) return std::nullopt;
+                        if (enc.st1h_zpbr.Rm == 31u) return std::nullopt;
                         bool is_64bit = false;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.st1h_zpbr.size) {
@@ -59295,6 +59377,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SQINCP, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqincp_zpz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.sqincp_zpz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -59342,6 +59425,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UQINCP, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uqincp_zpz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.uqincp_zpz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -59389,6 +59473,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SQDECP, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqdecp_zpz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.sqdecp_zpz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -59436,6 +59521,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UQDECP, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uqdecp_zpz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.uqdecp_zpz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -59483,6 +59569,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::INCP, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.incp_zpz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.incp_zpz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -59514,6 +59601,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::DECP, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.decp_zpz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.decp_zpz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -59550,6 +59638,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZSN, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fcvtzsn_zmz2.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fcvtzsn_zmz2.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -59572,6 +59661,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FCVTZUN, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fcvtzun_zmz2.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fcvtzun_zmz2.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -59652,6 +59742,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FEXPA, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fexpa_zz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fexpa_zz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -59700,6 +59791,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SUNPKLO, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sunpklo_zz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.sunpklo_zz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -59722,6 +59814,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SUNPKHI, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sunpkhi_zz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.sunpkhi_zz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -59744,6 +59837,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UUNPKLO, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uunpklo_zz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.uunpklo_zz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -59766,6 +59860,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UUNPKHI, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uunpkhi_zz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.uunpkhi_zz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -59818,6 +59913,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTF, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.scvtf_zz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.scvtf_zz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -59840,6 +59936,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTF, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ucvtf_zz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.ucvtf_zz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -59862,6 +59959,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SCVTFLT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.scvtflt_zz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.scvtflt_zz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -59884,6 +59982,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UCVTFLT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ucvtflt_zz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.ucvtflt_zz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -59906,6 +60005,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FRECPE, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.frecpe_zz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.frecpe_zz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -59921,6 +60021,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FRSQRTE, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.frsqrte_zz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.frsqrte_zz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -60002,6 +60103,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FADD, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fadd_zpzs.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fadd_zpzs.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -60019,6 +60121,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FSUB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fsub_zpzs.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fsub_zpzs.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -60036,6 +60139,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FMUL, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fmul_zpzs.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fmul_zpzs.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -60053,6 +60157,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FSUBR, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fsubr_zpzs.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fsubr_zpzs.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -60070,6 +60175,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXNM, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fmaxnm_zpzs.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fmaxnm_zpzs.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -60087,6 +60193,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FMINNM, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fminnm_zpzs.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fminnm_zpzs.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -60104,6 +60211,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FMAX, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fmax_zpzs.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fmax_zpzs.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -60121,6 +60229,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FMIN, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fmin_zpzs.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fmin_zpzs.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -60143,6 +60252,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FCMGE, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fcmge_ppz0.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fcmge_ppz0.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -60160,6 +60270,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FCMGT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fcmgt_ppz0.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fcmgt_ppz0.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -60177,6 +60288,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FCMLT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fcmlt_ppz0.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fcmlt_ppz0.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -60194,6 +60306,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FCMLE, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fcmle_ppz0.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fcmle_ppz0.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -60211,6 +60324,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FCMEQ, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fcmeq_ppz0.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fcmeq_ppz0.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -60228,6 +60342,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FCMNE, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fcmne_ppz0.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fcmne_ppz0.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -60266,6 +60381,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SADDV, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.saddv_rpz.size == 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.saddv_rpz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -60302,6 +60418,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SXTB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sxtb_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.sxtb_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -60371,6 +60488,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UXTB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uxtb_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.uxtb_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -60476,6 +60594,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SXTW, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sxtw_zpzz.size != 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.sxtw_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -60515,6 +60634,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UXTW, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uxtw_zpzz.size != 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.uxtw_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -60859,6 +60979,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FABS, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fabs_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fabs_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -60935,6 +61056,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FNEG, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fneg_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fneg_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -61067,6 +61189,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SXTB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sxtb_zpzm.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.sxtb_zpzm.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -61100,6 +61223,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UXTB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uxtb_zpzm.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.uxtb_zpzm.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -61233,6 +61357,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SXTW, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sxtw_zpzm.size != 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.sxtw_zpzm.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -61283,6 +61408,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UXTW, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uxtw_zpzm.size != 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.uxtw_zpzm.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -61415,6 +61541,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ASR, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.asr_zpzw.size == 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.asr_zpzw.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -61481,6 +61608,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LSR, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.lsr_zpzw.size == 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.lsr_zpzw.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -61580,6 +61708,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LSL, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.lsl_zpzw.size == 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.lsl_zpzw.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -61636,6 +61765,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FABS, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fabs_zpzm.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fabs_zpzm.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -61675,6 +61805,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FNEG, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fneg_zpzm.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fneg_zpzm.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -61813,6 +61944,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::REVB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.revb_zzm.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.revb_zzm.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -61829,6 +61961,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::REVB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.revb_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.revb_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -61877,6 +62010,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::REVW, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.revw_zzm.size != 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.revw_zzm.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -61893,6 +62027,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::REVW, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.revw_zzz.size != 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.revw_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -62189,6 +62324,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FDUP, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fdup_zi.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fdup_zi.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -62204,6 +62340,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::URECPE, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.urecpe_zpzm.size != 2u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.urecpe_zpzm.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -62220,6 +62357,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::URSQRTE, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ursqrte_zpzm.size != 2u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.ursqrte_zpzm.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -62253,6 +62391,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::URECPE, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.urecpe_zpzz.size != 2u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.urecpe_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -62286,6 +62425,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::URSQRTE, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ursqrte_zpzz.size != 2u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.ursqrte_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -62302,6 +62442,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SADALP, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sadalp_zpz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.sadalp_zpz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -62325,6 +62466,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UADALP, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uadalp_zpz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.uadalp_zpz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -62956,6 +63098,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FADDP, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.faddp_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.faddp_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -62973,6 +63116,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FADDQV, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.faddqv_zpz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.faddqv_zpz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -62996,6 +63140,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXNMP, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fmaxnmp_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fmaxnmp_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63013,6 +63158,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXNMQV, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fmaxnmqv_zpz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fmaxnmqv_zpz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63036,6 +63182,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FMINNMP, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fminnmp_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fminnmp_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63053,6 +63200,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FMINNMQV, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fminnmqv_zpz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fminnmqv_zpz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63076,6 +63224,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXP, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fmaxp_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fmaxp_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63093,6 +63242,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXQV, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fmaxqv_zpz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fmaxqv_zpz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63116,6 +63266,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FMINP, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fminp_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fminp_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63133,6 +63284,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FMINQV, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fminqv_zpz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fminqv_zpz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63156,6 +63308,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTN, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.frintn_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.frintn_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63172,6 +63325,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTP, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.frintp_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.frintp_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63188,6 +63342,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTM, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.frintm_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.frintm_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63204,6 +63359,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTZ, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.frintz_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.frintz_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63220,6 +63376,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTA, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.frinta_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.frinta_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63236,6 +63393,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTX, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.frintx_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.frintx_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63252,6 +63410,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTI, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.frinti_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.frinti_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63268,6 +63427,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FRECPX, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.frecpx_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.frecpx_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63284,6 +63444,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FSQRT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fsqrt_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fsqrt_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63300,6 +63461,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FADDV, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.faddv_vpz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.faddv_vpz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63334,6 +63496,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTN, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.frintn_zpzm.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.frintn_zpzm.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63368,6 +63531,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTP, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.frintp_zpzm.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.frintp_zpzm.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63402,6 +63566,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTM, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.frintm_zpzm.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.frintm_zpzm.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63418,6 +63583,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FSUBR, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fsubr_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fsubr_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63435,6 +63601,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTZ, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.frintz_zpzm.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.frintz_zpzm.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63451,6 +63618,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXNMV, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fmaxnmv_vpz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fmaxnmv_vpz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63485,6 +63653,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTA, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.frinta_zpzm.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.frinta_zpzm.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63501,6 +63670,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FMINNMV, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fminnmv_vpz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fminnmv_vpz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63535,6 +63705,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FMAXV, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fmaxv_vpz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fmaxv_vpz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63569,6 +63740,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTX, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.frintx_zpzm.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.frintx_zpzm.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63585,6 +63757,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FMINV, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fminv_vpz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fminv_vpz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63619,6 +63792,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FRINTI, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.frinti_zpzm.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.frinti_zpzm.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63635,6 +63809,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FABD, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fabd_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fabd_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63670,6 +63845,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FMULX, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fmulx_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fmulx_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63687,6 +63863,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FDIVR, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fdivr_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fdivr_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63704,6 +63881,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FRECPX, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.frecpx_zpzm.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.frecpx_zpzm.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63720,6 +63898,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FDIV, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fdiv_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fdiv_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63737,6 +63916,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FSQRT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fsqrt_zpzm.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fsqrt_zpzm.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63753,6 +63933,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FAMAX, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.famax_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.famax_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63770,6 +63951,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FAMIN, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.famin_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.famin_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -63787,6 +63969,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FADDA, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fadda_vpz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fadda_vpz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -64013,6 +64196,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FCADD, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fcadd_zpzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fcadd_zpzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -64036,6 +64220,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FTMAD, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ftmad_zzzi.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.ftmad_zzzi.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -64180,6 +64365,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FCPY, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fcpy_zpi.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fcpy_zpi.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -64266,13 +64452,14 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
+                        result.operands.clear();  // WHILE pp_rr special case
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.whilegt_pp_rr.size) {
-                            case 0: _sve_arr = Arrangement::B; break;
-                            case 1: _sve_arr = Arrangement::H; break;
-                            case 2: _sve_arr = Arrangement::S; break;
-                            case 3: _sve_arr = Arrangement::D; break;
+                            case 0: _sve_arr = Arrangement::B; break; case 1: _sve_arr = Arrangement::H; break;
+                            case 2: _sve_arr = Arrangement::S; break; case 3: _sve_arr = Arrangement::D; break;
                         }
+                        uint32_t _pd1 = enc.whilegt_pp_rr.Pd * 2;  // 3-bit field encodes pair index
+                        { Operand op(OperandType::PredicateRegisterList, _pd1, true); op.arrangement = _sve_arr; op.index = 2; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Register, enc.whilegt_pp_rr.Rn, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.whilegt_pp_rr.Rm, true));
                         return result;
@@ -64367,13 +64554,14 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
+                        result.operands.clear();  // WHILE pp_rr special case
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.whilels_pp_rr.size) {
-                            case 0: _sve_arr = Arrangement::B; break;
-                            case 1: _sve_arr = Arrangement::H; break;
-                            case 2: _sve_arr = Arrangement::S; break;
-                            case 3: _sve_arr = Arrangement::D; break;
+                            case 0: _sve_arr = Arrangement::B; break; case 1: _sve_arr = Arrangement::H; break;
+                            case 2: _sve_arr = Arrangement::S; break; case 3: _sve_arr = Arrangement::D; break;
                         }
+                        uint32_t _pd1 = enc.whilels_pp_rr.Pd * 2;  // 3-bit field encodes pair index
+                        { Operand op(OperandType::PredicateRegisterList, _pd1, true); op.arrangement = _sve_arr; op.index = 2; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Register, enc.whilels_pp_rr.Rn, true));
                         result.operands.push_back(Operand(OperandType::Register, enc.whilels_pp_rr.Rm, true));
                         return result;
@@ -64721,6 +64909,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ASR, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.asr_zzw.size == 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.asr_zzw.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -64737,6 +64926,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LSR, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.lsr_zzw.size == 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.lsr_zzw.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -64753,6 +64943,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::LSL, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.lsl_zzw.size == 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.lsl_zzw.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -64826,6 +65017,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FTSSEL, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ftssel_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.ftssel_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -64844,6 +65036,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::DUP, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.dup_zzi.tsz == 0u) return std::nullopt;
                         { Operand op(OperandType::SVERegister, enc.dup_zzi.Zd, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
                         { Operand op(OperandType::SVERegister, enc.dup_zzi.Zn, true); op.arrangement = Arrangement::None; result.operands.push_back(op); }
                         result.operands.push_back(Operand(OperandType::Immediate, enc.dup_zzi.imm2, true));
@@ -65013,6 +65206,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SQDMLALBT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqdmlalbt_zzzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.sqdmlalbt_zzzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65036,6 +65230,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SQDMLSLBT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqdmlslbt_zzzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.sqdmlslbt_zzzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65059,6 +65254,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SMLALB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.smlalb_zzzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.smlalb_zzzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65082,6 +65278,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SMLALT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.smlalt_zzzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.smlalt_zzzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65105,6 +65302,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UMLALB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.umlalb_zzzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.umlalb_zzzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65128,6 +65326,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UMLALT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.umlalt_zzzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.umlalt_zzzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65151,6 +65350,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SMLSLB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.smlslb_zzzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.smlslb_zzzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65174,6 +65374,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SMLSLT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.smlslt_zzzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.smlslt_zzzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65197,6 +65398,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UMLSLB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.umlslb_zzzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.umlslb_zzzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65220,6 +65422,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UMLSLT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.umlslt_zzzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.umlslt_zzzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65243,6 +65446,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SQDMLALB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqdmlalb_zzzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.sqdmlalb_zzzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65266,6 +65470,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SQDMLALT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqdmlalt_zzzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.sqdmlalt_zzzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65289,6 +65494,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SQDMLSLB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqdmlslb_zzzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.sqdmlslb_zzzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65312,6 +65518,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SQDMLSLT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqdmlslt_zzzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.sqdmlslt_zzzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65399,6 +65606,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SABAL, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sabal_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.sabal_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65422,6 +65630,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UABAL, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uabal_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.uabal_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65525,6 +65734,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SADDLB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.saddlb_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.saddlb_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65548,6 +65758,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SADDLT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.saddlt_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.saddlt_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65571,6 +65782,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UADDLB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uaddlb_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.uaddlb_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65594,6 +65806,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UADDLT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uaddlt_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.uaddlt_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65617,6 +65830,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SSUBLB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ssublb_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.ssublb_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65640,6 +65854,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SSUBLT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ssublt_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.ssublt_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65663,6 +65878,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::USUBLB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.usublb_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.usublb_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65686,6 +65902,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::USUBLT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.usublt_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.usublt_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65709,6 +65926,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SABDLB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sabdlb_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.sabdlb_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65732,6 +65950,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SABDLT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sabdlt_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.sabdlt_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65755,6 +65974,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UABDLB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uabdlb_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.uabdlb_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65778,6 +65998,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UABDLT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uabdlt_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.uabdlt_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65801,6 +66022,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SADDWB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.saddwb_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.saddwb_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65824,6 +66046,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SADDWT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.saddwt_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.saddwt_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65847,6 +66070,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UADDWB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uaddwb_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.uaddwb_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65870,6 +66094,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UADDWT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uaddwt_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.uaddwt_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65893,6 +66118,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SSUBWB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ssubwb_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.ssubwb_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65916,6 +66142,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SSUBWT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ssubwt_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.ssubwt_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65939,6 +66166,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::USUBWB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.usubwb_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.usubwb_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65962,6 +66190,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::USUBWT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.usubwt_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.usubwt_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -65985,6 +66214,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SQDMULLB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqdmullb_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.sqdmullb_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -66008,6 +66238,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SQDMULLT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sqdmullt_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.sqdmullt_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -66079,6 +66310,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SMULLB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.smullb_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.smullb_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -66102,6 +66334,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SMULLT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.smullt_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.smullt_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -66125,6 +66358,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UMULLB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.umullb_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.umullb_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -66148,6 +66382,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UMULLT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.umullt_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.umullt_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -66171,6 +66406,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SADDLBT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.saddlbt_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.saddlbt_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -66194,6 +66430,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SSUBLBT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ssublbt_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.ssublbt_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -66217,6 +66454,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SSUBLTB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ssubltb_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.ssubltb_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -66320,6 +66558,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SABALB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sabalb_zzzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.sabalb_zzzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -66343,6 +66582,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SABALT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.sabalt_zzzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.sabalt_zzzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -66366,6 +66606,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UABALB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uabalb_zzzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.uabalb_zzzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -66389,6 +66630,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::UABALT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.uabalt_zzzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.uabalt_zzzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -66558,6 +66800,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ADDHNB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.addhnb_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.addhnb_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -66581,6 +66824,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::ADDHNT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.addhnt_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.addhnt_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -66604,6 +66848,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::RADDHNB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.raddhnb_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.raddhnb_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -66627,6 +66872,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::RADDHNT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.raddhnt_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.raddhnt_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -66650,6 +66896,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SUBHNB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.subhnb_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.subhnb_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -66673,6 +66920,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::SUBHNT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.subhnt_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.subhnt_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -66696,6 +66944,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::RSUBHNB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rsubhnb_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.rsubhnb_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -66719,6 +66968,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::RSUBHNT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.rsubhnt_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.rsubhnt_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -66742,6 +66992,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::HISTSEG, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.histseg_zzz.size != 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.histseg_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -66853,6 +67104,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FTSMUL, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.ftsmul_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.ftsmul_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -66869,6 +67121,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FRECPS, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.frecps_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.frecps_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -66885,6 +67138,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FRSQRTS, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.frsqrts_zzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.frsqrts_zzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -67160,6 +67414,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::CMPEQ, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.cmpeq_ppzw.size == 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.cmpeq_ppzw.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -67177,6 +67432,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::CMPNE, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.cmpne_ppzw.size == 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.cmpne_ppzw.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -67194,6 +67450,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::CMPGE, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.cmpge_ppzw.size == 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.cmpge_ppzw.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -67211,6 +67468,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::CMPGT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.cmpgt_ppzw.size == 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.cmpgt_ppzw.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -67228,6 +67486,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::CMPLT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.cmplt_ppzw.size == 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.cmplt_ppzw.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -67245,6 +67504,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::CMPLE, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.cmple_ppzw.size == 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.cmple_ppzw.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -67332,6 +67592,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::CMPHS, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.cmphs_ppzw.size == 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.cmphs_ppzw.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -67349,6 +67610,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::CMPHI, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.cmphi_ppzw.size == 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.cmphi_ppzw.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -67366,6 +67628,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::CMPLO, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.cmplo_ppzw.size == 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.cmplo_ppzw.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -67383,6 +67646,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::CMPLS, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.cmpls_ppzw.size == 3u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.cmpls_ppzw.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -67555,6 +67819,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FCMGE, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fcmge_ppzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fcmge_ppzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -67573,6 +67838,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FCMGT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fcmgt_ppzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fcmgt_ppzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -67590,6 +67856,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FCMEQ, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fcmeq_ppzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fcmeq_ppzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -67607,6 +67874,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FCMNE, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fcmne_ppzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fcmne_ppzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -67624,6 +67892,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FCMUO, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fcmuo_ppzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fcmuo_ppzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -67642,6 +67911,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FACGE, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.facge_ppzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.facge_ppzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -67660,6 +67930,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FACGT, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.facgt_ppzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.facgt_ppzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -67804,6 +68075,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FNMLA, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fnmla_zpzzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fnmla_zpzzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -67822,6 +68094,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FNMLS, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fnmls_zpzzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fnmls_zpzzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -67839,6 +68112,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FMAD, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fmad_zpzzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fmad_zpzzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -67856,6 +68130,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FMSB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fmsb_zpzzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fmsb_zpzzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -67873,6 +68148,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FNMAD, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fnmad_zpzzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fnmad_zpzzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -67890,6 +68166,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FNMSB, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fnmsb_zpzzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fnmsb_zpzzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
@@ -68114,6 +68391,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         Instruction result(Mnemonic::FCMLA, insn);
                         SveEncoding enc = {};
                         enc.raw = insn;
+                        if (enc.fcmla_zpzzz.size == 0u) return std::nullopt;
                         Arrangement _sve_arr = Arrangement::None;
                         switch (enc.fcmla_zpzzz.size) {
                             case 0: _sve_arr = Arrangement::B; break;
