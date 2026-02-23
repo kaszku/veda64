@@ -598,65 +598,29 @@ def compare_section(data, section, image_base, cs_engine, max_diffs,
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 
-def main():
-    parser = argparse.ArgumentParser(
-        description='Disassemble ARM64 PE executables using veda64_py binding')
-    parser.add_argument('pe_file', help='Path to PE executable')
-    parser.add_argument('--compare', action='store_true',
-                        help='Compare veda64 output against Capstone and report differences')
-    parser.add_argument('--max-diffs', type=int, default=50,
-                        help='Max differences to print per section (0=unlimited, default=50)')
-    parser.add_argument('--show-capstone-miss', action='store_true', default=False,
-                        help='Show CAPSTONE_MISS entries (instructions capstone cannot decode). '
-                             'Hidden by default since these are typically new ARMv9+ instructions.')
-    parser.add_argument('--no-ignore-relabs', action='store_true', default=False,
-                        help='Do NOT treat relative vs absolute address differences as matches. '
-                             'By default, ".+0xNN" vs "0xADDR" is treated as a match since '
-                             'veda64 does not have the instruction address.')
-    args = parser.parse_args()
+PE_EXTENSIONS = {'.exe', '.dll', '.sys', '.efi', '.drv', '.ocx', '.scr', '.cpl', '.ax', '.acm', '.tsp'}
 
-    if _veda64_py is None:
-        print("Error: veda64_py binding not found.", file=sys.stderr)
-        print("Build the project first (cmake --build __build_arm64 --config Release).", file=sys.stderr)
-        return 1
 
-    pe_path = Path(args.pe_file)
-    if not pe_path.is_file():
-        print(f"Error: File not found: {pe_path}", file=sys.stderr)
-        return 1
-
-    print(f"Using veda64_py binding ({Path(_veda64_py.__file__).name})")
-
-    load_cache()
-
+def process_pe_file(pe_path, args, cs=None):
+    """Process a single PE file. Returns totals dict or None on error."""
     data = pe_path.read_bytes()
 
     try:
         sections, image_base = parse_pe(data)
     except ValueError as e:
-        print(f"Error: {e}", file=sys.stderr)
-        return 1
+        print(f"  Skipping {pe_path.name}: {e}")
+        return None
 
-    print(f"File: {pe_path.name}")
+    print(f"\nFile: {pe_path.name}")
     print(f"Image Base: 0x{image_base:016X}")
     print(f"Sections: {len(sections)}")
 
     exec_sections = [s for s in sections if s['characteristics'] & IMAGE_SCN_MEM_EXECUTE]
     if not exec_sections:
-        print("Error: No executable sections found.", file=sys.stderr)
-        return 1
+        print("  No executable sections found, skipping.")
+        return None
 
-    if args.compare:
-        try:
-            import capstone
-        except ImportError:
-            print("Error: capstone package required for --compare mode.", file=sys.stderr)
-            print("Install with: pip install capstone", file=sys.stderr)
-            return 1
-
-        cs = capstone.Cs(capstone.CS_ARCH_AARCH64, capstone.CS_MODE_ARM)
-        cs.skipdata = True
-
+    if args.compare and cs is not None:
         totals = {'insns': 0, 'match': 0, 'mismatch': 0, 'veda_only': 0, 'cs_only': 0}
 
         for section in sections:
@@ -681,10 +645,93 @@ def main():
                   f"{veda_only} veda64-only, {cs_only} capstone-only "
                   f"({match}/{insns} = {pct:.1f}% agreement)")
 
-        # Overall summary
-        t = totals
+        return totals
+    else:
+        for section in sections:
+            if section['characteristics'] & IMAGE_SCN_MEM_EXECUTE:
+                disassemble_section(data, section, image_base)
+            else:
+                print(f"\n=== {section['name']} (not executable, skipped) ===")
+        return None
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description='Disassemble ARM64 PE executables using veda64_py binding')
+    parser.add_argument('pe_path', help='Path to PE file or directory of PE files')
+    parser.add_argument('--compare', action='store_true',
+                        help='Compare veda64 output against Capstone and report differences')
+    parser.add_argument('--max-diffs', type=int, default=50,
+                        help='Max differences to print per section (0=unlimited, default=50)')
+    parser.add_argument('--show-capstone-miss', action='store_true', default=False,
+                        help='Show CAPSTONE_MISS entries (instructions capstone cannot decode). '
+                             'Hidden by default since these are typically new ARMv9+ instructions.')
+    parser.add_argument('--no-ignore-relabs', action='store_true', default=False,
+                        help='Do NOT treat relative vs absolute address differences as matches. '
+                             'By default, ".+0xNN" vs "0xADDR" is treated as a match since '
+                             'veda64 does not have the instruction address.')
+    args = parser.parse_args()
+
+    if _veda64_py is None:
+        print("Error: veda64_py binding not found.", file=sys.stderr)
+        print("Build the project first (cmake --build __build_arm64 --config Release).", file=sys.stderr)
+        return 1
+
+    input_path = Path(args.pe_path)
+
+    # Collect PE files
+    if input_path.is_dir():
+        pe_files = sorted(
+            f for f in input_path.iterdir()
+            if f.is_file() and f.suffix.lower() in PE_EXTENSIONS
+        )
+        if not pe_files:
+            print(f"Error: No PE files found in {input_path}", file=sys.stderr)
+            print(f"Looked for: {', '.join(sorted(PE_EXTENSIONS))}", file=sys.stderr)
+            return 1
+        print(f"Found {len(pe_files)} PE file(s) in {input_path}")
+    elif input_path.is_file():
+        pe_files = [input_path]
+    else:
+        print(f"Error: Path not found: {input_path}", file=sys.stderr)
+        return 1
+
+    print(f"Using veda64_py binding ({Path(_veda64_py.__file__).name})")
+
+    load_cache()
+
+    cs = None
+    if args.compare:
+        try:
+            import capstone
+        except ImportError:
+            print("Error: capstone package required for --compare mode.", file=sys.stderr)
+            print("Install with: pip install capstone", file=sys.stderr)
+            return 1
+        cs = capstone.Cs(capstone.CS_ARCH_AARCH64, capstone.CS_MODE_ARM)
+        cs.skipdata = True
+
+    grand_totals = {'insns': 0, 'match': 0, 'mismatch': 0, 'veda_only': 0, 'cs_only': 0}
+    files_processed = 0
+    files_skipped = 0
+
+    for pe_path in pe_files:
+        totals = process_pe_file(pe_path, args, cs)
+        if totals is not None:
+            files_processed += 1
+            for k in grand_totals:
+                grand_totals[k] += totals[k]
+        else:
+            if args.compare:
+                files_skipped += 1
+
+    if args.compare and (files_processed > 0):
+        t = grand_totals
         total_diffs = t['mismatch'] + t['veda_only'] + t['cs_only']
         print(f"\n{'='*60}")
+        if len(pe_files) > 1:
+            print(f"Grand total: {files_processed} files processed"
+                  f"{f', {files_skipped} skipped' if files_skipped else ''}")
         print(f"Overall: {t['insns']} instructions, {t['match']} match, "
               f"{total_diffs} differences")
         print(f"  Mismatches:    {t['mismatch']}")
@@ -693,12 +740,6 @@ def main():
         if t['insns'] > 0:
             print(f"  Agreement:     {t['match']}/{t['insns']} "
                   f"({t['match']/t['insns']*100:.2f}%)")
-    else:
-        for section in sections:
-            if section['characteristics'] & IMAGE_SCN_MEM_EXECUTE:
-                disassemble_section(data, section, image_base)
-            else:
-                print(f"\n=== {section['name']} (not executable, skipped) ===")
 
     save_cache()
     return 0

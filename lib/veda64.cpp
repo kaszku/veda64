@@ -2280,17 +2280,18 @@ std::string Operand::to_string() const {
                 r += "]";
                 return r;
             }
-            // extend!=0: ZA accumulator range za.T[wN, start:end]
-            if (has_index && extend) {
+            // extend==1 or 3: ZA accumulator range za.T[wN, start:end{, vgxN}]
+            if (has_index && (extend == 1 || extend == 3)) {
                 std::string r = "za";
                 if (arrangement != Arrangement::None) { r += "."; r += Operand::arrangement_to_string(arrangement); }
                 r += "[w" + std::to_string(index) + ", ";
                 if (amount >= 10) { std::ostringstream oss; oss << "0x" << std::hex << amount; r += oss.str(); }
                 else r += std::to_string(amount);
                 r += ":";
-                uint32_t range_end = (uint32_t)(int32_t)offset;
+                uint32_t range_end = (uint32_t)(offset & 0xFFFF);
                 if (range_end >= 10) { std::ostringstream oss; oss << "0x" << std::hex << range_end; r += oss.str(); }
                 else r += std::to_string(range_end);
+                if (extend == 3) { int32_t vgx = (offset >> 16) & 0xFFFF; if (vgx > 1) r += ", vgx" + std::to_string(vgx); }
                 r += "]";
                 return r;
             }
@@ -2305,7 +2306,11 @@ std::string Operand::to_string() const {
                 r += "]}";
                 return r;
             }
-            return "za" + std::to_string(value);
+            {
+                std::string r = "za" + std::to_string(value);
+                if (arrangement != Arrangement::None) { r += "."; r += Operand::arrangement_to_string(arrangement); }
+                return r;
+            }
 
         case OperandType::PredicateNRegister: {
             std::string r = "pn";
@@ -3525,8 +3530,10 @@ std::string Operand::to_string() const {
         case OperandType::SVERegisterList:
             {
                 // value = first register, index = count, arrangement = element type
-                // Use range notation { Zn.T - Zn+k.T } for count>=3 when non-wrapping
-                if (index >= 3 && (value + index - 1) <= 31) {
+                // offset = stride (0 or 1 = consecutive, >1 = strided)
+                uint32_t stride = (offset > 1) ? (uint32_t)offset : 1;
+                // Use range notation { Zn.T - Zn+k.T } for count>=3 when consecutive and non-wrapping
+                if (stride == 1 && index >= 3 && (value + index - 1) <= 31) {
                     std::string result = "{ z" + std::to_string(value);
                     if (arrangement != Arrangement::None) { result += "."; result += Operand::arrangement_to_string(arrangement); }
                     result += " - z" + std::to_string(value + index - 1);
@@ -3537,7 +3544,7 @@ std::string Operand::to_string() const {
                 std::string result = "{ ";
                 for (uint32_t i = 0; i < index; ++i) {
                     if (i > 0) result += ", ";
-                    uint32_t reg = (value + i) & 31;
+                    uint32_t reg = (value + i * stride) & 31;
                     result += "z" + std::to_string(reg);
                     if (arrangement != Arrangement::None) {
                         result += ".";

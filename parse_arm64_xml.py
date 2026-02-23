@@ -2450,43 +2450,49 @@ class ARM64XMLParser:
         code.append("            return r;")
         code.append("        }")
         code.append("        ")
-        code.append("        case OperandType::SMETileRegister:")
-        code.append("            // extend==2: VGx mode: za.T[wN, offs{, vgxN}]")
-        code.append("            if (has_index && extend == 2) {")
-        code.append("                std::string r = \"za\";")
-        code.append("                if (arrangement != Arrangement::None) { r += \".\"; r += Operand::arrangement_to_string(arrangement); }")
-        code.append("                r += \"[w\" + std::to_string(index) + \", \" + std::to_string(amount);")
-        code.append("                int32_t vgx = (int32_t)offset;")
-        code.append("                if (vgx > 1) r += \", vgx\" + std::to_string(vgx);")
-        code.append("                r += \"]\";")
-        code.append("                return r;")
-        code.append("            }")
-        code.append("            // extend!=0: ZA accumulator range za.T[wN, start:end]")
-        code.append("            if (has_index && extend) {")
-        code.append("                std::string r = \"za\";")
-        code.append("                if (arrangement != Arrangement::None) { r += \".\"; r += Operand::arrangement_to_string(arrangement); }")
-        code.append("                r += \"[w\" + std::to_string(index) + \", \";")
-        code.append("                if (amount >= 10) { std::ostringstream oss; oss << \"0x\" << std::hex << amount; r += oss.str(); }")
-        code.append("                else r += std::to_string(amount);")
-        code.append("                r += \":\";")
-        code.append("                uint32_t range_end = (uint32_t)(int32_t)offset;")
-        code.append("                if (range_end >= 10) { std::ostringstream oss; oss << \"0x\" << std::hex << range_end; r += oss.str(); }")
-        code.append("                else r += std::to_string(range_end);")
-        code.append("                r += \"]\";")
-        code.append("                return r;")
-        code.append("            }")
-        code.append("            // has_index=true: ZA tile slice {zaXv/h.T[wN, offs]} (no spaces inside braces)")
-        code.append("            if (has_index) {")
-        code.append("                std::string r = \"{za\" + std::to_string(value);")
-        code.append("                r += is_sp ? \"v\" : \"h\";")
-        code.append("                if (arrangement != Arrangement::None) { r += \".\"; r += Operand::arrangement_to_string(arrangement); }")
-        code.append("                r += \"[w\" + std::to_string(index) + \", \";")
-        code.append("                if (amount >= 10) { std::ostringstream oss; oss << \"0x\" << std::hex << amount; r += oss.str(); }")
-        code.append("                else r += std::to_string(amount);")
-        code.append("                r += \"]}\";")
-        code.append("                return r;")
-        code.append("            }")
-        code.append("            return \"za\" + std::to_string(value);")
+        code.extend("""\
+        case OperandType::SMETileRegister:
+            // extend==2: VGx mode: za.T[wN, offs{, vgxN}]
+            if (has_index && extend == 2) {
+                std::string r = "za";
+                if (arrangement != Arrangement::None) { r += "."; r += Operand::arrangement_to_string(arrangement); }
+                r += "[w" + std::to_string(index) + ", " + std::to_string(amount);
+                int32_t vgx = (int32_t)offset;
+                if (vgx > 1) r += ", vgx" + std::to_string(vgx);
+                r += "]";
+                return r;
+            }
+            // extend==1 or 3: ZA accumulator range za.T[wN, start:end{, vgxN}]
+            if (has_index && (extend == 1 || extend == 3)) {
+                std::string r = "za";
+                if (arrangement != Arrangement::None) { r += "."; r += Operand::arrangement_to_string(arrangement); }
+                r += "[w" + std::to_string(index) + ", ";
+                if (amount >= 10) { std::ostringstream oss; oss << "0x" << std::hex << amount; r += oss.str(); }
+                else r += std::to_string(amount);
+                r += ":";
+                uint32_t range_end = (uint32_t)(offset & 0xFFFF);
+                if (range_end >= 10) { std::ostringstream oss; oss << "0x" << std::hex << range_end; r += oss.str(); }
+                else r += std::to_string(range_end);
+                if (extend == 3) { int32_t vgx = (offset >> 16) & 0xFFFF; if (vgx > 1) r += ", vgx" + std::to_string(vgx); }
+                r += "]";
+                return r;
+            }
+            // has_index=true: ZA tile slice {zaXv/h.T[wN, offs]} (no spaces inside braces)
+            if (has_index) {
+                std::string r = "{za" + std::to_string(value);
+                r += is_sp ? "v" : "h";
+                if (arrangement != Arrangement::None) { r += "."; r += Operand::arrangement_to_string(arrangement); }
+                r += "[w" + std::to_string(index) + ", ";
+                if (amount >= 10) { std::ostringstream oss; oss << "0x" << std::hex << amount; r += oss.str(); }
+                else r += std::to_string(amount);
+                r += "]}";
+                return r;
+            }
+            {
+                std::string r = "za" + std::to_string(value);
+                if (arrangement != Arrangement::None) { r += "."; r += Operand::arrangement_to_string(arrangement); }
+                return r;
+            }""".split('\n'))
         code.append("        ")
         code.append("        case OperandType::PredicateNRegister: {")
         code.append("            std::string r = \"pn\";")
@@ -2814,33 +2820,36 @@ class ARM64XMLParser:
         code.append("                return result;")
         code.append("            }")
         code.append("")
-        code.append("        case OperandType::SVERegisterList:")
-        code.append("            {")
-        code.append("                // value = first register, index = count, arrangement = element type")
-        code.append("                // Use range notation { Zn.T - Zn+k.T } for count>=3 when non-wrapping")
-        code.append("                if (index >= 3 && (value + index - 1) <= 31) {")
-        code.append("                    std::string result = \"{ z\" + std::to_string(value);")
-        code.append("                    if (arrangement != Arrangement::None) { result += \".\"; result += Operand::arrangement_to_string(arrangement); }")
-        code.append("                    result += \" - z\" + std::to_string(value + index - 1);")
-        code.append("                    if (arrangement != Arrangement::None) { result += \".\"; result += Operand::arrangement_to_string(arrangement); }")
-        code.append("                    result += \" }\";")
-        code.append("                    return result;")
-        code.append("                }")
-        code.append("                std::string result = \"{ \";")
-        code.append("                for (uint32_t i = 0; i < index; ++i) {")
-        code.append("                    if (i > 0) result += \", \";")
-        code.append("                    uint32_t reg = (value + i) & 31;")
-        code.append("                    result += \"z\" + std::to_string(reg);")
-        code.append("                    if (arrangement != Arrangement::None) {")
-        code.append("                        result += \".\";")
-        code.append("                        result += Operand::arrangement_to_string(arrangement);")
-        code.append("                    }")
-        code.append("                }")
-        code.append("                result += \" }\";")
-        code.append("                if (has_index) {")
-        code.append("                    result += \"[\" + std::to_string(amount) + \"]\";")
-        code.append("                }")
-        code.append("                return result;")
+        code.extend("""\
+        case OperandType::SVERegisterList:
+            {
+                // value = first register, index = count, arrangement = element type
+                // offset = stride (0 or 1 = consecutive, >1 = strided)
+                uint32_t stride = (offset > 1) ? (uint32_t)offset : 1;
+                // Use range notation { Zn.T - Zn+k.T } for count>=3 when consecutive and non-wrapping
+                if (stride == 1 && index >= 3 && (value + index - 1) <= 31) {
+                    std::string result = "{ z" + std::to_string(value);
+                    if (arrangement != Arrangement::None) { result += "."; result += Operand::arrangement_to_string(arrangement); }
+                    result += " - z" + std::to_string(value + index - 1);
+                    if (arrangement != Arrangement::None) { result += "."; result += Operand::arrangement_to_string(arrangement); }
+                    result += " }";
+                    return result;
+                }
+                std::string result = "{ ";
+                for (uint32_t i = 0; i < index; ++i) {
+                    if (i > 0) result += ", ";
+                    uint32_t reg = (value + i * stride) & 31;
+                    result += "z" + std::to_string(reg);
+                    if (arrangement != Arrangement::None) {
+                        result += ".";
+                        result += Operand::arrangement_to_string(arrangement);
+                    }
+                }
+                result += " }";
+                if (has_index) {
+                    result += "[" + std::to_string(amount) + "]";
+                }
+                return result;""".split('\n'))
         code.append("            }")
         code.append("")
         code.append("        case OperandType::MemoryOffsetMulVL:")
@@ -7293,18 +7302,27 @@ class ARM64XMLParser:
         import re as _re
         _has_za_range = (
             'Rv' in field_map and not field_map['Rv']['is_fixed'] and
-            _re.search(r'\bZA\.[BHSDQ]\[<Wv>', _asm_tmpl) is not None and
+            _re.search(r'\bZA\.(?:[BHSDQ]|<T\w*>)\[<Wv>', _asm_tmpl) is not None and
             '<offs1>:' in _asm_tmpl
         )
         if _has_za_range:
             rv_field = field_map['Rv']['name']
             # Determine element size from template
             _za_arr_match = _re.search(r'\bZA\.([BHSDQ])\[', _asm_tmpl)
-            _za_arr = _CHAR_TO_ARR[_za_arr_match.group(1).lower()] if _za_arr_match else 'Arrangement::D'
+            if _za_arr_match:
+                _za_arr = _CHAR_TO_ARR[_za_arr_match.group(1).lower()]
+                _za_arr_is_variable = False
+            elif _re.search(r'\bZA\.<T\w*>\[', _asm_tmpl):
+                # Variable arrangement from sz/size field — resolve at runtime
+                _za_arr = None  # will use _sve_arr
+                _za_arr_is_variable = True
+            else:
+                _za_arr = 'Arrangement::D'
+                _za_arr_is_variable = False
             # Determine offset field and group size
             _off_field = None
             _off_m = 4  # group size (range width)
-            for _f, _m in [('off2', 4), ('off3', 2), ('o1', 2), ('off1', 2)]:
+            for _f, _m in [('off2', 4), ('off3', 2), ('o1', 4), ('off1', 2)]:
                 if _f in field_map and not field_map[_f]['is_fixed']:
                     _off_field = field_map[_f]['name']
                     _off_m = _m
@@ -7316,8 +7334,40 @@ class ARM64XMLParser:
                 if _fn in field_map and not field_map[_fn]['is_fixed']:
                     _zn_entries.append((_fn, field_map[_fn]['name']))
             # Determine arrangement for SVE sources from template
-            _src_arr = _re.search(r'<Zn\d?>\.([BHSDQ])', _asm_tmpl)
-            _src_arr = _CHAR_TO_ARR[_src_arr.group(1).lower()] if _src_arr else 'Arrangement::H'
+            _src_arr_match = _re.search(r'<Zn\d?>\.([BHSDQ])', _asm_tmpl)
+            if _src_arr_match:
+                _src_arr = _CHAR_TO_ARR[_src_arr_match.group(1).lower()]
+            elif _re.search(r'<Zn\d?>\.<Tb>', _asm_tmpl):
+                _src_arr = '_sve_arr_narrow'  # variable narrowed arrangement at runtime
+            else:
+                _src_arr = 'Arrangement::H'
+            # Emit _sve_arr / _sve_arr_narrow declarations if arrangement is variable
+            if _za_arr_is_variable or _src_arr == '_sve_arr_narrow':
+                # Find the size field (sz or size)
+                _sz_field = None
+                for _szf in ['sz', 'size']:
+                    if _szf in field_map and not field_map[_szf]['is_fixed']:
+                        _sz_field = field_map[_szf]['name']
+                        _sz_width = field_map[_szf].get('width', 1)
+                        break
+                if _sz_field:
+                    if _sz_width == 1:
+                        code.append(f"{ind}Arrangement _sve_arr = enc.{member_name}.{_sz_field} ? Arrangement::D : Arrangement::S;")
+                        # SME ZA <Tb> = 2 steps narrower (widening dot/multiply-add)
+                        code.append(f"{ind}Arrangement _sve_arr_narrow = enc.{member_name}.{_sz_field} ? Arrangement::H : Arrangement::B;")
+                    else:
+                        code.append(f"{ind}Arrangement _sve_arr = Arrangement::None;")
+                        code.append(f"{ind}switch (enc.{member_name}.{_sz_field}) {{")
+                        code.append(f"{ind}    case 0: _sve_arr = Arrangement::B; break; case 1: _sve_arr = Arrangement::H; break;")
+                        code.append(f"{ind}    case 2: _sve_arr = Arrangement::S; break; case 3: _sve_arr = Arrangement::D; break;")
+                        code.append(f"{ind}}}")
+                        code.append(f"{ind}Arrangement _sve_arr_narrow = Arrangement::None;")
+                        code.append(f"{ind}switch (enc.{member_name}.{_sz_field}) {{")
+                        code.append(f"{ind}    case 2: _sve_arr_narrow = Arrangement::B; break; case 3: _sve_arr_narrow = Arrangement::H; break;")
+                        code.append(f"{ind}}}")
+                else:
+                    code.append(f"{ind}Arrangement _sve_arr = Arrangement::S;")
+                    code.append(f"{ind}Arrangement _sve_arr_narrow = Arrangement::B;")
             # Emit ZA range operand
             code.append(f"{ind}{{")
             if _off_field:
@@ -7328,34 +7378,63 @@ class ARM64XMLParser:
             code.append(f"{ind}    uint32_t _start = _off * _m;")
             code.append(f"{ind}    uint32_t _end = _start + _m - 1;")
             code.append(f"{ind}    Operand op(OperandType::SMETileRegister, 0, false);")
-            code.append(f"{ind}    op.arrangement = {_za_arr};")
+            if _za_arr_is_variable:
+                code.append(f"{ind}    op.arrangement = _sve_arr;")
+            else:
+                code.append(f"{ind}    op.arrangement = {_za_arr};")
             code.append(f"{ind}    op.has_index = true;")
-            code.append(f"{ind}    op.extend = 1;  // range mode")
-            code.append(f"{ind}    op.index = enc.{member_name}.{rv_field} + 8;")
-            code.append(f"{ind}    op.amount = _start;")
-            code.append(f"{ind}    op.offset = (int32_t)_end;")
+            # Check if VGx is also present in the template
+            _range_vgx_m = _re.search(r'\{, VGx(\d+)\}', _asm_tmpl)
+            if _range_vgx_m:
+                _range_vgx = int(_range_vgx_m.group(1))
+                code.append(f"{ind}    op.extend = 3;  // range + VGx mode")
+                code.append(f"{ind}    op.index = enc.{member_name}.{rv_field} + 8;")
+                code.append(f"{ind}    op.amount = _start;")
+                code.append(f"{ind}    op.offset = (int32_t)((_end & 0xFFFF) | ({_range_vgx} << 16));")
+            else:
+                code.append(f"{ind}    op.extend = 1;  // range mode")
+                code.append(f"{ind}    op.index = enc.{member_name}.{rv_field} + 8;")
+                code.append(f"{ind}    op.amount = _start;")
+                code.append(f"{ind}    op.offset = (int32_t)_end;")
             code.append(f"{ind}    result.operands.push_back(op);")
             code.append(f"{ind}}}")
             # Emit SVE source registers using index expressions from template
             # Process remaining operands via template
+            _za_list_emitted = set()
             for _top in _template_ops_pre:
                 _f = _top.get('field', '')
                 if _f in ('Zn', 'Zn1', 'Zda', 'Zdn'):
-                    if _f in field_map and not field_map[_f]['is_fixed']:
-                        _fn = field_map[_f]['name']
+                    _base_key = _re.match(r'^(Zn|Zda|Zdn)', _f).group(1) if _re.match(r'^(Zn|Zda|Zdn)', _f) else _f
+                    if _base_key in _za_list_emitted:
+                        continue
+                    _lookup = _f if _f in field_map else _base_key
+                    if _lookup in field_map and not field_map[_lookup]['is_fixed']:
+                        _fn = field_map[_lookup]['name']
                         _arr = _STR_TO_ARR.get(_top.get('arrangement', ''), _src_arr)
                         _is_list = _top.get('is_list', False)
                         _cnt = 1
                         if _is_list:
                             _cnt_m = _re.search(r'<Zn1>.*<Zn(\d+)>', _asm_tmpl)
                             if _cnt_m: _cnt = int(_cnt_m.group(1))
+                        # Scale register value for narrowed fields (pairs/quads)
+                        import math as _math2
+                        _fw = field_map[_lookup].get('width', 5)
+                        _scale = ''
+                        if _cnt > 1 and _fw < 5 and (_cnt & (_cnt - 1)) == 0:
+                            _lc = int(_math2.log2(_cnt))
+                            if _fw + _lc == 5:
+                                _scale = f' * {_cnt}'
                         if _cnt > 1:
-                            code.append(f"{ind}{{ Operand op(OperandType::SVERegisterList, enc.{member_name}.{_fn}, true); op.arrangement = {_arr or _src_arr}; op.index = {_cnt}; result.operands.push_back(op); }}")
+                            code.append(f"{ind}{{ Operand op(OperandType::SVERegisterList, enc.{member_name}.{_fn}{_scale}, true); op.arrangement = {_arr or _src_arr}; op.index = {_cnt}; result.operands.push_back(op); }}")
                         else:
                             code.append(f"{ind}{{ Operand op(OperandType::SVERegister, enc.{member_name}.{_fn}, true); op.arrangement = {_arr or _src_arr}; result.operands.push_back(op); }}")
+                        _za_list_emitted.add(_base_key)
                 elif _f in ('Zm', 'Zm1'):
-                    if _f in field_map and not field_map[_f]['is_fixed']:
-                        _fn = field_map[_f]['name']
+                    if 'Zm' in _za_list_emitted:
+                        continue
+                    _lookup = _f if _f in field_map else 'Zm'
+                    if _lookup in field_map and not field_map[_lookup]['is_fixed']:
+                        _fn = field_map[_lookup]['name']
                         _arr = _STR_TO_ARR.get(_top.get('arrangement', ''), _src_arr)
                         _is_list = _top.get('is_list', False)
                         _cnt = 1
@@ -7364,12 +7443,21 @@ class ARM64XMLParser:
                             if _cnt_m: _cnt = int(_cnt_m.group(1))
                         _has_idx = _top.get('has_elem_index', False)
                         _idx_expr = self._generate_sve_index_expr(field_map, member_name, encoding_name)
+                        # Scale register value for narrowed fields (pairs/quads)
+                        import math as _math3
+                        _fw = field_map[_lookup].get('width', 5)
+                        _scale = ''
+                        if _cnt > 1 and _fw < 5 and (_cnt & (_cnt - 1)) == 0:
+                            _lc = int(_math3.log2(_cnt))
+                            if _fw + _lc == 5:
+                                _scale = f' * {_cnt}'
                         if _cnt > 1:
-                            code.append(f"{ind}{{ Operand op(OperandType::SVERegisterList, enc.{member_name}.{_fn}, true); op.arrangement = {_arr or _src_arr}; op.index = {_cnt}; result.operands.push_back(op); }}")
+                            code.append(f"{ind}{{ Operand op(OperandType::SVERegisterList, enc.{member_name}.{_fn}{_scale}, true); op.arrangement = {_arr or _src_arr}; op.index = {_cnt}; result.operands.push_back(op); }}")
                         elif _has_idx and _idx_expr:
                             code.append(f"{ind}{{ Operand op(OperandType::SVERegister, enc.{member_name}.{_fn}, true); op.arrangement = {_arr or _src_arr}; {_idx_expr} result.operands.push_back(op); }}")
                         else:
                             code.append(f"{ind}{{ Operand op(OperandType::SVERegister, enc.{member_name}.{_fn}, true); op.arrangement = {_arr or _src_arr}; result.operands.push_back(op); }}")
+                        _za_list_emitted.add('Zm')
             code.append(f"{ind}return result;")
             return code
 
@@ -7379,14 +7467,22 @@ class ARM64XMLParser:
         _has_za_vgx = (
             not _has_za_range and
             'Rv' in field_map and not field_map['Rv']['is_fixed'] and
-            _re.search(r'\bZA\.[BHSDQ]\[<Wv>', _asm_tmpl) is not None and
+            _re.search(r'\bZA\.(?:[BHSDQ]|<T\w*>)\[<Wv>', _asm_tmpl) is not None and
             '{, VGx' in _asm_tmpl
         )
         if _has_za_vgx:
             rv_field = field_map['Rv']['name']
             # Determine element size from template
             _za_arr_match = _re.search(r'\bZA\.([BHSDQ])\[', _asm_tmpl)
-            _za_arr = _CHAR_TO_ARR[_za_arr_match.group(1).lower()] if _za_arr_match else 'Arrangement::S'
+            if _za_arr_match:
+                _za_arr = _CHAR_TO_ARR[_za_arr_match.group(1).lower()]
+                _za_arr_is_variable_vgx = False
+            elif _re.search(r'\bZA\.<T\w*>\[', _asm_tmpl):
+                _za_arr = '_sve_arr'
+                _za_arr_is_variable_vgx = True
+            else:
+                _za_arr = 'Arrangement::S'
+                _za_arr_is_variable_vgx = False
             # Determine VGx count from template
             _vgx_m = _re.search(r'\{, VGx(\d+)\}', _asm_tmpl)
             _vgx = int(_vgx_m.group(1)) if _vgx_m else 2
@@ -7398,7 +7494,38 @@ class ARM64XMLParser:
                     break
             # Determine arrangement for SVE sources from template
             _src_arr_m = _re.search(r'<Zn\d?>\.([BHSDQ])', _asm_tmpl)
-            _src_arr = _CHAR_TO_ARR[_src_arr_m.group(1).lower()] if _src_arr_m else 'Arrangement::B'
+            if _src_arr_m:
+                _src_arr = _CHAR_TO_ARR[_src_arr_m.group(1).lower()]
+            elif _re.search(r'<Zn\d?>\.<Tb>', _asm_tmpl):
+                _src_arr = '_sve_arr_narrow'
+            else:
+                _src_arr = 'Arrangement::B'
+            # Emit _sve_arr / _sve_arr_narrow declarations if arrangement is variable
+            if _za_arr_is_variable_vgx or _src_arr == '_sve_arr_narrow':
+                _sz_field_vgx = None
+                for _szf in ['sz', 'size']:
+                    if _szf in field_map and not field_map[_szf]['is_fixed']:
+                        _sz_field_vgx = field_map[_szf]['name']
+                        _sz_width_vgx = field_map[_szf].get('width', 1)
+                        break
+                if _sz_field_vgx:
+                    if _sz_width_vgx == 1:
+                        code.append(f"{ind}Arrangement _sve_arr = enc.{member_name}.{_sz_field_vgx} ? Arrangement::D : Arrangement::S;")
+                        # SME ZA <Tb> = 2 steps narrower (widening dot/multiply-add)
+                        code.append(f"{ind}Arrangement _sve_arr_narrow = enc.{member_name}.{_sz_field_vgx} ? Arrangement::H : Arrangement::B;")
+                    else:
+                        code.append(f"{ind}Arrangement _sve_arr = Arrangement::None;")
+                        code.append(f"{ind}switch (enc.{member_name}.{_sz_field_vgx}) {{")
+                        code.append(f"{ind}    case 0: _sve_arr = Arrangement::B; break; case 1: _sve_arr = Arrangement::H; break;")
+                        code.append(f"{ind}    case 2: _sve_arr = Arrangement::S; break; case 3: _sve_arr = Arrangement::D; break;")
+                        code.append(f"{ind}}}")
+                        code.append(f"{ind}Arrangement _sve_arr_narrow = Arrangement::None;")
+                        code.append(f"{ind}switch (enc.{member_name}.{_sz_field_vgx}) {{")
+                        code.append(f"{ind}    case 2: _sve_arr_narrow = Arrangement::B; break; case 3: _sve_arr_narrow = Arrangement::H; break;")
+                        code.append(f"{ind}}}")
+                else:
+                    code.append(f"{ind}Arrangement _sve_arr = Arrangement::S;")
+                    code.append(f"{ind}Arrangement _sve_arr_narrow = Arrangement::B;")
             # Emit ZA VGx accumulator operand first
             code.append(f"{ind}{{")
             if _off_field:
@@ -7583,6 +7710,23 @@ class ARM64XMLParser:
             code.append(f"{ind}{{ Operand op(OperandType::SVERegister, enc.{member_name}.{zn_field}, true); op.arrangement = {_arr}; result.operands.push_back(op); }}")
             code.append(f"{ind}return result;")
             return code
+
+        # Special case: SME outer product / simple accumulator ops with ZAda as first operand
+        # Template: SUMOPA <ZAda>.S, <Pn>/M, <Pm>/M, <Zn>.B, <Zm>.B
+        # Must emit ZAda first with correct arrangement, before predicates and Z registers
+        _za_first_emitted = False
+        if _template_ops_pre:
+            _first_field = _template_ops_pre[0].get('field', '')
+            if _first_field in ('ZAda', 'ZAd') and _first_field in field_map and not field_map[_first_field]['is_fixed']:
+                _za_cpp = field_map[_first_field]['name']
+                _za_first_arr = _template_ops_pre[0].get('arrangement', '')
+                if _za_first_arr and _za_first_arr in _STR_TO_ARR:
+                    _za_first_arr_expr = _STR_TO_ARR[_za_first_arr]
+                else:
+                    # Default to S for outer product ops
+                    _za_first_arr_expr = 'Arrangement::S'
+                code.append(f"{ind}{{ Operand op(OperandType::SMETileRegister, enc.{member_name}.{_za_cpp}, true); op.arrangement = {_za_first_arr_expr}; result.operands.push_back(op); }}")
+                _za_first_emitted = True
 
         # Pre-compute: which GP registers appear in the SVE/predicate template (will be emitted in template order)
         # Mapping from template token names (Xn, Xm, Wn...) to field_map keys (Rn, Rm...)
@@ -8057,7 +8201,29 @@ class ARM64XMLParser:
                         import math as _math
                         _field_width = field_map[base].get('width', 5) if base in field_map else 5
                         _is_pow2_count = count > 1 and (count & (count - 1)) == 0
-                        if _field_width < 5 and _is_pow2_count:
+                        # Strided multi-register forms: encoding_name contains '_mzx_'
+                        # e.g., ldnt1b_mzx_p_br_4x4 → 4 regs, stride 4; ldnt1b_mzx_p_br_2x8 → 2 regs, stride 8
+                        _is_strided = '_mzx_' in encoding_name.lower()
+                        stride_val = 1
+                        if _is_strided and _is_pow2_count:
+                            # Strided: T field provides high bit, Zt provides low bits
+                            # First register = (T << 4) | (Zt << log2(stride))
+                            # stride = 32 / count (4x4: stride=4*count_per_group... actually from encoding name NxS)
+                            import re as _re_stride
+                            _stride_match = _re_stride.search(r'(\d+)x(\d+)', encoding_name.lower())
+                            if _stride_match:
+                                _nreg = int(_stride_match.group(1))
+                                stride_val = int(_stride_match.group(2))
+                                _shift_bits = int(_math.log2(stride_val)) if stride_val > 1 else 0
+                                # T field is always 1 bit at a specific position
+                                if 'T' in field_map and not field_map['T']['is_fixed']:
+                                    t_cpp = field_map['T']['name']
+                                    reg_expr = f"(enc.{member_name}.{t_cpp} << 4) | (enc.{member_name}.{field_cpp_name} << {_shift_bits})"
+                                else:
+                                    reg_expr = f"enc.{member_name}.{field_cpp_name} << {_shift_bits}"
+                            else:
+                                reg_expr = f"enc.{member_name}.{field_cpp_name}"
+                        elif _field_width < 5 and _is_pow2_count:
                             _log2_count = int(_math.log2(count))
                             if _field_width + _log2_count == 5:
                                 reg_expr = f"enc.{member_name}.{field_cpp_name} * {count}"
@@ -8065,7 +8231,10 @@ class ARM64XMLParser:
                                 reg_expr = f"enc.{member_name}.{field_cpp_name}"
                         else:
                             reg_expr = f"enc.{member_name}.{field_cpp_name}"
-                        code.append(f"{ind}{{ Operand op(OperandType::SVERegisterList, {reg_expr}, true); op.arrangement = {arr_expr}; op.index = {count}; result.operands.push_back(op); }}")
+                        if stride_val > 1:
+                            code.append(f"{ind}{{ Operand op(OperandType::SVERegisterList, {reg_expr}, true); op.arrangement = {arr_expr}; op.index = {count}; op.offset = {stride_val}; result.operands.push_back(op); }}")
+                        else:
+                            code.append(f"{ind}{{ Operand op(OperandType::SVERegisterList, {reg_expr}, true); op.arrangement = {arr_expr}; op.index = {count}; result.operands.push_back(op); }}")
                         emitted_fields.add(base)
                         continue
                     else:
@@ -8120,8 +8289,14 @@ class ARM64XMLParser:
                             imm_field_cpp = field_map[mem_imm]['name']
                             if is_mul_vl:
                                 import re as _re2
-                                ns_match = _re2.match(r'^(?:ld|st|ldff|stnt|ldnf)(\d)', mnemonic.lower())
-                                num_struct = int(ns_match.group(1)) if ns_match else 1
+                                # num_struct = number of registers in the list group (for MUL VL scaling)
+                                # Fall back to mnemonic digit for ld2/st3 etc. structure loads
+                                _nreg_from_groups = max((len(v) for v in list_groups.values()), default=0) if list_groups else 0
+                                if _nreg_from_groups > 1:
+                                    num_struct = _nreg_from_groups
+                                else:
+                                    ns_match = _re2.match(r'^(?:ld|st|ldff|stnt|ldnf)(\d)', mnemonic.lower())
+                                    num_struct = int(ns_match.group(1)) if ns_match else 1
                                 # Check for split imm9h+imm9l (SVE predicate/vector LDR/STR)
                                 if ('imm9h' in field_map and not field_map['imm9h']['is_fixed'] and
                                         'imm9l' in field_map and not field_map['imm9l']['is_fixed']):
@@ -8450,9 +8625,11 @@ class ARM64XMLParser:
                 field_cpp_name = field_map[reg_name]['name']
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, true));")
 
-        # Extract SME ZA tile register operands
+        # Extract SME ZA tile register operands (skip if already emitted as first operand)
         for reg_name in ['ZAd', 'ZAda', 'ZAn', 'ZAt']:
             if reg_name in field_map and not field_map[reg_name]['is_fixed']:
+                if _za_first_emitted and reg_name in ('ZAd', 'ZAda'):
+                    continue
                 field_cpp_name = field_map[reg_name]['name']
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::SMETileRegister, enc.{member_name}.{field_cpp_name}, true));")
 
@@ -8633,6 +8810,16 @@ class ARM64XMLParser:
                 # FMOV floatimm: imm8 is a VFP-encoded float, not a raw integer
                 if imm_name == 'imm8' and 'floatimm' in encoding_name:
                     code.append(f"{ind}result.operands.push_back(Operand(OperandType::FloatImmediate, enc.{member_name}.{field_cpp_name}, true));")
+                    continue
+
+                # CPY/FCPY signed imm8 with optional LSL#8 shift
+                if imm_name == 'imm8' and mnemonic in ('CPY', 'FCPY') and 'sh' in field_map and not field_map['sh']['is_fixed']:
+                    sh_cpp = field_map['sh']['name']
+                    code.append(f"{ind}{{")
+                    code.append(f"{ind}    int32_t _signed_imm8 = static_cast<int32_t>(enc.{member_name}.{field_cpp_name} << 24) >> 24;")
+                    code.append(f"{ind}    if (enc.{member_name}.{sh_cpp}) _signed_imm8 <<= 8;")
+                    code.append(f"{ind}    result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(_signed_imm8), true));")
+                    code.append(f"{ind}}}")
                     continue
 
                 # SVE signed compare imm5: CMPEQ/CMPGE/CMPGT/CMPLE/CMPLT/CMPNE use signed 5-bit (-16..15)
@@ -9126,33 +9313,174 @@ class ARM64XMLParser:
         self._write_file(vcpkg_file, vcpkg_json)
         print(f"Generated {vcpkg_file}")
 
-    def generate_test_suite(self, test_dir: Path):
-        """Generate test files for each instruction class."""
+    def _predict_operand_types(self, instr: Instruction, encoding: InstructionEncoding) -> list:
+        """Predict OperandType names for an encoding's operands using template analysis.
+
+        Returns list of OperandType enum names (strings), or None if prediction is uncertain
+        (e.g., aliases transform operands, complex special cases).
+        """
+        import re
+
+        # Skip prediction for encodings that are likely aliased at all-zero variable bits
+        # (mnemonic may change, operand count may differ)
+        # Common alias-producing patterns: ORR→MOV, SUBS→CMP, SUB→NEG, etc.
+        alias_mnemonics = {
+            'ORR', 'SUBS', 'SUB', 'ADDS', 'AND', 'ANDS', 'BFM', 'UBFM', 'SBFM',
+            'CSINC', 'CSINV', 'CSNEG', 'MOVN', 'MOVZ', 'ORN', 'HINT', 'SYS', 'SYSL',
+            'EXTR', 'MADD', 'MSUB',
+        }
+        if instr.mnemonic in alias_mnemonics:
+            return None
+
+        template = encoding.asm_template
+        if not template:
+            return None
+
+        parsed = self._parse_template_operands(template)
+        if not parsed:
+            return None
+
+        # Memory operands: the entire bracket group is one operand in the decoded output
+        # We need to collapse all bracket tokens into one memory operand type
+        operand_types = []
+        i = 0
+        while i < len(parsed):
+            op = parsed[i]
+            field = op.get('field', '')
+            field_lower = field.lower()
+
+            # ZT0 literal
+            if op.get('type') == 'zt0':
+                operand_types.append('SMEZTRegister')
+                i += 1
+                continue
+
+            # Memory bracket operand — collapse to single memory type
+            if op.get('in_mem_bracket'):
+                # Determine memory type from the template
+                # Find the full bracket token in the original template
+                mem_type = 'MemoryBase'  # default
+                parts = template.strip().split(None, 1)
+                if len(parts) >= 2:
+                    rest = parts[1]
+                    # Check for post-index: ], #imm or ], Xm
+                    if re.search(r'\]\s*,\s*[#<]', rest):
+                        mem_type = 'MemoryPostIndex'
+                    elif ']!' in rest:
+                        mem_type = 'MemoryPreIndex'
+                    elif op.get('complex_mem'):
+                        mem_type = 'MemoryRegOffset'
+                    elif op.get('mul_vl'):
+                        mem_type = 'MemoryOffsetMulVL'
+                    elif op.get('mem_imm_field'):
+                        mem_type = 'MemoryOffset'
+                # Skip remaining bracket operands
+                while i < len(parsed) and parsed[i].get('in_mem_bracket'):
+                    i += 1
+                operand_types.append(mem_type)
+                continue
+
+            # Register lists
+            if op.get('is_list'):
+                if field.startswith('Z') or field.startswith('z'):
+                    operand_types.append('SVERegisterList')
+                elif field.startswith('P') or field.startswith('p'):
+                    operand_types.append('PredicateRegisterList')
+                else:
+                    operand_types.append('VectorRegisterList')
+                # Skip remaining list members
+                while i + 1 < len(parsed) and parsed[i + 1].get('is_list'):
+                    i += 1
+                i += 1
+                continue
+
+            # Immediate operands
+            if op.get('type') == 'imm':
+                # Use symbol_map to classify if available
+                sym_key = f'<{field}>'
+                sym_info = encoding.symbol_map.get(sym_key, {})
+                if sym_info:
+                    cls = self._classify_symbol(sym_key, sym_info, {})
+                    if cls:
+                        tag = cls[0]
+                        if tag == 'imm_signed':
+                            operand_types.append('SignedImmediate')
+                        elif tag == 'label':
+                            operand_types.append('Label')
+                        elif tag == 'condition':
+                            # Condition stored in result.condition, not as operand
+                            i += 1
+                            continue
+                        elif tag == 'system':
+                            operand_types.append('SystemRegister')
+                        elif tag in ('shift_table', ):
+                            operand_types.append('Shift')
+                        elif tag in ('extend_table', ):
+                            operand_types.append('Extend')
+                        elif tag in ('barrier_table', ):
+                            operand_types.append('Barrier')
+                        elif tag in ('option_table', 'prefetch_table'):
+                            operand_types.append('Immediate')
+                        else:
+                            operand_types.append('Immediate')
+                    else:
+                        operand_types.append('Immediate')
+                else:
+                    operand_types.append('Immediate')
+                i += 1
+                continue
+
+            # Register operands by field name pattern
+            if field.startswith('Z') or field.startswith('z'):
+                operand_types.append('SVERegister')
+            elif field.startswith('P') or field.startswith('p'):
+                if field.startswith('PN') or field.startswith('pn'):
+                    operand_types.append('PredicateNRegister')
+                else:
+                    operand_types.append('PredicateRegister')
+            elif field.startswith('V') or field.startswith('v'):
+                operand_types.append('VectorRegister')
+            elif field.startswith('ZA') or field.startswith('za'):
+                operand_types.append('SMETileRegister')
+            elif re.match(r'^[XWRB][a-z]', field):
+                # Xd, Wn, Rd, Rn, etc. → GP register
+                operand_types.append('Register')
+            else:
+                # Unknown — can't predict reliably
+                return None
+
+            i += 1
+
+        return operand_types if operand_types else None
+
+    def generate_encoding_tests(self, test_dir: Path):
+        """Generate per-encoding test files grouped by format group."""
         # Clean up old test files (remove stale generated files)
         for f in test_dir.iterdir():
             if f.is_file() and f.suffix == '.cpp' and f.name.startswith('test_'):
                 f.unlink()
 
-        # Group instructions by class
-        by_class = {}
+        # Collect all encodings grouped by format_group
+        by_group = {}
         for instr in self.instructions:
-            cls = instr.instr_class or 'unknown'
-            if cls not in by_class:
-                by_class[cls] = []
-            by_class[cls].append(instr)
+            for encoding in instr.encodings:
+                group = encoding.format_group or 'unknown'
+                if group not in by_group:
+                    by_group[group] = []
+                by_group[group].append((instr, encoding))
 
-        # Generate test file for each class
-        for cls, instrs in sorted(by_class.items()):
-            test_file = test_dir / f"test_{cls}.cpp"
-            self._generate_class_tests(cls, instrs, test_file)
-            print(f"Generated test_{cls}.cpp ({len(instrs)} instructions)")
+        # Generate test file for each group
+        for group, entries in sorted(by_group.items()):
+            test_file = test_dir / f"test_{group}.cpp"
+            self._generate_encoding_group_tests(group, entries, test_file)
+            print(f"Generated test_{group}.cpp ({len(entries)} encodings)")
 
-    def _generate_class_tests(self, class_name: str, instructions: List[Instruction], output_file: Path):
-        """Generate test file for a specific instruction class using format-based decode."""
+    def _generate_encoding_group_tests(self, group_name: str, entries: list, output_file: Path):
+        """Generate test file for a format group with one test per encoding."""
         code = []
 
-        code.append(f"// Auto-generated - do not edit")
-        code.append(f"// Test suite for {class_name} instruction class")
+        code.append("// Auto-generated - do not edit")
+        code.append(f"// Per-encoding tests for {group_name} format group")
         code.append("#include \"veda64.hpp\"")
         code.append("#include <cassert>")
         code.append("#include <iostream>")
@@ -9160,53 +9488,63 @@ class ARM64XMLParser:
         code.append("using namespace veda64;")
         code.append("")
 
-        # Generate test functions for sample instructions
         test_funcs = []
-        for instr in instructions[:10]:  # Test first 10 instructions per class
-            if not instr.encodings:
-                continue
+        seen_names = set()
 
-            encoding = instr.encodings[0]
+        for instr, encoding in entries:
             if not encoding.name:
                 continue
 
             func_name = self._sanitize_function_name(encoding.name)
+            if func_name in seen_names:
+                continue
+            seen_names.add(func_name)
 
-            # Compute the instruction value with all fixed bits set, variable bits = 0
+            # Compute instruction value with fixed bits set, variable bits = 0
             _, _, _, _, full_pattern, _ = self._generate_encoding_struct(instr, encoding)
 
             if full_pattern is None:
                 continue
 
-            test_funcs.append((func_name, instr.mnemonic, full_pattern))
+            # Predict operand types
+            predicted = self._predict_operand_types(instr, encoding)
+
+            test_funcs.append(func_name)
 
             code.append(f"void test_{func_name}() {{")
-            code.append(f"    // Test {instr.mnemonic}: {instr.brief}")
-            code.append(f"    uint32_t test_insn = 0x{full_pattern:08X}u;")
-            code.append(f"")
-            code.append(f"    auto result = decode(test_insn);")
-            code.append(f"    assert(result.has_value());")
-            code.append(f"    (void)result;")
-            if instr.mnemonic:
+            code.append(f"    uint32_t insn = 0x{full_pattern:08X}u;")
+            code.append(f"    auto result = decode(insn);")
+            code.append(f"    assert(result.has_value()); (void)result;")
+
+            if instr.mnemonic and instr.mnemonic not in {
+                'ORR', 'SUBS', 'SUB', 'ADDS', 'AND', 'ANDS', 'BFM', 'UBFM', 'SBFM',
+                'CSINC', 'CSINV', 'CSNEG', 'MOVN', 'MOVZ', 'ORN', 'HINT', 'SYS', 'SYSL',
+                'EXTR', 'MADD', 'MSUB',
+            }:
                 code.append(f"    assert(result->mnemonic == Mnemonic::{instr.mnemonic});")
-            code.append(f"")
+
+            if predicted:
+                code.append(f"    assert(result->operands.size() >= {len(predicted)});")
+                for idx, op_type in enumerate(predicted):
+                    code.append(f"    assert(result->operands[{idx}].type == OperandType::{op_type});")
+
             code.append(f"    std::cout << \"  {func_name}: \" << result->to_string() << std::endl;")
             code.append(f"}}")
             code.append("")
 
         # Generate main function
-        code.append(f"int main() {{")
-        code.append(f"    std::cout << \"Running {class_name} tests...\" << std::endl;")
-        code.append(f"")
+        code.append("int main() {")
+        code.append(f"    std::cout << \"Running {group_name} encoding tests ({len(test_funcs)} encodings)...\" << std::endl;")
+        code.append(f"    int failed = 0;")
+        code.append("")
 
-        # Call all test functions
-        for func_name, _, _ in test_funcs:
-            code.append(f"    test_{func_name}();")
+        for func_name in test_funcs:
+            code.append(f"    try {{ test_{func_name}(); }} catch (...) {{ std::cerr << \"FAIL: {func_name}\" << std::endl; failed++; }}")
 
-        code.append(f"")
-        code.append(f"    std::cout << \"All {len(test_funcs)} tests passed!\" << std::endl;")
-        code.append(f"    return 0;")
-        code.append(f"}}")
+        code.append("")
+        code.append(f"    std::cout << ({len(test_funcs)} - failed) << \" / {len(test_funcs)} passed\" << std::endl;")
+        code.append(f"    return failed;")
+        code.append("}")
         code.append("")
 
         self._write_file(output_file, code)
@@ -12200,7 +12538,7 @@ def main():
 
     # Generate test suite
     print(f"\n=== Generating Test Suite ===")
-    parser.generate_test_suite(test_dir)
+    parser.generate_encoding_tests(test_dir)
     parser.generate_reference_test(test_dir)
     parser.generate_hook_test(test_dir)
     parser.generate_hook_examples(test_dir)

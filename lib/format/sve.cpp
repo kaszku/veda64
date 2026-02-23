@@ -64211,7 +64211,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         }
                         { Operand op(OperandType::SVERegister, enc.cpy_zoi.Zd, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.cpy_zoi.Pg, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cpy_zoi.imm8, true));
+                        {
+                            int32_t _signed_imm8 = static_cast<int32_t>(enc.cpy_zoi.imm8 << 24) >> 24;
+                            if (enc.cpy_zoi.sh) _signed_imm8 <<= 8;
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(_signed_imm8), true));
+                        }
                         return result;
         }
         case 0x05104000u: { // cpy_z_p_i_
@@ -64228,7 +64232,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         }
                         { Operand op(OperandType::SVERegister, enc.cpy_zpi.Zd, true); op.arrangement = _sve_arr; result.operands.push_back(op); }
                         { Operand op(OperandType::PredicateRegister, enc.cpy_zpi.Pg, true); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cpy_zpi.imm8, true));
+                        {
+                            int32_t _signed_imm8 = static_cast<int32_t>(enc.cpy_zpi.imm8 << 24) >> 24;
+                            if (enc.cpy_zpi.sh) _signed_imm8 <<= 8;
+                            result.operands.push_back(Operand(OperandType::SignedImmediate, static_cast<uint32_t>(_signed_imm8), true));
+                        }
                         return result;
         }
         default: break;
