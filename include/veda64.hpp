@@ -1742,6 +1742,7 @@ public:
     Mnemonic mnemonic = Mnemonic::UNKNOWN;
     Condition condition = Condition::None;
     uint32_t raw_value = 0;
+    uint16_t encoding_id = 0;
     std::vector<Operand> operands;
 
 #ifndef VEDA64_NO_STRINGS

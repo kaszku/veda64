@@ -6518,48 +6518,56 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
     switch (insn & 0xFFFFFFFFu) {
         case 0xDAC183FEu: { // PACNBIASPPC_64LR_dp_1src
                         Instruction result(Mnemonic::PACNBIASPPC, insn);
+                        result.encoding_id = 409;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xDAC187FEu: { // PACNBIBSPPC_64LR_dp_1src
                         Instruction result(Mnemonic::PACNBIBSPPC, insn);
+                        result.encoding_id = 410;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xDAC18BFEu: { // PACIA171615_64LR_dp_1src
                         Instruction result(Mnemonic::PACIA171615, insn);
+                        result.encoding_id = 403;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xDAC18FFEu: { // PACIB171615_64LR_dp_1src
                         Instruction result(Mnemonic::PACIB171615, insn);
+                        result.encoding_id = 407;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xDAC1A3FEu: { // PACIASPPC_64LR_dp_1src
                         Instruction result(Mnemonic::PACIASPPC, insn);
+                        result.encoding_id = 404;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xDAC1A7FEu: { // PACIBSPPC_64LR_dp_1src
                         Instruction result(Mnemonic::PACIBSPPC, insn);
+                        result.encoding_id = 408;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xDAC1BBFEu: { // AUTIA171615_64LR_dp_1src
                         Instruction result(Mnemonic::AUTIA171615, insn);
+                        result.encoding_id = 295;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xDAC1BFFEu: { // AUTIB171615_64LR_dp_1src
                         Instruction result(Mnemonic::AUTIB171615, insn);
+                        result.encoding_id = 299;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         return result;
@@ -6571,6 +6579,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
     switch (insn & 0xFFFFFFE0u) {
         case 0xDAC123E0u: { // PACIZA_64Z_dp_1src
                         Instruction result(Mnemonic::PACIZA, insn);
+                        result.encoding_id = 402;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.paciza64z_dp1src.Rd, true));
@@ -6578,6 +6587,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC127E0u: { // PACIZB_64Z_dp_1src
                         Instruction result(Mnemonic::PACIZB, insn);
+                        result.encoding_id = 406;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.pacizb64z_dp1src.Rd, true));
@@ -6585,6 +6595,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC12BE0u: { // PACDZA_64Z_dp_1src
                         Instruction result(Mnemonic::PACDZA, insn);
+                        result.encoding_id = 397;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.pacdza64z_dp1src.Rd, true));
@@ -6592,6 +6603,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC12FE0u: { // PACDZB_64Z_dp_1src
                         Instruction result(Mnemonic::PACDZB, insn);
+                        result.encoding_id = 399;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.pacdzb64z_dp1src.Rd, true));
@@ -6599,6 +6611,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC133E0u: { // AUTIZA_64Z_dp_1src
                         Instruction result(Mnemonic::AUTIZA, insn);
+                        result.encoding_id = 294;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.autiza64z_dp1src.Rd, true));
@@ -6606,6 +6619,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC137E0u: { // AUTIZB_64Z_dp_1src
                         Instruction result(Mnemonic::AUTIZB, insn);
+                        result.encoding_id = 298;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.autizb64z_dp1src.Rd, true));
@@ -6613,6 +6627,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC13BE0u: { // AUTDZA_64Z_dp_1src
                         Instruction result(Mnemonic::AUTDZA, insn);
+                        result.encoding_id = 290;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.autdza64z_dp1src.Rd, true));
@@ -6620,6 +6635,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC13FE0u: { // AUTDZB_64Z_dp_1src
                         Instruction result(Mnemonic::AUTDZB, insn);
+                        result.encoding_id = 292;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.autdzb64z_dp1src.Rd, true));
@@ -6627,6 +6643,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC143E0u: { // XPACI_64Z_dp_1src
                         Instruction result(Mnemonic::XPACI, insn);
+                        result.encoding_id = 466;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.xpaci64z_dp1src.Rd, true));
@@ -6634,6 +6651,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC147E0u: { // XPACD_64Z_dp_1src
                         Instruction result(Mnemonic::XPACD, insn);
+                        result.encoding_id = 465;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.xpacd64z_dp1src.Rd, true));
@@ -6646,6 +6664,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
     switch (insn & 0xFFFFFC1Fu) {
         case 0x3A00080Du: { // SETF8_only_setf
                         Instruction result(Mnemonic::SETF8, insn);
+                        result.encoding_id = 430;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.setf8only_setf.Rn, false));
@@ -6653,6 +6672,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x3A00480Du: { // SETF16_only_setf
                         Instruction result(Mnemonic::SETF16, insn);
+                        result.encoding_id = 431;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.setf16only_setf.Rn, false));
@@ -6660,6 +6680,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC1901Eu: { // AUTIASPPCR_64LRR_dp_1src
                         Instruction result(Mnemonic::AUTIASPPCR, insn);
+                        result.encoding_id = 296;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.autiasppcr64lrr_dp1src.Rn, true));
@@ -6667,6 +6688,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC1941Eu: { // AUTIBSPPCR_64LRR_dp_1src
                         Instruction result(Mnemonic::AUTIBSPPCR, insn);
+                        result.encoding_id = 300;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.autibsppcr64lrr_dp1src.Rn, true));
@@ -6679,6 +6701,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
     switch (insn & 0xFFFFFC00u) {
         case 0x5AC00000u: { // RBIT_32_dp_1src
                         Instruction result(Mnemonic::RBIT, insn);
+                        result.encoding_id = 411;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.rbit32dp1src.Rd, false));
@@ -6687,6 +6710,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x5AC00400u: { // REV16_32_dp_1src
                         Instruction result(Mnemonic::REV16, insn);
+                        result.encoding_id = 415;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.rev1632dp1src.Rd, false));
@@ -6695,6 +6719,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x5AC00800u: { // REV_32_dp_1src
                         Instruction result(Mnemonic::REV, insn);
+                        result.encoding_id = 413;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.rev32dp1src.Rd, false));
@@ -6703,6 +6728,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x5AC01000u: { // CLZ_32_dp_1src
                         Instruction result(Mnemonic::CLZ, insn);
+                        result.encoding_id = 319;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.clz32dp1src.Rd, false));
@@ -6711,6 +6737,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x5AC01400u: { // CLS_32_dp_1src
                         Instruction result(Mnemonic::CLS, insn);
+                        result.encoding_id = 317;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.cls32dp1src.Rd, false));
@@ -6719,6 +6746,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x5AC01800u: { // CTZ_32_dp_1src
                         Instruction result(Mnemonic::CTZ, insn);
+                        result.encoding_id = 354;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.ctz32dp1src.Rd, false));
@@ -6727,6 +6755,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x5AC01C00u: { // CNT_32_dp_1src
                         Instruction result(Mnemonic::CNT, insn);
+                        result.encoding_id = 332;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.cnt32dp1src.Rd, false));
@@ -6735,6 +6764,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x5AC02000u: { // ABS_32_dp_1src
                         Instruction result(Mnemonic::ABS, insn);
+                        result.encoding_id = 266;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.abs32dp1src.Rd, false));
@@ -6743,6 +6773,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC00000u: { // RBIT_64_dp_1src
                         Instruction result(Mnemonic::RBIT, insn);
+                        result.encoding_id = 412;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.rbit64dp1src.Rd, true));
@@ -6751,6 +6782,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC00400u: { // REV16_64_dp_1src
                         Instruction result(Mnemonic::REV16, insn);
+                        result.encoding_id = 416;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.rev1664dp1src.Rd, true));
@@ -6759,6 +6791,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC00800u: { // REV32_64_dp_1src
                         Instruction result(Mnemonic::REV32, insn);
+                        result.encoding_id = 417;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.rev3264dp1src.Rd, true));
@@ -6768,6 +6801,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         case 0xDAC00C00u: { // REV_64_dp_1src
             // Also matches: REV64_REV_64_dp_1src (REV)
                         Instruction result(Mnemonic::REV, insn);
+                        result.encoding_id = 414;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.rev64dp1src.Rd, true));
@@ -6776,6 +6810,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC01000u: { // CLZ_64_dp_1src
                         Instruction result(Mnemonic::CLZ, insn);
+                        result.encoding_id = 320;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.clz64dp1src.Rd, true));
@@ -6784,6 +6819,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC01400u: { // CLS_64_dp_1src
                         Instruction result(Mnemonic::CLS, insn);
+                        result.encoding_id = 318;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.cls64dp1src.Rd, true));
@@ -6792,6 +6828,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC01800u: { // CTZ_64_dp_1src
                         Instruction result(Mnemonic::CTZ, insn);
+                        result.encoding_id = 355;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.ctz64dp1src.Rd, true));
@@ -6800,6 +6837,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC01C00u: { // CNT_64_dp_1src
                         Instruction result(Mnemonic::CNT, insn);
+                        result.encoding_id = 333;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.cnt64dp1src.Rd, true));
@@ -6808,6 +6846,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC02000u: { // ABS_64_dp_1src
                         Instruction result(Mnemonic::ABS, insn);
+                        result.encoding_id = 267;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.abs64dp1src.Rd, true));
@@ -6816,6 +6855,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC10000u: { // PACIA_64P_dp_1src
                         Instruction result(Mnemonic::PACIA, insn);
+                        result.encoding_id = 401;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.pacia64p_dp1src.Rd, true));
@@ -6824,6 +6864,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC10400u: { // PACIB_64P_dp_1src
                         Instruction result(Mnemonic::PACIB, insn);
+                        result.encoding_id = 405;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.pacib64p_dp1src.Rd, true));
@@ -6832,6 +6873,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC10800u: { // PACDA_64P_dp_1src
                         Instruction result(Mnemonic::PACDA, insn);
+                        result.encoding_id = 396;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.pacda64p_dp1src.Rd, true));
@@ -6840,6 +6882,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC10C00u: { // PACDB_64P_dp_1src
                         Instruction result(Mnemonic::PACDB, insn);
+                        result.encoding_id = 398;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.pacdb64p_dp1src.Rd, true));
@@ -6848,6 +6891,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC11000u: { // AUTIA_64P_dp_1src
                         Instruction result(Mnemonic::AUTIA, insn);
+                        result.encoding_id = 293;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.autia64p_dp1src.Rd, true));
@@ -6856,6 +6900,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC11400u: { // AUTIB_64P_dp_1src
                         Instruction result(Mnemonic::AUTIB, insn);
+                        result.encoding_id = 297;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.autib64p_dp1src.Rd, true));
@@ -6864,6 +6909,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC11800u: { // AUTDA_64P_dp_1src
                         Instruction result(Mnemonic::AUTDA, insn);
+                        result.encoding_id = 289;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.autda64p_dp1src.Rd, true));
@@ -6872,6 +6918,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDAC11C00u: { // AUTDB_64P_dp_1src
                         Instruction result(Mnemonic::AUTDB, insn);
+                        result.encoding_id = 291;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.autdb64p_dp1src.Rd, true));
@@ -6885,6 +6932,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
     switch (insn & 0xFFFF0FE0u) {
         case 0x1A9F07E0u: { // CSET_CSINC_32_condsel
                         Instruction result(Mnemonic::CSINC, insn);
+                        result.encoding_id = 344;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.cset_csinc32condsel.Rd, false));
@@ -6893,6 +6941,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x5A9F03E0u: { // CSETM_CSINV_32_condsel
                         Instruction result(Mnemonic::CSINV, insn);
+                        result.encoding_id = 346;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.csetm_csinv32condsel.Rd, false));
@@ -6901,6 +6950,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9A9F07E0u: { // CSET_CSINC_64_condsel
                         Instruction result(Mnemonic::CSINC, insn);
+                        result.encoding_id = 345;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.cset_csinc64condsel.Rd, true));
@@ -6909,6 +6959,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDA9F03E0u: { // CSETM_CSINV_64_condsel
                         Instruction result(Mnemonic::CSINV, insn);
+                        result.encoding_id = 347;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.csetm_csinv64condsel.Rd, true));
@@ -6922,6 +6973,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
     switch (insn & 0xFFE0FFE0u) {
         case 0x2A0003E0u: { // MOV_ORR_32_log_shift
                         Instruction result(Mnemonic::ORR, insn);
+                        result.encoding_id = 375;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_orr32log_shift.Rd, false));
@@ -6930,6 +6982,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x5A0003E0u: { // NGC_SBC_32_addsub_carry
                         Instruction result(Mnemonic::SBC, insn);
+                        result.encoding_id = 388;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.ngc_sbc32addsub_carry.Rd, false));
@@ -6938,6 +6991,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x7A0003E0u: { // NGCS_SBCS_32_addsub_carry
                         Instruction result(Mnemonic::SBCS, insn);
+                        result.encoding_id = 390;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.ngcs_sbcs32addsub_carry.Rd, false));
@@ -6946,6 +7000,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xAA0003E0u: { // MOV_ORR_64_log_shift
                         Instruction result(Mnemonic::ORR, insn);
+                        result.encoding_id = 376;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.mov_orr64log_shift.Rd, true));
@@ -6954,6 +7009,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDA0003E0u: { // NGC_SBC_64_addsub_carry
                         Instruction result(Mnemonic::SBC, insn);
+                        result.encoding_id = 389;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.ngc_sbc64addsub_carry.Rd, true));
@@ -6962,6 +7018,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xFA0003E0u: { // NGCS_SBCS_64_addsub_carry
                         Instruction result(Mnemonic::SBCS, insn);
+                        result.encoding_id = 391;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.ngcs_sbcs64addsub_carry.Rd, true));
@@ -6975,6 +7032,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
     switch (insn & 0xFFE0FC1Fu) {
         case 0xBAC0001Fu: { // CMPP_SUBPS_64S_dp_2src
                         Instruction result(Mnemonic::SUBPS, insn);
+                        result.encoding_id = 329;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::Register, enc.cmpp_subps64s_dp2src.Rn, true); op.is_sp = true; result.operands.push_back(op); }
@@ -6988,6 +7046,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
     switch (insn & 0xFFE0FC00u) {
         case 0x1A000000u: { // ADC_32_addsub_carry
                         Instruction result(Mnemonic::ADC, insn);
+                        result.encoding_id = 268;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.adc32addsub_carry.Rd, false));
@@ -6997,6 +7056,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x1AC00800u: { // UDIV_32_dp_2src
                         Instruction result(Mnemonic::UDIV, insn);
+                        result.encoding_id = 454;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.udiv32dp2src.Rd, false));
@@ -7006,6 +7066,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x1AC00C00u: { // SDIV_32_dp_2src
                         Instruction result(Mnemonic::SDIV, insn);
+                        result.encoding_id = 428;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.sdiv32dp2src.Rd, false));
@@ -7016,6 +7077,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         case 0x1AC02000u: { // LSL_LSLV_32_dp_2src
             // Also matches: LSLV_32_dp_2src (LSLV)
                         Instruction result(Mnemonic::LSLV, insn);
+                        result.encoding_id = 362;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.lsl_lslv32dp2src.Rd, false));
@@ -7026,6 +7088,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         case 0x1AC02400u: { // LSR_LSRV_32_dp_2src
             // Also matches: LSRV_32_dp_2src (LSRV)
                         Instruction result(Mnemonic::LSRV, insn);
+                        result.encoding_id = 366;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.lsr_lsrv32dp2src.Rd, false));
@@ -7036,6 +7099,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         case 0x1AC02800u: { // ASR_ASRV_32_dp_2src
             // Also matches: ASRV_32_dp_2src (ASRV)
                         Instruction result(Mnemonic::ASRV, insn);
+                        result.encoding_id = 285;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.asr_asrv32dp2src.Rd, false));
@@ -7046,6 +7110,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         case 0x1AC02C00u: { // ROR_RORV_32_dp_2src
             // Also matches: RORV_32_dp_2src (RORV)
                         Instruction result(Mnemonic::RORV, insn);
+                        result.encoding_id = 420;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.ror_rorv32dp2src.Rd, false));
@@ -7055,6 +7120,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x1AC04000u: { // CRC32B_32C_dp_2src
                         Instruction result(Mnemonic::CRC32B, insn);
+                        result.encoding_id = 334;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.crc32b32c_dp2src.Rd, false));
@@ -7064,6 +7130,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x1AC04400u: { // CRC32H_32C_dp_2src
                         Instruction result(Mnemonic::CRC32H, insn);
+                        result.encoding_id = 335;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.crc32h32c_dp2src.Rd, false));
@@ -7073,6 +7140,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x1AC04800u: { // CRC32W_32C_dp_2src
                         Instruction result(Mnemonic::CRC32W, insn);
+                        result.encoding_id = 336;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.crc32w32c_dp2src.Rd, false));
@@ -7082,6 +7150,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x1AC05000u: { // CRC32CB_32C_dp_2src
                         Instruction result(Mnemonic::CRC32CB, insn);
+                        result.encoding_id = 338;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.crc32cb32c_dp2src.Rd, false));
@@ -7091,6 +7160,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x1AC05400u: { // CRC32CH_32C_dp_2src
                         Instruction result(Mnemonic::CRC32CH, insn);
+                        result.encoding_id = 339;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.crc32ch32c_dp2src.Rd, false));
@@ -7100,6 +7170,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x1AC05800u: { // CRC32CW_32C_dp_2src
                         Instruction result(Mnemonic::CRC32CW, insn);
+                        result.encoding_id = 340;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.crc32cw32c_dp2src.Rd, false));
@@ -7109,6 +7180,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x1AC06000u: { // SMAX_32_dp_2src
                         Instruction result(Mnemonic::SMAX, insn);
+                        result.encoding_id = 433;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.smax32dp2src.Rd, false));
@@ -7118,6 +7190,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x1AC06400u: { // UMAX_32_dp_2src
                         Instruction result(Mnemonic::UMAX, insn);
+                        result.encoding_id = 457;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.umax32dp2src.Rd, false));
@@ -7127,6 +7200,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x1AC06800u: { // SMIN_32_dp_2src
                         Instruction result(Mnemonic::SMIN, insn);
+                        result.encoding_id = 435;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.smin32dp2src.Rd, false));
@@ -7136,6 +7210,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x1AC06C00u: { // UMIN_32_dp_2src
                         Instruction result(Mnemonic::UMIN, insn);
+                        result.encoding_id = 459;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.umin32dp2src.Rd, false));
@@ -7145,6 +7220,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x1B007C00u: { // MUL_MADD_32A_dp_3src
                         Instruction result(Mnemonic::MADD, insn);
+                        result.encoding_id = 380;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.mul_madd32a_dp3src.Rd, false));
@@ -7154,6 +7230,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x1B00FC00u: { // MNEG_MSUB_32A_dp_3src
                         Instruction result(Mnemonic::MSUB, insn);
+                        result.encoding_id = 373;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.mneg_msub32a_dp3src.Rd, false));
@@ -7163,6 +7240,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x3A000000u: { // ADCS_32_addsub_carry
                         Instruction result(Mnemonic::ADCS, insn);
+                        result.encoding_id = 270;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.adcs32addsub_carry.Rd, false));
@@ -7172,6 +7250,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x5A000000u: { // SBC_32_addsub_carry
                         Instruction result(Mnemonic::SBC, insn);
+                        result.encoding_id = 424;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.sbc32addsub_carry.Rd, false));
@@ -7181,6 +7260,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x7A000000u: { // SBCS_32_addsub_carry
                         Instruction result(Mnemonic::SBCS, insn);
+                        result.encoding_id = 426;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.sbcs32addsub_carry.Rd, false));
@@ -7190,6 +7270,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9A000000u: { // ADC_64_addsub_carry
                         Instruction result(Mnemonic::ADC, insn);
+                        result.encoding_id = 269;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.adc64addsub_carry.Rd, true));
@@ -7199,6 +7280,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9AC00000u: { // SUBP_64S_dp_2src
                         Instruction result(Mnemonic::SUBP, insn);
+                        result.encoding_id = 445;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.subp64s_dp2src.Rd, true));
@@ -7208,6 +7290,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9AC00800u: { // UDIV_64_dp_2src
                         Instruction result(Mnemonic::UDIV, insn);
+                        result.encoding_id = 455;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.udiv64dp2src.Rd, true));
@@ -7217,6 +7300,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9AC00C00u: { // SDIV_64_dp_2src
                         Instruction result(Mnemonic::SDIV, insn);
+                        result.encoding_id = 429;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.sdiv64dp2src.Rd, true));
@@ -7226,6 +7310,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9AC01000u: { // IRG_64I_dp_2src
                         Instruction result(Mnemonic::IRG, insn);
+                        result.encoding_id = 361;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         { Operand op(OperandType::Register, enc.irg64i_dp2src.Rd, true); op.is_sp = true; result.operands.push_back(op); }
@@ -7235,6 +7320,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9AC01400u: { // GMI_64G_dp_2src
                         Instruction result(Mnemonic::GMI, insn);
+                        result.encoding_id = 360;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.gmi64g_dp2src.Rd, true));
@@ -7245,6 +7331,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         case 0x9AC02000u: { // LSL_LSLV_64_dp_2src
             // Also matches: LSLV_64_dp_2src (LSLV)
                         Instruction result(Mnemonic::LSLV, insn);
+                        result.encoding_id = 363;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.lsl_lslv64dp2src.Rd, true));
@@ -7255,6 +7342,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         case 0x9AC02400u: { // LSR_LSRV_64_dp_2src
             // Also matches: LSRV_64_dp_2src (LSRV)
                         Instruction result(Mnemonic::LSRV, insn);
+                        result.encoding_id = 367;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.lsr_lsrv64dp2src.Rd, true));
@@ -7265,6 +7353,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         case 0x9AC02800u: { // ASR_ASRV_64_dp_2src
             // Also matches: ASRV_64_dp_2src (ASRV)
                         Instruction result(Mnemonic::ASRV, insn);
+                        result.encoding_id = 286;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.asr_asrv64dp2src.Rd, true));
@@ -7275,6 +7364,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         case 0x9AC02C00u: { // ROR_RORV_64_dp_2src
             // Also matches: RORV_64_dp_2src (RORV)
                         Instruction result(Mnemonic::RORV, insn);
+                        result.encoding_id = 421;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.ror_rorv64dp2src.Rd, true));
@@ -7284,6 +7374,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9AC03000u: { // PACGA_64P_dp_2src
                         Instruction result(Mnemonic::PACGA, insn);
+                        result.encoding_id = 400;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.pacga64p_dp2src.Rd, true));
@@ -7293,6 +7384,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9AC04C00u: { // CRC32X_64C_dp_2src
                         Instruction result(Mnemonic::CRC32X, insn);
+                        result.encoding_id = 337;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.crc32x64c_dp2src.Rd, false));
@@ -7302,6 +7394,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9AC05C00u: { // CRC32CX_64C_dp_2src
                         Instruction result(Mnemonic::CRC32CX, insn);
+                        result.encoding_id = 341;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.crc32cx64c_dp2src.Rd, false));
@@ -7311,6 +7404,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9AC06000u: { // SMAX_64_dp_2src
                         Instruction result(Mnemonic::SMAX, insn);
+                        result.encoding_id = 434;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.smax64dp2src.Rd, true));
@@ -7320,6 +7414,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9AC06400u: { // UMAX_64_dp_2src
                         Instruction result(Mnemonic::UMAX, insn);
+                        result.encoding_id = 458;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.umax64dp2src.Rd, true));
@@ -7329,6 +7424,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9AC06800u: { // SMIN_64_dp_2src
                         Instruction result(Mnemonic::SMIN, insn);
+                        result.encoding_id = 436;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.smin64dp2src.Rd, true));
@@ -7338,6 +7434,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9AC06C00u: { // UMIN_64_dp_2src
                         Instruction result(Mnemonic::UMIN, insn);
+                        result.encoding_id = 460;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.umin64dp2src.Rd, true));
@@ -7347,6 +7444,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9B007C00u: { // MUL_MADD_64A_dp_3src
                         Instruction result(Mnemonic::MADD, insn);
+                        result.encoding_id = 381;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.mul_madd64a_dp3src.Rd, true));
@@ -7356,6 +7454,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9B00FC00u: { // MNEG_MSUB_64A_dp_3src
                         Instruction result(Mnemonic::MSUB, insn);
+                        result.encoding_id = 374;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.mneg_msub64a_dp3src.Rd, true));
@@ -7365,6 +7464,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9B207C00u: { // SMULL_SMADDL_64WA_dp_3src
                         Instruction result(Mnemonic::SMADDL, insn);
+                        result.encoding_id = 440;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.smull_smaddl64wa_dp3src.Rd, true));
@@ -7374,6 +7474,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9B20FC00u: { // SMNEGL_SMSUBL_64WA_dp_3src
                         Instruction result(Mnemonic::SMSUBL, insn);
+                        result.encoding_id = 437;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.smnegl_smsubl64wa_dp3src.Rd, true));
@@ -7383,6 +7484,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9BA07C00u: { // UMULL_UMADDL_64WA_dp_3src
                         Instruction result(Mnemonic::UMADDL, insn);
+                        result.encoding_id = 464;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.umull_umaddl64wa_dp3src.Rd, true));
@@ -7392,6 +7494,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9BA0FC00u: { // UMNEGL_UMSUBL_64WA_dp_3src
                         Instruction result(Mnemonic::UMSUBL, insn);
+                        result.encoding_id = 461;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.umnegl_umsubl64wa_dp3src.Rd, true));
@@ -7401,6 +7504,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xBA000000u: { // ADCS_64_addsub_carry
                         Instruction result(Mnemonic::ADCS, insn);
+                        result.encoding_id = 271;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.adcs64addsub_carry.Rd, true));
@@ -7410,6 +7514,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xBAC00000u: { // SUBPS_64S_dp_2src
                         Instruction result(Mnemonic::SUBPS, insn);
+                        result.encoding_id = 446;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.subps64s_dp2src.Rd, true));
@@ -7419,6 +7524,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDA000000u: { // SBC_64_addsub_carry
                         Instruction result(Mnemonic::SBC, insn);
+                        result.encoding_id = 425;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.sbc64addsub_carry.Rd, true));
@@ -7428,6 +7534,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xFA000000u: { // SBCS_64_addsub_carry
                         Instruction result(Mnemonic::SBCS, insn);
+                        result.encoding_id = 427;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.sbcs64addsub_carry.Rd, true));
@@ -7442,6 +7549,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
     switch (insn & 0xFFE0E000u) {
         case 0x9A002000u: { // ADDPT_64_addsub_pt
                         Instruction result(Mnemonic::ADDPT, insn);
+                        result.encoding_id = 276;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -7453,6 +7561,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDA002000u: { // SUBPT_64_addsub_pt
                         Instruction result(Mnemonic::SUBPT, insn);
+                        result.encoding_id = 447;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -7469,6 +7578,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
     switch (insn & 0xFFE08000u) {
         case 0x1B000000u: { // MADD_32A_dp_3src
                         Instruction result(Mnemonic::MADD, insn);
+                        result.encoding_id = 370;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.madd32a_dp3src.Rd, false));
@@ -7479,6 +7589,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x1B008000u: { // MSUB_32A_dp_3src
                         Instruction result(Mnemonic::MSUB, insn);
+                        result.encoding_id = 377;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.msub32a_dp3src.Rd, false));
@@ -7489,6 +7600,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9B000000u: { // MADD_64A_dp_3src
                         Instruction result(Mnemonic::MADD, insn);
+                        result.encoding_id = 371;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.madd64a_dp3src.Rd, true));
@@ -7499,6 +7611,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9B008000u: { // MSUB_64A_dp_3src
                         Instruction result(Mnemonic::MSUB, insn);
+                        result.encoding_id = 378;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.msub64a_dp3src.Rd, true));
@@ -7509,6 +7622,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9B200000u: { // SMADDL_64WA_dp_3src
                         Instruction result(Mnemonic::SMADDL, insn);
+                        result.encoding_id = 432;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.smaddl64wa_dp3src.Rd, true));
@@ -7519,6 +7633,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9B208000u: { // SMSUBL_64WA_dp_3src
                         Instruction result(Mnemonic::SMSUBL, insn);
+                        result.encoding_id = 438;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.smsubl64wa_dp3src.Rd, true));
@@ -7529,6 +7644,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9B400000u: { // SMULH_64_dp_3src
                         Instruction result(Mnemonic::SMULH, insn);
+                        result.encoding_id = 439;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.smulh64dp3src.Rd, true));
@@ -7538,6 +7654,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9B600000u: { // MADDPT_64A_dp_3src
                         Instruction result(Mnemonic::MADDPT, insn);
+                        result.encoding_id = 372;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.maddpt64a_dp3src.Rd, true));
@@ -7548,6 +7665,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9B608000u: { // MSUBPT_64A_dp_3src
                         Instruction result(Mnemonic::MSUBPT, insn);
+                        result.encoding_id = 379;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.msubpt64a_dp3src.Rd, true));
@@ -7558,6 +7676,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9BA00000u: { // UMADDL_64WA_dp_3src
                         Instruction result(Mnemonic::UMADDL, insn);
+                        result.encoding_id = 456;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.umaddl64wa_dp3src.Rd, true));
@@ -7568,6 +7687,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9BA08000u: { // UMSUBL_64WA_dp_3src
                         Instruction result(Mnemonic::UMSUBL, insn);
+                        result.encoding_id = 462;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.umsubl64wa_dp3src.Rd, true));
@@ -7578,6 +7698,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9BC00000u: { // UMULH_64_dp_3src
                         Instruction result(Mnemonic::UMULH, insn);
+                        result.encoding_id = 463;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.umulh64dp3src.Rd, true));
@@ -7592,6 +7713,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
     switch (insn & 0xFFE07C10u) {
         case 0xBA000400u: { // RMIF_only_rmif
                         Instruction result(Mnemonic::RMIF, insn);
+                        result.encoding_id = 419;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -7607,6 +7729,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
     switch (insn & 0xFFE00C10u) {
         case 0x3A400000u: { // CCMN_32_condcmp_reg
                         Instruction result(Mnemonic::CCMN, insn);
+                        result.encoding_id = 307;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -7618,6 +7741,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x3A400800u: { // CCMN_32_condcmp_imm
                         Instruction result(Mnemonic::CCMN, insn);
+                        result.encoding_id = 305;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -7629,6 +7753,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x7A400000u: { // CCMP_32_condcmp_reg
                         Instruction result(Mnemonic::CCMP, insn);
+                        result.encoding_id = 311;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -7640,6 +7765,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x7A400800u: { // CCMP_32_condcmp_imm
                         Instruction result(Mnemonic::CCMP, insn);
+                        result.encoding_id = 309;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -7651,6 +7777,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xBA400000u: { // CCMN_64_condcmp_reg
                         Instruction result(Mnemonic::CCMN, insn);
+                        result.encoding_id = 308;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -7662,6 +7789,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xBA400800u: { // CCMN_64_condcmp_imm
                         Instruction result(Mnemonic::CCMN, insn);
+                        result.encoding_id = 306;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -7673,6 +7801,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xFA400000u: { // CCMP_64_condcmp_reg
                         Instruction result(Mnemonic::CCMP, insn);
+                        result.encoding_id = 312;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -7684,6 +7813,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xFA400800u: { // CCMP_64_condcmp_imm
                         Instruction result(Mnemonic::CCMP, insn);
+                        result.encoding_id = 310;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -7700,6 +7830,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
     switch (insn & 0xFFE00C00u) {
         case 0x1A800000u: { // CSEL_32_condsel
                         Instruction result(Mnemonic::CSEL, insn);
+                        result.encoding_id = 342;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.csel32condsel.Rd, false));
@@ -7712,6 +7843,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
             // Also matches: CSINC_32_condsel (CSINC)
             if (!(((insn >> 16) & 0x1F) == 0x1F || ((insn >> 5) & 0x1F) == 0x1F)) {
                                 Instruction result(Mnemonic::CSINC, insn);
+                                result.encoding_id = 313;
                                 DpregEncoding enc = {};
                                 enc.raw = insn;
                                 result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc32condsel.Rd, false));
@@ -7720,6 +7852,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                                 return result;
             }
                         Instruction result(Mnemonic::CSINC, insn);
+                        result.encoding_id = 348;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.csinc32condsel.Rd, false));
@@ -7732,6 +7865,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
             // Also matches: CSINV_32_condsel (CSINV)
             if (!(((insn >> 16) & 0x1F) == 0x1F || ((insn >> 5) & 0x1F) == 0x1F)) {
                                 Instruction result(Mnemonic::CSINV, insn);
+                                result.encoding_id = 315;
                                 DpregEncoding enc = {};
                                 enc.raw = insn;
                                 result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv32condsel.Rd, false));
@@ -7740,6 +7874,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                                 return result;
             }
                         Instruction result(Mnemonic::CSINV, insn);
+                        result.encoding_id = 350;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.csinv32condsel.Rd, false));
@@ -7751,6 +7886,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         case 0x5A800400u: { // CNEG_CSNEG_32_condsel
             // Also matches: CSNEG_32_condsel (CSNEG)
                         Instruction result(Mnemonic::CSNEG, insn);
+                        result.encoding_id = 330;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg32condsel.Rd, false));
@@ -7760,6 +7896,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9A800000u: { // CSEL_64_condsel
                         Instruction result(Mnemonic::CSEL, insn);
+                        result.encoding_id = 343;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.csel64condsel.Rd, true));
@@ -7772,6 +7909,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
             // Also matches: CSINC_64_condsel (CSINC)
             if (!(((insn >> 16) & 0x1F) == 0x1F || ((insn >> 5) & 0x1F) == 0x1F)) {
                                 Instruction result(Mnemonic::CSINC, insn);
+                                result.encoding_id = 314;
                                 DpregEncoding enc = {};
                                 enc.raw = insn;
                                 result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc64condsel.Rd, true));
@@ -7780,6 +7918,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                                 return result;
             }
                         Instruction result(Mnemonic::CSINC, insn);
+                        result.encoding_id = 349;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.csinc64condsel.Rd, true));
@@ -7792,6 +7931,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
             // Also matches: CSINV_64_condsel (CSINV)
             if (!(((insn >> 16) & 0x1F) == 0x1F || ((insn >> 5) & 0x1F) == 0x1F)) {
                                 Instruction result(Mnemonic::CSINV, insn);
+                                result.encoding_id = 316;
                                 DpregEncoding enc = {};
                                 enc.raw = insn;
                                 result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv64condsel.Rd, true));
@@ -7800,6 +7940,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                                 return result;
             }
                         Instruction result(Mnemonic::CSINV, insn);
+                        result.encoding_id = 351;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.csinv64condsel.Rd, true));
@@ -7811,6 +7952,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         case 0xDA800400u: { // CNEG_CSNEG_64_condsel
             // Also matches: CSNEG_64_condsel (CSNEG)
                         Instruction result(Mnemonic::CSNEG, insn);
+                        result.encoding_id = 331;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg64condsel.Rd, true));
@@ -7825,6 +7967,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
     switch (insn & 0xFFE0001Fu) {
         case 0x2B20001Fu: { // CMN_ADDS_32S_addsub_ext
                         Instruction result(Mnemonic::ADDS, insn);
+                        result.encoding_id = 321;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -7842,6 +7985,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x6B20001Fu: { // CMP_SUBS_32S_addsub_ext
                         Instruction result(Mnemonic::SUBS, insn);
+                        result.encoding_id = 325;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -7859,6 +8003,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xAB20001Fu: { // CMN_ADDS_64S_addsub_ext
                         Instruction result(Mnemonic::ADDS, insn);
+                        result.encoding_id = 322;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -7876,6 +8021,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xEB20001Fu: { // CMP_SUBS_64S_addsub_ext
                         Instruction result(Mnemonic::SUBS, insn);
+                        result.encoding_id = 326;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -7898,6 +8044,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
     switch (insn & 0xFFE00000u) {
         case 0x0B200000u: { // ADD_32_addsub_ext
                         Instruction result(Mnemonic::ADD, insn);
+                        result.encoding_id = 272;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -7916,6 +8063,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x2B200000u: { // ADDS_32S_addsub_ext
                         Instruction result(Mnemonic::ADDS, insn);
+                        result.encoding_id = 277;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -7934,6 +8082,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x4B200000u: { // SUB_32_addsub_ext
                         Instruction result(Mnemonic::SUB, insn);
+                        result.encoding_id = 441;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -7952,6 +8101,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x6B200000u: { // SUBS_32S_addsub_ext
                         Instruction result(Mnemonic::SUBS, insn);
+                        result.encoding_id = 448;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -7970,6 +8120,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x8B200000u: { // ADD_64_addsub_ext
                         Instruction result(Mnemonic::ADD, insn);
+                        result.encoding_id = 273;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -7988,6 +8139,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xAB200000u: { // ADDS_64S_addsub_ext
                         Instruction result(Mnemonic::ADDS, insn);
+                        result.encoding_id = 278;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -8006,6 +8158,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xCB200000u: { // SUB_64_addsub_ext
                         Instruction result(Mnemonic::SUB, insn);
+                        result.encoding_id = 442;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -8024,6 +8177,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xEB200000u: { // SUBS_64S_addsub_ext
                         Instruction result(Mnemonic::SUBS, insn);
+                        result.encoding_id = 449;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -8047,6 +8201,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
     switch (insn & 0xFF2003E0u) {
         case 0x2A2003E0u: { // MVN_ORN_32_log_shift
                         Instruction result(Mnemonic::ORN, insn);
+                        result.encoding_id = 382;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -8064,6 +8219,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x4B0003E0u: { // NEG_SUB_32_addsub_shift
                         Instruction result(Mnemonic::SUB, insn);
+                        result.encoding_id = 384;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -8082,6 +8238,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         case 0x6B0003E0u: { // NEGS_SUBS_32_addsub_shift
             if (((insn >> 0) & 0x1F) == 0x1F) break;
                         Instruction result(Mnemonic::SUBS, insn);
+                        result.encoding_id = 386;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -8099,6 +8256,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xAA2003E0u: { // MVN_ORN_64_log_shift
                         Instruction result(Mnemonic::ORN, insn);
+                        result.encoding_id = 383;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -8116,6 +8274,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xCB0003E0u: { // NEG_SUB_64_addsub_shift
                         Instruction result(Mnemonic::SUB, insn);
+                        result.encoding_id = 385;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -8134,6 +8293,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         case 0xEB0003E0u: { // NEGS_SUBS_64_addsub_shift
             if (((insn >> 0) & 0x1F) == 0x1F) break;
                         Instruction result(Mnemonic::SUBS, insn);
+                        result.encoding_id = 387;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -8156,6 +8316,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
     switch (insn & 0xFF20001Fu) {
         case 0x2B00001Fu: { // CMN_ADDS_32_addsub_shift
                         Instruction result(Mnemonic::ADDS, insn);
+                        result.encoding_id = 323;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -8173,6 +8334,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x6A00001Fu: { // TST_ANDS_32_log_shift
                         Instruction result(Mnemonic::ANDS, insn);
+                        result.encoding_id = 452;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -8190,6 +8352,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x6B00001Fu: { // CMP_SUBS_32_addsub_shift
                         Instruction result(Mnemonic::SUBS, insn);
+                        result.encoding_id = 327;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -8207,6 +8370,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xAB00001Fu: { // CMN_ADDS_64_addsub_shift
                         Instruction result(Mnemonic::ADDS, insn);
+                        result.encoding_id = 324;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -8224,6 +8388,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xEA00001Fu: { // TST_ANDS_64_log_shift
                         Instruction result(Mnemonic::ANDS, insn);
+                        result.encoding_id = 453;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -8241,6 +8406,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xEB00001Fu: { // CMP_SUBS_64_addsub_shift
                         Instruction result(Mnemonic::SUBS, insn);
+                        result.encoding_id = 328;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -8263,6 +8429,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
     switch (insn & 0xFF200000u) {
         case 0x0A000000u: { // AND_32_log_shift
                         Instruction result(Mnemonic::AND, insn);
+                        result.encoding_id = 281;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -8281,6 +8448,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x0A200000u: { // BIC_32_log_shift
                         Instruction result(Mnemonic::BIC, insn);
+                        result.encoding_id = 301;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -8299,6 +8467,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x0B000000u: { // ADD_32_addsub_shift
                         Instruction result(Mnemonic::ADD, insn);
+                        result.encoding_id = 274;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         if (enc.add32addsub_shift.shift == 3u) return std::nullopt;
@@ -8318,6 +8487,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x2A000000u: { // ORR_32_log_shift
                         Instruction result(Mnemonic::ORR, insn);
+                        result.encoding_id = 394;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -8336,6 +8506,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x2A200000u: { // ORN_32_log_shift
                         Instruction result(Mnemonic::ORN, insn);
+                        result.encoding_id = 392;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -8354,6 +8525,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x2B000000u: { // ADDS_32_addsub_shift
                         Instruction result(Mnemonic::ADDS, insn);
+                        result.encoding_id = 279;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         if (enc.adds32addsub_shift.shift == 3u) return std::nullopt;
@@ -8373,6 +8545,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x4A000000u: { // EOR_32_log_shift
                         Instruction result(Mnemonic::EOR, insn);
+                        result.encoding_id = 358;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -8391,6 +8564,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x4A200000u: { // EON_32_log_shift
                         Instruction result(Mnemonic::EON, insn);
+                        result.encoding_id = 356;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -8409,6 +8583,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x4B000000u: { // SUB_32_addsub_shift
                         Instruction result(Mnemonic::SUB, insn);
+                        result.encoding_id = 443;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sub32addsub_shift.shift == 3u) return std::nullopt;
@@ -8428,6 +8603,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x6A000000u: { // ANDS_32_log_shift
                         Instruction result(Mnemonic::ANDS, insn);
+                        result.encoding_id = 283;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -8446,6 +8622,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x6A200000u: { // BICS_32_log_shift
                         Instruction result(Mnemonic::BICS, insn);
+                        result.encoding_id = 303;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -8464,6 +8641,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x6B000000u: { // SUBS_32_addsub_shift
                         Instruction result(Mnemonic::SUBS, insn);
+                        result.encoding_id = 450;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         if (enc.subs32addsub_shift.shift == 3u) return std::nullopt;
@@ -8483,6 +8661,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x8A000000u: { // AND_64_log_shift
                         Instruction result(Mnemonic::AND, insn);
+                        result.encoding_id = 282;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -8501,6 +8680,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x8A200000u: { // BIC_64_log_shift
                         Instruction result(Mnemonic::BIC, insn);
+                        result.encoding_id = 302;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -8519,6 +8699,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x8B000000u: { // ADD_64_addsub_shift
                         Instruction result(Mnemonic::ADD, insn);
+                        result.encoding_id = 275;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         if (enc.add64addsub_shift.shift == 3u) return std::nullopt;
@@ -8538,6 +8719,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xAA000000u: { // ORR_64_log_shift
                         Instruction result(Mnemonic::ORR, insn);
+                        result.encoding_id = 395;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -8556,6 +8738,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xAA200000u: { // ORN_64_log_shift
                         Instruction result(Mnemonic::ORN, insn);
+                        result.encoding_id = 393;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -8574,6 +8757,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xAB000000u: { // ADDS_64_addsub_shift
                         Instruction result(Mnemonic::ADDS, insn);
+                        result.encoding_id = 280;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         if (enc.adds64addsub_shift.shift == 3u) return std::nullopt;
@@ -8593,6 +8777,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xCA000000u: { // EOR_64_log_shift
                         Instruction result(Mnemonic::EOR, insn);
+                        result.encoding_id = 359;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -8611,6 +8796,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xCA200000u: { // EON_64_log_shift
                         Instruction result(Mnemonic::EON, insn);
+                        result.encoding_id = 357;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -8629,6 +8815,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xCB000000u: { // SUB_64_addsub_shift
                         Instruction result(Mnemonic::SUB, insn);
+                        result.encoding_id = 444;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sub64addsub_shift.shift == 3u) return std::nullopt;
@@ -8648,6 +8835,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xEA000000u: { // ANDS_64_log_shift
                         Instruction result(Mnemonic::ANDS, insn);
+                        result.encoding_id = 284;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -8666,6 +8854,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xEA200000u: { // BICS_64_log_shift
                         Instruction result(Mnemonic::BICS, insn);
+                        result.encoding_id = 304;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -8684,6 +8873,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xEB000000u: { // SUBS_64_addsub_shift
                         Instruction result(Mnemonic::SUBS, insn);
+                        result.encoding_id = 451;
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         if (enc.subs64addsub_shift.shift == 3u) return std::nullopt;

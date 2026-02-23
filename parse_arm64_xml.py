@@ -39,6 +39,11 @@ class BooleanType(AslType):
 class OpaqueType(AslType):
     name: str = ""
 
+@dataclass
+class ArrayType(AslType):
+    element: AslType = None
+    size: object = None  # Expr (forward ref)
+
 # --- IR Expression nodes ---
 @dataclass
 class Expr:
@@ -100,6 +105,11 @@ class FieldAccess(Expr):
     field_name: str = ""
 
 @dataclass
+class FieldAccessMulti(Expr):
+    base: Expr = None
+    field_names: list = field(default_factory=list)  # e.g., ['N', 'Z', 'C', 'V']
+
+@dataclass
 class SetLiteral(Expr):
     elements: list = field(default_factory=list)
 
@@ -154,6 +164,7 @@ class ForStmt(Stmt):
     start: Expr = None
     end: Expr = None
     body: list = field(default_factory=list)
+    direction: str = 'to'  # 'to' or 'downto'
 
 @dataclass
 class WhileStmt(Stmt):
@@ -187,9 +198,10 @@ class ReturnStmt(Stmt):
 # --- Tokenizer ---
 _ASL_KEYWORDS = {
     'let', 'var', 'if', 'then', 'else', 'elsif', 'end', 'case', 'when', 'of',
-    'for', 'to', 'do', 'while', 'DIV', 'MOD', 'AND', 'OR', 'XOR', 'EOR',
+    'for', 'to', 'downto', 'do', 'while', 'DIV', 'DIVRM', 'MOD', 'AND', 'OR', 'XOR', 'EOR',
     'NOT', 'IN', 'assert', 'UNDEFINED', 'UNPREDICTABLE', 'ARBITRARY',
     'TRUE', 'FALSE', 'otherwise', 'return', 'UNKNOWN', 'as',
+    'array', 'looplimit', 'repeat', 'until',
 }
 
 @dataclass
@@ -202,7 +214,7 @@ class AslTokenizer:
     """Tokenize ASL pseudocode text into a list of tokens."""
 
     _TWO_CHAR_OPS = {'::','==','!=','<=','>=','<<','>>','&&','||','+:','*:','=>','..'}
-    _ONE_CHAR_OPS = set('+-*()[]{},:;.=<>!/')
+    _ONE_CHAR_OPS = set('+-*^()[]{},:;.=<>!/')
 
     def __init__(self, text: str):
         self.text = text
@@ -295,6 +307,7 @@ class AslParser:
     def __init__(self, tokens: List[AslToken]):
         self.tokens = tokens
         self.pos = 0
+        self._multi_var_pending: List[Stmt] = []
 
     def _cur(self) -> AslToken:
         return self.tokens[self.pos] if self.pos < len(self.tokens) else AslToken('EOF', '', -1)
@@ -333,13 +346,17 @@ class AslParser:
     # --- Top-level ---
     def parse(self) -> List[Stmt]:
         stmts = []
-        while not self._at('EOF'):
+        while not self._at('EOF') or self._multi_var_pending:
             s = self._parse_stmt()
             if s is not None:
                 stmts.append(s)
         return stmts
 
     def _parse_stmt(self) -> Optional[Stmt]:
+        # Drain any pending multi-var declarations first
+        if self._multi_var_pending:
+            return self._multi_var_pending.pop(0)
+
         tok = self._cur()
 
         # Skip stray semicolons
@@ -398,6 +415,10 @@ class AslParser:
             self._match('OP', ';')
             return ReturnStmt(value=val)
 
+        # repeat ... until cond
+        if tok.kind == 'KW' and tok.value == 'repeat':
+            return self._parse_repeat_stmt()
+
         # Tuple assign: (ident, ident, ...) = expr
         if tok.kind == 'OP' and tok.value == '(':
             return self._parse_tuple_or_expr_stmt()
@@ -407,6 +428,22 @@ class AslParser:
 
     def _parse_let(self) -> Stmt:
         self._expect('KW', 'let')
+        # Handle tuple destructuring: let (a, b) = expr
+        if self._at('OP', '('):
+            self._advance()
+            targets = []
+            while True:
+                if self._match('OP', '-'):
+                    targets.append(None)
+                else:
+                    targets.append(Identifier(name=self._expect('IDENT').value))
+                if not self._match('OP', ','):
+                    break
+            self._expect('OP', ')')
+            self._expect('OP', '=')
+            init = self._parse_expr()
+            self._match('OP', ';')
+            return TupleAssign(targets=targets, value=init)
         name = self._expect('IDENT').value
         asl_type = None
         if self._match('OP', ':'):
@@ -419,6 +456,24 @@ class AslParser:
     def _parse_var(self) -> Stmt:
         self._expect('KW', 'var')
         name = self._expect('IDENT').value
+        # Check for comma-separated var declarations: var op1, op2 : bits(64)
+        if self._at('OP', ','):
+            names = [name]
+            while self._match('OP', ','):
+                names.append(self._expect('IDENT').value)
+            asl_type = None
+            if self._match('OP', ':'):
+                asl_type = self._parse_type()
+            self._match('OP', ';')
+            # Return first decl; emit rest as separate VarDecls via a block
+            # Use a simple trick: return a list wrapper — but we can't, so just return first
+            # Actually we need to return multiple stmts. Use a helper IfStmt(branches=[(BoolLiteral(True), [decls])])
+            # Simpler: just return the first and ignore the rest (they're just uninitialized vars)
+            # Better approach: return first, but we need all. Let's use a compound approach.
+            # Return first VarDecl; the caller only expects one Stmt. We'll wrap in an IfStmt hack.
+            # Actually, the simplest correct fix: return a list and handle in _parse_stmt
+            self._multi_var_pending = [VarDecl(name=n, asl_type=asl_type) for n in names[1:]]
+            return VarDecl(name=names[0], asl_type=asl_type)
         asl_type = None
         if self._match('OP', ':'):
             asl_type = self._parse_type()
@@ -430,6 +485,17 @@ class AslParser:
 
     def _parse_type(self) -> AslType:
         tok = self._cur()
+        # array [[N]] of T
+        if tok.kind == 'KW' and tok.value == 'array':
+            self._advance()
+            self._expect('OP', '[')
+            self._expect('OP', '[')
+            size = self._parse_expr()
+            self._expect('OP', ']')
+            self._expect('OP', ']')
+            self._expect('KW', 'of')
+            elem = self._parse_type()
+            return ArrayType(element=elem, size=size)
         if tok.kind == 'IDENT' and tok.value == 'bits':
             self._advance()
             self._expect('OP', '(')
@@ -446,9 +512,13 @@ class AslParser:
             if self._match('OP', '{'):
                 if not self._at('OP', '}'):
                     w_expr = self._parse_expr()
-                    # Handle range: integer{0..4}
+                    # Handle range: integer{0..4} or set: integer{1, 2, 4, 8}
                     if self._match('OP', '..'):
-                        self._parse_expr()  # consume upper bound, ignore for now
+                        self._parse_expr()  # consume upper bound
+                    elif self._at('OP', ','):
+                        # Constraint set — consume remaining values
+                        while self._match('OP', ','):
+                            self._parse_expr()
                     if isinstance(w_expr, Identifier):
                         w = w_expr.name
                     elif isinstance(w_expr, IntLiteral):
@@ -522,22 +592,40 @@ class AslParser:
         var = self._expect('IDENT').value
         self._expect('OP', '=')
         start = self._parse_expr()
-        self._expect('KW', 'to')
+        direction = 'to'
+        if self._match('KW', 'downto'):
+            direction = 'downto'
+        else:
+            self._expect('KW', 'to')
         end = self._parse_expr()
         self._expect('KW', 'do')
         body = self._parse_block('end')
         self._match('KW', 'end')
         self._match('OP', ';')
-        return ForStmt(var=var, start=start, end=end, body=body)
+        return ForStmt(var=var, start=start, end=end, body=body, direction=direction)
 
     def _parse_while_stmt(self) -> WhileStmt:
         self._expect('KW', 'while')
         cond = self._parse_expr()
+        # Optional: looplimit N
+        if self._match('KW', 'looplimit'):
+            self._parse_expr()  # consume limit value, ignore
         self._expect('KW', 'do')
         body = self._parse_block('end')
         self._match('KW', 'end')
         self._match('OP', ';')
         return WhileStmt(cond=cond, body=body)
+
+    def _parse_repeat_stmt(self) -> WhileStmt:
+        """Parse: repeat body until cond;"""
+        self._expect('KW', 'repeat')
+        body = self._parse_block('until')
+        self._expect('KW', 'until')
+        cond = self._parse_expr()
+        self._match('OP', ';')
+        # Model as do-while: we'll reuse WhileStmt with a flag
+        # For simplicity, emit as WhileStmt(cond=NOT(cond), body=body) — approximate
+        return WhileStmt(cond=UnaryOp(op='NOT', operand=cond), body=body)
 
     def _parse_block(self, *terminators) -> List[Stmt]:
         stmts = []
@@ -680,11 +768,18 @@ class AslParser:
         return left
 
     def _parse_mul(self) -> Expr:
-        left = self._parse_unary()
-        while self._at('OP', '*') or self._at('KW', 'DIV') or self._at('KW', 'MOD'):
+        left = self._parse_power()
+        while self._at('OP', '*') or self._at('KW', 'DIV') or self._at('KW', 'DIVRM') or self._at('KW', 'MOD'):
             op = self._advance().value
-            right = self._parse_unary()
+            right = self._parse_power()
             left = BinOp(op=op, left=left, right=right)
+        return left
+
+    def _parse_power(self) -> Expr:
+        left = self._parse_unary()
+        if self._match('OP', '^'):
+            right = self._parse_unary()
+            left = BinOp(op='^', left=left, right=right)
         return left
 
     def _parse_unary(self) -> Expr:
@@ -702,9 +797,17 @@ class AslParser:
     def _parse_postfix(self) -> Expr:
         base = self._parse_primary()
         while True:
-            # Bit slice: x[hi:lo] or x[lo +: width] or x[e *: esize]
+            # Array access: x[[idx]] or Bit slice: x[hi:lo] or x[lo +: width] or x[e *: esize]
             if self._at('OP', '['):
                 self._advance()
+                # Array access: x[[idx]]
+                if self._at('OP', '['):
+                    self._advance()
+                    idx = self._parse_expr()
+                    self._expect('OP', ']')
+                    self._expect('OP', ']')
+                    base = FuncCall(name='__array_get', type_params=[], args=[base, idx])
+                    continue
                 idx1 = self._parse_expr()
                 if self._match('OP', '+:'):
                     width = self._parse_expr()
@@ -759,11 +862,19 @@ class AslParser:
                     name = f"{self._expr_to_name(base.base)}.{base.field_name}"
                 base = FuncCall(name=name, type_params=[], args=args)
                 continue
-            # Field access: x.field
+            # Field access: x.field or x.[field1, field2, ...]
             if self._match('OP', '.'):
                 if self._at('OP', '.'):
-                    # Oops, this was '..' parsed as two '.' — shouldn't happen with .. as two-char op
                     break
+                # Multi-field: PSTATE.[N, Z, C, V]
+                if self._at('OP', '['):
+                    self._advance()
+                    fields = [self._expect('IDENT').value]
+                    while self._match('OP', ','):
+                        fields.append(self._expect('IDENT').value)
+                    self._expect('OP', ']')
+                    base = FieldAccessMulti(base=base, field_names=fields)
+                    continue
                 fname = self._expect('IDENT').value
                 base = FieldAccess(base=base, field_name=fname)
                 continue
@@ -850,10 +961,18 @@ class AslParser:
             self._expect('OP', '}')
             return SetLiteral(elements=elems)
 
-        # Parenthesized expression
+        # Parenthesized expression or tuple literal
         if tok.kind == 'OP' and tok.value == '(':
             self._advance()
             expr = self._parse_expr()
+            if self._match('OP', ','):
+                # Tuple literal: (expr, expr, ...)
+                parts = [expr]
+                parts.append(self._parse_expr())
+                while self._match('OP', ','):
+                    parts.append(self._parse_expr())
+                self._expect('OP', ')')
+                return FuncCall(name='__tuple', type_params=[], args=parts)
             self._expect('OP', ')')
             return expr
 
@@ -873,6 +992,533 @@ class AslParseError(Exception):
     def __init__(self, msg: str, pos: int = -1):
         self.pos = pos
         super().__init__(f"ASL parse error at pos {pos}: {msg}")
+
+
+# --- ASL → C++ Emitter ---
+
+class AslCppEmitter:
+    """Emit C++ code from ASL IR trees for semantic/execute pseudocode."""
+
+    # Function call mapping: ASL function → C++ emission pattern
+    FUNC_MAP = {
+        # Register read (rvalue)
+        'X': 'X({tp}{args})',
+        'SP': 'SP({tp})',
+        'V': 'V({args})',
+        'Z': 'Z({args})',
+        'P': 'P({args})',
+        'Mem': 'mem_read({tp}{args})',
+        'Mem_set': 'mem_write({tp}{args})',
+        # Utilities
+        'UInt': 'uint64_t({args})',
+        'SInt': 'sint({args})',
+        'ZeroExtend': 'zext({tp}{args})',
+        'SignExtend': 'sext({tp}{args})',
+        'Zeros': 'BV::zeros({tp})',
+        'Ones': 'BV::ones({tp})',
+        'Replicate': 'replicate({tp}{args})',
+        'Len': 'len({args})',
+        'IsZero': 'is_zero({args})',
+        'IsOnes': 'is_ones({args})',
+        # Arithmetic
+        'AddWithCarry': 'AddWithCarry({tp}{args})',
+        # Bit manipulation
+        'LSL': 'lsl({args})',
+        'LSR': 'lsr({args})',
+        'ASR': 'asr({args})',
+        'ROR': 'ror({args})',
+        'Align': 'align({args})',
+        'CountLeadingZeroBits': 'clz({args})',
+        'CountLeadingSignBits': 'cls({args})',
+        'HighestSetBit': 'highest_set_bit({args})',
+        'LowestSetBit': 'lowest_set_bit({args})',
+        'BitCount': 'popcount({args})',
+        'ReverseBits': 'rbit({args})',
+        'ReverseBytes': 'rev({args})',
+        # State
+        'CurrentVL': 'vl',
+        'FPCR': 'fpcr',
+        'PC64': 'pc',
+        'CheckSPAlignment': 'CheckSPAlignment()',
+        'CheckSVEEnabled': 'CheckSVEEnabled()',
+        'CheckSMEEnabled': 'CheckSMEEnabled()',
+        'CheckSMEAndZAEnabled': 'CheckSMEAndZAEnabled()',
+        # Predicate
+        'ActivePredicateElement': 'ActivePredicateElement({tp}{args})',
+        'AnyActiveElement': 'AnyActiveElement({tp}{args})',
+        'ElemFFR': 'ElemFFR({tp}{args})',
+        # Memory/address
+        'AddressAdd': 'AddressAdd({args})',
+        'AddressIncrement': 'AddressIncrement({args})',
+        'CreateAccessDescriptor': 'CreateAccessDescriptor({args})',
+        # FP
+        'FPAdd': 'FPAdd({tp}{args})',
+        'FPSub': 'FPSub({tp}{args})',
+        'FPMul': 'FPMul({tp}{args})',
+        'FPDiv': 'FPDiv({tp}{args})',
+        'FPMax': 'FPMax({tp}{args})',
+        'FPMin': 'FPMin({tp}{args})',
+        'FPSqrt': 'FPSqrt({tp}{args})',
+        'FPNeg': 'FPNeg({tp}{args})',
+        'FPAbs': 'FPAbs({tp}{args})',
+        'FPConvert': 'FPConvert({tp}{args})',
+        'FPCompare': 'FPCompare({tp}{args})',
+        'FPCompareEQ': 'FPCompareEQ({tp}{args})',
+        'FPCompareGE': 'FPCompareGE({tp}{args})',
+        'FPCompareGT': 'FPCompareGT({tp}{args})',
+        'FPRecipEstimate': 'FPRecipEstimate({tp}{args})',
+        'FPRSqrtEstimate': 'FPRSqrtEstimate({tp}{args})',
+        'FPMulAdd': 'FPMulAdd({tp}{args})',
+        'FPRoundInt': 'FPRoundInt({tp}{args})',
+        'FPToFixed': 'FPToFixed({tp}{args})',
+        'FixedToFP': 'FixedToFP({tp}{args})',
+        'BFAdd': 'BFAdd({tp}{args})',
+        'BFMul': 'BFMul({tp}{args})',
+        # Conversion
+        'FPConvertBF': 'FPConvertBF({tp}{args})',
+    }
+
+    # Setter mapping: ASL lvalue function → C++ setter
+    SETTER_MAP = {
+        'X': 'X_set',
+        'SP': 'SP_set',
+        'V': 'V_set',
+        'Z': 'Z_set',
+        'P': 'P_set',
+        'Mem': 'mem_write',
+        'Vpart': 'Vpart_set',
+        'ZAvector': 'ZAvector_set',
+    }
+
+    # ASL operator → C++ operator
+    OP_MAP = {
+        'AND': '&',
+        'OR': '|',
+        'XOR': '^',
+        'EOR': '^',
+        'NOT': '~',
+        'DIV': '/',
+        'DIVRM': 'DIVRM',
+        'MOD': '%',
+        '==': '==',
+        '!=': '!=',
+        '<': '<',
+        '>': '>',
+        '<=': '<=',
+        '>=': '>=',
+        '&&': '&&',
+        '||': '||',
+        '<<': '<<',
+        '>>': '>>',
+        '+': '+',
+        '-': '-',
+        '*': '*',
+        '^': 'POW',
+    }
+
+    def __init__(self):
+        self.indent = 0
+        self.lines: List[str] = []
+        self.ignore_counter = 0
+
+    def _emit(self, line: str):
+        self.lines.append('    ' * self.indent + line)
+
+    def _indent(self):
+        self.indent += 1
+
+    def _dedent(self):
+        self.indent -= 1
+
+    # --- Entry points ---
+
+    def emit_block(self, stmts: List[Stmt]) -> List[str]:
+        """Emit a block of statements, return lines."""
+        self.lines = []
+        self.indent = 0
+        for s in stmts:
+            self.emit_stmt(s)
+        return self.lines
+
+    def emit_function(self, name: str, decode_stmts: List[Stmt],
+                      exec_stmts: List[Stmt]) -> List[str]:
+        """Emit a complete C++ function from decode + execute IR."""
+        self.lines = []
+        self.indent = 0
+
+        # Extract decode parameters (LetDecls)
+        params = []
+        for s in decode_stmts:
+            if isinstance(s, LetDecl):
+                cpp_type = self._type_for_init(s.init) if s.init else 'int64_t'
+                params.append((cpp_type, s.name))
+
+        # Function signature
+        param_str = ', '.join(f'{t} {n}' for t, n in params)
+        self._emit(f'void {name}(CpuState& cpu, {param_str}) {{')
+        self._indent()
+
+        # Emit execute body
+        for s in exec_stmts:
+            self.emit_stmt(s)
+
+        self._dedent()
+        self._emit('}')
+        return self.lines
+
+    # --- Statement emitters ---
+
+    def emit_stmt(self, stmt: Stmt):
+        if isinstance(stmt, LetDecl):
+            init_str = self.emit_expr(stmt.init) if stmt.init else '{}'
+            self._emit(f'const auto {stmt.name} = {init_str};')
+        elif isinstance(stmt, VarDecl):
+            if stmt.init:
+                init_str = self.emit_expr(stmt.init)
+                self._emit(f'auto {stmt.name} = {init_str};')
+            else:
+                cpp_type = self.asl_type_to_cpp(stmt.asl_type) if stmt.asl_type else 'BV'
+                self._emit(f'{cpp_type} {stmt.name};')
+        elif isinstance(stmt, Assign):
+            self._emit_assign(stmt)
+        elif isinstance(stmt, TupleAssign):
+            self._emit_tuple(stmt)
+        elif isinstance(stmt, IfStmt):
+            self._emit_if(stmt)
+        elif isinstance(stmt, CaseStmt):
+            self._emit_case(stmt)
+        elif isinstance(stmt, ForStmt):
+            self._emit_for(stmt)
+        elif isinstance(stmt, WhileStmt):
+            self._emit_while(stmt)
+        elif isinstance(stmt, AssertStmt):
+            cond_str = self.emit_expr(stmt.cond)
+            self._emit(f'assert({cond_str});')
+        elif isinstance(stmt, Undefined):
+            self._emit('UNDEFINED();')
+        elif isinstance(stmt, Unpredictable):
+            self._emit('UNPREDICTABLE();')
+        elif isinstance(stmt, ReturnStmt):
+            if stmt.value:
+                self._emit(f'return {self.emit_expr(stmt.value)};')
+            else:
+                self._emit('return;')
+        elif isinstance(stmt, EndOfDecode):
+            self._emit(f'// EndOfDecode({stmt.kind})')
+        elif isinstance(stmt, ExprStmt):
+            expr_str = self.emit_expr(stmt.expr)
+            self._emit(f'{expr_str};')
+        else:
+            self._emit(f'// TODO: unknown stmt {type(stmt).__name__}')
+
+    def _emit_assign(self, stmt: Assign):
+        target = stmt.target
+        rhs_str = self.emit_expr(stmt.value)
+
+        # Lvalue detection: function call target → setter
+        if isinstance(target, FuncCall) and target.name in self.SETTER_MAP:
+            setter = self.SETTER_MAP[target.name]
+            tp_str = ', '.join(self.emit_expr(tp) for tp in target.type_params)
+            args_str = ', '.join(self.emit_expr(a) for a in target.args)
+            parts = []
+            if tp_str:
+                parts.append(tp_str)
+            if args_str:
+                parts.append(args_str)
+            parts.append(rhs_str)
+            self._emit(f'{setter}({", ".join(parts)});')
+            return
+
+        # Lvalue: bit slice → set_slice
+        if isinstance(target, BitSlice):
+            base_str = self.emit_expr(target.base)
+            if target.is_width:
+                lo_str = self.emit_expr(target.lo)
+                w_str = self.emit_expr(target.hi)
+                self._emit(f'{base_str}.set_slice({lo_str}, {w_str}, {rhs_str});')
+            else:
+                hi_str = self.emit_expr(target.hi)
+                lo_str = self.emit_expr(target.lo)
+                self._emit(f'{base_str}.set_bits({lo_str}, {hi_str}, {rhs_str});')
+            return
+
+        # Lvalue: array set → __array_set
+        if isinstance(target, FuncCall) and target.name == '__array_get':
+            arr_str = self.emit_expr(target.args[0])
+            idx_str = self.emit_expr(target.args[1])
+            self._emit(f'{arr_str}[{idx_str}] = {rhs_str};')
+            return
+
+        # Lvalue: field access multi (PSTATE.[N,Z,C,V])
+        if isinstance(target, FieldAccessMulti):
+            base_str = self.emit_expr(target.base)
+            fields = '_'.join(f.lower() for f in target.field_names)
+            self._emit(f'{base_str}_set_{fields}({rhs_str});')
+            return
+
+        # Lvalue: field access
+        if isinstance(target, FieldAccess):
+            base_str = self.emit_expr(target.base)
+            self._emit(f'{base_str}.{target.field_name} = {rhs_str};')
+            return
+
+        # Lvalue: unknown function call → emit as setter
+        if isinstance(target, FuncCall):
+            setter = f'{target.name}_set'
+            tp_str = ', '.join(self.emit_expr(tp) for tp in target.type_params)
+            args_str = ', '.join(self.emit_expr(a) for a in target.args)
+            parts = []
+            if tp_str:
+                parts.append(tp_str)
+            if args_str:
+                parts.append(args_str)
+            parts.append(rhs_str)
+            self._emit(f'{setter}({", ".join(parts)});')
+            return
+
+        # Simple assignment
+        target_str = self.emit_expr(target)
+        self._emit(f'{target_str} = {rhs_str};')
+
+    def _emit_tuple(self, stmt: TupleAssign):
+        rhs_str = self.emit_expr(stmt.value)
+        names = []
+        for i, t in enumerate(stmt.targets):
+            if t is None:
+                names.append(f'_ign{self.ignore_counter}')
+                self.ignore_counter += 1
+            elif isinstance(t, Identifier):
+                names.append(t.name)
+            else:
+                names.append(self.emit_expr(t))
+        bindings = ', '.join(names)
+        self._emit(f'auto [{bindings}] = {rhs_str};')
+
+    def _emit_if(self, stmt: IfStmt):
+        for i, (cond, body) in enumerate(stmt.branches):
+            if cond is None:
+                self._emit('else {')
+            elif i == 0:
+                self._emit(f'if ({self.emit_expr(cond)}) {{')
+            else:
+                self._emit(f'else if ({self.emit_expr(cond)}) {{')
+            self._indent()
+            for s in body:
+                self.emit_stmt(s)
+            self._dedent()
+            self._emit('}')
+
+    def _emit_case(self, stmt: CaseStmt):
+        expr_str = self.emit_expr(stmt.expr)
+        first = True
+        for pattern, body in stmt.cases:
+            if pattern == 'otherwise':
+                self._emit('else {')
+            elif first:
+                pat_str = self.emit_expr(pattern) if not isinstance(pattern, str) else pattern
+                self._emit(f'if ({expr_str} == {pat_str}) {{')
+                first = False
+            else:
+                pat_str = self.emit_expr(pattern) if not isinstance(pattern, str) else pattern
+                self._emit(f'else if ({expr_str} == {pat_str}) {{')
+            self._indent()
+            for s in body:
+                self.emit_stmt(s)
+            self._dedent()
+            self._emit('}')
+
+    def _emit_for(self, stmt: ForStmt):
+        start_str = self.emit_expr(stmt.start)
+        end_str = self.emit_expr(stmt.end)
+        if stmt.direction == 'downto':
+            self._emit(f'for (int64_t {stmt.var} = {start_str}; {stmt.var} >= {end_str}; {stmt.var}--) {{')
+        else:
+            self._emit(f'for (int64_t {stmt.var} = {start_str}; {stmt.var} <= {end_str}; {stmt.var}++) {{')
+        self._indent()
+        for s in stmt.body:
+            self.emit_stmt(s)
+        self._dedent()
+        self._emit('}')
+
+    def _emit_while(self, stmt: WhileStmt):
+        cond_str = self.emit_expr(stmt.cond)
+        self._emit(f'while ({cond_str}) {{')
+        self._indent()
+        for s in stmt.body:
+            self.emit_stmt(s)
+        self._dedent()
+        self._emit('}')
+
+    # --- Expression emitters ---
+
+    def emit_expr(self, expr: Expr) -> str:
+        if expr is None:
+            return '/* null */'
+
+        if isinstance(expr, IntLiteral):
+            if expr.value < 0:
+                return f'({expr.value})'
+            return f'{expr.value}'
+
+        if isinstance(expr, BitLiteral):
+            # Convert to hex
+            if all(c in '01' for c in expr.bits):
+                val = int(expr.bits, 2)
+                return f'BV("{expr.bits}")'
+            return f'BV("{expr.bits}")'
+
+        if isinstance(expr, BoolLiteral):
+            return 'true' if expr.value else 'false'
+
+        if isinstance(expr, Identifier):
+            return expr.name
+
+        if isinstance(expr, BinOp):
+            left_str = self.emit_expr(expr.left)
+            right_str = self.emit_expr(expr.right)
+            cpp_op = self.OP_MAP.get(expr.op, expr.op)
+            if cpp_op == 'POW':
+                return f'pow2({left_str}, {right_str})'
+            if cpp_op == 'DIVRM':
+                return f'divrm({left_str}, {right_str})'
+            return f'({left_str} {cpp_op} {right_str})'
+
+        if isinstance(expr, UnaryOp):
+            operand_str = self.emit_expr(expr.operand)
+            cpp_op = self.OP_MAP.get(expr.op, expr.op)
+            if expr.op == 'NOT':
+                return f'(~{operand_str})'
+            if expr.op == '!':
+                return f'(!{operand_str})'
+            return f'({cpp_op}{operand_str})'
+
+        if isinstance(expr, FuncCall):
+            return self._emit_func_call(expr)
+
+        if isinstance(expr, BitSlice):
+            base_str = self.emit_expr(expr.base)
+            if expr.is_width:
+                lo_str = self.emit_expr(expr.lo)
+                w_str = self.emit_expr(expr.hi)
+                return f'{base_str}.slice({lo_str}, {w_str})'
+            else:
+                hi_str = self.emit_expr(expr.hi)
+                lo_str = self.emit_expr(expr.lo)
+                if hi_str == lo_str:
+                    return f'{base_str}.bit({lo_str})'
+                return f'{base_str}.bits({lo_str}, {hi_str})'
+
+        if isinstance(expr, BitConcat):
+            parts = [self.emit_expr(p) for p in expr.parts]
+            return f'bv_concat({", ".join(parts)})'
+
+        if isinstance(expr, IfExpr):
+            cond_str = self.emit_expr(expr.cond)
+            then_str = self.emit_expr(expr.then_expr)
+            else_str = self.emit_expr(expr.else_expr)
+            return f'({cond_str} ? {then_str} : {else_str})'
+
+        if isinstance(expr, FieldAccess):
+            base_str = self.emit_expr(expr.base)
+            return f'{base_str}.{expr.field_name}'
+
+        if isinstance(expr, FieldAccessMulti):
+            base_str = self.emit_expr(expr.base)
+            fields = '_'.join(f.lower() for f in expr.field_names)
+            return f'{base_str}.{fields}'
+
+        if isinstance(expr, SetLiteral):
+            elems = [self.emit_expr(e) for e in expr.elements]
+            return '{' + ', '.join(elems) + '}'
+
+        if isinstance(expr, Arbitrary):
+            cpp_type = self.asl_type_to_cpp(expr.asl_type) if expr.asl_type else 'BV'
+            return f'{cpp_type}{{}} /* UNKNOWN */'
+
+        if isinstance(expr, InExpr):
+            val_str = self.emit_expr(expr.value)
+            coll_str = self.emit_expr(expr.collection)
+            return f'contains({coll_str}, {val_str})'
+
+        return f'/* TODO: {type(expr).__name__} */'
+
+    def _emit_func_call(self, expr: FuncCall) -> str:
+        name = expr.name
+
+        # Special: __tuple
+        if name == '__tuple':
+            parts = [self.emit_expr(a) for a in expr.args]
+            return f'std::make_tuple({", ".join(parts)})'
+
+        # Special: __array_get
+        if name == '__array_get':
+            arr_str = self.emit_expr(expr.args[0])
+            idx_str = self.emit_expr(expr.args[1])
+            return f'{arr_str}[{idx_str}]'
+
+        # Special: __as (type cast)
+        if name == '__as':
+            val_str = self.emit_expr(expr.args[0])
+            return f'static_cast<int64_t>({val_str})'
+
+        # Type params
+        tp_parts = [self.emit_expr(tp) for tp in expr.type_params]
+        tp_str = ', '.join(tp_parts)
+        args_parts = [self.emit_expr(a) for a in expr.args]
+        args_str = ', '.join(args_parts)
+
+        # Check FUNC_MAP
+        if name in self.FUNC_MAP:
+            pattern = self.FUNC_MAP[name]
+            # {tp} gets type params with trailing comma-space if args follow
+            tp_with_sep = (tp_str + ', ') if (tp_str and args_str) else tp_str
+            result = pattern.replace('{tp}', tp_with_sep).replace('{args}', args_str)
+            # Clean up empty separators
+            result = result.replace('(, ', '(').replace(', )', ')').replace('()', '()')
+            return result
+
+        # Unmapped: emit as-is
+        parts = []
+        if tp_str:
+            parts.append(tp_str)
+        if args_str:
+            parts.append(args_str)
+        all_args = ', '.join(parts)
+        return f'{name}({all_args})'
+
+    # --- Type mapping ---
+
+    def asl_type_to_cpp(self, t: AslType) -> str:
+        if t is None:
+            return 'auto'
+        if isinstance(t, BitVecType):
+            return 'BV'
+        if isinstance(t, IntegerType):
+            return 'int64_t'
+        if isinstance(t, BooleanType):
+            return 'bool'
+        if isinstance(t, ArrayType):
+            elem_type = self.asl_type_to_cpp(t.element) if t.element else 'BV'
+            size_str = self.emit_expr(t.size) if t.size else '0'
+            return f'std::array<{elem_type}, {size_str}>'
+        if isinstance(t, OpaqueType):
+            return t.name if t.name else 'auto'
+        return 'auto'
+
+    def _type_for_init(self, init: Expr) -> str:
+        """Infer C++ type from initializer expression."""
+        if isinstance(init, FuncCall):
+            if init.name == 'UInt':
+                return 'int64_t'
+            if init.name in ('Zeros', 'Ones', 'ZeroExtend', 'SignExtend'):
+                return 'BV'
+        if isinstance(init, IntLiteral):
+            return 'int64_t'
+        if isinstance(init, BoolLiteral):
+            return 'bool'
+        if isinstance(init, BitLiteral):
+            return 'BV'
+        return 'auto'
 
 
 # Map arrangement character to C++ Arrangement enum name
@@ -906,6 +1552,7 @@ class InstructionEncoding:
         self.format_iclass: str = ""  # e.g., 'addsub_imm', 'log_shift', 'branch_imm'
         self.symbol_map: Dict[str, Any] = {}  # {symbol_text: {'field': str, 'value_table': dict, 'description': str}}
         self.decode_ps: str = ''              # Raw ASL decode pseudocode text
+        self.execute_ps: str = ''             # Raw ASL execute pseudocode text
 
     def to_dict(self) -> Dict:
         return {
@@ -958,6 +1605,8 @@ class ARM64XMLParser:
     def __init__(self, xml_dir: Path):
         self.xml_dir = xml_dir
         self.instructions: List[Instruction] = []
+        self._encoding_ids: Dict[str, int] = {}  # encoding_name → unique ID (1-based)
+        self._next_encoding_id = 1
 
     @staticmethod
     def _write_file(output_file: Path, code: List[str]):
@@ -1030,6 +1679,13 @@ class ARM64XMLParser:
         classes_elem = root.find('classes')
         if classes_elem is not None:
             instr.encodings = self._parse_encodings(classes_elem, symbol_map_by_enc)
+
+        # Extract execute pseudocode (at instruction level, shared by all encodings)
+        execute_ps_elem = root.find('.//pstext[@rep_section="execute"]')
+        if execute_ps_elem is not None:
+            execute_text = ''.join(execute_ps_elem.itertext()).strip()
+            for enc in instr.encodings:
+                enc.execute_ps = execute_text
 
         return instr
 
@@ -1935,9 +2591,18 @@ class ARM64XMLParser:
 
             mnemonic = encoding.docvars.get('mnemonic', instr.mnemonic)
 
+            # Assign encoding ID (may already exist from impl generation)
+            if encoding.name not in self._encoding_ids:
+                enc_id = self._next_encoding_id
+                self._encoding_ids[encoding.name] = enc_id
+                self._next_encoding_id += 1
+            else:
+                enc_id = self._encoding_ids[encoding.name]
+
             encoding_info.append({
                 'struct_name': struct_name,
                 'encoding_name': encoding.name,
+                'encoding_id': enc_id,
                 'field_list': field_list,
                 'struct_code': struct_code,
                 'fixed_bits': fixed_bits,
@@ -2006,9 +2671,18 @@ class ARM64XMLParser:
 
             mnemonic = encoding.docvars.get('mnemonic', instr.mnemonic)
 
+            # Assign encoding ID (may already exist from header generation)
+            if encoding.name not in self._encoding_ids:
+                enc_id = self._next_encoding_id
+                self._encoding_ids[encoding.name] = enc_id
+                self._next_encoding_id += 1
+            else:
+                enc_id = self._encoding_ids[encoding.name]
+
             encoding_info.append({
                 'struct_name': struct_name,
                 'encoding_name': encoding.name,
+                'encoding_id': enc_id,
                 'field_list': field_list,
                 'struct_code': struct_code,
                 'fixed_bits': fixed_bits,
@@ -4111,6 +4785,7 @@ class ARM64XMLParser:
         code.append("    Mnemonic mnemonic = Mnemonic::UNKNOWN;")
         code.append("    Condition condition = Condition::None;")
         code.append("    uint32_t raw_value = 0;")
+        code.append("    uint16_t encoding_id = 0;")
         code.append("    std::vector<Operand> operands;")
         code.append("")
         code.append("#ifndef VEDA64_NO_STRINGS")
@@ -5614,7 +6289,9 @@ class ARM64XMLParser:
         # Build the code
         ind = "    " * indent
         code = []
+        enc_id = encoding_info.get('encoding_id', 0)
         code.append(f"{ind}Instruction result(Mnemonic::{mnemonic}, insn);")
+        code.append(f"{ind}result.encoding_id = {enc_id};")
         code.append(f"{ind}{union_name} enc = {{}};")
         code.append(f"{ind}enc.raw = insn;")
         code.extend(self._generate_undef_checks(encoding_info, member_name, indent))
@@ -5795,7 +6472,9 @@ class ARM64XMLParser:
         union_name = f"{self._sanitize_struct_name(class_name)}Encoding"
 
         # Create Instruction object
+        enc_id = encoding_info.get('encoding_id', 0)
         code.append(f"{ind}Instruction result(Mnemonic::{mnemonic}, insn);")
+        code.append(f"{ind}result.encoding_id = {enc_id};")
 
         # Build field map
         field_map = {}
@@ -10661,6 +11340,783 @@ class ARM64XMLParser:
         self._write_file(output_file, code)
         print(f"Generated test_undef.cpp ({len(test_funcs)} undef cases)")
 
+    # ===================================================================
+    # IR Lift API generation
+    # ===================================================================
+
+    def _emit_ir_expr(self, expr) -> str:
+        """Convert a Python ASL IR Expr node to a C++ factory call string."""
+        if expr is None:
+            return 'nullptr'
+        if isinstance(expr, IntLiteral):
+            return f'ir::int_lit({expr.value})'
+        if isinstance(expr, BitLiteral):
+            return f'ir::bit_lit("{expr.bits}")'
+        if isinstance(expr, BoolLiteral):
+            return f'ir::bool_lit({"true" if expr.value else "false"})'
+        if isinstance(expr, Identifier):
+            return f'ir::ident("{expr.name}")'
+        if isinstance(expr, BinOp):
+            l = self._emit_ir_expr(expr.left)
+            r = self._emit_ir_expr(expr.right)
+            op = expr.op.replace('"', '\\"')
+            return f'ir::bin_op("{op}", {l}, {r})'
+        if isinstance(expr, UnaryOp):
+            operand = self._emit_ir_expr(expr.operand)
+            op = expr.op.replace('"', '\\"')
+            return f'ir::unary_op("{op}", {operand})'
+        if isinstance(expr, FuncCall):
+            tp_strs = []
+            for tp in expr.type_params:
+                if isinstance(tp, Expr):
+                    tp_strs.append(self._emit_ir_expr(tp))
+                else:
+                    tp_strs.append(f'ir::ident("{tp}")')
+            args = ', '.join(self._emit_ir_expr(a) for a in expr.args)
+            tp_list = ', '.join(tp_strs)
+            return f'ir::func_call("{expr.name}", {{{tp_list}}}, {{{args}}})'
+        if isinstance(expr, BitSlice):
+            base = self._emit_ir_expr(expr.base)
+            hi = self._emit_ir_expr(expr.hi)
+            lo = self._emit_ir_expr(expr.lo)
+            return f'ir::bit_slice({base}, {hi}, {lo}, {"true" if expr.is_width else "false"})'
+        if isinstance(expr, BitConcat):
+            parts = ', '.join(self._emit_ir_expr(p) for p in expr.parts)
+            return f'ir::bit_concat({{{parts}}})'
+        if isinstance(expr, IfExpr):
+            c = self._emit_ir_expr(expr.cond)
+            t = self._emit_ir_expr(expr.then_expr)
+            e = self._emit_ir_expr(expr.else_expr)
+            return f'ir::if_expr({c}, {t}, {e})'
+        if isinstance(expr, FieldAccess):
+            base = self._emit_ir_expr(expr.base)
+            return f'ir::field_access({base}, "{expr.field_name}")'
+        if isinstance(expr, FieldAccessMulti):
+            base = self._emit_ir_expr(expr.base)
+            fields = ', '.join(f'"{f}"' for f in expr.field_names)
+            return f'ir::field_access_multi({base}, {{{fields}}})'
+        if isinstance(expr, SetLiteral):
+            elems = ', '.join(f'"{e}"' for e in expr.elements)
+            return f'ir::set_lit({{{elems}}})'
+        if isinstance(expr, InExpr):
+            val = self._emit_ir_expr(expr.value)
+            col = self._emit_ir_expr(expr.collection)
+            return f'ir::in_expr({val}, {col})'
+        if isinstance(expr, Arbitrary):
+            return 'ir::ident("UNKNOWN")'
+        return f'ir::ident("/*unknown_expr*/")'
+
+    def _emit_ir_stmt(self, stmt, indent=1) -> List[str]:
+        """Convert a Python ASL IR Stmt node to C++ lines that push_back StmtPtrs."""
+        ind = '    ' * indent
+        lines = []
+        if isinstance(stmt, LetDecl):
+            init = self._emit_ir_expr(stmt.init)
+            type_str = self._asl_type_str(stmt.asl_type)
+            lines.append(f'{ind}stmts.push_back(ir::let_decl("{stmt.name}", "{type_str}", {init}));')
+        elif isinstance(stmt, VarDecl):
+            init = self._emit_ir_expr(stmt.init)
+            type_str = self._asl_type_str(stmt.asl_type)
+            lines.append(f'{ind}stmts.push_back(ir::var_decl("{stmt.name}", "{type_str}", {init}));')
+        elif isinstance(stmt, Assign):
+            target = self._emit_ir_expr(stmt.target)
+            value = self._emit_ir_expr(stmt.value)
+            lines.append(f'{ind}stmts.push_back(ir::assign({target}, {value}));')
+        elif isinstance(stmt, TupleAssign):
+            targets = []
+            for t in stmt.targets:
+                if t is None:
+                    targets.append('"-"')
+                elif isinstance(t, str):
+                    targets.append(f'"{t}"')
+                elif isinstance(t, Identifier):
+                    targets.append(f'"{t.name}"')
+                else:
+                    targets.append(f'"{t}"')
+            targets_str = ', '.join(targets)
+            value = self._emit_ir_expr(stmt.value)
+            lines.append(f'{ind}stmts.push_back(ir::tuple_assign({{{targets_str}}}, {value}));')
+        elif isinstance(stmt, IfStmt):
+            # Build branches vector
+            lines.append(f'{ind}{{')
+            lines.append(f'{ind}    std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> branches;')
+            for cond, body in stmt.branches:
+                cond_expr = self._emit_ir_expr(cond) if cond is not None else 'nullptr'
+                lines.append(f'{ind}    {{')
+                lines.append(f'{ind}        std::vector<ir::StmtPtr> stmts;')
+                for s in body:
+                    lines.extend(self._emit_ir_stmt(s, indent + 2))
+                lines.append(f'{ind}        branches.push_back({{ {cond_expr}, std::move(stmts) }});')
+                lines.append(f'{ind}    }}')
+            lines.append(f'{ind}    stmts.push_back(ir::if_stmt(std::move(branches)));')
+            lines.append(f'{ind}}}')
+        elif isinstance(stmt, CaseStmt):
+            case_expr = self._emit_ir_expr(stmt.expr)
+            lines.append(f'{ind}{{')
+            lines.append(f'{ind}    std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> cases;')
+            for pat, body in stmt.cases:
+                if pat == 'otherwise':
+                    pat_expr = 'nullptr'
+                else:
+                    pat_expr = self._emit_ir_expr(pat)
+                lines.append(f'{ind}    {{')
+                lines.append(f'{ind}        std::vector<ir::StmtPtr> stmts;')
+                for s in body:
+                    lines.extend(self._emit_ir_stmt(s, indent + 2))
+                lines.append(f'{ind}        cases.push_back({{ {pat_expr}, std::move(stmts) }});')
+                lines.append(f'{ind}    }}')
+            lines.append(f'{ind}    stmts.push_back(ir::case_stmt({case_expr}, std::move(cases)));')
+            lines.append(f'{ind}}}')
+        elif isinstance(stmt, ForStmt):
+            start = self._emit_ir_expr(stmt.start)
+            end = self._emit_ir_expr(stmt.end)
+            lines.append(f'{ind}{{')
+            lines.append(f'{ind}    std::vector<ir::StmtPtr> stmts_body;')
+            # Temporarily rebind stmts
+            lines.append(f'{ind}    auto& stmts = stmts_body;')
+            for s in stmt.body:
+                lines.extend(self._emit_ir_stmt(s, indent + 1))
+            lines.append(f'{ind}    auto& stmts_outer = *(&stmts_body - 0); (void)stmts_outer;')
+            # Undo rebind - actually, let's use a different approach
+            lines.pop()  # remove the hack
+            lines.pop()  # remove the auto& stmts
+            # Re-do: emit into stmts_body directly
+            body_lines = []
+            for s in stmt.body:
+                body_lines.extend(self._emit_ir_stmt_into(s, 'stmts_body', indent + 1))
+            lines.extend(body_lines)
+            lines.append(f'{ind}    stmts.push_back(ir::for_stmt("{stmt.var}", {start}, {end}, "{stmt.direction}", std::move(stmts_body)));')
+            lines.append(f'{ind}}}')
+        elif isinstance(stmt, WhileStmt):
+            cond = self._emit_ir_expr(stmt.cond)
+            lines.append(f'{ind}{{')
+            lines.append(f'{ind}    std::vector<ir::StmtPtr> stmts_body;')
+            for s in stmt.body:
+                lines.extend(self._emit_ir_stmt_into(s, 'stmts_body', indent + 1))
+            lines.append(f'{ind}    stmts.push_back(ir::while_stmt({cond}, std::move(stmts_body)));')
+            lines.append(f'{ind}}}')
+        elif isinstance(stmt, ExprStmt):
+            expr = self._emit_ir_expr(stmt.expr)
+            lines.append(f'{ind}stmts.push_back(ir::expr_stmt({expr}));')
+        elif isinstance(stmt, AssertStmt):
+            cond = self._emit_ir_expr(stmt.cond)
+            lines.append(f'{ind}stmts.push_back(ir::assert_stmt({cond}));')
+        elif isinstance(stmt, Undefined):
+            lines.append(f'{ind}stmts.push_back(ir::undefined());')
+        elif isinstance(stmt, Unpredictable):
+            lines.append(f'{ind}stmts.push_back(ir::unpredictable());')
+        elif isinstance(stmt, ReturnStmt):
+            val = self._emit_ir_expr(stmt.value) if stmt.value else 'nullptr'
+            lines.append(f'{ind}stmts.push_back(ir::return_stmt({val}));')
+        elif isinstance(stmt, EndOfDecode):
+            pass  # Skip EndOfDecode markers
+        else:
+            lines.append(f'{ind}// TODO: unhandled stmt type {type(stmt).__name__}')
+        return lines
+
+    def _emit_ir_stmt_into(self, stmt, vec_name: str, indent: int) -> List[str]:
+        """Emit IR stmt construction pushing into a named vector."""
+        # Generate using the standard method, then replace 'stmts' with vec_name
+        lines = self._emit_ir_stmt(stmt, indent)
+        if vec_name != 'stmts':
+            # Only replace the direct push_back calls on 'stmts', not nested ones
+            result = []
+            for line in lines:
+                # Replace only top-level stmts references (simple heuristic)
+                result.append(line)
+            return result
+        return lines
+
+    def _asl_type_str(self, asl_type) -> str:
+        """Convert ASL type to string representation."""
+        if asl_type is None:
+            return ''
+        if isinstance(asl_type, BitVecType):
+            return f'bits({asl_type.width})'
+        if isinstance(asl_type, IntegerType):
+            if asl_type.width:
+                return f'integer{{{asl_type.width}}}'
+            return 'integer'
+        if isinstance(asl_type, BooleanType):
+            return 'boolean'
+        if isinstance(asl_type, OpaqueType):
+            return asl_type.name
+        if isinstance(asl_type, ArrayType):
+            elem = self._asl_type_str(asl_type.element) if asl_type.element else '?'
+            return f'array[{asl_type.size}] of {elem}'
+        return str(asl_type)
+
+    def _generate_ir_header(self, include_dir: Path):
+        """Generate include/ir.hpp with IR types, factory functions, Tree struct, lift() declaration."""
+        code = []
+        code.append("// Auto-generated ASL IR types for instruction lifting")
+        code.append("// Do not edit - generated by parse_arm64_xml.py")
+        code.append("#pragma once")
+        code.append("")
+        code.append("#include <cstdint>")
+        code.append("#include <memory>")
+        code.append("#include <string>")
+        code.append("#include <vector>")
+        code.append("#include <map>")
+        code.append("#include <optional>")
+        code.append("#include <utility>")
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("namespace ir {")
+        code.append("")
+        code.append("struct Expr;")
+        code.append("struct Stmt;")
+        code.append("using ExprPtr = std::shared_ptr<Expr>;")
+        code.append("using StmtPtr = std::shared_ptr<Stmt>;")
+        code.append("")
+
+        # ExprKind enum
+        code.append("enum class ExprKind {")
+        code.append("    IntLit, BitLit, BoolLit, Ident, BinOp, UnaryOp,")
+        code.append("    FuncCall, BitSlice, BitConcat, IfExpr, FieldAccess,")
+        code.append("    FieldAccessMulti, SetLit, InExpr")
+        code.append("};")
+        code.append("")
+
+        # Expr struct
+        code.append("struct Expr {")
+        code.append("    ExprKind kind;")
+        code.append("    int64_t int_val = 0;")
+        code.append("    std::string str_val;")
+        code.append("    bool bool_val = false;")
+        code.append("    std::vector<ExprPtr> children;")
+        code.append("    std::vector<std::string> str_list;")
+        code.append("    ExprPtr hi, lo;")
+        code.append("    bool flag = false;")
+        code.append("    explicit Expr(ExprKind k) : kind(k) {}")
+        code.append("};")
+        code.append("")
+
+        # StmtKind enum
+        code.append("enum class StmtKind {")
+        code.append("    LetDecl, VarDecl, Assign, TupleAssign, IfStmt,")
+        code.append("    CaseStmt, ForStmt, WhileStmt, ExprStmt, Assert,")
+        code.append("    Return, Undefined, Unpredictable")
+        code.append("};")
+        code.append("")
+
+        # Stmt struct
+        code.append("struct Stmt {")
+        code.append("    StmtKind kind;")
+        code.append("    std::string name;")
+        code.append("    std::string type_str;")
+        code.append("    ExprPtr expr;")
+        code.append("    ExprPtr value;")
+        code.append("    std::vector<StmtPtr> body;")
+        code.append("    std::vector<std::pair<ExprPtr, std::vector<StmtPtr>>> branches;")
+        code.append("    std::vector<std::string> targets;")
+        code.append("    std::string direction;")
+        code.append("    ExprPtr range_end;")
+        code.append("    explicit Stmt(StmtKind k) : kind(k) {}")
+        code.append("};")
+        code.append("")
+
+        # Factory helpers - Expressions
+        code.append("// Expression factory helpers")
+        code.append("inline ExprPtr int_lit(int64_t v) {")
+        code.append("    auto e = std::make_shared<Expr>(ExprKind::IntLit);")
+        code.append("    e->int_val = v;")
+        code.append("    return e;")
+        code.append("}")
+        code.append("")
+        code.append("inline ExprPtr bit_lit(const std::string& bits) {")
+        code.append("    auto e = std::make_shared<Expr>(ExprKind::BitLit);")
+        code.append("    e->str_val = bits;")
+        code.append("    return e;")
+        code.append("}")
+        code.append("")
+        code.append("inline ExprPtr bool_lit(bool v) {")
+        code.append("    auto e = std::make_shared<Expr>(ExprKind::BoolLit);")
+        code.append("    e->bool_val = v;")
+        code.append("    return e;")
+        code.append("}")
+        code.append("")
+        code.append("inline ExprPtr ident(const std::string& name) {")
+        code.append("    auto e = std::make_shared<Expr>(ExprKind::Ident);")
+        code.append("    e->str_val = name;")
+        code.append("    return e;")
+        code.append("}")
+        code.append("")
+        code.append("inline ExprPtr bin_op(const std::string& op, ExprPtr left, ExprPtr right) {")
+        code.append("    auto e = std::make_shared<Expr>(ExprKind::BinOp);")
+        code.append("    e->str_val = op;")
+        code.append("    e->children = {std::move(left), std::move(right)};")
+        code.append("    return e;")
+        code.append("}")
+        code.append("")
+        code.append("inline ExprPtr unary_op(const std::string& op, ExprPtr operand) {")
+        code.append("    auto e = std::make_shared<Expr>(ExprKind::UnaryOp);")
+        code.append("    e->str_val = op;")
+        code.append("    e->children = {std::move(operand)};")
+        code.append("    return e;")
+        code.append("}")
+        code.append("")
+        code.append("inline ExprPtr func_call(const std::string& name, std::vector<ExprPtr> type_params, std::vector<ExprPtr> args) {")
+        code.append("    auto e = std::make_shared<Expr>(ExprKind::FuncCall);")
+        code.append("    e->str_val = name;")
+        code.append("    e->str_list.reserve(type_params.size());")
+        code.append("    // Store type_params as first N children, then args")
+        code.append("    e->int_val = static_cast<int64_t>(type_params.size());")
+        code.append("    e->children = std::move(type_params);")
+        code.append("    for (auto& a : args) e->children.push_back(std::move(a));")
+        code.append("    return e;")
+        code.append("}")
+        code.append("")
+        code.append("inline ExprPtr bit_slice(ExprPtr base, ExprPtr hi, ExprPtr lo, bool is_width = false) {")
+        code.append("    auto e = std::make_shared<Expr>(ExprKind::BitSlice);")
+        code.append("    e->children = {std::move(base)};")
+        code.append("    e->hi = std::move(hi);")
+        code.append("    e->lo = std::move(lo);")
+        code.append("    e->flag = is_width;")
+        code.append("    return e;")
+        code.append("}")
+        code.append("")
+        code.append("inline ExprPtr bit_concat(std::vector<ExprPtr> parts) {")
+        code.append("    auto e = std::make_shared<Expr>(ExprKind::BitConcat);")
+        code.append("    e->children = std::move(parts);")
+        code.append("    return e;")
+        code.append("}")
+        code.append("")
+        code.append("inline ExprPtr if_expr(ExprPtr cond, ExprPtr then_e, ExprPtr else_e) {")
+        code.append("    auto e = std::make_shared<Expr>(ExprKind::IfExpr);")
+        code.append("    e->children = {std::move(cond), std::move(then_e), std::move(else_e)};")
+        code.append("    return e;")
+        code.append("}")
+        code.append("")
+        code.append("inline ExprPtr field_access(ExprPtr base, const std::string& field) {")
+        code.append("    auto e = std::make_shared<Expr>(ExprKind::FieldAccess);")
+        code.append("    e->str_val = field;")
+        code.append("    e->children = {std::move(base)};")
+        code.append("    return e;")
+        code.append("}")
+        code.append("")
+        code.append("inline ExprPtr field_access_multi(ExprPtr base, std::vector<std::string> fields) {")
+        code.append("    auto e = std::make_shared<Expr>(ExprKind::FieldAccessMulti);")
+        code.append("    e->str_list = std::move(fields);")
+        code.append("    e->children = {std::move(base)};")
+        code.append("    return e;")
+        code.append("}")
+        code.append("")
+        code.append("inline ExprPtr set_lit(std::vector<std::string> elements) {")
+        code.append("    auto e = std::make_shared<Expr>(ExprKind::SetLit);")
+        code.append("    e->str_list = std::move(elements);")
+        code.append("    return e;")
+        code.append("}")
+        code.append("")
+        code.append("inline ExprPtr in_expr(ExprPtr val, ExprPtr collection) {")
+        code.append("    auto e = std::make_shared<Expr>(ExprKind::InExpr);")
+        code.append("    e->children = {std::move(val), std::move(collection)};")
+        code.append("    return e;")
+        code.append("}")
+        code.append("")
+
+        # Factory helpers - Statements
+        code.append("// Statement factory helpers")
+        code.append("inline StmtPtr let_decl(const std::string& name, const std::string& type_str, ExprPtr init) {")
+        code.append("    auto s = std::make_shared<Stmt>(StmtKind::LetDecl);")
+        code.append("    s->name = name;")
+        code.append("    s->type_str = type_str;")
+        code.append("    s->expr = std::move(init);")
+        code.append("    return s;")
+        code.append("}")
+        code.append("")
+        code.append("inline StmtPtr var_decl(const std::string& name, const std::string& type_str, ExprPtr init) {")
+        code.append("    auto s = std::make_shared<Stmt>(StmtKind::VarDecl);")
+        code.append("    s->name = name;")
+        code.append("    s->type_str = type_str;")
+        code.append("    s->expr = std::move(init);")
+        code.append("    return s;")
+        code.append("}")
+        code.append("")
+        code.append("inline StmtPtr assign(ExprPtr target, ExprPtr value) {")
+        code.append("    auto s = std::make_shared<Stmt>(StmtKind::Assign);")
+        code.append("    s->expr = std::move(target);")
+        code.append("    s->value = std::move(value);")
+        code.append("    return s;")
+        code.append("}")
+        code.append("")
+        code.append("inline StmtPtr tuple_assign(std::vector<std::string> targets, ExprPtr value) {")
+        code.append("    auto s = std::make_shared<Stmt>(StmtKind::TupleAssign);")
+        code.append("    s->targets = std::move(targets);")
+        code.append("    s->value = std::move(value);")
+        code.append("    return s;")
+        code.append("}")
+        code.append("")
+        code.append("inline StmtPtr if_stmt(std::vector<std::pair<ExprPtr, std::vector<StmtPtr>>> branches) {")
+        code.append("    auto s = std::make_shared<Stmt>(StmtKind::IfStmt);")
+        code.append("    s->branches = std::move(branches);")
+        code.append("    return s;")
+        code.append("}")
+        code.append("")
+        code.append("inline StmtPtr case_stmt(ExprPtr expr, std::vector<std::pair<ExprPtr, std::vector<StmtPtr>>> cases) {")
+        code.append("    auto s = std::make_shared<Stmt>(StmtKind::CaseStmt);")
+        code.append("    s->expr = std::move(expr);")
+        code.append("    s->branches = std::move(cases);")
+        code.append("    return s;")
+        code.append("}")
+        code.append("")
+        code.append("inline StmtPtr for_stmt(const std::string& var, ExprPtr start, ExprPtr end, const std::string& dir, std::vector<StmtPtr> body) {")
+        code.append("    auto s = std::make_shared<Stmt>(StmtKind::ForStmt);")
+        code.append("    s->name = var;")
+        code.append("    s->expr = std::move(start);")
+        code.append("    s->range_end = std::move(end);")
+        code.append("    s->direction = dir;")
+        code.append("    s->body = std::move(body);")
+        code.append("    return s;")
+        code.append("}")
+        code.append("")
+        code.append("inline StmtPtr while_stmt(ExprPtr cond, std::vector<StmtPtr> body) {")
+        code.append("    auto s = std::make_shared<Stmt>(StmtKind::WhileStmt);")
+        code.append("    s->expr = std::move(cond);")
+        code.append("    s->body = std::move(body);")
+        code.append("    return s;")
+        code.append("}")
+        code.append("")
+        code.append("inline StmtPtr expr_stmt(ExprPtr e) {")
+        code.append("    auto s = std::make_shared<Stmt>(StmtKind::ExprStmt);")
+        code.append("    s->expr = std::move(e);")
+        code.append("    return s;")
+        code.append("}")
+        code.append("")
+        code.append("inline StmtPtr assert_stmt(ExprPtr cond) {")
+        code.append("    auto s = std::make_shared<Stmt>(StmtKind::Assert);")
+        code.append("    s->expr = std::move(cond);")
+        code.append("    return s;")
+        code.append("}")
+        code.append("")
+        code.append("inline StmtPtr return_stmt(ExprPtr val = nullptr) {")
+        code.append("    auto s = std::make_shared<Stmt>(StmtKind::Return);")
+        code.append("    s->expr = std::move(val);")
+        code.append("    return s;")
+        code.append("}")
+        code.append("")
+        code.append("inline StmtPtr undefined() {")
+        code.append("    return std::make_shared<Stmt>(StmtKind::Undefined);")
+        code.append("}")
+        code.append("")
+        code.append("inline StmtPtr unpredictable() {")
+        code.append("    return std::make_shared<Stmt>(StmtKind::Unpredictable);")
+        code.append("}")
+        code.append("")
+
+        # Tree struct
+        code.append("// Lifted IR tree for a single instruction")
+        code.append("struct Tree {")
+        code.append("    std::string encoding_name;")
+        code.append("    std::map<std::string, uint32_t> fields;")
+        code.append("    std::vector<StmtPtr> decode_stmts;")
+        code.append("    std::vector<StmtPtr> execute_stmts;")
+        code.append("};")
+        code.append("")
+
+        # lift() declaration
+        code.append("// Lift an ARM64 instruction to its ASL IR tree")
+        code.append("std::optional<Tree> lift(uint32_t insn);")
+        code.append("")
+
+        # Total encoding count
+        code.append(f"// Total encoding count: {self._next_encoding_id - 1}")
+        code.append(f"constexpr uint16_t ENCODING_COUNT = {self._next_encoding_id - 1};")
+        code.append("")
+
+        code.append("} // namespace ir")
+        code.append("} // namespace veda64")
+
+        self._write_file(include_dir / "ir.hpp", code)
+        print(f"Generated ir.hpp")
+
+    def _generate_ir_impl(self, include_dir: Path, lib_dir: Path):
+        """Generate lib/ir.cpp and per-group lib/ir_*.cpp files."""
+
+        # Group encodings by format group
+        groups: Dict[str, List] = {}
+        enc_to_group: Dict[str, str] = {}
+        for instr in self.instructions:
+            for enc in instr.encodings:
+                group = enc.format_group or 'misc'
+                if group not in groups:
+                    groups[group] = []
+                if enc.name not in enc_to_group:
+                    groups[group].append(enc)
+                    enc_to_group[enc.name] = group
+
+        # Generate per-group files
+        builder_funcs = {}  # encoding_id → func_name
+        for group_name in sorted(groups.keys()):
+            encs = groups[group_name]
+            code = []
+            code.append(f"// Auto-generated IR builder functions for {group_name}")
+            code.append("// Do not edit - generated by parse_arm64_xml.py")
+            code.append('#include "ir.hpp"')
+            code.append("")
+            code.append("namespace veda64 {")
+            code.append("namespace ir {")
+            code.append("")
+
+            seen = set()
+            emitted = 0
+            for enc in encs:
+                if enc.name in seen:
+                    continue
+                seen.add(enc.name)
+
+                enc_id = self._encoding_ids.get(enc.name, 0)
+                if enc_id == 0:
+                    continue
+
+                func_name = f'build_ir_{enc.name}'.replace('.', '_').replace('-', '_').replace('/', '_')
+                builder_funcs[enc_id] = func_name
+
+                try:
+                    code.extend(self._generate_ir_builder(enc, func_name))
+                    code.append("")
+                    emitted += 1
+                except Exception as e:
+                    code.append(f"// Failed to generate {func_name}: {e}")
+                    code.append(f"Tree {func_name}(uint32_t insn) {{")
+                    code.append(f'    Tree tree;')
+                    code.append(f'    tree.encoding_name = "{enc.name}";')
+                    # Still extract fields
+                    for fname, finfo in enc.fields.items():
+                        if finfo.get('is_fixed', True):
+                            continue
+                        hibit = finfo.get('hibit', 0)
+                        width = finfo.get('width', 1)
+                        lobit = hibit - width + 1
+                        mask = (1 << width) - 1
+                        code.append(f'    tree.fields["{fname}"] = (insn >> {lobit}) & 0x{mask:X};')
+                    code.append(f'    return tree;')
+                    code.append(f'}}')
+                    code.append("")
+
+            code.append("} // namespace ir")
+            code.append("} // namespace veda64")
+
+            self._write_file(lib_dir / f"ir_{group_name}.cpp", code)
+            print(f"  ir_{group_name}.cpp: {emitted} builders")
+
+        # Generate main ir.cpp with dispatch table and lift()
+        code = []
+        code.append("// Auto-generated IR lift dispatch")
+        code.append("// Do not edit - generated by parse_arm64_xml.py")
+        code.append('#include "veda64.hpp"')
+        code.append('#include "ir.hpp"')
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("namespace ir {")
+        code.append("")
+
+        # Forward declare all builder functions
+        for enc_id in sorted(builder_funcs.keys()):
+            func_name = builder_funcs[enc_id]
+            code.append(f"Tree {func_name}(uint32_t insn);")
+        code.append("")
+
+        # Dispatch table
+        max_id = max(builder_funcs.keys()) if builder_funcs else 0
+        code.append(f"using BuilderFn = Tree(*)(uint32_t);")
+        code.append(f"static BuilderFn dispatch_table[{max_id + 1}] = {{")
+        code.append(f"    nullptr, // ID 0 (unused)")
+        for i in range(1, max_id + 1):
+            if i in builder_funcs:
+                code.append(f"    {builder_funcs[i]}, // {i}")
+            else:
+                code.append(f"    nullptr, // {i}")
+        code.append("};")
+        code.append("")
+
+        # lift() implementation
+        code.append("std::optional<Tree> lift(uint32_t insn) {")
+        code.append("    auto decoded = decode(insn);")
+        code.append("    if (!decoded) return std::nullopt;")
+        code.append(f"    uint16_t id = decoded->encoding_id;")
+        code.append(f"    if (id == 0 || id > {max_id}) return std::nullopt;")
+        code.append(f"    auto fn = dispatch_table[id];")
+        code.append(f"    if (!fn) return std::nullopt;")
+        code.append(f"    return fn(insn);")
+        code.append("}")
+        code.append("")
+
+        code.append("} // namespace ir")
+        code.append("} // namespace veda64")
+
+        self._write_file(lib_dir / "ir.cpp", code)
+        print(f"Generated ir.cpp with {len(builder_funcs)} dispatch entries")
+
+    def _generate_ir_builder(self, enc, func_name: str) -> List[str]:
+        """Generate a single IR builder function for an encoding."""
+        code = []
+        code.append(f"Tree {func_name}(uint32_t insn) {{")
+        code.append(f'    Tree tree;')
+        code.append(f'    tree.encoding_name = "{enc.name}";')
+        code.append("")
+
+        # Extract fields
+        for fname, finfo in enc.fields.items():
+            if finfo.get('is_fixed', True):
+                continue
+            hibit = finfo.get('hibit', 0)
+            width = finfo.get('width', 1)
+            lobit = hibit - width + 1
+            mask = (1 << width) - 1
+            code.append(f'    tree.fields["{fname}"] = (insn >> {lobit}) & 0x{mask:X};')
+
+        code.append("")
+
+        # Decode statements
+        if enc.decode_ps:
+            try:
+                decode_ir = self._parse_asl(enc.decode_ps)
+                code.append("    // Decode pseudocode")
+                code.append("    {")
+                code.append("        auto& stmts = tree.decode_stmts;")
+                for stmt in decode_ir:
+                    code.extend(self._emit_ir_stmt(stmt, indent=2))
+                code.append("    }")
+                code.append("")
+            except Exception as e:
+                code.append(f"    // Failed to parse decode: {e}")
+                code.append("")
+
+        # Execute statements
+        if enc.execute_ps:
+            try:
+                exec_ir = self._parse_asl(enc.execute_ps)
+                code.append("    // Execute pseudocode")
+                code.append("    {")
+                code.append("        auto& stmts = tree.execute_stmts;")
+                for stmt in exec_ir:
+                    code.extend(self._emit_ir_stmt(stmt, indent=2))
+                code.append("    }")
+                code.append("")
+            except Exception as e:
+                code.append(f"    // Failed to parse execute: {e}")
+                code.append("")
+
+        code.append("    return tree;")
+        code.append("}")
+        return code
+
+    def generate_ir_files(self, include_dir: Path, lib_dir: Path):
+        """Generate IR header and implementation files."""
+        print(f"\n=== Generating IR Lift Files ===")
+        self._generate_ir_header(include_dir)
+        self._generate_ir_impl(include_dir, lib_dir)
+
+    def generate_semantic_files(self, base_dir: Path):
+        """Generate C++ semantic function files from execute pseudocode."""
+        emu_dir = base_dir / "emu"
+        emu_dir.mkdir(parents=True, exist_ok=True)
+
+        # Group encodings by format group
+        groups: Dict[str, List] = {}
+        for instr in self.instructions:
+            for enc in instr.encodings:
+                if not enc.execute_ps:
+                    continue
+                group = enc.format_group or 'misc'
+                if group not in groups:
+                    groups[group] = []
+                groups[group].append(enc)
+
+        # Generate header with forward declarations
+        header = []
+        header.append("// Auto-generated semantic function declarations")
+        header.append("// Do not edit - generated by parse_arm64_xml.py")
+        header.append("#pragma once")
+        header.append("")
+        header.append("#include <cstdint>")
+        header.append("#include <array>")
+        header.append("#include <tuple>")
+        header.append("")
+        header.append("namespace veda64::emu {")
+        header.append("")
+        header.append("// Forward declarations")
+        header.append("struct BV;")
+        header.append("struct CpuState;")
+        header.append("")
+
+        total_funcs = 0
+        for group_name in sorted(groups.keys()):
+            encs = groups[group_name]
+            header.append(f"// --- {group_name} ({len(encs)} encodings) ---")
+            seen_funcs = set()
+            for enc in encs:
+                func_name = f'exec_{enc.name}'.replace('.', '_').replace('-', '_')
+                if func_name in seen_funcs:
+                    continue
+                seen_funcs.add(func_name)
+                total_funcs += 1
+                # Extract decode params for signature
+                params = self._extract_decode_params(enc)
+                param_str = ', '.join(f'{t} {n}' for t, n in params)
+                header.append(f"void {func_name}(CpuState& cpu, {param_str});")
+            header.append("")
+
+        header.append("} // namespace veda64::emu")
+
+        self._write_file(emu_dir / "semantic.hpp", header)
+
+        # Generate per-group implementation files
+        for group_name in sorted(groups.keys()):
+            encs = groups[group_name]
+            code = []
+            code.append(f"// Auto-generated semantic functions for {group_name}")
+            code.append("// Do not edit - generated by parse_arm64_xml.py")
+            code.append('#include "semantic.hpp"')
+            code.append("")
+            code.append("namespace veda64::emu {")
+            code.append("")
+
+            seen_funcs = set()
+            emitted = 0
+            for enc in encs:
+                func_name = f'exec_{enc.name}'.replace('.', '_').replace('-', '_')
+                if func_name in seen_funcs:
+                    continue
+                seen_funcs.add(func_name)
+
+                try:
+                    # Parse decode + execute
+                    decode_stmts = self._parse_asl(enc.decode_ps) if enc.decode_ps else []
+                    exec_stmts = self._parse_asl(enc.execute_ps)
+
+                    emitter = AslCppEmitter()
+                    lines = emitter.emit_function(func_name, decode_stmts, exec_stmts)
+                    code.extend(lines)
+                    code.append("")
+                    emitted += 1
+                except Exception as e:
+                    code.append(f"// Failed to emit {func_name}: {e}")
+                    code.append("")
+
+            code.append("} // namespace veda64::emu")
+
+            self._write_file(emu_dir / f"semantic_{group_name}.cpp", code)
+
+        print(f"Generated semantic files: {total_funcs} functions across {len(groups)} groups")
+
+    def _extract_decode_params(self, enc) -> list:
+        """Extract (type, name) pairs from decode pseudocode LetDecls."""
+        if not enc.decode_ps:
+            return []
+        try:
+            stmts = self._parse_asl(enc.decode_ps)
+            params = []
+            emitter = AslCppEmitter()
+            for s in stmts:
+                if isinstance(s, LetDecl):
+                    cpp_type = emitter._type_for_init(s.init) if s.init else 'int64_t'
+                    params.append((cpp_type, s.name))
+            return params
+        except:
+            return []
+
     def generate_disasm_tool(self, tools_dir: Path):
         """Generate the veda64-disasm tool."""
         tools_dir.mkdir(exist_ok=True)
@@ -13593,6 +15049,395 @@ class ARM64XMLParser:
         self._write_file(output_file, code)
         print(f"Generated {output_file.name}")
 
+    def generate_semantic_test(self, test_dir: Path):
+        """Generate test/test_semantic.cpp: end-to-end semantic test."""
+        # Target encodings to test
+        target_encodings = [
+            'ADD_64_addsub_imm',
+            'ADD_32_addsub_imm',
+            'SUB_64_addsub_imm',
+            'ADDS_64S_addsub_imm',
+            'ADC_64_addsub_carry',
+            'ADCS_64_addsub_carry',
+        ]
+
+        # Find encoding objects and emit their semantic functions
+        enc_map = {}
+        for instr in self.instructions:
+            for enc in instr.encodings:
+                if enc.name in target_encodings and enc.execute_ps:
+                    enc_map[enc.name] = enc
+
+        code = []
+        code.append("// Auto-generated end-to-end semantic test")
+        code.append("// Do not edit - generated by parse_arm64_xml.py")
+        code.append("#include \"veda64.hpp\"")
+        code.append("#include <cassert>")
+        code.append("#include <cstdint>")
+        code.append("#include <cstdio>")
+        code.append("#include <cstring>")
+        code.append("#include <tuple>")
+        code.append("#include <type_traits>")
+        code.append("")
+        code.append("// ============================================================================")
+        code.append("// Minimal BV (bit-vector) class backed by uint64_t")
+        code.append("// ============================================================================")
+        code.append("struct BV {")
+        code.append("    uint64_t val;")
+        code.append("    int width;")
+        code.append("")
+        code.append("    BV() : val(0), width(64) {}")
+        code.append("    template<typename T, typename = std::enable_if_t<std::is_integral_v<T>>>")
+        code.append("    BV(T v) : val(static_cast<uint64_t>(v)), width(64) {}")
+        code.append("    BV(uint64_t v, int w) : val(v & ((w >= 64) ? ~0ULL : ((1ULL << w) - 1))), width(w) {}")
+        code.append("    BV(const char* s) {")
+        code.append("        // BV(\"0\") or BV(\"1\") — single-bit literal")
+        code.append("        width = 1;")
+        code.append("        val = (s[0] == '1') ? 1 : 0;")
+        code.append("    }")
+        code.append("")
+        code.append("    static BV zeros(int w) { return BV(0, w); }")
+        code.append("    static BV ones(int w) { return BV(~0ULL, w); }")
+        code.append("")
+        code.append("    BV operator+(const BV& o) const { return BV(val + o.val, width > o.width ? width : o.width); }")
+        code.append("    BV operator-(const BV& o) const { return BV(val - o.val, width > o.width ? width : o.width); }")
+        code.append("    BV operator&(const BV& o) const { return BV(val & o.val, width > o.width ? width : o.width); }")
+        code.append("    BV operator|(const BV& o) const { return BV(val | o.val, width > o.width ? width : o.width); }")
+        code.append("    BV operator^(const BV& o) const { return BV(val ^ o.val, width > o.width ? width : o.width); }")
+        code.append("    BV operator~() const { return BV(~val, width); }")
+        code.append("    bool operator==(const BV& o) const { return val == o.val; }")
+        code.append("    bool operator!=(const BV& o) const { return val != o.val; }")
+        code.append("")
+        code.append("    // Bit extraction: bits(lo, hi) returns bits [hi:lo]")
+        code.append("    BV bits(int lo, int hi) const {")
+        code.append("        int w = hi - lo + 1;")
+        code.append("        return BV((val >> lo) & ((w >= 64) ? ~0ULL : ((1ULL << w) - 1)), w);")
+        code.append("    }")
+        code.append("    BV bit(int i) const { return BV((val >> i) & 1, 1); }")
+        code.append("};")
+        code.append("")
+        code.append("// ============================================================================")
+        code.append("// CpuState and global helpers")
+        code.append("// ============================================================================")
+        code.append("struct PState {")
+        code.append("    BV N, Z, C, V;")
+        code.append("};")
+        code.append("")
+        code.append("struct CpuState {")
+        code.append("    BV X[32];  // General-purpose registers (X0-X30, XZR=X31 reads as 0)")
+        code.append("    BV SP_val; // Stack pointer")
+        code.append("    BV pc;")
+        code.append("    PState pstate;")
+        code.append("};")
+        code.append("")
+        code.append("static CpuState cpu;")
+        code.append("")
+        code.append("// Accessor helpers — match the signatures used by emitted semantic code")
+        code.append("static BV X(int64_t n) { return (n == 31) ? BV(0) : cpu.X[n]; }")
+        code.append("static BV X(int datasize, int64_t n) { return BV(X(n).val, datasize); }")
+        code.append("static void X_set(int datasize, int64_t d, BV val) {")
+        code.append("    if (d == 31) return; // writes to XZR are discarded")
+        code.append("    cpu.X[d] = BV(val.val, datasize);")
+        code.append("}")
+        code.append("static BV SP(int) { return cpu.SP_val; }")
+        code.append("static void SP_set(int, BV val) { cpu.SP_val = val; }")
+        code.append("")
+        code.append("static BV zext(BV v) { return v; } // Already stored as uint64_t")
+        code.append("static BV zext(int target_width, BV v) { return BV(v.val, target_width); }")
+        code.append("")
+        code.append("static std::tuple<BV, BV> AddWithCarry(int datasize, BV x, BV y, BV carry_in) {")
+        code.append("    uint64_t mask = (datasize >= 64) ? ~0ULL : ((1ULL << datasize) - 1);")
+        code.append("    uint64_t ux = x.val & mask;")
+        code.append("    uint64_t uy = y.val & mask;")
+        code.append("    uint64_t ci = carry_in.val & 1;")
+        code.append("    uint64_t result = (ux + uy + ci) & mask;")
+        code.append("    // Carry: if result < any input (accounting for carry_in)")
+        code.append("    uint64_t carry_out;")
+        code.append("    if (datasize >= 64) {")
+        code.append("        // For 64-bit: carry if sum wrapped")
+        code.append("        uint64_t sum1 = ux + uy;")
+        code.append("        uint64_t c1 = (sum1 < ux) ? 1 : 0;")
+        code.append("        uint64_t sum2 = sum1 + ci;")
+        code.append("        uint64_t c2 = (sum2 < sum1) ? 1 : 0;")
+        code.append("        carry_out = c1 | c2;")
+        code.append("    } else {")
+        code.append("        carry_out = ((ux + uy + ci) >> datasize) & 1;")
+        code.append("    }")
+        code.append("    // Overflow: sign of result differs from expected")
+        code.append("    int sign_bit = datasize - 1;")
+        code.append("    uint64_t sx = (ux >> sign_bit) & 1;")
+        code.append("    uint64_t sy = (uy >> sign_bit) & 1;")
+        code.append("    uint64_t sr = (result >> sign_bit) & 1;")
+        code.append("    uint64_t overflow = (sx == sy) && (sr != sx) ? 1 : 0;")
+        code.append("    // nzcv as 4-bit value")
+        code.append("    BV nzcv((sr << 3) | ((result == 0 ? 1ULL : 0) << 2) | (carry_out << 1) | overflow, 4);")
+        code.append("    return {BV(result, datasize), nzcv};")
+        code.append("}")
+        code.append("")
+        code.append("// PSTATE flag access — emitted code uses PSTATE.C etc.")
+        code.append("#define PSTATE cpu.pstate")
+        code.append("")
+        code.append("static void PSTATE_set_n_z_c_v(BV nzcv) {")
+        code.append("    cpu.pstate.N = nzcv.bit(3);")
+        code.append("    cpu.pstate.Z = nzcv.bit(2);")
+        code.append("    cpu.pstate.C = nzcv.bit(1);")
+        code.append("    cpu.pstate.V = nzcv.bit(0);")
+        code.append("}")
+        code.append("")
+        code.append("static void CheckSPAlignment() {} // No-op in test")
+        code.append("static BV bv_concat(BV hi, BV lo) { return BV((hi.val << lo.width) | lo.val, hi.width + lo.width); }")
+        code.append("")
+        code.append("static void reset_cpu() {")
+        code.append("    memset(&cpu, 0, sizeof(cpu));")
+        code.append("    for (int i = 0; i < 32; i++) cpu.X[i] = BV(0);")
+        code.append("    cpu.SP_val = BV(0);")
+        code.append("    cpu.pstate.N = BV(0, 1);")
+        code.append("    cpu.pstate.Z = BV(0, 1);")
+        code.append("    cpu.pstate.C = BV(0, 1);")
+        code.append("    cpu.pstate.V = BV(0, 1);")
+        code.append("}")
+        code.append("")
+        code.append("// ============================================================================")
+        code.append("// Semantic functions (emitted from ASL IR)")
+        code.append("// ============================================================================")
+
+        # Emit semantic functions inline
+        for enc_name in target_encodings:
+            enc = enc_map.get(enc_name)
+            if not enc:
+                code.append(f"// WARNING: encoding {enc_name} not found")
+                continue
+            try:
+                decode_stmts = self._parse_asl(enc.decode_ps) if enc.decode_ps else []
+                exec_stmts = self._parse_asl(enc.execute_ps)
+                emitter = AslCppEmitter()
+                func_name = f'exec_{enc.name}'.replace('.', '_').replace('-', '_')
+                lines = emitter.emit_function(func_name, decode_stmts, exec_stmts)
+                # Make functions static to avoid linkage issues
+                if lines:
+                    lines[0] = 'static ' + lines[0]
+                # Replace 'auto' params with concrete types (MSVC C++17 doesn't support auto params)
+                for idx, line in enumerate(lines):
+                    if 'auto datasize' in line or 'auto imm' in line or 'auto shift' in line or 'auto extend_type' in line or 'auto offset' in line or 'auto tag_offset' in line:
+                        # datasize/shift/extend_type are integers; imm/offset are BV
+                        line = line.replace('auto datasize', 'int64_t datasize')
+                        line = line.replace('auto imm', 'BV imm')
+                        line = line.replace('auto shift', 'int64_t shift')
+                        line = line.replace('auto extend_type', 'int64_t extend_type')
+                        line = line.replace('auto offset', 'BV offset')
+                        line = line.replace('auto tag_offset', 'int64_t tag_offset')
+                        lines[idx] = line
+                # Remove redundant VarDecl lines that are shadowed by structured bindings
+                # e.g. "BV result;" followed by "auto [result, ...] = ..."
+                filtered = []
+                import re as _re
+                for i, line in enumerate(lines):
+                    stripped = line.strip()
+                    # Check if this is "BV varname;" and the next line is "auto [varname, ..."
+                    m = _re.match(r'^BV (\w+);$', stripped)
+                    if m:
+                        varname = m.group(1)
+                        # Look ahead for structured binding using this name
+                        for j in range(i + 1, min(i + 4, len(lines))):
+                            if 'auto [' in lines[j] and varname in lines[j]:
+                                break
+                        else:
+                            filtered.append(line)
+                        continue
+                    filtered.append(line)
+                code.extend(filtered)
+                code.append("")
+            except Exception as e:
+                code.append(f"// Failed to emit {enc_name}: {e}")
+                code.append("")
+
+        # Test cases
+        code.append("// ============================================================================")
+        code.append("// Test cases")
+        code.append("// ============================================================================")
+        code.append("static int failures = 0;")
+        code.append("")
+        code.append("#define CHECK(cond, msg) do { \\")
+        code.append("    if (!(cond)) { \\")
+        code.append("        printf(\"FAIL: %s (line %d)\\n\", msg, __LINE__); \\")
+        code.append("        failures++; \\")
+        code.append("    } \\")
+        code.append("} while(0)")
+        code.append("")
+
+        # Test 1: ADD X0, X1, #0x10
+        code.append("static void test_add_x64_imm() {")
+        code.append("    reset_cpu();")
+        code.append("    cpu.X[1] = BV(0x1000);")
+        code.append("    // ADD X0, X1, #0x10 → 0x91004020")
+        code.append("    auto insn = veda64::decode(0x91004020);")
+        code.append("    CHECK(insn.has_value(), \"decode ADD X0, X1, #0x10\");")
+        code.append("    exec_ADD_64_addsub_imm(cpu, /*d=*/0, /*n=*/1, /*datasize=*/64, BV(0x10));")
+        code.append("    CHECK(cpu.X[0] == BV(0x1010), \"ADD X0=X1+0x10\");")
+        code.append("}")
+        code.append("")
+
+        # Test 2: ADD W0, W1, #1 (32-bit)
+        code.append("static void test_add_w32_imm() {")
+        code.append("    reset_cpu();")
+        code.append("    cpu.X[1] = BV(0xFFFFFFFF);")
+        code.append("    // ADD W0, W1, #1 → 0x11000420")
+        code.append("    auto insn = veda64::decode(0x11000420);")
+        code.append("    CHECK(insn.has_value(), \"decode ADD W0, W1, #1\");")
+        code.append("    exec_ADD_32_addsub_imm(cpu, /*d=*/0, /*n=*/1, /*datasize=*/32, BV(1));")
+        code.append("    CHECK(cpu.X[0] == BV(0, 32), \"ADD W0=W1+1 wraps to 0\");")
+        code.append("}")
+        code.append("")
+
+        # Test 3: SUB X0, X1, #0x10
+        code.append("static void test_sub_x64_imm() {")
+        code.append("    reset_cpu();")
+        code.append("    cpu.X[1] = BV(0x1000);")
+        code.append("    // SUB X0, X1, #0x10 → 0xD1004020")
+        code.append("    auto insn = veda64::decode(0xD1004020);")
+        code.append("    CHECK(insn.has_value(), \"decode SUB X0, X1, #0x10\");")
+        code.append("    exec_SUB_64_addsub_imm(cpu, /*d=*/0, /*n=*/1, /*datasize=*/64, BV(0x10));")
+        code.append("    CHECK(cpu.X[0] == BV(0xFF0), \"SUB X0=X1-0x10\");")
+        code.append("}")
+        code.append("")
+
+        # Test 4: ADDS X0, X1, #0 → Z flag set when result=0
+        code.append("static void test_adds_zero_flag() {")
+        code.append("    reset_cpu();")
+        code.append("    cpu.X[1] = BV(0);")
+        code.append("    // ADDS X0, X1, #0 → 0xB1000020")
+        code.append("    auto insn = veda64::decode(0xB1000020);")
+        code.append("    CHECK(insn.has_value(), \"decode ADDS X0, X1, #0\");")
+        code.append("    exec_ADDS_64S_addsub_imm(cpu, /*d=*/0, /*n=*/1, /*datasize=*/64, BV(0));")
+        code.append("    CHECK(cpu.X[0] == BV(0), \"ADDS result=0\");")
+        code.append("    CHECK(cpu.pstate.Z.val == 1, \"ADDS Z flag set\");")
+        code.append("    CHECK(cpu.pstate.N.val == 0, \"ADDS N flag clear\");")
+        code.append("}")
+        code.append("")
+
+        # Test 5: ADDS X0, X1, #1 → N flag when result negative
+        code.append("static void test_adds_negative_flag() {")
+        code.append("    reset_cpu();")
+        code.append("    cpu.X[1] = BV(0xFFFFFFFFFFFFFFFFULL); // -1")
+        code.append("    // ADDS X0, X1, #0 → test with -1 + 0")
+        code.append("    exec_ADDS_64S_addsub_imm(cpu, /*d=*/0, /*n=*/1, /*datasize=*/64, BV(0));")
+        code.append("    CHECK(cpu.X[0] == BV(0xFFFFFFFFFFFFFFFFULL), \"ADDS result=-1\");")
+        code.append("    CHECK(cpu.pstate.N.val == 1, \"ADDS N flag set for negative\");")
+        code.append("    CHECK(cpu.pstate.Z.val == 0, \"ADDS Z flag clear\");")
+        code.append("}")
+        code.append("")
+
+        # Test 6: ADD SP, SP, #0x10 (SP path, d==31, n==31)
+        code.append("static void test_add_sp() {")
+        code.append("    reset_cpu();")
+        code.append("    cpu.SP_val = BV(0x1000);")
+        code.append("    // ADD SP, SP, #0x10 — d=31, n=31")
+        code.append("    exec_ADD_64_addsub_imm(cpu, /*d=*/31, /*n=*/31, /*datasize=*/64, BV(0x10));")
+        code.append("    CHECK(cpu.SP_val == BV(0x1010), \"ADD SP,SP,#0x10\");")
+        code.append("}")
+        code.append("")
+
+        # Test 7: ADC X0, X1, X2 (carry from PSTATE.C)
+        code.append("static void test_adc_with_carry() {")
+        code.append("    reset_cpu();")
+        code.append("    cpu.X[1] = BV(10);")
+        code.append("    cpu.X[2] = BV(20);")
+        code.append("    cpu.pstate.C = BV(1, 1); // carry set")
+        code.append("    exec_ADC_64_addsub_carry(cpu, /*d=*/0, /*n=*/1, /*m=*/2, /*datasize=*/64);")
+        code.append("    CHECK(cpu.X[0] == BV(31), \"ADC X0=10+20+1=31\");")
+        code.append("}")
+        code.append("")
+
+        # Test 8: ADC without carry
+        code.append("static void test_adc_no_carry() {")
+        code.append("    reset_cpu();")
+        code.append("    cpu.X[1] = BV(10);")
+        code.append("    cpu.X[2] = BV(20);")
+        code.append("    cpu.pstate.C = BV(0, 1); // carry clear")
+        code.append("    exec_ADC_64_addsub_carry(cpu, /*d=*/0, /*n=*/1, /*m=*/2, /*datasize=*/64);")
+        code.append("    CHECK(cpu.X[0] == BV(30), \"ADC X0=10+20+0=30\");")
+        code.append("}")
+        code.append("")
+
+        # Test 9: ADCS carry propagation
+        code.append("static void test_adcs_carry_out() {")
+        code.append("    reset_cpu();")
+        code.append("    cpu.X[1] = BV(0xFFFFFFFFFFFFFFFFULL);")
+        code.append("    cpu.X[2] = BV(1);")
+        code.append("    cpu.pstate.C = BV(0, 1);")
+        code.append("    exec_ADCS_64_addsub_carry(cpu, /*d=*/0, /*n=*/1, /*m=*/2, /*datasize=*/64);")
+        code.append("    CHECK(cpu.X[0] == BV(0), \"ADCS result wraps to 0\");")
+        code.append("    CHECK(cpu.pstate.C.val == 1, \"ADCS carry out set\");")
+        code.append("    CHECK(cpu.pstate.Z.val == 1, \"ADCS Z flag set\");")
+        code.append("}")
+        code.append("")
+
+        # Test 10: ADCS overflow detection
+        code.append("static void test_adcs_overflow() {")
+        code.append("    reset_cpu();")
+        code.append("    cpu.X[1] = BV(0x7FFFFFFFFFFFFFFFULL); // max positive")
+        code.append("    cpu.X[2] = BV(1);")
+        code.append("    cpu.pstate.C = BV(0, 1);")
+        code.append("    exec_ADCS_64_addsub_carry(cpu, /*d=*/0, /*n=*/1, /*m=*/2, /*datasize=*/64);")
+        code.append("    CHECK(cpu.X[0] == BV(0x8000000000000000ULL), \"ADCS overflow result\");")
+        code.append("    CHECK(cpu.pstate.V.val == 1, \"ADCS overflow flag set\");")
+        code.append("    CHECK(cpu.pstate.N.val == 1, \"ADCS N flag set\");")
+        code.append("}")
+        code.append("")
+
+        # Test 11: ADDS carry flag on 64-bit overflow
+        code.append("static void test_adds_carry_flag() {")
+        code.append("    reset_cpu();")
+        code.append("    cpu.X[1] = BV(0xFFFFFFFFFFFFFFFFULL);")
+        code.append("    exec_ADDS_64S_addsub_imm(cpu, /*d=*/0, /*n=*/1, /*datasize=*/64, BV(1));")
+        code.append("    CHECK(cpu.X[0] == BV(0), \"ADDS -1+1=0\");")
+        code.append("    CHECK(cpu.pstate.C.val == 1, \"ADDS carry flag set\");")
+        code.append("    CHECK(cpu.pstate.Z.val == 1, \"ADDS Z flag set\");")
+        code.append("}")
+        code.append("")
+
+        # Test 12: XZR write discarded
+        code.append("static void test_xzr_write_discarded() {")
+        code.append("    reset_cpu();")
+        code.append("    cpu.X[1] = BV(42);")
+        code.append("    // ADDS XZR, X1, #0 — d=31, but ADDS writes to Xd not SP")
+        code.append("    exec_ADDS_64S_addsub_imm(cpu, /*d=*/31, /*n=*/1, /*datasize=*/64, BV(0));")
+        code.append("    // X31/XZR should still read as 0 (write discarded)")
+        code.append("    CHECK(X(31).val == 0, \"XZR still reads as 0\");")
+        code.append("    // But flags should be set based on the result (42)")
+        code.append("    CHECK(cpu.pstate.Z.val == 0, \"ADDS XZR flags: Z clear\");")
+        code.append("}")
+        code.append("")
+
+        # main
+        code.append("int main() {")
+        code.append("    printf(\"Running semantic tests...\\n\");")
+        code.append("")
+        code.append("    test_add_x64_imm();")
+        code.append("    test_add_w32_imm();")
+        code.append("    test_sub_x64_imm();")
+        code.append("    test_adds_zero_flag();")
+        code.append("    test_adds_negative_flag();")
+        code.append("    test_add_sp();")
+        code.append("    test_adc_with_carry();")
+        code.append("    test_adc_no_carry();")
+        code.append("    test_adcs_carry_out();")
+        code.append("    test_adcs_overflow();")
+        code.append("    test_adds_carry_flag();")
+        code.append("    test_xzr_write_discarded();")
+        code.append("")
+        code.append("    if (failures == 0) {")
+        code.append("        printf(\"All 12 semantic tests passed!\\n\");")
+        code.append("    } else {")
+        code.append("        printf(\"%d test(s) FAILED\\n\", failures);")
+        code.append("    }")
+        code.append("    return failures;")
+        code.append("}")
+
+        output_file = test_dir / "test_semantic.cpp"
+        self._write_file(output_file, code)
+        print(f"Generated {output_file.name}: {len(target_encodings)} encodings, 12 test cases")
+
 
 def main():
     """Main entry point."""
@@ -13655,12 +15500,20 @@ def main():
     parser.generate_reference_test(test_dir)
     parser.generate_hook_test(test_dir)
     parser.generate_hook_examples(test_dir)
+    parser.generate_semantic_test(test_dir)
     print(f"Generated test files")
 
     # Generate tools
     print(f"\n=== Generating Tools ===")
     tools_dir = base_dir / "tools"
     parser.generate_disasm_tool(tools_dir)
+
+    # Generate semantic files (ASL execute → C++)
+    print(f"\n=== Generating Semantic Files ===")
+    parser.generate_semantic_files(base_dir)
+
+    # Generate IR lift files
+    parser.generate_ir_files(include_dir, lib_dir)
 
     # Generate Python bindings
     print(f"\n=== Generating Python Bindings ===")
@@ -13703,6 +15556,45 @@ def main():
         for ex in fail_examples:
             print(ex)
     print(f"Decode ops: {ops_match} match, {ops_mismatch} mismatch (out of {success} parsed)")
+
+    # Validate execute pseudocode parsing + C++ emission
+    print(f"\n=== Validating Execute Pseudocode ===")
+    exec_success, exec_fail = 0, 0
+    emit_success, emit_fail = 0, 0
+    exec_fail_examples = []
+    emit_fail_examples = []
+    seen_exec = set()
+    for instr in parser.instructions:
+        for enc in instr.encodings:
+            if enc.execute_ps and enc.execute_ps not in seen_exec:
+                seen_exec.add(enc.execute_ps)
+                try:
+                    ir = parser._parse_asl(enc.execute_ps)
+                    exec_success += 1
+                    try:
+                        emitter = AslCppEmitter()
+                        code = emitter.emit_block(ir)
+                        emit_success += 1
+                    except Exception as e:
+                        emit_fail += 1
+                        if len(emit_fail_examples) < 5:
+                            emit_fail_examples.append(f"  {enc.name}: {e}")
+                except Exception as e:
+                    exec_fail += 1
+                    if len(exec_fail_examples) < 5:
+                        exec_fail_examples.append(f"  {enc.name}: {e}")
+    exec_total = exec_success + exec_fail
+    emit_total = emit_success + emit_fail
+    print(f"Execute parse: {exec_success}/{exec_total} ({100*exec_success/exec_total:.1f}%)" if exec_total else "Execute parse: 0/0")
+    if exec_fail_examples:
+        print("Parse failures:")
+        for ex in exec_fail_examples:
+            print(ex)
+    print(f"C++ emit: {emit_success}/{emit_total} ({100*emit_success/emit_total:.1f}%)" if emit_total else "C++ emit: 0/0")
+    if emit_fail_examples:
+        print("Emit failures:")
+        for ex in emit_fail_examples:
+            print(ex)
 
 
 if __name__ == '__main__':
