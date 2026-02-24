@@ -1,7 +1,7 @@
-// Hook library tests - validates hooking subsystem functionality
-// Auto-generated - do not edit
-// Cross-platform tests run on any Windows target (x64 or ARM64)
-// Live hook tests only run on ARM64
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 Kevin Szkudlapski
+// Auto-generated — do not edit
+
 #include "veda64.hpp"
 
 #if !defined(VEDA64_NO_HOOKS) && (defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT))

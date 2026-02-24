@@ -1,5 +1,7 @@
-// veda64-disasm - ARM64 instruction disassembler
-// Auto-generated - do not edit
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 Kevin Szkudlapski
+// Auto-generated — do not edit
+
 #include "veda64.hpp"
 #include <iostream>
 #include <cstdlib>

@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 Kevin Szkudlapski
+// Auto-generated — do not edit
+
 #pragma once
 // ARM64 Decode Group Headers
 // Auto-generated from encodingindex.xml top-level decode groups

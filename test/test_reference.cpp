@@ -1,6 +1,7 @@
-// Reference test - validates decode output against known disassembly
-// Auto-generated - do not edit
-// Tests both mnemonic and operands (case-insensitive)
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 Kevin Szkudlapski
+// Auto-generated — do not edit
+
 #include "veda64.hpp"
 #include <iostream>
 #include <cassert>

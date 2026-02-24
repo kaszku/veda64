@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 Kevin Szkudlapski
+// Auto-generated — do not edit
+
 #include "format/control.hpp"
 
 // Suppress MSVC warning for is_64bit declared but unused in some decode stubs

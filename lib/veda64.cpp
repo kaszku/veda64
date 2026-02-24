@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 Kevin Szkudlapski
+// Auto-generated — do not edit
+
 #include "veda64.hpp"
 #include "format/format.hpp"
 #include <cstring>
@@ -2114,6 +2118,62 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
             if (offset >= 10) oss << "0x" << std::hex << offset;
             else oss << std::dec << offset;
             oss << "]";
+            return oss.str();
+        }
+    }
+
+    // DSB CRm=0 → SSBB, CRm=4 → PSSBB
+    if (insn.mnemonic == Mnemonic::DSB && insn.operands.size() == 1 && insn.operands[0].type == OperandType::Barrier) {
+        if (insn.operands[0].value == 0) return std::string("ssbb");
+        if (insn.operands[0].value == 4) return std::string("pssbb");
+    }
+
+    // SVE: CPY → MOV alias
+    if (insn.mnemonic == Mnemonic::CPY && insn.operands.size() >= 3) {
+        std::ostringstream oss;
+        oss << "mov";
+        for (size_t i = 0; i < insn.operands.size(); ++i) {
+            oss << (i == 0 ? " " : ", ") << insn.operands[i].to_string();
+        }
+        return oss.str();
+    }
+
+    // SVE: AND p,p/z,p,p with Pn==Pm → MOV p,p/z,p
+    if (insn.mnemonic == Mnemonic::AND && insn.operands.size() == 4) {
+        auto& op2 = insn.operands[2]; auto& op3 = insn.operands[3];
+        if (op2.type == OperandType::PredicateRegister && op3.type == OperandType::PredicateRegister && op2.value == op3.value) {
+            std::ostringstream oss;
+            oss << "mov " << insn.operands[0].to_string() << ", " << insn.operands[1].to_string() << ", " << op2.to_string();
+            return oss.str();
+        }
+    }
+
+    // SVE: EOR p,p/z,p,p with Pm==Pg → NOT p,p/z,p
+    if (insn.mnemonic == Mnemonic::EOR && insn.operands.size() == 4) {
+        auto& op1 = insn.operands[1]; auto& op3 = insn.operands[3];
+        if (op1.type == OperandType::PredicateRegister && op3.type == OperandType::PredicateRegister && op1.value == op3.value) {
+            std::ostringstream oss;
+            oss << "not " << insn.operands[0].to_string() << ", " << insn.operands[1].to_string() << ", " << insn.operands[2].to_string();
+            return oss.str();
+        }
+    }
+
+    // SVE: ANDS p,p/z,p,p with Pn==Pm → MOVS p,p/z,p
+    if (insn.mnemonic == Mnemonic::ANDS && insn.operands.size() == 4) {
+        auto& op2 = insn.operands[2]; auto& op3 = insn.operands[3];
+        if (op2.type == OperandType::PredicateRegister && op3.type == OperandType::PredicateRegister && op2.value == op3.value) {
+            std::ostringstream oss;
+            oss << "movs " << insn.operands[0].to_string() << ", " << insn.operands[1].to_string() << ", " << op2.to_string();
+            return oss.str();
+        }
+    }
+
+    // SVE: EORS p,p/z,p,p with Pm==Pg → NOTS p,p/z,p
+    if (insn.mnemonic == Mnemonic::EORS && insn.operands.size() == 4) {
+        auto& op1 = insn.operands[1]; auto& op3 = insn.operands[3];
+        if (op1.type == OperandType::PredicateRegister && op3.type == OperandType::PredicateRegister && op1.value == op3.value) {
+            std::ostringstream oss;
+            oss << "nots " << insn.operands[0].to_string() << ", " << insn.operands[1].to_string() << ", " << insn.operands[2].to_string();
             return oss.str();
         }
     }

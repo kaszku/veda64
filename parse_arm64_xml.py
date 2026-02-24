@@ -1140,32 +1140,6 @@ class AslCppEmitter:
             self.emit_stmt(s)
         return self.lines
 
-    def emit_function(self, name: str, decode_stmts: List[Stmt],
-                      exec_stmts: List[Stmt]) -> List[str]:
-        """Emit a complete C++ function from decode + execute IR."""
-        self.lines = []
-        self.indent = 0
-
-        # Extract decode parameters (LetDecls)
-        params = []
-        for s in decode_stmts:
-            if isinstance(s, LetDecl):
-                cpp_type = self._type_for_init(s.init) if s.init else 'int64_t'
-                params.append((cpp_type, s.name))
-
-        # Function signature
-        param_str = ', '.join(f'{t} {n}' for t, n in params)
-        self._emit(f'void {name}(CpuState& cpu, {param_str}) {{')
-        self._indent()
-
-        # Emit execute body
-        for s in exec_stmts:
-            self.emit_stmt(s)
-
-        self._dedent()
-        self._emit('}')
-        return self.lines
-
     # --- Statement emitters ---
 
     def emit_stmt(self, stmt: Stmt):
@@ -1512,6 +1486,10 @@ class AslCppEmitter:
                 return 'int64_t'
             if init.name in ('Zeros', 'Ones', 'ZeroExtend', 'SignExtend'):
                 return 'BV'
+            if init.name == 'SInt':
+                return 'int64_t'
+            if init.name in ('DecodeBitMasks', 'DecodeShift', 'DecodeRegExtend'):
+                return 'auto'  # these return tuples or enums; auto is fine in local context
         if isinstance(init, IntLiteral):
             return 'int64_t'
         if isinstance(init, BoolLiteral):
@@ -1607,6 +1585,16 @@ class ARM64XMLParser:
         self.instructions: List[Instruction] = []
         self._encoding_ids: Dict[str, int] = {}  # encoding_name → unique ID (1-based)
         self._next_encoding_id = 1
+
+    @staticmethod
+    def _license_header() -> List[str]:
+        """Return MIT license preamble lines for generated files."""
+        return [
+            "// SPDX-License-Identifier: MIT",
+            "// Copyright (c) 2026 Kevin Szkudlapski",
+            "// Auto-generated — do not edit",
+            "",
+        ]
 
     @staticmethod
     def _write_file(output_file: Path, code: List[str]):
@@ -1974,16 +1962,18 @@ class ARM64XMLParser:
                         field_matches = [(f'{base_name}{i}', arr_char0, '') for i in range(n1, n2 + 1)]
 
             # Merge <V><d> / <V><n> / <V><m> pairs into Vd/Vn/Vm scalar register references
+            # Also merge <R><dn> / <R><n> pairs into Rdn/Rn GP register references
             merged = []
             skip_next = False
+            _merge_suffixes = ('d', 'n', 'm', 'dn', 'da', 't')
             for fi in range(len(field_matches)):
                 if skip_next:
                     skip_next = False
                     continue
                 f, a, idx = field_matches[fi]
-                if f == 'V' and fi + 1 < len(field_matches) and field_matches[fi + 1][0] in ('d', 'n', 'm', 'dn', 'da', 't'):
+                if f in ('V', 'R') and fi + 1 < len(field_matches) and field_matches[fi + 1][0] in _merge_suffixes:
                     next_f = field_matches[fi + 1][0]
-                    merged.append(('V' + next_f, a, idx))
+                    merged.append((f + next_f, a, idx))
                     skip_next = True
                 else:
                     merged.append((f, a, idx))
@@ -2002,9 +1992,11 @@ class ARM64XMLParser:
                     if t_match:
                         arr = t_match.group(1)
 
-                # Check for qualifier: /Z, /M
-                qual_match = re.search(r'/([ZMzm])', token)
+                # Check for qualifier: /Z, /M, or /<ZM> (variable M field)
+                qual_match = re.search(r'/([ZMzm])\b', token)
                 qual = qual_match.group(1).lower() if qual_match else None
+                if not qual and '/<ZM>' in token:
+                    qual = 'zm'  # variable qualifier: M=0→/Z, M=1→/M
 
                 # Check for element index
                 has_elem_index = bool(idx_field)
@@ -2198,9 +2190,16 @@ class ARM64XMLParser:
         return resolved
 
     def _parse_asl(self, text: str) -> List[Stmt]:
-        """Parse ASL pseudocode text into an IR statement list."""
+        """Parse ASL pseudocode text into an IR statement list (cached)."""
+        if not hasattr(self, '_asl_cache'):
+            self._asl_cache = {}
+        cached = self._asl_cache.get(text)
+        if cached is not None:
+            return cached
         tokens = AslTokenizer(text).tokenize()
-        return AslParser(tokens).parse()
+        result = AslParser(tokens).parse()
+        self._asl_cache[text] = result
+        return result
 
     def _asl_ir_to_decode_ops(self, stmts: List[Stmt]) -> Dict[str, tuple]:
         """Extract decode ops from IR tree, matching _parse_asl_decode_ops output format."""
@@ -2405,12 +2404,25 @@ class ARM64XMLParser:
         """Generate base header files."""
         print(f"\n=== Generating Base Headers ===")
 
-        # Generate veda64.hpp (main header) and veda64.cpp (implementation)
-        veda64_header = include_dir / "veda64.hpp"
+        # Create sub-header directory
+        veda64_dir = include_dir / "veda64"
+        veda64_dir.mkdir(exist_ok=True)
+
+        # Generate sub-headers
+        self._generate_util_header(veda64_dir / "util.hpp")
+        self._generate_mnemonic_header(veda64_dir / "mnemonic.hpp")
+        self._generate_types_header(veda64_dir / "types.hpp")
+        self._generate_operand_header(veda64_dir / "operand.hpp")
+        self._generate_instruction_subheader(veda64_dir / "instruction.hpp")
+        self._generate_hook_header(veda64_dir / "hook.hpp")
+
+        # Generate umbrella header
+        self._generate_veda64_header(include_dir / "veda64.hpp")
+
+        # Generate implementation
         veda64_impl = lib_dir / "veda64.cpp"
-        self._generate_veda64_header(veda64_header)
         self._generate_veda64_implementation(veda64_impl)
-        print(f"Generated {veda64_header.name} and {veda64_impl.name}")
+        print(f"Generated veda64/ sub-headers, veda64.hpp umbrella, and veda64.cpp")
 
     def generate_format_files(self, include_format_dir: Path, lib_format_dir: Path):
         """Generate format-based header and implementation files.
@@ -2573,7 +2585,7 @@ class ARM64XMLParser:
 
     def _generate_group_header(self, group_name: str, data: Dict, output_file: Path):
         """Generate header file for an ARM64 decode group."""
-        code = []
+        code = self._license_header()
         display_name = data['display_name']
         encodings = data['encodings']
 
@@ -2653,7 +2665,7 @@ class ARM64XMLParser:
 
     def _generate_group_impl(self, group_name: str, data: Dict, output_file: Path):
         """Generate implementation file for an ARM64 decode group."""
-        code = []
+        code = self._license_header()
         display_name = data['display_name']
         encodings = data['encodings']
 
@@ -2792,7 +2804,7 @@ class ARM64XMLParser:
 
     def _generate_format_main_header_v2(self, by_group: Dict, output_file: Path):
         """Generate main format.hpp header that includes all group headers."""
-        code = []
+        code = self._license_header()
 
         code.append("#pragma once")
         code.append("// ARM64 Decode Group Headers")
@@ -2897,7 +2909,7 @@ class ARM64XMLParser:
 
     def _generate_instruction_header(self, output_file: Path):
         """Generate instruction.hpp with base Instruction class, enums, and Operand class."""
-        code = []
+        code = self._license_header()
 
         code.append("#pragma once")
         code.append("")
@@ -3245,7 +3257,7 @@ class ARM64XMLParser:
 
     def _generate_veda64_implementation(self, output_file: Path):
         """Generate veda64.cpp with implementations."""
-        code = []
+        code = self._license_header()
 
         code.append("#include \"veda64.hpp\"")
         code.append("#include \"format/format.hpp\"")
@@ -3908,6 +3920,68 @@ class ARM64XMLParser:
         code.append("        }")
         code.append("    }")
         code.append("")
+        # DSB CRm=0 → SSBB, CRm=4 → PSSBB
+        code.append("    // DSB CRm=0 → SSBB, CRm=4 → PSSBB")
+        code.append("    if (insn.mnemonic == Mnemonic::DSB && insn.operands.size() == 1 && insn.operands[0].type == OperandType::Barrier) {")
+        code.append('        if (insn.operands[0].value == 0) return std::string("ssbb");')
+        code.append('        if (insn.operands[0].value == 4) return std::string("pssbb");')
+        code.append("    }")
+        code.append("")
+        # SVE CPY → MOV alias (CPY with /Z or /M predicate → MOV)
+        code.append("    // SVE: CPY → MOV alias")
+        code.append("    if (insn.mnemonic == Mnemonic::CPY && insn.operands.size() >= 3) {")
+        code.append("        std::ostringstream oss;")
+        code.append('        oss << "mov";')
+        code.append("        for (size_t i = 0; i < insn.operands.size(); ++i) {")
+        code.append('            oss << (i == 0 ? " " : ", ") << insn.operands[i].to_string();')
+        code.append("        }")
+        code.append("        return oss.str();")
+        code.append("    }")
+        code.append("")
+        # SVE AND Pd, Pg/Z, Pn, Pm with Pn==Pm → MOV Pd, Pg/Z, Pn
+        code.append("    // SVE: AND p,p/z,p,p with Pn==Pm → MOV p,p/z,p")
+        code.append("    if (insn.mnemonic == Mnemonic::AND && insn.operands.size() == 4) {")
+        code.append("        auto& op2 = insn.operands[2]; auto& op3 = insn.operands[3];")
+        code.append("        if (op2.type == OperandType::PredicateRegister && op3.type == OperandType::PredicateRegister && op2.value == op3.value) {")
+        code.append("            std::ostringstream oss;")
+        code.append('            oss << "mov " << insn.operands[0].to_string() << ", " << insn.operands[1].to_string() << ", " << op2.to_string();')
+        code.append("            return oss.str();")
+        code.append("        }")
+        code.append("    }")
+        code.append("")
+        # SVE EOR Pd, Pg/Z, Pn, Pm with Pm==Pg → NOT Pd, Pg/Z, Pn
+        code.append("    // SVE: EOR p,p/z,p,p with Pm==Pg → NOT p,p/z,p")
+        code.append("    if (insn.mnemonic == Mnemonic::EOR && insn.operands.size() == 4) {")
+        code.append("        auto& op1 = insn.operands[1]; auto& op3 = insn.operands[3];")
+        code.append("        if (op1.type == OperandType::PredicateRegister && op3.type == OperandType::PredicateRegister && op1.value == op3.value) {")
+        code.append("            std::ostringstream oss;")
+        code.append('            oss << "not " << insn.operands[0].to_string() << ", " << insn.operands[1].to_string() << ", " << insn.operands[2].to_string();')
+        code.append("            return oss.str();")
+        code.append("        }")
+        code.append("    }")
+        code.append("")
+        # SVE ANDS → MOVS alias (same as AND → MOV but with S suffix)
+        code.append("    // SVE: ANDS p,p/z,p,p with Pn==Pm → MOVS p,p/z,p")
+        code.append("    if (insn.mnemonic == Mnemonic::ANDS && insn.operands.size() == 4) {")
+        code.append("        auto& op2 = insn.operands[2]; auto& op3 = insn.operands[3];")
+        code.append("        if (op2.type == OperandType::PredicateRegister && op3.type == OperandType::PredicateRegister && op2.value == op3.value) {")
+        code.append("            std::ostringstream oss;")
+        code.append('            oss << "movs " << insn.operands[0].to_string() << ", " << insn.operands[1].to_string() << ", " << op2.to_string();')
+        code.append("            return oss.str();")
+        code.append("        }")
+        code.append("    }")
+        code.append("")
+        # SVE EORS Pd, Pg/Z, Pn, Pm with Pm==Pg → NOTS Pd, Pg/Z, Pn
+        code.append("    // SVE: EORS p,p/z,p,p with Pm==Pg → NOTS p,p/z,p")
+        code.append("    if (insn.mnemonic == Mnemonic::EORS && insn.operands.size() == 4) {")
+        code.append("        auto& op1 = insn.operands[1]; auto& op3 = insn.operands[3];")
+        code.append("        if (op1.type == OperandType::PredicateRegister && op3.type == OperandType::PredicateRegister && op1.value == op3.value) {")
+        code.append("            std::ostringstream oss;")
+        code.append('            oss << "nots " << insn.operands[0].to_string() << ", " << insn.operands[1].to_string() << ", " << insn.operands[2].to_string();')
+        code.append("            return oss.str();")
+        code.append("        }")
+        code.append("    }")
+        code.append("")
         code.append("    return std::nullopt;  // No alias")
         code.append("}")
         code.append("")
@@ -4525,18 +4599,12 @@ class ARM64XMLParser:
         self._write_file(output_file, code)
 
 
-    def _generate_veda64_header(self, output_file: Path):
-        """Generate the main veda64.hpp header file."""
-        code = []
-
+    def _generate_util_header(self, output_file: Path):
+        """Generate veda64/util.hpp with version constants, byte-order utils, DecodeBitMasks."""
+        code = self._license_header()
         code.append("#pragma once")
         code.append("")
         code.append("#include <cstdint>")
-        code.append("#include <cstddef>")
-        code.append("#include <string>")
-        code.append("#include <vector>")
-        code.append("#include <optional>")
-        code.append("#include <memory>")
         code.append("")
         code.append("namespace veda64 {")
         code.append("")
@@ -4545,8 +4613,6 @@ class ARM64XMLParser:
         code.append("constexpr int VERSION_MINOR = 1;")
         code.append("constexpr int VERSION_PATCH = 0;")
         code.append("")
-
-        # Generate byte-order conversion utility (little-endian, ARM64 native)
         code.append("// Byte-order conversion utilities")
         code.append("// ARM64 stores instructions in little-endian byte order")
         code.append("// These convert between raw memory bytes and the uint32_t used by decode()")
@@ -4570,8 +4636,6 @@ class ARM64XMLParser:
         code.append("    bytes[3] = static_cast<uint8_t>(insn >> 24);")
         code.append("}")
         code.append("")
-
-        # Generate inline DecodeBitMasks helper for logical immediate decoding
         code.append("// ARM64 DecodeBitMasks - decodes N:imms:immr into a bitmask immediate")
         code.append("inline uint64_t decode_bit_masks(uint32_t N, uint32_t imms, uint32_t immr, bool is_64bit) {")
         code.append("    uint32_t len = 0;")
@@ -4597,17 +4661,24 @@ class ARM64XMLParser:
         code.append("    return result;")
         code.append("}")
         code.append("")
+        code.append("} // namespace veda64")
+        code.append("")
+        self._write_file(output_file, code)
 
-        # Generate Mnemonic enum
+    def _generate_mnemonic_header(self, output_file: Path):
+        """Generate veda64/mnemonic.hpp with Mnemonic enum."""
+        code = self._license_header()
+        code.append("#pragma once")
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("")
         code.append("// Mnemonic enumeration")
         code.append("enum class Mnemonic {")
 
-        # Collect all unique mnemonics from both instruction-level and encoding-level docvars
         mnemonics = set()
         for instr in self.instructions:
             if instr.mnemonic:
                 mnemonics.add(instr.mnemonic)
-            # Also check encoding-level mnemonics
             for encoding in instr.encodings:
                 encoding_mnemonic = encoding.docvars.get('mnemonic', '')
                 if encoding_mnemonic:
@@ -4619,8 +4690,19 @@ class ARM64XMLParser:
         code.append("    UNKNOWN")
         code.append("};")
         code.append("")
+        code.append("} // namespace veda64")
+        code.append("")
+        self._write_file(output_file, code)
 
-        # Generate Condition enum
+    def _generate_types_header(self, output_file: Path):
+        """Generate veda64/types.hpp with Condition, OperandType, Arrangement enums."""
+        code = self._license_header()
+        code.append("#pragma once")
+        code.append("")
+        code.append("#include <cstdint>")
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("")
         code.append("// ARM64 condition codes")
         code.append("enum class Condition : int8_t {")
         code.append("    None = -1,")
@@ -4642,8 +4724,6 @@ class ARM64XMLParser:
         code.append("    NV = 15   // Never (behaves like AL)")
         code.append("};")
         code.append("")
-
-        # Generate OperandType enum
         code.append("// Operand type enumeration")
         code.append("enum class OperandType {")
         code.append("    Register,           // General purpose register (Xn, Wn)")
@@ -4683,8 +4763,6 @@ class ARM64XMLParser:
         code.append("    Unknown")
         code.append("};")
         code.append("")
-
-        # Generate Arrangement enum
         code.append("// Vector arrangement specifier")
         code.append("enum class Arrangement : uint8_t {")
         code.append("    None = 0,")
@@ -4694,8 +4772,22 @@ class ARM64XMLParser:
         code.append("    Q1, B2, B4, H2,           // Special")
         code.append("};")
         code.append("")
+        code.append("} // namespace veda64")
+        code.append("")
+        self._write_file(output_file, code)
 
-        # Generate Operand class
+    def _generate_operand_header(self, output_file: Path):
+        """Generate veda64/operand.hpp with Operand class."""
+        code = self._license_header()
+        code.append("#pragma once")
+        code.append("")
+        code.append("#include <cstdint>")
+        code.append("#include <string>")
+        code.append("#include \"mnemonic.hpp\"")
+        code.append("#include \"types.hpp\"")
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("")
         code.append("// Operand representation")
         code.append("class Operand {")
         code.append("public:")
@@ -4759,8 +4851,6 @@ class ARM64XMLParser:
         code.append("#endif")
         code.append("};")
         code.append("")
-
-        # Generate helper function declaration
         code.append("#ifndef VEDA64_NO_STRINGS")
         code.append("// Convert mnemonic enum to string")
         code.append("const char* mnemonic_to_string(Mnemonic mnem);")
@@ -4773,8 +4863,26 @@ class ARM64XMLParser:
         code.append("const char* condition_to_string(Condition cond);")
         code.append("#endif")
         code.append("")
+        code.append("} // namespace veda64")
+        code.append("")
+        self._write_file(output_file, code)
 
-        # Generate Instruction class
+    def _generate_instruction_subheader(self, output_file: Path):
+        """Generate veda64/instruction.hpp with Instruction class and decode() declarations."""
+        code = self._license_header()
+        code.append("#pragma once")
+        code.append("")
+        code.append("#include <cstdint>")
+        code.append("#include <string>")
+        code.append("#include <vector>")
+        code.append("#include <optional>")
+        code.append("#include \"mnemonic.hpp\"")
+        code.append("#include \"types.hpp\"")
+        code.append("#include \"operand.hpp\"")
+        code.append("#include \"util.hpp\"")
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("")
         code.append("// Instruction representation")
         code.append("class Instruction {")
         code.append("public:")
@@ -4794,7 +4902,6 @@ class ARM64XMLParser:
         code.append("#endif")
         code.append("};")
         code.append("")
-
         code.append("// Decode a single ARM64 instruction from a uint32_t (native little-endian value)")
         code.append("std::optional<Instruction> decode(uint32_t insn);")
         code.append("")
@@ -4803,14 +4910,21 @@ class ARM64XMLParser:
         code.append("    return decode(from_bytes(bytes));")
         code.append("}")
         code.append("")
+        code.append("} // namespace veda64")
+        code.append("")
+        self._write_file(output_file, code)
 
-        # Hook API declarations (conditionally compiled)
-        code.append("// ============================================================================")
-        code.append("// Hook API (Windows ARM64 inline hooking)")
-        code.append("// ============================================================================")
+    def _generate_hook_header(self, output_file: Path):
+        """Generate veda64/hook.hpp with Hook API declarations."""
+        code = self._license_header()
+        code.append("#pragma once")
         code.append("")
         code.append("#if !defined(VEDA64_NO_HOOKS) && (defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT))")
         code.append("")
+        code.append("#include <cstdint>")
+        code.append("#include <cstddef>")
+        code.append("")
+        code.append("namespace veda64 {")
         code.append("namespace hook {")
         code.append("")
         code.append("// Forward declarations")
@@ -4996,10 +5110,26 @@ class ARM64XMLParser:
         code.append("} // namespace detail")
         code.append("")
         code.append("} // namespace hook")
+        code.append("} // namespace veda64")
         code.append("")
         code.append("#endif // !VEDA64_NO_HOOKS && (_WIN32 || VEDA64_HOOK_SUPPORT)")
         code.append("")
-        code.append("} // namespace veda64")
+        self._write_file(output_file, code)
+
+    def _generate_veda64_header(self, output_file: Path):
+        """Generate the umbrella veda64.hpp header that includes all sub-headers."""
+        code = self._license_header()
+        code.append("#pragma once")
+        code.append("")
+        code.append("#include \"veda64/util.hpp\"")
+        code.append("#include \"veda64/mnemonic.hpp\"")
+        code.append("#include \"veda64/types.hpp\"")
+        code.append("#include \"veda64/operand.hpp\"")
+        code.append("#include \"veda64/instruction.hpp\"")
+        code.append("")
+        code.append("#if !defined(VEDA64_NO_HOOKS) && (defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT))")
+        code.append("#include \"veda64/hook.hpp\"")
+        code.append("#endif")
         code.append("")
 
         self._write_file(output_file, code)
@@ -5049,7 +5179,7 @@ class ARM64XMLParser:
     def _generate_class_header(self, class_name: str, struct_names: List[str],
                                 encoding_info: List[Dict], output_file: Path):
         """Generate C++ header file with only function declarations."""
-        code = []
+        code = self._license_header()
 
         # Header guard
         code.append("#pragma once")
@@ -5087,7 +5217,7 @@ class ARM64XMLParser:
 
     def _generate_class_implementation(self, class_name: str, encoding_info: List[Dict], output_file: Path):
         """Generate C++ implementation file with structures and function definitions."""
-        code = []
+        code = self._license_header()
 
         # Include header
         code.append(f"#include \"class/{class_name}.hpp\"")
@@ -8817,6 +8947,20 @@ class ARM64XMLParser:
         # SHA1H is a scalar crypto op: SHA1H Sd, Sn
         if mnemonic == 'SHA1H':
             scalar_fp_arr = 'Arrangement::S'
+        # Detect scalar SIMD: asisdmisc, asisdsame, asisdsamefp16, asisddiff
+        # These use scalar FP register names (D<d>, H<d>, etc.) not GP registers
+        _scalar_simd_pats = ['asisdmisc', 'asisdsame', 'asisdsamefp16', 'asisddiff']
+        if not scalar_fp_arr and any(pat in encoding_name_lower for pat in _scalar_simd_pats):
+            import re as _re_ssimd
+            _asm_tmpl_s = encoding_info.get('asm_template', '')
+            # Match explicit scalar prefix like "D<d>" or "H<d>" in template
+            _ssimd_m = _re_ssimd.search(r'(?:^|\s)([BHSDQ])<[dnm]', _asm_tmpl_s)
+            if _ssimd_m:
+                scalar_fp_arr = _CHAR_TO_ARR[_ssimd_m.group(1).lower()]
+            elif 'size' in field_map and field_map['size']['is_fixed'] and field_map['size'].get('fixed'):
+                _sz_val = int(field_map['size']['fixed'], 2)
+                _sz_arr_map = {0: 'Arrangement::B', 1: 'Arrangement::H', 2: 'Arrangement::S', 3: 'Arrangement::D'}
+                scalar_fp_arr = _sz_arr_map.get(_sz_val, 'Arrangement::D')
         # Detect scalar FP register from asm_template (for SIMD LD/ST, e.g. _ldapstl_simd)
         if not scalar_fp_arr:
             import re as _re_fp
@@ -8981,10 +9125,14 @@ class ARM64XMLParser:
             else:
                 _za_arr = 'Arrangement::D'
                 _za_arr_is_variable = False
-            # Determine offset field and group size
+            # Determine offset field and group size (range width from template)
             _off_field = None
-            _off_m = 4  # group size (range width)
-            for _f, _m in [('off2', 4), ('off3', 2), ('o1', 4), ('off1', 2)]:
+            # Detect range width from template: <offs1>:<offs2> = 2-wide, <offs1>:<offs4> = 4-wide
+            if '<offs1>:<offs4>' in _asm_tmpl:
+                _off_m = 4
+            else:
+                _off_m = 2  # <offs1>:<offs2> = 2-wide range
+            for _f, _m in [('off2', _off_m), ('off3', _off_m), ('o1', _off_m), ('off1', _off_m)]:
                 if _f in field_map and not field_map[_f]['is_fixed']:
                     _off_field = field_map[_f]['name']
                     _off_m = _m
@@ -9226,14 +9374,28 @@ class ARM64XMLParser:
                         continue
                     _vgx_list_emitted.add(_base)
                     _fn = field_map[_lookup]['name']
-                    _arr = _STR_TO_ARR.get(_top.get('arrangement', ''), _src_arr)
+                    _top_arr = _top.get('arrangement', '')
+                    if _top_arr and _top_arr.startswith('T') and len(_top_arr) >= 2 and _top_arr[1:2] == 'b':
+                        _arr = '_sve_arr_narrow'
+                    elif _top_arr and _top_arr.startswith('T'):
+                        _arr = '_sve_arr'
+                    else:
+                        _arr = _STR_TO_ARR.get(_top_arr, _src_arr)
                     _is_list = _top.get('is_list', False)
                     _cnt = 1
                     if _is_list:
                         _cnt_m = _re.search(r'<' + _re.escape(_base) + r'1>.*<' + _re.escape(_base) + r'(\d+)>', _asm_tmpl)
                         if _cnt_m: _cnt = int(_cnt_m.group(1))
+                    # Scale register number: field_width + log2(cnt) == 5 means narrowed field
+                    import math as _math_vgx1
+                    _fw_zn = field_map[_lookup].get('width', 5)
+                    _scale_zn = ''
+                    if _cnt > 1 and _fw_zn < 5 and (_cnt & (_cnt - 1)) == 0:
+                        _lc = int(_math_vgx1.log2(_cnt))
+                        if _fw_zn + _lc == 5:
+                            _scale_zn = f' * {_cnt}'
                     if _cnt > 1:
-                        code.append(f"{ind}{{ Operand op(OperandType::SVERegisterList, enc.{member_name}.{_fn}, true); op.arrangement = {_arr or _src_arr}; op.index = {_cnt}; result.operands.push_back(op); }}")
+                        code.append(f"{ind}{{ Operand op(OperandType::SVERegisterList, enc.{member_name}.{_fn}{_scale_zn}, true); op.arrangement = {_arr or _src_arr}; op.index = {_cnt}; result.operands.push_back(op); }}")
                     else:
                         code.append(f"{ind}{{ Operand op(OperandType::SVERegister, enc.{member_name}.{_fn}, true); op.arrangement = {_arr or _src_arr}; result.operands.push_back(op); }}")
                 elif _is_zm:
@@ -9248,7 +9410,13 @@ class ARM64XMLParser:
                         continue
                     _vgx_list_emitted.add(_base)
                     _fn = field_map[_lookup]['name']
-                    _arr = _STR_TO_ARR.get(_top.get('arrangement', ''), _src_arr)
+                    _top_arr_zm = _top.get('arrangement', '')
+                    if _top_arr_zm and _top_arr_zm.startswith('T') and len(_top_arr_zm) >= 2 and _top_arr_zm[1:2] == 'b':
+                        _arr = '_sve_arr_narrow'
+                    elif _top_arr_zm and _top_arr_zm.startswith('T'):
+                        _arr = '_sve_arr'
+                    else:
+                        _arr = _STR_TO_ARR.get(_top_arr_zm, _src_arr)
                     _is_list = _top.get('is_list', False)
                     _cnt = 1
                     if _is_list:
@@ -9256,8 +9424,16 @@ class ARM64XMLParser:
                         if _cnt_m: _cnt = int(_cnt_m.group(1))
                     _has_idx = _top.get('has_elem_index', False)
                     _idx_expr = self._generate_sve_index_expr(field_map, member_name, encoding_name)
+                    # Scale register number for narrowed fields
+                    import math as _math_vgx2
+                    _fw_zm = field_map[_lookup].get('width', 5)
+                    _scale_zm = ''
+                    if _cnt > 1 and _fw_zm < 5 and (_cnt & (_cnt - 1)) == 0:
+                        _lc = int(_math_vgx2.log2(_cnt))
+                        if _fw_zm + _lc == 5:
+                            _scale_zm = f' * {_cnt}'
                     if _cnt > 1:
-                        code.append(f"{ind}{{ Operand op(OperandType::SVERegisterList, enc.{member_name}.{_fn}, true); op.arrangement = {_arr or _src_arr}; op.index = {_cnt}; result.operands.push_back(op); }}")
+                        code.append(f"{ind}{{ Operand op(OperandType::SVERegisterList, enc.{member_name}.{_fn}{_scale_zm}, true); op.arrangement = {_arr or _src_arr}; op.index = {_cnt}; result.operands.push_back(op); }}")
                     elif _has_idx and _idx_expr:
                         code.append(f"{ind}{{ Operand op(OperandType::SVERegister, enc.{member_name}.{_fn}, true); op.arrangement = {_arr or _src_arr}; {_idx_expr} result.operands.push_back(op); }}")
                     else:
@@ -9396,11 +9572,14 @@ class ARM64XMLParser:
             'Xn': 'Rn', 'Xm': 'Rm', 'Xd': 'Rd', 'Xt': 'Rt', 'Xs': 'Rs',
             'Wn': 'Rn', 'Wm': 'Rm', 'Wd': 'Rd', 'Wt': 'Rt',
             'XnSP': 'Rn', 'XdSP': 'Rd', 'XnOrXZR': 'Rn',
+            # Merged <R><dn> → Rdn etc. for destructive GP operands in SVE templates
+            'Rdn': 'Rdn', 'Rda': 'Rda', 'Rn': 'Rn', 'Rm': 'Rm', 'Rd': 'Rd',
         }
         _gp_tok_is_64 = {
             'Xn': True, 'Xm': True, 'Xd': True, 'Xt': True, 'Xs': True,
             'Wn': False, 'Wm': False, 'Wd': False, 'Wt': False,
             'XnSP': True, 'XdSP': True, 'XnOrXZR': True,
+            'Rdn': False, 'Rda': False, 'Rn': False, 'Rm': False, 'Rd': False,  # width determined by R prefix
         }
         _sve_has_pred_or_z = any(rn in field_map and not field_map[rn]['is_fixed'] for rn in
             ('Zd','Zn','Zm','Za','Zk','Zt','Zda','Zdn','Pd','Pn','Pm','Pg','Pt','Pv'))
@@ -10241,8 +10420,38 @@ class ARM64XMLParser:
                         code.append(f"{ind}{{ Operand op(OperandType::PredicateRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }}")
                     elif qual == 'm':
                         code.append(f"{ind}{{ Operand op(OperandType::PredicateRegister, enc.{member_name}.{field_cpp_name}, true); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }}")
+                    elif qual == 'zm':
+                        # Variable qualifier: M field determines /Z (M=0) or /M (M=1)
+                        if 'M' in field_map and not field_map['M']['is_fixed']:
+                            _m_field = field_map['M']['name']
+                            code.append(f"{ind}{{ Operand op(OperandType::PredicateRegister, enc.{member_name}.{field_cpp_name}, enc.{member_name}.{_m_field} != 0); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }}")
+                        else:
+                            code.append(f"{ind}{{ Operand op(OperandType::PredicateRegister, enc.{member_name}.{field_cpp_name}, true); op.arrangement = Arrangement::None; op.is_sp = true; result.operands.push_back(op); }}")
                     else:
                         code.append(f"{ind}{{ Operand op(OperandType::PredicateRegister, enc.{member_name}.{field_cpp_name}, true); op.arrangement = {arr_expr}; result.operands.push_back(op); }}")
+                elif actual_field in ('Rdn', 'Rda', 'Rd', 'Rn', 'Rm', 'Ra', 'Rt', 'Rs', 'Rt2'):
+                    # GP register in SVE template (e.g., CLASTA <R><dn>, <Pg>, <R><dn>, <Zm>.<T>)
+                    # Determine register width from 'sf' field or encoding size
+                    _gp_is_64 = 'true' if 'sf' in field_map and not field_map['sf']['is_fixed'] else 'is_64bit'
+                    if 'sf' in field_map and field_map['sf']['is_fixed']:
+                        _sf_val = int(field_map['sf']['fixed'], 2) if field_map['sf'].get('fixed') else 0
+                        _gp_is_64 = 'true' if _sf_val else 'false'
+                    elif 'size' in field_map and field_map['size']['is_fixed'] and field_map['size'].get('fixed'):
+                        _sz_val = int(field_map['size']['fixed'], 2)
+                        _gp_is_64 = 'true' if _sz_val == 3 else 'false'
+                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{field_cpp_name}, {_gp_is_64}));")
+                elif actual_field in ('Vdn', 'Vda', 'Vd', 'Vn', 'Vm'):
+                    # SIMD scalar register in SVE template (e.g., CLASTA <V><dn>, <Pg>, <V><dn>, <Zm>.<T>)
+                    # Arrangement determined by size field
+                    _v_arr = 'Arrangement::None'
+                    if has_sve_size:
+                        _v_arr = '_sve_arr'
+                    elif 'size' in field_map and field_map['size']['is_fixed'] and field_map['size'].get('fixed'):
+                        _sz_val = int(field_map['size']['fixed'], 2)
+                        _v_arr_map = {0: 'Arrangement::B', 1: 'Arrangement::H', 2: 'Arrangement::S', 3: 'Arrangement::D'}
+                        _v_arr = _v_arr_map.get(_sz_val, 'Arrangement::D')
+                    code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = {_v_arr}; result.operands.push_back(op); }}")
+                    _simd_v_emitted.add(actual_field)
 
             # Emit any remaining SVE/P fields not found in template
             # Compute fallback arrangement for Z regs not in template
@@ -10584,7 +10793,13 @@ class ARM64XMLParser:
         # Handle rotation amount (0/90/180/270 for complex multiply)
         if 'rot' in field_map and not field_map['rot']['is_fixed']:
             rot_field = field_map['rot']['name']
-            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.{rot_field} * 90, true));")
+            rot_width = field_map['rot'].get('width', 2)
+            if rot_width == 1:
+                # 1-bit rot: 0→90°, 1→270° (CADD/SQCADD etc.)
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.{rot_field} * 180 + 90, true));")
+            else:
+                # 2-bit rot: 0→0°, 1→90°, 2→180°, 3→270°
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.{rot_field} * 90, true));")
 
         # Handle fixed-point scale (FCVT/SCVTF)
         if 'scale' in field_map and not field_map['scale']['is_fixed']:
@@ -10846,10 +11061,7 @@ class ARM64XMLParser:
         conditions = ['EQ', 'NE', 'CS', 'CC', 'MI', 'PL', 'VS', 'VC',
                       'HI', 'LS', 'GE', 'LT', 'GT', 'LE', 'AL', 'NV']
 
-        code = []
-        code.append("// Python bindings for veda64 — generated by parse_arm64_xml.py")
-        code.append("// Do not edit manually.")
-        code.append("")
+        code = self._license_header()
         code.append("#include <nanobind/nanobind.h>")
         code.append("#include <nanobind/stl/optional.h>")
         code.append("#include <nanobind/stl/vector.h>")
@@ -11176,10 +11388,7 @@ class ARM64XMLParser:
 
     def _generate_encoding_group_tests(self, group_name: str, entries: list, output_file: Path):
         """Generate test file for a format group with one test per encoding."""
-        code = []
-
-        code.append("// Auto-generated - do not edit")
-        code.append(f"// Per-encoding tests for {group_name} format group")
+        code = self._license_header()
         code.append("#include \"veda64.hpp\"")
         code.append("#include <cassert>")
         code.append("#include <iostream>")
@@ -11256,9 +11465,7 @@ class ARM64XMLParser:
         """Generate test_undef.cpp: verify that Decode_UNDEF conditions return nullopt."""
         import re
 
-        code = []
-        code.append("// Auto-generated - do not edit")
-        code.append("// Tests that Decode_UNDEF conditions correctly reject invalid encodings")
+        code = self._license_header()
         code.append("#include \"veda64.hpp\"")
         code.append("#include <cassert>")
         code.append("#include <iostream>")
@@ -11359,12 +11566,21 @@ class ARM64XMLParser:
         if isinstance(expr, BinOp):
             l = self._emit_ir_expr(expr.left)
             r = self._emit_ir_expr(expr.right)
-            op = expr.op.replace('"', '\\"')
-            return f'ir::bin_op("{op}", {l}, {r})'
+            bin_op_map = {
+                '||': 'LogicalOr', '&&': 'LogicalAnd',
+                'OR': 'Or', 'XOR': 'Xor', 'EOR': 'Eor', 'AND': 'And',
+                '==': 'Eq', '!=': 'Ne', '<': 'Lt', '>': 'Gt', '<=': 'Le', '>=': 'Ge',
+                '<<': 'Shl', '>>': 'Shr',
+                '+': 'Add', '-': 'Sub', '*': 'Mul',
+                'DIV': 'Div', 'DIVRM': 'DivRm', 'MOD': 'Mod', '^': 'Pow',
+            }
+            kind = bin_op_map.get(expr.op, 'Add')
+            return f'ir::bin_op(ir::BinOpKind::{kind}, {l}, {r})'
         if isinstance(expr, UnaryOp):
             operand = self._emit_ir_expr(expr.operand)
-            op = expr.op.replace('"', '\\"')
-            return f'ir::unary_op("{op}", {operand})'
+            unary_op_map = {'!': 'Not', 'NOT': 'Not', '-': 'Negate'}
+            kind = unary_op_map.get(expr.op, 'Not')
+            return f'ir::unary_op(ir::UnaryOpKind::{kind}, {operand})'
         if isinstance(expr, FuncCall):
             tp_strs = []
             for tp in expr.type_params:
@@ -11538,9 +11754,7 @@ class ARM64XMLParser:
 
     def _generate_ir_header(self, include_dir: Path):
         """Generate include/ir.hpp with IR types, factory functions, Tree struct, lift() declaration."""
-        code = []
-        code.append("// Auto-generated ASL IR types for instruction lifting")
-        code.append("// Do not edit - generated by parse_arm64_xml.py")
+        code = self._license_header()
         code.append("#pragma once")
         code.append("")
         code.append("#include <cstdint>")
@@ -11560,6 +11774,44 @@ class ARM64XMLParser:
         code.append("using StmtPtr = std::shared_ptr<Stmt>;")
         code.append("")
 
+        # BinOpKind enum
+        code.append("enum class BinOpKind {")
+        code.append("    // Logical")
+        code.append("    LogicalOr,   // ||")
+        code.append("    LogicalAnd,  // &&")
+        code.append("    // Bitwise")
+        code.append("    Or,          // OR")
+        code.append("    Xor,         // XOR")
+        code.append("    Eor,         // EOR (alias for XOR in ASL)")
+        code.append("    And,         // AND")
+        code.append("    // Comparison")
+        code.append("    Eq,          // ==")
+        code.append("    Ne,          // !=")
+        code.append("    Lt,          // <")
+        code.append("    Gt,          // >")
+        code.append("    Le,          // <=")
+        code.append("    Ge,          // >=")
+        code.append("    // Shift")
+        code.append("    Shl,         // <<")
+        code.append("    Shr,         // >>")
+        code.append("    // Arithmetic")
+        code.append("    Add,         // +")
+        code.append("    Sub,         // -")
+        code.append("    Mul,         // *")
+        code.append("    Div,         // DIV")
+        code.append("    DivRm,       // DIVRM")
+        code.append("    Mod,         // MOD")
+        code.append("    Pow,         // ^")
+        code.append("};")
+        code.append("")
+
+        # UnaryOpKind enum
+        code.append("enum class UnaryOpKind {")
+        code.append("    Not,       // ! and NOT")
+        code.append("    Negate,    // -")
+        code.append("};")
+        code.append("")
+
         # ExprKind enum
         code.append("enum class ExprKind {")
         code.append("    IntLit, BitLit, BoolLit, Ident, BinOp, UnaryOp,")
@@ -11574,6 +11826,8 @@ class ARM64XMLParser:
         code.append("    int64_t int_val = 0;")
         code.append("    std::string str_val;")
         code.append("    bool bool_val = false;")
+        code.append("    BinOpKind bin_op_kind = BinOpKind::Add;")
+        code.append("    UnaryOpKind unary_op_kind = UnaryOpKind::Not;")
         code.append("    std::vector<ExprPtr> children;")
         code.append("    std::vector<std::string> str_list;")
         code.append("    ExprPtr hi, lo;")
@@ -11632,16 +11886,16 @@ class ARM64XMLParser:
         code.append("    return e;")
         code.append("}")
         code.append("")
-        code.append("inline ExprPtr bin_op(const std::string& op, ExprPtr left, ExprPtr right) {")
+        code.append("inline ExprPtr bin_op(BinOpKind op, ExprPtr left, ExprPtr right) {")
         code.append("    auto e = std::make_shared<Expr>(ExprKind::BinOp);")
-        code.append("    e->str_val = op;")
+        code.append("    e->bin_op_kind = op;")
         code.append("    e->children = {std::move(left), std::move(right)};")
         code.append("    return e;")
         code.append("}")
         code.append("")
-        code.append("inline ExprPtr unary_op(const std::string& op, ExprPtr operand) {")
+        code.append("inline ExprPtr unary_op(UnaryOpKind op, ExprPtr operand) {")
         code.append("    auto e = std::make_shared<Expr>(ExprKind::UnaryOp);")
-        code.append("    e->str_val = op;")
+        code.append("    e->unary_op_kind = op;")
         code.append("    e->children = {std::move(operand)};")
         code.append("    return e;")
         code.append("}")
@@ -11703,6 +11957,33 @@ class ARM64XMLParser:
         code.append("    e->children = {std::move(val), std::move(collection)};")
         code.append("    return e;")
         code.append("}")
+        code.append("")
+
+        # to_string for operator enums
+        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("inline const char* to_string(BinOpKind op) {")
+        code.append("    switch (op) {")
+        for val, sym in [
+            ("LogicalOr", "||"), ("LogicalAnd", "&&"),
+            ("Or", "OR"), ("Xor", "XOR"), ("Eor", "EOR"), ("And", "AND"),
+            ("Eq", "=="), ("Ne", "!="), ("Lt", "<"), ("Gt", ">"), ("Le", "<="), ("Ge", ">="),
+            ("Shl", "<<"), ("Shr", ">>"),
+            ("Add", "+"), ("Sub", "-"), ("Mul", "*"),
+            ("Div", "DIV"), ("DivRm", "DIVRM"), ("Mod", "MOD"), ("Pow", "^"),
+        ]:
+            code.append(f'    case BinOpKind::{val}: return "{sym}";')
+        code.append("    }")
+        code.append('    return "?";')
+        code.append("}")
+        code.append("")
+        code.append("inline const char* to_string(UnaryOpKind op) {")
+        code.append("    switch (op) {")
+        code.append('    case UnaryOpKind::Not: return "NOT";')
+        code.append('    case UnaryOpKind::Negate: return "-";')
+        code.append("    }")
+        code.append('    return "?";')
+        code.append("}")
+        code.append("#endif // VEDA64_NO_STRINGS")
         code.append("")
 
         # Factory helpers - Statements
@@ -11820,8 +12101,8 @@ class ARM64XMLParser:
         self._write_file(include_dir / "ir.hpp", code)
         print(f"Generated ir.hpp")
 
-    def _generate_ir_impl(self, include_dir: Path, lib_dir: Path):
-        """Generate lib/ir.cpp and per-group lib/ir_*.cpp files."""
+    def _generate_ir_impl(self, include_dir: Path, ir_dir: Path):
+        """Generate lib/ir/ir.cpp and per-group lib/ir/<group>.cpp files."""
 
         # Group encodings by format group
         groups: Dict[str, List] = {}
@@ -11839,9 +12120,7 @@ class ARM64XMLParser:
         builder_funcs = {}  # encoding_id → func_name
         for group_name in sorted(groups.keys()):
             encs = groups[group_name]
-            code = []
-            code.append(f"// Auto-generated IR builder functions for {group_name}")
-            code.append("// Do not edit - generated by parse_arm64_xml.py")
+            code = self._license_header()
             code.append('#include "ir.hpp"')
             code.append("")
             code.append("namespace veda64 {")
@@ -11887,13 +12166,11 @@ class ARM64XMLParser:
             code.append("} // namespace ir")
             code.append("} // namespace veda64")
 
-            self._write_file(lib_dir / f"ir_{group_name}.cpp", code)
-            print(f"  ir_{group_name}.cpp: {emitted} builders")
+            self._write_file(ir_dir / f"{group_name}.cpp", code)
+            print(f"  {group_name}.cpp: {emitted} builders")
 
         # Generate main ir.cpp with dispatch table and lift()
-        code = []
-        code.append("// Auto-generated IR lift dispatch")
-        code.append("// Do not edit - generated by parse_arm64_xml.py")
+        code = self._license_header()
         code.append('#include "veda64.hpp"')
         code.append('#include "ir.hpp"')
         code.append("")
@@ -11935,7 +12212,7 @@ class ARM64XMLParser:
         code.append("} // namespace ir")
         code.append("} // namespace veda64")
 
-        self._write_file(lib_dir / "ir.cpp", code)
+        self._write_file(ir_dir / "ir.cpp", code)
         print(f"Generated ir.cpp with {len(builder_funcs)} dispatch entries")
 
     def _generate_ir_builder(self, enc, func_name: str) -> List[str]:
@@ -11996,125 +12273,16 @@ class ARM64XMLParser:
     def generate_ir_files(self, include_dir: Path, lib_dir: Path):
         """Generate IR header and implementation files."""
         print(f"\n=== Generating IR Lift Files ===")
+        ir_dir = lib_dir / "ir"
+        ir_dir.mkdir(exist_ok=True)
         self._generate_ir_header(include_dir)
-        self._generate_ir_impl(include_dir, lib_dir)
-
-    def generate_semantic_files(self, base_dir: Path):
-        """Generate C++ semantic function files from execute pseudocode."""
-        emu_dir = base_dir / "emu"
-        emu_dir.mkdir(parents=True, exist_ok=True)
-
-        # Group encodings by format group
-        groups: Dict[str, List] = {}
-        for instr in self.instructions:
-            for enc in instr.encodings:
-                if not enc.execute_ps:
-                    continue
-                group = enc.format_group or 'misc'
-                if group not in groups:
-                    groups[group] = []
-                groups[group].append(enc)
-
-        # Generate header with forward declarations
-        header = []
-        header.append("// Auto-generated semantic function declarations")
-        header.append("// Do not edit - generated by parse_arm64_xml.py")
-        header.append("#pragma once")
-        header.append("")
-        header.append("#include <cstdint>")
-        header.append("#include <array>")
-        header.append("#include <tuple>")
-        header.append("")
-        header.append("namespace veda64::emu {")
-        header.append("")
-        header.append("// Forward declarations")
-        header.append("struct BV;")
-        header.append("struct CpuState;")
-        header.append("")
-
-        total_funcs = 0
-        for group_name in sorted(groups.keys()):
-            encs = groups[group_name]
-            header.append(f"// --- {group_name} ({len(encs)} encodings) ---")
-            seen_funcs = set()
-            for enc in encs:
-                func_name = f'exec_{enc.name}'.replace('.', '_').replace('-', '_')
-                if func_name in seen_funcs:
-                    continue
-                seen_funcs.add(func_name)
-                total_funcs += 1
-                # Extract decode params for signature
-                params = self._extract_decode_params(enc)
-                param_str = ', '.join(f'{t} {n}' for t, n in params)
-                header.append(f"void {func_name}(CpuState& cpu, {param_str});")
-            header.append("")
-
-        header.append("} // namespace veda64::emu")
-
-        self._write_file(emu_dir / "semantic.hpp", header)
-
-        # Generate per-group implementation files
-        for group_name in sorted(groups.keys()):
-            encs = groups[group_name]
-            code = []
-            code.append(f"// Auto-generated semantic functions for {group_name}")
-            code.append("// Do not edit - generated by parse_arm64_xml.py")
-            code.append('#include "semantic.hpp"')
-            code.append("")
-            code.append("namespace veda64::emu {")
-            code.append("")
-
-            seen_funcs = set()
-            emitted = 0
-            for enc in encs:
-                func_name = f'exec_{enc.name}'.replace('.', '_').replace('-', '_')
-                if func_name in seen_funcs:
-                    continue
-                seen_funcs.add(func_name)
-
-                try:
-                    # Parse decode + execute
-                    decode_stmts = self._parse_asl(enc.decode_ps) if enc.decode_ps else []
-                    exec_stmts = self._parse_asl(enc.execute_ps)
-
-                    emitter = AslCppEmitter()
-                    lines = emitter.emit_function(func_name, decode_stmts, exec_stmts)
-                    code.extend(lines)
-                    code.append("")
-                    emitted += 1
-                except Exception as e:
-                    code.append(f"// Failed to emit {func_name}: {e}")
-                    code.append("")
-
-            code.append("} // namespace veda64::emu")
-
-            self._write_file(emu_dir / f"semantic_{group_name}.cpp", code)
-
-        print(f"Generated semantic files: {total_funcs} functions across {len(groups)} groups")
-
-    def _extract_decode_params(self, enc) -> list:
-        """Extract (type, name) pairs from decode pseudocode LetDecls."""
-        if not enc.decode_ps:
-            return []
-        try:
-            stmts = self._parse_asl(enc.decode_ps)
-            params = []
-            emitter = AslCppEmitter()
-            for s in stmts:
-                if isinstance(s, LetDecl):
-                    cpp_type = emitter._type_for_init(s.init) if s.init else 'int64_t'
-                    params.append((cpp_type, s.name))
-            return params
-        except:
-            return []
+        self._generate_ir_impl(include_dir, ir_dir)
 
     def generate_disasm_tool(self, tools_dir: Path):
         """Generate the veda64-disasm tool."""
         tools_dir.mkdir(exist_ok=True)
 
-        code = []
-        code.append("// veda64-disasm - ARM64 instruction disassembler")
-        code.append("// Auto-generated - do not edit")
+        code = self._license_header()
         code.append("#include \"veda64.hpp\"")
         code.append("#include <iostream>")
         code.append("#include <cstdlib>")
@@ -12234,11 +12402,7 @@ class ARM64XMLParser:
 
     def _generate_hook_implementation(self, lib_dir: Path):
         """Generate hook.cpp implementation file."""
-        code = []
-        code.append("// veda64 API Hooking for Windows ARM64 - Implementation")
-        code.append("// Uses veda64 disassembler for instruction analysis and relocation")
-        code.append("// Uses direct NT syscalls instead of Win32 API for stealth")
-        code.append("// Auto-generated - do not edit")
+        code = self._license_header()
         code.append("")
         code.append("#include \"veda64.hpp\"")
         code.append("")
@@ -13632,11 +13796,7 @@ class ARM64XMLParser:
 
     def generate_reference_test(self, test_dir: Path):
         """Generate a reference test based on real disassembly output."""
-        code = []
-
-        code.append("// Reference test - validates decode output against known disassembly")
-        code.append("// Auto-generated - do not edit")
-        code.append("// Tests both mnemonic and operands (case-insensitive)")
+        code = self._license_header()
         code.append("#include \"veda64.hpp\"")
         code.append("#include <iostream>")
         code.append("#include <cassert>")
@@ -13866,12 +14026,7 @@ class ARM64XMLParser:
 
     def generate_hook_test(self, test_dir: Path):
         """Generate test_hook.cpp for the hooking subsystem."""
-        code = []
-
-        code.append("// Hook library tests - validates hooking subsystem functionality")
-        code.append("// Auto-generated - do not edit")
-        code.append("// Cross-platform tests run on any Windows target (x64 or ARM64)")
-        code.append("// Live hook tests only run on ARM64")
+        code = self._license_header()
         code.append("#include \"veda64.hpp\"")
         code.append("")
         code.append("#if !defined(VEDA64_NO_HOOKS) && (defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT))")
@@ -14672,13 +14827,7 @@ class ARM64XMLParser:
 
     def _generate_hook_examples_cpp(self, test_dir: Path):
         """Generate hook_examples.cpp implementation file."""
-        code = []
-
-        code.append("// Comprehensive hook examples for Windows ARM64")
-        code.append("// Demonstrates various hooking patterns using veda64")
-        code.append("//")
-        code.append("// This file contains complete, self-contained examples.")
-        code.append("// Each namespace demonstrates a different hooking pattern.")
+        code = self._license_header()
         code.append("")
         code.append("#include \"veda64.hpp\"")
         code.append("")
@@ -15040,396 +15189,6 @@ class ARM64XMLParser:
         self._write_file(output_file, code)
         print(f"Generated {output_file.name}")
 
-    def generate_semantic_test(self, test_dir: Path):
-        """Generate test/test_semantic.cpp: end-to-end semantic test."""
-        # Target encodings to test
-        target_encodings = [
-            'ADD_64_addsub_imm',
-            'ADD_32_addsub_imm',
-            'SUB_64_addsub_imm',
-            'ADDS_64S_addsub_imm',
-            'ADC_64_addsub_carry',
-            'ADCS_64_addsub_carry',
-        ]
-
-        # Find encoding objects and emit their semantic functions
-        enc_map = {}
-        for instr in self.instructions:
-            for enc in instr.encodings:
-                if enc.name in target_encodings and enc.execute_ps:
-                    enc_map[enc.name] = enc
-
-        code = []
-        code.append("// Auto-generated end-to-end semantic test")
-        code.append("// Do not edit - generated by parse_arm64_xml.py")
-        code.append("#include \"veda64.hpp\"")
-        code.append("#include <cassert>")
-        code.append("#include <cstdint>")
-        code.append("#include <cstdio>")
-        code.append("#include <cstring>")
-        code.append("#include <tuple>")
-        code.append("#include <type_traits>")
-        code.append("")
-        code.append("// ============================================================================")
-        code.append("// Minimal BV (bit-vector) class backed by uint64_t")
-        code.append("// ============================================================================")
-        code.append("struct BV {")
-        code.append("    uint64_t val;")
-        code.append("    int width;")
-        code.append("")
-        code.append("    BV() : val(0), width(64) {}")
-        code.append("    template<typename T, typename = std::enable_if_t<std::is_integral_v<T>>>")
-        code.append("    BV(T v) : val(static_cast<uint64_t>(v)), width(64) {}")
-        code.append("    BV(uint64_t v, int w) : val(v & ((w >= 64) ? ~0ULL : ((1ULL << w) - 1))), width(w) {}")
-        code.append("    BV(const char* s) {")
-        code.append("        // BV(\"0\") or BV(\"1\") — single-bit literal")
-        code.append("        width = 1;")
-        code.append("        val = (s[0] == '1') ? 1 : 0;")
-        code.append("    }")
-        code.append("")
-        code.append("    static BV zeros(int w) { return BV(0, w); }")
-        code.append("    static BV ones(int w) { return BV(~0ULL, w); }")
-        code.append("")
-        code.append("    BV operator+(const BV& o) const { return BV(val + o.val, width > o.width ? width : o.width); }")
-        code.append("    BV operator-(const BV& o) const { return BV(val - o.val, width > o.width ? width : o.width); }")
-        code.append("    BV operator&(const BV& o) const { return BV(val & o.val, width > o.width ? width : o.width); }")
-        code.append("    BV operator|(const BV& o) const { return BV(val | o.val, width > o.width ? width : o.width); }")
-        code.append("    BV operator^(const BV& o) const { return BV(val ^ o.val, width > o.width ? width : o.width); }")
-        code.append("    BV operator~() const { return BV(~val, width); }")
-        code.append("    bool operator==(const BV& o) const { return val == o.val; }")
-        code.append("    bool operator!=(const BV& o) const { return val != o.val; }")
-        code.append("")
-        code.append("    // Bit extraction: bits(lo, hi) returns bits [hi:lo]")
-        code.append("    BV bits(int lo, int hi) const {")
-        code.append("        int w = hi - lo + 1;")
-        code.append("        return BV((val >> lo) & ((w >= 64) ? ~0ULL : ((1ULL << w) - 1)), w);")
-        code.append("    }")
-        code.append("    BV bit(int i) const { return BV((val >> i) & 1, 1); }")
-        code.append("};")
-        code.append("")
-        code.append("// ============================================================================")
-        code.append("// CpuState and global helpers")
-        code.append("// ============================================================================")
-        code.append("struct PState {")
-        code.append("    BV N, Z, C, V;")
-        code.append("};")
-        code.append("")
-        code.append("struct CpuState {")
-        code.append("    BV X[32];  // General-purpose registers (X0-X30, XZR=X31 reads as 0)")
-        code.append("    BV SP_val; // Stack pointer")
-        code.append("    BV pc;")
-        code.append("    PState pstate;")
-        code.append("};")
-        code.append("")
-        code.append("static CpuState cpu;")
-        code.append("")
-        code.append("// Accessor helpers — match the signatures used by emitted semantic code")
-        code.append("static BV X(int64_t n) { return (n == 31) ? BV(0) : cpu.X[n]; }")
-        code.append("static BV X(int datasize, int64_t n) { return BV(X(n).val, datasize); }")
-        code.append("static void X_set(int datasize, int64_t d, BV val) {")
-        code.append("    if (d == 31) return; // writes to XZR are discarded")
-        code.append("    cpu.X[d] = BV(val.val, datasize);")
-        code.append("}")
-        code.append("static BV SP(int) { return cpu.SP_val; }")
-        code.append("static void SP_set(int, BV val) { cpu.SP_val = val; }")
-        code.append("")
-        code.append("static BV zext(BV v) { return v; } // Already stored as uint64_t")
-        code.append("static BV zext(int target_width, BV v) { return BV(v.val, target_width); }")
-        code.append("")
-        code.append("static std::tuple<BV, BV> AddWithCarry(int datasize, BV x, BV y, BV carry_in) {")
-        code.append("    uint64_t mask = (datasize >= 64) ? ~0ULL : ((1ULL << datasize) - 1);")
-        code.append("    uint64_t ux = x.val & mask;")
-        code.append("    uint64_t uy = y.val & mask;")
-        code.append("    uint64_t ci = carry_in.val & 1;")
-        code.append("    uint64_t result = (ux + uy + ci) & mask;")
-        code.append("    // Carry: if result < any input (accounting for carry_in)")
-        code.append("    uint64_t carry_out;")
-        code.append("    if (datasize >= 64) {")
-        code.append("        // For 64-bit: carry if sum wrapped")
-        code.append("        uint64_t sum1 = ux + uy;")
-        code.append("        uint64_t c1 = (sum1 < ux) ? 1 : 0;")
-        code.append("        uint64_t sum2 = sum1 + ci;")
-        code.append("        uint64_t c2 = (sum2 < sum1) ? 1 : 0;")
-        code.append("        carry_out = c1 | c2;")
-        code.append("    } else {")
-        code.append("        carry_out = ((ux + uy + ci) >> datasize) & 1;")
-        code.append("    }")
-        code.append("    // Overflow: sign of result differs from expected")
-        code.append("    int sign_bit = datasize - 1;")
-        code.append("    uint64_t sx = (ux >> sign_bit) & 1;")
-        code.append("    uint64_t sy = (uy >> sign_bit) & 1;")
-        code.append("    uint64_t sr = (result >> sign_bit) & 1;")
-        code.append("    uint64_t overflow = (sx == sy) && (sr != sx) ? 1 : 0;")
-        code.append("    // nzcv as 4-bit value")
-        code.append("    BV nzcv((sr << 3) | ((result == 0 ? 1ULL : 0) << 2) | (carry_out << 1) | overflow, 4);")
-        code.append("    return {BV(result, datasize), nzcv};")
-        code.append("}")
-        code.append("")
-        code.append("// PSTATE flag access — emitted code uses PSTATE.C etc.")
-        code.append("#define PSTATE cpu.pstate")
-        code.append("")
-        code.append("static void PSTATE_set_n_z_c_v(BV nzcv) {")
-        code.append("    cpu.pstate.N = nzcv.bit(3);")
-        code.append("    cpu.pstate.Z = nzcv.bit(2);")
-        code.append("    cpu.pstate.C = nzcv.bit(1);")
-        code.append("    cpu.pstate.V = nzcv.bit(0);")
-        code.append("}")
-        code.append("")
-        code.append("static void CheckSPAlignment() {} // No-op in test")
-        code.append("static BV bv_concat(BV hi, BV lo) { return BV((hi.val << lo.width) | lo.val, hi.width + lo.width); }")
-        code.append("")
-        code.append("static void reset_cpu() {")
-        code.append("    memset(&cpu, 0, sizeof(cpu));")
-        code.append("    for (int i = 0; i < 32; i++) cpu.X[i] = BV(0);")
-        code.append("    cpu.SP_val = BV(0);")
-        code.append("    cpu.pstate.N = BV(0, 1);")
-        code.append("    cpu.pstate.Z = BV(0, 1);")
-        code.append("    cpu.pstate.C = BV(0, 1);")
-        code.append("    cpu.pstate.V = BV(0, 1);")
-        code.append("}")
-        code.append("")
-        code.append("// ============================================================================")
-        code.append("// Semantic functions (emitted from ASL IR)")
-        code.append("// ============================================================================")
-
-        # Emit semantic functions inline
-        for enc_name in target_encodings:
-            enc = enc_map.get(enc_name)
-            if not enc:
-                code.append(f"// WARNING: encoding {enc_name} not found")
-                continue
-            try:
-                decode_stmts = self._parse_asl(enc.decode_ps) if enc.decode_ps else []
-                exec_stmts = self._parse_asl(enc.execute_ps)
-                emitter = AslCppEmitter()
-                func_name = f'exec_{enc.name}'.replace('.', '_').replace('-', '_')
-                lines = emitter.emit_function(func_name, decode_stmts, exec_stmts)
-                # Make functions static to avoid linkage issues
-                if lines:
-                    lines[0] = 'static ' + lines[0]
-                # Replace 'auto' params with concrete types (MSVC C++17 doesn't support auto params)
-                for idx, line in enumerate(lines):
-                    if 'auto datasize' in line or 'auto imm' in line or 'auto shift' in line or 'auto extend_type' in line or 'auto offset' in line or 'auto tag_offset' in line:
-                        # datasize/shift/extend_type are integers; imm/offset are BV
-                        line = line.replace('auto datasize', 'int64_t datasize')
-                        line = line.replace('auto imm', 'BV imm')
-                        line = line.replace('auto shift', 'int64_t shift')
-                        line = line.replace('auto extend_type', 'int64_t extend_type')
-                        line = line.replace('auto offset', 'BV offset')
-                        line = line.replace('auto tag_offset', 'int64_t tag_offset')
-                        lines[idx] = line
-                # Remove redundant VarDecl lines that are shadowed by structured bindings
-                # e.g. "BV result;" followed by "auto [result, ...] = ..."
-                filtered = []
-                import re as _re
-                for i, line in enumerate(lines):
-                    stripped = line.strip()
-                    # Check if this is "BV varname;" and the next line is "auto [varname, ..."
-                    m = _re.match(r'^BV (\w+);$', stripped)
-                    if m:
-                        varname = m.group(1)
-                        # Look ahead for structured binding using this name
-                        for j in range(i + 1, min(i + 4, len(lines))):
-                            if 'auto [' in lines[j] and varname in lines[j]:
-                                break
-                        else:
-                            filtered.append(line)
-                        continue
-                    filtered.append(line)
-                code.extend(filtered)
-                code.append("")
-            except Exception as e:
-                code.append(f"// Failed to emit {enc_name}: {e}")
-                code.append("")
-
-        # Test cases
-        code.append("// ============================================================================")
-        code.append("// Test cases")
-        code.append("// ============================================================================")
-        code.append("static int failures = 0;")
-        code.append("")
-        code.append("#define CHECK(cond, msg) do { \\")
-        code.append("    if (!(cond)) { \\")
-        code.append("        printf(\"FAIL: %s (line %d)\\n\", msg, __LINE__); \\")
-        code.append("        failures++; \\")
-        code.append("    } \\")
-        code.append("} while(0)")
-        code.append("")
-
-        # Test 1: ADD X0, X1, #0x10
-        code.append("static void test_add_x64_imm() {")
-        code.append("    reset_cpu();")
-        code.append("    cpu.X[1] = BV(0x1000);")
-        code.append("    // ADD X0, X1, #0x10 → 0x91004020")
-        code.append("    auto insn = veda64::decode(0x91004020);")
-        code.append("    CHECK(insn.has_value(), \"decode ADD X0, X1, #0x10\");")
-        code.append("    exec_ADD_64_addsub_imm(cpu, /*d=*/0, /*n=*/1, /*datasize=*/64, BV(0x10));")
-        code.append("    CHECK(cpu.X[0] == BV(0x1010), \"ADD X0=X1+0x10\");")
-        code.append("}")
-        code.append("")
-
-        # Test 2: ADD W0, W1, #1 (32-bit)
-        code.append("static void test_add_w32_imm() {")
-        code.append("    reset_cpu();")
-        code.append("    cpu.X[1] = BV(0xFFFFFFFF);")
-        code.append("    // ADD W0, W1, #1 → 0x11000420")
-        code.append("    auto insn = veda64::decode(0x11000420);")
-        code.append("    CHECK(insn.has_value(), \"decode ADD W0, W1, #1\");")
-        code.append("    exec_ADD_32_addsub_imm(cpu, /*d=*/0, /*n=*/1, /*datasize=*/32, BV(1));")
-        code.append("    CHECK(cpu.X[0] == BV(0, 32), \"ADD W0=W1+1 wraps to 0\");")
-        code.append("}")
-        code.append("")
-
-        # Test 3: SUB X0, X1, #0x10
-        code.append("static void test_sub_x64_imm() {")
-        code.append("    reset_cpu();")
-        code.append("    cpu.X[1] = BV(0x1000);")
-        code.append("    // SUB X0, X1, #0x10 → 0xD1004020")
-        code.append("    auto insn = veda64::decode(0xD1004020);")
-        code.append("    CHECK(insn.has_value(), \"decode SUB X0, X1, #0x10\");")
-        code.append("    exec_SUB_64_addsub_imm(cpu, /*d=*/0, /*n=*/1, /*datasize=*/64, BV(0x10));")
-        code.append("    CHECK(cpu.X[0] == BV(0xFF0), \"SUB X0=X1-0x10\");")
-        code.append("}")
-        code.append("")
-
-        # Test 4: ADDS X0, X1, #0 → Z flag set when result=0
-        code.append("static void test_adds_zero_flag() {")
-        code.append("    reset_cpu();")
-        code.append("    cpu.X[1] = BV(0);")
-        code.append("    // ADDS X0, X1, #0 → 0xB1000020")
-        code.append("    auto insn = veda64::decode(0xB1000020);")
-        code.append("    CHECK(insn.has_value(), \"decode ADDS X0, X1, #0\");")
-        code.append("    exec_ADDS_64S_addsub_imm(cpu, /*d=*/0, /*n=*/1, /*datasize=*/64, BV(0));")
-        code.append("    CHECK(cpu.X[0] == BV(0), \"ADDS result=0\");")
-        code.append("    CHECK(cpu.pstate.Z.val == 1, \"ADDS Z flag set\");")
-        code.append("    CHECK(cpu.pstate.N.val == 0, \"ADDS N flag clear\");")
-        code.append("}")
-        code.append("")
-
-        # Test 5: ADDS X0, X1, #1 → N flag when result negative
-        code.append("static void test_adds_negative_flag() {")
-        code.append("    reset_cpu();")
-        code.append("    cpu.X[1] = BV(0xFFFFFFFFFFFFFFFFULL); // -1")
-        code.append("    // ADDS X0, X1, #0 → test with -1 + 0")
-        code.append("    exec_ADDS_64S_addsub_imm(cpu, /*d=*/0, /*n=*/1, /*datasize=*/64, BV(0));")
-        code.append("    CHECK(cpu.X[0] == BV(0xFFFFFFFFFFFFFFFFULL), \"ADDS result=-1\");")
-        code.append("    CHECK(cpu.pstate.N.val == 1, \"ADDS N flag set for negative\");")
-        code.append("    CHECK(cpu.pstate.Z.val == 0, \"ADDS Z flag clear\");")
-        code.append("}")
-        code.append("")
-
-        # Test 6: ADD SP, SP, #0x10 (SP path, d==31, n==31)
-        code.append("static void test_add_sp() {")
-        code.append("    reset_cpu();")
-        code.append("    cpu.SP_val = BV(0x1000);")
-        code.append("    // ADD SP, SP, #0x10 — d=31, n=31")
-        code.append("    exec_ADD_64_addsub_imm(cpu, /*d=*/31, /*n=*/31, /*datasize=*/64, BV(0x10));")
-        code.append("    CHECK(cpu.SP_val == BV(0x1010), \"ADD SP,SP,#0x10\");")
-        code.append("}")
-        code.append("")
-
-        # Test 7: ADC X0, X1, X2 (carry from PSTATE.C)
-        code.append("static void test_adc_with_carry() {")
-        code.append("    reset_cpu();")
-        code.append("    cpu.X[1] = BV(10);")
-        code.append("    cpu.X[2] = BV(20);")
-        code.append("    cpu.pstate.C = BV(1, 1); // carry set")
-        code.append("    exec_ADC_64_addsub_carry(cpu, /*d=*/0, /*n=*/1, /*m=*/2, /*datasize=*/64);")
-        code.append("    CHECK(cpu.X[0] == BV(31), \"ADC X0=10+20+1=31\");")
-        code.append("}")
-        code.append("")
-
-        # Test 8: ADC without carry
-        code.append("static void test_adc_no_carry() {")
-        code.append("    reset_cpu();")
-        code.append("    cpu.X[1] = BV(10);")
-        code.append("    cpu.X[2] = BV(20);")
-        code.append("    cpu.pstate.C = BV(0, 1); // carry clear")
-        code.append("    exec_ADC_64_addsub_carry(cpu, /*d=*/0, /*n=*/1, /*m=*/2, /*datasize=*/64);")
-        code.append("    CHECK(cpu.X[0] == BV(30), \"ADC X0=10+20+0=30\");")
-        code.append("}")
-        code.append("")
-
-        # Test 9: ADCS carry propagation
-        code.append("static void test_adcs_carry_out() {")
-        code.append("    reset_cpu();")
-        code.append("    cpu.X[1] = BV(0xFFFFFFFFFFFFFFFFULL);")
-        code.append("    cpu.X[2] = BV(1);")
-        code.append("    cpu.pstate.C = BV(0, 1);")
-        code.append("    exec_ADCS_64_addsub_carry(cpu, /*d=*/0, /*n=*/1, /*m=*/2, /*datasize=*/64);")
-        code.append("    CHECK(cpu.X[0] == BV(0), \"ADCS result wraps to 0\");")
-        code.append("    CHECK(cpu.pstate.C.val == 1, \"ADCS carry out set\");")
-        code.append("    CHECK(cpu.pstate.Z.val == 1, \"ADCS Z flag set\");")
-        code.append("}")
-        code.append("")
-
-        # Test 10: ADCS overflow detection
-        code.append("static void test_adcs_overflow() {")
-        code.append("    reset_cpu();")
-        code.append("    cpu.X[1] = BV(0x7FFFFFFFFFFFFFFFULL); // max positive")
-        code.append("    cpu.X[2] = BV(1);")
-        code.append("    cpu.pstate.C = BV(0, 1);")
-        code.append("    exec_ADCS_64_addsub_carry(cpu, /*d=*/0, /*n=*/1, /*m=*/2, /*datasize=*/64);")
-        code.append("    CHECK(cpu.X[0] == BV(0x8000000000000000ULL), \"ADCS overflow result\");")
-        code.append("    CHECK(cpu.pstate.V.val == 1, \"ADCS overflow flag set\");")
-        code.append("    CHECK(cpu.pstate.N.val == 1, \"ADCS N flag set\");")
-        code.append("}")
-        code.append("")
-
-        # Test 11: ADDS carry flag on 64-bit overflow
-        code.append("static void test_adds_carry_flag() {")
-        code.append("    reset_cpu();")
-        code.append("    cpu.X[1] = BV(0xFFFFFFFFFFFFFFFFULL);")
-        code.append("    exec_ADDS_64S_addsub_imm(cpu, /*d=*/0, /*n=*/1, /*datasize=*/64, BV(1));")
-        code.append("    CHECK(cpu.X[0] == BV(0), \"ADDS -1+1=0\");")
-        code.append("    CHECK(cpu.pstate.C.val == 1, \"ADDS carry flag set\");")
-        code.append("    CHECK(cpu.pstate.Z.val == 1, \"ADDS Z flag set\");")
-        code.append("}")
-        code.append("")
-
-        # Test 12: XZR write discarded
-        code.append("static void test_xzr_write_discarded() {")
-        code.append("    reset_cpu();")
-        code.append("    cpu.X[1] = BV(42);")
-        code.append("    // ADDS XZR, X1, #0 — d=31, but ADDS writes to Xd not SP")
-        code.append("    exec_ADDS_64S_addsub_imm(cpu, /*d=*/31, /*n=*/1, /*datasize=*/64, BV(0));")
-        code.append("    // X31/XZR should still read as 0 (write discarded)")
-        code.append("    CHECK(X(31).val == 0, \"XZR still reads as 0\");")
-        code.append("    // But flags should be set based on the result (42)")
-        code.append("    CHECK(cpu.pstate.Z.val == 0, \"ADDS XZR flags: Z clear\");")
-        code.append("}")
-        code.append("")
-
-        # main
-        code.append("int main() {")
-        code.append("    printf(\"Running semantic tests...\\n\");")
-        code.append("")
-        code.append("    test_add_x64_imm();")
-        code.append("    test_add_w32_imm();")
-        code.append("    test_sub_x64_imm();")
-        code.append("    test_adds_zero_flag();")
-        code.append("    test_adds_negative_flag();")
-        code.append("    test_add_sp();")
-        code.append("    test_adc_with_carry();")
-        code.append("    test_adc_no_carry();")
-        code.append("    test_adcs_carry_out();")
-        code.append("    test_adcs_overflow();")
-        code.append("    test_adds_carry_flag();")
-        code.append("    test_xzr_write_discarded();")
-        code.append("")
-        code.append("    if (failures == 0) {")
-        code.append("        printf(\"All 12 semantic tests passed!\\n\");")
-        code.append("    } else {")
-        code.append("        printf(\"%d test(s) FAILED\\n\", failures);")
-        code.append("    }")
-        code.append("    return failures;")
-        code.append("}")
-
-        output_file = test_dir / "test_semantic.cpp"
-        self._write_file(output_file, code)
-        print(f"Generated {output_file.name}: {len(target_encodings)} encodings, 12 test cases")
-
-
 def main():
     """Main entry point."""
     # Use the 2025-12 version (latest)
@@ -15491,17 +15250,12 @@ def main():
     parser.generate_reference_test(test_dir)
     parser.generate_hook_test(test_dir)
     parser.generate_hook_examples(test_dir)
-    parser.generate_semantic_test(test_dir)
     print(f"Generated test files")
 
     # Generate tools
     print(f"\n=== Generating Tools ===")
     tools_dir = base_dir / "tools"
     parser.generate_disasm_tool(tools_dir)
-
-    # Generate semantic files (ASL execute → C++)
-    print(f"\n=== Generating Semantic Files ===")
-    parser.generate_semantic_files(base_dir)
 
     # Generate IR lift files
     parser.generate_ir_files(include_dir, lib_dir)

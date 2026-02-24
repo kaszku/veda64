@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 Kevin Szkudlapski
+// Auto-generated — do not edit
+
 #pragma once
 // ARM64 Decode Group: Reserved
 // 1 instruction encodings

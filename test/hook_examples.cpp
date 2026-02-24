@@ -1,8 +1,7 @@
-// Comprehensive hook examples for Windows ARM64
-// Demonstrates various hooking patterns using veda64
-//
-// This file contains complete, self-contained examples.
-// Each namespace demonstrates a different hooking pattern.
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 Kevin Szkudlapski
+// Auto-generated — do not edit
+
 
 #include "veda64.hpp"
 

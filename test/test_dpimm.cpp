@@ -1,5 +1,7 @@
-// Auto-generated - do not edit
-// Per-encoding tests for dpimm format group
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 Kevin Szkudlapski
+// Auto-generated — do not edit
+
 #include "veda64.hpp"
 #include <cassert>
 #include <iostream>

@@ -1,7 +1,7 @@
-// veda64 API Hooking for Windows ARM64 - Implementation
-// Uses veda64 disassembler for instruction analysis and relocation
-// Uses direct NT syscalls instead of Win32 API for stealth
-// Auto-generated - do not edit
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 Kevin Szkudlapski
+// Auto-generated — do not edit
+
 
 #include "veda64.hpp"
 

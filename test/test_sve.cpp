@@ -1,5 +1,7 @@
-// Auto-generated - do not edit
-// Per-encoding tests for sve format group
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 Kevin Szkudlapski
+// Auto-generated — do not edit
+
 #include "veda64.hpp"
 #include <cassert>
 #include <iostream>
@@ -1638,6 +1640,9 @@ void test_ctermeq_rr_() {
     uint32_t insn = 0x25A02000u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
+    assert(result->operands.size() >= 2);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  ctermeq_rr_: " << result->to_string() << std::endl;
 }
 
@@ -1645,6 +1650,9 @@ void test_ctermne_rr_() {
     uint32_t insn = 0x25A02010u;
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
+    assert(result->operands.size() >= 2);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  ctermne_rr_: " << result->to_string() << std::endl;
 }
 

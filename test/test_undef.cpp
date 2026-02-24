@@ -1,5 +1,7 @@
-// Auto-generated - do not edit
-// Tests that Decode_UNDEF conditions correctly reject invalid encodings
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 Kevin Szkudlapski
+// Auto-generated — do not edit
+
 #include "veda64.hpp"
 #include <cassert>
 #include <iostream>
