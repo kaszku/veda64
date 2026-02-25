@@ -2123,9 +2123,11 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
     }
 
     // DSB CRm=0 → SSBB, CRm=4 → PSSBB
-    if (insn.mnemonic == Mnemonic::DSB && insn.operands.size() == 1 && insn.operands[0].type == OperandType::Barrier) {
-        if (insn.operands[0].value == 0) return std::string("ssbb");
-        if (insn.operands[0].value == 4) return std::string("pssbb");
+    if (insn.mnemonic == Mnemonic::DSB) {
+        // Fixed-CRm encodings (no operands): check raw instruction bits
+        uint32_t crm = (insn.raw_value >> 8) & 0xF;
+        if (crm == 0) return std::string("ssbb");
+        if (crm == 4) return std::string("pssbb");
     }
 
     // SVE: CPY → MOV alias
@@ -2178,6 +2180,68 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
         }
     }
 
+    // SVE: DUP → MOV alias
+    if (insn.mnemonic == Mnemonic::DUP && insn.operands.size() >= 1 && insn.operands[0].type == OperandType::SVERegister) {
+        std::ostringstream oss;
+        oss << "mov";
+        for (size_t i = 0; i < insn.operands.size(); ++i) {
+            oss << (i == 0 ? " " : ", ") << insn.operands[i].to_string();
+        }
+        return oss.str();
+    }
+
+    // SVE: SEL p → MOV p (predicate form)
+    if (insn.mnemonic == Mnemonic::SEL && insn.operands.size() >= 3 && insn.operands[0].type == OperandType::PredicateRegister) {
+        std::ostringstream oss;
+        oss << "mov " << insn.operands[0].to_string() << ", " << insn.operands[1].to_string() << ", " << insn.operands[2].to_string();
+        return oss.str();
+    }
+
+    // SVE: SEL z → MOV z (vector form)
+    if (insn.mnemonic == Mnemonic::SEL && insn.operands.size() >= 3 && insn.operands[0].type == OperandType::SVERegister) {
+        std::ostringstream oss;
+        oss << "mov " << insn.operands[0].to_string() << ", " << insn.operands[1].to_string() << ", " << insn.operands[2].to_string();
+        return oss.str();
+    }
+
+    // SVE: ORR z,z,z with Zn==Zm → MOV z,z
+    if (insn.mnemonic == Mnemonic::ORR && insn.operands.size() == 3 && insn.operands[0].type == OperandType::SVERegister) {
+        auto& op1 = insn.operands[1]; auto& op2 = insn.operands[2];
+        if (op1.type == OperandType::SVERegister && op2.type == OperandType::SVERegister && op1.value == op2.value) {
+            std::ostringstream oss;
+            oss << "mov " << insn.operands[0].to_string() << ", " << op1.to_string();
+            return oss.str();
+        }
+    }
+
+    // SVE: ORR p,p/z,p,p with Pn==Pm → MOV p,p/z,p
+    if (insn.mnemonic == Mnemonic::ORR && insn.operands.size() == 4 && insn.operands[0].type == OperandType::PredicateRegister) {
+        auto& op2 = insn.operands[2]; auto& op3 = insn.operands[3];
+        if (op2.type == OperandType::PredicateRegister && op3.type == OperandType::PredicateRegister && op2.value == op3.value) {
+            std::ostringstream oss;
+            oss << "mov " << insn.operands[0].to_string() << ", " << insn.operands[1].to_string() << ", " << op2.to_string();
+            return oss.str();
+        }
+    }
+
+    // SVE: ORRS p,p/z,p,p with Pn==Pm → MOVS p,p/z,p
+    if (insn.mnemonic == Mnemonic::ORRS && insn.operands.size() == 4) {
+        auto& op2 = insn.operands[2]; auto& op3 = insn.operands[3];
+        if (op2.type == OperandType::PredicateRegister && op3.type == OperandType::PredicateRegister && op2.value == op3.value) {
+            std::ostringstream oss;
+            oss << "movs " << insn.operands[0].to_string() << ", " << insn.operands[1].to_string() << ", " << op2.to_string();
+            return oss.str();
+        }
+    }
+
+    // NOT (SIMD vector) → MVN alias
+    if (insn.mnemonic == Mnemonic::NOT && !insn.operands.empty() && insn.operands[0].type == OperandType::VectorRegister) {
+        std::ostringstream oss;
+        oss << "mvn";
+        for (size_t i = 0; i < insn.operands.size(); ++i) { oss << (i == 0 ? " " : ", ") << insn.operands[i].to_string(); }
+        return oss.str();
+    }
+
     return std::nullopt;  // No alias
 }
 
@@ -2194,7 +2258,13 @@ std::string Instruction::to_string() const {
 
     // SIMD long/wide instructions: Q=1 → add '2' suffix (PMULL→PMULL2, SMLAL→SMLAL2, etc.)
     // Only for SIMD (bit31=0); SME2 instructions have bit31=1 and must not get this suffix
-    if (!(raw_value >> 31) && ((raw_value >> 30) & 1)) {  // Q bit, non-SME only
+    // Also exclude scalar forms (asisdmisc) which have bit30=1 as fixed but no Q field
+    // Check: first operand must have a multi-element arrangement (not scalar B/H/S/D/Q)
+    bool _has_vector_arr = !operands.empty() && operands[0].type == OperandType::VectorRegister &&
+        operands[0].arrangement != Arrangement::B && operands[0].arrangement != Arrangement::H &&
+        operands[0].arrangement != Arrangement::S && operands[0].arrangement != Arrangement::D &&
+        operands[0].arrangement != Arrangement::Q && operands[0].arrangement != Arrangement::None;
+    if (_has_vector_arr && !(raw_value >> 31) && ((raw_value >> 30) & 1)) {  // Q bit, non-SME only
         if (mnemonic == Mnemonic::PMULL || mnemonic == Mnemonic::SMLAL || mnemonic == Mnemonic::SMLSL ||
             mnemonic == Mnemonic::UMLAL || mnemonic == Mnemonic::UMLSL || mnemonic == Mnemonic::SMULL ||
             mnemonic == Mnemonic::UMULL || mnemonic == Mnemonic::SQDMLAL || mnemonic == Mnemonic::SQDMLSL ||

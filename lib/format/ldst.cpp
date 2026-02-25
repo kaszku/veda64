@@ -39032,7 +39032,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1272;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfadd16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfadd16.Rs, is_64bit));
                         return result;
@@ -39042,7 +39042,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1274;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfmax16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfmax16.Rs, is_64bit));
                         return result;
@@ -39052,7 +39052,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1278;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfmin16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfmin16.Rs, is_64bit));
                         return result;
@@ -39062,7 +39062,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1276;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfmaxnm16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfmaxnm16.Rs, is_64bit));
                         return result;
@@ -39072,7 +39072,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1280;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfminnm16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfminnm16.Rs, is_64bit));
                         return result;
@@ -39082,7 +39082,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1273;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfaddl16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfaddl16.Rs, is_64bit));
                         return result;
@@ -39092,7 +39092,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1275;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfmaxl16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfmaxl16.Rs, is_64bit));
                         return result;
@@ -39102,7 +39102,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1279;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfminl16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfminl16.Rs, is_64bit));
                         return result;
@@ -39112,7 +39112,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1277;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfmaxnml16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfmaxnml16.Rs, is_64bit));
                         return result;
@@ -39122,7 +39122,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1281;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfminnml16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stbfminnml16.Rs, is_64bit));
                         return result;
@@ -39330,7 +39330,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1298;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfadd16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfadd16.Rs, is_64bit));
                         return result;
@@ -39340,7 +39340,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1304;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmax16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmax16.Rs, is_64bit));
                         return result;
@@ -39350,7 +39350,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1316;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmin16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmin16.Rs, is_64bit));
                         return result;
@@ -39360,7 +39360,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1310;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxnm16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxnm16.Rs, is_64bit));
                         return result;
@@ -39370,7 +39370,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1322;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminnm16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminnm16.Rs, is_64bit));
                         return result;
@@ -39380,7 +39380,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1299;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfaddl16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfaddl16.Rs, is_64bit));
                         return result;
@@ -39390,7 +39390,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1305;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxl16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxl16.Rs, is_64bit));
                         return result;
@@ -39400,7 +39400,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1317;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminl16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminl16.Rs, is_64bit));
                         return result;
@@ -39410,7 +39410,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1311;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxnml16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxnml16.Rs, is_64bit));
                         return result;
@@ -39420,7 +39420,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1323;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminnml16.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminnml16.Rs, is_64bit));
                         return result;
@@ -39574,7 +39574,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1300;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfadd32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfadd32.Rs, is_64bit));
                         return result;
@@ -39584,7 +39584,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1306;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmax32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmax32.Rs, is_64bit));
                         return result;
@@ -39594,7 +39594,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1318;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmin32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmin32.Rs, is_64bit));
                         return result;
@@ -39604,7 +39604,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1312;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxnm32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxnm32.Rs, is_64bit));
                         return result;
@@ -39614,7 +39614,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1324;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminnm32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminnm32.Rs, is_64bit));
                         return result;
@@ -39624,7 +39624,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1301;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfaddl32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfaddl32.Rs, is_64bit));
                         return result;
@@ -39634,7 +39634,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1307;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxl32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxl32.Rs, is_64bit));
                         return result;
@@ -39644,7 +39644,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1319;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminl32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminl32.Rs, is_64bit));
                         return result;
@@ -39654,7 +39654,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1313;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxnml32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfmaxnml32.Rs, is_64bit));
                         return result;
@@ -39664,7 +39664,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1325;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminnml32.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stfminnml32.Rs, is_64bit));
                         return result;
@@ -41036,7 +41036,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 730;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldbfadd16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfadd16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfadd16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -41047,7 +41047,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 734;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldbfmax16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfmax16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfmax16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -41058,7 +41058,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 742;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldbfmin16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfmin16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfmin16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -41069,7 +41069,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 738;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldbfmaxnm16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfmaxnm16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfmaxnm16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -41080,7 +41080,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 746;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldbfminnm16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfminnm16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfminnm16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -41091,7 +41091,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 733;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldbfaddl16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfaddl16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfaddl16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -41102,7 +41102,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 737;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldbfmaxl16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfmaxl16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfmaxl16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -41113,7 +41113,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 745;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldbfminl16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfminl16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfminl16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -41124,7 +41124,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 741;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldbfmaxnml16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfmaxnml16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfmaxnml16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -41135,7 +41135,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 749;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldbfminnml16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfminnml16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfminnml16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -41146,7 +41146,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 731;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldbfadda16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfadda16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfadda16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -41157,7 +41157,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 735;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldbfmaxa16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfmaxa16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfmaxa16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -41168,7 +41168,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 743;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldbfmina16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfmina16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfmina16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -41179,7 +41179,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 739;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldbfmaxnma16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfmaxnma16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfmaxnma16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -41190,7 +41190,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 747;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldbfminnma16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfminnma16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfminnma16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -41201,7 +41201,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 732;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldbfaddal16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfaddal16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfaddal16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -41212,7 +41212,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 736;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldbfmaxal16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfmaxal16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfmaxal16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -41223,7 +41223,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 744;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldbfminal16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfminal16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfminal16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -41234,7 +41234,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 740;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldbfmaxnmal16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfmaxnmal16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfmaxnmal16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -41245,7 +41245,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 748;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldbfminnmal16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfminnmal16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldbfminnmal16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -42277,7 +42277,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 786;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfadd16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfadd16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfadd16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -42288,7 +42288,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 798;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfmax16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmax16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmax16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -42299,7 +42299,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 822;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfmin16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmin16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmin16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -42310,7 +42310,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 810;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxnm16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxnm16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxnm16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -42321,7 +42321,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 834;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfminnm16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfminnm16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfminnm16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -42332,7 +42332,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 789;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfaddl16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfaddl16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfaddl16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -42343,7 +42343,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 801;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxl16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxl16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxl16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -42354,7 +42354,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 825;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfminl16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfminl16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfminl16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -42365,7 +42365,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 813;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxnml16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxnml16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxnml16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -42376,7 +42376,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 837;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfminnml16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfminnml16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfminnml16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -42387,7 +42387,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 787;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfadda16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfadda16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfadda16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -42398,7 +42398,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 799;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxa16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxa16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxa16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -42409,7 +42409,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 823;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfmina16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmina16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmina16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -42420,7 +42420,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 811;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxnma16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxnma16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxnma16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -42431,7 +42431,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 835;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfminnma16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfminnma16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfminnma16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -42442,7 +42442,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 788;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfaddal16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfaddal16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfaddal16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -42453,7 +42453,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 800;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxal16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxal16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxal16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -42464,7 +42464,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 824;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfminal16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfminal16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfminal16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -42475,7 +42475,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 812;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -42486,7 +42486,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 836;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfminnmal16.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfminnmal16.Rt, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfminnmal16.Rs, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
@@ -42946,7 +42946,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 790;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfadd32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfadd32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfadd32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
@@ -42957,7 +42957,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 802;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfmax32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmax32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmax32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
@@ -42968,7 +42968,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 826;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfmin32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmin32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmin32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
@@ -42979,7 +42979,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 814;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxnm32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxnm32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxnm32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
@@ -42990,7 +42990,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 838;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfminnm32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfminnm32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfminnm32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
@@ -43001,7 +43001,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 793;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfaddl32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfaddl32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfaddl32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
@@ -43012,7 +43012,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 805;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxl32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxl32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxl32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
@@ -43023,7 +43023,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 829;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfminl32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfminl32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfminl32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
@@ -43034,7 +43034,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 817;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxnml32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxnml32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxnml32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
@@ -43045,7 +43045,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 841;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfminnml32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfminnml32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfminnml32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
@@ -43056,7 +43056,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 791;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfadda32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfadda32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfadda32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
@@ -43067,7 +43067,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 803;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxa32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxa32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxa32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
@@ -43078,7 +43078,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 827;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfmina32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmina32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmina32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
@@ -43089,7 +43089,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 815;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxnma32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxnma32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxnma32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
@@ -43100,7 +43100,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 839;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfminnma32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfminnma32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfminnma32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
@@ -43111,7 +43111,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 792;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfaddal32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfaddal32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfaddal32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
@@ -43122,7 +43122,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 804;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxal32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxal32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxal32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
@@ -43133,7 +43133,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 828;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfminal32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfminal32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfminal32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
@@ -43144,7 +43144,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 816;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfmaxnmal32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
@@ -43155,7 +43155,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 840;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         { Operand op(OperandType::VectorRegister, enc.ldfminnmal32.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfminnmal32.Rt, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.ldfminnmal32.Rs, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
@@ -44452,7 +44452,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1164;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.rprfm_rldst_regoff.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rprfm_rldst_regoff.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.rprfm_rldst_regoff.Rt, is_64bit));
@@ -47225,7 +47225,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1204;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = enc.st1asisdlso_d11d.Q;
                         {
@@ -47244,7 +47244,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1237;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = enc.st3asisdlso_d33d.Q;
                         {
@@ -47263,7 +47263,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1339;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.stl1asisdlso_d1.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.stl1asisdlso_d1.Rt, is_64bit));
                         return result;
@@ -47273,7 +47273,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1219;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = enc.st2asisdlso_d22d.Q;
                         {
@@ -47292,7 +47292,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1252;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = enc.st4asisdlso_d44d.Q;
                         {
@@ -47311,7 +47311,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 612;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = enc.ld1asisdlso_d11d.Q;
                         {
@@ -47330,7 +47330,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 648;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = enc.ld3asisdlso_d33d.Q;
                         {
@@ -47349,7 +47349,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 695;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.ldap1asisdlso_d1.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.ldap1asisdlso_d1.Rt, is_64bit));
                         return result;
@@ -47359,7 +47359,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 630;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = enc.ld2asisdlso_d22d.Q;
                         {
@@ -47378,7 +47378,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 666;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = enc.ld4asisdlso_d44d.Q;
                         {
@@ -47397,7 +47397,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1211;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = enc.st1asisdlsop_d1i1d.Q;
                         {
@@ -47416,7 +47416,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1244;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = enc.st3asisdlsop_d3i3d.Q;
                         {
@@ -47435,7 +47435,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1226;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = enc.st2asisdlsop_d2i2d.Q;
                         {
@@ -47454,7 +47454,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1259;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = enc.st4asisdlsop_d4i4d.Q;
                         {
@@ -47473,7 +47473,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 615;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = enc.ld1asisdlsop_d1i1d.Q;
                         {
@@ -47492,7 +47492,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 655;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = enc.ld3asisdlsop_d3i3d.Q;
                         {
@@ -47511,7 +47511,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 637;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = enc.ld2asisdlsop_d2i2d.Q;
                         {
@@ -47530,7 +47530,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 673;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = enc.ld4asisdlsop_d4i4d.Q;
                         {
@@ -47554,7 +47554,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1246;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -47573,7 +47573,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1192;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -47592,7 +47592,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1231;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -47611,7 +47611,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1191;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -47630,7 +47630,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1189;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -47649,7 +47649,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1213;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -47668,7 +47668,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1190;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -47687,7 +47687,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 660;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -47706,7 +47706,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 600;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -47725,7 +47725,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 642;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -47744,7 +47744,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 599;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -47763,7 +47763,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 597;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -47782,7 +47782,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 624;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -47801,7 +47801,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 598;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -47820,7 +47820,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1247;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -47840,7 +47840,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1199;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -47860,7 +47860,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1232;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -47880,7 +47880,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1197;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -47900,7 +47900,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1193;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -47920,7 +47920,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1214;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -47940,7 +47940,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1195;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -47960,7 +47960,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 661;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -47980,7 +47980,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 607;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -48000,7 +48000,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 643;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -48020,7 +48020,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 605;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -48040,7 +48040,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 601;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -48060,7 +48060,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 625;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -48080,7 +48080,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 603;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -48100,7 +48100,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 621;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         static const Arrangement _rep_arrs[2][4] = {
                             {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
                             {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
@@ -48120,7 +48120,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 657;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         static const Arrangement _rep_arrs[2][4] = {
                             {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
                             {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
@@ -48140,7 +48140,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 639;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         static const Arrangement _rep_arrs[2][4] = {
                             {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
                             {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
@@ -48160,7 +48160,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 675;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         static const Arrangement _rep_arrs[2][4] = {
                             {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
                             {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
@@ -48180,7 +48180,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 622;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         static const Arrangement _rep_arrs[2][4] = {
                             {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
                             {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
@@ -48204,7 +48204,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 658;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         static const Arrangement _rep_arrs[2][4] = {
                             {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
                             {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
@@ -48228,7 +48228,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 640;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         static const Arrangement _rep_arrs[2][4] = {
                             {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
                             {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
@@ -48252,7 +48252,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 676;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         static const Arrangement _rep_arrs[2][4] = {
                             {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
                             {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
@@ -48281,7 +48281,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1203;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st1asisdlso_s11s.Q << 1) | enc.st1asisdlso_s11s.S;
                         {
@@ -48300,7 +48300,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1236;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st3asisdlso_s33s.Q << 1) | enc.st3asisdlso_s33s.S;
                         {
@@ -48319,7 +48319,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1218;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st2asisdlso_s22s.Q << 1) | enc.st2asisdlso_s22s.S;
                         {
@@ -48338,7 +48338,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1251;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st4asisdlso_s44s.Q << 1) | enc.st4asisdlso_s44s.S;
                         {
@@ -48357,7 +48357,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 611;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld1asisdlso_s11s.Q << 1) | enc.ld1asisdlso_s11s.S;
                         {
@@ -48376,7 +48376,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 647;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld3asisdlso_s33s.Q << 1) | enc.ld3asisdlso_s33s.S;
                         {
@@ -48395,7 +48395,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 629;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld2asisdlso_s22s.Q << 1) | enc.ld2asisdlso_s22s.S;
                         {
@@ -48414,7 +48414,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 665;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld4asisdlso_s44s.Q << 1) | enc.ld4asisdlso_s44s.S;
                         {
@@ -48433,7 +48433,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1209;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st1asisdlsop_s1i1s.Q << 1) | enc.st1asisdlsop_s1i1s.S;
                         {
@@ -48452,7 +48452,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1242;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st3asisdlsop_s3i3s.Q << 1) | enc.st3asisdlsop_s3i3s.S;
                         {
@@ -48471,7 +48471,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1224;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st2asisdlsop_s2i2s.Q << 1) | enc.st2asisdlsop_s2i2s.S;
                         {
@@ -48490,7 +48490,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1257;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st4asisdlsop_s4i4s.Q << 1) | enc.st4asisdlsop_s4i4s.S;
                         {
@@ -48509,7 +48509,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 619;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld1asisdlsop_s1i1s.Q << 1) | enc.ld1asisdlsop_s1i1s.S;
                         {
@@ -48528,7 +48528,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 653;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld3asisdlsop_s3i3s.Q << 1) | enc.ld3asisdlsop_s3i3s.S;
                         {
@@ -48547,7 +48547,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 635;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld2asisdlsop_s2i2s.Q << 1) | enc.ld2asisdlsop_s2i2s.S;
                         {
@@ -48566,7 +48566,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 671;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld4asisdlsop_s4i4s.Q << 1) | enc.ld4asisdlsop_s4i4s.S;
                         {
@@ -48590,7 +48590,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1202;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st1asisdlso_h11h.Q << 2) | (enc.st1asisdlso_h11h.S << 1) | (enc.st1asisdlso_h11h.size >> 1);
                         {
@@ -48609,7 +48609,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1235;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st3asisdlso_h33h.Q << 2) | (enc.st3asisdlso_h33h.S << 1) | (enc.st3asisdlso_h33h.size >> 1);
                         {
@@ -48628,7 +48628,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1217;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st2asisdlso_h22h.Q << 2) | (enc.st2asisdlso_h22h.S << 1) | (enc.st2asisdlso_h22h.size >> 1);
                         {
@@ -48647,7 +48647,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1250;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st4asisdlso_h44h.Q << 2) | (enc.st4asisdlso_h44h.S << 1) | (enc.st4asisdlso_h44h.size >> 1);
                         {
@@ -48666,7 +48666,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 610;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld1asisdlso_h11h.Q << 2) | (enc.ld1asisdlso_h11h.S << 1) | (enc.ld1asisdlso_h11h.size >> 1);
                         {
@@ -48685,7 +48685,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 646;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld3asisdlso_h33h.Q << 2) | (enc.ld3asisdlso_h33h.S << 1) | (enc.ld3asisdlso_h33h.size >> 1);
                         {
@@ -48704,7 +48704,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 628;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld2asisdlso_h22h.Q << 2) | (enc.ld2asisdlso_h22h.S << 1) | (enc.ld2asisdlso_h22h.size >> 1);
                         {
@@ -48723,7 +48723,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 664;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld4asisdlso_h44h.Q << 2) | (enc.ld4asisdlso_h44h.S << 1) | (enc.ld4asisdlso_h44h.size >> 1);
                         {
@@ -48742,7 +48742,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1207;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st1asisdlsop_h1i1h.Q << 2) | (enc.st1asisdlsop_h1i1h.S << 1) | (enc.st1asisdlsop_h1i1h.size >> 1);
                         {
@@ -48761,7 +48761,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1240;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st3asisdlsop_h3i3h.Q << 2) | (enc.st3asisdlsop_h3i3h.S << 1) | (enc.st3asisdlsop_h3i3h.size >> 1);
                         {
@@ -48780,7 +48780,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1222;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st2asisdlsop_h2i2h.Q << 2) | (enc.st2asisdlsop_h2i2h.S << 1) | (enc.st2asisdlsop_h2i2h.size >> 1);
                         {
@@ -48799,7 +48799,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1255;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st4asisdlsop_h4i4h.Q << 2) | (enc.st4asisdlsop_h4i4h.S << 1) | (enc.st4asisdlsop_h4i4h.size >> 1);
                         {
@@ -48818,7 +48818,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 617;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld1asisdlsop_h1i1h.Q << 2) | (enc.ld1asisdlsop_h1i1h.S << 1) | (enc.ld1asisdlsop_h1i1h.size >> 1);
                         {
@@ -48837,7 +48837,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 651;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld3asisdlsop_h3i3h.Q << 2) | (enc.ld3asisdlsop_h3i3h.S << 1) | (enc.ld3asisdlsop_h3i3h.size >> 1);
                         {
@@ -48856,7 +48856,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 633;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld2asisdlsop_h2i2h.Q << 2) | (enc.ld2asisdlsop_h2i2h.S << 1) | (enc.ld2asisdlsop_h2i2h.size >> 1);
                         {
@@ -48875,7 +48875,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 669;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld4asisdlsop_h4i4h.Q << 2) | (enc.ld4asisdlsop_h4i4h.S << 1) | (enc.ld4asisdlsop_h4i4h.size >> 1);
                         {
@@ -48899,7 +48899,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1201;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st1asisdlso_b11b.Q << 3) | (enc.st1asisdlso_b11b.S << 2) | enc.st1asisdlso_b11b.size;
                         {
@@ -48918,7 +48918,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1234;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st3asisdlso_b33b.Q << 3) | (enc.st3asisdlso_b33b.S << 2) | enc.st3asisdlso_b33b.size;
                         {
@@ -48937,7 +48937,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1216;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st2asisdlso_b22b.Q << 3) | (enc.st2asisdlso_b22b.S << 2) | enc.st2asisdlso_b22b.size;
                         {
@@ -48956,7 +48956,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1249;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st4asisdlso_b44b.Q << 3) | (enc.st4asisdlso_b44b.S << 2) | enc.st4asisdlso_b44b.size;
                         {
@@ -48975,7 +48975,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 609;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld1asisdlso_b11b.Q << 3) | (enc.ld1asisdlso_b11b.S << 2) | enc.ld1asisdlso_b11b.size;
                         {
@@ -48994,7 +48994,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 645;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld3asisdlso_b33b.Q << 3) | (enc.ld3asisdlso_b33b.S << 2) | enc.ld3asisdlso_b33b.size;
                         {
@@ -49013,7 +49013,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 627;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld2asisdlso_b22b.Q << 3) | (enc.ld2asisdlso_b22b.S << 2) | enc.ld2asisdlso_b22b.size;
                         {
@@ -49032,7 +49032,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 663;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld4asisdlso_b44b.Q << 3) | (enc.ld4asisdlso_b44b.S << 2) | enc.ld4asisdlso_b44b.size;
                         {
@@ -49051,7 +49051,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1205;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st1asisdlsop_b1i1b.Q << 3) | (enc.st1asisdlsop_b1i1b.S << 2) | enc.st1asisdlsop_b1i1b.size;
                         {
@@ -49070,7 +49070,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1238;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st3asisdlsop_b3i3b.Q << 3) | (enc.st3asisdlsop_b3i3b.S << 2) | enc.st3asisdlsop_b3i3b.size;
                         {
@@ -49089,7 +49089,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1220;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st2asisdlsop_b2i2b.Q << 3) | (enc.st2asisdlsop_b2i2b.S << 2) | enc.st2asisdlsop_b2i2b.size;
                         {
@@ -49108,7 +49108,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1253;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st4asisdlsop_b4i4b.Q << 3) | (enc.st4asisdlsop_b4i4b.S << 2) | enc.st4asisdlsop_b4i4b.size;
                         {
@@ -49127,7 +49127,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 613;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld1asisdlsop_b1i1b.Q << 3) | (enc.ld1asisdlsop_b1i1b.S << 2) | enc.ld1asisdlsop_b1i1b.size;
                         {
@@ -49146,7 +49146,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 649;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld3asisdlsop_b3i3b.Q << 3) | (enc.ld3asisdlsop_b3i3b.S << 2) | enc.ld3asisdlsop_b3i3b.size;
                         {
@@ -49165,7 +49165,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 631;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld2asisdlsop_b2i2b.Q << 3) | (enc.ld2asisdlsop_b2i2b.S << 2) | enc.ld2asisdlsop_b2i2b.size;
                         {
@@ -49184,7 +49184,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 667;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld4asisdlsop_b4i4b.Q << 3) | (enc.ld4asisdlsop_b4i4b.S << 2) | enc.ld4asisdlsop_b4i4b.size;
                         {
@@ -49208,7 +49208,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1212;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = enc.st1asisdlsop_dx1r1d.Q;
                         {
@@ -49228,7 +49228,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1245;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = enc.st3asisdlsop_dx3r3d.Q;
                         {
@@ -49248,7 +49248,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1227;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = enc.st2asisdlsop_dx2r2d.Q;
                         {
@@ -49268,7 +49268,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1260;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = enc.st4asisdlsop_dx4r4d.Q;
                         {
@@ -49288,7 +49288,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 616;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = enc.ld1asisdlsop_dx1r1d.Q;
                         {
@@ -49308,7 +49308,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 656;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = enc.ld3asisdlsop_dx3r3d.Q;
                         {
@@ -49328,7 +49328,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 638;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = enc.ld2asisdlsop_dx2r2d.Q;
                         {
@@ -49348,7 +49348,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 674;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = enc.ld4asisdlsop_dx4r4d.Q;
                         {
@@ -49373,7 +49373,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1248;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -49393,7 +49393,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1200;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -49413,7 +49413,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1233;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -49433,7 +49433,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1198;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -49453,7 +49453,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1194;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -49473,7 +49473,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1215;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -49493,7 +49493,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1196;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -49513,7 +49513,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 662;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -49533,7 +49533,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 608;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -49553,7 +49553,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 644;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -49573,7 +49573,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 606;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -49593,7 +49593,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 602;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -49613,7 +49613,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 626;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -49633,7 +49633,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 604;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         Arrangement _arr = Arrangement::None;
                         {
                             static const Arrangement arrs[2][4] = {
@@ -49653,7 +49653,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 623;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         static const Arrangement _rep_arrs[2][4] = {
                             {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
                             {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
@@ -49674,7 +49674,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 659;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         static const Arrangement _rep_arrs[2][4] = {
                             {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
                             {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
@@ -49695,7 +49695,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 641;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         static const Arrangement _rep_arrs[2][4] = {
                             {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
                             {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
@@ -49716,7 +49716,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 677;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         static const Arrangement _rep_arrs[2][4] = {
                             {Arrangement::B8, Arrangement::H4, Arrangement::S2, Arrangement::D1},
                             {Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}
@@ -49742,7 +49742,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1210;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st1asisdlsop_sx1r1s.Q << 1) | enc.st1asisdlsop_sx1r1s.S;
                         {
@@ -49762,7 +49762,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1243;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st3asisdlsop_sx3r3s.Q << 1) | enc.st3asisdlsop_sx3r3s.S;
                         {
@@ -49782,7 +49782,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1225;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st2asisdlsop_sx2r2s.Q << 1) | enc.st2asisdlsop_sx2r2s.S;
                         {
@@ -49802,7 +49802,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1258;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st4asisdlsop_sx4r4s.Q << 1) | enc.st4asisdlsop_sx4r4s.S;
                         {
@@ -49822,7 +49822,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 620;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld1asisdlsop_sx1r1s.Q << 1) | enc.ld1asisdlsop_sx1r1s.S;
                         {
@@ -49842,7 +49842,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 654;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld3asisdlsop_sx3r3s.Q << 1) | enc.ld3asisdlsop_sx3r3s.S;
                         {
@@ -49862,7 +49862,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 636;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld2asisdlsop_sx2r2s.Q << 1) | enc.ld2asisdlsop_sx2r2s.S;
                         {
@@ -49882,7 +49882,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 672;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld4asisdlsop_sx4r4s.Q << 1) | enc.ld4asisdlsop_sx4r4s.S;
                         {
@@ -49907,7 +49907,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1208;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st1asisdlsop_hx1r1h.Q << 2) | (enc.st1asisdlsop_hx1r1h.S << 1) | (enc.st1asisdlsop_hx1r1h.size >> 1);
                         {
@@ -49927,7 +49927,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1241;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st3asisdlsop_hx3r3h.Q << 2) | (enc.st3asisdlsop_hx3r3h.S << 1) | (enc.st3asisdlsop_hx3r3h.size >> 1);
                         {
@@ -49947,7 +49947,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1223;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st2asisdlsop_hx2r2h.Q << 2) | (enc.st2asisdlsop_hx2r2h.S << 1) | (enc.st2asisdlsop_hx2r2h.size >> 1);
                         {
@@ -49967,7 +49967,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1256;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st4asisdlsop_hx4r4h.Q << 2) | (enc.st4asisdlsop_hx4r4h.S << 1) | (enc.st4asisdlsop_hx4r4h.size >> 1);
                         {
@@ -49987,7 +49987,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 618;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld1asisdlsop_hx1r1h.Q << 2) | (enc.ld1asisdlsop_hx1r1h.S << 1) | (enc.ld1asisdlsop_hx1r1h.size >> 1);
                         {
@@ -50007,7 +50007,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 652;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld3asisdlsop_hx3r3h.Q << 2) | (enc.ld3asisdlsop_hx3r3h.S << 1) | (enc.ld3asisdlsop_hx3r3h.size >> 1);
                         {
@@ -50027,7 +50027,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 634;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld2asisdlsop_hx2r2h.Q << 2) | (enc.ld2asisdlsop_hx2r2h.S << 1) | (enc.ld2asisdlsop_hx2r2h.size >> 1);
                         {
@@ -50047,7 +50047,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 670;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld4asisdlsop_hx4r4h.Q << 2) | (enc.ld4asisdlsop_hx4r4h.S << 1) | (enc.ld4asisdlsop_hx4r4h.size >> 1);
                         {
@@ -50072,7 +50072,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1206;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st1asisdlsop_bx1r1b.Q << 3) | (enc.st1asisdlsop_bx1r1b.S << 2) | enc.st1asisdlsop_bx1r1b.size;
                         {
@@ -50092,7 +50092,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1239;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st3asisdlsop_bx3r3b.Q << 3) | (enc.st3asisdlsop_bx3r3b.S << 2) | enc.st3asisdlsop_bx3r3b.size;
                         {
@@ -50112,7 +50112,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1221;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st2asisdlsop_bx2r2b.Q << 3) | (enc.st2asisdlsop_bx2r2b.S << 2) | enc.st2asisdlsop_bx2r2b.size;
                         {
@@ -50132,7 +50132,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 1254;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.st4asisdlsop_bx4r4b.Q << 3) | (enc.st4asisdlsop_bx4r4b.S << 2) | enc.st4asisdlsop_bx4r4b.size;
                         {
@@ -50152,7 +50152,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 614;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld1asisdlsop_bx1r1b.Q << 3) | (enc.ld1asisdlsop_bx1r1b.S << 2) | enc.ld1asisdlsop_bx1r1b.size;
                         {
@@ -50172,7 +50172,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 650;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld3asisdlsop_bx3r3b.Q << 3) | (enc.ld3asisdlsop_bx3r3b.S << 2) | enc.ld3asisdlsop_bx3r3b.size;
                         {
@@ -50192,7 +50192,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 632;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld2asisdlsop_bx2r2b.Q << 3) | (enc.ld2asisdlsop_bx2r2b.S << 2) | enc.ld2asisdlsop_bx2r2b.size;
                         {
@@ -50212,7 +50212,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 668;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         uint32_t _elem_idx = 0;
                         _elem_idx = (enc.ld4asisdlsop_bx4r4b.Q << 3) | (enc.ld4asisdlsop_bx4r4b.S << 2) | enc.ld4asisdlsop_bx4r4b.size;
                         {
@@ -50237,7 +50237,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 499;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfp_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfp_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfp_cpy_memcms.Rs, is_64bit));
@@ -50248,7 +50248,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 535;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpwt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpwt_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpwt_cpy_memcms.Rs, is_64bit));
@@ -50259,7 +50259,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 508;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfprt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfprt_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfprt_cpy_memcms.Rs, is_64bit));
@@ -50270,7 +50270,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 520;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpt_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpt_cpy_memcms.Rs, is_64bit));
@@ -50281,7 +50281,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 532;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpwn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpwn_cpy_memcms.Rs, is_64bit));
@@ -50292,7 +50292,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 544;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpwtwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpwtwn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpwtwn_cpy_memcms.Rs, is_64bit));
@@ -50303,7 +50303,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 517;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfprtwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfprtwn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfprtwn_cpy_memcms.Rs, is_64bit));
@@ -50314,7 +50314,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 529;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfptwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfptwn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfptwn_cpy_memcms.Rs, is_64bit));
@@ -50325,7 +50325,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 505;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfprn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfprn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfprn_cpy_memcms.Rs, is_64bit));
@@ -50336,7 +50336,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 541;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpwtrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpwtrn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpwtrn_cpy_memcms.Rs, is_64bit));
@@ -50347,7 +50347,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 514;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfprtrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfprtrn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfprtrn_cpy_memcms.Rs, is_64bit));
@@ -50358,7 +50358,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 526;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfptrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfptrn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfptrn_cpy_memcms.Rs, is_64bit));
@@ -50369,7 +50369,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 502;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpn_cpy_memcms.Rs, is_64bit));
@@ -50380,7 +50380,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 538;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpwtn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpwtn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfpwtn_cpy_memcms.Rs, is_64bit));
@@ -50391,7 +50391,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 511;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfprtn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfprtn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfprtn_cpy_memcms.Rs, is_64bit));
@@ -50402,7 +50402,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 523;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfptn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfptn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfptn_cpy_memcms.Rs, is_64bit));
@@ -50413,7 +50413,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 500;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfm_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfm_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfm_cpy_memcms.Rs, is_64bit));
@@ -50424,7 +50424,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 536;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmwt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmwt_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmwt_cpy_memcms.Rs, is_64bit));
@@ -50435,7 +50435,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 509;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmrt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmrt_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmrt_cpy_memcms.Rs, is_64bit));
@@ -50446,7 +50446,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 521;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmt_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmt_cpy_memcms.Rs, is_64bit));
@@ -50457,7 +50457,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 533;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmwn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmwn_cpy_memcms.Rs, is_64bit));
@@ -50468,7 +50468,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 545;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmwtwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmwtwn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmwtwn_cpy_memcms.Rs, is_64bit));
@@ -50479,7 +50479,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 518;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmrtwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmrtwn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmrtwn_cpy_memcms.Rs, is_64bit));
@@ -50490,7 +50490,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 530;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmtwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmtwn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmtwn_cpy_memcms.Rs, is_64bit));
@@ -50501,7 +50501,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 506;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmrn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmrn_cpy_memcms.Rs, is_64bit));
@@ -50512,7 +50512,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 542;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmwtrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmwtrn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmwtrn_cpy_memcms.Rs, is_64bit));
@@ -50523,7 +50523,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 515;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmrtrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmrtrn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmrtrn_cpy_memcms.Rs, is_64bit));
@@ -50534,7 +50534,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 527;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmtrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmtrn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmtrn_cpy_memcms.Rs, is_64bit));
@@ -50545,7 +50545,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 503;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmn_cpy_memcms.Rs, is_64bit));
@@ -50556,7 +50556,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 539;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmwtn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmwtn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmwtn_cpy_memcms.Rs, is_64bit));
@@ -50567,7 +50567,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 512;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmrtn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmrtn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmrtn_cpy_memcms.Rs, is_64bit));
@@ -50578,7 +50578,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 524;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmtn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmtn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfmtn_cpy_memcms.Rs, is_64bit));
@@ -50589,7 +50589,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 501;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfe_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfe_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfe_cpy_memcms.Rs, is_64bit));
@@ -50600,7 +50600,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 537;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfewt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfewt_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfewt_cpy_memcms.Rs, is_64bit));
@@ -50611,7 +50611,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 510;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfert_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfert_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfert_cpy_memcms.Rs, is_64bit));
@@ -50622,7 +50622,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 522;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfet_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfet_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfet_cpy_memcms.Rs, is_64bit));
@@ -50633,7 +50633,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 534;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfewn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfewn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfewn_cpy_memcms.Rs, is_64bit));
@@ -50644,7 +50644,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 546;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfewtwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfewtwn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfewtwn_cpy_memcms.Rs, is_64bit));
@@ -50655,7 +50655,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 519;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfertwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfertwn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfertwn_cpy_memcms.Rs, is_64bit));
@@ -50666,7 +50666,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 531;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfetwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfetwn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfetwn_cpy_memcms.Rs, is_64bit));
@@ -50677,7 +50677,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 507;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfern_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfern_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfern_cpy_memcms.Rs, is_64bit));
@@ -50688,7 +50688,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 543;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfewtrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfewtrn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfewtrn_cpy_memcms.Rs, is_64bit));
@@ -50699,7 +50699,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 516;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfertrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfertrn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfertrn_cpy_memcms.Rs, is_64bit));
@@ -50710,7 +50710,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 528;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfetrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfetrn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfetrn_cpy_memcms.Rs, is_64bit));
@@ -50721,7 +50721,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 504;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfen_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfen_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfen_cpy_memcms.Rs, is_64bit));
@@ -50732,7 +50732,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 540;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfewtn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfewtn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfewtn_cpy_memcms.Rs, is_64bit));
@@ -50743,7 +50743,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 513;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfertn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfertn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfertn_cpy_memcms.Rs, is_64bit));
@@ -50754,7 +50754,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 525;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfetn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfetn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyfetn_cpy_memcms.Rs, is_64bit));
@@ -50885,7 +50885,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 547;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyp_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyp_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyp_cpy_memcms.Rs, is_64bit));
@@ -50896,7 +50896,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 583;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypwt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypwt_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypwt_cpy_memcms.Rs, is_64bit));
@@ -50907,7 +50907,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 556;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyprt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyprt_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyprt_cpy_memcms.Rs, is_64bit));
@@ -50918,7 +50918,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 568;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypt_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypt_cpy_memcms.Rs, is_64bit));
@@ -50929,7 +50929,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 580;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypwn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypwn_cpy_memcms.Rs, is_64bit));
@@ -50940,7 +50940,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 592;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypwtwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypwtwn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypwtwn_cpy_memcms.Rs, is_64bit));
@@ -50951,7 +50951,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 565;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyprtwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyprtwn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyprtwn_cpy_memcms.Rs, is_64bit));
@@ -50962,7 +50962,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 577;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyptwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyptwn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyptwn_cpy_memcms.Rs, is_64bit));
@@ -50973,7 +50973,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 553;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyprn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyprn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyprn_cpy_memcms.Rs, is_64bit));
@@ -50984,7 +50984,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 589;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypwtrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypwtrn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypwtrn_cpy_memcms.Rs, is_64bit));
@@ -50995,7 +50995,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 562;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyprtrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyprtrn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyprtrn_cpy_memcms.Rs, is_64bit));
@@ -51006,7 +51006,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 574;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyptrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyptrn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyptrn_cpy_memcms.Rs, is_64bit));
@@ -51017,7 +51017,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 550;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypn_cpy_memcms.Rs, is_64bit));
@@ -51028,7 +51028,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 586;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypwtn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypwtn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpypwtn_cpy_memcms.Rs, is_64bit));
@@ -51039,7 +51039,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 559;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyprtn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyprtn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyprtn_cpy_memcms.Rs, is_64bit));
@@ -51050,7 +51050,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 571;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyptn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyptn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyptn_cpy_memcms.Rs, is_64bit));
@@ -51061,7 +51061,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 548;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpym_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpym_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpym_cpy_memcms.Rs, is_64bit));
@@ -51072,7 +51072,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 584;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymwt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymwt_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymwt_cpy_memcms.Rs, is_64bit));
@@ -51083,7 +51083,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 557;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymrt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymrt_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymrt_cpy_memcms.Rs, is_64bit));
@@ -51094,7 +51094,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 569;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymt_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymt_cpy_memcms.Rs, is_64bit));
@@ -51105,7 +51105,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 581;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymwn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymwn_cpy_memcms.Rs, is_64bit));
@@ -51116,7 +51116,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 593;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymwtwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymwtwn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymwtwn_cpy_memcms.Rs, is_64bit));
@@ -51127,7 +51127,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 566;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymrtwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymrtwn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymrtwn_cpy_memcms.Rs, is_64bit));
@@ -51138,7 +51138,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 578;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymtwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymtwn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymtwn_cpy_memcms.Rs, is_64bit));
@@ -51149,7 +51149,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 554;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymrn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymrn_cpy_memcms.Rs, is_64bit));
@@ -51160,7 +51160,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 590;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymwtrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymwtrn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymwtrn_cpy_memcms.Rs, is_64bit));
@@ -51171,7 +51171,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 563;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymrtrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymrtrn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymrtrn_cpy_memcms.Rs, is_64bit));
@@ -51182,7 +51182,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 575;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymtrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymtrn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymtrn_cpy_memcms.Rs, is_64bit));
@@ -51193,7 +51193,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 551;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymn_cpy_memcms.Rs, is_64bit));
@@ -51204,7 +51204,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 587;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymwtn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymwtn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymwtn_cpy_memcms.Rs, is_64bit));
@@ -51215,7 +51215,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 560;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymrtn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymrtn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymrtn_cpy_memcms.Rs, is_64bit));
@@ -51226,7 +51226,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 572;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymtn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymtn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpymtn_cpy_memcms.Rs, is_64bit));
@@ -51237,7 +51237,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 549;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpye_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpye_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpye_cpy_memcms.Rs, is_64bit));
@@ -51248,7 +51248,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 585;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyewt_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyewt_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyewt_cpy_memcms.Rs, is_64bit));
@@ -51259,7 +51259,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 558;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyert_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyert_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyert_cpy_memcms.Rs, is_64bit));
@@ -51270,7 +51270,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 570;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyet_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyet_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyet_cpy_memcms.Rs, is_64bit));
@@ -51281,7 +51281,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 582;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyewn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyewn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyewn_cpy_memcms.Rs, is_64bit));
@@ -51292,7 +51292,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 594;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyewtwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyewtwn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyewtwn_cpy_memcms.Rs, is_64bit));
@@ -51303,7 +51303,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 567;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyertwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyertwn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyertwn_cpy_memcms.Rs, is_64bit));
@@ -51314,7 +51314,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 579;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyetwn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyetwn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyetwn_cpy_memcms.Rs, is_64bit));
@@ -51325,7 +51325,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 555;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyern_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyern_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyern_cpy_memcms.Rs, is_64bit));
@@ -51336,7 +51336,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 591;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyewtrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyewtrn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyewtrn_cpy_memcms.Rs, is_64bit));
@@ -51347,7 +51347,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 564;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyertrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyertrn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyertrn_cpy_memcms.Rs, is_64bit));
@@ -51358,7 +51358,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 576;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyetrn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyetrn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyetrn_cpy_memcms.Rs, is_64bit));
@@ -51369,7 +51369,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 552;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyen_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyen_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyen_cpy_memcms.Rs, is_64bit));
@@ -51380,7 +51380,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 588;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyewtn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyewtn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyewtn_cpy_memcms.Rs, is_64bit));
@@ -51391,7 +51391,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 561;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyertn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyertn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyertn_cpy_memcms.Rs, is_64bit));
@@ -51402,7 +51402,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.encoding_id = 573;
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyetn_cpy_memcms.Rd, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyetn_cpy_memcms.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.cpyetn_cpy_memcms.Rs, is_64bit));

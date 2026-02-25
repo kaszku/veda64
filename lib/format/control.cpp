@@ -5483,6 +5483,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.encoding_id = 93;
                         ControlEncoding enc = {};
                         enc.raw = insn;
+                        result.operands.push_back(Operand(OperandType::Register, 16u, true));
                         return result;
         }
         case 0xD503269Fu: { // STCPH_HI_hints
@@ -5779,7 +5780,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.encoding_id = 129;
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.mlbi_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
         }
@@ -6232,7 +6233,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.encoding_id = 169;
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.tlbip_sysp_cr_syspairinstrs.Rt, is_64bit));
                         return result;
         }
@@ -6246,7 +6247,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.encoding_id = 163;
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
         }
@@ -6255,7 +6256,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.encoding_id = 164;
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sysl_rc_systeminstrs.Rt, is_64bit));
                         return result;
         }
@@ -6264,7 +6265,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.encoding_id = 165;
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sysp_cr_syspairinstrs.Rt, is_64bit));
                         return result;
         }
@@ -6298,7 +6299,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.encoding_id = 134;
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.msrr_sr_systemmovepr.Rt, is_64bit));
                         return result;
         }
@@ -6307,7 +6308,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.encoding_id = 130;
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        bool is_64bit = false;
+                        bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.mrrs_rs_systemmovepr.Rt, is_64bit));
                         return result;
         }

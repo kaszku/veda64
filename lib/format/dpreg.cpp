@@ -7561,6 +7561,11 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.addpt64addsub_pt.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.addpt64addsub_pt.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.addpt64addsub_pt.imm3, true));
+                        if (!result.operands.empty() && result.operands.back().type == OperandType::Immediate) {
+                            uint32_t _amt = result.operands.back().value;
+                            result.operands.pop_back();
+                            if (_amt != 0) result.operands.push_back(Operand(OperandType::Shift, (0u << 8) | _amt, true));
+                        }
                         return result;
         }
         case 0xDA002000u: { // SUBPT_64_addsub_pt
@@ -7573,6 +7578,11 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         result.operands.push_back(Operand(OperandType::Register, enc.subpt64addsub_pt.Rn, is_64bit));
                         result.operands.push_back(Operand(OperandType::Register, enc.subpt64addsub_pt.Rm, is_64bit));
                         result.operands.push_back(Operand(OperandType::Immediate, enc.subpt64addsub_pt.imm3, true));
+                        if (!result.operands.empty() && result.operands.back().type == OperandType::Immediate) {
+                            uint32_t _amt = result.operands.back().value;
+                            result.operands.pop_back();
+                            if (_amt != 0) result.operands.push_back(Operand(OperandType::Shift, (0u << 8) | _amt, true));
+                        }
                         return result;
         }
         default: break;
