@@ -33030,7 +33030,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         { Operand op(OperandType::VectorRegister, enc.bfcvt_bs_floatdp1.Rd, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.bfcvt_bs_floatdp1.Rn, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.bfcvt_bs_floatdp1.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         return result;
         }
         case 0x1E63C000u: { // FCVT_HD_floatdp1
@@ -34045,7 +34045,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.fmaxnmv_asimdall_only_sd.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.fmaxnmv_asimdall_only_sd.Rd, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.fmaxnmv_asimdall_only_sd.Rn, false); op.arrangement = Arrangement::S4; result.operands.push_back(op); }
                         return result;
         }
@@ -34055,7 +34055,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.fmaxv_asimdall_only_sd.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.fmaxv_asimdall_only_sd.Rd, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.fmaxv_asimdall_only_sd.Rn, false); op.arrangement = Arrangement::S4; result.operands.push_back(op); }
                         return result;
         }
@@ -34065,7 +34065,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.fminnmv_asimdall_only_sd.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.fminnmv_asimdall_only_sd.Rd, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.fminnmv_asimdall_only_sd.Rn, false); op.arrangement = Arrangement::S4; result.operands.push_back(op); }
                         return result;
         }
@@ -34075,7 +34075,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.fminv_asimdall_only_sd.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.fminv_asimdall_only_sd.Rd, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
                         { Operand op(OperandType::VectorRegister, enc.fminv_asimdall_only_sd.Rn, false); op.arrangement = Arrangement::S4; result.operands.push_back(op); }
                         return result;
         }
@@ -34085,8 +34085,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.fcvtxn_asisdmisc_n.Rd, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
-                        { Operand op(OperandType::VectorRegister, enc.fcvtxn_asisdmisc_n.Rn, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.fcvtxn_asisdmisc_n.Rd, false); op.arrangement = Arrangement::S; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.fcvtxn_asisdmisc_n.Rn, false); op.arrangement = Arrangement::D; result.operands.push_back(op); }
                         return result;
         }
         case 0x7E79A800u: { // FCVTNU_asisdmiscfp16_R
@@ -38787,8 +38787,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.fmaxnmv_asimdall_only_h.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.fmaxnmv_asimdall_only_h.Rn, false));
+                        { Operand op(OperandType::VectorRegister, enc.fmaxnmv_asimdall_only_h.Rd, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.fmaxnmv_asimdall_only_h.Rn, false); op.arrangement = enc.fmaxnmv_asimdall_only_h.Q ? Arrangement::H8 : Arrangement::H4; result.operands.push_back(op); }
                         return result;
         }
         case 0x0E30F800u: { // FMAXV_asimdall_only_H
@@ -38797,8 +38797,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.fmaxv_asimdall_only_h.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.fmaxv_asimdall_only_h.Rn, false));
+                        { Operand op(OperandType::VectorRegister, enc.fmaxv_asimdall_only_h.Rd, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.fmaxv_asimdall_only_h.Rn, false); op.arrangement = enc.fmaxv_asimdall_only_h.Q ? Arrangement::H8 : Arrangement::H4; result.operands.push_back(op); }
                         return result;
         }
         case 0x0E798800u: { // FRINTN_asimdmiscfp16_R
@@ -38884,8 +38884,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.fminnmv_asimdall_only_h.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.fminnmv_asimdall_only_h.Rn, false));
+                        { Operand op(OperandType::VectorRegister, enc.fminnmv_asimdall_only_h.Rd, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.fminnmv_asimdall_only_h.Rn, false); op.arrangement = enc.fminnmv_asimdall_only_h.Q ? Arrangement::H8 : Arrangement::H4; result.operands.push_back(op); }
                         return result;
         }
         case 0x0EB0F800u: { // FMINV_asimdall_only_H
@@ -38894,8 +38894,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::VectorRegister, enc.fminv_asimdall_only_h.Rd, false); op.arrangement = _simd_arr; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::VectorRegister, enc.fminv_asimdall_only_h.Rn, false));
+                        { Operand op(OperandType::VectorRegister, enc.fminv_asimdall_only_h.Rd, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }
+                        { Operand op(OperandType::VectorRegister, enc.fminv_asimdall_only_h.Rn, false); op.arrangement = enc.fminv_asimdall_only_h.Q ? Arrangement::H8 : Arrangement::H4; result.operands.push_back(op); }
                         return result;
         }
         case 0x0EF8C800u: { // FCMGT_asimdmiscfp16_FZ

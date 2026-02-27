@@ -40,9 +40,10 @@ static int detour_func(int a, int b) {
     return result;
 }
 
-bool install(void* target) {
-    auto status = hook::install(target, reinterpret_cast<void*>(&detour_func),
-                                reinterpret_cast<void**>(&original_func), &hook_handle);
+using TargetFunc = int (*)(int, int);
+
+bool install(TargetFunc target) {
+    auto status = hook::install(target, &detour_func, &original_func, &hook_handle);
     if (status != hook::HookStatus::Success) return false;
     return hook::enable(hook_handle) == hook::HookStatus::Success;
 }
@@ -89,10 +90,11 @@ static void* detour_alloc(size_t size) {
     return result;
 }
 
-bool install(void* target, size_t max_size) {
+using AllocFunc = void* (*)(size_t);
+
+bool install(AllocFunc target, size_t max_size) {
     max_alloc_size = max_size;
-    auto status = hook::install(target, reinterpret_cast<void*>(&detour_alloc),
-                                reinterpret_cast<void**>(&original_alloc), &hook_handle);
+    auto status = hook::install(target, &detour_alloc, &original_alloc, &hook_handle);
     if (status != hook::HookStatus::Success) return false;
     return hook::enable(hook_handle) == hook::HookStatus::Success;
 }
@@ -118,13 +120,14 @@ static BOOL WINAPI detour_func() {
     return force_result ? forced_value : original_func();
 }
 
+using IsDebuggerPresent_t = BOOL (WINAPI *)();
+
 bool install() {
     HMODULE kernel32 = GetModuleHandleA("kernel32.dll");
     if (!kernel32) return false;
-    void* target = GetProcAddress(kernel32, "IsDebuggerPresent");
+    auto target = reinterpret_cast<IsDebuggerPresent_t>(GetProcAddress(kernel32, "IsDebuggerPresent"));
     if (!target) return false;
-    auto status = hook::install(target, reinterpret_cast<void*>(&detour_func),
-                                reinterpret_cast<void**>(&original_func), &hook_handle);
+    auto status = hook::install(target, &detour_func, &original_func, &hook_handle);
     if (status != hook::HookStatus::Success) return false;
     return hook::enable(hook_handle) == hook::HookStatus::Success;
 }
@@ -162,10 +165,9 @@ static HANDLE WINAPI detour_func(LPCSTR lpFileName, DWORD dwAccess, DWORD dwShar
 bool install() {
     HMODULE kernel32 = GetModuleHandleA("kernel32.dll");
     if (!kernel32) return false;
-    void* target = GetProcAddress(kernel32, "CreateFileA");
+    auto target = reinterpret_cast<CreateFileAFunc>(GetProcAddress(kernel32, "CreateFileA"));
     if (!target) return false;
-    auto status = hook::install(target, reinterpret_cast<void*>(&detour_func),
-                                reinterpret_cast<void**>(&original_func), &hook_handle);
+    auto status = hook::install(target, &detour_func, &original_func, &hook_handle);
     if (status != hook::HookStatus::Success) return false;
     return hook::enable(hook_handle) == hook::HookStatus::Success;
 }
@@ -204,9 +206,8 @@ static int detour_func(int arg) {
     return result;
 }
 
-bool install(void* target) {
-    auto status = hook::install(target, reinterpret_cast<void*>(&detour_func),
-                                reinterpret_cast<void**>(&original_func), &hook_handle);
+bool install(TargetFuncType target) {
+    auto status = hook::install(target, &detour_func, &original_func, &hook_handle);
     if (status != hook::HookStatus::Success) return false;
     return hook::enable(hook_handle) == hook::HookStatus::Success;
 }
@@ -243,13 +244,14 @@ static DWORD WINAPI detour_sleep(DWORD ms) {
     return original_sleep(ms);
 }
 
+using Sleep_t = DWORD (WINAPI *)(DWORD);
+
 bool install() {
     HMODULE kernel32 = GetModuleHandleA("kernel32.dll");
     if (!kernel32) return false;
-    void* target = GetProcAddress(kernel32, "Sleep");
+    auto target = reinterpret_cast<Sleep_t>(GetProcAddress(kernel32, "Sleep"));
     if (!target) return false;
-    auto status = hook::install(target, reinterpret_cast<void*>(&detour_sleep),
-                                reinterpret_cast<void**>(&original_sleep), &hook_handle);
+    auto status = hook::install(target, &detour_sleep, &original_sleep, &hook_handle);
     if (status != hook::HookStatus::Success) return false;
     return hook::enable(hook_handle) == hook::HookStatus::Success;
 }

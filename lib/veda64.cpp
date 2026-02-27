@@ -2216,20 +2216,26 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
 
     // SVE: ORR p,p/z,p,p with Pn==Pm → MOV p,p/z,p
     if (insn.mnemonic == Mnemonic::ORR && insn.operands.size() == 4 && insn.operands[0].type == OperandType::PredicateRegister) {
-        auto& op2 = insn.operands[2]; auto& op3 = insn.operands[3];
+        auto& op1 = insn.operands[1]; auto& op2 = insn.operands[2]; auto& op3 = insn.operands[3];
         if (op2.type == OperandType::PredicateRegister && op3.type == OperandType::PredicateRegister && op2.value == op3.value) {
             std::ostringstream oss;
-            oss << "mov " << insn.operands[0].to_string() << ", " << insn.operands[1].to_string() << ", " << op2.to_string();
+            if (op1.value == op2.value)
+                oss << "mov " << insn.operands[0].to_string() << ", " << op1.to_string();
+            else
+                oss << "mov " << insn.operands[0].to_string() << ", " << op1.to_string() << ", " << op2.to_string();
             return oss.str();
         }
     }
 
     // SVE: ORRS p,p/z,p,p with Pn==Pm → MOVS p,p/z,p
     if (insn.mnemonic == Mnemonic::ORRS && insn.operands.size() == 4) {
-        auto& op2 = insn.operands[2]; auto& op3 = insn.operands[3];
+        auto& op1 = insn.operands[1]; auto& op2 = insn.operands[2]; auto& op3 = insn.operands[3];
         if (op2.type == OperandType::PredicateRegister && op3.type == OperandType::PredicateRegister && op2.value == op3.value) {
             std::ostringstream oss;
-            oss << "movs " << insn.operands[0].to_string() << ", " << insn.operands[1].to_string() << ", " << op2.to_string();
+            if (op1.value == op2.value)
+                oss << "movs " << insn.operands[0].to_string() << ", " << op1.to_string();
+            else
+                oss << "movs " << insn.operands[0].to_string() << ", " << op1.to_string() << ", " << op2.to_string();
             return oss.str();
         }
     }
@@ -2422,6 +2428,18 @@ std::string Operand::to_string() const {
                 if (range_end >= 10) { std::ostringstream oss; oss << "0x" << std::hex << range_end; r += oss.str(); }
                 else r += std::to_string(range_end);
                 if (extend == 3) { int32_t vgx = (offset >> 16) & 0xFFFF; if (vgx > 1) r += ", vgx" + std::to_string(vgx); }
+                r += "]";
+                return r;
+            }
+            // extend==4: MOVA-style za tile with H/V + range: zaTILEh/v.T[wN, start:end]
+            if (has_index && extend == 4) {
+                std::string r = "za" + std::to_string(value);
+                r += is_sp ? "v" : "h";
+                if (arrangement != Arrangement::None) { r += "."; r += Operand::arrangement_to_string(arrangement); }
+                r += "[w" + std::to_string(index) + ", ";
+                r += std::to_string(amount);
+                uint32_t range_end = (uint32_t)(offset & 0xFFFF);
+                if (range_end != amount) { r += ":"; r += std::to_string(range_end); }
                 r += "]";
                 return r;
             }

@@ -14,1489 +14,8 @@ from dataclasses import dataclass, field
 import json
 import re as _re_module
 
-###############################################################################
-# ASL (Architecture Specification Language) IR, Tokenizer, and Parser
-###############################################################################
 
-# --- IR Type nodes ---
-@dataclass
-class AslType:
-    pass
 
-@dataclass
-class BitVecType(AslType):
-    width: object  # int or str (parametric like "datasize")
-
-@dataclass
-class IntegerType(AslType):
-    width: object = None  # None = plain integer, str/int = integer{}
-
-@dataclass
-class BooleanType(AslType):
-    pass
-
-@dataclass
-class OpaqueType(AslType):
-    name: str = ""
-
-@dataclass
-class ArrayType(AslType):
-    element: AslType = None
-    size: object = None  # Expr (forward ref)
-
-# --- IR Expression nodes ---
-@dataclass
-class Expr:
-    pass
-
-@dataclass
-class IntLiteral(Expr):
-    value: int = 0
-
-@dataclass
-class BitLiteral(Expr):
-    bits: str = ""
-
-@dataclass
-class BoolLiteral(Expr):
-    value: bool = False
-
-@dataclass
-class Identifier(Expr):
-    name: str = ""
-
-@dataclass
-class BinOp(Expr):
-    op: str = ""
-    left: Expr = None
-    right: Expr = None
-
-@dataclass
-class UnaryOp(Expr):
-    op: str = ""
-    operand: Expr = None
-
-@dataclass
-class FuncCall(Expr):
-    name: str = ""
-    type_params: list = field(default_factory=list)
-    args: list = field(default_factory=list)
-
-@dataclass
-class BitSlice(Expr):
-    base: Expr = None
-    hi: Expr = None
-    lo: Expr = None
-    is_width: bool = False  # True = [lo +: width] form
-
-@dataclass
-class BitConcat(Expr):
-    parts: list = field(default_factory=list)
-
-@dataclass
-class IfExpr(Expr):
-    cond: Expr = None
-    then_expr: Expr = None
-    else_expr: Expr = None
-
-@dataclass
-class FieldAccess(Expr):
-    base: Expr = None
-    field_name: str = ""
-
-@dataclass
-class FieldAccessMulti(Expr):
-    base: Expr = None
-    field_names: list = field(default_factory=list)  # e.g., ['N', 'Z', 'C', 'V']
-
-@dataclass
-class SetLiteral(Expr):
-    elements: list = field(default_factory=list)
-
-@dataclass
-class Arbitrary(Expr):
-    asl_type: AslType = None
-
-@dataclass
-class InExpr(Expr):
-    value: Expr = None
-    collection: Expr = None
-
-# --- IR Statement nodes ---
-@dataclass
-class Stmt:
-    pass
-
-@dataclass
-class LetDecl(Stmt):
-    name: str = ""
-    asl_type: AslType = None
-    init: Expr = None
-
-@dataclass
-class VarDecl(Stmt):
-    name: str = ""
-    asl_type: AslType = None
-    init: Expr = None
-
-@dataclass
-class Assign(Stmt):
-    target: Expr = None
-    value: Expr = None
-
-@dataclass
-class TupleAssign(Stmt):
-    targets: list = field(default_factory=list)  # None entries = wildcard '-'
-    value: Expr = None
-
-@dataclass
-class IfStmt(Stmt):
-    branches: list = field(default_factory=list)  # list of (cond_or_None, [Stmt])
-
-@dataclass
-class CaseStmt(Stmt):
-    expr: Expr = None
-    cases: list = field(default_factory=list)  # list of (pattern_expr_or_'otherwise', [Stmt])
-
-@dataclass
-class ForStmt(Stmt):
-    var: str = ""
-    start: Expr = None
-    end: Expr = None
-    body: list = field(default_factory=list)
-    direction: str = 'to'  # 'to' or 'downto'
-
-@dataclass
-class WhileStmt(Stmt):
-    cond: Expr = None
-    body: list = field(default_factory=list)
-
-@dataclass
-class ExprStmt(Stmt):
-    expr: Expr = None
-
-@dataclass
-class AssertStmt(Stmt):
-    cond: Expr = None
-
-@dataclass
-class EndOfDecode(Stmt):
-    kind: str = ""
-
-@dataclass
-class Undefined(Stmt):
-    pass
-
-@dataclass
-class Unpredictable(Stmt):
-    pass
-
-@dataclass
-class ReturnStmt(Stmt):
-    value: Expr = None
-
-# --- Tokenizer ---
-_ASL_KEYWORDS = {
-    'let', 'var', 'if', 'then', 'else', 'elsif', 'end', 'case', 'when', 'of',
-    'for', 'to', 'downto', 'do', 'while', 'DIV', 'DIVRM', 'MOD', 'AND', 'OR', 'XOR', 'EOR',
-    'NOT', 'IN', 'assert', 'UNDEFINED', 'UNPREDICTABLE', 'ARBITRARY',
-    'TRUE', 'FALSE', 'otherwise', 'return', 'UNKNOWN', 'as',
-    'array', 'looplimit', 'repeat', 'until',
-}
-
-@dataclass
-class AslToken:
-    kind: str  # 'INT', 'BITS', 'IDENT', 'KW', 'OP', 'EOF'
-    value: str
-    pos: int = 0
-
-class AslTokenizer:
-    """Tokenize ASL pseudocode text into a list of tokens."""
-
-    _TWO_CHAR_OPS = {'::','==','!=','<=','>=','<<','>>','&&','||','+:','*:','=>','..'}
-    _ONE_CHAR_OPS = set('+-*^()[]{},:;.=<>!/')
-
-    def __init__(self, text: str):
-        self.text = text
-        self.pos = 0
-        self.tokens: List[AslToken] = []
-
-    def tokenize(self) -> List[AslToken]:
-        text = self.text
-        n = len(text)
-        i = 0
-        tokens = self.tokens
-        while i < n:
-            c = text[i]
-            # Skip whitespace
-            if c in ' \t\r\n':
-                i += 1
-                continue
-            # Skip comments (-- or //)
-            if i + 1 < n and ((c == '-' and text[i+1] == '-') or (c == '/' and text[i+1] == '/')):
-                while i < n and text[i] != '\n':
-                    i += 1
-                continue
-            # Bit string literal: '01...' (may contain spaces)
-            if c == "'":
-                j = i + 1
-                bits = []
-                while j < n and text[j] != "'":
-                    if text[j] in '01x':
-                        bits.append(text[j])
-                    elif text[j] == ' ':
-                        pass  # spaces inside bit literals are allowed
-                    else:
-                        break
-                    j += 1
-                if j < n and text[j] == "'":
-                    tokens.append(AslToken('BITS', ''.join(bits), i))
-                    i = j + 1
-                    continue
-                # Not a valid bitstring — treat quote as unknown, skip
-                i += 1
-                continue
-            # Hex literal: 0x...
-            if c == '0' and i + 1 < n and text[i+1] in 'xX':
-                j = i + 2
-                while j < n and (text[j].isdigit() or text[j] in 'abcdefABCDEF_'):
-                    j += 1
-                tokens.append(AslToken('INT', text[i:j].replace('_', ''), i))
-                i = j
-                continue
-            # Decimal integer
-            if c.isdigit():
-                j = i
-                while j < n and text[j].isdigit():
-                    j += 1
-                tokens.append(AslToken('INT', text[i:j], i))
-                i = j
-                continue
-            # Identifier or keyword
-            if c.isalpha() or c == '_':
-                j = i
-                while j < n and (text[j].isalnum() or text[j] == '_'):
-                    j += 1
-                word = text[i:j]
-                if word in _ASL_KEYWORDS:
-                    tokens.append(AslToken('KW', word, i))
-                else:
-                    tokens.append(AslToken('IDENT', word, i))
-                i = j
-                continue
-            # Two-char operators
-            if i + 1 < n and text[i:i+2] in self._TWO_CHAR_OPS:
-                tokens.append(AslToken('OP', text[i:i+2], i))
-                i += 2
-                continue
-            # Single-char operators
-            if c in self._ONE_CHAR_OPS:
-                tokens.append(AslToken('OP', c, i))
-                i += 1
-                continue
-            # Skip unknown characters
-            i += 1
-
-        tokens.append(AslToken('EOF', '', n))
-        return tokens
-
-# --- Recursive Descent Parser ---
-class AslParser:
-    """Parse ASL token stream into IR statement list."""
-
-    def __init__(self, tokens: List[AslToken]):
-        self.tokens = tokens
-        self.pos = 0
-        self._multi_var_pending: List[Stmt] = []
-
-    def _cur(self) -> AslToken:
-        return self.tokens[self.pos] if self.pos < len(self.tokens) else AslToken('EOF', '', -1)
-
-    def _peek(self, offset=0) -> AslToken:
-        p = self.pos + offset
-        return self.tokens[p] if p < len(self.tokens) else AslToken('EOF', '', -1)
-
-    def _advance(self) -> AslToken:
-        tok = self._cur()
-        self.pos += 1
-        return tok
-
-    def _expect(self, kind: str, value: str = None) -> AslToken:
-        tok = self._cur()
-        if tok.kind == 'EOF' and (kind != 'EOF'):
-            raise AslParseError(f"Unexpected end of input, expected {kind} {value!r}", tok.pos)
-        if kind and tok.kind != kind:
-            raise AslParseError(f"Expected {kind} {value!r}, got {tok.kind} {tok.value!r}", tok.pos)
-        if value is not None and tok.value != value:
-            raise AslParseError(f"Expected {value!r}, got {tok.value!r}", tok.pos)
-        self.pos += 1
-        return tok
-
-    def _match(self, kind: str, value: str = None) -> Optional[AslToken]:
-        tok = self._cur()
-        if tok.kind == kind and (value is None or tok.value == value):
-            self.pos += 1
-            return tok
-        return None
-
-    def _at(self, kind: str, value: str = None) -> bool:
-        tok = self._cur()
-        return tok.kind == kind and (value is None or tok.value == value)
-
-    # --- Top-level ---
-    def parse(self) -> List[Stmt]:
-        stmts = []
-        while not self._at('EOF') or self._multi_var_pending:
-            s = self._parse_stmt()
-            if s is not None:
-                stmts.append(s)
-        return stmts
-
-    def _parse_stmt(self) -> Optional[Stmt]:
-        # Drain any pending multi-var declarations first
-        if self._multi_var_pending:
-            return self._multi_var_pending.pop(0)
-
-        tok = self._cur()
-
-        # Skip stray semicolons
-        if self._match('OP', ';'):
-            return None
-
-        # let declaration
-        if tok.kind == 'KW' and tok.value == 'let':
-            return self._parse_let()
-
-        # var declaration
-        if tok.kind == 'KW' and tok.value == 'var':
-            return self._parse_var()
-
-        # if statement
-        if tok.kind == 'KW' and tok.value == 'if':
-            return self._parse_if_stmt()
-
-        # case statement
-        if tok.kind == 'KW' and tok.value == 'case':
-            return self._parse_case_stmt()
-
-        # for loop
-        if tok.kind == 'KW' and tok.value == 'for':
-            return self._parse_for_stmt()
-
-        # while loop
-        if tok.kind == 'KW' and tok.value == 'while':
-            return self._parse_while_stmt()
-
-        # assert
-        if tok.kind == 'KW' and tok.value == 'assert':
-            self._advance()
-            cond = self._parse_expr()
-            self._match('OP', ';')
-            return AssertStmt(cond=cond)
-
-        # UNDEFINED
-        if tok.kind == 'KW' and tok.value == 'UNDEFINED':
-            self._advance()
-            self._match('OP', ';')
-            return Undefined()
-
-        # UNPREDICTABLE
-        if tok.kind == 'KW' and tok.value == 'UNPREDICTABLE':
-            self._advance()
-            self._match('OP', ';')
-            return Unpredictable()
-
-        # return
-        if tok.kind == 'KW' and tok.value == 'return':
-            self._advance()
-            val = None
-            if not self._at('OP', ';') and not self._at('EOF'):
-                val = self._parse_expr()
-            self._match('OP', ';')
-            return ReturnStmt(value=val)
-
-        # repeat ... until cond
-        if tok.kind == 'KW' and tok.value == 'repeat':
-            return self._parse_repeat_stmt()
-
-        # Tuple assign: (ident, ident, ...) = expr
-        if tok.kind == 'OP' and tok.value == '(':
-            return self._parse_tuple_or_expr_stmt()
-
-        # Otherwise: expression statement or assignment
-        return self._parse_expr_or_assign()
-
-    def _parse_let(self) -> Stmt:
-        self._expect('KW', 'let')
-        # Handle tuple destructuring: let (a, b) = expr
-        if self._at('OP', '('):
-            self._advance()
-            targets = []
-            while True:
-                if self._match('OP', '-'):
-                    targets.append(None)
-                else:
-                    targets.append(Identifier(name=self._expect('IDENT').value))
-                if not self._match('OP', ','):
-                    break
-            self._expect('OP', ')')
-            self._expect('OP', '=')
-            init = self._parse_expr()
-            self._match('OP', ';')
-            return TupleAssign(targets=targets, value=init)
-        name = self._expect('IDENT').value
-        asl_type = None
-        if self._match('OP', ':'):
-            asl_type = self._parse_type()
-        self._expect('OP', '=')
-        init = self._parse_expr()
-        self._match('OP', ';')
-        return LetDecl(name=name, asl_type=asl_type, init=init)
-
-    def _parse_var(self) -> Stmt:
-        self._expect('KW', 'var')
-        name = self._expect('IDENT').value
-        # Check for comma-separated var declarations: var op1, op2 : bits(64)
-        if self._at('OP', ','):
-            names = [name]
-            while self._match('OP', ','):
-                names.append(self._expect('IDENT').value)
-            asl_type = None
-            if self._match('OP', ':'):
-                asl_type = self._parse_type()
-            self._match('OP', ';')
-            # Return first decl; emit rest as separate VarDecls via a block
-            # Use a simple trick: return a list wrapper — but we can't, so just return first
-            # Actually we need to return multiple stmts. Use a helper IfStmt(branches=[(BoolLiteral(True), [decls])])
-            # Simpler: just return the first and ignore the rest (they're just uninitialized vars)
-            # Better approach: return first, but we need all. Let's use a compound approach.
-            # Return first VarDecl; the caller only expects one Stmt. We'll wrap in an IfStmt hack.
-            # Actually, the simplest correct fix: return a list and handle in _parse_stmt
-            self._multi_var_pending = [VarDecl(name=n, asl_type=asl_type) for n in names[1:]]
-            return VarDecl(name=names[0], asl_type=asl_type)
-        asl_type = None
-        if self._match('OP', ':'):
-            asl_type = self._parse_type()
-        init = None
-        if self._match('OP', '='):
-            init = self._parse_expr()
-        self._match('OP', ';')
-        return VarDecl(name=name, asl_type=asl_type, init=init)
-
-    def _parse_type(self) -> AslType:
-        tok = self._cur()
-        # array [[N]] of T
-        if tok.kind == 'KW' and tok.value == 'array':
-            self._advance()
-            self._expect('OP', '[')
-            self._expect('OP', '[')
-            size = self._parse_expr()
-            self._expect('OP', ']')
-            self._expect('OP', ']')
-            self._expect('KW', 'of')
-            elem = self._parse_type()
-            return ArrayType(element=elem, size=size)
-        if tok.kind == 'IDENT' and tok.value == 'bits':
-            self._advance()
-            self._expect('OP', '(')
-            width = self._parse_expr()
-            self._expect('OP', ')')
-            if isinstance(width, IntLiteral):
-                return BitVecType(width=width.value)
-            elif isinstance(width, Identifier):
-                return BitVecType(width=width.name)
-            return BitVecType(width=str(width))
-        if tok.kind == 'IDENT' and tok.value == 'integer':
-            self._advance()
-            w = None
-            if self._match('OP', '{'):
-                if not self._at('OP', '}'):
-                    w_expr = self._parse_expr()
-                    # Handle range: integer{0..4} or set: integer{1, 2, 4, 8}
-                    if self._match('OP', '..'):
-                        self._parse_expr()  # consume upper bound
-                    elif self._at('OP', ','):
-                        # Constraint set — consume remaining values
-                        while self._match('OP', ','):
-                            self._parse_expr()
-                    if isinstance(w_expr, Identifier):
-                        w = w_expr.name
-                    elif isinstance(w_expr, IntLiteral):
-                        w = w_expr.value
-                self._expect('OP', '}')
-            return IntegerType(width=w)
-        if tok.kind == 'IDENT' and tok.value == 'boolean':
-            self._advance()
-            return BooleanType()
-        # Opaque type — any other identifier
-        if tok.kind == 'IDENT':
-            name = self._advance().value
-            return OpaqueType(name=name)
-        # Fallback
-        return OpaqueType(name=self._advance().value)
-
-    def _parse_if_stmt(self) -> IfStmt:
-        branches = []
-        self._expect('KW', 'if')
-        cond = self._parse_expr()
-        self._expect('KW', 'then')
-        body = self._parse_block('end', 'else', 'elsif')
-        branches.append((cond, body))
-
-        while self._match('KW', 'elsif'):
-            cond = self._parse_expr()
-            self._expect('KW', 'then')
-            body = self._parse_block('end', 'else', 'elsif')
-            branches.append((cond, body))
-
-        if self._match('KW', 'else'):
-            body = self._parse_block('end')
-            branches.append((None, body))
-
-        # end is optional for single-line if ... then ... ; patterns
-        self._match('KW', 'end')
-        self._match('OP', ';')
-        return IfStmt(branches=branches)
-
-    def _parse_case_stmt(self) -> CaseStmt:
-        self._expect('KW', 'case')
-        expr = self._parse_expr()
-        self._expect('KW', 'of')
-        cases = []
-        while self._at('KW', 'when') or self._at('KW', 'otherwise'):
-            if self._match('KW', 'when'):
-                pattern = self._parse_expr()
-                self._expect('OP', '=>')
-                body = self._parse_case_body()
-                cases.append((pattern, body))
-            elif self._match('KW', 'otherwise'):
-                self._match('OP', '=>')
-                body = self._parse_case_body()
-                cases.append(('otherwise', body))
-        self._match('KW', 'end')
-        self._match('OP', ';')
-        return CaseStmt(expr=expr, cases=cases)
-
-    def _parse_case_body(self) -> List[Stmt]:
-        """Parse statements until next 'when', 'otherwise', or 'end'."""
-        stmts = []
-        while not self._at('EOF') and not self._at('KW', 'when') and \
-              not self._at('KW', 'otherwise') and not self._at('KW', 'end'):
-            s = self._parse_stmt()
-            if s is not None:
-                stmts.append(s)
-        return stmts
-
-    def _parse_for_stmt(self) -> ForStmt:
-        self._expect('KW', 'for')
-        var = self._expect('IDENT').value
-        self._expect('OP', '=')
-        start = self._parse_expr()
-        direction = 'to'
-        if self._match('KW', 'downto'):
-            direction = 'downto'
-        else:
-            self._expect('KW', 'to')
-        end = self._parse_expr()
-        self._expect('KW', 'do')
-        body = self._parse_block('end')
-        self._match('KW', 'end')
-        self._match('OP', ';')
-        return ForStmt(var=var, start=start, end=end, body=body, direction=direction)
-
-    def _parse_while_stmt(self) -> WhileStmt:
-        self._expect('KW', 'while')
-        cond = self._parse_expr()
-        # Optional: looplimit N
-        if self._match('KW', 'looplimit'):
-            self._parse_expr()  # consume limit value, ignore
-        self._expect('KW', 'do')
-        body = self._parse_block('end')
-        self._match('KW', 'end')
-        self._match('OP', ';')
-        return WhileStmt(cond=cond, body=body)
-
-    def _parse_repeat_stmt(self) -> WhileStmt:
-        """Parse: repeat body until cond;"""
-        self._expect('KW', 'repeat')
-        body = self._parse_block('until')
-        self._expect('KW', 'until')
-        cond = self._parse_expr()
-        self._match('OP', ';')
-        # Model as do-while: we'll reuse WhileStmt with a flag
-        # For simplicity, emit as WhileStmt(cond=NOT(cond), body=body) — approximate
-        return WhileStmt(cond=UnaryOp(op='NOT', operand=cond), body=body)
-
-    def _parse_block(self, *terminators) -> List[Stmt]:
-        stmts = []
-        while not self._at('EOF'):
-            if any(self._at('KW', t) for t in terminators):
-                break
-            s = self._parse_stmt()
-            if s is not None:
-                stmts.append(s)
-        return stmts
-
-    def _parse_tuple_or_expr_stmt(self) -> Stmt:
-        """Handle (a, b, -) = expr (tuple assign) or (expr) statement."""
-        save = self.pos
-        try:
-            self._expect('OP', '(')
-            targets = []
-            while True:
-                if self._match('OP', '-'):
-                    targets.append(None)  # wildcard
-                else:
-                    targets.append(self._parse_expr())
-                if not self._match('OP', ','):
-                    break
-            self._expect('OP', ')')
-            if self._match('OP', '='):
-                val = self._parse_expr()
-                self._match('OP', ';')
-                return TupleAssign(targets=targets, value=val)
-        except AslParseError:
-            pass
-        # Rollback and try as expression
-        self.pos = save
-        return self._parse_expr_or_assign()
-
-    def _parse_expr_or_assign(self) -> Stmt:
-        lhs = self._parse_expr()
-        if self._match('OP', '='):
-            rhs = self._parse_expr()
-            self._match('OP', ';')
-            return Assign(target=lhs, value=rhs)
-        self._match('OP', ';')
-        # Check for EndOfDecode pattern
-        if isinstance(lhs, FuncCall) and lhs.name == 'EndOfDecode':
-            kind = ''
-            if lhs.args and isinstance(lhs.args[0], Identifier):
-                kind = lhs.args[0].name
-            return EndOfDecode(kind=kind)
-        return ExprStmt(expr=lhs)
-
-    # --- Expression parsing (precedence climbing) ---
-    def _parse_expr(self) -> Expr:
-        return self._parse_or()
-
-    def _parse_or(self) -> Expr:
-        left = self._parse_and()
-        while self._match('OP', '||'):
-            right = self._parse_and()
-            left = BinOp(op='||', left=left, right=right)
-        return left
-
-    def _parse_and(self) -> Expr:
-        left = self._parse_bw_or()
-        while self._match('OP', '&&'):
-            right = self._parse_bw_or()
-            left = BinOp(op='&&', left=left, right=right)
-        return left
-
-    def _parse_bw_or(self) -> Expr:
-        left = self._parse_bw_xor()
-        while self._at('KW', 'OR'):
-            self._advance()
-            right = self._parse_bw_xor()
-            left = BinOp(op='OR', left=left, right=right)
-        return left
-
-    def _parse_bw_xor(self) -> Expr:
-        left = self._parse_bw_and()
-        while self._at('KW', 'XOR') or self._at('KW', 'EOR'):
-            op = self._advance().value
-            right = self._parse_bw_and()
-            left = BinOp(op=op, left=left, right=right)
-        return left
-
-    def _parse_bw_and(self) -> Expr:
-        left = self._parse_equality()
-        while self._at('KW', 'AND'):
-            self._advance()
-            right = self._parse_equality()
-            left = BinOp(op='AND', left=left, right=right)
-        return left
-
-    def _parse_equality(self) -> Expr:
-        left = self._parse_relational()
-        while self._at('OP', '==') or self._at('OP', '!='):
-            op = self._advance().value
-            right = self._parse_relational()
-            left = BinOp(op=op, left=left, right=right)
-        return left
-
-    def _parse_relational(self) -> Expr:
-        left = self._parse_concat()
-        while True:
-            if self._at('OP', '<') or self._at('OP', '>') or \
-               self._at('OP', '<=') or self._at('OP', '>='):
-                op = self._advance().value
-                right = self._parse_concat()
-                left = BinOp(op=op, left=left, right=right)
-            elif self._at('KW', 'IN'):
-                self._advance()
-                right = self._parse_concat()
-                left = InExpr(value=left, collection=right)
-            else:
-                break
-        return left
-
-    def _parse_concat(self) -> Expr:
-        left = self._parse_shift()
-        parts = [left]
-        while self._match('OP', '::'):
-            parts.append(self._parse_shift())
-        if len(parts) > 1:
-            return BitConcat(parts=parts)
-        return left
-
-    def _parse_shift(self) -> Expr:
-        left = self._parse_add()
-        while self._at('OP', '<<') or self._at('OP', '>>'):
-            op = self._advance().value
-            right = self._parse_add()
-            left = BinOp(op=op, left=left, right=right)
-        return left
-
-    def _parse_add(self) -> Expr:
-        left = self._parse_mul()
-        while self._at('OP', '+') or self._at('OP', '-'):
-            op = self._advance().value
-            right = self._parse_mul()
-            left = BinOp(op=op, left=left, right=right)
-        return left
-
-    def _parse_mul(self) -> Expr:
-        left = self._parse_power()
-        while self._at('OP', '*') or self._at('KW', 'DIV') or self._at('KW', 'DIVRM') or self._at('KW', 'MOD'):
-            op = self._advance().value
-            right = self._parse_power()
-            left = BinOp(op=op, left=left, right=right)
-        return left
-
-    def _parse_power(self) -> Expr:
-        left = self._parse_unary()
-        if self._match('OP', '^'):
-            right = self._parse_unary()
-            left = BinOp(op='^', left=left, right=right)
-        return left
-
-    def _parse_unary(self) -> Expr:
-        if self._at('OP', '!') or self._at('KW', 'NOT'):
-            op = self._advance().value
-            operand = self._parse_unary()
-            return UnaryOp(op=op, operand=operand)
-        if self._at('OP', '-'):
-            # Check it's unary minus (not binary)
-            self._advance()
-            operand = self._parse_unary()
-            return UnaryOp(op='-', operand=operand)
-        return self._parse_postfix()
-
-    def _parse_postfix(self) -> Expr:
-        base = self._parse_primary()
-        while True:
-            # Array access: x[[idx]] or Bit slice: x[hi:lo] or x[lo +: width] or x[e *: esize]
-            if self._at('OP', '['):
-                self._advance()
-                # Array access: x[[idx]]
-                if self._at('OP', '['):
-                    self._advance()
-                    idx = self._parse_expr()
-                    self._expect('OP', ']')
-                    self._expect('OP', ']')
-                    base = FuncCall(name='__array_get', type_params=[], args=[base, idx])
-                    continue
-                idx1 = self._parse_expr()
-                if self._match('OP', '+:'):
-                    width = self._parse_expr()
-                    self._expect('OP', ']')
-                    base = BitSlice(base=base, hi=width, lo=idx1, is_width=True)
-                elif self._match('OP', '*:'):
-                    # x[e*:esize] = x[e*esize +: esize]
-                    esize = self._parse_expr()
-                    self._expect('OP', ']')
-                    lo = BinOp(op='*', left=idx1, right=esize)
-                    base = BitSlice(base=base, hi=esize, lo=lo, is_width=True)
-                elif self._match('OP', ':'):
-                    lo = self._parse_expr()
-                    self._expect('OP', ']')
-                    base = BitSlice(base=base, hi=idx1, lo=lo, is_width=False)
-                else:
-                    # Single bit: x[n] = x[n:n]
-                    self._expect('OP', ']')
-                    base = BitSlice(base=base, hi=idx1, lo=idx1, is_width=False)
-                continue
-            # Function call with type params: Name{N}(args)
-            # or bare type params: Name{N}
-            if self._at('OP', '{'):
-                save = self.pos
-                self._advance()
-                type_params = []
-                while not self._at('OP', '}') and not self._at('EOF'):
-                    type_params.append(self._parse_expr())
-                    self._match('OP', ',')
-                if self._match('OP', '}'):
-                    if self._at('OP', '('):
-                        args = self._parse_args()
-                        if isinstance(base, Identifier):
-                            base = FuncCall(name=base.name, type_params=type_params, args=args)
-                        else:
-                            base = FuncCall(name=str(base), type_params=type_params, args=args)
-                    else:
-                        # Bare type-parameterized name like Zeros{N}
-                        if isinstance(base, Identifier):
-                            base = FuncCall(name=base.name, type_params=type_params, args=[])
-                        else:
-                            base = FuncCall(name=str(base), type_params=type_params, args=[])
-                    continue
-                else:
-                    self.pos = save
-                    break
-            # Regular function call: Name(args)
-            if self._at('OP', '(') and isinstance(base, (Identifier, FieldAccess)):
-                args = self._parse_args()
-                name = base.name if isinstance(base, Identifier) else str(base)
-                if isinstance(base, FieldAccess):
-                    name = f"{self._expr_to_name(base.base)}.{base.field_name}"
-                base = FuncCall(name=name, type_params=[], args=args)
-                continue
-            # Field access: x.field or x.[field1, field2, ...]
-            if self._match('OP', '.'):
-                if self._at('OP', '.'):
-                    break
-                # Multi-field: PSTATE.[N, Z, C, V]
-                if self._at('OP', '['):
-                    self._advance()
-                    fields = [self._expect('IDENT').value]
-                    while self._match('OP', ','):
-                        fields.append(self._expect('IDENT').value)
-                    self._expect('OP', ']')
-                    base = FieldAccessMulti(base=base, field_names=fields)
-                    continue
-                fname = self._expect('IDENT').value
-                base = FieldAccess(base=base, field_name=fname)
-                continue
-            # Type cast: expr as type  (e.g. UInt(x) as integer{0..4})
-            if self._at('KW', 'as'):
-                self._advance()
-                t = self._parse_type()
-                base = FuncCall(name='__as', type_params=[], args=[base, Identifier(name=str(t))])
-                continue
-            break
-        return base
-
-    def _expr_to_name(self, expr: Expr) -> str:
-        if isinstance(expr, Identifier):
-            return expr.name
-        if isinstance(expr, FieldAccess):
-            return f"{self._expr_to_name(expr.base)}.{expr.field_name}"
-        return '?'
-
-    def _parse_args(self) -> List[Expr]:
-        self._expect('OP', '(')
-        args = []
-        if not self._at('OP', ')'):
-            args.append(self._parse_expr())
-            while self._match('OP', ','):
-                args.append(self._parse_expr())
-        self._expect('OP', ')')
-        return args
-
-    def _parse_primary(self) -> Expr:
-        tok = self._cur()
-
-        # Integer literal
-        if tok.kind == 'INT':
-            self._advance()
-            return IntLiteral(value=int(tok.value, 0))
-
-        # Bit string literal
-        if tok.kind == 'BITS':
-            self._advance()
-            return BitLiteral(bits=tok.value)
-
-        # Boolean literals
-        if tok.kind == 'KW' and tok.value == 'TRUE':
-            self._advance()
-            return BoolLiteral(value=True)
-        if tok.kind == 'KW' and tok.value == 'FALSE':
-            self._advance()
-            return BoolLiteral(value=False)
-
-        # UNKNOWN : type
-        if tok.kind == 'KW' and tok.value == 'UNKNOWN':
-            self._advance()
-            if self._match('OP', ':'):
-                t = self._parse_type()
-                return Arbitrary(asl_type=t)
-            return Identifier(name='UNKNOWN')
-
-        # ARBITRARY : type
-        if tok.kind == 'KW' and tok.value == 'ARBITRARY':
-            self._advance()
-            self._expect('OP', ':')
-            t = self._parse_type()
-            return Arbitrary(asl_type=t)
-
-        # Inline if expression: if cond then e1 else e2
-        if tok.kind == 'KW' and tok.value == 'if':
-            self._advance()
-            cond = self._parse_expr()
-            self._expect('KW', 'then')
-            then_e = self._parse_expr()
-            self._expect('KW', 'else')
-            else_e = self._parse_expr()
-            return IfExpr(cond=cond, then_expr=then_e, else_expr=else_e)
-
-        # Set literal: { val1, val2, ... }
-        if tok.kind == 'OP' and tok.value == '{':
-            self._advance()
-            elems = []
-            if not self._at('OP', '}'):
-                elems.append(self._parse_expr())
-                while self._match('OP', ','):
-                    elems.append(self._parse_expr())
-            self._expect('OP', '}')
-            return SetLiteral(elements=elems)
-
-        # Parenthesized expression or tuple literal
-        if tok.kind == 'OP' and tok.value == '(':
-            self._advance()
-            expr = self._parse_expr()
-            if self._match('OP', ','):
-                # Tuple literal: (expr, expr, ...)
-                parts = [expr]
-                parts.append(self._parse_expr())
-                while self._match('OP', ','):
-                    parts.append(self._parse_expr())
-                self._expect('OP', ')')
-                return FuncCall(name='__tuple', type_params=[], args=parts)
-            self._expect('OP', ')')
-            return expr
-
-        # Identifier
-        if tok.kind == 'IDENT':
-            self._advance()
-            return Identifier(name=tok.value)
-
-        # Keywords used as identifiers in some contexts
-        if tok.kind == 'KW' and tok.value in ('UNDEFINED', 'UNPREDICTABLE', 'otherwise'):
-            self._advance()
-            return Identifier(name=tok.value)
-
-        raise AslParseError(f"Unexpected token {tok.kind} {tok.value!r}", tok.pos)
-
-class AslParseError(Exception):
-    def __init__(self, msg: str, pos: int = -1):
-        self.pos = pos
-        super().__init__(f"ASL parse error at pos {pos}: {msg}")
-
-
-# --- ASL → C++ Emitter ---
-
-class AslCppEmitter:
-    """Emit C++ code from ASL IR trees for semantic/execute pseudocode."""
-
-    # Function call mapping: ASL function → C++ emission pattern
-    FUNC_MAP = {
-        # Register read (rvalue)
-        'X': 'X({tp}{args})',
-        'SP': 'SP({tp})',
-        'V': 'V({args})',
-        'Z': 'Z({args})',
-        'P': 'P({args})',
-        'Mem': 'mem_read({tp}{args})',
-        'Mem_set': 'mem_write({tp}{args})',
-        # Utilities
-        'UInt': 'uint64_t({args})',
-        'SInt': 'sint({args})',
-        'ZeroExtend': 'zext({tp}{args})',
-        'SignExtend': 'sext({tp}{args})',
-        'Zeros': 'BV::zeros({tp})',
-        'Ones': 'BV::ones({tp})',
-        'Replicate': 'replicate({tp}{args})',
-        'Len': 'len({args})',
-        'IsZero': 'is_zero({args})',
-        'IsOnes': 'is_ones({args})',
-        # Arithmetic
-        'AddWithCarry': 'AddWithCarry({tp}{args})',
-        # Bit manipulation
-        'LSL': 'lsl({args})',
-        'LSR': 'lsr({args})',
-        'ASR': 'asr({args})',
-        'ROR': 'ror({args})',
-        'Align': 'align({args})',
-        'CountLeadingZeroBits': 'clz({args})',
-        'CountLeadingSignBits': 'cls({args})',
-        'HighestSetBit': 'highest_set_bit({args})',
-        'LowestSetBit': 'lowest_set_bit({args})',
-        'BitCount': 'popcount({args})',
-        'ReverseBits': 'rbit({args})',
-        'ReverseBytes': 'rev({args})',
-        # State
-        'CurrentVL': 'vl',
-        'FPCR': 'fpcr',
-        'PC64': 'pc',
-        'CheckSPAlignment': 'CheckSPAlignment()',
-        'CheckSVEEnabled': 'CheckSVEEnabled()',
-        'CheckSMEEnabled': 'CheckSMEEnabled()',
-        'CheckSMEAndZAEnabled': 'CheckSMEAndZAEnabled()',
-        # Predicate
-        'ActivePredicateElement': 'ActivePredicateElement({tp}{args})',
-        'AnyActiveElement': 'AnyActiveElement({tp}{args})',
-        'ElemFFR': 'ElemFFR({tp}{args})',
-        # Memory/address
-        'AddressAdd': 'AddressAdd({args})',
-        'AddressIncrement': 'AddressIncrement({args})',
-        'CreateAccessDescriptor': 'CreateAccessDescriptor({args})',
-        # FP
-        'FPAdd': 'FPAdd({tp}{args})',
-        'FPSub': 'FPSub({tp}{args})',
-        'FPMul': 'FPMul({tp}{args})',
-        'FPDiv': 'FPDiv({tp}{args})',
-        'FPMax': 'FPMax({tp}{args})',
-        'FPMin': 'FPMin({tp}{args})',
-        'FPSqrt': 'FPSqrt({tp}{args})',
-        'FPNeg': 'FPNeg({tp}{args})',
-        'FPAbs': 'FPAbs({tp}{args})',
-        'FPConvert': 'FPConvert({tp}{args})',
-        'FPCompare': 'FPCompare({tp}{args})',
-        'FPCompareEQ': 'FPCompareEQ({tp}{args})',
-        'FPCompareGE': 'FPCompareGE({tp}{args})',
-        'FPCompareGT': 'FPCompareGT({tp}{args})',
-        'FPRecipEstimate': 'FPRecipEstimate({tp}{args})',
-        'FPRSqrtEstimate': 'FPRSqrtEstimate({tp}{args})',
-        'FPMulAdd': 'FPMulAdd({tp}{args})',
-        'FPRoundInt': 'FPRoundInt({tp}{args})',
-        'FPToFixed': 'FPToFixed({tp}{args})',
-        'FixedToFP': 'FixedToFP({tp}{args})',
-        'BFAdd': 'BFAdd({tp}{args})',
-        'BFMul': 'BFMul({tp}{args})',
-        # Conversion
-        'FPConvertBF': 'FPConvertBF({tp}{args})',
-    }
-
-    # Setter mapping: ASL lvalue function → C++ setter
-    SETTER_MAP = {
-        'X': 'X_set',
-        'SP': 'SP_set',
-        'V': 'V_set',
-        'Z': 'Z_set',
-        'P': 'P_set',
-        'Mem': 'mem_write',
-        'Vpart': 'Vpart_set',
-        'ZAvector': 'ZAvector_set',
-    }
-
-    # ASL operator → C++ operator
-    OP_MAP = {
-        'AND': '&',
-        'OR': '|',
-        'XOR': '^',
-        'EOR': '^',
-        'NOT': '~',
-        'DIV': '/',
-        'DIVRM': 'DIVRM',
-        'MOD': '%',
-        '==': '==',
-        '!=': '!=',
-        '<': '<',
-        '>': '>',
-        '<=': '<=',
-        '>=': '>=',
-        '&&': '&&',
-        '||': '||',
-        '<<': '<<',
-        '>>': '>>',
-        '+': '+',
-        '-': '-',
-        '*': '*',
-        '^': 'POW',
-    }
-
-    def __init__(self):
-        self.indent = 0
-        self.lines: List[str] = []
-        self.ignore_counter = 0
-
-    def _emit(self, line: str):
-        self.lines.append('    ' * self.indent + line)
-
-    def _indent(self):
-        self.indent += 1
-
-    def _dedent(self):
-        self.indent -= 1
-
-    # --- Entry points ---
-
-    def emit_block(self, stmts: List[Stmt]) -> List[str]:
-        """Emit a block of statements, return lines."""
-        self.lines = []
-        self.indent = 0
-        for s in stmts:
-            self.emit_stmt(s)
-        return self.lines
-
-    # --- Statement emitters ---
-
-    def emit_stmt(self, stmt: Stmt):
-        if isinstance(stmt, LetDecl):
-            init_str = self.emit_expr(stmt.init) if stmt.init else '{}'
-            self._emit(f'const auto {stmt.name} = {init_str};')
-        elif isinstance(stmt, VarDecl):
-            if stmt.init:
-                init_str = self.emit_expr(stmt.init)
-                self._emit(f'auto {stmt.name} = {init_str};')
-            else:
-                cpp_type = self.asl_type_to_cpp(stmt.asl_type) if stmt.asl_type else 'BV'
-                self._emit(f'{cpp_type} {stmt.name};')
-        elif isinstance(stmt, Assign):
-            self._emit_assign(stmt)
-        elif isinstance(stmt, TupleAssign):
-            self._emit_tuple(stmt)
-        elif isinstance(stmt, IfStmt):
-            self._emit_if(stmt)
-        elif isinstance(stmt, CaseStmt):
-            self._emit_case(stmt)
-        elif isinstance(stmt, ForStmt):
-            self._emit_for(stmt)
-        elif isinstance(stmt, WhileStmt):
-            self._emit_while(stmt)
-        elif isinstance(stmt, AssertStmt):
-            cond_str = self.emit_expr(stmt.cond)
-            self._emit(f'assert({cond_str});')
-        elif isinstance(stmt, Undefined):
-            self._emit('UNDEFINED();')
-        elif isinstance(stmt, Unpredictable):
-            self._emit('UNPREDICTABLE();')
-        elif isinstance(stmt, ReturnStmt):
-            if stmt.value:
-                self._emit(f'return {self.emit_expr(stmt.value)};')
-            else:
-                self._emit('return;')
-        elif isinstance(stmt, EndOfDecode):
-            self._emit(f'// EndOfDecode({stmt.kind})')
-        elif isinstance(stmt, ExprStmt):
-            expr_str = self.emit_expr(stmt.expr)
-            self._emit(f'{expr_str};')
-        else:
-            self._emit(f'// TODO: unknown stmt {type(stmt).__name__}')
-
-    def _emit_assign(self, stmt: Assign):
-        target = stmt.target
-        rhs_str = self.emit_expr(stmt.value)
-
-        # Lvalue detection: function call target → setter
-        if isinstance(target, FuncCall) and target.name in self.SETTER_MAP:
-            setter = self.SETTER_MAP[target.name]
-            tp_str = ', '.join(self.emit_expr(tp) for tp in target.type_params)
-            args_str = ', '.join(self.emit_expr(a) for a in target.args)
-            parts = []
-            if tp_str:
-                parts.append(tp_str)
-            if args_str:
-                parts.append(args_str)
-            parts.append(rhs_str)
-            self._emit(f'{setter}({", ".join(parts)});')
-            return
-
-        # Lvalue: bit slice → set_slice
-        if isinstance(target, BitSlice):
-            base_str = self.emit_expr(target.base)
-            if target.is_width:
-                lo_str = self.emit_expr(target.lo)
-                w_str = self.emit_expr(target.hi)
-                self._emit(f'{base_str}.set_slice({lo_str}, {w_str}, {rhs_str});')
-            else:
-                hi_str = self.emit_expr(target.hi)
-                lo_str = self.emit_expr(target.lo)
-                self._emit(f'{base_str}.set_bits({lo_str}, {hi_str}, {rhs_str});')
-            return
-
-        # Lvalue: array set → __array_set
-        if isinstance(target, FuncCall) and target.name == '__array_get':
-            arr_str = self.emit_expr(target.args[0])
-            idx_str = self.emit_expr(target.args[1])
-            self._emit(f'{arr_str}[{idx_str}] = {rhs_str};')
-            return
-
-        # Lvalue: field access multi (PSTATE.[N,Z,C,V])
-        if isinstance(target, FieldAccessMulti):
-            base_str = self.emit_expr(target.base)
-            fields = '_'.join(f.lower() for f in target.field_names)
-            self._emit(f'{base_str}_set_{fields}({rhs_str});')
-            return
-
-        # Lvalue: field access
-        if isinstance(target, FieldAccess):
-            base_str = self.emit_expr(target.base)
-            self._emit(f'{base_str}.{target.field_name} = {rhs_str};')
-            return
-
-        # Lvalue: unknown function call → emit as setter
-        if isinstance(target, FuncCall):
-            setter = f'{target.name}_set'
-            tp_str = ', '.join(self.emit_expr(tp) for tp in target.type_params)
-            args_str = ', '.join(self.emit_expr(a) for a in target.args)
-            parts = []
-            if tp_str:
-                parts.append(tp_str)
-            if args_str:
-                parts.append(args_str)
-            parts.append(rhs_str)
-            self._emit(f'{setter}({", ".join(parts)});')
-            return
-
-        # Simple assignment
-        target_str = self.emit_expr(target)
-        self._emit(f'{target_str} = {rhs_str};')
-
-    def _emit_tuple(self, stmt: TupleAssign):
-        rhs_str = self.emit_expr(stmt.value)
-        names = []
-        for i, t in enumerate(stmt.targets):
-            if t is None:
-                names.append(f'_ign{self.ignore_counter}')
-                self.ignore_counter += 1
-            elif isinstance(t, Identifier):
-                names.append(t.name)
-            else:
-                names.append(self.emit_expr(t))
-        bindings = ', '.join(names)
-        self._emit(f'auto [{bindings}] = {rhs_str};')
-
-    def _emit_if(self, stmt: IfStmt):
-        for i, (cond, body) in enumerate(stmt.branches):
-            if cond is None:
-                self._emit('else {')
-            elif i == 0:
-                self._emit(f'if ({self.emit_expr(cond)}) {{')
-            else:
-                self._emit(f'else if ({self.emit_expr(cond)}) {{')
-            self._indent()
-            for s in body:
-                self.emit_stmt(s)
-            self._dedent()
-            self._emit('}')
-
-    def _emit_case(self, stmt: CaseStmt):
-        expr_str = self.emit_expr(stmt.expr)
-        first = True
-        for pattern, body in stmt.cases:
-            if pattern == 'otherwise':
-                self._emit('else {')
-            elif first:
-                pat_str = self.emit_expr(pattern) if not isinstance(pattern, str) else pattern
-                self._emit(f'if ({expr_str} == {pat_str}) {{')
-                first = False
-            else:
-                pat_str = self.emit_expr(pattern) if not isinstance(pattern, str) else pattern
-                self._emit(f'else if ({expr_str} == {pat_str}) {{')
-            self._indent()
-            for s in body:
-                self.emit_stmt(s)
-            self._dedent()
-            self._emit('}')
-
-    def _emit_for(self, stmt: ForStmt):
-        start_str = self.emit_expr(stmt.start)
-        end_str = self.emit_expr(stmt.end)
-        if stmt.direction == 'downto':
-            self._emit(f'for (int64_t {stmt.var} = {start_str}; {stmt.var} >= {end_str}; {stmt.var}--) {{')
-        else:
-            self._emit(f'for (int64_t {stmt.var} = {start_str}; {stmt.var} <= {end_str}; {stmt.var}++) {{')
-        self._indent()
-        for s in stmt.body:
-            self.emit_stmt(s)
-        self._dedent()
-        self._emit('}')
-
-    def _emit_while(self, stmt: WhileStmt):
-        cond_str = self.emit_expr(stmt.cond)
-        self._emit(f'while ({cond_str}) {{')
-        self._indent()
-        for s in stmt.body:
-            self.emit_stmt(s)
-        self._dedent()
-        self._emit('}')
-
-    # --- Expression emitters ---
-
-    def emit_expr(self, expr: Expr) -> str:
-        if expr is None:
-            return '/* null */'
-
-        if isinstance(expr, IntLiteral):
-            if expr.value < 0:
-                return f'({expr.value})'
-            return f'{expr.value}'
-
-        if isinstance(expr, BitLiteral):
-            # Convert to hex
-            if all(c in '01' for c in expr.bits):
-                val = int(expr.bits, 2)
-                return f'BV("{expr.bits}")'
-            return f'BV("{expr.bits}")'
-
-        if isinstance(expr, BoolLiteral):
-            return 'true' if expr.value else 'false'
-
-        if isinstance(expr, Identifier):
-            return expr.name
-
-        if isinstance(expr, BinOp):
-            left_str = self.emit_expr(expr.left)
-            right_str = self.emit_expr(expr.right)
-            cpp_op = self.OP_MAP.get(expr.op, expr.op)
-            if cpp_op == 'POW':
-                return f'pow2({left_str}, {right_str})'
-            if cpp_op == 'DIVRM':
-                return f'divrm({left_str}, {right_str})'
-            return f'({left_str} {cpp_op} {right_str})'
-
-        if isinstance(expr, UnaryOp):
-            operand_str = self.emit_expr(expr.operand)
-            cpp_op = self.OP_MAP.get(expr.op, expr.op)
-            if expr.op == 'NOT':
-                return f'(~{operand_str})'
-            if expr.op == '!':
-                return f'(!{operand_str})'
-            return f'({cpp_op}{operand_str})'
-
-        if isinstance(expr, FuncCall):
-            return self._emit_func_call(expr)
-
-        if isinstance(expr, BitSlice):
-            base_str = self.emit_expr(expr.base)
-            if expr.is_width:
-                lo_str = self.emit_expr(expr.lo)
-                w_str = self.emit_expr(expr.hi)
-                return f'{base_str}.slice({lo_str}, {w_str})'
-            else:
-                hi_str = self.emit_expr(expr.hi)
-                lo_str = self.emit_expr(expr.lo)
-                if hi_str == lo_str:
-                    return f'{base_str}.bit({lo_str})'
-                return f'{base_str}.bits({lo_str}, {hi_str})'
-
-        if isinstance(expr, BitConcat):
-            parts = [self.emit_expr(p) for p in expr.parts]
-            return f'bv_concat({", ".join(parts)})'
-
-        if isinstance(expr, IfExpr):
-            cond_str = self.emit_expr(expr.cond)
-            then_str = self.emit_expr(expr.then_expr)
-            else_str = self.emit_expr(expr.else_expr)
-            return f'({cond_str} ? {then_str} : {else_str})'
-
-        if isinstance(expr, FieldAccess):
-            base_str = self.emit_expr(expr.base)
-            return f'{base_str}.{expr.field_name}'
-
-        if isinstance(expr, FieldAccessMulti):
-            base_str = self.emit_expr(expr.base)
-            fields = '_'.join(f.lower() for f in expr.field_names)
-            return f'{base_str}.{fields}'
-
-        if isinstance(expr, SetLiteral):
-            elems = [self.emit_expr(e) for e in expr.elements]
-            return '{' + ', '.join(elems) + '}'
-
-        if isinstance(expr, Arbitrary):
-            cpp_type = self.asl_type_to_cpp(expr.asl_type) if expr.asl_type else 'BV'
-            return f'{cpp_type}{{}} /* UNKNOWN */'
-
-        if isinstance(expr, InExpr):
-            val_str = self.emit_expr(expr.value)
-            coll_str = self.emit_expr(expr.collection)
-            return f'contains({coll_str}, {val_str})'
-
-        return f'/* TODO: {type(expr).__name__} */'
-
-    def _emit_func_call(self, expr: FuncCall) -> str:
-        name = expr.name
-
-        # Special: __tuple
-        if name == '__tuple':
-            parts = [self.emit_expr(a) for a in expr.args]
-            return f'std::make_tuple({", ".join(parts)})'
-
-        # Special: __array_get
-        if name == '__array_get':
-            arr_str = self.emit_expr(expr.args[0])
-            idx_str = self.emit_expr(expr.args[1])
-            return f'{arr_str}[{idx_str}]'
-
-        # Special: __as (type cast)
-        if name == '__as':
-            val_str = self.emit_expr(expr.args[0])
-            return f'static_cast<int64_t>({val_str})'
-
-        # Type params
-        tp_parts = [self.emit_expr(tp) for tp in expr.type_params]
-        tp_str = ', '.join(tp_parts)
-        args_parts = [self.emit_expr(a) for a in expr.args]
-        args_str = ', '.join(args_parts)
-
-        # Check FUNC_MAP
-        if name in self.FUNC_MAP:
-            pattern = self.FUNC_MAP[name]
-            # {tp} gets type params with trailing comma-space if args follow
-            tp_with_sep = (tp_str + ', ') if (tp_str and args_str) else tp_str
-            result = pattern.replace('{tp}', tp_with_sep).replace('{args}', args_str)
-            # Clean up empty separators
-            result = result.replace('(, ', '(').replace(', )', ')').replace('()', '()')
-            return result
-
-        # Unmapped: emit as-is
-        parts = []
-        if tp_str:
-            parts.append(tp_str)
-        if args_str:
-            parts.append(args_str)
-        all_args = ', '.join(parts)
-        return f'{name}({all_args})'
-
-    # --- Type mapping ---
-
-    def asl_type_to_cpp(self, t: AslType) -> str:
-        if t is None:
-            return 'auto'
-        if isinstance(t, BitVecType):
-            return 'BV'
-        if isinstance(t, IntegerType):
-            return 'int64_t'
-        if isinstance(t, BooleanType):
-            return 'bool'
-        if isinstance(t, ArrayType):
-            elem_type = self.asl_type_to_cpp(t.element) if t.element else 'BV'
-            size_str = self.emit_expr(t.size) if t.size else '0'
-            return f'std::array<{elem_type}, {size_str}>'
-        if isinstance(t, OpaqueType):
-            return t.name if t.name else 'auto'
-        return 'auto'
-
-    def _type_for_init(self, init: Expr) -> str:
-        """Infer C++ type from initializer expression."""
-        if isinstance(init, FuncCall):
-            if init.name == 'UInt':
-                return 'int64_t'
-            if init.name in ('Zeros', 'Ones', 'ZeroExtend', 'SignExtend'):
-                return 'BV'
-            if init.name == 'SInt':
-                return 'int64_t'
-            if init.name in ('DecodeBitMasks', 'DecodeShift', 'DecodeRegExtend'):
-                return 'auto'  # these return tuples or enums; auto is fine in local context
-        if isinstance(init, IntLiteral):
-            return 'int64_t'
-        if isinstance(init, BoolLiteral):
-            return 'bool'
-        if isinstance(init, BitLiteral):
-            return 'BV'
-        return 'auto'
 
 
 # Map arrangement character to C++ Arrangement enum name
@@ -2182,89 +701,6 @@ class ARM64XMLParser:
                 shift_op = ops.get(shift_var)
                 if shift_op and shift_op[0] == 'uint':
                     # shift_var = UInt(some_field) → shift_left_field
-                    resolved[var] = ('shift_left_field', field_name, shift_op[1])
-                else:
-                    resolved[var] = ('opaque',)
-            else:
-                resolved[var] = op
-        return resolved
-
-    def _parse_asl(self, text: str) -> List[Stmt]:
-        """Parse ASL pseudocode text into an IR statement list (cached)."""
-        if not hasattr(self, '_asl_cache'):
-            self._asl_cache = {}
-        cached = self._asl_cache.get(text)
-        if cached is not None:
-            return cached
-        tokens = AslTokenizer(text).tokenize()
-        result = AslParser(tokens).parse()
-        self._asl_cache[text] = result
-        return result
-
-    def _asl_ir_to_decode_ops(self, stmts: List[Stmt]) -> Dict[str, tuple]:
-        """Extract decode ops from IR tree, matching _parse_asl_decode_ops output format."""
-        ops: Dict[str, tuple] = {}
-        for s in stmts:
-            if not isinstance(s, LetDecl) or s.init is None:
-                continue
-            name = s.name
-            init = s.init
-            # UInt(field)
-            if isinstance(init, FuncCall) and init.name == 'UInt' and len(init.args) == 1:
-                arg = init.args[0]
-                if isinstance(arg, Identifier):
-                    ops[name] = ('uint', arg.name)
-                    continue
-            # SignExtend(field::'0'*n)
-            if isinstance(init, FuncCall) and init.name == 'SignExtend' and len(init.args) == 1:
-                arg = init.args[0]
-                if isinstance(arg, BitConcat) and len(arg.parts) == 2:
-                    f, z = arg.parts
-                    if isinstance(f, Identifier) and isinstance(z, BitLiteral) and all(c == '0' for c in z.bits):
-                        ops[name] = ('signext_shift', f.name, len(z.bits))
-                        continue
-                if isinstance(arg, Identifier):
-                    ops[name] = ('signext', arg.name)
-                    continue
-            # UInt(field) << n
-            if isinstance(init, BinOp) and init.op == '<<':
-                if isinstance(init.left, FuncCall) and init.left.name == 'UInt' and len(init.left.args) == 1:
-                    arg = init.left.args[0]
-                    if isinstance(arg, Identifier) and isinstance(init.right, IntLiteral):
-                        ops[name] = ('shift_left', arg.name, init.right.value)
-                        continue
-            # n << UInt(field)  — e.g. 32 << UInt(sf)
-            if isinstance(init, BinOp) and init.op == '<<':
-                if isinstance(init.right, FuncCall) and init.right.name == 'UInt' and len(init.right.args) == 1:
-                    # This is a computed value, not a simple field transform — skip
-                    pass
-            # LSL(ZeroExtend(field), shift_var)
-            if isinstance(init, FuncCall) and init.name == 'LSL' and len(init.args) == 2:
-                inner = init.args[0]
-                shift_arg = init.args[1]
-                field_name = None
-                if isinstance(inner, FuncCall) and 'ZeroExtend' in inner.name and len(inner.args) >= 1:
-                    if isinstance(inner.args[0], Identifier):
-                        field_name = inner.args[0].name
-                elif isinstance(inner, Identifier):
-                    field_name = inner.name
-                if field_name and isinstance(shift_arg, Identifier):
-                    ops[name] = ('shift_left_var', field_name, shift_arg.name)
-                    continue
-            # if field == 'x' then ... else ... (conditional)
-            if isinstance(init, IfExpr):
-                cond = init.cond
-                if isinstance(cond, BinOp) and cond.op == '==' and isinstance(cond.left, Identifier):
-                    ops[name] = ('conditional', cond.left.name)
-                    continue
-
-        # Second pass: resolve shift_left_var
-        resolved = {}
-        for var, op in ops.items():
-            if op[0] == 'shift_left_var':
-                _, field_name, shift_var = op
-                shift_op = ops.get(shift_var)
-                if shift_op and shift_op[0] == 'uint':
                     resolved[var] = ('shift_left_field', field_name, shift_op[1])
                 else:
                     resolved[var] = ('opaque',)
@@ -4025,10 +2461,13 @@ class ARM64XMLParser:
         # SVE ORR Pd, Pg/Z, Pn, Pm with Pn==Pm → MOV Pd, Pg/Z, Pn (predicate form)
         code.append("    // SVE: ORR p,p/z,p,p with Pn==Pm → MOV p,p/z,p")
         code.append("    if (insn.mnemonic == Mnemonic::ORR && insn.operands.size() == 4 && insn.operands[0].type == OperandType::PredicateRegister) {")
-        code.append("        auto& op2 = insn.operands[2]; auto& op3 = insn.operands[3];")
+        code.append("        auto& op1 = insn.operands[1]; auto& op2 = insn.operands[2]; auto& op3 = insn.operands[3];")
         code.append("        if (op2.type == OperandType::PredicateRegister && op3.type == OperandType::PredicateRegister && op2.value == op3.value) {")
         code.append("            std::ostringstream oss;")
-        code.append('            oss << "mov " << insn.operands[0].to_string() << ", " << insn.operands[1].to_string() << ", " << op2.to_string();')
+        code.append("            if (op1.value == op2.value)")
+        code.append('                oss << "mov " << insn.operands[0].to_string() << ", " << op1.to_string();')
+        code.append("            else")
+        code.append('                oss << "mov " << insn.operands[0].to_string() << ", " << op1.to_string() << ", " << op2.to_string();')
         code.append("            return oss.str();")
         code.append("        }")
         code.append("    }")
@@ -4036,10 +2475,13 @@ class ARM64XMLParser:
         # SVE ORRS Pd, Pg/Z, Pn, Pm with Pn==Pm → MOVS Pd, Pg/Z, Pn
         code.append("    // SVE: ORRS p,p/z,p,p with Pn==Pm → MOVS p,p/z,p")
         code.append("    if (insn.mnemonic == Mnemonic::ORRS && insn.operands.size() == 4) {")
-        code.append("        auto& op2 = insn.operands[2]; auto& op3 = insn.operands[3];")
+        code.append("        auto& op1 = insn.operands[1]; auto& op2 = insn.operands[2]; auto& op3 = insn.operands[3];")
         code.append("        if (op2.type == OperandType::PredicateRegister && op3.type == OperandType::PredicateRegister && op2.value == op3.value) {")
         code.append("            std::ostringstream oss;")
-        code.append('            oss << "movs " << insn.operands[0].to_string() << ", " << insn.operands[1].to_string() << ", " << op2.to_string();')
+        code.append("            if (op1.value == op2.value)")
+        code.append('                oss << "movs " << insn.operands[0].to_string() << ", " << op1.to_string();')
+        code.append("            else")
+        code.append('                oss << "movs " << insn.operands[0].to_string() << ", " << op1.to_string() << ", " << op2.to_string();')
         code.append("            return oss.str();")
         code.append("        }")
         code.append("    }")
@@ -4237,6 +2679,18 @@ class ARM64XMLParser:
                 if (range_end >= 10) { std::ostringstream oss; oss << "0x" << std::hex << range_end; r += oss.str(); }
                 else r += std::to_string(range_end);
                 if (extend == 3) { int32_t vgx = (offset >> 16) & 0xFFFF; if (vgx > 1) r += ", vgx" + std::to_string(vgx); }
+                r += "]";
+                return r;
+            }
+            // extend==4: MOVA-style za tile with H/V + range: zaTILEh/v.T[wN, start:end]
+            if (has_index && extend == 4) {
+                std::string r = "za" + std::to_string(value);
+                r += is_sp ? "v" : "h";
+                if (arrangement != Arrangement::None) { r += "."; r += Operand::arrangement_to_string(arrangement); }
+                r += "[w" + std::to_string(index) + ", ";
+                r += std::to_string(amount);
+                uint32_t range_end = (uint32_t)(offset & 0xFFFF);
+                if (range_end != amount) { r += ":"; r += std::to_string(range_end); }
                 r += "]";
                 return r;
             }
@@ -6227,6 +4681,10 @@ class ARM64XMLParser:
         elif op_type == 'imm_unsigned':
             if in_mem:
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::MemoryOffset, {mem_ref}, true));")
+            elif field == 'imm4' and 'pattern' in field_map and not field_map['pattern'].get('is_fixed', True):
+                # SVE MUL multiplier: display value = imm4+1, default = MUL #1 (imm4=0)
+                code.append(f"{ind}if ({mem_ref} != 0)")
+                code.append(f"{ind}    result.operands.push_back(Operand(OperandType::SVEMulImm, {mem_ref} + 1u, true));")
             elif is_optional:
                 default_val = extras.get('default_val', 0)
                 code.append(f"{ind}if ({mem_ref} != {default_val}) result.operands.push_back(Operand(OperandType::Immediate, {mem_ref}, true));")
@@ -6323,8 +4781,12 @@ class ARM64XMLParser:
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::Barrier, {mem_ref}, false));")
 
         elif op_type == 'option_table':
-            # Generic option/prefetch
-            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, {mem_ref}, false));")
+            # SVE pattern field → use Pattern operand type
+            if field == 'pattern':
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Pattern, {mem_ref}, true));")
+            else:
+                # Generic option/prefetch
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, {mem_ref}, false));")
 
         return code
 
@@ -9433,13 +7895,13 @@ class ARM64XMLParser:
         if mnemonic in _scalar_narrow_misc and 'asisdmisc' in encoding_name_lower and 'Rd' in field_map and 'Rn' in field_map:
             rd_f = field_map['Rd']['name']
             rn_f = field_map['Rn']['name']
-            if 'size' in field_map and not field_map['size']['is_fixed']:
+            if mnemonic != 'FCVTXN' and 'size' in field_map and not field_map['size']['is_fixed']:
                 size_f = field_map['size']['name']
                 code.append(f"{ind}static const Arrangement _narrow_arr[] = {{Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D}};")
                 code.append(f"{ind}static const Arrangement _wide_arr[] = {{Arrangement::H, Arrangement::S, Arrangement::D, Arrangement::D}};")
                 code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rd_f}, false); op.arrangement = _narrow_arr[enc.{member_name}.{size_f}]; result.operands.push_back(op); }}")
                 code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{rn_f}, false); op.arrangement = _wide_arr[enc.{member_name}.{size_f}]; result.operands.push_back(op); }}")
-            elif 'size' in field_map and field_map['size']['is_fixed']:
+            elif mnemonic != 'FCVTXN' and 'size' in field_map and field_map['size']['is_fixed']:
                 _sz_val = int(field_map['size']['fixed'], 2) if field_map['size']['fixed'] else 0
                 _narrow_map = {0: 'Arrangement::B', 1: 'Arrangement::H', 2: 'Arrangement::S', 3: 'Arrangement::D'}
                 _wide_map = {0: 'Arrangement::H', 1: 'Arrangement::S', 2: 'Arrangement::D', 3: 'Arrangement::D'}
@@ -9491,6 +7953,10 @@ class ARM64XMLParser:
         # Encoding name: FCVT_<dst><src>_floatdp1 (e.g., FCVT_SH = single→half, FCVT_DS = double→single)
         fcvt_rd_arr = None
         fcvt_rn_arr = None
+        # BFCVT: BFloat16 convert single→half — Rd=H, Rn=S (re-apply after reset)
+        if mnemonic == 'BFCVT' and 'float' in encoding_name:
+            fcvt_rd_arr = 'Arrangement::H'
+            fcvt_rn_arr = 'Arrangement::S'
         if mnemonic == 'FCVT' and 'float' in encoding_name:
             enc_upper = encoding_name.upper()
             # Extract the two-character code after FCVT_
@@ -9796,7 +8262,8 @@ class ARM64XMLParser:
             not _has_za_range and
             'Rv' in field_map and not field_map['Rv']['is_fixed'] and
             _re.search(r'\bZA\.(?:[BHSDQ]|<T\w*>)\[<Wv>', _asm_tmpl) is not None and
-            '{, VGx' in _asm_tmpl
+            '{, VGx' in _asm_tmpl and
+            not (mnemonic in ('MOVA', 'MOVAZ', 'ZERO') and _re.search(r'(mz[24]_za|za[24]_z|z_rza|mz_za[24]|za[0-9]*_ri)', encoding_name))
         )
         if _has_za_vgx:
             rv_field = field_map['Rv']['name']
@@ -10171,6 +8638,12 @@ class ARM64XMLParser:
                         elif 'sz' in field_map and not field_map['sz']['is_fixed']:
                             sz_f = field_map['sz']['name']
                             code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = enc.{member_name}.{sz_f} ? Arrangement::D : Arrangement::S; result.operands.push_back(op); }}")
+                        elif 'sz' in field_map and field_map['sz']['is_fixed']:
+                            _sz_val = int(field_map['sz']['fixed'], 2) if field_map['sz']['fixed'] else 0
+                            _arr = 'Arrangement::D' if _sz_val else 'Arrangement::S'
+                            code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = {_arr}; result.operands.push_back(op); }}")
+                        elif '_only_h' in encoding_name_lower:
+                            code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = Arrangement::H; result.operands.push_back(op); }}")
                         else:
                             # Fallback: use generic arrangement
                             code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = _simd_arr; result.operands.push_back(op); }}")
@@ -10269,6 +8742,13 @@ class ARM64XMLParser:
                         code.append(f"{ind}    op.arrangement = get_movi_arrangement(insn);")
                         code.append(f"{ind}    result.operands.push_back(op);")
                         code.append(f"{ind}}}")
+                    elif mnemonic in ['FMAXV', 'FMINV', 'FMAXNMV', 'FMINNMV'] and reg_name == 'Rn' and '_only_h' in encoding_name_lower:
+                        # FP16 reduce-across: source vector is .4h (Q=0) or .8h (Q=1)
+                        if 'Q' in field_map and not field_map['Q']['is_fixed']:
+                            q_f = field_map['Q']['name']
+                            code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = enc.{member_name}.{q_f} ? Arrangement::H8 : Arrangement::H4; result.operands.push_back(op); }}")
+                        else:
+                            code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = Arrangement::H4; result.operands.push_back(op); }}")
                     elif mnemonic in ['SHA256H', 'SHA256H2', 'SHA512H', 'SHA512H2'] and reg_name in ('Rd', 'Rn'):
                         # SHA hash: Rd and Rn are Q registers (128-bit scalar)
                         code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{field_cpp_name}, false); op.arrangement = Arrangement::Q; result.operands.push_back(op); }}")
@@ -10392,9 +8872,211 @@ class ARM64XMLParser:
                 code.append(f"{ind}return result;")
                 return code
 
+        # MOVA/MOVAZ: ZA tile access with H/V + Ws + offset range
+        import re as _re_mova
+        _mova_m = _re_mova.search(r'(mov(?:az?)?|zero)_(mz[24]_za|za[24]_z|z_rza|mz_za[24]|za[0-9]*_ri)_([bhwdq]?)(\d*)', encoding_name)
+        if _mova_m and mnemonic in ('MOVA', 'MOVAZ', 'ZERO'):
+            _prefix = _mova_m.group(2)  # mz2_za, za2_z, z_rza, mz_za2, za1_ri
+            _arr_ch = _mova_m.group(3)  # b, h, w(=s), d
+            _arr_map = {'b': ('Arrangement::B', 0), 'h': ('Arrangement::H', 1), 'w': ('Arrangement::S', 2), 'd': ('Arrangement::D', 3)}
+            _arr_str, _arr_idx = _arr_map.get(_arr_ch, ('Arrangement::D', 3))
+            # Determine fields
+            _has_V = 'V' in field_map and not field_map['V']['is_fixed']
+            _has_Rs = 'Rs' in field_map and not field_map['Rs']['is_fixed']
+            _has_Rv = 'Rv' in field_map and not field_map['Rv']['is_fixed']
+            _rs_field = field_map.get('Rs', field_map.get('Rv', {})).get('name', 'Rs')
+            # Offset field
+            _off_field = None
+            for fn in ['off3', 'off2', 'off1', 'off4', 'o1']:
+                if fn in field_map and not field_map[fn]['is_fixed']:
+                    _off_field = fn
+                    break
+            # ZA tile number field
+            _tile_field = None
+            for fn in ['ZAn', 'ZAd', 'ZAda']:
+                if fn in field_map and not field_map[fn]['is_fixed']:
+                    _tile_field = fn
+                    break
+            # Z register fields
+            _zd_field = field_map.get('Zd', {}).get('name')
+            _zn_field = field_map.get('Zn', {}).get('name')
+            # Determine group size and offset multiplier
+            _is_mz2 = 'mz2' in _prefix
+            _is_mz4 = 'mz4' in _prefix
+            _is_za2 = 'za2' in _prefix
+            _is_za4 = 'za4' in _prefix
+            _is_za1 = 'za1' in _prefix or ('_ri' in _prefix and not _is_za2 and not _is_za4)
+            _is_z_rza = 'z_rza' in _prefix
+            _is_mz_za = 'mz_za' in _prefix
+            # Direction: mz2_za, mz4_za, z_rza, mz_za2, mz_za4 → ZA to Z (output = Z regs)
+            # za2_z, za4_z → Z to ZA (output = ZA tile)
+            _is_za_to_z = _is_mz2 or _is_mz4 or _is_z_rza or _is_mz_za  # ZA → Z direction
+            _is_z_to_za = _is_za2 or _is_za4 or _is_za1  # Z → ZA direction
+
+            if (_has_Rs or _has_Rv) and _off_field:
+                code.append(f"{ind}result.operands.clear();  // MOVA/MOVAZ/ZERO ZA tile access")
+                # Compute group size for register list
+                _suffix_num = int(_mova_m.group(4)) if _mova_m.group(4) else 1
+                if _is_mz2 or _is_za2:
+                    _grp_sz = 2
+                elif _is_mz4 or _is_za4:
+                    _grp_sz = 4
+                elif _is_mz_za:
+                    # mz_za2 or mz_za4 — extract from prefix
+                    if '4' in _prefix: _grp_sz = 4
+                    elif '2' in _prefix: _grp_sz = 2
+                    else: _grp_sz = 1
+                else:
+                    _grp_sz = _suffix_num  # from encoding name suffix
+
+                # Compute tile number
+                _tile_expr = '0'
+                if _tile_field:
+                    _tile_expr = f"enc.{member_name}.{_tile_field}"
+
+                # Compute Ws (Rs + 12 or Rv + 8)
+                _ws_base = 12 if _has_Rs else 8
+                _ws_expr = f"enc.{member_name}.{_rs_field} + {_ws_base}"
+
+                # Compute offset range
+                _off_cpp = f"enc.{member_name}.{_off_field}"
+                if _grp_sz == 2:
+                    _start_expr = f"({_off_cpp} * 2)"
+                    _end_expr = f"({_off_cpp} * 2 + 1)"
+                elif _grp_sz == 4:
+                    _start_expr = f"({_off_cpp} * 4)"
+                    _end_expr = f"({_off_cpp} * 4 + 3)"
+                else:
+                    _start_expr = _off_cpp
+                    _end_expr = _off_cpp
+
+                # Emit Z register operand(s) first (for ZA→Z direction)
+                if _is_za_to_z and not _is_z_rza:
+                    if _zd_field:
+                        _zd_mul = _grp_sz if _grp_sz > 1 else 1
+                        _zd_expr = f"enc.{member_name}.{_zd_field}{f' * {_zd_mul}' if _zd_mul > 1 else ''}"
+                        code.append(f"{ind}{{ Operand op(OperandType::SVERegisterList, {_zd_expr}, true); op.arrangement = {_arr_str}; op.index = {_grp_sz}; result.operands.push_back(op); }}")
+                elif _is_z_rza:
+                    if _zd_field:
+                        code.append(f"{ind}{{ Operand op(OperandType::SVERegister, enc.{member_name}.{_zd_field}, true); op.arrangement = {_arr_str}; result.operands.push_back(op); }}")
+
+                # Emit ZA tile access operand (extend=4 for MOVA-style)
+                if _has_V:
+                    _v_expr = f"enc.{member_name}.{field_map['V']['name']}"
+                    code.append(f"{ind}{{")
+                    code.append(f"{ind}    Operand op(OperandType::SMETileRegister, {_tile_expr}, false);")
+                    code.append(f"{ind}    op.is_sp = ({_v_expr} != 0);  // V=1 → vertical")
+                    code.append(f"{ind}    op.arrangement = {_arr_str};")
+                    code.append(f"{ind}    op.has_index = true;")
+                    code.append(f"{ind}    op.index = {_ws_expr};")
+                    code.append(f"{ind}    op.amount = {_start_expr};")
+                    code.append(f"{ind}    op.offset = {_end_expr};")
+                    code.append(f"{ind}    op.extend = 4;")
+                    code.append(f"{ind}    result.operands.push_back(op);")
+                    code.append(f"{ind}}}")
+                else:
+                    # No V field (mz_za or ZERO za_ri) — VGx mode za.T[wN, offs, vgxN]
+                    code.append(f"{ind}{{")
+                    code.append(f"{ind}    Operand op(OperandType::SMETileRegister, 0, false);")
+                    code.append(f"{ind}    op.arrangement = {_arr_str};")
+                    code.append(f"{ind}    op.has_index = true;")
+                    code.append(f"{ind}    op.extend = 2;  // VGx mode")
+                    code.append(f"{ind}    op.index = {_ws_expr};")
+                    code.append(f"{ind}    op.amount = {_off_cpp};  // raw offset (not scaled)")
+                    code.append(f"{ind}    op.offset = {_grp_sz};  // VGx count")
+                    code.append(f"{ind}    result.operands.push_back(op);")
+                    code.append(f"{ind}}}")
+
+                # Emit Z register operand(s) after ZA (for Z→ZA direction)
+                if _is_z_to_za:
+                    _zn = _zn_field or _zd_field
+                    if _zn:
+                        _zn_mul = _grp_sz if _grp_sz > 1 else 1
+                        _zn_expr = f"enc.{member_name}.{_zn}{f' * {_zn_mul}' if _zn_mul > 1 else ''}"
+                        code.append(f"{ind}{{ Operand op(OperandType::SVERegisterList, {_zn_expr}, true); op.arrangement = {_arr_str}; op.index = {_grp_sz}; result.operands.push_back(op); }}")
+
+                code.append(f"{ind}return result;")
+                return code
+
+        # ZERO { ZT0 }: emit SMEZTRegister
+        if mnemonic == 'ZERO' and encoding_name == 'zero_zt_i_':
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::SMEZTRegister, 0u, true));")
+            code.append(f"{ind}return result;")
+            return code
+
+        # ZERO { mask }: emit ZA tile mask as list of ZA tiles
+        if mnemonic == 'ZERO' and encoding_name == 'zero_za_i_':
+            # The imm8 field is a bitmask of which ZA tiles to zero
+            imm_field = None
+            for fn in ('imm8', 'imm', 'opc'):
+                if fn in field_map and not field_map[fn]['is_fixed']:
+                    imm_field = field_map[fn]['name']
+                    break
+            if imm_field:
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.{imm_field}, true));")
+            code.append(f"{ind}return result;")
+            return code
+
+        # PMOV: Z register with optional index (NOT a register list)
+        if mnemonic == 'PMOV' and encoding_name.startswith('pmov_'):
+            is_z_to_p = 'pmov_p_zi' in encoding_name
+            arr_map = {'b': 'Arrangement::B', 'h': 'Arrangement::H', 's': 'Arrangement::S', 'd': 'Arrangement::D'}
+            suffix = encoding_name.rsplit('_', 1)[-1]
+            arr = arr_map.get(suffix, 'Arrangement::None')
+            # Build index from split i3h:i3l / i2h:i2l / i2 / i1
+            def _pmov_idx_expr():
+                for hi, lo, lo_w in [('i3h', 'i3l', 2), ('i2h', 'i2l', 1)]:
+                    if hi in field_map and not field_map[hi]['is_fixed'] and lo in field_map and not field_map[lo]['is_fixed']:
+                        return f"(enc.{member_name}.{hi} << {lo_w}) | enc.{member_name}.{lo}"
+                for iname in ['i2', 'i1']:
+                    if iname in field_map and not field_map[iname]['is_fixed']:
+                        return f"enc.{member_name}.{iname}"
+                return None
+            idx = _pmov_idx_expr()
+            code.append(f"{ind}result.operands.clear();  // PMOV special case")
+            if is_z_to_p and 'Pd' in field_map and 'Zn' in field_map:
+                code.append(f"{ind}{{ Operand op(OperandType::PredicateRegister, enc.{member_name}.{field_map['Pd']['name']}, true); op.arrangement = {arr}; result.operands.push_back(op); }}")
+                if idx:
+                    code.append(f"{ind}{{ Operand op(OperandType::SVERegister, enc.{member_name}.{field_map['Zn']['name']}, true); op.has_index = true; op.index = {idx}; result.operands.push_back(op); }}")
+                else:
+                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::SVERegister, enc.{member_name}.{field_map['Zn']['name']}, true));")
+            elif not is_z_to_p and 'Zd' in field_map and 'Pn' in field_map:
+                if idx:
+                    code.append(f"{ind}{{ Operand op(OperandType::SVERegister, enc.{member_name}.{field_map['Zd']['name']}, true); op.has_index = true; op.index = {idx}; result.operands.push_back(op); }}")
+                else:
+                    code.append(f"{ind}result.operands.push_back(Operand(OperandType::SVERegister, enc.{member_name}.{field_map['Zd']['name']}, true));")
+                code.append(f"{ind}{{ Operand op(OperandType::PredicateRegister, enc.{member_name}.{field_map['Pn']['name']}, true); op.arrangement = {arr}; result.operands.push_back(op); }}")
+            code.append(f"{ind}return result;")
+            return code
+
+        # CNTP pn form: <Xd>, <PNn>.<T>, <vl>
+        if encoding_name == 'cntp_r_pn_' and 'PNn' in field_map and 'Rd' in field_map:
+            rd_cpp = field_map['Rd']['name']
+            pnn_cpp = field_map['PNn']['name']
+            pnn_width = field_map['PNn'].get('width', 4)
+            # PNn is 4-bit (0-15) → direct mapping; 3-bit (0-7) → needs |8u offset
+            pnn_offset = '| 8u' if pnn_width <= 3 else ''
+            vl_cpp = field_map['vl']['name'] if 'vl' in field_map and not field_map['vl']['is_fixed'] else None
+            size_cpp = field_map['size']['name'] if 'size' in field_map and not field_map['size']['is_fixed'] else None
+            code.append(f"{ind}result.operands.clear();  // CNTP pn special case")
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rd_cpp}, true));")
+            if size_cpp:
+                code.append(f"{ind}Arrangement _sve_arr = Arrangement::None;")
+                code.append(f"{ind}switch (enc.{member_name}.{size_cpp}) {{")
+                code.append(f"{ind}    case 0: _sve_arr = Arrangement::B; break; case 1: _sve_arr = Arrangement::H; break;")
+                code.append(f"{ind}    case 2: _sve_arr = Arrangement::S; break; case 3: _sve_arr = Arrangement::D; break;")
+                code.append(f"{ind}}}")
+                code.append(f"{ind}{{ Operand op(OperandType::PredicateNRegister, enc.{member_name}.{pnn_cpp} {pnn_offset}, true); op.arrangement = _sve_arr; result.operands.push_back(op); }}")
+            else:
+                code.append(f"{ind}{{ Operand op(OperandType::PredicateNRegister, enc.{member_name}.{pnn_cpp} {pnn_offset}, true); result.operands.push_back(op); }}")
+            if vl_cpp:
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::SVEVLxImm, enc.{member_name}.{vl_cpp} ? 4u : 2u, true));")
+            code.append(f"{ind}return result;")
+            return code
+
         # WHILE* pn_rr forms: <PNd>.<T>, <Xn>, <Xm>, <vl>
         # (whilele_pn_rr_, whilehs_pn_rr_, whilehi_pn_rr_, whilelo_pn_rr_, whilelt_pn_rr_, whilege_pn_rr_)
-        _while_pn_rr_encs = {'whilele_pn_rr_', 'whilehs_pn_rr_', 'whilehi_pn_rr_', 'whilelo_pn_rr_', 'whilelt_pn_rr_', 'whilege_pn_rr_'}
+        _while_pn_rr_encs = {'whilele_pn_rr_', 'whilehs_pn_rr_', 'whilehi_pn_rr_', 'whilelo_pn_rr_', 'whilelt_pn_rr_', 'whilege_pn_rr_', 'whilegt_pn_rr_', 'whilels_pn_rr_'}
         if encoding_name in _while_pn_rr_encs and 'PNd' in field_map and 'Rn' in field_map and 'Rm' in field_map:
             pnd_cpp = field_map['PNd']['name']
             rn_cpp = field_map['Rn']['name']
@@ -10543,6 +9225,12 @@ class ARM64XMLParser:
                     if needs_narrow:
                         code.append(f'{ind}Arrangement _sve_arr_narrow = enc.{member_name}.{sve_size_field} ? Arrangement::S : Arrangement::H;')
 
+            # QV reductions: full 128-bit vector arrangement for dest
+            _is_qv_mnemonic = mnemonic.upper().endswith('QV')
+            if _is_qv_mnemonic and has_sve_size and sve_size_field:
+                code.append(f'{ind}static const Arrangement _qv_arr_tbl[] = {{Arrangement::B16, Arrangement::H8, Arrangement::S4, Arrangement::D2}};')
+                code.append(f'{ind}Arrangement _qv_arr = _qv_arr_tbl[enc.{member_name}.{sve_size_field} & 3];')
+
             # Emit SVE/predicate operands in template order
             emitted_fields = set()
             _simd_v_emitted = emitted_fields  # shared reference so fallback can check
@@ -10684,7 +9372,11 @@ class ARM64XMLParser:
                     actual_field = _v_scalar_map[field]
                     if actual_field in field_map and not field_map[actual_field]['is_fixed'] and actual_field not in emitted_fields:
                         actual_cpp = field_map[actual_field]['name']
-                        arr_expr = '_sve_arr' if has_sve_size else 'Arrangement::None'
+                        # QV reductions: dest is full 128-bit vector (B16/H8/S4/D2) not scalar
+                        if _is_qv_mnemonic and has_sve_size and sve_size_field:
+                            arr_expr = '_qv_arr'
+                        else:
+                            arr_expr = '_sve_arr' if has_sve_size else 'Arrangement::None'
                         code.append(f"{ind}{{ Operand op(OperandType::VectorRegister, enc.{member_name}.{actual_cpp}, false); op.arrangement = {arr_expr}; result.operands.push_back(op); }}")
                         emitted_fields.add(actual_field)
                     continue
@@ -11026,6 +9718,7 @@ class ARM64XMLParser:
                 elif actual_field in ('Rdn', 'Rda', 'Rd', 'Rn', 'Rm', 'Ra', 'Rt', 'Rs', 'Rt2'):
                     # GP register in SVE template (e.g., CLASTA <R><dn>, <Pg>, <R><dn>, <Zm>.<T>)
                     # Determine register width from 'sf' field or encoding size
+                    # For SVE <R> prefix: size >= 2 → X (64-bit), else W (32-bit)
                     _gp_is_64 = 'is_64bit' if 'sf' in field_map and not field_map['sf']['is_fixed'] else 'true'
                     if 'sf' in field_map and field_map['sf']['is_fixed']:
                         _sf_val = int(field_map['sf']['fixed'], 2) if field_map['sf'].get('fixed') else 0
@@ -11033,6 +9726,10 @@ class ARM64XMLParser:
                     elif 'size' in field_map and field_map['size']['is_fixed'] and field_map['size'].get('fixed'):
                         _sz_val = int(field_map['size']['fixed'], 2)
                         _gp_is_64 = 'true' if _sz_val == 3 else 'false'
+                    elif 'size' in field_map and not field_map['size']['is_fixed']:
+                        # Variable size: determine GP register width at runtime (size >= 2 → 64-bit)
+                        _sz_cpp = field_map['size']['name']
+                        _gp_is_64 = f'(enc.{member_name}.{_sz_cpp} >= 2)'
                     code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{field_cpp_name}, {_gp_is_64}));")
                 elif actual_field in ('Vdn', 'Vda', 'Vd', 'Vn', 'Vm'):
                     # SIMD scalar register in SVE template (e.g., CLASTA <V><dn>, <Pg>, <V><dn>, <Zm>.<T>)
@@ -12165,737 +10862,6 @@ class ARM64XMLParser:
         output_file = test_dir / "test_undef.cpp"
         self._write_file(output_file, code)
         print(f"Generated test_undef.cpp ({len(test_funcs)} undef cases)")
-
-    # ===================================================================
-    # IR Lift API generation
-    # ===================================================================
-
-    def _emit_ir_expr(self, expr) -> str:
-        """Convert a Python ASL IR Expr node to a C++ factory call string."""
-        if expr is None:
-            return 'nullptr'
-        if isinstance(expr, IntLiteral):
-            return f'ir::int_lit({expr.value})'
-        if isinstance(expr, BitLiteral):
-            return f'ir::bit_lit("{expr.bits}")'
-        if isinstance(expr, BoolLiteral):
-            return f'ir::bool_lit({"true" if expr.value else "false"})'
-        if isinstance(expr, Identifier):
-            return f'ir::ident("{expr.name}")'
-        if isinstance(expr, BinOp):
-            l = self._emit_ir_expr(expr.left)
-            r = self._emit_ir_expr(expr.right)
-            bin_op_map = {
-                '||': 'LogicalOr', '&&': 'LogicalAnd',
-                'OR': 'Or', 'XOR': 'Xor', 'EOR': 'Eor', 'AND': 'And',
-                '==': 'Eq', '!=': 'Ne', '<': 'Lt', '>': 'Gt', '<=': 'Le', '>=': 'Ge',
-                '<<': 'Shl', '>>': 'Shr',
-                '+': 'Add', '-': 'Sub', '*': 'Mul',
-                'DIV': 'Div', 'DIVRM': 'DivRm', 'MOD': 'Mod', '^': 'Pow',
-            }
-            kind = bin_op_map.get(expr.op, 'Add')
-            return f'ir::bin_op(ir::BinOpKind::{kind}, {l}, {r})'
-        if isinstance(expr, UnaryOp):
-            operand = self._emit_ir_expr(expr.operand)
-            unary_op_map = {'!': 'Not', 'NOT': 'Not', '-': 'Negate'}
-            kind = unary_op_map.get(expr.op, 'Not')
-            return f'ir::unary_op(ir::UnaryOpKind::{kind}, {operand})'
-        if isinstance(expr, FuncCall):
-            tp_strs = []
-            for tp in expr.type_params:
-                if isinstance(tp, Expr):
-                    tp_strs.append(self._emit_ir_expr(tp))
-                else:
-                    tp_strs.append(f'ir::ident("{tp}")')
-            args = ', '.join(self._emit_ir_expr(a) for a in expr.args)
-            tp_list = ', '.join(tp_strs)
-            return f'ir::func_call("{expr.name}", {{{tp_list}}}, {{{args}}})'
-        if isinstance(expr, BitSlice):
-            base = self._emit_ir_expr(expr.base)
-            hi = self._emit_ir_expr(expr.hi)
-            lo = self._emit_ir_expr(expr.lo)
-            return f'ir::bit_slice({base}, {hi}, {lo}, {"true" if expr.is_width else "false"})'
-        if isinstance(expr, BitConcat):
-            parts = ', '.join(self._emit_ir_expr(p) for p in expr.parts)
-            return f'ir::bit_concat({{{parts}}})'
-        if isinstance(expr, IfExpr):
-            c = self._emit_ir_expr(expr.cond)
-            t = self._emit_ir_expr(expr.then_expr)
-            e = self._emit_ir_expr(expr.else_expr)
-            return f'ir::if_expr({c}, {t}, {e})'
-        if isinstance(expr, FieldAccess):
-            base = self._emit_ir_expr(expr.base)
-            return f'ir::field_access({base}, "{expr.field_name}")'
-        if isinstance(expr, FieldAccessMulti):
-            base = self._emit_ir_expr(expr.base)
-            fields = ', '.join(f'"{f}"' for f in expr.field_names)
-            return f'ir::field_access_multi({base}, {{{fields}}})'
-        if isinstance(expr, SetLiteral):
-            elems = ', '.join(f'"{e}"' for e in expr.elements)
-            return f'ir::set_lit({{{elems}}})'
-        if isinstance(expr, InExpr):
-            val = self._emit_ir_expr(expr.value)
-            col = self._emit_ir_expr(expr.collection)
-            return f'ir::in_expr({val}, {col})'
-        if isinstance(expr, Arbitrary):
-            return 'ir::ident("UNKNOWN")'
-        return f'ir::ident("/*unknown_expr*/")'
-
-    _ir_counter = 0
-
-    def _ir_uid(self) -> int:
-        """Return a unique ID for generating unique C++ variable names."""
-        self._ir_counter += 1
-        return self._ir_counter
-
-    def _emit_ir_stmts(self, stmts_list, vec_name: str, indent: int) -> List[str]:
-        """Emit C++ code that builds a vector of StmtPtrs into vec_name."""
-        lines = []
-        for stmt in stmts_list:
-            lines.extend(self._emit_ir_stmt(stmt, vec_name, indent))
-        return lines
-
-    def _emit_ir_stmt(self, stmt, vec_name: str = 'stmts', indent: int = 1) -> List[str]:
-        """Convert a Python ASL IR Stmt node to C++ lines that push_back StmtPtrs into vec_name."""
-        ind = '    ' * indent
-        lines = []
-        if isinstance(stmt, LetDecl):
-            init = self._emit_ir_expr(stmt.init)
-            type_str = self._asl_type_str(stmt.asl_type)
-            lines.append(f'{ind}{vec_name}.push_back(ir::let_decl("{stmt.name}", "{type_str}", {init}));')
-        elif isinstance(stmt, VarDecl):
-            init = self._emit_ir_expr(stmt.init)
-            type_str = self._asl_type_str(stmt.asl_type)
-            lines.append(f'{ind}{vec_name}.push_back(ir::var_decl("{stmt.name}", "{type_str}", {init}));')
-        elif isinstance(stmt, Assign):
-            target = self._emit_ir_expr(stmt.target)
-            value = self._emit_ir_expr(stmt.value)
-            lines.append(f'{ind}{vec_name}.push_back(ir::assign({target}, {value}));')
-        elif isinstance(stmt, TupleAssign):
-            targets = []
-            for t in stmt.targets:
-                if t is None:
-                    targets.append('"-"')
-                elif isinstance(t, str):
-                    targets.append(f'"{t}"')
-                elif isinstance(t, Identifier):
-                    targets.append(f'"{t.name}"')
-                else:
-                    targets.append(f'"{t}"')
-            targets_str = ', '.join(targets)
-            value = self._emit_ir_expr(stmt.value)
-            lines.append(f'{ind}{vec_name}.push_back(ir::tuple_assign({{{targets_str}}}, {value}));')
-        elif isinstance(stmt, IfStmt):
-            uid = self._ir_uid()
-            br_name = f'br_{uid}'
-            lines.append(f'{ind}{{')
-            lines.append(f'{ind}    std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> {br_name};')
-            for cond, body in stmt.branches:
-                cond_expr = self._emit_ir_expr(cond) if cond is not None else 'nullptr'
-                body_name = f'bb_{self._ir_uid()}'
-                lines.append(f'{ind}    {{')
-                lines.append(f'{ind}        std::vector<ir::StmtPtr> {body_name};')
-                lines.extend(self._emit_ir_stmts(body, body_name, indent + 2))
-                lines.append(f'{ind}        {br_name}.push_back({{ {cond_expr}, std::move({body_name}) }});')
-                lines.append(f'{ind}    }}')
-            lines.append(f'{ind}    {vec_name}.push_back(ir::if_stmt(std::move({br_name})));')
-            lines.append(f'{ind}}}')
-        elif isinstance(stmt, CaseStmt):
-            case_expr = self._emit_ir_expr(stmt.expr)
-            uid = self._ir_uid()
-            cs_name = f'cs_{uid}'
-            lines.append(f'{ind}{{')
-            lines.append(f'{ind}    std::vector<std::pair<ir::ExprPtr, std::vector<ir::StmtPtr>>> {cs_name};')
-            for pat, body in stmt.cases:
-                pat_expr = 'nullptr' if pat == 'otherwise' else self._emit_ir_expr(pat)
-                body_name = f'cb_{self._ir_uid()}'
-                lines.append(f'{ind}    {{')
-                lines.append(f'{ind}        std::vector<ir::StmtPtr> {body_name};')
-                lines.extend(self._emit_ir_stmts(body, body_name, indent + 2))
-                lines.append(f'{ind}        {cs_name}.push_back({{ {pat_expr}, std::move({body_name}) }});')
-                lines.append(f'{ind}    }}')
-            lines.append(f'{ind}    {vec_name}.push_back(ir::case_stmt({case_expr}, std::move({cs_name})));')
-            lines.append(f'{ind}}}')
-        elif isinstance(stmt, ForStmt):
-            start = self._emit_ir_expr(stmt.start)
-            end = self._emit_ir_expr(stmt.end)
-            body_name = f'fb_{self._ir_uid()}'
-            lines.append(f'{ind}{{')
-            lines.append(f'{ind}    std::vector<ir::StmtPtr> {body_name};')
-            lines.extend(self._emit_ir_stmts(stmt.body, body_name, indent + 1))
-            lines.append(f'{ind}    {vec_name}.push_back(ir::for_stmt("{stmt.var}", {start}, {end}, "{stmt.direction}", std::move({body_name})));')
-            lines.append(f'{ind}}}')
-        elif isinstance(stmt, WhileStmt):
-            cond = self._emit_ir_expr(stmt.cond)
-            body_name = f'wb_{self._ir_uid()}'
-            lines.append(f'{ind}{{')
-            lines.append(f'{ind}    std::vector<ir::StmtPtr> {body_name};')
-            lines.extend(self._emit_ir_stmts(stmt.body, body_name, indent + 1))
-            lines.append(f'{ind}    {vec_name}.push_back(ir::while_stmt({cond}, std::move({body_name})));')
-            lines.append(f'{ind}}}')
-        elif isinstance(stmt, ExprStmt):
-            expr = self._emit_ir_expr(stmt.expr)
-            lines.append(f'{ind}{vec_name}.push_back(ir::expr_stmt({expr}));')
-        elif isinstance(stmt, AssertStmt):
-            cond = self._emit_ir_expr(stmt.cond)
-            lines.append(f'{ind}{vec_name}.push_back(ir::assert_stmt({cond}));')
-        elif isinstance(stmt, Undefined):
-            lines.append(f'{ind}{vec_name}.push_back(ir::undefined());')
-        elif isinstance(stmt, Unpredictable):
-            lines.append(f'{ind}{vec_name}.push_back(ir::unpredictable());')
-        elif isinstance(stmt, ReturnStmt):
-            val = self._emit_ir_expr(stmt.value) if stmt.value else 'nullptr'
-            lines.append(f'{ind}{vec_name}.push_back(ir::return_stmt({val}));')
-        elif isinstance(stmt, EndOfDecode):
-            pass  # Skip EndOfDecode markers
-        else:
-            lines.append(f'{ind}// TODO: unhandled stmt type {type(stmt).__name__}')
-        return lines
-
-    def _asl_type_str(self, asl_type) -> str:
-        """Convert ASL type to string representation."""
-        if asl_type is None:
-            return ''
-        if isinstance(asl_type, BitVecType):
-            return f'bits({asl_type.width})'
-        if isinstance(asl_type, IntegerType):
-            if asl_type.width:
-                return f'integer{{{asl_type.width}}}'
-            return 'integer'
-        if isinstance(asl_type, BooleanType):
-            return 'boolean'
-        if isinstance(asl_type, OpaqueType):
-            return asl_type.name
-        if isinstance(asl_type, ArrayType):
-            elem = self._asl_type_str(asl_type.element) if asl_type.element else '?'
-            return f'array[{asl_type.size}] of {elem}'
-        return str(asl_type)
-
-    def _generate_ir_header(self, include_dir: Path):
-        """Generate include/ir.hpp with IR types, factory functions, Tree struct, lift() declaration."""
-        code = self._license_header()
-        code.append("#pragma once")
-        code.append("")
-        code.append("#include <cstdint>")
-        code.append("#include <memory>")
-        code.append("#include <string>")
-        code.append("#include <vector>")
-        code.append("#include <map>")
-        code.append("#include <optional>")
-        code.append("#include <utility>")
-        code.append("")
-        code.append("namespace veda64 {")
-        code.append("namespace ir {")
-        code.append("")
-        code.append("struct Expr;")
-        code.append("struct Stmt;")
-        code.append("using ExprPtr = std::shared_ptr<Expr>;")
-        code.append("using StmtPtr = std::shared_ptr<Stmt>;")
-        code.append("")
-
-        # BinOpKind enum
-        code.append("enum class BinOpKind {")
-        code.append("    // Logical")
-        code.append("    LogicalOr,   // ||")
-        code.append("    LogicalAnd,  // &&")
-        code.append("    // Bitwise")
-        code.append("    Or,          // OR")
-        code.append("    Xor,         // XOR")
-        code.append("    Eor,         // EOR (alias for XOR in ASL)")
-        code.append("    And,         // AND")
-        code.append("    // Comparison")
-        code.append("    Eq,          // ==")
-        code.append("    Ne,          // !=")
-        code.append("    Lt,          // <")
-        code.append("    Gt,          // >")
-        code.append("    Le,          // <=")
-        code.append("    Ge,          // >=")
-        code.append("    // Shift")
-        code.append("    Shl,         // <<")
-        code.append("    Shr,         // >>")
-        code.append("    // Arithmetic")
-        code.append("    Add,         // +")
-        code.append("    Sub,         // -")
-        code.append("    Mul,         // *")
-        code.append("    Div,         // DIV")
-        code.append("    DivRm,       // DIVRM")
-        code.append("    Mod,         // MOD")
-        code.append("    Pow,         // ^")
-        code.append("};")
-        code.append("")
-
-        # UnaryOpKind enum
-        code.append("enum class UnaryOpKind {")
-        code.append("    Not,       // ! and NOT")
-        code.append("    Negate,    // -")
-        code.append("};")
-        code.append("")
-
-        # ExprKind enum
-        code.append("enum class ExprKind {")
-        code.append("    IntLit, BitLit, BoolLit, Ident, BinOp, UnaryOp,")
-        code.append("    FuncCall, BitSlice, BitConcat, IfExpr, FieldAccess,")
-        code.append("    FieldAccessMulti, SetLit, InExpr")
-        code.append("};")
-        code.append("")
-
-        # Expr struct
-        code.append("struct Expr {")
-        code.append("    ExprKind kind;")
-        code.append("    int64_t int_val = 0;")
-        code.append("    std::string str_val;")
-        code.append("    bool bool_val = false;")
-        code.append("    BinOpKind bin_op_kind = BinOpKind::Add;")
-        code.append("    UnaryOpKind unary_op_kind = UnaryOpKind::Not;")
-        code.append("    std::vector<ExprPtr> children;")
-        code.append("    std::vector<std::string> str_list;")
-        code.append("    ExprPtr hi, lo;")
-        code.append("    bool flag = false;")
-        code.append("    explicit Expr(ExprKind k) : kind(k) {}")
-        code.append("};")
-        code.append("")
-
-        # StmtKind enum
-        code.append("enum class StmtKind {")
-        code.append("    LetDecl, VarDecl, Assign, TupleAssign, IfStmt,")
-        code.append("    CaseStmt, ForStmt, WhileStmt, ExprStmt, Assert,")
-        code.append("    Return, Undefined, Unpredictable")
-        code.append("};")
-        code.append("")
-
-        # Stmt struct
-        code.append("struct Stmt {")
-        code.append("    StmtKind kind;")
-        code.append("    std::string name;")
-        code.append("    std::string type_str;")
-        code.append("    ExprPtr expr;")
-        code.append("    ExprPtr value;")
-        code.append("    std::vector<StmtPtr> body;")
-        code.append("    std::vector<std::pair<ExprPtr, std::vector<StmtPtr>>> branches;")
-        code.append("    std::vector<std::string> targets;")
-        code.append("    std::string direction;")
-        code.append("    ExprPtr range_end;")
-        code.append("    explicit Stmt(StmtKind k) : kind(k) {}")
-        code.append("};")
-        code.append("")
-
-        # Factory helpers - Expressions
-        code.append("// Expression factory helpers")
-        code.append("inline ExprPtr int_lit(int64_t v) {")
-        code.append("    auto e = std::make_shared<Expr>(ExprKind::IntLit);")
-        code.append("    e->int_val = v;")
-        code.append("    return e;")
-        code.append("}")
-        code.append("")
-        code.append("inline ExprPtr bit_lit(const std::string& bits) {")
-        code.append("    auto e = std::make_shared<Expr>(ExprKind::BitLit);")
-        code.append("    e->str_val = bits;")
-        code.append("    return e;")
-        code.append("}")
-        code.append("")
-        code.append("inline ExprPtr bool_lit(bool v) {")
-        code.append("    auto e = std::make_shared<Expr>(ExprKind::BoolLit);")
-        code.append("    e->bool_val = v;")
-        code.append("    return e;")
-        code.append("}")
-        code.append("")
-        code.append("inline ExprPtr ident(const std::string& name) {")
-        code.append("    auto e = std::make_shared<Expr>(ExprKind::Ident);")
-        code.append("    e->str_val = name;")
-        code.append("    return e;")
-        code.append("}")
-        code.append("")
-        code.append("inline ExprPtr bin_op(BinOpKind op, ExprPtr left, ExprPtr right) {")
-        code.append("    auto e = std::make_shared<Expr>(ExprKind::BinOp);")
-        code.append("    e->bin_op_kind = op;")
-        code.append("    e->children = {std::move(left), std::move(right)};")
-        code.append("    return e;")
-        code.append("}")
-        code.append("")
-        code.append("inline ExprPtr unary_op(UnaryOpKind op, ExprPtr operand) {")
-        code.append("    auto e = std::make_shared<Expr>(ExprKind::UnaryOp);")
-        code.append("    e->unary_op_kind = op;")
-        code.append("    e->children = {std::move(operand)};")
-        code.append("    return e;")
-        code.append("}")
-        code.append("")
-        code.append("inline ExprPtr func_call(const std::string& name, std::vector<ExprPtr> type_params, std::vector<ExprPtr> args) {")
-        code.append("    auto e = std::make_shared<Expr>(ExprKind::FuncCall);")
-        code.append("    e->str_val = name;")
-        code.append("    e->str_list.reserve(type_params.size());")
-        code.append("    // Store type_params as first N children, then args")
-        code.append("    e->int_val = static_cast<int64_t>(type_params.size());")
-        code.append("    e->children = std::move(type_params);")
-        code.append("    for (auto& a : args) e->children.push_back(std::move(a));")
-        code.append("    return e;")
-        code.append("}")
-        code.append("")
-        code.append("inline ExprPtr bit_slice(ExprPtr base, ExprPtr hi, ExprPtr lo, bool is_width = false) {")
-        code.append("    auto e = std::make_shared<Expr>(ExprKind::BitSlice);")
-        code.append("    e->children = {std::move(base)};")
-        code.append("    e->hi = std::move(hi);")
-        code.append("    e->lo = std::move(lo);")
-        code.append("    e->flag = is_width;")
-        code.append("    return e;")
-        code.append("}")
-        code.append("")
-        code.append("inline ExprPtr bit_concat(std::vector<ExprPtr> parts) {")
-        code.append("    auto e = std::make_shared<Expr>(ExprKind::BitConcat);")
-        code.append("    e->children = std::move(parts);")
-        code.append("    return e;")
-        code.append("}")
-        code.append("")
-        code.append("inline ExprPtr if_expr(ExprPtr cond, ExprPtr then_e, ExprPtr else_e) {")
-        code.append("    auto e = std::make_shared<Expr>(ExprKind::IfExpr);")
-        code.append("    e->children = {std::move(cond), std::move(then_e), std::move(else_e)};")
-        code.append("    return e;")
-        code.append("}")
-        code.append("")
-        code.append("inline ExprPtr field_access(ExprPtr base, const std::string& field) {")
-        code.append("    auto e = std::make_shared<Expr>(ExprKind::FieldAccess);")
-        code.append("    e->str_val = field;")
-        code.append("    e->children = {std::move(base)};")
-        code.append("    return e;")
-        code.append("}")
-        code.append("")
-        code.append("inline ExprPtr field_access_multi(ExprPtr base, std::vector<std::string> fields) {")
-        code.append("    auto e = std::make_shared<Expr>(ExprKind::FieldAccessMulti);")
-        code.append("    e->str_list = std::move(fields);")
-        code.append("    e->children = {std::move(base)};")
-        code.append("    return e;")
-        code.append("}")
-        code.append("")
-        code.append("inline ExprPtr set_lit(std::vector<std::string> elements) {")
-        code.append("    auto e = std::make_shared<Expr>(ExprKind::SetLit);")
-        code.append("    e->str_list = std::move(elements);")
-        code.append("    return e;")
-        code.append("}")
-        code.append("")
-        code.append("inline ExprPtr in_expr(ExprPtr val, ExprPtr collection) {")
-        code.append("    auto e = std::make_shared<Expr>(ExprKind::InExpr);")
-        code.append("    e->children = {std::move(val), std::move(collection)};")
-        code.append("    return e;")
-        code.append("}")
-        code.append("")
-
-        # to_string for operator enums
-        code.append("#ifndef VEDA64_NO_STRINGS")
-        code.append("inline const char* to_string(BinOpKind op) {")
-        code.append("    switch (op) {")
-        for val, sym in [
-            ("LogicalOr", "||"), ("LogicalAnd", "&&"),
-            ("Or", "OR"), ("Xor", "XOR"), ("Eor", "EOR"), ("And", "AND"),
-            ("Eq", "=="), ("Ne", "!="), ("Lt", "<"), ("Gt", ">"), ("Le", "<="), ("Ge", ">="),
-            ("Shl", "<<"), ("Shr", ">>"),
-            ("Add", "+"), ("Sub", "-"), ("Mul", "*"),
-            ("Div", "DIV"), ("DivRm", "DIVRM"), ("Mod", "MOD"), ("Pow", "^"),
-        ]:
-            code.append(f'    case BinOpKind::{val}: return "{sym}";')
-        code.append("    }")
-        code.append('    return "?";')
-        code.append("}")
-        code.append("")
-        code.append("inline const char* to_string(UnaryOpKind op) {")
-        code.append("    switch (op) {")
-        code.append('    case UnaryOpKind::Not: return "NOT";')
-        code.append('    case UnaryOpKind::Negate: return "-";')
-        code.append("    }")
-        code.append('    return "?";')
-        code.append("}")
-        code.append("#endif // VEDA64_NO_STRINGS")
-        code.append("")
-
-        # Factory helpers - Statements
-        code.append("// Statement factory helpers")
-        code.append("inline StmtPtr let_decl(const std::string& name, const std::string& type_str, ExprPtr init) {")
-        code.append("    auto s = std::make_shared<Stmt>(StmtKind::LetDecl);")
-        code.append("    s->name = name;")
-        code.append("    s->type_str = type_str;")
-        code.append("    s->expr = std::move(init);")
-        code.append("    return s;")
-        code.append("}")
-        code.append("")
-        code.append("inline StmtPtr var_decl(const std::string& name, const std::string& type_str, ExprPtr init) {")
-        code.append("    auto s = std::make_shared<Stmt>(StmtKind::VarDecl);")
-        code.append("    s->name = name;")
-        code.append("    s->type_str = type_str;")
-        code.append("    s->expr = std::move(init);")
-        code.append("    return s;")
-        code.append("}")
-        code.append("")
-        code.append("inline StmtPtr assign(ExprPtr target, ExprPtr value) {")
-        code.append("    auto s = std::make_shared<Stmt>(StmtKind::Assign);")
-        code.append("    s->expr = std::move(target);")
-        code.append("    s->value = std::move(value);")
-        code.append("    return s;")
-        code.append("}")
-        code.append("")
-        code.append("inline StmtPtr tuple_assign(std::vector<std::string> targets, ExprPtr value) {")
-        code.append("    auto s = std::make_shared<Stmt>(StmtKind::TupleAssign);")
-        code.append("    s->targets = std::move(targets);")
-        code.append("    s->value = std::move(value);")
-        code.append("    return s;")
-        code.append("}")
-        code.append("")
-        code.append("inline StmtPtr if_stmt(std::vector<std::pair<ExprPtr, std::vector<StmtPtr>>> branches) {")
-        code.append("    auto s = std::make_shared<Stmt>(StmtKind::IfStmt);")
-        code.append("    s->branches = std::move(branches);")
-        code.append("    return s;")
-        code.append("}")
-        code.append("")
-        code.append("inline StmtPtr case_stmt(ExprPtr expr, std::vector<std::pair<ExprPtr, std::vector<StmtPtr>>> cases) {")
-        code.append("    auto s = std::make_shared<Stmt>(StmtKind::CaseStmt);")
-        code.append("    s->expr = std::move(expr);")
-        code.append("    s->branches = std::move(cases);")
-        code.append("    return s;")
-        code.append("}")
-        code.append("")
-        code.append("inline StmtPtr for_stmt(const std::string& var, ExprPtr start, ExprPtr end, const std::string& dir, std::vector<StmtPtr> body) {")
-        code.append("    auto s = std::make_shared<Stmt>(StmtKind::ForStmt);")
-        code.append("    s->name = var;")
-        code.append("    s->expr = std::move(start);")
-        code.append("    s->range_end = std::move(end);")
-        code.append("    s->direction = dir;")
-        code.append("    s->body = std::move(body);")
-        code.append("    return s;")
-        code.append("}")
-        code.append("")
-        code.append("inline StmtPtr while_stmt(ExprPtr cond, std::vector<StmtPtr> body) {")
-        code.append("    auto s = std::make_shared<Stmt>(StmtKind::WhileStmt);")
-        code.append("    s->expr = std::move(cond);")
-        code.append("    s->body = std::move(body);")
-        code.append("    return s;")
-        code.append("}")
-        code.append("")
-        code.append("inline StmtPtr expr_stmt(ExprPtr e) {")
-        code.append("    auto s = std::make_shared<Stmt>(StmtKind::ExprStmt);")
-        code.append("    s->expr = std::move(e);")
-        code.append("    return s;")
-        code.append("}")
-        code.append("")
-        code.append("inline StmtPtr assert_stmt(ExprPtr cond) {")
-        code.append("    auto s = std::make_shared<Stmt>(StmtKind::Assert);")
-        code.append("    s->expr = std::move(cond);")
-        code.append("    return s;")
-        code.append("}")
-        code.append("")
-        code.append("inline StmtPtr return_stmt(ExprPtr val = nullptr) {")
-        code.append("    auto s = std::make_shared<Stmt>(StmtKind::Return);")
-        code.append("    s->expr = std::move(val);")
-        code.append("    return s;")
-        code.append("}")
-        code.append("")
-        code.append("inline StmtPtr undefined() {")
-        code.append("    return std::make_shared<Stmt>(StmtKind::Undefined);")
-        code.append("}")
-        code.append("")
-        code.append("inline StmtPtr unpredictable() {")
-        code.append("    return std::make_shared<Stmt>(StmtKind::Unpredictable);")
-        code.append("}")
-        code.append("")
-
-        # Tree struct
-        code.append("// Lifted IR tree for a single instruction")
-        code.append("struct Tree {")
-        code.append("    std::string encoding_name;")
-        code.append("    std::map<std::string, uint32_t> fields;")
-        code.append("    std::vector<StmtPtr> decode_stmts;")
-        code.append("    std::vector<StmtPtr> execute_stmts;")
-        code.append("};")
-        code.append("")
-
-        # lift() declaration
-        code.append("// Lift an ARM64 instruction to its ASL IR tree")
-        code.append("std::optional<Tree> lift(uint32_t insn);")
-        code.append("")
-
-        # Total encoding count
-        code.append(f"// Total encoding count: {self._next_encoding_id - 1}")
-        code.append(f"constexpr uint16_t ENCODING_COUNT = {self._next_encoding_id - 1};")
-        code.append("")
-
-        code.append("} // namespace ir")
-        code.append("} // namespace veda64")
-
-        self._write_file(include_dir / "ir.hpp", code)
-        print(f"Generated ir.hpp")
-
-    def _generate_ir_impl(self, include_dir: Path, ir_dir: Path):
-        """Generate lib/ir/ir.cpp and per-group lib/ir/<group>.cpp files."""
-
-        # Group encodings by format group
-        groups: Dict[str, List] = {}
-        enc_to_group: Dict[str, str] = {}
-        for instr in self.instructions:
-            for enc in instr.encodings:
-                group = enc.format_group or 'misc'
-                if group not in groups:
-                    groups[group] = []
-                if enc.name not in enc_to_group:
-                    groups[group].append(enc)
-                    enc_to_group[enc.name] = group
-
-        # Generate per-group files
-        builder_funcs = {}  # encoding_id → func_name
-        for group_name in sorted(groups.keys()):
-            encs = groups[group_name]
-            code = self._license_header()
-            code.append('#include "ir.hpp"')
-            code.append("")
-            code.append("namespace veda64 {")
-            code.append("namespace ir {")
-            code.append("")
-
-            seen = set()
-            emitted = 0
-            for enc in encs:
-                if enc.name in seen:
-                    continue
-                seen.add(enc.name)
-
-                enc_id = self._encoding_ids.get(enc.name, 0)
-                if enc_id == 0:
-                    continue
-
-                func_name = f'build_ir_{enc.name}'.replace('.', '_').replace('-', '_').replace('/', '_')
-                builder_funcs[enc_id] = func_name
-
-                try:
-                    code.extend(self._generate_ir_builder(enc, func_name))
-                    code.append("")
-                    emitted += 1
-                except Exception as e:
-                    code.append(f"// Failed to generate {func_name}: {e}")
-                    code.append(f"Tree {func_name}(uint32_t insn) {{")
-                    code.append(f'    Tree tree;')
-                    code.append(f'    tree.encoding_name = "{enc.name}";')
-                    # Still extract fields
-                    for fname, finfo in enc.fields.items():
-                        if fname.startswith('_unnamed'):
-                            continue
-                        hibit = finfo.get('hibit', 0)
-                        width = finfo.get('width', 1)
-                        lobit = hibit - width + 1
-                        mask = (1 << width) - 1
-                        code.append(f'    tree.fields["{fname}"] = (insn >> {lobit}) & 0x{mask:X};')
-                    code.append(f'    return tree;')
-                    code.append(f'}}')
-                    code.append("")
-
-            code.append("} // namespace ir")
-            code.append("} // namespace veda64")
-
-            self._write_file(ir_dir / f"{group_name}.cpp", code)
-            print(f"  {group_name}.cpp: {emitted} builders")
-
-        # Generate main ir.cpp with dispatch table and lift()
-        code = self._license_header()
-        code.append('#include "veda64.hpp"')
-        code.append('#include "ir.hpp"')
-        code.append("")
-        code.append("namespace veda64 {")
-        code.append("namespace ir {")
-        code.append("")
-
-        # Forward declare all builder functions
-        for enc_id in sorted(builder_funcs.keys()):
-            func_name = builder_funcs[enc_id]
-            code.append(f"Tree {func_name}(uint32_t insn);")
-        code.append("")
-
-        # Dispatch table
-        max_id = max(builder_funcs.keys()) if builder_funcs else 0
-        code.append(f"using BuilderFn = Tree(*)(uint32_t);")
-        code.append(f"static BuilderFn dispatch_table[{max_id + 1}] = {{")
-        code.append(f"    nullptr, // ID 0 (unused)")
-        for i in range(1, max_id + 1):
-            if i in builder_funcs:
-                code.append(f"    {builder_funcs[i]}, // {i}")
-            else:
-                code.append(f"    nullptr, // {i}")
-        code.append("};")
-        code.append("")
-
-        # lift() implementation
-        code.append("std::optional<Tree> lift(uint32_t insn) {")
-        code.append("    auto decoded = decode(insn);")
-        code.append("    if (!decoded) return std::nullopt;")
-        code.append(f"    uint16_t id = decoded->encoding_id;")
-        code.append(f"    if (id == 0 || id > {max_id}) return std::nullopt;")
-        code.append(f"    auto fn = dispatch_table[id];")
-        code.append(f"    if (!fn) return std::nullopt;")
-        code.append(f"    return fn(insn);")
-        code.append("}")
-        code.append("")
-
-        code.append("} // namespace ir")
-        code.append("} // namespace veda64")
-
-        self._write_file(ir_dir / "ir.cpp", code)
-        print(f"Generated ir.cpp with {len(builder_funcs)} dispatch entries")
-
-    def _generate_ir_builder(self, enc, func_name: str) -> List[str]:
-        """Generate a single IR builder function for an encoding."""
-        code = []
-        code.append(f"Tree {func_name}(uint32_t insn) {{")
-        self._ir_counter = 0  # Reset per builder for clean variable names
-        code.append(f'    Tree tree;')
-        code.append(f'    tree.encoding_name = "{enc.name}";')
-        code.append("")
-
-        # Extract fields
-        for fname, finfo in enc.fields.items():
-            if fname.startswith('_unnamed'):
-                continue
-            hibit = finfo.get('hibit', 0)
-            width = finfo.get('width', 1)
-            lobit = hibit - width + 1
-            mask = (1 << width) - 1
-            code.append(f'    tree.fields["{fname}"] = (insn >> {lobit}) & 0x{mask:X};')
-
-        code.append("")
-
-        # Decode statements
-        if enc.decode_ps:
-            try:
-                decode_ir = self._parse_asl(enc.decode_ps)
-                code.append("    // Decode pseudocode")
-                code.append("    {")
-                code.append("        auto& stmts = tree.decode_stmts;")
-                for stmt in decode_ir:
-                    code.extend(self._emit_ir_stmt(stmt, indent=2))
-                code.append("    }")
-                code.append("")
-            except Exception as e:
-                code.append(f"    // Failed to parse decode: {e}")
-                code.append("")
-
-        # Execute statements
-        if enc.execute_ps:
-            try:
-                exec_ir = self._parse_asl(enc.execute_ps)
-                code.append("    // Execute pseudocode")
-                code.append("    {")
-                code.append("        auto& stmts = tree.execute_stmts;")
-                for stmt in exec_ir:
-                    code.extend(self._emit_ir_stmt(stmt, indent=2))
-                code.append("    }")
-                code.append("")
-            except Exception as e:
-                code.append(f"    // Failed to parse execute: {e}")
-                code.append("")
-
-        code.append("    return tree;")
-        code.append("}")
-        return code
-
-    def generate_ir_files(self, include_dir: Path, lib_dir: Path):
-        """Generate IR header and implementation files."""
-        print(f"\n=== Generating IR Lift Files ===")
-        ir_dir = lib_dir / "ir"
-        ir_dir.mkdir(exist_ok=True)
-        self._generate_ir_header(include_dir)
-        self._generate_ir_impl(include_dir, ir_dir)
 
     def generate_disasm_tool(self, tools_dir: Path):
         """Generate the veda64-disasm tool."""
@@ -15487,9 +13453,10 @@ class ARM64XMLParser:
         code.append("    return result;")
         code.append("}")
         code.append("")
-        code.append("bool install(void* target) {")
-        code.append("    auto status = hook::install(target, reinterpret_cast<void*>(&detour_func),")
-        code.append("                                reinterpret_cast<void**>(&original_func), &hook_handle);")
+        code.append("using TargetFunc = int (*)(int, int);")
+        code.append("")
+        code.append("bool install(TargetFunc target) {")
+        code.append("    auto status = hook::install(target, &detour_func, &original_func, &hook_handle);")
         code.append("    if (status != hook::HookStatus::Success) return false;")
         code.append("    return hook::enable(hook_handle) == hook::HookStatus::Success;")
         code.append("}")
@@ -15538,10 +13505,11 @@ class ARM64XMLParser:
         code.append("    return result;")
         code.append("}")
         code.append("")
-        code.append("bool install(void* target, size_t max_size) {")
+        code.append("using AllocFunc = void* (*)(size_t);")
+        code.append("")
+        code.append("bool install(AllocFunc target, size_t max_size) {")
         code.append("    max_alloc_size = max_size;")
-        code.append("    auto status = hook::install(target, reinterpret_cast<void*>(&detour_alloc),")
-        code.append("                                reinterpret_cast<void**>(&original_alloc), &hook_handle);")
+        code.append("    auto status = hook::install(target, &detour_alloc, &original_alloc, &hook_handle);")
         code.append("    if (status != hook::HookStatus::Success) return false;")
         code.append("    return hook::enable(hook_handle) == hook::HookStatus::Success;")
         code.append("}")
@@ -15569,13 +13537,14 @@ class ARM64XMLParser:
         code.append("    return force_result ? forced_value : original_func();")
         code.append("}")
         code.append("")
+        code.append("using IsDebuggerPresent_t = BOOL (WINAPI *)();")
+        code.append("")
         code.append("bool install() {")
         code.append("    HMODULE kernel32 = GetModuleHandleA(\"kernel32.dll\");")
         code.append("    if (!kernel32) return false;")
-        code.append("    void* target = GetProcAddress(kernel32, \"IsDebuggerPresent\");")
+        code.append("    auto target = reinterpret_cast<IsDebuggerPresent_t>(GetProcAddress(kernel32, \"IsDebuggerPresent\"));")
         code.append("    if (!target) return false;")
-        code.append("    auto status = hook::install(target, reinterpret_cast<void*>(&detour_func),")
-        code.append("                                reinterpret_cast<void**>(&original_func), &hook_handle);")
+        code.append("    auto status = hook::install(target, &detour_func, &original_func, &hook_handle);")
         code.append("    if (status != hook::HookStatus::Success) return false;")
         code.append("    return hook::enable(hook_handle) == hook::HookStatus::Success;")
         code.append("}")
@@ -15615,10 +13584,9 @@ class ARM64XMLParser:
         code.append("bool install() {")
         code.append("    HMODULE kernel32 = GetModuleHandleA(\"kernel32.dll\");")
         code.append("    if (!kernel32) return false;")
-        code.append("    void* target = GetProcAddress(kernel32, \"CreateFileA\");")
+        code.append("    auto target = reinterpret_cast<CreateFileAFunc>(GetProcAddress(kernel32, \"CreateFileA\"));")
         code.append("    if (!target) return false;")
-        code.append("    auto status = hook::install(target, reinterpret_cast<void*>(&detour_func),")
-        code.append("                                reinterpret_cast<void**>(&original_func), &hook_handle);")
+        code.append("    auto status = hook::install(target, &detour_func, &original_func, &hook_handle);")
         code.append("    if (status != hook::HookStatus::Success) return false;")
         code.append("    return hook::enable(hook_handle) == hook::HookStatus::Success;")
         code.append("}")
@@ -15659,9 +13627,8 @@ class ARM64XMLParser:
         code.append("    return result;")
         code.append("}")
         code.append("")
-        code.append("bool install(void* target) {")
-        code.append("    auto status = hook::install(target, reinterpret_cast<void*>(&detour_func),")
-        code.append("                                reinterpret_cast<void**>(&original_func), &hook_handle);")
+        code.append("bool install(TargetFuncType target) {")
+        code.append("    auto status = hook::install(target, &detour_func, &original_func, &hook_handle);")
         code.append("    if (status != hook::HookStatus::Success) return false;")
         code.append("    return hook::enable(hook_handle) == hook::HookStatus::Success;")
         code.append("}")
@@ -15700,13 +13667,14 @@ class ARM64XMLParser:
         code.append("    return original_sleep(ms);")
         code.append("}")
         code.append("")
+        code.append("using Sleep_t = DWORD (WINAPI *)(DWORD);")
+        code.append("")
         code.append("bool install() {")
         code.append("    HMODULE kernel32 = GetModuleHandleA(\"kernel32.dll\");")
         code.append("    if (!kernel32) return false;")
-        code.append("    void* target = GetProcAddress(kernel32, \"Sleep\");")
+        code.append("    auto target = reinterpret_cast<Sleep_t>(GetProcAddress(kernel32, \"Sleep\"));")
         code.append("    if (!target) return false;")
-        code.append("    auto status = hook::install(target, reinterpret_cast<void*>(&detour_sleep),")
-        code.append("                                reinterpret_cast<void**>(&original_sleep), &hook_handle);")
+        code.append("    auto status = hook::install(target, &detour_sleep, &original_sleep, &hook_handle);")
         code.append("    if (status != hook::HookStatus::Success) return false;")
         code.append("    return hook::enable(hook_handle) == hook::HookStatus::Success;")
         code.append("}")
@@ -15876,90 +13844,11 @@ def main():
     tools_dir = base_dir / "tools"
     parser.generate_disasm_tool(tools_dir)
 
-    # Generate IR lift files
-    parser.generate_ir_files(include_dir, lib_dir)
-
     # Generate Python bindings
     print(f"\n=== Generating Python Bindings ===")
     parser.generate_python_bindings(base_dir)
 
     # Validate ASL IR parser against all encodings
-    print(f"\n=== Validating ASL IR Parser ===")
-    success, fail, total_stmts = 0, 0, 0
-    fail_examples = []
-    # Also validate IR-based decode_ops matches regex-based
-    ops_match, ops_mismatch = 0, 0
-    for instr in parser.instructions:
-        for enc in instr.encodings:
-            if enc.decode_ps:
-                try:
-                    ir = parser._parse_asl(enc.decode_ps)
-                    success += 1
-                    total_stmts += len(ir)
-                    # Compare decode_ops
-                    regex_ops = parser._parse_asl_decode_ops(enc.decode_ps)
-                    ir_ops = parser._asl_ir_to_decode_ops(ir)
-                    if regex_ops == ir_ops:
-                        ops_match += 1
-                    else:
-                        ops_mismatch += 1
-                        if ops_mismatch <= 5:
-                            diff_keys = set(regex_ops.keys()) ^ set(ir_ops.keys())
-                            diff_vals = {k for k in regex_ops if k in ir_ops and regex_ops[k] != ir_ops[k]}
-                            print(f"  OPS DIFF {enc.name}: keys={diff_keys} vals={diff_vals}")
-                            if diff_vals:
-                                for k in list(diff_vals)[:2]:
-                                    print(f"    {k}: regex={regex_ops[k]} ir={ir_ops[k]}")
-                except Exception as e:
-                    fail += 1
-                    if len(fail_examples) < 10:
-                        fail_examples.append(f"  {enc.name}: {e}")
-    print(f"Decode parse: {success}/{success+fail} ({total_stmts} total stmts)")
-    if fail_examples:
-        print(f"First failures:")
-        for ex in fail_examples:
-            print(ex)
-    print(f"Decode ops: {ops_match} match, {ops_mismatch} mismatch (out of {success} parsed)")
-
     # Validate execute pseudocode parsing + C++ emission
-    print(f"\n=== Validating Execute Pseudocode ===")
-    exec_success, exec_fail = 0, 0
-    emit_success, emit_fail = 0, 0
-    exec_fail_examples = []
-    emit_fail_examples = []
-    seen_exec = set()
-    for instr in parser.instructions:
-        for enc in instr.encodings:
-            if enc.execute_ps and enc.execute_ps not in seen_exec:
-                seen_exec.add(enc.execute_ps)
-                try:
-                    ir = parser._parse_asl(enc.execute_ps)
-                    exec_success += 1
-                    try:
-                        emitter = AslCppEmitter()
-                        code = emitter.emit_block(ir)
-                        emit_success += 1
-                    except Exception as e:
-                        emit_fail += 1
-                        if len(emit_fail_examples) < 5:
-                            emit_fail_examples.append(f"  {enc.name}: {e}")
-                except Exception as e:
-                    exec_fail += 1
-                    if len(exec_fail_examples) < 5:
-                        exec_fail_examples.append(f"  {enc.name}: {e}")
-    exec_total = exec_success + exec_fail
-    emit_total = emit_success + emit_fail
-    print(f"Execute parse: {exec_success}/{exec_total} ({100*exec_success/exec_total:.1f}%)" if exec_total else "Execute parse: 0/0")
-    if exec_fail_examples:
-        print("Parse failures:")
-        for ex in exec_fail_examples:
-            print(ex)
-    print(f"C++ emit: {emit_success}/{emit_total} ({100*emit_success/emit_total:.1f}%)" if emit_total else "C++ emit: 0/0")
-    if emit_fail_examples:
-        print("Emit failures:")
-        for ex in emit_fail_examples:
-            print(ex)
-
-
 if __name__ == '__main__':
     main()
