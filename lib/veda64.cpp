@@ -2483,23 +2483,8 @@ std::string Operand::to_string() const {
 
         case OperandType::PstateField:
             {
-                // value encoding: bits[9:7]=op1, bits[6:3]=CRm, bits[2:0]=op2
-                uint8_t op1v = (value >> 7) & 7;
-                uint8_t CRmv = (value >> 3) & 0xF;
-                uint8_t op2v = value & 7;
-                if (op1v == 0 && op2v == 3) return "uao";
-                if (op1v == 0 && op2v == 4) return "pan";
-                if (op1v == 0 && op2v == 5) return "spsel";
-                if (op1v == 1 && op2v == 0 && (CRmv >> 1) == 0) return "allint";
-                if (op1v == 1 && op2v == 0 && (CRmv >> 1) == 1) return "pm";
-                if (op1v == 3 && op2v == 1) return "ssbs";
-                if (op1v == 3 && op2v == 2) return "dit";
-                if (op1v == 3 && op2v == 3 && (CRmv >> 1) == 1) return "svcrsm";
-                if (op1v == 3 && op2v == 3 && (CRmv >> 1) == 2) return "svcrza";
-                if (op1v == 3 && op2v == 3 && (CRmv >> 1) == 3) return "svcrsmza";
-                if (op1v == 3 && op2v == 4) return "tco";
-                if (op1v == 3 && op2v == 6) return "daifset";
-                if (op1v == 3 && op2v == 7) return "daifclr";
+                const char* s = pstate_to_string(pstate);
+                if (s) return s;
                 return "#" + std::to_string(value);
             }
 
@@ -2511,7 +2496,11 @@ std::string Operand::to_string() const {
             }
 
         case OperandType::SysOp:
-            return sys_ops[value];
+            {
+                const char* s = sysop_to_string(sysop);
+                if (s) return s;
+                return sys_ops[value];
+            }
 
         case OperandType::MemoryBase:
             // [Xn|SP]
@@ -2683,15 +2672,9 @@ std::string Operand::to_string() const {
             }
 
         case OperandType::Pattern:
-            // SVE predicate pattern specifier (named values per ARM spec)
             {
-                static const char* named_pats[32] = {
-                    "pow2","vl1","vl2","vl3","vl4","vl5","vl6","vl7",
-                    "vl8","vl16","vl32","vl64","vl128","vl256",nullptr,nullptr,
-                    nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,
-                    nullptr,nullptr,nullptr,nullptr,nullptr,"mul4","mul3","all"};
-                if (value < 32 && named_pats[value])
-                    return named_pats[value];
+                const char* s = pattern_to_string(pattern);
+                if (s) return s;
                 return "#" + std::to_string(value);
             }
 
@@ -2722,26 +2705,16 @@ std::string Operand::to_string() const {
             }
 
         case OperandType::Prefetch:
-            // Prefetch operation
             {
-                const char* prfops[] = {"pldl1keep", "pldl1strm", "pldl2keep", "pldl2strm",
-                                        "pldl3keep", "pldl3strm", "pldslckeep", "pldslcstrm",
-                                        "plil1keep", "plil1strm", "plil2keep", "plil2strm",
-                                        "plil3keep", "plil3strm", "plislckeep", "plislcstrm",
-                                        "pstl1keep", "pstl1strm", "pstl2keep", "pstl2strm",
-                                        "pstl3keep", "pstl3strm", "pstslckeep", "pstslcstrm"};
-                if (value < 24) return prfops[value];
+                const char* s = prefetch_to_string(prefetch);
+                if (s) return s;
                 return "#" + std::to_string(value);
             }
 
         case OperandType::Barrier:
-            // Barrier option
             {
-                const char* barriers[] = {"#0", "oshld", "oshst", "osh",
-                                          "#4", "nshld", "nshst", "nsh",
-                                          "#8", "ishld", "ishst", "ish",
-                                          "#12", "ld", "st", "sy"};
-                if (value < 16) return barriers[value];
+                const char* s = barrier_to_string(barrier);
+                if (s) return s;
                 return "#" + std::to_string(value);
             }
 

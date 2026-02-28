@@ -16,6 +16,11 @@ include/veda64/hook.hpp
 include/veda64/instruction.hpp
 include/veda64/mnemonic.hpp
 include/veda64/operand.hpp
+include/veda64/barrier.hpp
+include/veda64/pattern.hpp
+include/veda64/pstate.hpp
+include/veda64/prefetch.hpp
+include/veda64/sysop.hpp
 include/veda64/sysreg.hpp
 include/veda64/types.hpp
 include/veda64/util.hpp
@@ -28,6 +33,11 @@ lib/format/simd_dp.cpp
 lib/format/sme.cpp
 lib/format/sve.cpp
 lib/hook.cpp
+lib/barrier.cpp
+lib/pattern.cpp
+lib/pstate.cpp
+lib/prefetch.cpp
+lib/sysop.cpp
 lib/sysreg.cpp
 lib/veda64.cpp
 test/CMakeLists.txt

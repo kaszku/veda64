@@ -43906,6 +43906,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Prefetch, enc.prfm_pldst_regoff.Rt, true));
+                        result.operands.back().prefetch = prefetch_from_value(enc.prfm_pldst_regoff.Rt);
                         result.operands.push_back(Operand::memory_reg_offset(enc.prfm_pldst_regoff.Rn, enc.prfm_pldst_regoff.Rm, enc.prfm_pldst_regoff.option, enc.prfm_pldst_regoff.S ? 3 : 0));
                         return result;
         }
@@ -45223,6 +45224,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Prefetch, enc.prfum_pldst_unscaled.Rt, true));
+                        result.operands.back().prefetch = prefetch_from_value(enc.prfum_pldst_unscaled.Rt);
                         int32_t imm = static_cast<int32_t>(enc.prfum_pldst_unscaled.imm9 << 23) >> 23;
                         result.operands.push_back(Operand::memory_offset(enc.prfum_pldst_unscaled.Rn, imm));
                         return result;
@@ -46252,6 +46254,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Prefetch, enc.prfm_pldst_pos.Rt, true));
+                        result.operands.back().prefetch = prefetch_from_value(enc.prfm_pldst_pos.Rt);
                         int32_t imm = enc.prfm_pldst_pos.imm12 * 8;
                         result.operands.push_back(Operand::memory_offset(enc.prfm_pldst_pos.Rn, imm));
                         return result;
@@ -46407,6 +46410,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Prefetch, enc.prfm_ploadlit.Rt, true));
+                        result.operands.back().prefetch = prefetch_from_value(enc.prfm_ploadlit.Rt);
                         int32_t offset = static_cast<int32_t>(enc.prfm_ploadlit.imm19 << 13) >> 13;
                         offset *= 4;
                         result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));

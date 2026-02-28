@@ -855,6 +855,11 @@ class ARM64XMLParser:
         self._generate_mnemonic_header(veda64_dir / "mnemonic.hpp")
         self._generate_types_header(veda64_dir / "types.hpp")
         self._generate_sysreg_header(veda64_dir / "sysreg.hpp")
+        self._generate_pstate_header(veda64_dir / "pstate.hpp")
+        self._generate_prefetch_header(veda64_dir / "prefetch.hpp")
+        self._generate_barrier_header(veda64_dir / "barrier.hpp")
+        self._generate_pattern_header(veda64_dir / "pattern.hpp")
+        self._generate_sysop_header(veda64_dir / "sysop.hpp")
         self._generate_operand_header(veda64_dir / "operand.hpp")
         self._generate_instruction_subheader(veda64_dir / "instruction.hpp")
         self._generate_hook_header(veda64_dir / "hook.hpp")
@@ -866,7 +871,12 @@ class ARM64XMLParser:
         veda64_impl = lib_dir / "veda64.cpp"
         self._generate_veda64_implementation(veda64_impl)
         self._generate_sysreg_implementation(lib_dir / "sysreg.cpp")
-        print(f"Generated veda64/ sub-headers, veda64.hpp umbrella, veda64.cpp, and sysreg.cpp")
+        self._generate_pstate_implementation(lib_dir / "pstate.cpp")
+        self._generate_prefetch_implementation(lib_dir / "prefetch.cpp")
+        self._generate_barrier_implementation(lib_dir / "barrier.cpp")
+        self._generate_pattern_implementation(lib_dir / "pattern.cpp")
+        self._generate_sysop_implementation(lib_dir / "sysop.cpp")
+        print(f"Generated veda64/ sub-headers, veda64.hpp umbrella, veda64.cpp, and enum files")
 
     def generate_format_files(self, include_format_dir: Path, lib_format_dir: Path):
         """Generate format-based header and implementation files.
@@ -1207,6 +1217,7 @@ class ARM64XMLParser:
             code.append("        if (sys_table[i].key == key) {")
             code.append("            result.mnemonic = sys_table[i].mnem;")
             code.append("            result.operands.push_back(Operand(OperandType::SysOp, sys_table[i].op_idx, false));")
+            code.append("            result.operands.back().sysop = sysop_from_value(sys_table[i].op_idx);")
             code.append("            if (sys_table[i].has_xt)")
             code.append("                result.operands.push_back(Operand(OperandType::Register, Rt, true));")
             code.append("            return true;")
@@ -2724,23 +2735,8 @@ class ARM64XMLParser:
         code.append("        ")
         code.append("        case OperandType::PstateField:")
         code.append("            {")
-        code.append("                // value encoding: bits[9:7]=op1, bits[6:3]=CRm, bits[2:0]=op2")
-        code.append("                uint8_t op1v = (value >> 7) & 7;")
-        code.append("                uint8_t CRmv = (value >> 3) & 0xF;")
-        code.append("                uint8_t op2v = value & 7;")
-        code.append("                if (op1v == 0 && op2v == 3) return \"uao\";")
-        code.append("                if (op1v == 0 && op2v == 4) return \"pan\";")
-        code.append("                if (op1v == 0 && op2v == 5) return \"spsel\";")
-        code.append("                if (op1v == 1 && op2v == 0 && (CRmv >> 1) == 0) return \"allint\";")
-        code.append("                if (op1v == 1 && op2v == 0 && (CRmv >> 1) == 1) return \"pm\";")
-        code.append("                if (op1v == 3 && op2v == 1) return \"ssbs\";")
-        code.append("                if (op1v == 3 && op2v == 2) return \"dit\";")
-        code.append("                if (op1v == 3 && op2v == 3 && (CRmv >> 1) == 1) return \"svcrsm\";")
-        code.append("                if (op1v == 3 && op2v == 3 && (CRmv >> 1) == 2) return \"svcrza\";")
-        code.append("                if (op1v == 3 && op2v == 3 && (CRmv >> 1) == 3) return \"svcrsmza\";")
-        code.append("                if (op1v == 3 && op2v == 4) return \"tco\";")
-        code.append("                if (op1v == 3 && op2v == 6) return \"daifset\";")
-        code.append("                if (op1v == 3 && op2v == 7) return \"daifclr\";")
+        code.append("                const char* s = pstate_to_string(pstate);")
+        code.append("                if (s) return s;")
         code.append("                return \"#\" + std::to_string(value);")
         code.append("            }")
         code.append("        ")
@@ -2752,7 +2748,11 @@ class ARM64XMLParser:
         code.append("            }")
         code.append("        ")
         code.append("        case OperandType::SysOp:")
-        code.append("            return sys_ops[value];")
+        code.append("            {")
+        code.append("                const char* s = sysop_to_string(sysop);")
+        code.append("                if (s) return s;")
+        code.append("                return sys_ops[value];")
+        code.append("            }")
         code.append("        ")
         code.append("        case OperandType::MemoryBase:")
         code.append("            // [Xn|SP]")
@@ -2924,15 +2924,9 @@ class ARM64XMLParser:
         code.append("            }")
         code.append("        ")
         code.append("        case OperandType::Pattern:")
-        code.append("            // SVE predicate pattern specifier (named values per ARM spec)")
         code.append("            {")
-        code.append("                static const char* named_pats[32] = {")
-        code.append("                    \"pow2\",\"vl1\",\"vl2\",\"vl3\",\"vl4\",\"vl5\",\"vl6\",\"vl7\",")
-        code.append("                    \"vl8\",\"vl16\",\"vl32\",\"vl64\",\"vl128\",\"vl256\",nullptr,nullptr,")
-        code.append("                    nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,")
-        code.append("                    nullptr,nullptr,nullptr,nullptr,nullptr,\"mul4\",\"mul3\",\"all\"};")
-        code.append("                if (value < 32 && named_pats[value])")
-        code.append("                    return named_pats[value];")
+        code.append("                const char* s = pattern_to_string(pattern);")
+        code.append("                if (s) return s;")
         code.append("                return \"#\" + std::to_string(value);")
         code.append("            }")
         code.append("        ")
@@ -2963,26 +2957,16 @@ class ARM64XMLParser:
         code.append("            }")
         code.append("        ")
         code.append("        case OperandType::Prefetch:")
-        code.append("            // Prefetch operation")
         code.append("            {")
-        code.append("                const char* prfops[] = {\"pldl1keep\", \"pldl1strm\", \"pldl2keep\", \"pldl2strm\",")
-        code.append("                                        \"pldl3keep\", \"pldl3strm\", \"pldslckeep\", \"pldslcstrm\",")
-        code.append("                                        \"plil1keep\", \"plil1strm\", \"plil2keep\", \"plil2strm\",")
-        code.append("                                        \"plil3keep\", \"plil3strm\", \"plislckeep\", \"plislcstrm\",")
-        code.append("                                        \"pstl1keep\", \"pstl1strm\", \"pstl2keep\", \"pstl2strm\",")
-        code.append("                                        \"pstl3keep\", \"pstl3strm\", \"pstslckeep\", \"pstslcstrm\"};")
-        code.append("                if (value < 24) return prfops[value];")
+        code.append("                const char* s = prefetch_to_string(prefetch);")
+        code.append("                if (s) return s;")
         code.append("                return \"#\" + std::to_string(value);")
         code.append("            }")
         code.append("        ")
         code.append("        case OperandType::Barrier:")
-        code.append("            // Barrier option")
         code.append("            {")
-        code.append("                const char* barriers[] = {\"#0\", \"oshld\", \"oshst\", \"osh\",")
-        code.append("                                          \"#4\", \"nshld\", \"nshst\", \"nsh\",")
-        code.append("                                          \"#8\", \"ishld\", \"ishst\", \"ish\",")
-        code.append("                                          \"#12\", \"ld\", \"st\", \"sy\"};")
-        code.append("                if (value < 16) return barriers[value];")
+        code.append("                const char* s = barrier_to_string(barrier);")
+        code.append("                if (s) return s;")
         code.append("                return \"#\" + std::to_string(value);")
         code.append("            }")
         code.append("")
@@ -3383,6 +3367,357 @@ class ARM64XMLParser:
         code.append("")
         self._write_file(output_file, code)
 
+    # ── PstateField enum ──────────────────────────────────────────────
+
+    # PstateField entries: (enum_index, enum_name, display_name)
+    _PSTATE_ENTRIES = [
+        (0, "UAO",       "uao"),
+        (1, "PAN",       "pan"),
+        (2, "SPSEL",     "spsel"),
+        (3, "ALLINT",    "allint"),
+        (4, "PM",        "pm"),
+        (5, "SSBS",      "ssbs"),
+        (6, "DIT",       "dit"),
+        (7, "SVCRSM",   "svcrsm"),
+        (8, "SVCRZA",    "svcrza"),
+        (9, "SVCRSMZA", "svcrsmza"),
+        (10, "TCO",       "tco"),
+        (11, "DAIFSET",   "daifset"),
+        (12, "DAIFCLR",   "daifclr"),
+    ]
+
+    def _generate_pstate_header(self, output_file: Path):
+        code = self._license_header()
+        code.append("#pragma once")
+        code.append("")
+        code.append("#include <cstdint>")
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("")
+        code.append("// PSTATE field identifiers for MSR (immediate) instructions")
+        code.append("enum class PstateField : uint8_t {")
+        for idx, enum_name, _ in self._PSTATE_ENTRIES:
+            code.append(f"    {enum_name} = {idx}u,")
+        code.append(f"    UNKNOWN = 255u")
+        code.append("};")
+        code.append("")
+        code.append("// Look up PstateField from packed (op1<<7)|(CRm<<3)|op2 value")
+        code.append("PstateField pstate_from_value(uint32_t packed);")
+        code.append("")
+        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("const char* pstate_to_string(PstateField f);")
+        code.append("#endif")
+        code.append("")
+        code.append("} // namespace veda64")
+        code.append("")
+        self._write_file(output_file, code)
+
+    def _generate_pstate_implementation(self, output_file: Path):
+        code = self._license_header()
+        code.append("#include \"veda64/pstate.hpp\"")
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("")
+        # The packed value is (op1<<7)|(CRm<<3)|op2. Some entries match any CRm,
+        # others match on CRm[3:1]. We must replicate the original matching logic.
+        code.append("PstateField pstate_from_value(uint32_t packed) {")
+        code.append("    uint8_t op1 = (packed >> 7) & 7;")
+        code.append("    uint8_t CRm = (packed >> 3) & 0xF;")
+        code.append("    uint8_t op2 = packed & 7;")
+        code.append("    if (op1 == 0 && op2 == 3) return PstateField::UAO;")
+        code.append("    if (op1 == 0 && op2 == 4) return PstateField::PAN;")
+        code.append("    if (op1 == 0 && op2 == 5) return PstateField::SPSEL;")
+        code.append("    if (op1 == 1 && op2 == 0 && (CRm >> 1) == 0) return PstateField::ALLINT;")
+        code.append("    if (op1 == 1 && op2 == 0 && (CRm >> 1) == 1) return PstateField::PM;")
+        code.append("    if (op1 == 3 && op2 == 1) return PstateField::SSBS;")
+        code.append("    if (op1 == 3 && op2 == 2) return PstateField::DIT;")
+        code.append("    if (op1 == 3 && op2 == 3 && (CRm >> 1) == 1) return PstateField::SVCRSM;")
+        code.append("    if (op1 == 3 && op2 == 3 && (CRm >> 1) == 2) return PstateField::SVCRZA;")
+        code.append("    if (op1 == 3 && op2 == 3 && (CRm >> 1) == 3) return PstateField::SVCRSMZA;")
+        code.append("    if (op1 == 3 && op2 == 4) return PstateField::TCO;")
+        code.append("    if (op1 == 3 && op2 == 6) return PstateField::DAIFSET;")
+        code.append("    if (op1 == 3 && op2 == 7) return PstateField::DAIFCLR;")
+        code.append("    return PstateField::UNKNOWN;")
+        code.append("}")
+        code.append("")
+        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("const char* pstate_to_string(PstateField f) {")
+        code.append("    switch (f) {")
+        for _, enum_name, display_name in self._PSTATE_ENTRIES:
+            code.append(f'        case PstateField::{enum_name}: return "{display_name}";')
+        code.append("        default: return nullptr;")
+        code.append("    }")
+        code.append("}")
+        code.append("#endif")
+        code.append("")
+        code.append("} // namespace veda64")
+        code.append("")
+        self._write_file(output_file, code)
+
+    # ── PrefetchOp enum ──────────────────────────────────────────────
+
+    _PREFETCH_ENTRIES = [
+        (0, "PLDL1KEEP"), (1, "PLDL1STRM"), (2, "PLDL2KEEP"), (3, "PLDL2STRM"),
+        (4, "PLDL3KEEP"), (5, "PLDL3STRM"), (6, "PLDSLCKEEP"), (7, "PLDSLCSTRM"),
+        (8, "PLIL1KEEP"), (9, "PLIL1STRM"), (10, "PLIL2KEEP"), (11, "PLIL2STRM"),
+        (12, "PLIL3KEEP"), (13, "PLIL3STRM"), (14, "PLISLCKEEP"), (15, "PLISLCSTRM"),
+        (16, "PSTL1KEEP"), (17, "PSTL1STRM"), (18, "PSTL2KEEP"), (19, "PSTL2STRM"),
+        (20, "PSTL3KEEP"), (21, "PSTL3STRM"), (22, "PSTSLCKEEP"), (23, "PSTSLCSTRM"),
+    ]
+
+    def _generate_prefetch_header(self, output_file: Path):
+        code = self._license_header()
+        code.append("#pragma once")
+        code.append("")
+        code.append("#include <cstdint>")
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("")
+        code.append("// Prefetch operation identifiers for PRFM/PRFUM instructions")
+        code.append("enum class PrefetchOp : uint8_t {")
+        for val, name in self._PREFETCH_ENTRIES:
+            code.append(f"    {name} = {val}u,")
+        code.append(f"    UNKNOWN = 255u")
+        code.append("};")
+        code.append("")
+        code.append("// Look up PrefetchOp from 5-bit prfop field")
+        code.append("PrefetchOp prefetch_from_value(uint32_t prfop);")
+        code.append("")
+        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("const char* prefetch_to_string(PrefetchOp op);")
+        code.append("#endif")
+        code.append("")
+        code.append("} // namespace veda64")
+        code.append("")
+        self._write_file(output_file, code)
+
+    def _generate_prefetch_implementation(self, output_file: Path):
+        code = self._license_header()
+        code.append("#include \"veda64/prefetch.hpp\"")
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("")
+        code.append("PrefetchOp prefetch_from_value(uint32_t prfop) {")
+        code.append("    if (prfop < 24) return static_cast<PrefetchOp>(prfop);")
+        code.append("    return PrefetchOp::UNKNOWN;")
+        code.append("}")
+        code.append("")
+        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("const char* prefetch_to_string(PrefetchOp op) {")
+        code.append("    switch (op) {")
+        for val, name in self._PREFETCH_ENTRIES:
+            code.append(f'        case PrefetchOp::{name}: return "{name.lower()}";')
+        code.append("        default: return nullptr;")
+        code.append("    }")
+        code.append("}")
+        code.append("#endif")
+        code.append("")
+        code.append("} // namespace veda64")
+        code.append("")
+        self._write_file(output_file, code)
+
+    # ── BarrierOp enum ───────────────────────────────────────────────
+
+    _BARRIER_ENTRIES = [
+        (1, "OSHLD"), (2, "OSHST"), (3, "OSH"),
+        (5, "NSHLD"), (6, "NSHST"), (7, "NSH"),
+        (9, "ISHLD"), (10, "ISHST"), (11, "ISH"),
+        (13, "LD"), (14, "ST"), (15, "SY"),
+    ]
+
+    def _generate_barrier_header(self, output_file: Path):
+        code = self._license_header()
+        code.append("#pragma once")
+        code.append("")
+        code.append("#include <cstdint>")
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("")
+        code.append("// Barrier option identifiers for DMB/DSB/ISB instructions")
+        code.append("enum class BarrierOp : uint8_t {")
+        for val, name in self._BARRIER_ENTRIES:
+            code.append(f"    {name} = {val}u,")
+        code.append(f"    UNKNOWN = 255u")
+        code.append("};")
+        code.append("")
+        code.append("// Look up BarrierOp from 4-bit CRm field")
+        code.append("BarrierOp barrier_from_value(uint32_t crm);")
+        code.append("")
+        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("const char* barrier_to_string(BarrierOp op);")
+        code.append("#endif")
+        code.append("")
+        code.append("} // namespace veda64")
+        code.append("")
+        self._write_file(output_file, code)
+
+    def _generate_barrier_implementation(self, output_file: Path):
+        code = self._license_header()
+        code.append("#include \"veda64/barrier.hpp\"")
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("")
+        code.append("BarrierOp barrier_from_value(uint32_t crm) {")
+        code.append("    switch (crm) {")
+        for val, name in self._BARRIER_ENTRIES:
+            code.append(f"        case {val}u: return BarrierOp::{name};")
+        code.append("        default: return BarrierOp::UNKNOWN;")
+        code.append("    }")
+        code.append("}")
+        code.append("")
+        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("const char* barrier_to_string(BarrierOp op) {")
+        code.append("    switch (op) {")
+        for val, name in self._BARRIER_ENTRIES:
+            code.append(f'        case BarrierOp::{name}: return "{name.lower()}";')
+        code.append("        default: return nullptr;")
+        code.append("    }")
+        code.append("}")
+        code.append("#endif")
+        code.append("")
+        code.append("} // namespace veda64")
+        code.append("")
+        self._write_file(output_file, code)
+
+    # ── SvePattern enum ──────────────────────────────────────────────
+
+    _SVE_PATTERN_ENTRIES = [
+        (0, "POW2"), (1, "VL1"), (2, "VL2"), (3, "VL3"), (4, "VL4"),
+        (5, "VL5"), (6, "VL6"), (7, "VL7"), (8, "VL8"),
+        (9, "VL16"), (10, "VL32"), (11, "VL64"), (12, "VL128"), (13, "VL256"),
+        (29, "MUL4"), (30, "MUL3"), (31, "ALL"),
+    ]
+
+    def _generate_pattern_header(self, output_file: Path):
+        code = self._license_header()
+        code.append("#pragma once")
+        code.append("")
+        code.append("#include <cstdint>")
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("")
+        code.append("// SVE predicate pattern identifiers")
+        code.append("enum class SvePattern : uint8_t {")
+        for val, name in self._SVE_PATTERN_ENTRIES:
+            code.append(f"    {name} = {val}u,")
+        code.append(f"    UNKNOWN = 255u")
+        code.append("};")
+        code.append("")
+        code.append("// Look up SvePattern from 5-bit pattern field")
+        code.append("SvePattern pattern_from_value(uint32_t pattern);")
+        code.append("")
+        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("const char* pattern_to_string(SvePattern pat);")
+        code.append("#endif")
+        code.append("")
+        code.append("} // namespace veda64")
+        code.append("")
+        self._write_file(output_file, code)
+
+    def _generate_pattern_implementation(self, output_file: Path):
+        code = self._license_header()
+        code.append("#include \"veda64/pattern.hpp\"")
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("")
+        code.append("SvePattern pattern_from_value(uint32_t pattern) {")
+        code.append("    switch (pattern) {")
+        for val, name in self._SVE_PATTERN_ENTRIES:
+            code.append(f"        case {val}u: return SvePattern::{name};")
+        code.append("        default: return SvePattern::UNKNOWN;")
+        code.append("    }")
+        code.append("}")
+        code.append("")
+        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("const char* pattern_to_string(SvePattern pat) {")
+        code.append("    switch (pat) {")
+        for val, name in self._SVE_PATTERN_ENTRIES:
+            code.append(f'        case SvePattern::{name}: return "{name.lower()}";')
+        code.append("        default: return nullptr;")
+        code.append("    }")
+        code.append("}")
+        code.append("#endif")
+        code.append("")
+        code.append("} // namespace veda64")
+        code.append("")
+        self._write_file(output_file, code)
+
+    # ── SysOp enum ───────────────────────────────────────────────────
+
+    def _build_sysop_entries(self):
+        """Build SysOp enum entries from the sys_table.
+        Returns list of (index, enum_name, display_name)."""
+        sys_entries = self._build_sys_table()
+        op_names = []
+        op_name_set = set()
+        for (key, mnem, op_name, has_xt) in sys_entries:
+            if op_name not in op_name_set:
+                op_name_set.add(op_name)
+                op_names.append((mnem, op_name))
+
+        entries = []
+        from collections import Counter
+        name_counts = Counter(op_name for _, op_name in op_names)
+        for idx, (mnem, op_name) in enumerate(op_names):
+            enum_name = f"{mnem}_{op_name}" if name_counts[op_name] > 1 else op_name
+            entries.append((idx, enum_name, op_name.lower()))
+        return entries
+
+    def _generate_sysop_header(self, output_file: Path):
+        entries = self._build_sysop_entries()
+        code = self._license_header()
+        code.append("#pragma once")
+        code.append("")
+        code.append("#include <cstdint>")
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("")
+        code.append("// System operation identifiers for TLBI/DC/AT/IC/etc. instructions")
+        code.append("enum class SysOp : uint16_t {")
+        for idx, enum_name, _ in entries:
+            code.append(f"    {enum_name} = {idx}u,")
+        code.append(f"    UNKNOWN = 0xFFFFu")
+        code.append("};")
+        code.append("")
+        code.append("// Look up SysOp from index into sys_ops table")
+        code.append("SysOp sysop_from_value(uint32_t idx);")
+        code.append("")
+        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("const char* sysop_to_string(SysOp op);")
+        code.append("#endif")
+        code.append("")
+        code.append("} // namespace veda64")
+        code.append("")
+        self._write_file(output_file, code)
+
+    def _generate_sysop_implementation(self, output_file: Path):
+        entries = self._build_sysop_entries()
+        code = self._license_header()
+        code.append("#include \"veda64/sysop.hpp\"")
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("")
+        code.append(f"SysOp sysop_from_value(uint32_t idx) {{")
+        code.append(f"    if (idx < {len(entries)}u) return static_cast<SysOp>(idx);")
+        code.append("    return SysOp::UNKNOWN;")
+        code.append("}")
+        code.append("")
+        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("const char* sysop_to_string(SysOp op) {")
+        code.append("    switch (op) {")
+        for idx, enum_name, display_name in entries:
+            code.append(f'        case SysOp::{enum_name}: return "{display_name}";')
+        code.append("        default: return nullptr;")
+        code.append("    }")
+        code.append("}")
+        code.append("#endif")
+        code.append("")
+        code.append("} // namespace veda64")
+        code.append("")
+        self._write_file(output_file, code)
+
+    # ─────────────────────────────────────────────────────────────────
+
     def _generate_operand_header(self, output_file: Path):
         """Generate veda64/operand.hpp with Operand class."""
         code = self._license_header()
@@ -3393,6 +3728,11 @@ class ARM64XMLParser:
         code.append("#include \"mnemonic.hpp\"")
         code.append("#include \"types.hpp\"")
         code.append("#include \"sysreg.hpp\"")
+        code.append("#include \"pstate.hpp\"")
+        code.append("#include \"prefetch.hpp\"")
+        code.append("#include \"barrier.hpp\"")
+        code.append("#include \"pattern.hpp\"")
+        code.append("#include \"sysop.hpp\"")
         code.append("")
         code.append("namespace veda64 {")
         code.append("")
@@ -3436,6 +3776,11 @@ class ARM64XMLParser:
         code.append("    bool has_index = false;       // True if index field is valid")
         code.append("    bool prefer_decimal = false;  // True if immediate should always be formatted as decimal")
         code.append("    SystemRegister sysreg = SystemRegister::UNKNOWN;  // System register for MSR/MRS operands")
+        code.append("    PstateField pstate = PstateField::UNKNOWN;        // PSTATE field for MSR (immediate)")
+        code.append("    PrefetchOp prefetch = PrefetchOp::UNKNOWN;        // Prefetch operation for PRFM")
+        code.append("    BarrierOp barrier = BarrierOp::UNKNOWN;           // Barrier option for DMB/DSB/ISB")
+        code.append("    SvePattern pattern = SvePattern::UNKNOWN;         // SVE predicate pattern")
+        code.append("    SysOp sysop = SysOp::UNKNOWN;                    // System operation for TLBI/DC/AT/IC/etc.")
         code.append("")
         code.append("    // Memory operand fields")
         code.append("    uint32_t base_reg = 0;       // Base register number")
@@ -4857,11 +5202,13 @@ class ARM64XMLParser:
 
         elif op_type == 'barrier_table':
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::Barrier, {mem_ref}, false));")
+            code.append(f"{ind}result.operands.back().barrier = barrier_from_value({mem_ref});")
 
         elif op_type == 'option_table':
             # SVE pattern field → use Pattern operand type
             if field == 'pattern':
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Pattern, {mem_ref}, true));")
+                code.append(f"{ind}result.operands.back().pattern = pattern_from_value({mem_ref});")
             else:
                 # Generic option/prefetch
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, {mem_ref}, false));")
@@ -5409,6 +5756,7 @@ class ARM64XMLParser:
             code.append(f"{ind}    uint32_t _op2 = (insn >> 5) & 7;")
             code.append(f"{ind}    uint32_t _pf_val = (_op1 << 7) | (_CRm << 3) | _op2;")
             code.append(f"{ind}    result.operands.push_back(Operand(OperandType::PstateField, _pf_val, false));")
+            code.append(f"{ind}    result.operands.back().pstate = pstate_from_value(_pf_val);")
             code.append(f"{ind}    result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));")
             code.append(f"{ind}    return result;")
             code.append(f"{ind}}}")
@@ -5528,6 +5876,7 @@ class ARM64XMLParser:
         if mnemonic in ['DMB', 'DSB', 'ISB'] and 'CRm' in field_map and not field_map['CRm']['is_fixed']:
             crm_field = field_map['CRm']['name']
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::Barrier, enc.{member_name}.{crm_field}, true));")
+            code.append(f"{ind}result.operands.back().barrier = barrier_from_value(enc.{member_name}.{crm_field});")
             code.append(f"{ind}return result;")
             return code
 
@@ -5612,6 +5961,7 @@ class ARM64XMLParser:
             elif mnemonic == 'PRFM':
                 # PRFM literal: Rt is prefetch operation, not a register
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Prefetch, enc.{member_name}.{rt_field}, true));")
+                code.append(f"{ind}result.operands.back().prefetch = prefetch_from_value(enc.{member_name}.{rt_field});")
             elif has_sf and 'sf' in field_map:
                 sf_field = field_map['sf']['name']
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, static_cast<bool>(enc.{member_name}.{sf_field})));")
@@ -5717,6 +6067,7 @@ class ARM64XMLParser:
             rn_field = field_map['Rn']['name']
             # Prefetch operation from Rt field
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::Prefetch, enc.{member_name}.{rt_field}, true));")
+            code.append(f"{ind}result.operands.back().prefetch = prefetch_from_value(enc.{member_name}.{rt_field});")
 
             if addr_mode == 'reg_offset' and 'Rm' in field_map:
                 rm_field = field_map['Rm']['name']
@@ -6025,6 +6376,7 @@ class ARM64XMLParser:
                 # PRFUM uses prefetch operand instead of register
                 if mnemonic == 'PRFUM':
                     code.append(f"{ind}result.operands.push_back(Operand(OperandType::Prefetch, enc.{member_name}.{rt_field}, true));")
+                    code.append(f"{ind}result.operands.back().prefetch = prefetch_from_value(enc.{member_name}.{rt_field});")
                 else:
                     code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, is_64bit));")
 
@@ -9780,6 +10132,7 @@ class ARM64XMLParser:
                     else:
                         _prfop_val = f"enc.{member_name}.{_prfop_cpp}"
                     code.append(f"{ind}result.operands.push_back(Operand(OperandType::Prefetch, {_prfop_val}, true));")
+                    code.append(f"{ind}result.operands.back().prefetch = prefetch_from_value({_prfop_val});")
                     emitted_fields.add('prfop')
                     emitted_fields_pre.add('prfop')  # Mark for the standalone prfop handler below
                     continue
@@ -10278,17 +10631,20 @@ class ARM64XMLParser:
                 # Show pattern if not ALL, OR if ALL with non-default mul (imm4 != 0)
                 code.append(f"{ind}if (enc.{member_name}.{pattern_field} != 31 || enc.{member_name}.{imm4_field} != 0) {{")
                 code.append(f"{ind}    result.operands.push_back(Operand(OperandType::Pattern, enc.{member_name}.{pattern_field}, true));")
+                code.append(f"{ind}    result.operands.back().pattern = pattern_from_value(enc.{member_name}.{pattern_field});")
                 code.append(f"{ind}}}")
                 code.append(f"{ind}if (enc.{member_name}.{imm4_field} != 0)")
                 code.append(f"{ind}    result.operands.push_back(Operand(OperandType::SVEMulImm, enc.{member_name}.{imm4_field} + 1u, true));")
             elif _pat_optional:
                 code.append(f"{ind}if (enc.{member_name}.{pattern_field} != 31) {{")
                 code.append(f"{ind}    result.operands.push_back(Operand(OperandType::Pattern, enc.{member_name}.{pattern_field}, true));")
+                code.append(f"{ind}    result.operands.back().pattern = pattern_from_value(enc.{member_name}.{pattern_field});")
                 code.append(f"{ind}}}")
                 if _has_imm4:
                     code.append(f"{ind}result.operands.push_back(Operand(OperandType::SVEMulImm, enc.{member_name}.{imm4_field} + 1u, true));")
             else:
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Pattern, enc.{member_name}.{pattern_field}, true));")
+                code.append(f"{ind}result.operands.back().pattern = pattern_from_value(enc.{member_name}.{pattern_field});")
                 if _has_imm4:
                     code.append(f"{ind}result.operands.push_back(Operand(OperandType::SVEMulImm, enc.{member_name}.{imm4_field} + 1u, true));")
 
@@ -10297,6 +10653,7 @@ class ARM64XMLParser:
         if 'prfop' in field_map and not field_map['prfop']['is_fixed'] and 'prfop' not in emitted_fields_pre:
             prfop_field = field_map['prfop']['name']
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::Prefetch, enc.{member_name}.{prfop_field}, true));")
+            code.append(f"{ind}result.operands.back().prefetch = prefetch_from_value(enc.{member_name}.{prfop_field});")
 
         # Handle NZCV flags immediate (CCMN/CCMP)
         if 'nzcv' in field_map and not field_map['nzcv']['is_fixed']:

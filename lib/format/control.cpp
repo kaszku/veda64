@@ -5278,6 +5278,7 @@ static bool decode_sys_alias(uint32_t insn, Instruction& result) {
         if (sys_table[i].key == key) {
             result.mnemonic = sys_table[i].mnem;
             result.operands.push_back(Operand(OperandType::SysOp, sys_table[i].op_idx, false));
+            result.operands.back().sysop = sysop_from_value(sys_table[i].op_idx);
             if (sys_table[i].has_xt)
                 result.operands.push_back(Operand(OperandType::Register, Rt, true));
             return true;
@@ -5909,6 +5910,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                             uint32_t _op2 = (insn >> 5) & 7;
                             uint32_t _pf_val = (_op1 << 7) | (_CRm << 3) | _op2;
                             result.operands.push_back(Operand(OperandType::PstateField, _pf_val, false));
+                            result.operands.back().pstate = pstate_from_value(_pf_val);
                             result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));
                             return result;
                         }
@@ -5924,6 +5926,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                             uint32_t _op2 = (insn >> 5) & 7;
                             uint32_t _pf_val = (_op1 << 7) | (_CRm << 3) | _op2;
                             result.operands.push_back(Operand(OperandType::PstateField, _pf_val, false));
+                            result.operands.back().pstate = pstate_from_value(_pf_val);
                             result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));
                             return result;
                         }
@@ -5941,6 +5944,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Barrier, enc.dsb_bon_barriers.imm2, false));
+                        result.operands.back().barrier = barrier_from_value(enc.dsb_bon_barriers.imm2);
                         return result;
         }
         default: break;
@@ -5978,6 +5982,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Barrier, enc.dsb_bo_barriers.CRm, true));
+                        result.operands.back().barrier = barrier_from_value(enc.dsb_bo_barriers.CRm);
                         return result;
         }
         case 0xD50330BFu: { // DMB_BO_barriers
@@ -5985,6 +5990,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Barrier, enc.dmb_bo_barriers.CRm, true));
+                        result.operands.back().barrier = barrier_from_value(enc.dmb_bo_barriers.CRm);
                         return result;
         }
         case 0xD50330DFu: { // ISB_BI_barriers
@@ -5992,6 +5998,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand(OperandType::Barrier, enc.isb_bi_barriers.CRm, true));
+                        result.operands.back().barrier = barrier_from_value(enc.isb_bi_barriers.CRm);
                         return result;
         }
         case 0xD50330FFu: { // SB_only_barriers
@@ -6081,6 +6088,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                             uint32_t _op2 = (insn >> 5) & 7;
                             uint32_t _pf_val = (_op1 << 7) | (_CRm << 3) | _op2;
                             result.operands.push_back(Operand(OperandType::PstateField, _pf_val, false));
+                            result.operands.back().pstate = pstate_from_value(_pf_val);
                             result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));
                             return result;
                         }

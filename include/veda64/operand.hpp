@@ -9,6 +9,11 @@
 #include "mnemonic.hpp"
 #include "types.hpp"
 #include "sysreg.hpp"
+#include "pstate.hpp"
+#include "prefetch.hpp"
+#include "barrier.hpp"
+#include "pattern.hpp"
+#include "sysop.hpp"
 
 namespace veda64 {
 
@@ -52,6 +57,11 @@ public:
     bool has_index = false;       // True if index field is valid
     bool prefer_decimal = false;  // True if immediate should always be formatted as decimal
     SystemRegister sysreg = SystemRegister::UNKNOWN;  // System register for MSR/MRS operands
+    PstateField pstate = PstateField::UNKNOWN;        // PSTATE field for MSR (immediate)
+    PrefetchOp prefetch = PrefetchOp::UNKNOWN;        // Prefetch operation for PRFM
+    BarrierOp barrier = BarrierOp::UNKNOWN;           // Barrier option for DMB/DSB/ISB
+    SvePattern pattern = SvePattern::UNKNOWN;         // SVE predicate pattern
+    SysOp sysop = SysOp::UNKNOWN;                    // System operation for TLBI/DC/AT/IC/etc.
 
     // Memory operand fields
     uint32_t base_reg = 0;       // Base register number
