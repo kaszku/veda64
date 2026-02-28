@@ -34,14 +34,69 @@ fi
 # Read file list before switching branches (file may not be committed)
 mapfile -t PUBLIC_FILES < <(grep -v '^$' veda64_public.txt)
 
-echo "Running tests..."
 CTEST="/c/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/ctest.exe"
-if ! "$CTEST" --test-dir __build_arm64 --output-on-failure; then
+REPO_ROOT="$(pwd)"
+
+# ── Build and test public files in an isolated temp directory ──
+echo "=== Building and testing public files in isolation ==="
+TMPDIR=$(mktemp -d)
+trap 'rm -rf "$TMPDIR"' EXIT
+
+# Copy only the public files
+for file in "${PUBLIC_FILES[@]}"; do
+    mkdir -p "$TMPDIR/$(dirname "$file")"
+    cp "$file" "$TMPDIR/$file"
+done
+
+# Convert to Windows path for PowerShell
+TMPDIR_WIN=$(cygpath -w "$TMPDIR")
+
+# Create a build script in the temp dir
+cat > "$TMPDIR/_build_publish.ps1" << 'PSEOF'
+param([string]$SourceDir)
+$ErrorActionPreference = 'Stop'
+$cmake = "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe"
+$ninja = "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\Ninja\ninja.exe"
+
+# Import VS dev environment
+$vsdev = "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\Tools\VsDevCmd.bat"
+$envOutput = cmd /c "`"$vsdev`" -arch=arm64 -host_arch=arm64 >nul 2>&1 && set"
+foreach ($line in $envOutput) {
+    if ($line -match '^([^=]+)=(.*)$') {
+        [Environment]::SetEnvironmentVariable($matches[1], $matches[2], 'Process')
+    }
+}
+
+$buildDir = Join-Path $SourceDir "_build"
+New-Item -ItemType Directory -Path $buildDir -Force | Out-Null
+
+Write-Host "Configuring..."
+& $cmake -S $SourceDir -B $buildDir -G Ninja -DCMAKE_BUILD_TYPE=Release "-DCMAKE_MAKE_PROGRAM=$ninja" -DVEDA64_PYTHON=OFF
+if ($LASTEXITCODE -ne 0) { exit 1 }
+
+Write-Host "Building..."
+& $cmake --build $buildDir
+if ($LASTEXITCODE -ne 0) { exit 1 }
+PSEOF
+
+# Run the build
+powershell -NoProfile -ExecutionPolicy Bypass -File "$TMPDIR/_build_publish.ps1" -SourceDir "$TMPDIR_WIN"
+if [[ $? -ne 0 ]]; then
+    echo "Error: build failed."
+    exit 1
+fi
+
+echo "Running tests..."
+if ! "$CTEST" --test-dir "$TMPDIR/_build" --output-on-failure; then
     echo "Error: tests failed. Fix before publishing."
     exit 1
 fi
 
+echo "=== Build and tests passed ==="
+
+# ── Publish to public remote ──
 echo "Fetching public remote..."
+cd "$REPO_ROOT"
 git fetch public
 
 # Create temp branch from public/main
