@@ -582,13 +582,6 @@ void test_fminv_v_p_z__size_eq_00() {
     assert(!result.has_value());
 }
 
-void test_fmov_asimdimm_s_s_Q_eq_0() {
-    // FMOV_asimdimm_S_s: Q=='0' should be UNDEFINED
-    uint32_t insn = 0x0F00F400u;
-    auto result = decode(insn);
-    assert(!result.has_value());
-}
-
 void test_fmsb_z_p_zzz__size_eq_00() {
     // fmsb_z_p_zzz_: size=='00' should be UNDEFINED
     uint32_t insn = 0x6520A000u;
@@ -3110,7 +3103,7 @@ void test_xtn_asimdmisc_n_size_eq_11() {
 }
 
 int main() {
-    std::cout << "Running undef tests (443 cases)..." << std::endl;
+    std::cout << "Running undef tests (442 cases)..." << std::endl;
     int failed = 0;
 
     try { test_add_32_addsub_shift_shift_eq_11(); } catch (...) { std::cerr << "FAIL: add_32_addsub_shift_shift_eq_11" << std::endl; failed++; }
@@ -3195,7 +3188,6 @@ int main() {
     try { test_fminp_z_p_zz__size_eq_00(); } catch (...) { std::cerr << "FAIL: fminp_z_p_zz__size_eq_00" << std::endl; failed++; }
     try { test_fminqv_z_p_z__size_eq_00(); } catch (...) { std::cerr << "FAIL: fminqv_z_p_z__size_eq_00" << std::endl; failed++; }
     try { test_fminv_v_p_z__size_eq_00(); } catch (...) { std::cerr << "FAIL: fminv_v_p_z__size_eq_00" << std::endl; failed++; }
-    try { test_fmov_asimdimm_s_s_Q_eq_0(); } catch (...) { std::cerr << "FAIL: fmov_asimdimm_s_s_Q_eq_0" << std::endl; failed++; }
     try { test_fmsb_z_p_zzz__size_eq_00(); } catch (...) { std::cerr << "FAIL: fmsb_z_p_zzz__size_eq_00" << std::endl; failed++; }
     try { test_fmul_z_p_zs__size_eq_00(); } catch (...) { std::cerr << "FAIL: fmul_z_p_zs__size_eq_00" << std::endl; failed++; }
     try { test_fmulx_z_p_zz__size_eq_00(); } catch (...) { std::cerr << "FAIL: fmulx_z_p_zz__size_eq_00" << std::endl; failed++; }
@@ -3557,6 +3549,6 @@ int main() {
     try { test_uxtb_z_p_z_z_size_eq_00(); } catch (...) { std::cerr << "FAIL: uxtb_z_p_z_z_size_eq_00" << std::endl; failed++; }
     try { test_xtn_asimdmisc_n_size_eq_11(); } catch (...) { std::cerr << "FAIL: xtn_asimdmisc_n_size_eq_11" << std::endl; failed++; }
 
-    std::cout << (443 - failed) << " / 443 passed" << std::endl;
+    std::cout << (442 - failed) << " / 442 passed" << std::endl;
     return failed;
 }

@@ -1649,8 +1649,10 @@ Arrangement get_movi_arrangement(uint32_t insn) {
     }
     // FP modified immediate (cmode=1111) — FMOV vector variants
     if (cmode == 0xF) {
+        uint32_t o2 = (insn >> 11) & 1;
+        if (o2 == 1) return Q ? Arrangement::H8 : Arrangement::H4;  // FP16 (.8h/.4h)
         if (op == 0) return Q ? Arrangement::S4 : Arrangement::S2;  // Single-precision (.4s/.2s)
-        return Q ? Arrangement::D2 : Arrangement::H4;  // Double-precision (.2D) or FP16 (.8H/.4H)
+        return Q ? Arrangement::D2 : Arrangement::D;  // Double-precision (.2d)
     }
     return Arrangement::None;
 }
@@ -2431,6 +2433,11 @@ std::string Operand::to_string() const {
                 r += "]";
                 return r;
             }
+            // extend==5: LDR/STR ZA: za[wN, offs] (no tile number, no H/V)
+            if (has_index && extend == 5) {
+                std::string r = "za[w" + std::to_string(index) + ", " + std::to_string(amount) + "]";
+                return r;
+            }
             // extend==4: MOVA-style za tile with H/V + range: zaTILEh/v.T[wN, start:end]
             if (has_index && extend == 4) {
                 std::string r = "za" + std::to_string(value);
@@ -2471,6 +2478,7 @@ std::string Operand::to_string() const {
         }
 
         case OperandType::SMEZTRegister:
+            if (has_index) return "zt0[" + std::to_string(index) + "]";
             return "zt0";
 
         case OperandType::PstateField:

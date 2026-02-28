@@ -47264,8 +47264,16 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.stl1asisdlso_d1.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.stl1asisdlso_d1.Rt, is_64bit));
+                        uint32_t _elem_idx = 0;
+                        {
+                            Operand op(OperandType::VectorRegisterList, enc.stl1asisdlso_d1.Rt, false);
+                            op.index = 1;
+                            op.arrangement = Arrangement::B;
+                            op.has_index = true;
+                            op.amount = _elem_idx;
+                            result.operands.push_back(op);
+                        }
+                        result.operands.push_back(Operand::memory_base(enc.stl1asisdlso_d1.Rn));
                         return result;
         }
         case 0x0D208400u: { // ST2_asisdlso_D2_2d
@@ -47350,8 +47358,16 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldap1asisdlso_d1.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ldap1asisdlso_d1.Rt, is_64bit));
+                        uint32_t _elem_idx = 0;
+                        {
+                            Operand op(OperandType::VectorRegisterList, enc.ldap1asisdlso_d1.Rt, false);
+                            op.index = 1;
+                            op.arrangement = Arrangement::B;
+                            op.has_index = true;
+                            op.amount = _elem_idx;
+                            result.operands.push_back(op);
+                        }
+                        result.operands.push_back(Operand::memory_base(enc.ldap1asisdlso_d1.Rn));
                         return result;
         }
         case 0x0D608400u: { // LD2_asisdlso_D2_2d

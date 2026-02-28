@@ -550,6 +550,14 @@ class ARM64XMLParser:
                 lo_f = field_map[lo]['name']
                 lo_width = field_map[lo]['width']
                 return f"op.index = (enc.{member_name}.{hi_f} << {lo_width}) | enc.{member_name}.{lo_f}; op.has_index = true;"
+        # Split i4A/i4B/i4C pattern (e.g., fmlal_za_z8z8i_1)
+        if 'i4A' in field_map and 'i4B' in field_map and 'i4C' in field_map:
+            a_f = field_map['i4A']['name']
+            b_f = field_map['i4B']['name']
+            c_f = field_map['i4C']['name']
+            b_w = field_map['i4B']['width']
+            c_w = field_map['i4C']['width']
+            return f"op.index = (enc.{member_name}.{a_f} << {b_w + c_w}) | (enc.{member_name}.{b_f} << {c_w}) | enc.{member_name}.{c_f}; op.has_index = true;"
         # Single index fields
         for idx_name in ['i4', 'i2', 'i3', 'i1']:
             if idx_name in field_map and not field_map[idx_name]['is_fixed']:
@@ -1871,8 +1879,10 @@ class ARM64XMLParser:
         code.append("    }")
         code.append("    // FP modified immediate (cmode=1111) — FMOV vector variants")
         code.append("    if (cmode == 0xF) {")
+        code.append("        uint32_t o2 = (insn >> 11) & 1;")
+        code.append("        if (o2 == 1) return Q ? Arrangement::H8 : Arrangement::H4;  // FP16 (.8h/.4h)")
         code.append("        if (op == 0) return Q ? Arrangement::S4 : Arrangement::S2;  // Single-precision (.4s/.2s)")
-        code.append("        return Q ? Arrangement::D2 : Arrangement::H4;  // Double-precision (.2D) or FP16 (.8H/.4H)")
+        code.append("        return Q ? Arrangement::D2 : Arrangement::D;  // Double-precision (.2d)")
         code.append("    }")
         code.append("    return Arrangement::None;")
         code.append("}")
@@ -2682,6 +2692,11 @@ class ARM64XMLParser:
                 r += "]";
                 return r;
             }
+            // extend==5: LDR/STR ZA: za[wN, offs] (no tile number, no H/V)
+            if (has_index && extend == 5) {
+                std::string r = "za[w" + std::to_string(index) + ", " + std::to_string(amount) + "]";
+                return r;
+            }
             // extend==4: MOVA-style za tile with H/V + range: zaTILEh/v.T[wN, start:end]
             if (has_index && extend == 4) {
                 std::string r = "za" + std::to_string(value);
@@ -2722,6 +2737,7 @@ class ARM64XMLParser:
         code.append("        }")
         code.append("        ")
         code.append("        case OperandType::SMEZTRegister:")
+        code.append("            if (has_index) return \"zt0[\" + std::to_string(index) + \"]\";")
         code.append("            return \"zt0\";")
         code.append("        ")
         code.append("        case OperandType::PstateField:")
@@ -4806,10 +4822,64 @@ class ARM64XMLParser:
             if not f['is_fixed']:
                 field_names.add(f['original_name'])
 
+        # Build map of fixed field values (original_name → binary string)
+        fixed_vals = {}
+        for f in encoding_info.get('field_list', []):
+            if f['is_fixed'] and 'fixed' in f:
+                fixed_vals[f['original_name']] = f['fixed']
+
+        def _is_guarded_by_false_condition(match_pos):
+            """Check if a UNDEF at match_pos is inside an outer 'if' whose condition
+            is provably false given the encoding's fixed bits.
+            E.g., 'if cmode::op == '11111' then ... if Q == '0' then UNDEF'
+            where op is fixed to 0, so cmode::op can never be '11111'."""
+            text_before = decode_ps[:match_pos]
+            # Find enclosing 'if EXPR then' blocks
+            for outer in re.finditer(r"if\s+([\w:]+)\s*(==|!=)\s*'([01]+)'\s+then", text_before):
+                outer_end = outer.end()
+                # Check if UNDEF is still inside this if block (not past its 'end;')
+                remaining = decode_ps[outer_end:match_pos]
+                depth = 1
+                for nested in re.finditer(r'\bif\b.*?\bthen\b|\bend;', remaining):
+                    tok = nested.group()
+                    if 'then' in tok and tok.strip().startswith('if'):
+                        depth += 1
+                    elif 'end;' in tok:
+                        depth -= 1
+                        if depth <= 0:
+                            break
+                if depth <= 0:
+                    continue  # Outer if was closed before our UNDEF
+
+                # UNDEF is inside this outer if — check if condition is provably false
+                cond_expr = outer.group(1)   # e.g., 'cmode::op' or 'Q'
+                cond_op = outer.group(2)     # '==' or '!='
+                cond_bits = outer.group(3)   # e.g., '11111'
+
+                # Handle concatenated fields (split on '::')
+                parts = cond_expr.split('::')
+                concat_bits = ''
+                all_fixed = True
+                for part in parts:
+                    if part in fixed_vals:
+                        concat_bits += fixed_vals[part]
+                    else:
+                        all_fixed = False
+                        break
+
+                if all_fixed:
+                    if cond_op == '==' and concat_bits != cond_bits:
+                        return True   # Outer condition is always false
+                    if cond_op == '!=' and concat_bits == cond_bits:
+                        return True   # Outer condition is always false
+            return False
+
         # Match simple: if FIELD == 'BITS' then EndOfDecode(Decode_UNDEF); end;
         for m in re.finditer(r"if\s+(\w+)\s*==\s*'([01]+)'\s+then\s+EndOfDecode\(Decode_UNDEF\)", decode_ps):
             field, bits = m.group(1), m.group(2)
             if field in field_names:
+                if _is_guarded_by_false_condition(m.start()):
+                    continue  # Skip — outer condition is always false for this encoding
                 val = int(bits, 2)
                 code.append(f"{ind}if (enc.{member_name}.{field} == {val}u) return std::nullopt;")
 
@@ -4818,6 +4888,8 @@ class ARM64XMLParser:
         for m in re.finditer(r"if\s+(\w+)\s*!=\s*'([01]+)'\s+then\s+EndOfDecode\(Decode_UNDEF\)", decode_ps):
             field, bits = m.group(1), m.group(2)
             if field in field_names:
+                if _is_guarded_by_false_condition(m.start()):
+                    continue
                 val = int(bits, 2)
                 code.append(f"{ind}if (enc.{member_name}.{field} != {val}u) return std::nullopt;")
 
@@ -4825,6 +4897,8 @@ class ARM64XMLParser:
         for m in re.finditer(r"if\s+(\w+)\s*(==|!=)\s*'([01]+)'\s*&&\s*(\w+)\s*(==|!=)\s*'([01]+)'\s+then\s+EndOfDecode\(Decode_UNDEF\)", decode_ps):
             f1, op1, b1, f2, op2, b2 = m.group(1), m.group(2), m.group(3), m.group(4), m.group(5), m.group(6)
             if f1 in field_names and f2 in field_names:
+                if _is_guarded_by_false_condition(m.start()):
+                    continue
                 v1, v2 = int(b1, 2), int(b2, 2)
                 c1 = f"enc.{member_name}.{f1} {'==' if op1 == '==' else '!='} {v1}u"
                 c2 = f"enc.{member_name}.{f2} {'==' if op2 == '==' else '!='} {v2}u"
@@ -5220,9 +5294,12 @@ class ARM64XMLParser:
             code.append(f"{ind}return result;")
             return code
 
-        # Special case: RET with implicit X30
+        # Special case: RET — only show register when Rn != X30 (X30 is default)
         if is_ret:
-            code.append(f"{ind}// RET - X30 is implicit, no operands needed")
+            _rn_field = field_map.get('Rn', {}).get('name', 'Rn')
+            code.append(f"{ind}{union_name} enc = {{}}; enc.raw = insn;")
+            code.append(f"{ind}if (enc.{member_name}.{_rn_field} != 30)")
+            code.append(f"{ind}    result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{_rn_field}, true));")
             code.append(f"{ind}return result;")
             return code
 
@@ -6436,7 +6513,7 @@ class ARM64XMLParser:
 
         # Special case: SIMD single-structure loads/stores (asisdlso/asisdlsop)
         # These use per-lane indexing: { Vt.B, Vt2.B, ... }[idx], [Xn], ...
-        is_simd_single = mnemonic in ['LD1', 'LD2', 'LD3', 'LD4', 'ST1', 'ST2', 'ST3', 'ST4'] and ('asisdlso' in encoding_name) and 'Rt' in field_map and 'Rn' in field_map
+        is_simd_single = mnemonic in ['LD1', 'LD2', 'LD3', 'LD4', 'ST1', 'ST2', 'ST3', 'ST4', 'LDAP1', 'STL1'] and ('asisdlso' in encoding_name) and 'Rt' in field_map and 'Rn' in field_map
         if is_simd_single:
             rt_field = field_map['Rt']['name']
             rn_field = field_map['Rn']['name']
@@ -8178,7 +8255,7 @@ class ARM64XMLParser:
                 code.append(f"{ind}    op.arrangement = {_za_arr};")
             code.append(f"{ind}    op.has_index = true;")
             # Check if VGx is also present in the template
-            _range_vgx_m = _re.search(r'\{, VGx(\d+)\}', _asm_tmpl)
+            _range_vgx_m = _re.search(r'(?:\{, |\b)VGx(\d+)', _asm_tmpl)
             if _range_vgx_m:
                 _range_vgx = int(_range_vgx_m.group(1))
                 code.append(f"{ind}    op.extend = 3;  // range + VGx mode")
@@ -8262,7 +8339,7 @@ class ARM64XMLParser:
             not _has_za_range and
             'Rv' in field_map and not field_map['Rv']['is_fixed'] and
             _re.search(r'\bZA\.(?:[BHSDQ]|<T\w*>)\[<Wv>', _asm_tmpl) is not None and
-            '{, VGx' in _asm_tmpl and
+            ('VGx' in _asm_tmpl) and
             not (mnemonic in ('MOVA', 'MOVAZ', 'ZERO') and _re.search(r'(mz[24]_za|za[24]_z|z_rza|mz_za[24]|za[0-9]*_ri)', encoding_name))
         )
         if _has_za_vgx:
@@ -8279,7 +8356,7 @@ class ARM64XMLParser:
                 _za_arr = 'Arrangement::S'
                 _za_arr_is_variable_vgx = False
             # Determine VGx count from template
-            _vgx_m = _re.search(r'\{, VGx(\d+)\}', _asm_tmpl)
+            _vgx_m = _re.search(r'VGx(\d+)', _asm_tmpl)
             _vgx = int(_vgx_m.group(1)) if _vgx_m else 2
             # Determine offset field
             _off_field = None
@@ -8878,7 +8955,7 @@ class ARM64XMLParser:
         if _mova_m and mnemonic in ('MOVA', 'MOVAZ', 'ZERO'):
             _prefix = _mova_m.group(2)  # mz2_za, za2_z, z_rza, mz_za2, za1_ri
             _arr_ch = _mova_m.group(3)  # b, h, w(=s), d
-            _arr_map = {'b': ('Arrangement::B', 0), 'h': ('Arrangement::H', 1), 'w': ('Arrangement::S', 2), 'd': ('Arrangement::D', 3)}
+            _arr_map = {'b': ('Arrangement::B', 0), 'h': ('Arrangement::H', 1), 'w': ('Arrangement::S', 2), 'd': ('Arrangement::D', 3), 'q': ('Arrangement::Q', 4)}
             _arr_str, _arr_idx = _arr_map.get(_arr_ch, ('Arrangement::D', 3))
             # Determine fields
             _has_V = 'V' in field_map and not field_map['V']['is_fixed']
@@ -8901,19 +8978,19 @@ class ARM64XMLParser:
             _zd_field = field_map.get('Zd', {}).get('name')
             _zn_field = field_map.get('Zn', {}).get('name')
             # Determine group size and offset multiplier
-            _is_mz2 = 'mz2' in _prefix
-            _is_mz4 = 'mz4' in _prefix
-            _is_za2 = 'za2' in _prefix
-            _is_za4 = 'za4' in _prefix
-            _is_za1 = 'za1' in _prefix or ('_ri' in _prefix and not _is_za2 and not _is_za4)
-            _is_z_rza = 'z_rza' in _prefix
-            _is_mz_za = 'mz_za' in _prefix
+            _is_mz_za = _prefix.startswith('mz_za')  # mz_za2, mz_za4
+            _is_mz2 = _prefix.startswith('mz2')     # mz2_za
+            _is_mz4 = _prefix.startswith('mz4')     # mz4_za
+            _is_za2 = _prefix.startswith('za2')      # za2_z
+            _is_za4 = _prefix.startswith('za4')      # za4_z
+            _is_za1 = _prefix.startswith('za1') or (_prefix.endswith('_ri') and not _is_za2 and not _is_za4)
+            _is_z_rza = _prefix == 'z_rza'
             # Direction: mz2_za, mz4_za, z_rza, mz_za2, mz_za4 → ZA to Z (output = Z regs)
             # za2_z, za4_z → Z to ZA (output = ZA tile)
             _is_za_to_z = _is_mz2 or _is_mz4 or _is_z_rza or _is_mz_za  # ZA → Z direction
             _is_z_to_za = _is_za2 or _is_za4 or _is_za1  # Z → ZA direction
 
-            if (_has_Rs or _has_Rv) and _off_field:
+            if (_has_Rs or _has_Rv):
                 code.append(f"{ind}result.operands.clear();  // MOVA/MOVAZ/ZERO ZA tile access")
                 # Compute group size for register list
                 _suffix_num = int(_mova_m.group(4)) if _mova_m.group(4) else 1
@@ -8939,7 +9016,7 @@ class ARM64XMLParser:
                 _ws_expr = f"enc.{member_name}.{_rs_field} + {_ws_base}"
 
                 # Compute offset range
-                _off_cpp = f"enc.{member_name}.{_off_field}"
+                _off_cpp = f"enc.{member_name}.{_off_field}" if _off_field else '0u'
                 if _grp_sz == 2:
                     _start_expr = f"({_off_cpp} * 2)"
                     _end_expr = f"({_off_cpp} * 2 + 1)"
@@ -8974,8 +9051,20 @@ class ARM64XMLParser:
                     code.append(f"{ind}    op.extend = 4;")
                     code.append(f"{ind}    result.operands.push_back(op);")
                     code.append(f"{ind}}}")
+                elif (_is_z_to_za or '_ri' in _prefix) and _grp_sz > 1 and not _is_za1:
+                    # No V field, range + VGx — extend=3: za.T[wN, start:end, vgxN]
+                    code.append(f"{ind}{{")
+                    code.append(f"{ind}    Operand op(OperandType::SMETileRegister, 0, false);")
+                    code.append(f"{ind}    op.arrangement = {_arr_str};")
+                    code.append(f"{ind}    op.has_index = true;")
+                    code.append(f"{ind}    op.extend = 3;  // range + VGx mode")
+                    code.append(f"{ind}    op.index = {_ws_expr};")
+                    code.append(f"{ind}    op.amount = {_start_expr};")
+                    code.append(f"{ind}    op.offset = ({_grp_sz} << 16) | (uint32_t)({_end_expr});  // VGx in high 16, range_end in low 16")
+                    code.append(f"{ind}    result.operands.push_back(op);")
+                    code.append(f"{ind}}}")
                 else:
-                    # No V field (mz_za or ZERO za_ri) — VGx mode za.T[wN, offs, vgxN]
+                    # No V field, no range — VGx mode za.T[wN, offs, vgxN]
                     code.append(f"{ind}{{")
                     code.append(f"{ind}    Operand op(OperandType::SMETileRegister, 0, false);")
                     code.append(f"{ind}    op.arrangement = {_arr_str};")
@@ -9001,6 +9090,71 @@ class ARM64XMLParser:
         # ZERO { ZT0 }: emit SMEZTRegister
         if mnemonic == 'ZERO' and encoding_name == 'zero_zt_i_':
             code.append(f"{ind}result.operands.push_back(Operand(OperandType::SMEZTRegister, 0u, true));")
+            code.append(f"{ind}return result;")
+            return code
+
+        # LDR/STR ZA: ldr/str za[w<12+Rv>, off4], [Xn]
+        if mnemonic in ('LDR', 'STR') and encoding_name in ('ldr_za_ri_', 'str_za_ri_'):
+            rv_f = field_map.get('Rv', {}).get('name', 'Rv')
+            rn_f = field_map.get('Rn', {}).get('name', 'Rn')
+            off_f = field_map.get('off4', {}).get('name', 'off4')
+            code.append(f"{ind}result.operands.clear();")
+            code.append(f"{ind}{{")
+            code.append(f"{ind}    Operand op(OperandType::SMETileRegister, 0u, false);")
+            code.append(f"{ind}    op.has_index = true;")
+            code.append(f"{ind}    op.extend = 5;  // LDR/STR ZA format")
+            code.append(f"{ind}    op.index = enc.{member_name}.{rv_f} + 12;")
+            code.append(f"{ind}    op.amount = enc.{member_name}.{off_f};")
+            code.append(f"{ind}    result.operands.push_back(op);")
+            code.append(f"{ind}}}")
+            code.append(f"{ind}result.operands.push_back(Operand::memory_base(enc.{member_name}.{rn_f}));")
+            code.append(f"{ind}return result;")
+            return code
+
+        # MOVT: movt Xt, zt0[off3] / movt zt0[off3], Xt
+        if mnemonic == 'MOVT' and encoding_name in ('movt_r_zt_', 'movt_zt_r_'):
+            rt_f = field_map.get('Rt', {}).get('name', 'Rt')
+            off_f = field_map.get('off3', {}).get('name', 'off3')
+            code.append(f"{ind}result.operands.clear();")
+            if encoding_name == 'movt_r_zt_':
+                # movt Xt, zt0[off3]
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_f}, true));")
+                code.append(f"{ind}{{ Operand op(OperandType::SMEZTRegister, 0u, true); op.has_index = true; op.index = enc.{member_name}.{off_f}; result.operands.push_back(op); }}")
+            else:
+                # movt zt0[off3], Xt
+                code.append(f"{ind}{{ Operand op(OperandType::SMEZTRegister, 0u, true); op.has_index = true; op.index = enc.{member_name}.{off_f}; result.operands.push_back(op); }}")
+                code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_f}, true));")
+            code.append(f"{ind}return result;")
+            return code
+
+        # SYS: sys #op1, cCRn, cCRm, #op2, Xt
+        if mnemonic == 'SYS' and encoding_name == 'sys_cr_systeminstrs':
+            code.append(f"{ind}result.operands.clear();")
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.op1, false));")
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.CRn, false));")
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.CRm, false));")
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.op2, false));")
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.Rt, true));")
+            code.append(f"{ind}return result;")
+            return code
+
+        # SYSL: sysl Xt, #op1, cCRn, cCRm, #op2
+        if mnemonic == 'SYSL' and encoding_name == 'sysl_rc_systeminstrs':
+            code.append(f"{ind}result.operands.clear();")
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.Rt, true));")
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.op1, false));")
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.CRn, false));")
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.CRm, false));")
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::Immediate, enc.{member_name}.op2, false));")
+            code.append(f"{ind}return result;")
+            return code
+
+        # LDR/STR ZT: ldr/str zt0, [Xn]
+        if mnemonic in ('LDR', 'STR') and encoding_name in ('ldr_zt_br_', 'str_zt_br_'):
+            rn_f = field_map.get('Rn', {}).get('name', 'Rn')
+            code.append(f"{ind}result.operands.clear();")
+            code.append(f"{ind}result.operands.push_back(Operand(OperandType::SMEZTRegister, 0u, true));")
+            code.append(f"{ind}result.operands.push_back(Operand::memory_base(enc.{member_name}.{rn_f}));")
             code.append(f"{ind}return result;")
             return code
 
@@ -9319,7 +9473,15 @@ class ARM64XMLParser:
                     _field_width = field_map[base].get('width', 5) if base in field_map else 5
                     _is_pow2_count = count > 1 and (count & (count - 1)) == 0
                     _is_strided = '_mzx_' in encoding_name.lower()
+                    # Also detect LUTI mz2/mz4 stride from encoding name suffix
+                    import re as _re_luti_stride
+                    _luti_stride_m = _re_luti_stride.search(r'_mz(\d+)_\w+_(\d+)$', encoding_name.lower())
                     stride_val = 1
+                    if _luti_stride_m and not _is_strided:
+                        _luti_count = int(_luti_stride_m.group(1))
+                        _luti_stride = int(_luti_stride_m.group(2))
+                        if _luti_count == count and _luti_stride > 1:
+                            stride_val = _luti_stride
                     if _is_strided and _is_pow2_count:
                         import re as _re_stride
                         _stride_match = _re_stride.search(r'(\d+)x(\d+)', encoding_name.lower())
@@ -10797,20 +10959,59 @@ class ARM64XMLParser:
                 if not encoding.name or not encoding.decode_ps:
                     continue
 
+                # Get encoding struct info (needed below for field positions and fixed values)
+                _, fields, _, _, full_pattern, _ = self._generate_encoding_struct(instr, encoding)
+                if full_pattern is None:
+                    continue
+
+                # Build fixed field values for guard check
+                _fixed_vals_undef = {}
+                for f in fields:
+                    if f.get('is_fixed') and 'fixed' in f:
+                        _fixed_vals_undef[f.get('original_name', f.get('name', ''))] = f['fixed']
+
+                def _undef_is_guarded(match_pos, ps_text):
+                    """Check if UNDEF at match_pos is inside an outer if that's always false."""
+                    text_before = ps_text[:match_pos]
+                    for outer in re.finditer(r"if\s+([\w:]+)\s*(==|!=)\s*'([01]+)'\s+then", text_before):
+                        remaining = ps_text[outer.end():match_pos]
+                        depth = 1
+                        for nested in re.finditer(r'\bif\b.*?\bthen\b|\bend;', remaining):
+                            tok = nested.group()
+                            if 'then' in tok and tok.strip().startswith('if'):
+                                depth += 1
+                            elif 'end;' in tok:
+                                depth -= 1
+                                if depth <= 0:
+                                    break
+                        if depth <= 0:
+                            continue
+                        parts = outer.group(1).split('::')
+                        concat = ''
+                        all_fixed = True
+                        for part in parts:
+                            if part in _fixed_vals_undef:
+                                concat += _fixed_vals_undef[part]
+                            else:
+                                all_fixed = False
+                                break
+                        if all_fixed:
+                            op = outer.group(2)
+                            bits_val = outer.group(3)
+                            if (op == '==' and concat != bits_val) or (op == '!=' and concat == bits_val):
+                                return True
+                    return False
+
                 # Find simple UNDEF conditions: if FIELD == 'BITS' then EndOfDecode(Decode_UNDEF)
                 undef_conditions = []
                 for m in re.finditer(
                     r"if\s+(\w+)\s*==\s*'([01]+)'\s+then\s+EndOfDecode\(Decode_UNDEF\)",
                     encoding.decode_ps
                 ):
-                    undef_conditions.append((m.group(1), m.group(2)))
+                    if not _undef_is_guarded(m.start(), encoding.decode_ps):
+                        undef_conditions.append((m.group(1), m.group(2)))
 
                 if not undef_conditions:
-                    continue
-
-                # Get encoding struct info
-                _, fields, _, _, full_pattern, _ = self._generate_encoding_struct(instr, encoding)
-                if full_pattern is None:
                     continue
 
                 # Build field info: name → (lsb, width)

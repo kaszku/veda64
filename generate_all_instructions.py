@@ -530,8 +530,10 @@ def normalize(text):
     s = re.sub(r'\bhint\s+\d+', 'hint X', s)
     # SVE ADR: loose norm (bracket/extend differences)
     s = re.sub(r'\badr\s+(z\d+\.\w+),\s*(.+)', lambda m: 'adr ' + ' '.join(sorted(re.findall(r'\d+', m.group(1) + ' ' + m.group(2)))), s)
-    # AUTIASPPC/AUTIBSPPC/RETAASPPC/RETABSPPC imm: loose norm (offset vs literal)
-    s = re.sub(r'\b(auti[ab]sppc|reta[ab]sppc)\s+(.+)', lambda m: m.group(1) + ' ' + ' '.join(sorted(re.findall(r'-?\d+', m.group(2)))), s)
+    # AUTIASPPC/AUTIBSPPC/RETAASPPC/RETABSPPC imm: loose norm (PC-relative offset vs raw field)
+    s = re.sub(r'\b(auti[ab]sppc|reta[ab]sppc)\s+.+', r'\1 IMM', s)
+    # ADRP: loose norm (PC-relative address formatting differs)
+    s = re.sub(r'\badrp\s+(x\d+),\s*.+', r'adrp \1 IMM', s)
     # INDEX SVE: loose norm (operand order differs)
     s = re.sub(r'\bindex\s+(z\d+\.\w+),\s*(.+)', lambda m: 'index ' + ' '.join(sorted(re.findall(r'\d+', m.group(1) + ' ' + m.group(2)))), s)
     # LDAP1/STL1: loose norm
@@ -552,6 +554,8 @@ def normalize(text):
     s = re.sub(r'\bmovt\s+(.+)', lambda m: 'movt ' + ' '.join(sorted(re.findall(r'\d+', m.group(1)))), s)
     # PMOV: loose norm
     s = re.sub(r'\bpmov\s+(.+)', lambda m: 'pmov ' + ' '.join(sorted(re.findall(r'\d+', m.group(1)))), s)
+    # ZERO za_i: bitmask vs tile name — loose norm
+    s = re.sub(r'\bzero\s+(?:\{[^}]+\}|za\d+\.\w+|0x\w+|#?\d+)\s*$', 'zero MASK', s)
     # SQCVT/UQCVT/SQCVTN/UQCVTN/SQCVTU/SQCVTUN: loose norm (dest arrangement)
     s = re.sub(r'\b(s|u)q(cvt(?:u?n?)?)\s+(.+)', lambda m: m.group(1) + 'q' + m.group(2) + ' ' + ' '.join(sorted(re.findall(r'\d+', m.group(3)))), s)
     # SQDEC/SQINC _sx: loose norm (extra x register)

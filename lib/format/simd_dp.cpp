@@ -39272,7 +39272,6 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         result.encoding_id = 1955;
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
-                        if (enc.fmov_asimdimm_ss.Q == 0u) return std::nullopt;
                         bool is_64bit = false;
                         {
                             Operand op(OperandType::VectorRegister, enc.fmov_asimdimm_ss.Rd, false);

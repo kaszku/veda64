@@ -5923,7 +5923,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         case 0xD65F0000u: { // RET_64R_branch_reg
                         Instruction result(Mnemonic::RET, insn);
                         result.encoding_id = 145;
-                        // RET - X30 is implicit, no operands needed
+                        ControlEncoding enc = {}; enc.raw = insn;
+                        if (enc.ret64r_branch_reg.Rn != 30)
+                            result.operands.push_back(Operand(OperandType::Register, enc.ret64r_branch_reg.Rn, true));
                         return result;
         }
         default: break;
@@ -6249,6 +6251,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sys_cr_systeminstrs.Rt, is_64bit));
+                        result.operands.clear();
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sys_cr_systeminstrs.op1, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sys_cr_systeminstrs.CRn, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sys_cr_systeminstrs.CRm, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sys_cr_systeminstrs.op2, false));
+                        result.operands.push_back(Operand(OperandType::Register, enc.sys_cr_systeminstrs.Rt, true));
                         return result;
         }
         case 0xD5280000u: { // SYSL_RC_systeminstrs
@@ -6258,6 +6266,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = true;
                         result.operands.push_back(Operand(OperandType::Register, enc.sysl_rc_systeminstrs.Rt, is_64bit));
+                        result.operands.clear();
+                        result.operands.push_back(Operand(OperandType::Register, enc.sysl_rc_systeminstrs.Rt, true));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sysl_rc_systeminstrs.op1, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sysl_rc_systeminstrs.CRn, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sysl_rc_systeminstrs.CRm, false));
+                        result.operands.push_back(Operand(OperandType::Immediate, enc.sysl_rc_systeminstrs.op2, false));
                         return result;
         }
         case 0xD5480000u: { // SYSP_CR_syspairinstrs
