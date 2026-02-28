@@ -6294,7 +6294,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         uint32_t sysreg = (enc.msr_sr_systemmove.o0 << 14) | (enc.msr_sr_systemmove.op1 << 11) | (enc.msr_sr_systemmove.CRn << 7) | (enc.msr_sr_systemmove.CRm << 3) | enc.msr_sr_systemmove.op2;
-                        result.operands.push_back(Operand(OperandType::SystemRegister, sysreg, true));
+                        Operand sysreg_op(OperandType::SystemRegister, sysreg, true);
+                        sysreg_op.sysreg = sysreg_from_encoding(2 + enc.msr_sr_systemmove.o0, enc.msr_sr_systemmove.op1, enc.msr_sr_systemmove.CRn, enc.msr_sr_systemmove.CRm, enc.msr_sr_systemmove.op2);
+                        result.operands.push_back(sysreg_op);
                         result.operands.push_back(Operand(OperandType::Register, enc.msr_sr_systemmove.Rt, true));
                         return result;
         }
@@ -6303,9 +6305,11 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.encoding_id = 131;
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.mrs_rs_systemmove.Rt, true));
                         uint32_t sysreg = (enc.mrs_rs_systemmove.o0 << 14) | (enc.mrs_rs_systemmove.op1 << 11) | (enc.mrs_rs_systemmove.CRn << 7) | (enc.mrs_rs_systemmove.CRm << 3) | enc.mrs_rs_systemmove.op2;
-                        result.operands.push_back(Operand(OperandType::SystemRegister, sysreg, true));
+                        Operand sysreg_op(OperandType::SystemRegister, sysreg, true);
+                        sysreg_op.sysreg = sysreg_from_encoding(2 + enc.mrs_rs_systemmove.o0, enc.mrs_rs_systemmove.op1, enc.mrs_rs_systemmove.CRn, enc.mrs_rs_systemmove.CRm, enc.mrs_rs_systemmove.op2);
+                        result.operands.push_back(Operand(OperandType::Register, enc.mrs_rs_systemmove.Rt, true));
+                        result.operands.push_back(sysreg_op);
                         return result;
         }
         case 0xD5500000u: { // MSRR_SR_systemmovepr

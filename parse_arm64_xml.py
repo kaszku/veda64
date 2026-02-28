@@ -856,6 +856,7 @@ class ARM64XMLParser:
         self._generate_util_header(veda64_dir / "util.hpp")
         self._generate_mnemonic_header(veda64_dir / "mnemonic.hpp")
         self._generate_types_header(veda64_dir / "types.hpp")
+        self._generate_sysreg_header(veda64_dir / "sysreg.hpp")
         self._generate_operand_header(veda64_dir / "operand.hpp")
         self._generate_instruction_subheader(veda64_dir / "instruction.hpp")
         self._generate_hook_header(veda64_dir / "hook.hpp")
@@ -866,7 +867,8 @@ class ARM64XMLParser:
         # Generate implementation
         veda64_impl = lib_dir / "veda64.cpp"
         self._generate_veda64_implementation(veda64_impl)
-        print(f"Generated veda64/ sub-headers, veda64.hpp umbrella, and veda64.cpp")
+        self._generate_sysreg_implementation(lib_dir / "sysreg.cpp")
+        print(f"Generated veda64/ sub-headers, veda64.hpp umbrella, veda64.cpp, and sysreg.cpp")
 
     def generate_format_files(self, include_format_dir: Path, lib_format_dir: Path):
         """Generate format-based header and implementation files.
@@ -2866,31 +2868,24 @@ class ARM64XMLParser:
         code.append("        ")
         code.append("        case OperandType::SystemRegister:")
         code.append("            {")
-        code.append("                // Decode system register from o0:op1:CRn:CRm:op2 encoding")
-        code.append("                // value = (o0 << 14) | (op1 << 11) | (CRn << 7) | (CRm << 3) | op2")
+        code.append("                if (sysreg != SystemRegister::UNKNOWN) {")
+        code.append("                    return sysreg_to_string(sysreg);")
+        code.append("                }")
+        code.append("                // Fallback: decode from raw value for backward compat")
         code.append("                uint32_t o0 = (value >> 14) & 1;")
         code.append("                uint32_t op1 = (value >> 11) & 7;")
         code.append("                uint32_t crn = (value >> 7) & 0xF;")
         code.append("                uint32_t crm = (value >> 3) & 0xF;")
         code.append("                uint32_t op2v = value & 7;")
-        code.append("                // Encode as op0(2):op1(3):CRn(4):CRm(4):op2(3) = 16-bit key")
-        code.append("                uint32_t key = ((2 + o0) << 14) | (op1 << 11) | (crn << 7) | (crm << 3) | op2v;")
-        code.append("                switch (key) {")
-        # Import comprehensive sysreg table (897 registers from ARM spec)
-        from sysreg_table import SYSREG_NAMES
-        sysregs = dict(SYSREG_NAMES)
-
-        # Generate the switch cases
-        for (op0, op1, crn, crm, op2_val), name in sorted(sysregs.items()):
-            key = (op0 << 14) | (op1 << 11) | (crn << 7) | (crm << 3) | op2_val
-            code.append(f'                    case 0x{key:04X}u: return "{name}";')
-        code.append("                    default: {")
-        code.append("                        // Fallback: S<op0>_<op1>_C<CRn>_C<CRm>_<op2>")
-        code.append("                        std::ostringstream oss;")
-        code.append("                        oss << \"s\" << (2 + o0) << \"_\" << op1 << \"_c\" << crn << \"_c\" << crm << \"_\" << op2v;")
-        code.append("                        return oss.str();")
-        code.append("                    }")
+        code.append("                // Try lookup from encoding")
+        code.append("                SystemRegister sr = sysreg_from_encoding(2 + o0, op1, crn, crm, op2v);")
+        code.append("                if (sr != SystemRegister::UNKNOWN) {")
+        code.append("                    return sysreg_to_string(sr);")
         code.append("                }")
+        code.append("                // Final fallback: S<op0>_<op1>_C<CRn>_C<CRm>_<op2>")
+        code.append("                std::ostringstream oss;")
+        code.append("                oss << \"s\" << (2 + o0) << \"_\" << op1 << \"_c\" << crn << \"_c\" << crm << \"_\" << op2v;")
+        code.append("                return oss.str();")
         code.append("            }")
         code.append("        ")
         code.append("        case OperandType::Shift:")
@@ -3322,6 +3317,92 @@ class ARM64XMLParser:
         code.append("")
         self._write_file(output_file, code)
 
+    def _build_sysreg_entries(self):
+        """Build deduplicated sysreg entries: list of (key, enum_name, display_name)."""
+        from sysreg_table import SYSREG_NAMES
+        from collections import Counter
+        sysregs = dict(SYSREG_NAMES)
+
+        # Detect duplicate uppercase names
+        name_counts = Counter(v.upper() for v in sysregs.values())
+
+        entries = []
+        for (op0, op1, crn, crm, op2_val), name in sorted(sysregs.items()):
+            key = (op0 << 14) | (op1 << 11) | (crn << 7) | (crm << 3) | op2_val
+            enum_name = name.upper()
+            if name_counts[enum_name] > 1:
+                enum_name = f"{enum_name}_0x{key:04X}"
+            entries.append((key, enum_name, name))
+        return entries
+
+    def _generate_sysreg_header(self, output_file: Path):
+        """Generate veda64/sysreg.hpp with SystemRegister enum."""
+        entries = self._build_sysreg_entries()
+
+        code = self._license_header()
+        code.append("#pragma once")
+        code.append("")
+        code.append("#include <cstdint>")
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("")
+        code.append("// System register identifiers for MSR/MRS instructions")
+        code.append("enum class SystemRegister : uint16_t {")
+
+        for key, enum_name, _ in entries:
+            code.append(f"    {enum_name} = 0x{key:04X}u,")
+
+        code.append(f"    UNKNOWN = 0xFFFFu")
+        code.append("};")
+        code.append("")
+        code.append("// Look up SystemRegister enum from encoding fields")
+        code.append("SystemRegister sysreg_from_encoding(uint32_t op0, uint32_t op1, uint32_t CRn, uint32_t CRm, uint32_t op2);")
+        code.append("")
+        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("// Convert SystemRegister to its lowercase string name")
+        code.append("const char* sysreg_to_string(SystemRegister reg);")
+        code.append("#endif")
+        code.append("")
+        code.append("} // namespace veda64")
+        code.append("")
+        self._write_file(output_file, code)
+
+    def _generate_sysreg_implementation(self, output_file: Path):
+        """Generate lib/sysreg.cpp with sysreg_to_string() and sysreg_from_encoding()."""
+        entries = self._build_sysreg_entries()
+
+        code = self._license_header()
+        code.append("#include \"veda64/sysreg.hpp\"")
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("")
+
+        # sysreg_from_encoding
+        code.append("SystemRegister sysreg_from_encoding(uint32_t op0, uint32_t op1, uint32_t CRn, uint32_t CRm, uint32_t op2) {")
+        code.append("    uint32_t key = (op0 << 14) | (op1 << 11) | (CRn << 7) | (CRm << 3) | op2;")
+        code.append("    switch (key) {")
+        for key, enum_name, _ in entries:
+            code.append(f"        case 0x{key:04X}u: return SystemRegister::{enum_name};")
+        code.append("        default: return SystemRegister::UNKNOWN;")
+        code.append("    }")
+        code.append("}")
+        code.append("")
+
+        # sysreg_to_string
+        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("const char* sysreg_to_string(SystemRegister reg) {")
+        code.append("    switch (reg) {")
+        for key, enum_name, display_name in entries:
+            code.append(f'        case SystemRegister::{enum_name}: return "{display_name}";')
+        code.append('        default: return nullptr;')
+        code.append("    }")
+        code.append("}")
+        code.append("#endif")
+        code.append("")
+        code.append("} // namespace veda64")
+        code.append("")
+        self._write_file(output_file, code)
+
     def _generate_operand_header(self, output_file: Path):
         """Generate veda64/operand.hpp with Operand class."""
         code = self._license_header()
@@ -3331,6 +3412,7 @@ class ARM64XMLParser:
         code.append("#include <string>")
         code.append("#include \"mnemonic.hpp\"")
         code.append("#include \"types.hpp\"")
+        code.append("#include \"sysreg.hpp\"")
         code.append("")
         code.append("namespace veda64 {")
         code.append("")
@@ -3373,6 +3455,7 @@ class ARM64XMLParser:
         code.append("    uint32_t index = 0;           // Element index for indexed vector operands (v0.b[3])")
         code.append("    bool has_index = false;       // True if index field is valid")
         code.append("    bool prefer_decimal = false;  // True if immediate should always be formatted as decimal")
+        code.append("    SystemRegister sysreg = SystemRegister::UNKNOWN;  // System register for MSR/MRS operands")
         code.append("")
         code.append("    // Memory operand fields")
         code.append("    uint32_t base_reg = 0;       // Base register number")
@@ -6094,15 +6177,17 @@ class ARM64XMLParser:
             crn_field = field_map['CRn']['name']
             crm_field = field_map['CRm']['name']
             op2_field = field_map['op2']['name']
+            # Common: compute sysreg packed value and enum
+            code.append(f"{ind}uint32_t sysreg = (enc.{member_name}.{o0_field} << 14) | (enc.{member_name}.{op1_field} << 11) | (enc.{member_name}.{crn_field} << 7) | (enc.{member_name}.{crm_field} << 3) | enc.{member_name}.{op2_field};")
+            code.append(f"{ind}Operand sysreg_op(OperandType::SystemRegister, sysreg, true);")
+            code.append(f"{ind}sysreg_op.sysreg = sysreg_from_encoding(2 + enc.{member_name}.{o0_field}, enc.{member_name}.{op1_field}, enc.{member_name}.{crn_field}, enc.{member_name}.{crm_field}, enc.{member_name}.{op2_field});")
             if mnemonic == 'MRS':
                 # MRS: Xt, <sysreg> — always 64-bit
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, true));")
-                code.append(f"{ind}uint32_t sysreg = (enc.{member_name}.{o0_field} << 14) | (enc.{member_name}.{op1_field} << 11) | (enc.{member_name}.{crn_field} << 7) | (enc.{member_name}.{crm_field} << 3) | enc.{member_name}.{op2_field};")
-                code.append(f"{ind}result.operands.push_back(Operand(OperandType::SystemRegister, sysreg, true));")
+                code.append(f"{ind}result.operands.push_back(sysreg_op);")
             else:
                 # MSR: <sysreg>, Xt — always 64-bit
-                code.append(f"{ind}uint32_t sysreg = (enc.{member_name}.{o0_field} << 14) | (enc.{member_name}.{op1_field} << 11) | (enc.{member_name}.{crn_field} << 7) | (enc.{member_name}.{crm_field} << 3) | enc.{member_name}.{op2_field};")
-                code.append(f"{ind}result.operands.push_back(Operand(OperandType::SystemRegister, sysreg, true));")
+                code.append(f"{ind}result.operands.push_back(sysreg_op);")
                 code.append(f"{ind}result.operands.push_back(Operand(OperandType::Register, enc.{member_name}.{rt_field}, true));")
             code.append(f"{ind}return result;")
             return code

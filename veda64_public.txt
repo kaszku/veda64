@@ -16,6 +16,7 @@ include/veda64/hook.hpp
 include/veda64/instruction.hpp
 include/veda64/mnemonic.hpp
 include/veda64/operand.hpp
+include/veda64/sysreg.hpp
 include/veda64/types.hpp
 include/veda64/util.hpp
 lib/format/control.cpp
@@ -27,6 +28,7 @@ lib/format/simd_dp.cpp
 lib/format/sme.cpp
 lib/format/sve.cpp
 lib/hook.cpp
+lib/sysreg.cpp
 lib/veda64.cpp
 test/CMakeLists.txt
 test/hook_examples.cpp

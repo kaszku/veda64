@@ -8,6 +8,7 @@
 #include <string>
 #include "mnemonic.hpp"
 #include "types.hpp"
+#include "sysreg.hpp"
 
 namespace veda64 {
 
@@ -50,6 +51,7 @@ public:
     uint32_t index = 0;           // Element index for indexed vector operands (v0.b[3])
     bool has_index = false;       // True if index field is valid
     bool prefer_decimal = false;  // True if immediate should always be formatted as decimal
+    SystemRegister sysreg = SystemRegister::UNKNOWN;  // System register for MSR/MRS operands
 
     // Memory operand fields
     uint32_t base_reg = 0;       // Base register number
