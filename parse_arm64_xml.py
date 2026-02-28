@@ -102,8 +102,6 @@ class ARM64XMLParser:
     def __init__(self, xml_dir: Path):
         self.xml_dir = xml_dir
         self.instructions: List[Instruction] = []
-        self._encoding_ids: Dict[str, int] = {}  # encoding_name → unique ID (1-based)
-        self._next_encoding_id = 1
 
     @staticmethod
     def _license_header() -> List[str]:
@@ -1049,18 +1047,9 @@ class ARM64XMLParser:
 
             mnemonic = encoding.docvars.get('mnemonic', instr.mnemonic)
 
-            # Assign encoding ID (may already exist from impl generation)
-            if encoding.name not in self._encoding_ids:
-                enc_id = self._next_encoding_id
-                self._encoding_ids[encoding.name] = enc_id
-                self._next_encoding_id += 1
-            else:
-                enc_id = self._encoding_ids[encoding.name]
-
             encoding_info.append({
                 'struct_name': struct_name,
                 'encoding_name': encoding.name,
-                'encoding_id': enc_id,
                 'field_list': field_list,
                 'struct_code': struct_code,
                 'fixed_bits': fixed_bits,
@@ -1129,18 +1118,9 @@ class ARM64XMLParser:
 
             mnemonic = encoding.docvars.get('mnemonic', instr.mnemonic)
 
-            # Assign encoding ID (may already exist from header generation)
-            if encoding.name not in self._encoding_ids:
-                enc_id = self._next_encoding_id
-                self._encoding_ids[encoding.name] = enc_id
-                self._next_encoding_id += 1
-            else:
-                enc_id = self._encoding_ids[encoding.name]
-
             encoding_info.append({
                 'struct_name': struct_name,
                 'encoding_name': encoding.name,
-                'encoding_id': enc_id,
                 'field_list': field_list,
                 'struct_code': struct_code,
                 'fixed_bits': fixed_bits,
@@ -3522,7 +3502,6 @@ class ARM64XMLParser:
         code.append("    Mnemonic mnemonic = Mnemonic::UNKNOWN;")
         code.append("    Condition condition = Condition::None;")
         code.append("    uint32_t raw_value = 0;")
-        code.append("    uint16_t encoding_id = 0;")
         code.append("    std::vector<Operand> operands;")
         code.append("")
         code.append("#ifndef VEDA64_NO_STRINGS")
@@ -5114,9 +5093,7 @@ class ARM64XMLParser:
         # Build the code
         ind = "    " * indent
         code = []
-        enc_id = encoding_info.get('encoding_id', 0)
         code.append(f"{ind}Instruction result(Mnemonic::{mnemonic}, insn);")
-        code.append(f"{ind}result.encoding_id = {enc_id};")
         code.append(f"{ind}{union_name} enc = {{}};")
         code.append(f"{ind}enc.raw = insn;")
         code.extend(self._generate_undef_checks(encoding_info, member_name, indent))
@@ -5297,9 +5274,7 @@ class ARM64XMLParser:
         union_name = f"{self._sanitize_struct_name(class_name)}Encoding"
 
         # Create Instruction object
-        enc_id = encoding_info.get('encoding_id', 0)
         code.append(f"{ind}Instruction result(Mnemonic::{mnemonic}, insn);")
-        code.append(f"{ind}result.encoding_id = {enc_id};")
 
         # Build field map
         field_map = {}
