@@ -52,7 +52,7 @@ std::optional<Instruction> decode_reserved(uint32_t insn) {
                         Instruction result(Mnemonic::UDF, insn);
                         ReservedEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.udf_only_perm_undef.imm16, true));
+                        result.operands.push_back(Operand::imm(enc.udf_only_perm_undef.imm16));
                         return result;
         }
         default: break;

@@ -221,7 +221,7 @@ void test_bti_hb_hints() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BTI);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bti_hb_hints: " << result->to_string() << std::endl;
 }
 
@@ -738,7 +738,7 @@ void test_clrex_bn_barriers() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::CLREX);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  clrex_bn_barriers: " << result->to_string() << std::endl;
 }
 
@@ -777,7 +777,7 @@ void test_dcps1_dc_exception() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::DCPS1);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  dcps1_dc_exception: " << result->to_string() << std::endl;
 }
 
@@ -787,7 +787,7 @@ void test_dcps2_dc_exception() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::DCPS2);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  dcps2_dc_exception: " << result->to_string() << std::endl;
 }
 
@@ -797,7 +797,7 @@ void test_dcps3_dc_exception() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::DCPS3);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  dcps3_dc_exception: " << result->to_string() << std::endl;
 }
 
@@ -992,7 +992,7 @@ void test_isb_bi_barriers() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ISB);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  isb_bi_barriers: " << result->to_string() << std::endl;
 }
 
@@ -1123,7 +1123,7 @@ void test_ret_64r_branch_reg() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::RET);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  ret_64r_branch_reg: " << result->to_string() << std::endl;
 }
 
@@ -1219,7 +1219,7 @@ void test_smstart_msr_si_pstate() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::MSR);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  smstart_msr_si_pstate: " << result->to_string() << std::endl;
 }
 
@@ -1229,7 +1229,7 @@ void test_smstop_msr_si_pstate() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::MSR);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  smstop_msr_si_pstate: " << result->to_string() << std::endl;
 }
 
@@ -1255,7 +1255,7 @@ void test_stshh_hi_hints() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STSHH);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::PredicateRegister);
+    assert(result->operands[0].type == OperandType::Register);
     std::cout << "  stshh_hi_hints: " << result->to_string() << std::endl;
 }
 
@@ -1318,7 +1318,7 @@ void test_tlbip_sysp_cr_syspairinstrs() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SYSP);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  tlbip_sysp_cr_syspairinstrs: " << result->to_string() << std::endl;
 }
 

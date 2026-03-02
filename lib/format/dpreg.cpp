@@ -6577,70 +6577,70 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::PACIZA, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.paciza64z_dp1src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.paciza64z_dp1src.Rd, true));
                         return result;
         }
         case 0xDAC127E0u: { // PACIZB_64Z_dp_1src
                         Instruction result(Mnemonic::PACIZB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.pacizb64z_dp1src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.pacizb64z_dp1src.Rd, true));
                         return result;
         }
         case 0xDAC12BE0u: { // PACDZA_64Z_dp_1src
                         Instruction result(Mnemonic::PACDZA, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.pacdza64z_dp1src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.pacdza64z_dp1src.Rd, true));
                         return result;
         }
         case 0xDAC12FE0u: { // PACDZB_64Z_dp_1src
                         Instruction result(Mnemonic::PACDZB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.pacdzb64z_dp1src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.pacdzb64z_dp1src.Rd, true));
                         return result;
         }
         case 0xDAC133E0u: { // AUTIZA_64Z_dp_1src
                         Instruction result(Mnemonic::AUTIZA, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.autiza64z_dp1src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.autiza64z_dp1src.Rd, true));
                         return result;
         }
         case 0xDAC137E0u: { // AUTIZB_64Z_dp_1src
                         Instruction result(Mnemonic::AUTIZB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.autizb64z_dp1src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.autizb64z_dp1src.Rd, true));
                         return result;
         }
         case 0xDAC13BE0u: { // AUTDZA_64Z_dp_1src
                         Instruction result(Mnemonic::AUTDZA, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.autdza64z_dp1src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.autdza64z_dp1src.Rd, true));
                         return result;
         }
         case 0xDAC13FE0u: { // AUTDZB_64Z_dp_1src
                         Instruction result(Mnemonic::AUTDZB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.autdzb64z_dp1src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.autdzb64z_dp1src.Rd, true));
                         return result;
         }
         case 0xDAC143E0u: { // XPACI_64Z_dp_1src
                         Instruction result(Mnemonic::XPACI, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.xpaci64z_dp1src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.xpaci64z_dp1src.Rd, true));
                         return result;
         }
         case 0xDAC147E0u: { // XPACD_64Z_dp_1src
                         Instruction result(Mnemonic::XPACD, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.xpacd64z_dp1src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.xpacd64z_dp1src.Rd, true));
                         return result;
         }
         default: break;
@@ -6652,28 +6652,28 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SETF8, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.setf8only_setf.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.setf8only_setf.Rn, false));
                         return result;
         }
         case 0x3A00480Du: { // SETF16_only_setf
                         Instruction result(Mnemonic::SETF16, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.setf16only_setf.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.setf16only_setf.Rn, false));
                         return result;
         }
         case 0xDAC1901Eu: { // AUTIASPPCR_64LRR_dp_1src
                         Instruction result(Mnemonic::AUTIASPPCR, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.autiasppcr64lrr_dp1src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.autiasppcr64lrr_dp1src.Rn, true));
                         return result;
         }
         case 0xDAC1941Eu: { // AUTIBSPPCR_64LRR_dp_1src
                         Instruction result(Mnemonic::AUTIBSPPCR, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.autibsppcr64lrr_dp1src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.autibsppcr64lrr_dp1src.Rn, true));
                         return result;
         }
         default: break;
@@ -6685,88 +6685,88 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::RBIT, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.rbit32dp1src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.rbit32dp1src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.rbit32dp1src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.rbit32dp1src.Rn, false));
                         return result;
         }
         case 0x5AC00400u: { // REV16_32_dp_1src
                         Instruction result(Mnemonic::REV16, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.rev1632dp1src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.rev1632dp1src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.rev1632dp1src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.rev1632dp1src.Rn, false));
                         return result;
         }
         case 0x5AC00800u: { // REV_32_dp_1src
                         Instruction result(Mnemonic::REV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.rev32dp1src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.rev32dp1src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.rev32dp1src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.rev32dp1src.Rn, false));
                         return result;
         }
         case 0x5AC01000u: { // CLZ_32_dp_1src
                         Instruction result(Mnemonic::CLZ, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.clz32dp1src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.clz32dp1src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.clz32dp1src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.clz32dp1src.Rn, false));
                         return result;
         }
         case 0x5AC01400u: { // CLS_32_dp_1src
                         Instruction result(Mnemonic::CLS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cls32dp1src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cls32dp1src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.cls32dp1src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.cls32dp1src.Rn, false));
                         return result;
         }
         case 0x5AC01800u: { // CTZ_32_dp_1src
                         Instruction result(Mnemonic::CTZ, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ctz32dp1src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ctz32dp1src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.ctz32dp1src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.ctz32dp1src.Rn, false));
                         return result;
         }
         case 0x5AC01C00u: { // CNT_32_dp_1src
                         Instruction result(Mnemonic::CNT, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cnt32dp1src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cnt32dp1src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.cnt32dp1src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.cnt32dp1src.Rn, false));
                         return result;
         }
         case 0x5AC02000u: { // ABS_32_dp_1src
                         Instruction result(Mnemonic::ABS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.abs32dp1src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.abs32dp1src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.abs32dp1src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.abs32dp1src.Rn, false));
                         return result;
         }
         case 0xDAC00000u: { // RBIT_64_dp_1src
                         Instruction result(Mnemonic::RBIT, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.rbit64dp1src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.rbit64dp1src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.rbit64dp1src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.rbit64dp1src.Rn, true));
                         return result;
         }
         case 0xDAC00400u: { // REV16_64_dp_1src
                         Instruction result(Mnemonic::REV16, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.rev1664dp1src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.rev1664dp1src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.rev1664dp1src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.rev1664dp1src.Rn, true));
                         return result;
         }
         case 0xDAC00800u: { // REV32_64_dp_1src
                         Instruction result(Mnemonic::REV32, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.rev3264dp1src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.rev3264dp1src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.rev3264dp1src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.rev3264dp1src.Rn, true));
                         return result;
         }
         case 0xDAC00C00u: { // REV_64_dp_1src
@@ -6774,112 +6774,112 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::REV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.rev64dp1src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.rev64dp1src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.rev64dp1src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.rev64dp1src.Rn, true));
                         return result;
         }
         case 0xDAC01000u: { // CLZ_64_dp_1src
                         Instruction result(Mnemonic::CLZ, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.clz64dp1src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.clz64dp1src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.clz64dp1src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.clz64dp1src.Rn, true));
                         return result;
         }
         case 0xDAC01400u: { // CLS_64_dp_1src
                         Instruction result(Mnemonic::CLS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cls64dp1src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cls64dp1src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.cls64dp1src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.cls64dp1src.Rn, true));
                         return result;
         }
         case 0xDAC01800u: { // CTZ_64_dp_1src
                         Instruction result(Mnemonic::CTZ, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ctz64dp1src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ctz64dp1src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.ctz64dp1src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.ctz64dp1src.Rn, true));
                         return result;
         }
         case 0xDAC01C00u: { // CNT_64_dp_1src
                         Instruction result(Mnemonic::CNT, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cnt64dp1src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cnt64dp1src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.cnt64dp1src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.cnt64dp1src.Rn, true));
                         return result;
         }
         case 0xDAC02000u: { // ABS_64_dp_1src
                         Instruction result(Mnemonic::ABS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.abs64dp1src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.abs64dp1src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.abs64dp1src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.abs64dp1src.Rn, true));
                         return result;
         }
         case 0xDAC10000u: { // PACIA_64P_dp_1src
                         Instruction result(Mnemonic::PACIA, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.pacia64p_dp1src.Rd, true));
-                        { Operand op(OperandType::Register, enc.pacia64p_dp1src.Rn, true); op.is_sp = true; result.operands.push_back(op); }
+                        result.operands.push_back(Operand::gp(enc.pacia64p_dp1src.Rd, true));
+                        { result.operands.push_back(Operand::gp(enc.pacia64p_dp1src.Rn, true, true)); }
                         return result;
         }
         case 0xDAC10400u: { // PACIB_64P_dp_1src
                         Instruction result(Mnemonic::PACIB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.pacib64p_dp1src.Rd, true));
-                        { Operand op(OperandType::Register, enc.pacib64p_dp1src.Rn, true); op.is_sp = true; result.operands.push_back(op); }
+                        result.operands.push_back(Operand::gp(enc.pacib64p_dp1src.Rd, true));
+                        { result.operands.push_back(Operand::gp(enc.pacib64p_dp1src.Rn, true, true)); }
                         return result;
         }
         case 0xDAC10800u: { // PACDA_64P_dp_1src
                         Instruction result(Mnemonic::PACDA, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.pacda64p_dp1src.Rd, true));
-                        { Operand op(OperandType::Register, enc.pacda64p_dp1src.Rn, true); op.is_sp = true; result.operands.push_back(op); }
+                        result.operands.push_back(Operand::gp(enc.pacda64p_dp1src.Rd, true));
+                        { result.operands.push_back(Operand::gp(enc.pacda64p_dp1src.Rn, true, true)); }
                         return result;
         }
         case 0xDAC10C00u: { // PACDB_64P_dp_1src
                         Instruction result(Mnemonic::PACDB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.pacdb64p_dp1src.Rd, true));
-                        { Operand op(OperandType::Register, enc.pacdb64p_dp1src.Rn, true); op.is_sp = true; result.operands.push_back(op); }
+                        result.operands.push_back(Operand::gp(enc.pacdb64p_dp1src.Rd, true));
+                        { result.operands.push_back(Operand::gp(enc.pacdb64p_dp1src.Rn, true, true)); }
                         return result;
         }
         case 0xDAC11000u: { // AUTIA_64P_dp_1src
                         Instruction result(Mnemonic::AUTIA, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.autia64p_dp1src.Rd, true));
-                        { Operand op(OperandType::Register, enc.autia64p_dp1src.Rn, true); op.is_sp = true; result.operands.push_back(op); }
+                        result.operands.push_back(Operand::gp(enc.autia64p_dp1src.Rd, true));
+                        { result.operands.push_back(Operand::gp(enc.autia64p_dp1src.Rn, true, true)); }
                         return result;
         }
         case 0xDAC11400u: { // AUTIB_64P_dp_1src
                         Instruction result(Mnemonic::AUTIB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.autib64p_dp1src.Rd, true));
-                        { Operand op(OperandType::Register, enc.autib64p_dp1src.Rn, true); op.is_sp = true; result.operands.push_back(op); }
+                        result.operands.push_back(Operand::gp(enc.autib64p_dp1src.Rd, true));
+                        { result.operands.push_back(Operand::gp(enc.autib64p_dp1src.Rn, true, true)); }
                         return result;
         }
         case 0xDAC11800u: { // AUTDA_64P_dp_1src
                         Instruction result(Mnemonic::AUTDA, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.autda64p_dp1src.Rd, true));
-                        { Operand op(OperandType::Register, enc.autda64p_dp1src.Rn, true); op.is_sp = true; result.operands.push_back(op); }
+                        result.operands.push_back(Operand::gp(enc.autda64p_dp1src.Rd, true));
+                        { result.operands.push_back(Operand::gp(enc.autda64p_dp1src.Rn, true, true)); }
                         return result;
         }
         case 0xDAC11C00u: { // AUTDB_64P_dp_1src
                         Instruction result(Mnemonic::AUTDB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.autdb64p_dp1src.Rd, true));
-                        { Operand op(OperandType::Register, enc.autdb64p_dp1src.Rn, true); op.is_sp = true; result.operands.push_back(op); }
+                        result.operands.push_back(Operand::gp(enc.autdb64p_dp1src.Rd, true));
+                        { result.operands.push_back(Operand::gp(enc.autdb64p_dp1src.Rn, true, true)); }
                         return result;
         }
         default: break;
@@ -6891,7 +6891,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CSINC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cset_csinc32condsel.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.cset_csinc32condsel.Rd, false));
                         result.condition = static_cast<Condition>(enc.cset_csinc32condsel.cond);
                         return result;
         }
@@ -6899,7 +6899,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CSINV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.csetm_csinv32condsel.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.csetm_csinv32condsel.Rd, false));
                         result.condition = static_cast<Condition>(enc.csetm_csinv32condsel.cond);
                         return result;
         }
@@ -6907,7 +6907,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CSINC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cset_csinc64condsel.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.cset_csinc64condsel.Rd, true));
                         result.condition = static_cast<Condition>(enc.cset_csinc64condsel.cond);
                         return result;
         }
@@ -6915,7 +6915,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CSINV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.csetm_csinv64condsel.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.csetm_csinv64condsel.Rd, true));
                         result.condition = static_cast<Condition>(enc.csetm_csinv64condsel.cond);
                         return result;
         }
@@ -6928,48 +6928,48 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ORR, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.mov_orr32log_shift.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.mov_orr32log_shift.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.mov_orr32log_shift.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.mov_orr32log_shift.Rm, false));
                         return result;
         }
         case 0x5A0003E0u: { // NGC_SBC_32_addsub_carry
                         Instruction result(Mnemonic::SBC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ngc_sbc32addsub_carry.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ngc_sbc32addsub_carry.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.ngc_sbc32addsub_carry.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.ngc_sbc32addsub_carry.Rm, false));
                         return result;
         }
         case 0x7A0003E0u: { // NGCS_SBCS_32_addsub_carry
                         Instruction result(Mnemonic::SBCS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ngcs_sbcs32addsub_carry.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ngcs_sbcs32addsub_carry.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.ngcs_sbcs32addsub_carry.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.ngcs_sbcs32addsub_carry.Rm, false));
                         return result;
         }
         case 0xAA0003E0u: { // MOV_ORR_64_log_shift
                         Instruction result(Mnemonic::ORR, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.mov_orr64log_shift.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.mov_orr64log_shift.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.mov_orr64log_shift.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.mov_orr64log_shift.Rm, true));
                         return result;
         }
         case 0xDA0003E0u: { // NGC_SBC_64_addsub_carry
                         Instruction result(Mnemonic::SBC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ngc_sbc64addsub_carry.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ngc_sbc64addsub_carry.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.ngc_sbc64addsub_carry.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.ngc_sbc64addsub_carry.Rm, true));
                         return result;
         }
         case 0xFA0003E0u: { // NGCS_SBCS_64_addsub_carry
                         Instruction result(Mnemonic::SBCS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ngcs_sbcs64addsub_carry.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ngcs_sbcs64addsub_carry.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.ngcs_sbcs64addsub_carry.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.ngcs_sbcs64addsub_carry.Rm, true));
                         return result;
         }
         default: break;
@@ -6981,8 +6981,8 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::SUBPS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::Register, enc.cmpp_subps64s_dp2src.Rn, true); op.is_sp = true; result.operands.push_back(op); }
-                        { Operand op(OperandType::Register, enc.cmpp_subps64s_dp2src.Rm, true); op.is_sp = true; result.operands.push_back(op); }
+                        { result.operands.push_back(Operand::gp(enc.cmpp_subps64s_dp2src.Rn, true, true)); }
+                        { result.operands.push_back(Operand::gp(enc.cmpp_subps64s_dp2src.Rm, true, true)); }
                         return result;
         }
         default: break;
@@ -6994,27 +6994,27 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ADC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.adc32addsub_carry.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.adc32addsub_carry.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.adc32addsub_carry.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.adc32addsub_carry.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.adc32addsub_carry.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.adc32addsub_carry.Rm, false));
                         return result;
         }
         case 0x1AC00800u: { // UDIV_32_dp_2src
                         Instruction result(Mnemonic::UDIV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.udiv32dp2src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.udiv32dp2src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.udiv32dp2src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.udiv32dp2src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.udiv32dp2src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.udiv32dp2src.Rm, false));
                         return result;
         }
         case 0x1AC00C00u: { // SDIV_32_dp_2src
                         Instruction result(Mnemonic::SDIV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sdiv32dp2src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sdiv32dp2src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sdiv32dp2src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.sdiv32dp2src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.sdiv32dp2src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.sdiv32dp2src.Rm, false));
                         return result;
         }
         case 0x1AC02000u: { // LSL_LSLV_32_dp_2src
@@ -7022,9 +7022,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::LSLV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.lsl_lslv32dp2src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.lsl_lslv32dp2src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.lsl_lslv32dp2src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.lsl_lslv32dp2src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.lsl_lslv32dp2src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.lsl_lslv32dp2src.Rm, false));
                         return result;
         }
         case 0x1AC02400u: { // LSR_LSRV_32_dp_2src
@@ -7032,9 +7032,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::LSRV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.lsr_lsrv32dp2src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.lsr_lsrv32dp2src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.lsr_lsrv32dp2src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.lsr_lsrv32dp2src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.lsr_lsrv32dp2src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.lsr_lsrv32dp2src.Rm, false));
                         return result;
         }
         case 0x1AC02800u: { // ASR_ASRV_32_dp_2src
@@ -7042,9 +7042,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ASRV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.asr_asrv32dp2src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.asr_asrv32dp2src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.asr_asrv32dp2src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.asr_asrv32dp2src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.asr_asrv32dp2src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.asr_asrv32dp2src.Rm, false));
                         return result;
         }
         case 0x1AC02C00u: { // ROR_RORV_32_dp_2src
@@ -7052,198 +7052,198 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::RORV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ror_rorv32dp2src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ror_rorv32dp2src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ror_rorv32dp2src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.ror_rorv32dp2src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.ror_rorv32dp2src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.ror_rorv32dp2src.Rm, false));
                         return result;
         }
         case 0x1AC04000u: { // CRC32B_32C_dp_2src
                         Instruction result(Mnemonic::CRC32B, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.crc32b32c_dp2src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.crc32b32c_dp2src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.crc32b32c_dp2src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.crc32b32c_dp2src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.crc32b32c_dp2src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.crc32b32c_dp2src.Rm, false));
                         return result;
         }
         case 0x1AC04400u: { // CRC32H_32C_dp_2src
                         Instruction result(Mnemonic::CRC32H, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.crc32h32c_dp2src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.crc32h32c_dp2src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.crc32h32c_dp2src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.crc32h32c_dp2src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.crc32h32c_dp2src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.crc32h32c_dp2src.Rm, false));
                         return result;
         }
         case 0x1AC04800u: { // CRC32W_32C_dp_2src
                         Instruction result(Mnemonic::CRC32W, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.crc32w32c_dp2src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.crc32w32c_dp2src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.crc32w32c_dp2src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.crc32w32c_dp2src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.crc32w32c_dp2src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.crc32w32c_dp2src.Rm, false));
                         return result;
         }
         case 0x1AC05000u: { // CRC32CB_32C_dp_2src
                         Instruction result(Mnemonic::CRC32CB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.crc32cb32c_dp2src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.crc32cb32c_dp2src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.crc32cb32c_dp2src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.crc32cb32c_dp2src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.crc32cb32c_dp2src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.crc32cb32c_dp2src.Rm, false));
                         return result;
         }
         case 0x1AC05400u: { // CRC32CH_32C_dp_2src
                         Instruction result(Mnemonic::CRC32CH, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.crc32ch32c_dp2src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.crc32ch32c_dp2src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.crc32ch32c_dp2src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.crc32ch32c_dp2src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.crc32ch32c_dp2src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.crc32ch32c_dp2src.Rm, false));
                         return result;
         }
         case 0x1AC05800u: { // CRC32CW_32C_dp_2src
                         Instruction result(Mnemonic::CRC32CW, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.crc32cw32c_dp2src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.crc32cw32c_dp2src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.crc32cw32c_dp2src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.crc32cw32c_dp2src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.crc32cw32c_dp2src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.crc32cw32c_dp2src.Rm, false));
                         return result;
         }
         case 0x1AC06000u: { // SMAX_32_dp_2src
                         Instruction result(Mnemonic::SMAX, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.smax32dp2src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smax32dp2src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smax32dp2src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.smax32dp2src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.smax32dp2src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.smax32dp2src.Rm, false));
                         return result;
         }
         case 0x1AC06400u: { // UMAX_32_dp_2src
                         Instruction result(Mnemonic::UMAX, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.umax32dp2src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umax32dp2src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umax32dp2src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.umax32dp2src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.umax32dp2src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.umax32dp2src.Rm, false));
                         return result;
         }
         case 0x1AC06800u: { // SMIN_32_dp_2src
                         Instruction result(Mnemonic::SMIN, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.smin32dp2src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smin32dp2src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smin32dp2src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.smin32dp2src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.smin32dp2src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.smin32dp2src.Rm, false));
                         return result;
         }
         case 0x1AC06C00u: { // UMIN_32_dp_2src
                         Instruction result(Mnemonic::UMIN, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.umin32dp2src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umin32dp2src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umin32dp2src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.umin32dp2src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.umin32dp2src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.umin32dp2src.Rm, false));
                         return result;
         }
         case 0x1B007C00u: { // MUL_MADD_32A_dp_3src
                         Instruction result(Mnemonic::MADD, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.mul_madd32a_dp3src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.mul_madd32a_dp3src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.mul_madd32a_dp3src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.mul_madd32a_dp3src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.mul_madd32a_dp3src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.mul_madd32a_dp3src.Rm, false));
                         return result;
         }
         case 0x1B00FC00u: { // MNEG_MSUB_32A_dp_3src
                         Instruction result(Mnemonic::MSUB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.mneg_msub32a_dp3src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.mneg_msub32a_dp3src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.mneg_msub32a_dp3src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.mneg_msub32a_dp3src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.mneg_msub32a_dp3src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.mneg_msub32a_dp3src.Rm, false));
                         return result;
         }
         case 0x3A000000u: { // ADCS_32_addsub_carry
                         Instruction result(Mnemonic::ADCS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.adcs32addsub_carry.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.adcs32addsub_carry.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.adcs32addsub_carry.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.adcs32addsub_carry.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.adcs32addsub_carry.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.adcs32addsub_carry.Rm, false));
                         return result;
         }
         case 0x5A000000u: { // SBC_32_addsub_carry
                         Instruction result(Mnemonic::SBC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sbc32addsub_carry.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sbc32addsub_carry.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sbc32addsub_carry.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.sbc32addsub_carry.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.sbc32addsub_carry.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.sbc32addsub_carry.Rm, false));
                         return result;
         }
         case 0x7A000000u: { // SBCS_32_addsub_carry
                         Instruction result(Mnemonic::SBCS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sbcs32addsub_carry.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sbcs32addsub_carry.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sbcs32addsub_carry.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.sbcs32addsub_carry.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.sbcs32addsub_carry.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.sbcs32addsub_carry.Rm, false));
                         return result;
         }
         case 0x9A000000u: { // ADC_64_addsub_carry
                         Instruction result(Mnemonic::ADC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.adc64addsub_carry.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.adc64addsub_carry.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.adc64addsub_carry.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.adc64addsub_carry.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.adc64addsub_carry.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.adc64addsub_carry.Rm, true));
                         return result;
         }
         case 0x9AC00000u: { // SUBP_64S_dp_2src
                         Instruction result(Mnemonic::SUBP, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.subp64s_dp2src.Rd, true));
-                        { Operand op(OperandType::Register, enc.subp64s_dp2src.Rn, true); op.is_sp = true; result.operands.push_back(op); }
-                        { Operand op(OperandType::Register, enc.subp64s_dp2src.Rm, true); op.is_sp = true; result.operands.push_back(op); }
+                        result.operands.push_back(Operand::gp(enc.subp64s_dp2src.Rd, true));
+                        { result.operands.push_back(Operand::gp(enc.subp64s_dp2src.Rn, true, true)); }
+                        { result.operands.push_back(Operand::gp(enc.subp64s_dp2src.Rm, true, true)); }
                         return result;
         }
         case 0x9AC00800u: { // UDIV_64_dp_2src
                         Instruction result(Mnemonic::UDIV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.udiv64dp2src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.udiv64dp2src.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.udiv64dp2src.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.udiv64dp2src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.udiv64dp2src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.udiv64dp2src.Rm, true));
                         return result;
         }
         case 0x9AC00C00u: { // SDIV_64_dp_2src
                         Instruction result(Mnemonic::SDIV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sdiv64dp2src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sdiv64dp2src.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sdiv64dp2src.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.sdiv64dp2src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.sdiv64dp2src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.sdiv64dp2src.Rm, true));
                         return result;
         }
         case 0x9AC01000u: { // IRG_64I_dp_2src
                         Instruction result(Mnemonic::IRG, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        { Operand op(OperandType::Register, enc.irg64i_dp2src.Rd, true); op.is_sp = true; result.operands.push_back(op); }
-                        { Operand op(OperandType::Register, enc.irg64i_dp2src.Rn, true); op.is_sp = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.irg64i_dp2src.Rm, true));
+                        { result.operands.push_back(Operand::gp(enc.irg64i_dp2src.Rd, true, true)); }
+                        { result.operands.push_back(Operand::gp(enc.irg64i_dp2src.Rn, true, true)); }
+                        result.operands.push_back(Operand::gp(enc.irg64i_dp2src.Rm, true));
                         return result;
         }
         case 0x9AC01400u: { // GMI_64G_dp_2src
                         Instruction result(Mnemonic::GMI, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.gmi64g_dp2src.Rd, true));
-                        { Operand op(OperandType::Register, enc.gmi64g_dp2src.Rn, true); op.is_sp = true; result.operands.push_back(op); }
-                        result.operands.push_back(Operand(OperandType::Register, enc.gmi64g_dp2src.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.gmi64g_dp2src.Rd, true));
+                        { result.operands.push_back(Operand::gp(enc.gmi64g_dp2src.Rn, true, true)); }
+                        result.operands.push_back(Operand::gp(enc.gmi64g_dp2src.Rm, true));
                         return result;
         }
         case 0x9AC02000u: { // LSL_LSLV_64_dp_2src
@@ -7251,9 +7251,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::LSLV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.lsl_lslv64dp2src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.lsl_lslv64dp2src.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.lsl_lslv64dp2src.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.lsl_lslv64dp2src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.lsl_lslv64dp2src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.lsl_lslv64dp2src.Rm, true));
                         return result;
         }
         case 0x9AC02400u: { // LSR_LSRV_64_dp_2src
@@ -7261,9 +7261,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::LSRV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.lsr_lsrv64dp2src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.lsr_lsrv64dp2src.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.lsr_lsrv64dp2src.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.lsr_lsrv64dp2src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.lsr_lsrv64dp2src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.lsr_lsrv64dp2src.Rm, true));
                         return result;
         }
         case 0x9AC02800u: { // ASR_ASRV_64_dp_2src
@@ -7271,9 +7271,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::ASRV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.asr_asrv64dp2src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.asr_asrv64dp2src.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.asr_asrv64dp2src.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.asr_asrv64dp2src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.asr_asrv64dp2src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.asr_asrv64dp2src.Rm, true));
                         return result;
         }
         case 0x9AC02C00u: { // ROR_RORV_64_dp_2src
@@ -7281,162 +7281,162 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::RORV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ror_rorv64dp2src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ror_rorv64dp2src.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ror_rorv64dp2src.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.ror_rorv64dp2src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.ror_rorv64dp2src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.ror_rorv64dp2src.Rm, true));
                         return result;
         }
         case 0x9AC03000u: { // PACGA_64P_dp_2src
                         Instruction result(Mnemonic::PACGA, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.pacga64p_dp2src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.pacga64p_dp2src.Rn, true));
-                        { Operand op(OperandType::Register, enc.pacga64p_dp2src.Rm, true); op.is_sp = true; result.operands.push_back(op); }
+                        result.operands.push_back(Operand::gp(enc.pacga64p_dp2src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.pacga64p_dp2src.Rn, true));
+                        { result.operands.push_back(Operand::gp(enc.pacga64p_dp2src.Rm, true, true)); }
                         return result;
         }
         case 0x9AC04C00u: { // CRC32X_64C_dp_2src
                         Instruction result(Mnemonic::CRC32X, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.crc32x64c_dp2src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.crc32x64c_dp2src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.crc32x64c_dp2src.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.crc32x64c_dp2src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.crc32x64c_dp2src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.crc32x64c_dp2src.Rm, true));
                         return result;
         }
         case 0x9AC05C00u: { // CRC32CX_64C_dp_2src
                         Instruction result(Mnemonic::CRC32CX, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.crc32cx64c_dp2src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.crc32cx64c_dp2src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.crc32cx64c_dp2src.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.crc32cx64c_dp2src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.crc32cx64c_dp2src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.crc32cx64c_dp2src.Rm, true));
                         return result;
         }
         case 0x9AC06000u: { // SMAX_64_dp_2src
                         Instruction result(Mnemonic::SMAX, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.smax64dp2src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smax64dp2src.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smax64dp2src.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.smax64dp2src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.smax64dp2src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.smax64dp2src.Rm, true));
                         return result;
         }
         case 0x9AC06400u: { // UMAX_64_dp_2src
                         Instruction result(Mnemonic::UMAX, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.umax64dp2src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umax64dp2src.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umax64dp2src.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.umax64dp2src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.umax64dp2src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.umax64dp2src.Rm, true));
                         return result;
         }
         case 0x9AC06800u: { // SMIN_64_dp_2src
                         Instruction result(Mnemonic::SMIN, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.smin64dp2src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smin64dp2src.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smin64dp2src.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.smin64dp2src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.smin64dp2src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.smin64dp2src.Rm, true));
                         return result;
         }
         case 0x9AC06C00u: { // UMIN_64_dp_2src
                         Instruction result(Mnemonic::UMIN, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.umin64dp2src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umin64dp2src.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umin64dp2src.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.umin64dp2src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.umin64dp2src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.umin64dp2src.Rm, true));
                         return result;
         }
         case 0x9B007C00u: { // MUL_MADD_64A_dp_3src
                         Instruction result(Mnemonic::MADD, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.mul_madd64a_dp3src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.mul_madd64a_dp3src.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.mul_madd64a_dp3src.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.mul_madd64a_dp3src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.mul_madd64a_dp3src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.mul_madd64a_dp3src.Rm, true));
                         return result;
         }
         case 0x9B00FC00u: { // MNEG_MSUB_64A_dp_3src
                         Instruction result(Mnemonic::MSUB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.mneg_msub64a_dp3src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.mneg_msub64a_dp3src.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.mneg_msub64a_dp3src.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.mneg_msub64a_dp3src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.mneg_msub64a_dp3src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.mneg_msub64a_dp3src.Rm, true));
                         return result;
         }
         case 0x9B207C00u: { // SMULL_SMADDL_64WA_dp_3src
                         Instruction result(Mnemonic::SMADDL, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.smull_smaddl64wa_dp3src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smull_smaddl64wa_dp3src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smull_smaddl64wa_dp3src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.smull_smaddl64wa_dp3src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.smull_smaddl64wa_dp3src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.smull_smaddl64wa_dp3src.Rm, false));
                         return result;
         }
         case 0x9B20FC00u: { // SMNEGL_SMSUBL_64WA_dp_3src
                         Instruction result(Mnemonic::SMSUBL, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.smnegl_smsubl64wa_dp3src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smnegl_smsubl64wa_dp3src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smnegl_smsubl64wa_dp3src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.smnegl_smsubl64wa_dp3src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.smnegl_smsubl64wa_dp3src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.smnegl_smsubl64wa_dp3src.Rm, false));
                         return result;
         }
         case 0x9BA07C00u: { // UMULL_UMADDL_64WA_dp_3src
                         Instruction result(Mnemonic::UMADDL, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.umull_umaddl64wa_dp3src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umull_umaddl64wa_dp3src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umull_umaddl64wa_dp3src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.umull_umaddl64wa_dp3src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.umull_umaddl64wa_dp3src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.umull_umaddl64wa_dp3src.Rm, false));
                         return result;
         }
         case 0x9BA0FC00u: { // UMNEGL_UMSUBL_64WA_dp_3src
                         Instruction result(Mnemonic::UMSUBL, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.umnegl_umsubl64wa_dp3src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umnegl_umsubl64wa_dp3src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umnegl_umsubl64wa_dp3src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.umnegl_umsubl64wa_dp3src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.umnegl_umsubl64wa_dp3src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.umnegl_umsubl64wa_dp3src.Rm, false));
                         return result;
         }
         case 0xBA000000u: { // ADCS_64_addsub_carry
                         Instruction result(Mnemonic::ADCS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.adcs64addsub_carry.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.adcs64addsub_carry.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.adcs64addsub_carry.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.adcs64addsub_carry.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.adcs64addsub_carry.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.adcs64addsub_carry.Rm, true));
                         return result;
         }
         case 0xBAC00000u: { // SUBPS_64S_dp_2src
                         Instruction result(Mnemonic::SUBPS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.subps64s_dp2src.Rd, true));
-                        { Operand op(OperandType::Register, enc.subps64s_dp2src.Rn, true); op.is_sp = true; result.operands.push_back(op); }
-                        { Operand op(OperandType::Register, enc.subps64s_dp2src.Rm, true); op.is_sp = true; result.operands.push_back(op); }
+                        result.operands.push_back(Operand::gp(enc.subps64s_dp2src.Rd, true));
+                        { result.operands.push_back(Operand::gp(enc.subps64s_dp2src.Rn, true, true)); }
+                        { result.operands.push_back(Operand::gp(enc.subps64s_dp2src.Rm, true, true)); }
                         return result;
         }
         case 0xDA000000u: { // SBC_64_addsub_carry
                         Instruction result(Mnemonic::SBC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sbc64addsub_carry.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sbc64addsub_carry.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sbc64addsub_carry.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.sbc64addsub_carry.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.sbc64addsub_carry.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.sbc64addsub_carry.Rm, true));
                         return result;
         }
         case 0xFA000000u: { // SBCS_64_addsub_carry
                         Instruction result(Mnemonic::SBCS, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sbcs64addsub_carry.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sbcs64addsub_carry.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sbcs64addsub_carry.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.sbcs64addsub_carry.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.sbcs64addsub_carry.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.sbcs64addsub_carry.Rm, true));
                         return result;
         }
         default: break;
@@ -7449,14 +7449,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.addpt64addsub_pt.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.addpt64addsub_pt.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.addpt64addsub_pt.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.addpt64addsub_pt.imm3, true));
+                        result.operands.push_back(Operand::gp(enc.addpt64addsub_pt.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.addpt64addsub_pt.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.addpt64addsub_pt.Rm, is_64bit));
+                        result.operands.push_back(Operand::imm(enc.addpt64addsub_pt.imm3));
                         if (!result.operands.empty() && result.operands.back().type == OperandType::Immediate) {
                             uint32_t _amt = result.operands.back().value;
                             result.operands.pop_back();
-                            if (_amt != 0) result.operands.push_back(Operand(OperandType::Shift, (0u << 8) | _amt, true));
+                            if (_amt != 0) result.operands.push_back(Operand::shift(0u, _amt));
                         }
                         return result;
         }
@@ -7465,14 +7465,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.subpt64addsub_pt.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.subpt64addsub_pt.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.subpt64addsub_pt.Rm, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.subpt64addsub_pt.imm3, true));
+                        result.operands.push_back(Operand::gp(enc.subpt64addsub_pt.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.subpt64addsub_pt.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.subpt64addsub_pt.Rm, is_64bit));
+                        result.operands.push_back(Operand::imm(enc.subpt64addsub_pt.imm3));
                         if (!result.operands.empty() && result.operands.back().type == OperandType::Immediate) {
                             uint32_t _amt = result.operands.back().value;
                             result.operands.pop_back();
-                            if (_amt != 0) result.operands.push_back(Operand(OperandType::Shift, (0u << 8) | _amt, true));
+                            if (_amt != 0) result.operands.push_back(Operand::shift(0u, _amt));
                         }
                         return result;
         }
@@ -7485,118 +7485,118 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::MADD, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.madd32a_dp3src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.madd32a_dp3src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.madd32a_dp3src.Rm, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.madd32a_dp3src.Ra, false));
+                        result.operands.push_back(Operand::gp(enc.madd32a_dp3src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.madd32a_dp3src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.madd32a_dp3src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.madd32a_dp3src.Ra, false));
                         return result;
         }
         case 0x1B008000u: { // MSUB_32A_dp_3src
                         Instruction result(Mnemonic::MSUB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.msub32a_dp3src.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.msub32a_dp3src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.msub32a_dp3src.Rm, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.msub32a_dp3src.Ra, false));
+                        result.operands.push_back(Operand::gp(enc.msub32a_dp3src.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.msub32a_dp3src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.msub32a_dp3src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.msub32a_dp3src.Ra, false));
                         return result;
         }
         case 0x9B000000u: { // MADD_64A_dp_3src
                         Instruction result(Mnemonic::MADD, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.madd64a_dp3src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.madd64a_dp3src.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.madd64a_dp3src.Rm, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.madd64a_dp3src.Ra, true));
+                        result.operands.push_back(Operand::gp(enc.madd64a_dp3src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.madd64a_dp3src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.madd64a_dp3src.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.madd64a_dp3src.Ra, true));
                         return result;
         }
         case 0x9B008000u: { // MSUB_64A_dp_3src
                         Instruction result(Mnemonic::MSUB, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.msub64a_dp3src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.msub64a_dp3src.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.msub64a_dp3src.Rm, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.msub64a_dp3src.Ra, true));
+                        result.operands.push_back(Operand::gp(enc.msub64a_dp3src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.msub64a_dp3src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.msub64a_dp3src.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.msub64a_dp3src.Ra, true));
                         return result;
         }
         case 0x9B200000u: { // SMADDL_64WA_dp_3src
                         Instruction result(Mnemonic::SMADDL, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.smaddl64wa_dp3src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smaddl64wa_dp3src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smaddl64wa_dp3src.Rm, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smaddl64wa_dp3src.Ra, true));
+                        result.operands.push_back(Operand::gp(enc.smaddl64wa_dp3src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.smaddl64wa_dp3src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.smaddl64wa_dp3src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.smaddl64wa_dp3src.Ra, true));
                         return result;
         }
         case 0x9B208000u: { // SMSUBL_64WA_dp_3src
                         Instruction result(Mnemonic::SMSUBL, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.smsubl64wa_dp3src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smsubl64wa_dp3src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smsubl64wa_dp3src.Rm, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smsubl64wa_dp3src.Ra, true));
+                        result.operands.push_back(Operand::gp(enc.smsubl64wa_dp3src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.smsubl64wa_dp3src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.smsubl64wa_dp3src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.smsubl64wa_dp3src.Ra, true));
                         return result;
         }
         case 0x9B400000u: { // SMULH_64_dp_3src
                         Instruction result(Mnemonic::SMULH, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.smulh64dp3src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smulh64dp3src.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.smulh64dp3src.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.smulh64dp3src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.smulh64dp3src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.smulh64dp3src.Rm, true));
                         return result;
         }
         case 0x9B600000u: { // MADDPT_64A_dp_3src
                         Instruction result(Mnemonic::MADDPT, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.maddpt64a_dp3src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.maddpt64a_dp3src.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.maddpt64a_dp3src.Rm, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.maddpt64a_dp3src.Ra, true));
+                        result.operands.push_back(Operand::gp(enc.maddpt64a_dp3src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.maddpt64a_dp3src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.maddpt64a_dp3src.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.maddpt64a_dp3src.Ra, true));
                         return result;
         }
         case 0x9B608000u: { // MSUBPT_64A_dp_3src
                         Instruction result(Mnemonic::MSUBPT, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.msubpt64a_dp3src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.msubpt64a_dp3src.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.msubpt64a_dp3src.Rm, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.msubpt64a_dp3src.Ra, true));
+                        result.operands.push_back(Operand::gp(enc.msubpt64a_dp3src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.msubpt64a_dp3src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.msubpt64a_dp3src.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.msubpt64a_dp3src.Ra, true));
                         return result;
         }
         case 0x9BA00000u: { // UMADDL_64WA_dp_3src
                         Instruction result(Mnemonic::UMADDL, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.umaddl64wa_dp3src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umaddl64wa_dp3src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umaddl64wa_dp3src.Rm, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umaddl64wa_dp3src.Ra, true));
+                        result.operands.push_back(Operand::gp(enc.umaddl64wa_dp3src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.umaddl64wa_dp3src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.umaddl64wa_dp3src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.umaddl64wa_dp3src.Ra, true));
                         return result;
         }
         case 0x9BA08000u: { // UMSUBL_64WA_dp_3src
                         Instruction result(Mnemonic::UMSUBL, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.umsubl64wa_dp3src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umsubl64wa_dp3src.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umsubl64wa_dp3src.Rm, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umsubl64wa_dp3src.Ra, true));
+                        result.operands.push_back(Operand::gp(enc.umsubl64wa_dp3src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.umsubl64wa_dp3src.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.umsubl64wa_dp3src.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.umsubl64wa_dp3src.Ra, true));
                         return result;
         }
         case 0x9BC00000u: { // UMULH_64_dp_3src
                         Instruction result(Mnemonic::UMULH, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.umulh64dp3src.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umulh64dp3src.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.umulh64dp3src.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.umulh64dp3src.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.umulh64dp3src.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.umulh64dp3src.Rm, true));
                         return result;
         }
         default: break;
@@ -7609,9 +7609,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.rmif_only_rmif.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.rmif_only_rmif.imm6, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.rmif_only_rmif.mask, true));
+                        result.operands.push_back(Operand::gp(enc.rmif_only_rmif.Rn, is_64bit));
+                        result.operands.push_back(Operand::imm(enc.rmif_only_rmif.imm6));
+                        result.operands.push_back(Operand::imm(enc.rmif_only_rmif.mask));
                         return result;
         }
         default: break;
@@ -7624,10 +7624,10 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ccmn32condcmp_reg.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ccmn32condcmp_reg.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.ccmn32condcmp_reg.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.ccmn32condcmp_reg.Rm, is_64bit));
                         result.condition = static_cast<Condition>(enc.ccmn32condcmp_reg.cond);
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.ccmn32condcmp_reg.nzcv, true));
+                        result.operands.push_back(Operand::imm(enc.ccmn32condcmp_reg.nzcv));
                         return result;
         }
         case 0x3A400800u: { // CCMN_32_condcmp_imm
@@ -7635,10 +7635,10 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ccmn32condcmp_imm.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.ccmn32condcmp_imm.imm5, true));
+                        result.operands.push_back(Operand::gp(enc.ccmn32condcmp_imm.Rn, is_64bit));
+                        result.operands.push_back(Operand::imm(enc.ccmn32condcmp_imm.imm5));
                         result.condition = static_cast<Condition>(enc.ccmn32condcmp_imm.cond);
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.ccmn32condcmp_imm.nzcv, true));
+                        result.operands.push_back(Operand::imm(enc.ccmn32condcmp_imm.nzcv));
                         return result;
         }
         case 0x7A400000u: { // CCMP_32_condcmp_reg
@@ -7646,10 +7646,10 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ccmp32condcmp_reg.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ccmp32condcmp_reg.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.ccmp32condcmp_reg.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.ccmp32condcmp_reg.Rm, is_64bit));
                         result.condition = static_cast<Condition>(enc.ccmp32condcmp_reg.cond);
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.ccmp32condcmp_reg.nzcv, true));
+                        result.operands.push_back(Operand::imm(enc.ccmp32condcmp_reg.nzcv));
                         return result;
         }
         case 0x7A400800u: { // CCMP_32_condcmp_imm
@@ -7657,10 +7657,10 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ccmp32condcmp_imm.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.ccmp32condcmp_imm.imm5, true));
+                        result.operands.push_back(Operand::gp(enc.ccmp32condcmp_imm.Rn, is_64bit));
+                        result.operands.push_back(Operand::imm(enc.ccmp32condcmp_imm.imm5));
                         result.condition = static_cast<Condition>(enc.ccmp32condcmp_imm.cond);
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.ccmp32condcmp_imm.nzcv, true));
+                        result.operands.push_back(Operand::imm(enc.ccmp32condcmp_imm.nzcv));
                         return result;
         }
         case 0xBA400000u: { // CCMN_64_condcmp_reg
@@ -7668,10 +7668,10 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ccmn64condcmp_reg.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ccmn64condcmp_reg.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.ccmn64condcmp_reg.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.ccmn64condcmp_reg.Rm, is_64bit));
                         result.condition = static_cast<Condition>(enc.ccmn64condcmp_reg.cond);
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.ccmn64condcmp_reg.nzcv, true));
+                        result.operands.push_back(Operand::imm(enc.ccmn64condcmp_reg.nzcv));
                         return result;
         }
         case 0xBA400800u: { // CCMN_64_condcmp_imm
@@ -7679,10 +7679,10 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ccmn64condcmp_imm.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.ccmn64condcmp_imm.imm5, true));
+                        result.operands.push_back(Operand::gp(enc.ccmn64condcmp_imm.Rn, is_64bit));
+                        result.operands.push_back(Operand::imm(enc.ccmn64condcmp_imm.imm5));
                         result.condition = static_cast<Condition>(enc.ccmn64condcmp_imm.cond);
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.ccmn64condcmp_imm.nzcv, true));
+                        result.operands.push_back(Operand::imm(enc.ccmn64condcmp_imm.nzcv));
                         return result;
         }
         case 0xFA400000u: { // CCMP_64_condcmp_reg
@@ -7690,10 +7690,10 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ccmp64condcmp_reg.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ccmp64condcmp_reg.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.ccmp64condcmp_reg.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.ccmp64condcmp_reg.Rm, is_64bit));
                         result.condition = static_cast<Condition>(enc.ccmp64condcmp_reg.cond);
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.ccmp64condcmp_reg.nzcv, true));
+                        result.operands.push_back(Operand::imm(enc.ccmp64condcmp_reg.nzcv));
                         return result;
         }
         case 0xFA400800u: { // CCMP_64_condcmp_imm
@@ -7701,10 +7701,10 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ccmp64condcmp_imm.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.ccmp64condcmp_imm.imm5, true));
+                        result.operands.push_back(Operand::gp(enc.ccmp64condcmp_imm.Rn, is_64bit));
+                        result.operands.push_back(Operand::imm(enc.ccmp64condcmp_imm.imm5));
                         result.condition = static_cast<Condition>(enc.ccmp64condcmp_imm.cond);
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.ccmp64condcmp_imm.nzcv, true));
+                        result.operands.push_back(Operand::imm(enc.ccmp64condcmp_imm.nzcv));
                         return result;
         }
         default: break;
@@ -7716,9 +7716,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CSEL, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.csel32condsel.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.csel32condsel.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.csel32condsel.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.csel32condsel.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.csel32condsel.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.csel32condsel.Rm, false));
                         result.condition = static_cast<Condition>(enc.csel32condsel.cond);
                         return result;
         }
@@ -7728,17 +7728,17 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                                 Instruction result(Mnemonic::CSINC, insn);
                                 DpregEncoding enc = {};
                                 enc.raw = insn;
-                                result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc32condsel.Rd, false));
-                                result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc32condsel.Rn, false));
+                                result.operands.push_back(Operand::gp(enc.cinc_csinc32condsel.Rd, false));
+                                result.operands.push_back(Operand::gp(enc.cinc_csinc32condsel.Rn, false));
                                 result.condition = static_cast<Condition>(enc.cinc_csinc32condsel.cond);
                                 return result;
             }
                         Instruction result(Mnemonic::CSINC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.csinc32condsel.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.csinc32condsel.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.csinc32condsel.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.csinc32condsel.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.csinc32condsel.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.csinc32condsel.Rm, false));
                         result.condition = static_cast<Condition>(enc.csinc32condsel.cond);
                         return result;
         }
@@ -7748,17 +7748,17 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                                 Instruction result(Mnemonic::CSINV, insn);
                                 DpregEncoding enc = {};
                                 enc.raw = insn;
-                                result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv32condsel.Rd, false));
-                                result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv32condsel.Rn, false));
+                                result.operands.push_back(Operand::gp(enc.cinv_csinv32condsel.Rd, false));
+                                result.operands.push_back(Operand::gp(enc.cinv_csinv32condsel.Rn, false));
                                 result.condition = static_cast<Condition>(enc.cinv_csinv32condsel.cond);
                                 return result;
             }
                         Instruction result(Mnemonic::CSINV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.csinv32condsel.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.csinv32condsel.Rn, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.csinv32condsel.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.csinv32condsel.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.csinv32condsel.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.csinv32condsel.Rm, false));
                         result.condition = static_cast<Condition>(enc.csinv32condsel.cond);
                         return result;
         }
@@ -7767,8 +7767,8 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CSNEG, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg32condsel.Rd, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg32condsel.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.cneg_csneg32condsel.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.cneg_csneg32condsel.Rn, false));
                         result.condition = static_cast<Condition>(enc.cneg_csneg32condsel.cond);
                         return result;
         }
@@ -7776,9 +7776,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CSEL, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.csel64condsel.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.csel64condsel.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.csel64condsel.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.csel64condsel.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.csel64condsel.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.csel64condsel.Rm, true));
                         result.condition = static_cast<Condition>(enc.csel64condsel.cond);
                         return result;
         }
@@ -7788,17 +7788,17 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                                 Instruction result(Mnemonic::CSINC, insn);
                                 DpregEncoding enc = {};
                                 enc.raw = insn;
-                                result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc64condsel.Rd, true));
-                                result.operands.push_back(Operand(OperandType::Register, enc.cinc_csinc64condsel.Rn, true));
+                                result.operands.push_back(Operand::gp(enc.cinc_csinc64condsel.Rd, true));
+                                result.operands.push_back(Operand::gp(enc.cinc_csinc64condsel.Rn, true));
                                 result.condition = static_cast<Condition>(enc.cinc_csinc64condsel.cond);
                                 return result;
             }
                         Instruction result(Mnemonic::CSINC, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.csinc64condsel.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.csinc64condsel.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.csinc64condsel.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.csinc64condsel.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.csinc64condsel.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.csinc64condsel.Rm, true));
                         result.condition = static_cast<Condition>(enc.csinc64condsel.cond);
                         return result;
         }
@@ -7808,17 +7808,17 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                                 Instruction result(Mnemonic::CSINV, insn);
                                 DpregEncoding enc = {};
                                 enc.raw = insn;
-                                result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv64condsel.Rd, true));
-                                result.operands.push_back(Operand(OperandType::Register, enc.cinv_csinv64condsel.Rn, true));
+                                result.operands.push_back(Operand::gp(enc.cinv_csinv64condsel.Rd, true));
+                                result.operands.push_back(Operand::gp(enc.cinv_csinv64condsel.Rn, true));
                                 result.condition = static_cast<Condition>(enc.cinv_csinv64condsel.cond);
                                 return result;
             }
                         Instruction result(Mnemonic::CSINV, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.csinv64condsel.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.csinv64condsel.Rn, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.csinv64condsel.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.csinv64condsel.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.csinv64condsel.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.csinv64condsel.Rm, true));
                         result.condition = static_cast<Condition>(enc.csinv64condsel.cond);
                         return result;
         }
@@ -7827,8 +7827,8 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         Instruction result(Mnemonic::CSNEG, insn);
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg64condsel.Rd, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cneg_csneg64condsel.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.cneg_csneg64condsel.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.cneg_csneg64condsel.Rn, true));
                         result.condition = static_cast<Condition>(enc.cneg_csneg64condsel.cond);
                         return result;
         }
@@ -7842,15 +7842,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::Register, enc.cmn_adds32s_addsub_ext.Rn, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        { result.operands.push_back(Operand::gp(enc.cmn_adds32s_addsub_ext.Rn, is_64bit, true)); }
                         uint32_t option = enc.cmn_adds32s_addsub_ext.option;
                         bool rm_is_64 = is_64bit && ((option & 3) == 3);
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds32s_addsub_ext.Rm, rm_is_64));
+                        result.operands.push_back(Operand::gp(enc.cmn_adds32s_addsub_ext.Rm, rm_is_64));
                         uint32_t imm3 = enc.cmn_adds32s_addsub_ext.imm3;
                         uint32_t _rn = enc.cmn_adds32s_addsub_ext.Rn;
                         bool is_default = (is_64bit ? (option == 3 && _rn == 31) : (option == 2 && _rn == 31)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), is_64bit));
+                            result.operands.push_back(Operand::extend_op(option, imm3, is_64bit));
                         }
                         return result;
         }
@@ -7859,15 +7859,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::Register, enc.cmp_subs32s_addsub_ext.Rn, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        { result.operands.push_back(Operand::gp(enc.cmp_subs32s_addsub_ext.Rn, is_64bit, true)); }
                         uint32_t option = enc.cmp_subs32s_addsub_ext.option;
                         bool rm_is_64 = is_64bit && ((option & 3) == 3);
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs32s_addsub_ext.Rm, rm_is_64));
+                        result.operands.push_back(Operand::gp(enc.cmp_subs32s_addsub_ext.Rm, rm_is_64));
                         uint32_t imm3 = enc.cmp_subs32s_addsub_ext.imm3;
                         uint32_t _rn = enc.cmp_subs32s_addsub_ext.Rn;
                         bool is_default = (is_64bit ? (option == 3 && _rn == 31) : (option == 2 && _rn == 31)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), is_64bit));
+                            result.operands.push_back(Operand::extend_op(option, imm3, is_64bit));
                         }
                         return result;
         }
@@ -7876,15 +7876,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::Register, enc.cmn_adds64s_addsub_ext.Rn, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        { result.operands.push_back(Operand::gp(enc.cmn_adds64s_addsub_ext.Rn, is_64bit, true)); }
                         uint32_t option = enc.cmn_adds64s_addsub_ext.option;
                         bool rm_is_64 = is_64bit && ((option & 3) == 3);
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds64s_addsub_ext.Rm, rm_is_64));
+                        result.operands.push_back(Operand::gp(enc.cmn_adds64s_addsub_ext.Rm, rm_is_64));
                         uint32_t imm3 = enc.cmn_adds64s_addsub_ext.imm3;
                         uint32_t _rn = enc.cmn_adds64s_addsub_ext.Rn;
                         bool is_default = (is_64bit ? (option == 3 && _rn == 31) : (option == 2 && _rn == 31)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), is_64bit));
+                            result.operands.push_back(Operand::extend_op(option, imm3, is_64bit));
                         }
                         return result;
         }
@@ -7893,15 +7893,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::Register, enc.cmp_subs64s_addsub_ext.Rn, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        { result.operands.push_back(Operand::gp(enc.cmp_subs64s_addsub_ext.Rn, is_64bit, true)); }
                         uint32_t option = enc.cmp_subs64s_addsub_ext.option;
                         bool rm_is_64 = is_64bit && ((option & 3) == 3);
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs64s_addsub_ext.Rm, rm_is_64));
+                        result.operands.push_back(Operand::gp(enc.cmp_subs64s_addsub_ext.Rm, rm_is_64));
                         uint32_t imm3 = enc.cmp_subs64s_addsub_ext.imm3;
                         uint32_t _rn = enc.cmp_subs64s_addsub_ext.Rn;
                         bool is_default = (is_64bit ? (option == 3 && _rn == 31) : (option == 2 && _rn == 31)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), is_64bit));
+                            result.operands.push_back(Operand::extend_op(option, imm3, is_64bit));
                         }
                         return result;
         }
@@ -7915,16 +7915,16 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::Register, enc.add32addsub_ext.Rd, is_64bit); op.is_sp = true; result.operands.push_back(op); }
-                        { Operand op(OperandType::Register, enc.add32addsub_ext.Rn, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        { result.operands.push_back(Operand::gp(enc.add32addsub_ext.Rd, is_64bit, true)); }
+                        { result.operands.push_back(Operand::gp(enc.add32addsub_ext.Rn, is_64bit, true)); }
                         uint32_t option = enc.add32addsub_ext.option;
                         bool rm_is_64 = is_64bit && ((option & 3) == 3);
-                        result.operands.push_back(Operand(OperandType::Register, enc.add32addsub_ext.Rm, rm_is_64));
+                        result.operands.push_back(Operand::gp(enc.add32addsub_ext.Rm, rm_is_64));
                         uint32_t imm3 = enc.add32addsub_ext.imm3;
                         uint32_t _rn = enc.add32addsub_ext.Rn;
                         bool is_default = (is_64bit ? (option == 3 && _rn == 31) : (option == 2 && _rn == 31)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), is_64bit));
+                            result.operands.push_back(Operand::extend_op(option, imm3, is_64bit));
                         }
                         return result;
         }
@@ -7933,16 +7933,16 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::Register, enc.adds32s_addsub_ext.Rd, is_64bit); op.is_sp = true; result.operands.push_back(op); }
-                        { Operand op(OperandType::Register, enc.adds32s_addsub_ext.Rn, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        { result.operands.push_back(Operand::gp(enc.adds32s_addsub_ext.Rd, is_64bit, true)); }
+                        { result.operands.push_back(Operand::gp(enc.adds32s_addsub_ext.Rn, is_64bit, true)); }
                         uint32_t option = enc.adds32s_addsub_ext.option;
                         bool rm_is_64 = is_64bit && ((option & 3) == 3);
-                        result.operands.push_back(Operand(OperandType::Register, enc.adds32s_addsub_ext.Rm, rm_is_64));
+                        result.operands.push_back(Operand::gp(enc.adds32s_addsub_ext.Rm, rm_is_64));
                         uint32_t imm3 = enc.adds32s_addsub_ext.imm3;
                         uint32_t _rn = enc.adds32s_addsub_ext.Rn;
                         bool is_default = (is_64bit ? (option == 3 && _rn == 31) : (option == 2 && _rn == 31)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), is_64bit));
+                            result.operands.push_back(Operand::extend_op(option, imm3, is_64bit));
                         }
                         return result;
         }
@@ -7951,16 +7951,16 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::Register, enc.sub32addsub_ext.Rd, is_64bit); op.is_sp = true; result.operands.push_back(op); }
-                        { Operand op(OperandType::Register, enc.sub32addsub_ext.Rn, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        { result.operands.push_back(Operand::gp(enc.sub32addsub_ext.Rd, is_64bit, true)); }
+                        { result.operands.push_back(Operand::gp(enc.sub32addsub_ext.Rn, is_64bit, true)); }
                         uint32_t option = enc.sub32addsub_ext.option;
                         bool rm_is_64 = is_64bit && ((option & 3) == 3);
-                        result.operands.push_back(Operand(OperandType::Register, enc.sub32addsub_ext.Rm, rm_is_64));
+                        result.operands.push_back(Operand::gp(enc.sub32addsub_ext.Rm, rm_is_64));
                         uint32_t imm3 = enc.sub32addsub_ext.imm3;
                         uint32_t _rn = enc.sub32addsub_ext.Rn;
                         bool is_default = (is_64bit ? (option == 3 && _rn == 31) : (option == 2 && _rn == 31)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), is_64bit));
+                            result.operands.push_back(Operand::extend_op(option, imm3, is_64bit));
                         }
                         return result;
         }
@@ -7969,16 +7969,16 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        { Operand op(OperandType::Register, enc.subs32s_addsub_ext.Rd, is_64bit); op.is_sp = true; result.operands.push_back(op); }
-                        { Operand op(OperandType::Register, enc.subs32s_addsub_ext.Rn, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        { result.operands.push_back(Operand::gp(enc.subs32s_addsub_ext.Rd, is_64bit, true)); }
+                        { result.operands.push_back(Operand::gp(enc.subs32s_addsub_ext.Rn, is_64bit, true)); }
                         uint32_t option = enc.subs32s_addsub_ext.option;
                         bool rm_is_64 = is_64bit && ((option & 3) == 3);
-                        result.operands.push_back(Operand(OperandType::Register, enc.subs32s_addsub_ext.Rm, rm_is_64));
+                        result.operands.push_back(Operand::gp(enc.subs32s_addsub_ext.Rm, rm_is_64));
                         uint32_t imm3 = enc.subs32s_addsub_ext.imm3;
                         uint32_t _rn = enc.subs32s_addsub_ext.Rn;
                         bool is_default = (is_64bit ? (option == 3 && _rn == 31) : (option == 2 && _rn == 31)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), is_64bit));
+                            result.operands.push_back(Operand::extend_op(option, imm3, is_64bit));
                         }
                         return result;
         }
@@ -7987,16 +7987,16 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::Register, enc.add64addsub_ext.Rd, is_64bit); op.is_sp = true; result.operands.push_back(op); }
-                        { Operand op(OperandType::Register, enc.add64addsub_ext.Rn, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        { result.operands.push_back(Operand::gp(enc.add64addsub_ext.Rd, is_64bit, true)); }
+                        { result.operands.push_back(Operand::gp(enc.add64addsub_ext.Rn, is_64bit, true)); }
                         uint32_t option = enc.add64addsub_ext.option;
                         bool rm_is_64 = is_64bit && ((option & 3) == 3);
-                        result.operands.push_back(Operand(OperandType::Register, enc.add64addsub_ext.Rm, rm_is_64));
+                        result.operands.push_back(Operand::gp(enc.add64addsub_ext.Rm, rm_is_64));
                         uint32_t imm3 = enc.add64addsub_ext.imm3;
                         uint32_t _rn = enc.add64addsub_ext.Rn;
                         bool is_default = (is_64bit ? (option == 3 && _rn == 31) : (option == 2 && _rn == 31)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), is_64bit));
+                            result.operands.push_back(Operand::extend_op(option, imm3, is_64bit));
                         }
                         return result;
         }
@@ -8005,16 +8005,16 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::Register, enc.adds64s_addsub_ext.Rd, is_64bit); op.is_sp = true; result.operands.push_back(op); }
-                        { Operand op(OperandType::Register, enc.adds64s_addsub_ext.Rn, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        { result.operands.push_back(Operand::gp(enc.adds64s_addsub_ext.Rd, is_64bit, true)); }
+                        { result.operands.push_back(Operand::gp(enc.adds64s_addsub_ext.Rn, is_64bit, true)); }
                         uint32_t option = enc.adds64s_addsub_ext.option;
                         bool rm_is_64 = is_64bit && ((option & 3) == 3);
-                        result.operands.push_back(Operand(OperandType::Register, enc.adds64s_addsub_ext.Rm, rm_is_64));
+                        result.operands.push_back(Operand::gp(enc.adds64s_addsub_ext.Rm, rm_is_64));
                         uint32_t imm3 = enc.adds64s_addsub_ext.imm3;
                         uint32_t _rn = enc.adds64s_addsub_ext.Rn;
                         bool is_default = (is_64bit ? (option == 3 && _rn == 31) : (option == 2 && _rn == 31)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), is_64bit));
+                            result.operands.push_back(Operand::extend_op(option, imm3, is_64bit));
                         }
                         return result;
         }
@@ -8023,16 +8023,16 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::Register, enc.sub64addsub_ext.Rd, is_64bit); op.is_sp = true; result.operands.push_back(op); }
-                        { Operand op(OperandType::Register, enc.sub64addsub_ext.Rn, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        { result.operands.push_back(Operand::gp(enc.sub64addsub_ext.Rd, is_64bit, true)); }
+                        { result.operands.push_back(Operand::gp(enc.sub64addsub_ext.Rn, is_64bit, true)); }
                         uint32_t option = enc.sub64addsub_ext.option;
                         bool rm_is_64 = is_64bit && ((option & 3) == 3);
-                        result.operands.push_back(Operand(OperandType::Register, enc.sub64addsub_ext.Rm, rm_is_64));
+                        result.operands.push_back(Operand::gp(enc.sub64addsub_ext.Rm, rm_is_64));
                         uint32_t imm3 = enc.sub64addsub_ext.imm3;
                         uint32_t _rn = enc.sub64addsub_ext.Rn;
                         bool is_default = (is_64bit ? (option == 3 && _rn == 31) : (option == 2 && _rn == 31)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), is_64bit));
+                            result.operands.push_back(Operand::extend_op(option, imm3, is_64bit));
                         }
                         return result;
         }
@@ -8041,16 +8041,16 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        { Operand op(OperandType::Register, enc.subs64s_addsub_ext.Rd, is_64bit); op.is_sp = true; result.operands.push_back(op); }
-                        { Operand op(OperandType::Register, enc.subs64s_addsub_ext.Rn, is_64bit); op.is_sp = true; result.operands.push_back(op); }
+                        { result.operands.push_back(Operand::gp(enc.subs64s_addsub_ext.Rd, is_64bit, true)); }
+                        { result.operands.push_back(Operand::gp(enc.subs64s_addsub_ext.Rn, is_64bit, true)); }
                         uint32_t option = enc.subs64s_addsub_ext.option;
                         bool rm_is_64 = is_64bit && ((option & 3) == 3);
-                        result.operands.push_back(Operand(OperandType::Register, enc.subs64s_addsub_ext.Rm, rm_is_64));
+                        result.operands.push_back(Operand::gp(enc.subs64s_addsub_ext.Rm, rm_is_64));
                         uint32_t imm3 = enc.subs64s_addsub_ext.imm3;
                         uint32_t _rn = enc.subs64s_addsub_ext.Rn;
                         bool is_default = (is_64bit ? (option == 3 && _rn == 31) : (option == 2 && _rn == 31)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand(OperandType::Extend, option | (imm3 << 8), is_64bit));
+                            result.operands.push_back(Operand::extend_op(option, imm3, is_64bit));
                         }
                         return result;
         }
@@ -8064,14 +8064,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.mvn_orn32log_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.mvn_orn32log_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.mvn_orn32log_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.mvn_orn32log_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.mvn_orn32log_shift.shift;
                             uint32_t shift_amount = enc.mvn_orn32log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8081,14 +8081,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.neg_sub32addsub_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.neg_sub32addsub_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.neg_sub32addsub_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.neg_sub32addsub_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.neg_sub32addsub_shift.shift;
                             uint32_t shift_amount = enc.neg_sub32addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8099,14 +8099,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.negs_subs32addsub_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.negs_subs32addsub_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.negs_subs32addsub_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.negs_subs32addsub_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.negs_subs32addsub_shift.shift;
                             uint32_t shift_amount = enc.negs_subs32addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8116,14 +8116,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.mvn_orn64log_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.mvn_orn64log_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.mvn_orn64log_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.mvn_orn64log_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.mvn_orn64log_shift.shift;
                             uint32_t shift_amount = enc.mvn_orn64log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8133,14 +8133,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.neg_sub64addsub_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.neg_sub64addsub_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.neg_sub64addsub_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.neg_sub64addsub_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.neg_sub64addsub_shift.shift;
                             uint32_t shift_amount = enc.neg_sub64addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8151,14 +8151,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.negs_subs64addsub_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.negs_subs64addsub_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.negs_subs64addsub_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.negs_subs64addsub_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.negs_subs64addsub_shift.shift;
                             uint32_t shift_amount = enc.negs_subs64addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8173,14 +8173,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds32addsub_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds32addsub_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.cmn_adds32addsub_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.cmn_adds32addsub_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.cmn_adds32addsub_shift.shift;
                             uint32_t shift_amount = enc.cmn_adds32addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8190,14 +8190,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.tst_ands32log_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.tst_ands32log_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.tst_ands32log_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.tst_ands32log_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.tst_ands32log_shift.shift;
                             uint32_t shift_amount = enc.tst_ands32log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8207,14 +8207,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs32addsub_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs32addsub_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.cmp_subs32addsub_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.cmp_subs32addsub_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.cmp_subs32addsub_shift.shift;
                             uint32_t shift_amount = enc.cmp_subs32addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8224,14 +8224,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds64addsub_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmn_adds64addsub_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.cmn_adds64addsub_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.cmn_adds64addsub_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.cmn_adds64addsub_shift.shift;
                             uint32_t shift_amount = enc.cmn_adds64addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8241,14 +8241,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.tst_ands64log_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.tst_ands64log_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.tst_ands64log_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.tst_ands64log_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.tst_ands64log_shift.shift;
                             uint32_t shift_amount = enc.tst_ands64log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8258,14 +8258,14 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs64addsub_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cmp_subs64addsub_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.cmp_subs64addsub_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.cmp_subs64addsub_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.cmp_subs64addsub_shift.shift;
                             uint32_t shift_amount = enc.cmp_subs64addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8280,15 +8280,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.and32log_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.and32log_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.and32log_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.and32log_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.and32log_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.and32log_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.and32log_shift.shift;
                             uint32_t shift_amount = enc.and32log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8298,15 +8298,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.bic32log_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.bic32log_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.bic32log_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.bic32log_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.bic32log_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.bic32log_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.bic32log_shift.shift;
                             uint32_t shift_amount = enc.bic32log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8317,15 +8317,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         enc.raw = insn;
                         if (enc.add32addsub_shift.shift == 3u) return std::nullopt;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.add32addsub_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.add32addsub_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.add32addsub_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.add32addsub_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.add32addsub_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.add32addsub_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.add32addsub_shift.shift;
                             uint32_t shift_amount = enc.add32addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8335,15 +8335,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.orr32log_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.orr32log_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.orr32log_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.orr32log_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.orr32log_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.orr32log_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.orr32log_shift.shift;
                             uint32_t shift_amount = enc.orr32log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8353,15 +8353,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.orn32log_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.orn32log_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.orn32log_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.orn32log_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.orn32log_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.orn32log_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.orn32log_shift.shift;
                             uint32_t shift_amount = enc.orn32log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8372,15 +8372,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         enc.raw = insn;
                         if (enc.adds32addsub_shift.shift == 3u) return std::nullopt;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.adds32addsub_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.adds32addsub_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.adds32addsub_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.adds32addsub_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.adds32addsub_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.adds32addsub_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.adds32addsub_shift.shift;
                             uint32_t shift_amount = enc.adds32addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8390,15 +8390,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.eor32log_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.eor32log_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.eor32log_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.eor32log_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.eor32log_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.eor32log_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.eor32log_shift.shift;
                             uint32_t shift_amount = enc.eor32log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8408,15 +8408,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.eon32log_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.eon32log_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.eon32log_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.eon32log_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.eon32log_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.eon32log_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.eon32log_shift.shift;
                             uint32_t shift_amount = enc.eon32log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8427,15 +8427,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         enc.raw = insn;
                         if (enc.sub32addsub_shift.shift == 3u) return std::nullopt;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sub32addsub_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sub32addsub_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sub32addsub_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.sub32addsub_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.sub32addsub_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.sub32addsub_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.sub32addsub_shift.shift;
                             uint32_t shift_amount = enc.sub32addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8445,15 +8445,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ands32log_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ands32log_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ands32log_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.ands32log_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.ands32log_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.ands32log_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.ands32log_shift.shift;
                             uint32_t shift_amount = enc.ands32log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8463,15 +8463,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.bics32log_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.bics32log_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.bics32log_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.bics32log_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.bics32log_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.bics32log_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.bics32log_shift.shift;
                             uint32_t shift_amount = enc.bics32log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8482,15 +8482,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         enc.raw = insn;
                         if (enc.subs32addsub_shift.shift == 3u) return std::nullopt;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.subs32addsub_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.subs32addsub_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.subs32addsub_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.subs32addsub_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.subs32addsub_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.subs32addsub_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.subs32addsub_shift.shift;
                             uint32_t shift_amount = enc.subs32addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8500,15 +8500,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.and64log_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.and64log_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.and64log_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.and64log_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.and64log_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.and64log_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.and64log_shift.shift;
                             uint32_t shift_amount = enc.and64log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8518,15 +8518,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.bic64log_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.bic64log_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.bic64log_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.bic64log_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.bic64log_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.bic64log_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.bic64log_shift.shift;
                             uint32_t shift_amount = enc.bic64log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8537,15 +8537,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         enc.raw = insn;
                         if (enc.add64addsub_shift.shift == 3u) return std::nullopt;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.add64addsub_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.add64addsub_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.add64addsub_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.add64addsub_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.add64addsub_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.add64addsub_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.add64addsub_shift.shift;
                             uint32_t shift_amount = enc.add64addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8555,15 +8555,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.orr64log_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.orr64log_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.orr64log_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.orr64log_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.orr64log_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.orr64log_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.orr64log_shift.shift;
                             uint32_t shift_amount = enc.orr64log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8573,15 +8573,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.orn64log_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.orn64log_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.orn64log_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.orn64log_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.orn64log_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.orn64log_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.orn64log_shift.shift;
                             uint32_t shift_amount = enc.orn64log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8592,15 +8592,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         enc.raw = insn;
                         if (enc.adds64addsub_shift.shift == 3u) return std::nullopt;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.adds64addsub_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.adds64addsub_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.adds64addsub_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.adds64addsub_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.adds64addsub_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.adds64addsub_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.adds64addsub_shift.shift;
                             uint32_t shift_amount = enc.adds64addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8610,15 +8610,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.eor64log_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.eor64log_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.eor64log_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.eor64log_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.eor64log_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.eor64log_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.eor64log_shift.shift;
                             uint32_t shift_amount = enc.eor64log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8628,15 +8628,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.eon64log_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.eon64log_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.eon64log_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.eon64log_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.eon64log_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.eon64log_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.eon64log_shift.shift;
                             uint32_t shift_amount = enc.eon64log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8647,15 +8647,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         enc.raw = insn;
                         if (enc.sub64addsub_shift.shift == 3u) return std::nullopt;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sub64addsub_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sub64addsub_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sub64addsub_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.sub64addsub_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.sub64addsub_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.sub64addsub_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.sub64addsub_shift.shift;
                             uint32_t shift_amount = enc.sub64addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8665,15 +8665,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.ands64log_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ands64log_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.ands64log_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.ands64log_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.ands64log_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.ands64log_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.ands64log_shift.shift;
                             uint32_t shift_amount = enc.ands64log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8683,15 +8683,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         DpregEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.bics64log_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.bics64log_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.bics64log_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.bics64log_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.bics64log_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.bics64log_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.bics64log_shift.shift;
                             uint32_t shift_amount = enc.bics64log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;
@@ -8702,15 +8702,15 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         enc.raw = insn;
                         if (enc.subs64addsub_shift.shift == 3u) return std::nullopt;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.subs64addsub_shift.Rd, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.subs64addsub_shift.Rn, is_64bit));
-                        result.operands.push_back(Operand(OperandType::Register, enc.subs64addsub_shift.Rm, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.subs64addsub_shift.Rd, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.subs64addsub_shift.Rn, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.subs64addsub_shift.Rm, is_64bit));
                         {
                             uint32_t shift_type = enc.subs64addsub_shift.shift;
                             uint32_t shift_amount = enc.subs64addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand(OperandType::Shift, (shift_type << 8) | shift_amount, true));
+                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
                             }
                         }
                         return result;

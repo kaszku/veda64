@@ -15,7 +15,7 @@ void test_cas_c32_comswap() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  cas_c32_comswap: " << result->to_string() << std::endl;
 }
 
@@ -26,7 +26,7 @@ void test_casa_c32_comswap() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  casa_c32_comswap: " << result->to_string() << std::endl;
 }
 
@@ -37,7 +37,7 @@ void test_casal_c32_comswap() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  casal_c32_comswap: " << result->to_string() << std::endl;
 }
 
@@ -48,7 +48,7 @@ void test_casl_c32_comswap() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  casl_c32_comswap: " << result->to_string() << std::endl;
 }
 
@@ -59,7 +59,7 @@ void test_cas_c64_comswap() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  cas_c64_comswap: " << result->to_string() << std::endl;
 }
 
@@ -70,7 +70,7 @@ void test_casa_c64_comswap() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  casa_c64_comswap: " << result->to_string() << std::endl;
 }
 
@@ -81,7 +81,7 @@ void test_casal_c64_comswap() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  casal_c64_comswap: " << result->to_string() << std::endl;
 }
 
@@ -92,7 +92,7 @@ void test_casl_c64_comswap() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  casl_c64_comswap: " << result->to_string() << std::endl;
 }
 
@@ -103,7 +103,7 @@ void test_casb_c32_comswap() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  casb_c32_comswap: " << result->to_string() << std::endl;
 }
 
@@ -114,7 +114,7 @@ void test_casab_c32_comswap() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  casab_c32_comswap: " << result->to_string() << std::endl;
 }
 
@@ -125,7 +125,7 @@ void test_casalb_c32_comswap() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  casalb_c32_comswap: " << result->to_string() << std::endl;
 }
 
@@ -136,7 +136,7 @@ void test_caslb_c32_comswap() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  caslb_c32_comswap: " << result->to_string() << std::endl;
 }
 
@@ -147,7 +147,7 @@ void test_cash_c32_comswap() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  cash_c32_comswap: " << result->to_string() << std::endl;
 }
 
@@ -158,7 +158,7 @@ void test_casah_c32_comswap() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  casah_c32_comswap: " << result->to_string() << std::endl;
 }
 
@@ -169,7 +169,7 @@ void test_casalh_c32_comswap() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  casalh_c32_comswap: " << result->to_string() << std::endl;
 }
 
@@ -180,7 +180,7 @@ void test_caslh_c32_comswap() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  caslh_c32_comswap: " << result->to_string() << std::endl;
 }
 
@@ -191,7 +191,7 @@ void test_casp_cp32_comswappr() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  casp_cp32_comswappr: " << result->to_string() << std::endl;
 }
 
@@ -202,7 +202,7 @@ void test_caspa_cp32_comswappr() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  caspa_cp32_comswappr: " << result->to_string() << std::endl;
 }
 
@@ -213,7 +213,7 @@ void test_caspal_cp32_comswappr() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  caspal_cp32_comswappr: " << result->to_string() << std::endl;
 }
 
@@ -224,7 +224,7 @@ void test_caspl_cp32_comswappr() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  caspl_cp32_comswappr: " << result->to_string() << std::endl;
 }
 
@@ -235,7 +235,7 @@ void test_casp_cp64_comswappr() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  casp_cp64_comswappr: " << result->to_string() << std::endl;
 }
 
@@ -246,7 +246,7 @@ void test_caspa_cp64_comswappr() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  caspa_cp64_comswappr: " << result->to_string() << std::endl;
 }
 
@@ -257,7 +257,7 @@ void test_caspal_cp64_comswappr() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  caspal_cp64_comswappr: " << result->to_string() << std::endl;
 }
 
@@ -268,7 +268,7 @@ void test_caspl_cp64_comswappr() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  caspl_cp64_comswappr: " << result->to_string() << std::endl;
 }
 
@@ -279,7 +279,7 @@ void test_caspt_cp64_comswappr_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  caspt_cp64_comswappr_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -290,7 +290,7 @@ void test_caspat_cp64_comswappr_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  caspat_cp64_comswappr_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -301,7 +301,7 @@ void test_caspalt_cp64_comswappr_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  caspalt_cp64_comswappr_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -312,7 +312,7 @@ void test_casplt_cp64_comswappr_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  casplt_cp64_comswappr_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -323,7 +323,7 @@ void test_cast_c64_comswap_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  cast_c64_comswap_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -334,7 +334,7 @@ void test_casat_c64_comswap_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  casat_c64_comswap_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -345,7 +345,7 @@ void test_casalt_c64_comswap_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  casalt_c64_comswap_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -356,7 +356,7 @@ void test_caslt_c64_comswap_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  caslt_c64_comswap_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -365,7 +365,7 @@ void test_cpyfp_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfp_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -375,7 +375,7 @@ void test_cpyfm_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfm_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -385,7 +385,7 @@ void test_cpyfe_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfe_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -395,7 +395,7 @@ void test_cpyfpn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfpn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -405,7 +405,7 @@ void test_cpyfmn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfmn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -415,7 +415,7 @@ void test_cpyfen_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfen_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -425,7 +425,7 @@ void test_cpyfprn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfprn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -435,7 +435,7 @@ void test_cpyfmrn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfmrn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -445,7 +445,7 @@ void test_cpyfern_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfern_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -455,7 +455,7 @@ void test_cpyfprt_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfprt_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -465,7 +465,7 @@ void test_cpyfmrt_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfmrt_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -475,7 +475,7 @@ void test_cpyfert_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfert_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -485,7 +485,7 @@ void test_cpyfprtn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfprtn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -495,7 +495,7 @@ void test_cpyfmrtn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfmrtn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -505,7 +505,7 @@ void test_cpyfertn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfertn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -515,7 +515,7 @@ void test_cpyfprtrn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfprtrn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -525,7 +525,7 @@ void test_cpyfmrtrn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfmrtrn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -535,7 +535,7 @@ void test_cpyfertrn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfertrn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -545,7 +545,7 @@ void test_cpyfprtwn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfprtwn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -555,7 +555,7 @@ void test_cpyfmrtwn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfmrtwn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -565,7 +565,7 @@ void test_cpyfertwn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfertwn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -575,7 +575,7 @@ void test_cpyfpt_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfpt_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -585,7 +585,7 @@ void test_cpyfmt_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfmt_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -595,7 +595,7 @@ void test_cpyfet_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfet_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -605,7 +605,7 @@ void test_cpyfptn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfptn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -615,7 +615,7 @@ void test_cpyfmtn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfmtn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -625,7 +625,7 @@ void test_cpyfetn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfetn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -635,7 +635,7 @@ void test_cpyfptrn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfptrn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -645,7 +645,7 @@ void test_cpyfmtrn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfmtrn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -655,7 +655,7 @@ void test_cpyfetrn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfetrn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -665,7 +665,7 @@ void test_cpyfptwn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfptwn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -675,7 +675,7 @@ void test_cpyfmtwn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfmtwn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -685,7 +685,7 @@ void test_cpyfetwn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfetwn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -695,7 +695,7 @@ void test_cpyfpwn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfpwn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -705,7 +705,7 @@ void test_cpyfmwn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfmwn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -715,7 +715,7 @@ void test_cpyfewn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfewn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -725,7 +725,7 @@ void test_cpyfpwt_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfpwt_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -735,7 +735,7 @@ void test_cpyfmwt_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfmwt_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -745,7 +745,7 @@ void test_cpyfewt_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfewt_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -755,7 +755,7 @@ void test_cpyfpwtn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfpwtn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -765,7 +765,7 @@ void test_cpyfmwtn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfmwtn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -775,7 +775,7 @@ void test_cpyfewtn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfewtn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -785,7 +785,7 @@ void test_cpyfpwtrn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfpwtrn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -795,7 +795,7 @@ void test_cpyfmwtrn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfmwtrn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -805,7 +805,7 @@ void test_cpyfewtrn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfewtrn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -815,7 +815,7 @@ void test_cpyfpwtwn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfpwtwn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -825,7 +825,7 @@ void test_cpyfmwtwn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfmwtwn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -835,7 +835,7 @@ void test_cpyfewtwn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyfewtwn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -845,7 +845,7 @@ void test_cpyp_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyp_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -855,7 +855,7 @@ void test_cpym_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpym_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -865,7 +865,7 @@ void test_cpye_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpye_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -875,7 +875,7 @@ void test_cpypn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpypn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -885,7 +885,7 @@ void test_cpymn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpymn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -895,7 +895,7 @@ void test_cpyen_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyen_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -905,7 +905,7 @@ void test_cpyprn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyprn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -915,7 +915,7 @@ void test_cpymrn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpymrn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -925,7 +925,7 @@ void test_cpyern_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyern_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -935,7 +935,7 @@ void test_cpyprt_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyprt_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -945,7 +945,7 @@ void test_cpymrt_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpymrt_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -955,7 +955,7 @@ void test_cpyert_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyert_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -965,7 +965,7 @@ void test_cpyprtn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyprtn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -975,7 +975,7 @@ void test_cpymrtn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpymrtn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -985,7 +985,7 @@ void test_cpyertn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyertn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -995,7 +995,7 @@ void test_cpyprtrn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyprtrn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1005,7 +1005,7 @@ void test_cpymrtrn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpymrtrn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1015,7 +1015,7 @@ void test_cpyertrn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyertrn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1025,7 +1025,7 @@ void test_cpyprtwn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyprtwn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1035,7 +1035,7 @@ void test_cpymrtwn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpymrtwn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1045,7 +1045,7 @@ void test_cpyertwn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyertwn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1055,7 +1055,7 @@ void test_cpypt_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpypt_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1065,7 +1065,7 @@ void test_cpymt_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpymt_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1075,7 +1075,7 @@ void test_cpyet_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyet_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1085,7 +1085,7 @@ void test_cpyptn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyptn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1095,7 +1095,7 @@ void test_cpymtn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpymtn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1105,7 +1105,7 @@ void test_cpyetn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyetn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1115,7 +1115,7 @@ void test_cpyptrn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyptrn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1125,7 +1125,7 @@ void test_cpymtrn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpymtrn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1135,7 +1135,7 @@ void test_cpyetrn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyetrn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1145,7 +1145,7 @@ void test_cpyptwn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyptwn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1155,7 +1155,7 @@ void test_cpymtwn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpymtwn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1165,7 +1165,7 @@ void test_cpyetwn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyetwn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1175,7 +1175,7 @@ void test_cpypwn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpypwn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1185,7 +1185,7 @@ void test_cpymwn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpymwn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1195,7 +1195,7 @@ void test_cpyewn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyewn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1205,7 +1205,7 @@ void test_cpypwt_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpypwt_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1215,7 +1215,7 @@ void test_cpymwt_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpymwt_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1225,7 +1225,7 @@ void test_cpyewt_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyewt_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1235,7 +1235,7 @@ void test_cpypwtn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpypwtn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1245,7 +1245,7 @@ void test_cpymwtn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpymwtn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1255,7 +1255,7 @@ void test_cpyewtn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyewtn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1265,7 +1265,7 @@ void test_cpypwtrn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpypwtrn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1275,7 +1275,7 @@ void test_cpymwtrn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpymwtrn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1285,7 +1285,7 @@ void test_cpyewtrn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyewtrn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1295,7 +1295,7 @@ void test_cpypwtwn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpypwtwn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1305,7 +1305,7 @@ void test_cpymwtwn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpymwtwn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1315,7 +1315,7 @@ void test_cpyewtwn_cpy_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  cpyewtwn_cpy_memcms: " << result->to_string() << std::endl;
 }
@@ -1327,7 +1327,7 @@ void test_gcsstr_64_ldst_gcs() {
     assert(result->mnemonic == Mnemonic::GCSSTR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  gcsstr_64_ldst_gcs: " << result->to_string() << std::endl;
 }
 
@@ -1338,7 +1338,7 @@ void test_gcssttr_64_ldst_gcs() {
     assert(result->mnemonic == Mnemonic::GCSSTTR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  gcssttr_64_ldst_gcs: " << result->to_string() << std::endl;
 }
 
@@ -1348,8 +1348,8 @@ void test_ld1_asisdlse_r1_1v() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld1_asisdlse_r1_1v: " << result->to_string() << std::endl;
 }
 
@@ -1359,8 +1359,8 @@ void test_ld1_asisdlse_r2_2v() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld1_asisdlse_r2_2v: " << result->to_string() << std::endl;
 }
 
@@ -1370,8 +1370,8 @@ void test_ld1_asisdlse_r3_3v() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld1_asisdlse_r3_3v: " << result->to_string() << std::endl;
 }
 
@@ -1381,8 +1381,8 @@ void test_ld1_asisdlse_r4_4v() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld1_asisdlse_r4_4v: " << result->to_string() << std::endl;
 }
 
@@ -1400,8 +1400,8 @@ void test_ld1_asisdlsep_r1_r1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld1_asisdlsep_r1_r1: " << result->to_string() << std::endl;
 }
@@ -1420,8 +1420,8 @@ void test_ld1_asisdlsep_r2_r2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld1_asisdlsep_r2_r2: " << result->to_string() << std::endl;
 }
@@ -1440,8 +1440,8 @@ void test_ld1_asisdlsep_r3_r3() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld1_asisdlsep_r3_r3: " << result->to_string() << std::endl;
 }
@@ -1460,8 +1460,8 @@ void test_ld1_asisdlsep_r4_r4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld1_asisdlsep_r4_r4: " << result->to_string() << std::endl;
 }
@@ -1472,8 +1472,8 @@ void test_ld1_asisdlso_b1_1b() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld1_asisdlso_b1_1b: " << result->to_string() << std::endl;
 }
 
@@ -1483,8 +1483,8 @@ void test_ld1_asisdlso_h1_1h() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld1_asisdlso_h1_1h: " << result->to_string() << std::endl;
 }
 
@@ -1494,8 +1494,8 @@ void test_ld1_asisdlso_s1_1s() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld1_asisdlso_s1_1s: " << result->to_string() << std::endl;
 }
 
@@ -1505,8 +1505,8 @@ void test_ld1_asisdlso_d1_1d() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld1_asisdlso_d1_1d: " << result->to_string() << std::endl;
 }
 
@@ -1516,8 +1516,8 @@ void test_ld1_asisdlsop_b1_i1b() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld1_asisdlsop_b1_i1b: " << result->to_string() << std::endl;
 }
 
@@ -1527,8 +1527,8 @@ void test_ld1_asisdlsop_bx1_r1b() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld1_asisdlsop_bx1_r1b: " << result->to_string() << std::endl;
 }
@@ -1539,8 +1539,8 @@ void test_ld1_asisdlsop_d1_i1d() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld1_asisdlsop_d1_i1d: " << result->to_string() << std::endl;
 }
 
@@ -1550,8 +1550,8 @@ void test_ld1_asisdlsop_dx1_r1d() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld1_asisdlsop_dx1_r1d: " << result->to_string() << std::endl;
 }
@@ -1562,8 +1562,8 @@ void test_ld1_asisdlsop_h1_i1h() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld1_asisdlsop_h1_i1h: " << result->to_string() << std::endl;
 }
 
@@ -1573,8 +1573,8 @@ void test_ld1_asisdlsop_hx1_r1h() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld1_asisdlsop_hx1_r1h: " << result->to_string() << std::endl;
 }
@@ -1585,8 +1585,8 @@ void test_ld1_asisdlsop_s1_i1s() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld1_asisdlsop_s1_i1s: " << result->to_string() << std::endl;
 }
 
@@ -1596,8 +1596,8 @@ void test_ld1_asisdlsop_sx1_r1s() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld1_asisdlsop_sx1_r1s: " << result->to_string() << std::endl;
 }
@@ -1608,8 +1608,8 @@ void test_ld1r_asisdlso_r1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1R);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld1r_asisdlso_r1: " << result->to_string() << std::endl;
 }
 
@@ -1627,8 +1627,8 @@ void test_ld1r_asisdlsop_rx1_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1R);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld1r_asisdlsop_rx1_r: " << result->to_string() << std::endl;
 }
@@ -1639,8 +1639,8 @@ void test_ld2_asisdlse_r2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld2_asisdlse_r2: " << result->to_string() << std::endl;
 }
 
@@ -1658,8 +1658,8 @@ void test_ld2_asisdlsep_r2_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld2_asisdlsep_r2_r: " << result->to_string() << std::endl;
 }
@@ -1670,8 +1670,8 @@ void test_ld2_asisdlso_b2_2b() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld2_asisdlso_b2_2b: " << result->to_string() << std::endl;
 }
 
@@ -1681,8 +1681,8 @@ void test_ld2_asisdlso_h2_2h() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld2_asisdlso_h2_2h: " << result->to_string() << std::endl;
 }
 
@@ -1692,8 +1692,8 @@ void test_ld2_asisdlso_s2_2s() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld2_asisdlso_s2_2s: " << result->to_string() << std::endl;
 }
 
@@ -1703,8 +1703,8 @@ void test_ld2_asisdlso_d2_2d() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld2_asisdlso_d2_2d: " << result->to_string() << std::endl;
 }
 
@@ -1714,8 +1714,8 @@ void test_ld2_asisdlsop_b2_i2b() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld2_asisdlsop_b2_i2b: " << result->to_string() << std::endl;
 }
 
@@ -1725,8 +1725,8 @@ void test_ld2_asisdlsop_bx2_r2b() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld2_asisdlsop_bx2_r2b: " << result->to_string() << std::endl;
 }
@@ -1737,8 +1737,8 @@ void test_ld2_asisdlsop_h2_i2h() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld2_asisdlsop_h2_i2h: " << result->to_string() << std::endl;
 }
 
@@ -1748,8 +1748,8 @@ void test_ld2_asisdlsop_hx2_r2h() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld2_asisdlsop_hx2_r2h: " << result->to_string() << std::endl;
 }
@@ -1760,8 +1760,8 @@ void test_ld2_asisdlsop_s2_i2s() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld2_asisdlsop_s2_i2s: " << result->to_string() << std::endl;
 }
 
@@ -1771,8 +1771,8 @@ void test_ld2_asisdlsop_sx2_r2s() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld2_asisdlsop_sx2_r2s: " << result->to_string() << std::endl;
 }
@@ -1783,8 +1783,8 @@ void test_ld2_asisdlsop_d2_i2d() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld2_asisdlsop_d2_i2d: " << result->to_string() << std::endl;
 }
 
@@ -1794,8 +1794,8 @@ void test_ld2_asisdlsop_dx2_r2d() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld2_asisdlsop_dx2_r2d: " << result->to_string() << std::endl;
 }
@@ -1806,8 +1806,8 @@ void test_ld2r_asisdlso_r2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD2R);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld2r_asisdlso_r2: " << result->to_string() << std::endl;
 }
 
@@ -1825,8 +1825,8 @@ void test_ld2r_asisdlsop_rx2_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD2R);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld2r_asisdlsop_rx2_r: " << result->to_string() << std::endl;
 }
@@ -1837,8 +1837,8 @@ void test_ld3_asisdlse_r3() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld3_asisdlse_r3: " << result->to_string() << std::endl;
 }
 
@@ -1856,8 +1856,8 @@ void test_ld3_asisdlsep_r3_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld3_asisdlsep_r3_r: " << result->to_string() << std::endl;
 }
@@ -1868,8 +1868,8 @@ void test_ld3_asisdlso_b3_3b() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld3_asisdlso_b3_3b: " << result->to_string() << std::endl;
 }
 
@@ -1879,8 +1879,8 @@ void test_ld3_asisdlso_h3_3h() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld3_asisdlso_h3_3h: " << result->to_string() << std::endl;
 }
 
@@ -1890,8 +1890,8 @@ void test_ld3_asisdlso_s3_3s() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld3_asisdlso_s3_3s: " << result->to_string() << std::endl;
 }
 
@@ -1901,8 +1901,8 @@ void test_ld3_asisdlso_d3_3d() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld3_asisdlso_d3_3d: " << result->to_string() << std::endl;
 }
 
@@ -1912,8 +1912,8 @@ void test_ld3_asisdlsop_b3_i3b() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld3_asisdlsop_b3_i3b: " << result->to_string() << std::endl;
 }
 
@@ -1923,8 +1923,8 @@ void test_ld3_asisdlsop_bx3_r3b() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld3_asisdlsop_bx3_r3b: " << result->to_string() << std::endl;
 }
@@ -1935,8 +1935,8 @@ void test_ld3_asisdlsop_h3_i3h() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld3_asisdlsop_h3_i3h: " << result->to_string() << std::endl;
 }
 
@@ -1946,8 +1946,8 @@ void test_ld3_asisdlsop_hx3_r3h() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld3_asisdlsop_hx3_r3h: " << result->to_string() << std::endl;
 }
@@ -1958,8 +1958,8 @@ void test_ld3_asisdlsop_s3_i3s() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld3_asisdlsop_s3_i3s: " << result->to_string() << std::endl;
 }
 
@@ -1969,8 +1969,8 @@ void test_ld3_asisdlsop_sx3_r3s() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld3_asisdlsop_sx3_r3s: " << result->to_string() << std::endl;
 }
@@ -1981,8 +1981,8 @@ void test_ld3_asisdlsop_d3_i3d() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld3_asisdlsop_d3_i3d: " << result->to_string() << std::endl;
 }
 
@@ -1992,8 +1992,8 @@ void test_ld3_asisdlsop_dx3_r3d() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld3_asisdlsop_dx3_r3d: " << result->to_string() << std::endl;
 }
@@ -2004,8 +2004,8 @@ void test_ld3r_asisdlso_r3() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD3R);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld3r_asisdlso_r3: " << result->to_string() << std::endl;
 }
 
@@ -2023,8 +2023,8 @@ void test_ld3r_asisdlsop_rx3_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD3R);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld3r_asisdlsop_rx3_r: " << result->to_string() << std::endl;
 }
@@ -2035,8 +2035,8 @@ void test_ld4_asisdlse_r4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld4_asisdlse_r4: " << result->to_string() << std::endl;
 }
 
@@ -2054,8 +2054,8 @@ void test_ld4_asisdlsep_r4_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld4_asisdlsep_r4_r: " << result->to_string() << std::endl;
 }
@@ -2066,8 +2066,8 @@ void test_ld4_asisdlso_b4_4b() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld4_asisdlso_b4_4b: " << result->to_string() << std::endl;
 }
 
@@ -2077,8 +2077,8 @@ void test_ld4_asisdlso_h4_4h() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld4_asisdlso_h4_4h: " << result->to_string() << std::endl;
 }
 
@@ -2088,8 +2088,8 @@ void test_ld4_asisdlso_s4_4s() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld4_asisdlso_s4_4s: " << result->to_string() << std::endl;
 }
 
@@ -2099,8 +2099,8 @@ void test_ld4_asisdlso_d4_4d() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld4_asisdlso_d4_4d: " << result->to_string() << std::endl;
 }
 
@@ -2110,8 +2110,8 @@ void test_ld4_asisdlsop_b4_i4b() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld4_asisdlsop_b4_i4b: " << result->to_string() << std::endl;
 }
 
@@ -2121,8 +2121,8 @@ void test_ld4_asisdlsop_bx4_r4b() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld4_asisdlsop_bx4_r4b: " << result->to_string() << std::endl;
 }
@@ -2133,8 +2133,8 @@ void test_ld4_asisdlsop_h4_i4h() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld4_asisdlsop_h4_i4h: " << result->to_string() << std::endl;
 }
 
@@ -2144,8 +2144,8 @@ void test_ld4_asisdlsop_hx4_r4h() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld4_asisdlsop_hx4_r4h: " << result->to_string() << std::endl;
 }
@@ -2156,8 +2156,8 @@ void test_ld4_asisdlsop_s4_i4s() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld4_asisdlsop_s4_i4s: " << result->to_string() << std::endl;
 }
 
@@ -2167,8 +2167,8 @@ void test_ld4_asisdlsop_sx4_r4s() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld4_asisdlsop_sx4_r4s: " << result->to_string() << std::endl;
 }
@@ -2179,8 +2179,8 @@ void test_ld4_asisdlsop_d4_i4d() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld4_asisdlsop_d4_i4d: " << result->to_string() << std::endl;
 }
 
@@ -2190,8 +2190,8 @@ void test_ld4_asisdlsop_dx4_r4d() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld4_asisdlsop_dx4_r4d: " << result->to_string() << std::endl;
 }
@@ -2202,8 +2202,8 @@ void test_ld4r_asisdlso_r4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD4R);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld4r_asisdlso_r4: " << result->to_string() << std::endl;
 }
 
@@ -2221,8 +2221,8 @@ void test_ld4r_asisdlsop_rx4_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD4R);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld4r_asisdlsop_rx4_r: " << result->to_string() << std::endl;
 }
@@ -2234,7 +2234,7 @@ void test_ld64b_64l_memop() {
     assert(result->mnemonic == Mnemonic::LD64B);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld64b_64l_memop: " << result->to_string() << std::endl;
 }
 
@@ -2245,7 +2245,7 @@ void test_ldadd_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldadd_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -2256,7 +2256,7 @@ void test_ldadda_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldadda_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -2267,7 +2267,7 @@ void test_ldaddal_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldaddal_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -2278,7 +2278,7 @@ void test_ldaddl_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldaddl_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -2289,7 +2289,7 @@ void test_ldadd_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldadd_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -2300,7 +2300,7 @@ void test_ldadda_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldadda_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -2311,7 +2311,7 @@ void test_ldaddal_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldaddal_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -2322,7 +2322,7 @@ void test_ldaddl_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldaddl_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -2333,7 +2333,7 @@ void test_ldaddb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldaddb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -2344,7 +2344,7 @@ void test_ldaddab_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldaddab_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -2355,7 +2355,7 @@ void test_ldaddalb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldaddalb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -2366,7 +2366,7 @@ void test_ldaddlb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldaddlb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -2377,7 +2377,7 @@ void test_ldaddh_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldaddh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -2388,7 +2388,7 @@ void test_ldaddah_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldaddah_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -2399,7 +2399,7 @@ void test_ldaddalh_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldaddalh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -2410,7 +2410,7 @@ void test_ldaddlh_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldaddlh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -2420,8 +2420,8 @@ void test_ldap1_asisdlso_d1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDAP1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldap1_asisdlso_d1: " << result->to_string() << std::endl;
 }
 
@@ -2433,7 +2433,7 @@ void test_ldap_64_ldiappstilp() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldap_64_ldiappstilp: " << result->to_string() << std::endl;
 }
 
@@ -2445,7 +2445,7 @@ void test_ldapp_64_ldiappstilp() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldapp_64_ldiappstilp: " << result->to_string() << std::endl;
 }
 
@@ -2456,7 +2456,7 @@ void test_ldapr_32l_ldapstl_writeback() {
     assert(result->mnemonic == Mnemonic::LDAPR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldapr_32l_ldapstl_writeback: " << result->to_string() << std::endl;
 }
 
@@ -2467,7 +2467,7 @@ void test_ldapr_64l_ldapstl_writeback() {
     assert(result->mnemonic == Mnemonic::LDAPR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldapr_64l_ldapstl_writeback: " << result->to_string() << std::endl;
 }
 
@@ -2478,7 +2478,7 @@ void test_ldapr_32l_memop() {
     assert(result->mnemonic == Mnemonic::LDAPR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldapr_32l_memop: " << result->to_string() << std::endl;
 }
 
@@ -2489,7 +2489,7 @@ void test_ldapr_64l_memop() {
     assert(result->mnemonic == Mnemonic::LDAPR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldapr_64l_memop: " << result->to_string() << std::endl;
 }
 
@@ -2500,7 +2500,7 @@ void test_ldaprb_32l_memop() {
     assert(result->mnemonic == Mnemonic::LDAPRB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldaprb_32l_memop: " << result->to_string() << std::endl;
 }
 
@@ -2511,7 +2511,7 @@ void test_ldaprh_32l_memop() {
     assert(result->mnemonic == Mnemonic::LDAPRH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldaprh_32l_memop: " << result->to_string() << std::endl;
 }
 
@@ -2522,7 +2522,7 @@ void test_ldapur_b_ldapstl_simd() {
     assert(result->mnemonic == Mnemonic::LDAPUR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldapur_b_ldapstl_simd: " << result->to_string() << std::endl;
 }
 
@@ -2565,7 +2565,7 @@ void test_ldapur_32_ldapstl_unscaled() {
     assert(result->mnemonic == Mnemonic::LDAPUR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldapur_32_ldapstl_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -2576,7 +2576,7 @@ void test_ldapur_64_ldapstl_unscaled() {
     assert(result->mnemonic == Mnemonic::LDAPUR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldapur_64_ldapstl_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -2587,7 +2587,7 @@ void test_ldapurb_32_ldapstl_unscaled() {
     assert(result->mnemonic == Mnemonic::LDAPURB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldapurb_32_ldapstl_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -2598,7 +2598,7 @@ void test_ldapurh_32_ldapstl_unscaled() {
     assert(result->mnemonic == Mnemonic::LDAPURH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldapurh_32_ldapstl_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -2609,7 +2609,7 @@ void test_ldapursb_32_ldapstl_unscaled() {
     assert(result->mnemonic == Mnemonic::LDAPURSB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldapursb_32_ldapstl_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -2620,7 +2620,7 @@ void test_ldapursb_64_ldapstl_unscaled() {
     assert(result->mnemonic == Mnemonic::LDAPURSB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldapursb_64_ldapstl_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -2631,7 +2631,7 @@ void test_ldapursh_32_ldapstl_unscaled() {
     assert(result->mnemonic == Mnemonic::LDAPURSH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldapursh_32_ldapstl_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -2642,7 +2642,7 @@ void test_ldapursh_64_ldapstl_unscaled() {
     assert(result->mnemonic == Mnemonic::LDAPURSH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldapursh_64_ldapstl_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -2653,7 +2653,7 @@ void test_ldapursw_64_ldapstl_unscaled() {
     assert(result->mnemonic == Mnemonic::LDAPURSW);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldapursw_64_ldapstl_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -2664,7 +2664,7 @@ void test_ldar_lr32_ldstord() {
     assert(result->mnemonic == Mnemonic::LDAR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldar_lr32_ldstord: " << result->to_string() << std::endl;
 }
 
@@ -2675,7 +2675,7 @@ void test_ldar_lr64_ldstord() {
     assert(result->mnemonic == Mnemonic::LDAR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldar_lr64_ldstord: " << result->to_string() << std::endl;
 }
 
@@ -2686,7 +2686,7 @@ void test_ldarb_lr32_ldstord() {
     assert(result->mnemonic == Mnemonic::LDARB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldarb_lr32_ldstord: " << result->to_string() << std::endl;
 }
 
@@ -2697,7 +2697,7 @@ void test_ldarh_lr32_ldstord() {
     assert(result->mnemonic == Mnemonic::LDARH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldarh_lr32_ldstord: " << result->to_string() << std::endl;
 }
 
@@ -2708,7 +2708,7 @@ void test_ldatxr_lr32_ldstexclr_unpriv() {
     assert(result->mnemonic == Mnemonic::LDATXR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldatxr_lr32_ldstexclr_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -2719,7 +2719,7 @@ void test_ldatxr_lr64_ldstexclr_unpriv() {
     assert(result->mnemonic == Mnemonic::LDATXR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldatxr_lr64_ldstexclr_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -2731,7 +2731,7 @@ void test_ldaxp_lp32_ldstexclp() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldaxp_lp32_ldstexclp: " << result->to_string() << std::endl;
 }
 
@@ -2743,7 +2743,7 @@ void test_ldaxp_lp64_ldstexclp() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldaxp_lp64_ldstexclp: " << result->to_string() << std::endl;
 }
 
@@ -2754,7 +2754,7 @@ void test_ldaxr_lr32_ldstexclr() {
     assert(result->mnemonic == Mnemonic::LDAXR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldaxr_lr32_ldstexclr: " << result->to_string() << std::endl;
 }
 
@@ -2765,7 +2765,7 @@ void test_ldaxr_lr64_ldstexclr() {
     assert(result->mnemonic == Mnemonic::LDAXR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldaxr_lr64_ldstexclr: " << result->to_string() << std::endl;
 }
 
@@ -2776,7 +2776,7 @@ void test_ldaxrb_lr32_ldstexclr() {
     assert(result->mnemonic == Mnemonic::LDAXRB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldaxrb_lr32_ldstexclr: " << result->to_string() << std::endl;
 }
 
@@ -2787,7 +2787,7 @@ void test_ldaxrh_lr32_ldstexclr() {
     assert(result->mnemonic == Mnemonic::LDAXRH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldaxrh_lr32_ldstexclr: " << result->to_string() << std::endl;
 }
 
@@ -2938,7 +2938,7 @@ void test_ldclr_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldclr_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -2949,7 +2949,7 @@ void test_ldclra_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldclra_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -2960,7 +2960,7 @@ void test_ldclral_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldclral_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -2971,7 +2971,7 @@ void test_ldclrl_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldclrl_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -2982,7 +2982,7 @@ void test_ldclr_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldclr_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -2993,7 +2993,7 @@ void test_ldclra_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldclra_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -3004,7 +3004,7 @@ void test_ldclral_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldclral_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -3015,7 +3015,7 @@ void test_ldclrl_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldclrl_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -3026,7 +3026,7 @@ void test_ldclrb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldclrb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -3037,7 +3037,7 @@ void test_ldclrab_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldclrab_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -3048,7 +3048,7 @@ void test_ldclralb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldclralb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -3059,7 +3059,7 @@ void test_ldclrlb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldclrlb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -3070,7 +3070,7 @@ void test_ldclrh_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldclrh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -3081,7 +3081,7 @@ void test_ldclrah_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldclrah_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -3092,7 +3092,7 @@ void test_ldclralh_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldclralh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -3103,7 +3103,7 @@ void test_ldclrlh_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldclrlh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -3114,7 +3114,7 @@ void test_ldclrp_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldclrp_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -3125,7 +3125,7 @@ void test_ldclrpa_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldclrpa_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -3136,7 +3136,7 @@ void test_ldclrpal_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldclrpal_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -3147,7 +3147,7 @@ void test_ldclrpl_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldclrpl_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -3158,7 +3158,7 @@ void test_ldeor_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldeor_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -3169,7 +3169,7 @@ void test_ldeora_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldeora_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -3180,7 +3180,7 @@ void test_ldeoral_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldeoral_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -3191,7 +3191,7 @@ void test_ldeorl_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldeorl_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -3202,7 +3202,7 @@ void test_ldeor_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldeor_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -3213,7 +3213,7 @@ void test_ldeora_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldeora_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -3224,7 +3224,7 @@ void test_ldeoral_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldeoral_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -3235,7 +3235,7 @@ void test_ldeorl_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldeorl_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -3246,7 +3246,7 @@ void test_ldeorb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldeorb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -3257,7 +3257,7 @@ void test_ldeorab_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldeorab_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -3268,7 +3268,7 @@ void test_ldeoralb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldeoralb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -3279,7 +3279,7 @@ void test_ldeorlb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldeorlb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -3290,7 +3290,7 @@ void test_ldeorh_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldeorh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -3301,7 +3301,7 @@ void test_ldeorah_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldeorah_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -3312,7 +3312,7 @@ void test_ldeoralh_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldeoralh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -3323,7 +3323,7 @@ void test_ldeorlh_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldeorlh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -3754,7 +3754,7 @@ void test_ldg_64loffset_ldsttags() {
     assert(result->mnemonic == Mnemonic::LDG);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldg_64loffset_ldsttags: " << result->to_string() << std::endl;
 }
 
@@ -3765,7 +3765,7 @@ void test_ldgm_64bulk_ldsttags() {
     assert(result->mnemonic == Mnemonic::LDGM);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldgm_64bulk_ldsttags: " << result->to_string() << std::endl;
 }
 
@@ -3777,7 +3777,7 @@ void test_ldiapp_32le_ldiappstilp() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryPostIndex);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldiapp_32le_ldiappstilp: " << result->to_string() << std::endl;
 }
 
@@ -3789,7 +3789,7 @@ void test_ldiapp_32l_ldiappstilp() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldiapp_32l_ldiappstilp: " << result->to_string() << std::endl;
 }
 
@@ -3801,7 +3801,7 @@ void test_ldiapp_64ls_ldiappstilp() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryPostIndex);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldiapp_64ls_ldiappstilp: " << result->to_string() << std::endl;
 }
 
@@ -3813,7 +3813,7 @@ void test_ldiapp_64l_ldiappstilp() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldiapp_64l_ldiappstilp: " << result->to_string() << std::endl;
 }
 
@@ -3824,7 +3824,7 @@ void test_ldlar_lr32_ldstord() {
     assert(result->mnemonic == Mnemonic::LDLAR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldlar_lr32_ldstord: " << result->to_string() << std::endl;
 }
 
@@ -3835,7 +3835,7 @@ void test_ldlar_lr64_ldstord() {
     assert(result->mnemonic == Mnemonic::LDLAR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldlar_lr64_ldstord: " << result->to_string() << std::endl;
 }
 
@@ -3846,7 +3846,7 @@ void test_ldlarb_lr32_ldstord() {
     assert(result->mnemonic == Mnemonic::LDLARB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldlarb_lr32_ldstord: " << result->to_string() << std::endl;
 }
 
@@ -3857,7 +3857,7 @@ void test_ldlarh_lr32_ldstord() {
     assert(result->mnemonic == Mnemonic::LDLARH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldlarh_lr32_ldstord: " << result->to_string() << std::endl;
 }
 
@@ -3893,7 +3893,7 @@ void test_ldnp_32_ldstnapair_offs() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryOffset);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldnp_32_ldstnapair_offs: " << result->to_string() << std::endl;
 }
 
@@ -3905,7 +3905,7 @@ void test_ldnp_64_ldstnapair_offs() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryOffset);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldnp_64_ldstnapair_offs: " << result->to_string() << std::endl;
 }
 
@@ -4005,7 +4005,7 @@ void test_ldp_32_ldstpair_pre() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryPreIndex);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldp_32_ldstpair_pre: " << result->to_string() << std::endl;
 }
 
@@ -4017,7 +4017,7 @@ void test_ldp_64_ldstpair_pre() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryPreIndex);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldp_64_ldstpair_pre: " << result->to_string() << std::endl;
 }
 
@@ -4029,7 +4029,7 @@ void test_ldp_32_ldstpair_off() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryOffset);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldp_32_ldstpair_off: " << result->to_string() << std::endl;
 }
 
@@ -4041,7 +4041,7 @@ void test_ldp_64_ldstpair_off() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryOffset);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldp_64_ldstpair_off: " << result->to_string() << std::endl;
 }
 
@@ -4061,7 +4061,7 @@ void test_ldpsw_64_ldstpair_pre() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryPreIndex);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldpsw_64_ldstpair_pre: " << result->to_string() << std::endl;
 }
 
@@ -4073,7 +4073,7 @@ void test_ldpsw_64_ldstpair_off() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryOffset);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldpsw_64_ldstpair_off: " << result->to_string() << std::endl;
 }
 
@@ -4124,7 +4124,7 @@ void test_ldr_b_ldst_immpre() {
     assert(result->mnemonic == Mnemonic::LDR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryPreIndex);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldr_b_ldst_immpre: " << result->to_string() << std::endl;
 }
 
@@ -4167,7 +4167,7 @@ void test_ldr_b_ldst_pos() {
     assert(result->mnemonic == Mnemonic::LDR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldr_b_ldst_pos: " << result->to_string() << std::endl;
 }
 
@@ -4226,7 +4226,7 @@ void test_ldr_32_ldst_immpre() {
     assert(result->mnemonic == Mnemonic::LDR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryPreIndex);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldr_32_ldst_immpre: " << result->to_string() << std::endl;
 }
 
@@ -4237,7 +4237,7 @@ void test_ldr_64_ldst_immpre() {
     assert(result->mnemonic == Mnemonic::LDR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryPreIndex);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldr_64_ldst_immpre: " << result->to_string() << std::endl;
 }
 
@@ -4248,7 +4248,7 @@ void test_ldr_32_ldst_pos() {
     assert(result->mnemonic == Mnemonic::LDR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldr_32_ldst_pos: " << result->to_string() << std::endl;
 }
 
@@ -4259,7 +4259,7 @@ void test_ldr_64_ldst_pos() {
     assert(result->mnemonic == Mnemonic::LDR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldr_64_ldst_pos: " << result->to_string() << std::endl;
 }
 
@@ -4385,7 +4385,7 @@ void test_ldraa_64_ldst_pac() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldraa_64_ldst_pac: " << result->to_string() << std::endl;
 }
 
@@ -4395,7 +4395,7 @@ void test_ldraa_64w_ldst_pac() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryPreIndex);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldraa_64w_ldst_pac: " << result->to_string() << std::endl;
 }
 
@@ -4405,7 +4405,7 @@ void test_ldrab_64_ldst_pac() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldrab_64_ldst_pac: " << result->to_string() << std::endl;
 }
 
@@ -4415,7 +4415,7 @@ void test_ldrab_64w_ldst_pac() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryPreIndex);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldrab_64w_ldst_pac: " << result->to_string() << std::endl;
 }
 
@@ -4434,7 +4434,7 @@ void test_ldrb_32_ldst_immpre() {
     assert(result->mnemonic == Mnemonic::LDRB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryPreIndex);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldrb_32_ldst_immpre: " << result->to_string() << std::endl;
 }
 
@@ -4445,7 +4445,7 @@ void test_ldrb_32_ldst_pos() {
     assert(result->mnemonic == Mnemonic::LDRB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldrb_32_ldst_pos: " << result->to_string() << std::endl;
 }
 
@@ -4486,7 +4486,7 @@ void test_ldrh_32_ldst_immpre() {
     assert(result->mnemonic == Mnemonic::LDRH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryPreIndex);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldrh_32_ldst_immpre: " << result->to_string() << std::endl;
 }
 
@@ -4497,7 +4497,7 @@ void test_ldrh_32_ldst_pos() {
     assert(result->mnemonic == Mnemonic::LDRH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldrh_32_ldst_pos: " << result->to_string() << std::endl;
 }
 
@@ -4535,7 +4535,7 @@ void test_ldrsb_32_ldst_immpre() {
     assert(result->mnemonic == Mnemonic::LDRSB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryPreIndex);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldrsb_32_ldst_immpre: " << result->to_string() << std::endl;
 }
 
@@ -4546,7 +4546,7 @@ void test_ldrsb_64_ldst_immpre() {
     assert(result->mnemonic == Mnemonic::LDRSB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryPreIndex);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldrsb_64_ldst_immpre: " << result->to_string() << std::endl;
 }
 
@@ -4557,7 +4557,7 @@ void test_ldrsb_32_ldst_pos() {
     assert(result->mnemonic == Mnemonic::LDRSB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldrsb_32_ldst_pos: " << result->to_string() << std::endl;
 }
 
@@ -4568,7 +4568,7 @@ void test_ldrsb_64_ldst_pos() {
     assert(result->mnemonic == Mnemonic::LDRSB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldrsb_64_ldst_pos: " << result->to_string() << std::endl;
 }
 
@@ -4639,7 +4639,7 @@ void test_ldrsh_32_ldst_immpre() {
     assert(result->mnemonic == Mnemonic::LDRSH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryPreIndex);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldrsh_32_ldst_immpre: " << result->to_string() << std::endl;
 }
 
@@ -4650,7 +4650,7 @@ void test_ldrsh_64_ldst_immpre() {
     assert(result->mnemonic == Mnemonic::LDRSH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryPreIndex);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldrsh_64_ldst_immpre: " << result->to_string() << std::endl;
 }
 
@@ -4661,7 +4661,7 @@ void test_ldrsh_32_ldst_pos() {
     assert(result->mnemonic == Mnemonic::LDRSH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldrsh_32_ldst_pos: " << result->to_string() << std::endl;
 }
 
@@ -4672,7 +4672,7 @@ void test_ldrsh_64_ldst_pos() {
     assert(result->mnemonic == Mnemonic::LDRSH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldrsh_64_ldst_pos: " << result->to_string() << std::endl;
 }
 
@@ -4713,7 +4713,7 @@ void test_ldrsw_64_ldst_immpre() {
     assert(result->mnemonic == Mnemonic::LDRSW);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryPreIndex);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldrsw_64_ldst_immpre: " << result->to_string() << std::endl;
 }
 
@@ -4724,7 +4724,7 @@ void test_ldrsw_64_ldst_pos() {
     assert(result->mnemonic == Mnemonic::LDRSW);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldrsw_64_ldst_pos: " << result->to_string() << std::endl;
 }
 
@@ -4754,7 +4754,7 @@ void test_ldset_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldset_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -4765,7 +4765,7 @@ void test_ldseta_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldseta_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -4776,7 +4776,7 @@ void test_ldsetal_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsetal_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -4787,7 +4787,7 @@ void test_ldsetl_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsetl_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -4798,7 +4798,7 @@ void test_ldset_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldset_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -4809,7 +4809,7 @@ void test_ldseta_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldseta_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -4820,7 +4820,7 @@ void test_ldsetal_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsetal_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -4831,7 +4831,7 @@ void test_ldsetl_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsetl_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -4842,7 +4842,7 @@ void test_ldsetb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsetb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -4853,7 +4853,7 @@ void test_ldsetab_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsetab_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -4864,7 +4864,7 @@ void test_ldsetalb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsetalb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -4875,7 +4875,7 @@ void test_ldsetlb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsetlb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -4886,7 +4886,7 @@ void test_ldseth_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldseth_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -4897,7 +4897,7 @@ void test_ldsetah_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsetah_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -4908,7 +4908,7 @@ void test_ldsetalh_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsetalh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -4919,7 +4919,7 @@ void test_ldsetlh_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsetlh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -4930,7 +4930,7 @@ void test_ldsetp_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsetp_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -4941,7 +4941,7 @@ void test_ldsetpa_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsetpa_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -4952,7 +4952,7 @@ void test_ldsetpal_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsetpal_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -4963,7 +4963,7 @@ void test_ldsetpl_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsetpl_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -4974,7 +4974,7 @@ void test_ldsmax_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsmax_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -4985,7 +4985,7 @@ void test_ldsmaxa_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsmaxa_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -4996,7 +4996,7 @@ void test_ldsmaxal_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsmaxal_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5007,7 +5007,7 @@ void test_ldsmaxl_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsmaxl_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5018,7 +5018,7 @@ void test_ldsmax_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsmax_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -5029,7 +5029,7 @@ void test_ldsmaxa_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsmaxa_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -5040,7 +5040,7 @@ void test_ldsmaxal_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsmaxal_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -5051,7 +5051,7 @@ void test_ldsmaxl_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsmaxl_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -5062,7 +5062,7 @@ void test_ldsmaxb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsmaxb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5073,7 +5073,7 @@ void test_ldsmaxab_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsmaxab_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5084,7 +5084,7 @@ void test_ldsmaxalb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsmaxalb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5095,7 +5095,7 @@ void test_ldsmaxlb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsmaxlb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5106,7 +5106,7 @@ void test_ldsmaxh_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsmaxh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5117,7 +5117,7 @@ void test_ldsmaxah_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsmaxah_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5128,7 +5128,7 @@ void test_ldsmaxalh_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsmaxalh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5139,7 +5139,7 @@ void test_ldsmaxlh_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsmaxlh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5150,7 +5150,7 @@ void test_ldsmin_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsmin_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5161,7 +5161,7 @@ void test_ldsmina_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsmina_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5172,7 +5172,7 @@ void test_ldsminal_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsminal_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5183,7 +5183,7 @@ void test_ldsminl_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsminl_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5194,7 +5194,7 @@ void test_ldsmin_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsmin_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -5205,7 +5205,7 @@ void test_ldsmina_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsmina_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -5216,7 +5216,7 @@ void test_ldsminal_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsminal_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -5227,7 +5227,7 @@ void test_ldsminl_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsminl_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -5238,7 +5238,7 @@ void test_ldsminb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsminb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5249,7 +5249,7 @@ void test_ldsminab_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsminab_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5260,7 +5260,7 @@ void test_ldsminalb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsminalb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5271,7 +5271,7 @@ void test_ldsminlb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsminlb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5282,7 +5282,7 @@ void test_ldsminh_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsminh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5293,7 +5293,7 @@ void test_ldsminah_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsminah_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5304,7 +5304,7 @@ void test_ldsminalh_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsminalh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5315,7 +5315,7 @@ void test_ldsminlh_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldsminlh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5326,7 +5326,7 @@ void test_ldtadd_32_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtadd_32_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5337,7 +5337,7 @@ void test_ldtadda_32_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtadda_32_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5348,7 +5348,7 @@ void test_ldtaddal_32_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtaddal_32_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5359,7 +5359,7 @@ void test_ldtaddl_32_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtaddl_32_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5370,7 +5370,7 @@ void test_ldtadd_64_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtadd_64_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5381,7 +5381,7 @@ void test_ldtadda_64_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtadda_64_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5392,7 +5392,7 @@ void test_ldtaddal_64_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtaddal_64_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5403,7 +5403,7 @@ void test_ldtaddl_64_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtaddl_64_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5414,7 +5414,7 @@ void test_ldtclr_32_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtclr_32_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5425,7 +5425,7 @@ void test_ldtclra_32_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtclra_32_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5436,7 +5436,7 @@ void test_ldtclral_32_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtclral_32_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5447,7 +5447,7 @@ void test_ldtclrl_32_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtclrl_32_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5458,7 +5458,7 @@ void test_ldtclr_64_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtclr_64_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5469,7 +5469,7 @@ void test_ldtclra_64_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtclra_64_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5480,7 +5480,7 @@ void test_ldtclral_64_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtclral_64_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5491,7 +5491,7 @@ void test_ldtclrl_64_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtclrl_64_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5511,7 +5511,7 @@ void test_ldtnp_64_ldstnapair_offs() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryOffset);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtnp_64_ldstnapair_offs: " << result->to_string() << std::endl;
 }
 
@@ -5555,7 +5555,7 @@ void test_ldtp_64_ldstpair_pre() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryPreIndex);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtp_64_ldstpair_pre: " << result->to_string() << std::endl;
 }
 
@@ -5567,7 +5567,7 @@ void test_ldtp_64_ldstpair_off() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryOffset);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtp_64_ldstpair_off: " << result->to_string() << std::endl;
 }
 
@@ -5578,7 +5578,7 @@ void test_ldtr_32_ldst_unpriv() {
     assert(result->mnemonic == Mnemonic::LDTR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldtr_32_ldst_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5589,7 +5589,7 @@ void test_ldtr_64_ldst_unpriv() {
     assert(result->mnemonic == Mnemonic::LDTR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldtr_64_ldst_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5600,7 +5600,7 @@ void test_ldtrb_32_ldst_unpriv() {
     assert(result->mnemonic == Mnemonic::LDTRB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldtrb_32_ldst_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5611,7 +5611,7 @@ void test_ldtrh_32_ldst_unpriv() {
     assert(result->mnemonic == Mnemonic::LDTRH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldtrh_32_ldst_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5622,7 +5622,7 @@ void test_ldtrsb_32_ldst_unpriv() {
     assert(result->mnemonic == Mnemonic::LDTRSB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldtrsb_32_ldst_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5633,7 +5633,7 @@ void test_ldtrsb_64_ldst_unpriv() {
     assert(result->mnemonic == Mnemonic::LDTRSB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldtrsb_64_ldst_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5644,7 +5644,7 @@ void test_ldtrsh_32_ldst_unpriv() {
     assert(result->mnemonic == Mnemonic::LDTRSH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldtrsh_32_ldst_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5655,7 +5655,7 @@ void test_ldtrsh_64_ldst_unpriv() {
     assert(result->mnemonic == Mnemonic::LDTRSH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldtrsh_64_ldst_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5666,7 +5666,7 @@ void test_ldtrsw_64_ldst_unpriv() {
     assert(result->mnemonic == Mnemonic::LDTRSW);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldtrsw_64_ldst_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5677,7 +5677,7 @@ void test_ldtset_32_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtset_32_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5688,7 +5688,7 @@ void test_ldtseta_32_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtseta_32_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5699,7 +5699,7 @@ void test_ldtsetal_32_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtsetal_32_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5710,7 +5710,7 @@ void test_ldtsetl_32_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtsetl_32_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5721,7 +5721,7 @@ void test_ldtset_64_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtset_64_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5732,7 +5732,7 @@ void test_ldtseta_64_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtseta_64_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5743,7 +5743,7 @@ void test_ldtsetal_64_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtsetal_64_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5754,7 +5754,7 @@ void test_ldtsetl_64_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldtsetl_64_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5765,7 +5765,7 @@ void test_ldtxr_lr32_ldstexclr_unpriv() {
     assert(result->mnemonic == Mnemonic::LDTXR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldtxr_lr32_ldstexclr_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5776,7 +5776,7 @@ void test_ldtxr_lr64_ldstexclr_unpriv() {
     assert(result->mnemonic == Mnemonic::LDTXR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldtxr_lr64_ldstexclr_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -5787,7 +5787,7 @@ void test_ldumax_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldumax_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5798,7 +5798,7 @@ void test_ldumaxa_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldumaxa_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5809,7 +5809,7 @@ void test_ldumaxal_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldumaxal_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5820,7 +5820,7 @@ void test_ldumaxl_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldumaxl_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5831,7 +5831,7 @@ void test_ldumax_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldumax_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -5842,7 +5842,7 @@ void test_ldumaxa_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldumaxa_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -5853,7 +5853,7 @@ void test_ldumaxal_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldumaxal_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -5864,7 +5864,7 @@ void test_ldumaxl_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldumaxl_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -5875,7 +5875,7 @@ void test_ldumaxb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldumaxb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5886,7 +5886,7 @@ void test_ldumaxab_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldumaxab_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5897,7 +5897,7 @@ void test_ldumaxalb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldumaxalb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5908,7 +5908,7 @@ void test_ldumaxlb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldumaxlb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5919,7 +5919,7 @@ void test_ldumaxh_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldumaxh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5930,7 +5930,7 @@ void test_ldumaxah_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldumaxah_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5941,7 +5941,7 @@ void test_ldumaxalh_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldumaxalh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5952,7 +5952,7 @@ void test_ldumaxlh_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldumaxlh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5963,7 +5963,7 @@ void test_ldumin_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldumin_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5974,7 +5974,7 @@ void test_ldumina_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldumina_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5985,7 +5985,7 @@ void test_lduminal_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  lduminal_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -5996,7 +5996,7 @@ void test_lduminl_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  lduminl_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -6007,7 +6007,7 @@ void test_ldumin_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldumin_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -6018,7 +6018,7 @@ void test_ldumina_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldumina_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -6029,7 +6029,7 @@ void test_lduminal_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  lduminal_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -6040,7 +6040,7 @@ void test_lduminl_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  lduminl_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -6051,7 +6051,7 @@ void test_lduminb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  lduminb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -6062,7 +6062,7 @@ void test_lduminab_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  lduminab_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -6073,7 +6073,7 @@ void test_lduminalb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  lduminalb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -6084,7 +6084,7 @@ void test_lduminlb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  lduminlb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -6095,7 +6095,7 @@ void test_lduminh_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  lduminh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -6106,7 +6106,7 @@ void test_lduminah_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  lduminah_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -6117,7 +6117,7 @@ void test_lduminalh_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  lduminalh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -6128,7 +6128,7 @@ void test_lduminlh_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  lduminlh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -6139,7 +6139,7 @@ void test_ldur_b_ldst_unscaled() {
     assert(result->mnemonic == Mnemonic::LDUR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldur_b_ldst_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -6182,7 +6182,7 @@ void test_ldur_32_ldst_unscaled() {
     assert(result->mnemonic == Mnemonic::LDUR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldur_32_ldst_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -6193,7 +6193,7 @@ void test_ldur_64_ldst_unscaled() {
     assert(result->mnemonic == Mnemonic::LDUR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldur_64_ldst_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -6204,7 +6204,7 @@ void test_ldurb_32_ldst_unscaled() {
     assert(result->mnemonic == Mnemonic::LDURB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldurb_32_ldst_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -6215,7 +6215,7 @@ void test_ldurh_32_ldst_unscaled() {
     assert(result->mnemonic == Mnemonic::LDURH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldurh_32_ldst_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -6226,7 +6226,7 @@ void test_ldursb_32_ldst_unscaled() {
     assert(result->mnemonic == Mnemonic::LDURSB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldursb_32_ldst_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -6237,7 +6237,7 @@ void test_ldursb_64_ldst_unscaled() {
     assert(result->mnemonic == Mnemonic::LDURSB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldursb_64_ldst_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -6248,7 +6248,7 @@ void test_ldursh_32_ldst_unscaled() {
     assert(result->mnemonic == Mnemonic::LDURSH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldursh_32_ldst_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -6259,7 +6259,7 @@ void test_ldursh_64_ldst_unscaled() {
     assert(result->mnemonic == Mnemonic::LDURSH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldursh_64_ldst_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -6270,7 +6270,7 @@ void test_ldursw_64_ldst_unscaled() {
     assert(result->mnemonic == Mnemonic::LDURSW);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldursw_64_ldst_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -6282,7 +6282,7 @@ void test_ldxp_lp32_ldstexclp() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldxp_lp32_ldstexclp: " << result->to_string() << std::endl;
 }
 
@@ -6294,7 +6294,7 @@ void test_ldxp_lp64_ldstexclp() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldxp_lp64_ldstexclp: " << result->to_string() << std::endl;
 }
 
@@ -6305,7 +6305,7 @@ void test_ldxr_lr32_ldstexclr() {
     assert(result->mnemonic == Mnemonic::LDXR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldxr_lr32_ldstexclr: " << result->to_string() << std::endl;
 }
 
@@ -6316,7 +6316,7 @@ void test_ldxr_lr64_ldstexclr() {
     assert(result->mnemonic == Mnemonic::LDXR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldxr_lr64_ldstexclr: " << result->to_string() << std::endl;
 }
 
@@ -6327,7 +6327,7 @@ void test_ldxrb_lr32_ldstexclr() {
     assert(result->mnemonic == Mnemonic::LDXRB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldxrb_lr32_ldstexclr: " << result->to_string() << std::endl;
 }
 
@@ -6338,7 +6338,7 @@ void test_ldxrh_lr32_ldstexclr() {
     assert(result->mnemonic == Mnemonic::LDXRH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldxrh_lr32_ldstexclr: " << result->to_string() << std::endl;
 }
 
@@ -6381,7 +6381,7 @@ void test_rcwcas_c64_rcwcomswap() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwcas_c64_rcwcomswap: " << result->to_string() << std::endl;
 }
 
@@ -6392,7 +6392,7 @@ void test_rcwcasa_c64_rcwcomswap() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwcasa_c64_rcwcomswap: " << result->to_string() << std::endl;
 }
 
@@ -6403,7 +6403,7 @@ void test_rcwcasal_c64_rcwcomswap() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwcasal_c64_rcwcomswap: " << result->to_string() << std::endl;
 }
 
@@ -6414,7 +6414,7 @@ void test_rcwcasl_c64_rcwcomswap() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwcasl_c64_rcwcomswap: " << result->to_string() << std::endl;
 }
 
@@ -6425,7 +6425,7 @@ void test_rcwcasp_c64_rcwcomswappr() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwcasp_c64_rcwcomswappr: " << result->to_string() << std::endl;
 }
 
@@ -6436,7 +6436,7 @@ void test_rcwcaspa_c64_rcwcomswappr() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwcaspa_c64_rcwcomswappr: " << result->to_string() << std::endl;
 }
 
@@ -6447,7 +6447,7 @@ void test_rcwcaspal_c64_rcwcomswappr() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwcaspal_c64_rcwcomswappr: " << result->to_string() << std::endl;
 }
 
@@ -6458,7 +6458,7 @@ void test_rcwcaspl_c64_rcwcomswappr() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwcaspl_c64_rcwcomswappr: " << result->to_string() << std::endl;
 }
 
@@ -6469,7 +6469,7 @@ void test_rcwclr_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwclr_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -6480,7 +6480,7 @@ void test_rcwclra_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwclra_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -6491,7 +6491,7 @@ void test_rcwclral_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwclral_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -6502,7 +6502,7 @@ void test_rcwclrl_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwclrl_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -6513,7 +6513,7 @@ void test_rcwclrp_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwclrp_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -6524,7 +6524,7 @@ void test_rcwclrpa_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwclrpa_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -6535,7 +6535,7 @@ void test_rcwclrpal_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwclrpal_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -6546,7 +6546,7 @@ void test_rcwclrpl_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwclrpl_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -6557,7 +6557,7 @@ void test_rcwscas_c64_rcwcomswap() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwscas_c64_rcwcomswap: " << result->to_string() << std::endl;
 }
 
@@ -6568,7 +6568,7 @@ void test_rcwscasa_c64_rcwcomswap() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwscasa_c64_rcwcomswap: " << result->to_string() << std::endl;
 }
 
@@ -6579,7 +6579,7 @@ void test_rcwscasal_c64_rcwcomswap() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwscasal_c64_rcwcomswap: " << result->to_string() << std::endl;
 }
 
@@ -6590,7 +6590,7 @@ void test_rcwscasl_c64_rcwcomswap() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwscasl_c64_rcwcomswap: " << result->to_string() << std::endl;
 }
 
@@ -6601,7 +6601,7 @@ void test_rcwscasp_c64_rcwcomswappr() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwscasp_c64_rcwcomswappr: " << result->to_string() << std::endl;
 }
 
@@ -6612,7 +6612,7 @@ void test_rcwscaspa_c64_rcwcomswappr() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwscaspa_c64_rcwcomswappr: " << result->to_string() << std::endl;
 }
 
@@ -6623,7 +6623,7 @@ void test_rcwscaspal_c64_rcwcomswappr() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwscaspal_c64_rcwcomswappr: " << result->to_string() << std::endl;
 }
 
@@ -6634,7 +6634,7 @@ void test_rcwscaspl_c64_rcwcomswappr() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwscaspl_c64_rcwcomswappr: " << result->to_string() << std::endl;
 }
 
@@ -6645,7 +6645,7 @@ void test_rcwsclr_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwsclr_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -6656,7 +6656,7 @@ void test_rcwsclra_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwsclra_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -6667,7 +6667,7 @@ void test_rcwsclral_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwsclral_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -6678,7 +6678,7 @@ void test_rcwsclrl_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwsclrl_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -6689,7 +6689,7 @@ void test_rcwsclrp_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwsclrp_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -6700,7 +6700,7 @@ void test_rcwsclrpa_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwsclrpa_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -6711,7 +6711,7 @@ void test_rcwsclrpal_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwsclrpal_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -6722,7 +6722,7 @@ void test_rcwsclrpl_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwsclrpl_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -6733,7 +6733,7 @@ void test_rcwset_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwset_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -6744,7 +6744,7 @@ void test_rcwseta_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwseta_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -6755,7 +6755,7 @@ void test_rcwsetal_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwsetal_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -6766,7 +6766,7 @@ void test_rcwsetl_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwsetl_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -6777,7 +6777,7 @@ void test_rcwsetp_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwsetp_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -6788,7 +6788,7 @@ void test_rcwsetpa_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwsetpa_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -6799,7 +6799,7 @@ void test_rcwsetpal_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwsetpal_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -6810,7 +6810,7 @@ void test_rcwsetpl_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwsetpl_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -6821,7 +6821,7 @@ void test_rcwsset_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwsset_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -6832,7 +6832,7 @@ void test_rcwsseta_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwsseta_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -6843,7 +6843,7 @@ void test_rcwssetal_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwssetal_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -6854,7 +6854,7 @@ void test_rcwssetl_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwssetl_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -6865,7 +6865,7 @@ void test_rcwssetp_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwssetp_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -6876,7 +6876,7 @@ void test_rcwssetpa_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwssetpa_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -6887,7 +6887,7 @@ void test_rcwssetpal_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwssetpal_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -6898,7 +6898,7 @@ void test_rcwssetpl_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwssetpl_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -6909,7 +6909,7 @@ void test_rcwsswp_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwsswp_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -6920,7 +6920,7 @@ void test_rcwsswpa_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwsswpa_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -6931,7 +6931,7 @@ void test_rcwsswpal_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwsswpal_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -6942,7 +6942,7 @@ void test_rcwsswpl_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwsswpl_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -6953,7 +6953,7 @@ void test_rcwsswpp_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwsswpp_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -6964,7 +6964,7 @@ void test_rcwsswppa_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwsswppa_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -6975,7 +6975,7 @@ void test_rcwsswppal_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwsswppal_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -6986,7 +6986,7 @@ void test_rcwsswppl_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwsswppl_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -6997,7 +6997,7 @@ void test_rcwswp_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwswp_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -7008,7 +7008,7 @@ void test_rcwswpa_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwswpa_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -7019,7 +7019,7 @@ void test_rcwswpal_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwswpal_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -7030,7 +7030,7 @@ void test_rcwswpl_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwswpl_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -7041,7 +7041,7 @@ void test_rcwswpp_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwswpp_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -7052,7 +7052,7 @@ void test_rcwswppa_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwswppa_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -7063,7 +7063,7 @@ void test_rcwswppal_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwswppal_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -7074,7 +7074,7 @@ void test_rcwswppl_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  rcwswppl_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -7091,7 +7091,7 @@ void test_setgp_set_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  setgp_set_memcms: " << result->to_string() << std::endl;
@@ -7102,7 +7102,7 @@ void test_setgm_set_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  setgm_set_memcms: " << result->to_string() << std::endl;
@@ -7113,7 +7113,7 @@ void test_setge_set_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  setge_set_memcms: " << result->to_string() << std::endl;
@@ -7124,7 +7124,7 @@ void test_setgpn_set_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  setgpn_set_memcms: " << result->to_string() << std::endl;
@@ -7135,7 +7135,7 @@ void test_setgmn_set_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  setgmn_set_memcms: " << result->to_string() << std::endl;
@@ -7146,7 +7146,7 @@ void test_setgen_set_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  setgen_set_memcms: " << result->to_string() << std::endl;
@@ -7157,7 +7157,7 @@ void test_setgpt_set_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  setgpt_set_memcms: " << result->to_string() << std::endl;
@@ -7168,7 +7168,7 @@ void test_setgmt_set_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  setgmt_set_memcms: " << result->to_string() << std::endl;
@@ -7179,7 +7179,7 @@ void test_setget_set_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  setget_set_memcms: " << result->to_string() << std::endl;
@@ -7190,7 +7190,7 @@ void test_setgptn_set_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  setgptn_set_memcms: " << result->to_string() << std::endl;
@@ -7201,7 +7201,7 @@ void test_setgmtn_set_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  setgmtn_set_memcms: " << result->to_string() << std::endl;
@@ -7212,7 +7212,7 @@ void test_setgetn_set_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  setgetn_set_memcms: " << result->to_string() << std::endl;
@@ -7223,7 +7223,7 @@ void test_setp_set_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  setp_set_memcms: " << result->to_string() << std::endl;
@@ -7234,7 +7234,7 @@ void test_setm_set_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  setm_set_memcms: " << result->to_string() << std::endl;
@@ -7245,7 +7245,7 @@ void test_sete_set_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sete_set_memcms: " << result->to_string() << std::endl;
@@ -7256,7 +7256,7 @@ void test_setpn_set_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  setpn_set_memcms: " << result->to_string() << std::endl;
@@ -7267,7 +7267,7 @@ void test_setmn_set_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  setmn_set_memcms: " << result->to_string() << std::endl;
@@ -7278,7 +7278,7 @@ void test_seten_set_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  seten_set_memcms: " << result->to_string() << std::endl;
@@ -7289,7 +7289,7 @@ void test_setpt_set_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  setpt_set_memcms: " << result->to_string() << std::endl;
@@ -7300,7 +7300,7 @@ void test_setmt_set_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  setmt_set_memcms: " << result->to_string() << std::endl;
@@ -7311,7 +7311,7 @@ void test_setet_set_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  setet_set_memcms: " << result->to_string() << std::endl;
@@ -7322,7 +7322,7 @@ void test_setptn_set_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  setptn_set_memcms: " << result->to_string() << std::endl;
@@ -7333,7 +7333,7 @@ void test_setmtn_set_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  setmtn_set_memcms: " << result->to_string() << std::endl;
@@ -7344,7 +7344,7 @@ void test_setetn_set_memcms() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::MemoryPreIndex);
+    assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  setetn_set_memcms: " << result->to_string() << std::endl;
@@ -7356,8 +7356,8 @@ void test_st1_asisdlse_r1_1v() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st1_asisdlse_r1_1v: " << result->to_string() << std::endl;
 }
 
@@ -7367,8 +7367,8 @@ void test_st1_asisdlse_r2_2v() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st1_asisdlse_r2_2v: " << result->to_string() << std::endl;
 }
 
@@ -7378,8 +7378,8 @@ void test_st1_asisdlse_r3_3v() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st1_asisdlse_r3_3v: " << result->to_string() << std::endl;
 }
 
@@ -7389,8 +7389,8 @@ void test_st1_asisdlse_r4_4v() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st1_asisdlse_r4_4v: " << result->to_string() << std::endl;
 }
 
@@ -7408,8 +7408,8 @@ void test_st1_asisdlsep_r1_r1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st1_asisdlsep_r1_r1: " << result->to_string() << std::endl;
 }
@@ -7428,8 +7428,8 @@ void test_st1_asisdlsep_r2_r2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st1_asisdlsep_r2_r2: " << result->to_string() << std::endl;
 }
@@ -7448,8 +7448,8 @@ void test_st1_asisdlsep_r3_r3() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st1_asisdlsep_r3_r3: " << result->to_string() << std::endl;
 }
@@ -7468,8 +7468,8 @@ void test_st1_asisdlsep_r4_r4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st1_asisdlsep_r4_r4: " << result->to_string() << std::endl;
 }
@@ -7480,8 +7480,8 @@ void test_st1_asisdlso_b1_1b() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st1_asisdlso_b1_1b: " << result->to_string() << std::endl;
 }
 
@@ -7491,8 +7491,8 @@ void test_st1_asisdlso_h1_1h() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st1_asisdlso_h1_1h: " << result->to_string() << std::endl;
 }
 
@@ -7502,8 +7502,8 @@ void test_st1_asisdlso_s1_1s() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st1_asisdlso_s1_1s: " << result->to_string() << std::endl;
 }
 
@@ -7513,8 +7513,8 @@ void test_st1_asisdlso_d1_1d() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st1_asisdlso_d1_1d: " << result->to_string() << std::endl;
 }
 
@@ -7524,8 +7524,8 @@ void test_st1_asisdlsop_b1_i1b() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st1_asisdlsop_b1_i1b: " << result->to_string() << std::endl;
 }
 
@@ -7535,8 +7535,8 @@ void test_st1_asisdlsop_bx1_r1b() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st1_asisdlsop_bx1_r1b: " << result->to_string() << std::endl;
 }
@@ -7547,8 +7547,8 @@ void test_st1_asisdlsop_h1_i1h() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st1_asisdlsop_h1_i1h: " << result->to_string() << std::endl;
 }
 
@@ -7558,8 +7558,8 @@ void test_st1_asisdlsop_hx1_r1h() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st1_asisdlsop_hx1_r1h: " << result->to_string() << std::endl;
 }
@@ -7570,8 +7570,8 @@ void test_st1_asisdlsop_s1_i1s() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st1_asisdlsop_s1_i1s: " << result->to_string() << std::endl;
 }
 
@@ -7581,8 +7581,8 @@ void test_st1_asisdlsop_sx1_r1s() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st1_asisdlsop_sx1_r1s: " << result->to_string() << std::endl;
 }
@@ -7593,8 +7593,8 @@ void test_st1_asisdlsop_d1_i1d() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st1_asisdlsop_d1_i1d: " << result->to_string() << std::endl;
 }
 
@@ -7604,8 +7604,8 @@ void test_st1_asisdlsop_dx1_r1d() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st1_asisdlsop_dx1_r1d: " << result->to_string() << std::endl;
 }
@@ -7616,8 +7616,8 @@ void test_st2_asisdlse_r2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st2_asisdlse_r2: " << result->to_string() << std::endl;
 }
 
@@ -7635,8 +7635,8 @@ void test_st2_asisdlsep_r2_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st2_asisdlsep_r2_r: " << result->to_string() << std::endl;
 }
@@ -7647,8 +7647,8 @@ void test_st2_asisdlso_b2_2b() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st2_asisdlso_b2_2b: " << result->to_string() << std::endl;
 }
 
@@ -7658,8 +7658,8 @@ void test_st2_asisdlso_h2_2h() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st2_asisdlso_h2_2h: " << result->to_string() << std::endl;
 }
 
@@ -7669,8 +7669,8 @@ void test_st2_asisdlso_s2_2s() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st2_asisdlso_s2_2s: " << result->to_string() << std::endl;
 }
 
@@ -7680,8 +7680,8 @@ void test_st2_asisdlso_d2_2d() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st2_asisdlso_d2_2d: " << result->to_string() << std::endl;
 }
 
@@ -7691,8 +7691,8 @@ void test_st2_asisdlsop_b2_i2b() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st2_asisdlsop_b2_i2b: " << result->to_string() << std::endl;
 }
 
@@ -7702,8 +7702,8 @@ void test_st2_asisdlsop_bx2_r2b() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st2_asisdlsop_bx2_r2b: " << result->to_string() << std::endl;
 }
@@ -7714,8 +7714,8 @@ void test_st2_asisdlsop_h2_i2h() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st2_asisdlsop_h2_i2h: " << result->to_string() << std::endl;
 }
 
@@ -7725,8 +7725,8 @@ void test_st2_asisdlsop_hx2_r2h() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st2_asisdlsop_hx2_r2h: " << result->to_string() << std::endl;
 }
@@ -7737,8 +7737,8 @@ void test_st2_asisdlsop_s2_i2s() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st2_asisdlsop_s2_i2s: " << result->to_string() << std::endl;
 }
 
@@ -7748,8 +7748,8 @@ void test_st2_asisdlsop_sx2_r2s() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st2_asisdlsop_sx2_r2s: " << result->to_string() << std::endl;
 }
@@ -7760,8 +7760,8 @@ void test_st2_asisdlsop_d2_i2d() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st2_asisdlsop_d2_i2d: " << result->to_string() << std::endl;
 }
 
@@ -7771,8 +7771,8 @@ void test_st2_asisdlsop_dx2_r2d() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st2_asisdlsop_dx2_r2d: " << result->to_string() << std::endl;
 }
@@ -7792,7 +7792,7 @@ void test_st2g_64spre_ldsttags() {
     assert(result->mnemonic == Mnemonic::ST2G);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryPreIndex);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st2g_64spre_ldsttags: " << result->to_string() << std::endl;
 }
 
@@ -7803,7 +7803,7 @@ void test_st2g_64soffset_ldsttags() {
     assert(result->mnemonic == Mnemonic::ST2G);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st2g_64soffset_ldsttags: " << result->to_string() << std::endl;
 }
 
@@ -7813,8 +7813,8 @@ void test_st3_asisdlse_r3() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st3_asisdlse_r3: " << result->to_string() << std::endl;
 }
 
@@ -7832,8 +7832,8 @@ void test_st3_asisdlsep_r3_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st3_asisdlsep_r3_r: " << result->to_string() << std::endl;
 }
@@ -7844,8 +7844,8 @@ void test_st3_asisdlso_b3_3b() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st3_asisdlso_b3_3b: " << result->to_string() << std::endl;
 }
 
@@ -7855,8 +7855,8 @@ void test_st3_asisdlso_h3_3h() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st3_asisdlso_h3_3h: " << result->to_string() << std::endl;
 }
 
@@ -7866,8 +7866,8 @@ void test_st3_asisdlso_s3_3s() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st3_asisdlso_s3_3s: " << result->to_string() << std::endl;
 }
 
@@ -7877,8 +7877,8 @@ void test_st3_asisdlso_d3_3d() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st3_asisdlso_d3_3d: " << result->to_string() << std::endl;
 }
 
@@ -7888,8 +7888,8 @@ void test_st3_asisdlsop_b3_i3b() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st3_asisdlsop_b3_i3b: " << result->to_string() << std::endl;
 }
 
@@ -7899,8 +7899,8 @@ void test_st3_asisdlsop_bx3_r3b() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st3_asisdlsop_bx3_r3b: " << result->to_string() << std::endl;
 }
@@ -7911,8 +7911,8 @@ void test_st3_asisdlsop_h3_i3h() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st3_asisdlsop_h3_i3h: " << result->to_string() << std::endl;
 }
 
@@ -7922,8 +7922,8 @@ void test_st3_asisdlsop_hx3_r3h() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st3_asisdlsop_hx3_r3h: " << result->to_string() << std::endl;
 }
@@ -7934,8 +7934,8 @@ void test_st3_asisdlsop_s3_i3s() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st3_asisdlsop_s3_i3s: " << result->to_string() << std::endl;
 }
 
@@ -7945,8 +7945,8 @@ void test_st3_asisdlsop_sx3_r3s() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st3_asisdlsop_sx3_r3s: " << result->to_string() << std::endl;
 }
@@ -7957,8 +7957,8 @@ void test_st3_asisdlsop_d3_i3d() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st3_asisdlsop_d3_i3d: " << result->to_string() << std::endl;
 }
 
@@ -7968,8 +7968,8 @@ void test_st3_asisdlsop_dx3_r3d() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st3_asisdlsop_dx3_r3d: " << result->to_string() << std::endl;
 }
@@ -7980,8 +7980,8 @@ void test_st4_asisdlse_r4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st4_asisdlse_r4: " << result->to_string() << std::endl;
 }
 
@@ -7999,8 +7999,8 @@ void test_st4_asisdlsep_r4_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st4_asisdlsep_r4_r: " << result->to_string() << std::endl;
 }
@@ -8011,8 +8011,8 @@ void test_st4_asisdlso_b4_4b() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st4_asisdlso_b4_4b: " << result->to_string() << std::endl;
 }
 
@@ -8022,8 +8022,8 @@ void test_st4_asisdlso_h4_4h() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st4_asisdlso_h4_4h: " << result->to_string() << std::endl;
 }
 
@@ -8033,8 +8033,8 @@ void test_st4_asisdlso_s4_4s() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st4_asisdlso_s4_4s: " << result->to_string() << std::endl;
 }
 
@@ -8044,8 +8044,8 @@ void test_st4_asisdlso_d4_4d() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st4_asisdlso_d4_4d: " << result->to_string() << std::endl;
 }
 
@@ -8055,8 +8055,8 @@ void test_st4_asisdlsop_b4_i4b() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st4_asisdlsop_b4_i4b: " << result->to_string() << std::endl;
 }
 
@@ -8066,8 +8066,8 @@ void test_st4_asisdlsop_bx4_r4b() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st4_asisdlsop_bx4_r4b: " << result->to_string() << std::endl;
 }
@@ -8078,8 +8078,8 @@ void test_st4_asisdlsop_h4_i4h() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st4_asisdlsop_h4_i4h: " << result->to_string() << std::endl;
 }
 
@@ -8089,8 +8089,8 @@ void test_st4_asisdlsop_hx4_r4h() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st4_asisdlsop_hx4_r4h: " << result->to_string() << std::endl;
 }
@@ -8101,8 +8101,8 @@ void test_st4_asisdlsop_s4_i4s() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st4_asisdlsop_s4_i4s: " << result->to_string() << std::endl;
 }
 
@@ -8112,8 +8112,8 @@ void test_st4_asisdlsop_sx4_r4s() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st4_asisdlsop_sx4_r4s: " << result->to_string() << std::endl;
 }
@@ -8124,8 +8124,8 @@ void test_st4_asisdlsop_d4_i4d() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st4_asisdlsop_d4_i4d: " << result->to_string() << std::endl;
 }
 
@@ -8135,8 +8135,8 @@ void test_st4_asisdlsop_dx4_r4d() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryPostIndex);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st4_asisdlsop_dx4_r4d: " << result->to_string() << std::endl;
 }
@@ -8148,7 +8148,7 @@ void test_st64b_64l_memop() {
     assert(result->mnemonic == Mnemonic::ST64B);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st64b_64l_memop: " << result->to_string() << std::endl;
 }
 
@@ -8160,7 +8160,7 @@ void test_st64bv_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  st64bv_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -8172,7 +8172,7 @@ void test_st64bv0_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  st64bv0_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -8182,7 +8182,7 @@ void test_stadd_ldadd_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stadd_ldadd_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -8192,7 +8192,7 @@ void test_staddl_ldaddl_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  staddl_ldaddl_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -8202,7 +8202,7 @@ void test_stadd_ldadd_64_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stadd_ldadd_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -8212,7 +8212,7 @@ void test_staddl_ldaddl_64_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  staddl_ldaddl_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -8222,7 +8222,7 @@ void test_staddb_ldaddb_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  staddb_ldaddb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -8232,7 +8232,7 @@ void test_staddlb_ldaddlb_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  staddlb_ldaddlb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -8242,7 +8242,7 @@ void test_staddh_ldaddh_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  staddh_ldaddh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -8252,7 +8252,7 @@ void test_staddlh_ldaddlh_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  staddlh_ldaddlh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -8332,7 +8332,7 @@ void test_stclr_ldclr_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stclr_ldclr_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -8342,7 +8342,7 @@ void test_stclrl_ldclrl_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stclrl_ldclrl_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -8352,7 +8352,7 @@ void test_stclr_ldclr_64_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stclr_ldclr_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -8362,7 +8362,7 @@ void test_stclrl_ldclrl_64_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stclrl_ldclrl_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -8372,7 +8372,7 @@ void test_stclrb_ldclrb_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stclrb_ldclrb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -8382,7 +8382,7 @@ void test_stclrlb_ldclrlb_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stclrlb_ldclrlb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -8392,7 +8392,7 @@ void test_stclrh_ldclrh_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stclrh_ldclrh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -8402,7 +8402,7 @@ void test_stclrlh_ldclrlh_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stclrlh_ldclrlh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -8412,7 +8412,7 @@ void test_steor_ldeor_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  steor_ldeor_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -8422,7 +8422,7 @@ void test_steorl_ldeorl_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  steorl_ldeorl_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -8432,7 +8432,7 @@ void test_steor_ldeor_64_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  steor_ldeor_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -8442,7 +8442,7 @@ void test_steorl_ldeorl_64_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  steorl_ldeorl_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -8452,7 +8452,7 @@ void test_steorb_ldeorb_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  steorb_ldeorb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -8462,7 +8462,7 @@ void test_steorlb_ldeorlb_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  steorlb_ldeorlb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -8472,7 +8472,7 @@ void test_steorh_ldeorh_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  steorh_ldeorh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -8482,7 +8482,7 @@ void test_steorlh_ldeorlh_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  steorlh_ldeorlh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -8711,7 +8711,7 @@ void test_stg_64spre_ldsttags() {
     assert(result->mnemonic == Mnemonic::STG);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryPreIndex);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stg_64spre_ldsttags: " << result->to_string() << std::endl;
 }
 
@@ -8722,7 +8722,7 @@ void test_stg_64soffset_ldsttags() {
     assert(result->mnemonic == Mnemonic::STG);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stg_64soffset_ldsttags: " << result->to_string() << std::endl;
 }
 
@@ -8733,7 +8733,7 @@ void test_stgm_64bulk_ldsttags() {
     assert(result->mnemonic == Mnemonic::STGM);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stgm_64bulk_ldsttags: " << result->to_string() << std::endl;
 }
 
@@ -8753,7 +8753,7 @@ void test_stgp_64_ldstpair_pre() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryPreIndex);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stgp_64_ldstpair_pre: " << result->to_string() << std::endl;
 }
 
@@ -8765,7 +8765,7 @@ void test_stgp_64_ldstpair_off() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryOffset);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stgp_64_ldstpair_off: " << result->to_string() << std::endl;
 }
 
@@ -8777,7 +8777,7 @@ void test_stilp_32se_ldiappstilp() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryPreIndex);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stilp_32se_ldiappstilp: " << result->to_string() << std::endl;
 }
 
@@ -8789,7 +8789,7 @@ void test_stilp_32s_ldiappstilp() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stilp_32s_ldiappstilp: " << result->to_string() << std::endl;
 }
 
@@ -8801,7 +8801,7 @@ void test_stilp_64ss_ldiappstilp() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryPreIndex);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stilp_64ss_ldiappstilp: " << result->to_string() << std::endl;
 }
 
@@ -8813,7 +8813,7 @@ void test_stilp_64s_ldiappstilp() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stilp_64s_ldiappstilp: " << result->to_string() << std::endl;
 }
 
@@ -8823,8 +8823,8 @@ void test_stl1_asisdlso_d1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STL1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stl1_asisdlso_d1: " << result->to_string() << std::endl;
 }
 
@@ -8835,7 +8835,7 @@ void test_stllr_sl32_ldstord() {
     assert(result->mnemonic == Mnemonic::STLLR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stllr_sl32_ldstord: " << result->to_string() << std::endl;
 }
 
@@ -8846,7 +8846,7 @@ void test_stllr_sl64_ldstord() {
     assert(result->mnemonic == Mnemonic::STLLR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stllr_sl64_ldstord: " << result->to_string() << std::endl;
 }
 
@@ -8857,7 +8857,7 @@ void test_stllrb_sl32_ldstord() {
     assert(result->mnemonic == Mnemonic::STLLRB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stllrb_sl32_ldstord: " << result->to_string() << std::endl;
 }
 
@@ -8868,7 +8868,7 @@ void test_stllrh_sl32_ldstord() {
     assert(result->mnemonic == Mnemonic::STLLRH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stllrh_sl32_ldstord: " << result->to_string() << std::endl;
 }
 
@@ -8880,7 +8880,7 @@ void test_stlp_64_ldiappstilp() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stlp_64_ldiappstilp: " << result->to_string() << std::endl;
 }
 
@@ -8891,7 +8891,7 @@ void test_stlr_sl32_ldstord() {
     assert(result->mnemonic == Mnemonic::STLR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stlr_sl32_ldstord: " << result->to_string() << std::endl;
 }
 
@@ -8902,7 +8902,7 @@ void test_stlr_sl64_ldstord() {
     assert(result->mnemonic == Mnemonic::STLR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stlr_sl64_ldstord: " << result->to_string() << std::endl;
 }
 
@@ -8913,7 +8913,7 @@ void test_stlr_32s_ldapstl_writeback() {
     assert(result->mnemonic == Mnemonic::STLR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryPreIndex);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stlr_32s_ldapstl_writeback: " << result->to_string() << std::endl;
 }
 
@@ -8924,7 +8924,7 @@ void test_stlr_64s_ldapstl_writeback() {
     assert(result->mnemonic == Mnemonic::STLR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryPreIndex);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stlr_64s_ldapstl_writeback: " << result->to_string() << std::endl;
 }
 
@@ -8935,7 +8935,7 @@ void test_stlrb_sl32_ldstord() {
     assert(result->mnemonic == Mnemonic::STLRB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stlrb_sl32_ldstord: " << result->to_string() << std::endl;
 }
 
@@ -8946,7 +8946,7 @@ void test_stlrh_sl32_ldstord() {
     assert(result->mnemonic == Mnemonic::STLRH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stlrh_sl32_ldstord: " << result->to_string() << std::endl;
 }
 
@@ -8958,7 +8958,7 @@ void test_stltxr_sr32_ldstexclr_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stltxr_sr32_ldstexclr_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -8970,7 +8970,7 @@ void test_stltxr_sr64_ldstexclr_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stltxr_sr64_ldstexclr_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -8981,7 +8981,7 @@ void test_stlur_b_ldapstl_simd() {
     assert(result->mnemonic == Mnemonic::STLUR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stlur_b_ldapstl_simd: " << result->to_string() << std::endl;
 }
 
@@ -9024,7 +9024,7 @@ void test_stlur_32_ldapstl_unscaled() {
     assert(result->mnemonic == Mnemonic::STLUR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stlur_32_ldapstl_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -9035,7 +9035,7 @@ void test_stlur_64_ldapstl_unscaled() {
     assert(result->mnemonic == Mnemonic::STLUR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stlur_64_ldapstl_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -9046,7 +9046,7 @@ void test_stlurb_32_ldapstl_unscaled() {
     assert(result->mnemonic == Mnemonic::STLURB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stlurb_32_ldapstl_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -9057,7 +9057,7 @@ void test_stlurh_32_ldapstl_unscaled() {
     assert(result->mnemonic == Mnemonic::STLURH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stlurh_32_ldapstl_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -9070,7 +9070,7 @@ void test_stlxp_sp32_ldstexclp() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
-    assert(result->operands[3].type == OperandType::MemoryBase);
+    assert(result->operands[3].type == OperandType::Memory);
     std::cout << "  stlxp_sp32_ldstexclp: " << result->to_string() << std::endl;
 }
 
@@ -9083,7 +9083,7 @@ void test_stlxp_sp64_ldstexclp() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
-    assert(result->operands[3].type == OperandType::MemoryBase);
+    assert(result->operands[3].type == OperandType::Memory);
     std::cout << "  stlxp_sp64_ldstexclp: " << result->to_string() << std::endl;
 }
 
@@ -9095,7 +9095,7 @@ void test_stlxr_sr32_ldstexclr() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stlxr_sr32_ldstexclr: " << result->to_string() << std::endl;
 }
 
@@ -9107,7 +9107,7 @@ void test_stlxr_sr64_ldstexclr() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stlxr_sr64_ldstexclr: " << result->to_string() << std::endl;
 }
 
@@ -9119,7 +9119,7 @@ void test_stlxrb_sr32_ldstexclr() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stlxrb_sr32_ldstexclr: " << result->to_string() << std::endl;
 }
 
@@ -9131,7 +9131,7 @@ void test_stlxrh_sr32_ldstexclr() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stlxrh_sr32_ldstexclr: " << result->to_string() << std::endl;
 }
 
@@ -9167,7 +9167,7 @@ void test_stnp_32_ldstnapair_offs() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryOffset);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stnp_32_ldstnapair_offs: " << result->to_string() << std::endl;
 }
 
@@ -9179,7 +9179,7 @@ void test_stnp_64_ldstnapair_offs() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryOffset);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stnp_64_ldstnapair_offs: " << result->to_string() << std::endl;
 }
 
@@ -9279,7 +9279,7 @@ void test_stp_32_ldstpair_pre() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryPreIndex);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stp_32_ldstpair_pre: " << result->to_string() << std::endl;
 }
 
@@ -9291,7 +9291,7 @@ void test_stp_64_ldstpair_pre() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryPreIndex);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stp_64_ldstpair_pre: " << result->to_string() << std::endl;
 }
 
@@ -9303,7 +9303,7 @@ void test_stp_32_ldstpair_off() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryOffset);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stp_32_ldstpair_off: " << result->to_string() << std::endl;
 }
 
@@ -9315,7 +9315,7 @@ void test_stp_64_ldstpair_off() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryOffset);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stp_64_ldstpair_off: " << result->to_string() << std::endl;
 }
 
@@ -9366,7 +9366,7 @@ void test_str_b_ldst_immpre() {
     assert(result->mnemonic == Mnemonic::STR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryPreIndex);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  str_b_ldst_immpre: " << result->to_string() << std::endl;
 }
 
@@ -9409,7 +9409,7 @@ void test_str_b_ldst_pos() {
     assert(result->mnemonic == Mnemonic::STR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  str_b_ldst_pos: " << result->to_string() << std::endl;
 }
 
@@ -9468,7 +9468,7 @@ void test_str_32_ldst_immpre() {
     assert(result->mnemonic == Mnemonic::STR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryPreIndex);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  str_32_ldst_immpre: " << result->to_string() << std::endl;
 }
 
@@ -9479,7 +9479,7 @@ void test_str_64_ldst_immpre() {
     assert(result->mnemonic == Mnemonic::STR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryPreIndex);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  str_64_ldst_immpre: " << result->to_string() << std::endl;
 }
 
@@ -9490,7 +9490,7 @@ void test_str_32_ldst_pos() {
     assert(result->mnemonic == Mnemonic::STR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  str_32_ldst_pos: " << result->to_string() << std::endl;
 }
 
@@ -9501,7 +9501,7 @@ void test_str_64_ldst_pos() {
     assert(result->mnemonic == Mnemonic::STR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  str_64_ldst_pos: " << result->to_string() << std::endl;
 }
 
@@ -9596,7 +9596,7 @@ void test_strb_32_ldst_immpre() {
     assert(result->mnemonic == Mnemonic::STRB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryPreIndex);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  strb_32_ldst_immpre: " << result->to_string() << std::endl;
 }
 
@@ -9607,7 +9607,7 @@ void test_strb_32_ldst_pos() {
     assert(result->mnemonic == Mnemonic::STRB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  strb_32_ldst_pos: " << result->to_string() << std::endl;
 }
 
@@ -9648,7 +9648,7 @@ void test_strh_32_ldst_immpre() {
     assert(result->mnemonic == Mnemonic::STRH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryPreIndex);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  strh_32_ldst_immpre: " << result->to_string() << std::endl;
 }
 
@@ -9659,7 +9659,7 @@ void test_strh_32_ldst_pos() {
     assert(result->mnemonic == Mnemonic::STRH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  strh_32_ldst_pos: " << result->to_string() << std::endl;
 }
 
@@ -9680,7 +9680,7 @@ void test_stset_ldset_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stset_ldset_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -9690,7 +9690,7 @@ void test_stsetl_ldsetl_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stsetl_ldsetl_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -9700,7 +9700,7 @@ void test_stset_ldset_64_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stset_ldset_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -9710,7 +9710,7 @@ void test_stsetl_ldsetl_64_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stsetl_ldsetl_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -9720,7 +9720,7 @@ void test_stsetb_ldsetb_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stsetb_ldsetb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -9730,7 +9730,7 @@ void test_stsetlb_ldsetlb_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stsetlb_ldsetlb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -9740,7 +9740,7 @@ void test_stseth_ldseth_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stseth_ldseth_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -9750,7 +9750,7 @@ void test_stsetlh_ldsetlh_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stsetlh_ldsetlh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -9760,7 +9760,7 @@ void test_stsmax_ldsmax_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stsmax_ldsmax_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -9770,7 +9770,7 @@ void test_stsmaxl_ldsmaxl_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stsmaxl_ldsmaxl_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -9780,7 +9780,7 @@ void test_stsmax_ldsmax_64_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stsmax_ldsmax_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -9790,7 +9790,7 @@ void test_stsmaxl_ldsmaxl_64_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stsmaxl_ldsmaxl_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -9800,7 +9800,7 @@ void test_stsmaxb_ldsmaxb_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stsmaxb_ldsmaxb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -9810,7 +9810,7 @@ void test_stsmaxlb_ldsmaxlb_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stsmaxlb_ldsmaxlb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -9820,7 +9820,7 @@ void test_stsmaxh_ldsmaxh_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stsmaxh_ldsmaxh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -9830,7 +9830,7 @@ void test_stsmaxlh_ldsmaxlh_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stsmaxlh_ldsmaxlh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -9840,7 +9840,7 @@ void test_stsmin_ldsmin_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stsmin_ldsmin_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -9850,7 +9850,7 @@ void test_stsminl_ldsminl_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stsminl_ldsminl_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -9860,7 +9860,7 @@ void test_stsmin_ldsmin_64_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stsmin_ldsmin_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -9870,7 +9870,7 @@ void test_stsminl_ldsminl_64_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stsminl_ldsminl_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -9880,7 +9880,7 @@ void test_stsminb_ldsminb_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stsminb_ldsminb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -9890,7 +9890,7 @@ void test_stsminlb_ldsminlb_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stsminlb_ldsminlb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -9900,7 +9900,7 @@ void test_stsminh_ldsminh_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stsminh_ldsminh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -9910,7 +9910,7 @@ void test_stsminlh_ldsminlh_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stsminlh_ldsminlh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -9920,7 +9920,7 @@ void test_sttadd_ldtadd_32_memop_unpriv() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  sttadd_ldtadd_32_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -9930,7 +9930,7 @@ void test_sttaddl_ldtaddl_32_memop_unpriv() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  sttaddl_ldtaddl_32_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -9940,7 +9940,7 @@ void test_sttadd_ldtadd_64_memop_unpriv() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  sttadd_ldtadd_64_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -9950,7 +9950,7 @@ void test_sttaddl_ldtaddl_64_memop_unpriv() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  sttaddl_ldtaddl_64_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -9960,7 +9960,7 @@ void test_sttclr_ldtclr_32_memop_unpriv() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  sttclr_ldtclr_32_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -9970,7 +9970,7 @@ void test_sttclrl_ldtclrl_32_memop_unpriv() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  sttclrl_ldtclrl_32_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -9980,7 +9980,7 @@ void test_sttclr_ldtclr_64_memop_unpriv() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  sttclr_ldtclr_64_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -9990,7 +9990,7 @@ void test_sttclrl_ldtclrl_64_memop_unpriv() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  sttclrl_ldtclrl_64_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -10010,7 +10010,7 @@ void test_sttnp_64_ldstnapair_offs() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryOffset);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  sttnp_64_ldstnapair_offs: " << result->to_string() << std::endl;
 }
 
@@ -10054,7 +10054,7 @@ void test_sttp_64_ldstpair_pre() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryPreIndex);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  sttp_64_ldstpair_pre: " << result->to_string() << std::endl;
 }
 
@@ -10066,7 +10066,7 @@ void test_sttp_64_ldstpair_off() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryOffset);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  sttp_64_ldstpair_off: " << result->to_string() << std::endl;
 }
 
@@ -10077,7 +10077,7 @@ void test_sttr_32_ldst_unpriv() {
     assert(result->mnemonic == Mnemonic::STTR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  sttr_32_ldst_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -10088,7 +10088,7 @@ void test_sttr_64_ldst_unpriv() {
     assert(result->mnemonic == Mnemonic::STTR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  sttr_64_ldst_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -10099,7 +10099,7 @@ void test_sttrb_32_ldst_unpriv() {
     assert(result->mnemonic == Mnemonic::STTRB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  sttrb_32_ldst_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -10110,7 +10110,7 @@ void test_sttrh_32_ldst_unpriv() {
     assert(result->mnemonic == Mnemonic::STTRH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  sttrh_32_ldst_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -10120,7 +10120,7 @@ void test_sttset_ldtset_32_memop_unpriv() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  sttset_ldtset_32_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -10130,7 +10130,7 @@ void test_sttsetl_ldtsetl_32_memop_unpriv() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  sttsetl_ldtsetl_32_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -10140,7 +10140,7 @@ void test_sttset_ldtset_64_memop_unpriv() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  sttset_ldtset_64_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -10150,7 +10150,7 @@ void test_sttsetl_ldtsetl_64_memop_unpriv() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  sttsetl_ldtsetl_64_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -10162,7 +10162,7 @@ void test_sttxr_sr32_ldstexclr_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  sttxr_sr32_ldstexclr_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -10174,7 +10174,7 @@ void test_sttxr_sr64_ldstexclr_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  sttxr_sr64_ldstexclr_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -10184,7 +10184,7 @@ void test_stumax_ldumax_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stumax_ldumax_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -10194,7 +10194,7 @@ void test_stumaxl_ldumaxl_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stumaxl_ldumaxl_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -10204,7 +10204,7 @@ void test_stumax_ldumax_64_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stumax_ldumax_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -10214,7 +10214,7 @@ void test_stumaxl_ldumaxl_64_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stumaxl_ldumaxl_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -10224,7 +10224,7 @@ void test_stumaxb_ldumaxb_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stumaxb_ldumaxb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -10234,7 +10234,7 @@ void test_stumaxlb_ldumaxlb_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stumaxlb_ldumaxlb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -10244,7 +10244,7 @@ void test_stumaxh_ldumaxh_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stumaxh_ldumaxh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -10254,7 +10254,7 @@ void test_stumaxlh_ldumaxlh_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stumaxlh_ldumaxlh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -10264,7 +10264,7 @@ void test_stumin_ldumin_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stumin_ldumin_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -10274,7 +10274,7 @@ void test_stuminl_lduminl_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stuminl_lduminl_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -10284,7 +10284,7 @@ void test_stumin_ldumin_64_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stumin_ldumin_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -10294,7 +10294,7 @@ void test_stuminl_lduminl_64_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stuminl_lduminl_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -10304,7 +10304,7 @@ void test_stuminb_lduminb_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stuminb_lduminb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -10314,7 +10314,7 @@ void test_stuminlb_lduminlb_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stuminlb_lduminlb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -10324,7 +10324,7 @@ void test_stuminh_lduminh_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stuminh_lduminh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -10334,7 +10334,7 @@ void test_stuminlh_lduminlh_32_memop() {
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stuminlh_lduminlh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -10345,7 +10345,7 @@ void test_stur_b_ldst_unscaled() {
     assert(result->mnemonic == Mnemonic::STUR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stur_b_ldst_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -10388,7 +10388,7 @@ void test_stur_32_ldst_unscaled() {
     assert(result->mnemonic == Mnemonic::STUR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stur_32_ldst_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -10399,7 +10399,7 @@ void test_stur_64_ldst_unscaled() {
     assert(result->mnemonic == Mnemonic::STUR);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stur_64_ldst_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -10410,7 +10410,7 @@ void test_sturb_32_ldst_unscaled() {
     assert(result->mnemonic == Mnemonic::STURB);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  sturb_32_ldst_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -10421,7 +10421,7 @@ void test_sturh_32_ldst_unscaled() {
     assert(result->mnemonic == Mnemonic::STURH);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  sturh_32_ldst_unscaled: " << result->to_string() << std::endl;
 }
 
@@ -10434,7 +10434,7 @@ void test_stxp_sp32_ldstexclp() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
-    assert(result->operands[3].type == OperandType::MemoryBase);
+    assert(result->operands[3].type == OperandType::Memory);
     std::cout << "  stxp_sp32_ldstexclp: " << result->to_string() << std::endl;
 }
 
@@ -10447,7 +10447,7 @@ void test_stxp_sp64_ldstexclp() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
-    assert(result->operands[3].type == OperandType::MemoryBase);
+    assert(result->operands[3].type == OperandType::Memory);
     std::cout << "  stxp_sp64_ldstexclp: " << result->to_string() << std::endl;
 }
 
@@ -10459,7 +10459,7 @@ void test_stxr_sr32_ldstexclr() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stxr_sr32_ldstexclr: " << result->to_string() << std::endl;
 }
 
@@ -10471,7 +10471,7 @@ void test_stxr_sr64_ldstexclr() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stxr_sr64_ldstexclr: " << result->to_string() << std::endl;
 }
 
@@ -10483,7 +10483,7 @@ void test_stxrb_sr32_ldstexclr() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stxrb_sr32_ldstexclr: " << result->to_string() << std::endl;
 }
 
@@ -10495,7 +10495,7 @@ void test_stxrh_sr32_ldstexclr() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stxrh_sr32_ldstexclr: " << result->to_string() << std::endl;
 }
 
@@ -10514,7 +10514,7 @@ void test_stz2g_64spre_ldsttags() {
     assert(result->mnemonic == Mnemonic::STZ2G);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryPreIndex);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stz2g_64spre_ldsttags: " << result->to_string() << std::endl;
 }
 
@@ -10525,7 +10525,7 @@ void test_stz2g_64soffset_ldsttags() {
     assert(result->mnemonic == Mnemonic::STZ2G);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stz2g_64soffset_ldsttags: " << result->to_string() << std::endl;
 }
 
@@ -10544,7 +10544,7 @@ void test_stzg_64spre_ldsttags() {
     assert(result->mnemonic == Mnemonic::STZG);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryPreIndex);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stzg_64spre_ldsttags: " << result->to_string() << std::endl;
 }
 
@@ -10555,7 +10555,7 @@ void test_stzg_64soffset_ldsttags() {
     assert(result->mnemonic == Mnemonic::STZG);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryOffset);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stzg_64soffset_ldsttags: " << result->to_string() << std::endl;
 }
 
@@ -10566,7 +10566,7 @@ void test_stzgm_64bulk_ldsttags() {
     assert(result->mnemonic == Mnemonic::STZGM);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stzgm_64bulk_ldsttags: " << result->to_string() << std::endl;
 }
 
@@ -10577,7 +10577,7 @@ void test_swp_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swp_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -10588,7 +10588,7 @@ void test_swpa_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swpa_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -10599,7 +10599,7 @@ void test_swpal_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swpal_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -10610,7 +10610,7 @@ void test_swpl_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swpl_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -10621,7 +10621,7 @@ void test_swp_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swp_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -10632,7 +10632,7 @@ void test_swpa_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swpa_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -10643,7 +10643,7 @@ void test_swpal_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swpal_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -10654,7 +10654,7 @@ void test_swpl_64_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swpl_64_memop: " << result->to_string() << std::endl;
 }
 
@@ -10665,7 +10665,7 @@ void test_swpb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swpb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -10676,7 +10676,7 @@ void test_swpab_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swpab_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -10687,7 +10687,7 @@ void test_swpalb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swpalb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -10698,7 +10698,7 @@ void test_swplb_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swplb_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -10709,7 +10709,7 @@ void test_swph_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swph_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -10720,7 +10720,7 @@ void test_swpah_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swpah_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -10731,7 +10731,7 @@ void test_swpalh_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swpalh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -10742,7 +10742,7 @@ void test_swplh_32_memop() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swplh_32_memop: " << result->to_string() << std::endl;
 }
 
@@ -10753,7 +10753,7 @@ void test_swpp_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swpp_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -10764,7 +10764,7 @@ void test_swppa_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swppa_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -10775,7 +10775,7 @@ void test_swppal_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swppal_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -10786,7 +10786,7 @@ void test_swppl_128_memop_128() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swppl_128_memop_128: " << result->to_string() << std::endl;
 }
 
@@ -10797,7 +10797,7 @@ void test_swpt_32_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swpt_32_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -10808,7 +10808,7 @@ void test_swpta_32_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swpta_32_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -10819,7 +10819,7 @@ void test_swptal_32_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swptal_32_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -10830,7 +10830,7 @@ void test_swptl_32_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swptl_32_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -10841,7 +10841,7 @@ void test_swpt_64_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swpt_64_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -10852,7 +10852,7 @@ void test_swpta_64_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swpta_64_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -10863,7 +10863,7 @@ void test_swptal_64_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swptal_64_memop_unpriv: " << result->to_string() << std::endl;
 }
 
@@ -10874,7 +10874,7 @@ void test_swptl_64_memop_unpriv() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::MemoryBase);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  swptl_64_memop_unpriv: " << result->to_string() << std::endl;
 }
 

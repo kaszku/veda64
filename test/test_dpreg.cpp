@@ -84,7 +84,7 @@ void test_add_32_addsub_ext() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ADD);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  add_32_addsub_ext: " << result->to_string() << std::endl;
 }
 
@@ -96,7 +96,7 @@ void test_add_64_addsub_ext() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::VectorRegisterList);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  add_64_addsub_ext: " << result->to_string() << std::endl;
 }
 
@@ -108,7 +108,7 @@ void test_add_32_addsub_shift() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::VectorRegisterList);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  add_32_addsub_shift: " << result->to_string() << std::endl;
 }
 
@@ -120,7 +120,7 @@ void test_add_64_addsub_shift() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::VectorRegisterList);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  add_64_addsub_shift: " << result->to_string() << std::endl;
 }
 
@@ -132,7 +132,7 @@ void test_addpt_64_addsub_pt() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::VectorRegisterList);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  addpt_64_addsub_pt: " << result->to_string() << std::endl;
 }
 
@@ -360,7 +360,7 @@ void test_bic_32_log_shift() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::VectorRegisterList);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  bic_32_log_shift: " << result->to_string() << std::endl;
 }
 
@@ -372,7 +372,7 @@ void test_bic_64_log_shift() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::VectorRegisterList);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  bic_64_log_shift: " << result->to_string() << std::endl;
 }
 
@@ -384,7 +384,7 @@ void test_bics_32_log_shift() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::VectorRegisterList);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  bics_32_log_shift: " << result->to_string() << std::endl;
 }
 
@@ -396,7 +396,7 @@ void test_bics_64_log_shift() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::VectorRegisterList);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  bics_64_log_shift: " << result->to_string() << std::endl;
 }
 
@@ -843,7 +843,7 @@ void test_eon_32_log_shift() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::VectorRegisterList);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  eon_32_log_shift: " << result->to_string() << std::endl;
 }
 
@@ -855,7 +855,7 @@ void test_eon_64_log_shift() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::VectorRegisterList);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  eon_64_log_shift: " << result->to_string() << std::endl;
 }
 
@@ -867,7 +867,7 @@ void test_eor_32_log_shift() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::VectorRegisterList);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  eor_32_log_shift: " << result->to_string() << std::endl;
 }
 
@@ -879,7 +879,7 @@ void test_eor_64_log_shift() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::VectorRegisterList);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  eor_64_log_shift: " << result->to_string() << std::endl;
 }
 
@@ -902,7 +902,7 @@ void test_irg_64i_dp_2src() {
     assert(result->mnemonic == Mnemonic::IRG);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::VectorRegisterList);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  irg_64i_dp_2src: " << result->to_string() << std::endl;
 }
 
@@ -1752,7 +1752,7 @@ void test_subpt_64_addsub_pt() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::VectorRegisterList);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  subpt_64_addsub_pt: " << result->to_string() << std::endl;
 }
 

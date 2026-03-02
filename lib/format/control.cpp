@@ -5277,10 +5277,10 @@ static bool decode_sys_alias(uint32_t insn, Instruction& result) {
     for (size_t i = 0; i < sys_table_size; i++) {
         if (sys_table[i].key == key) {
             result.mnemonic = sys_table[i].mnem;
-            result.operands.push_back(Operand(OperandType::SysOp, sys_table[i].op_idx, false));
+            result.operands.push_back(Operand::sysop_op(static_cast<SysOp>(sys_table[i].op_idx)));
             result.operands.back().sysop = sysop_from_value(sys_table[i].op_idx);
             if (sys_table[i].has_xt)
-                result.operands.push_back(Operand(OperandType::Register, Rt, true));
+                result.operands.push_back(Operand::gp(Rt, true));
             return true;
         }
     }
@@ -5373,17 +5373,17 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD503223Fu: { // PSB_HC_hints
                         Instruction result(Mnemonic::PSB, insn);
-                        result.operands.push_back(Operand(OperandType::FixedSym, 0u, false)); // csync
+                        result.operands.push_back(Operand::fixed_sym(0u)); // csync
                         return result;
         }
         case 0xD503225Fu: { // TSB_HC_hints
                         Instruction result(Mnemonic::TSB, insn);
-                        result.operands.push_back(Operand(OperandType::FixedSym, 0u, false)); // csync
+                        result.operands.push_back(Operand::fixed_sym(0u)); // csync
                         return result;
         }
         case 0xD503227Fu: { // GCSB_HD_hints
                         Instruction result(Mnemonic::GCSB, insn);
-                        result.operands.push_back(Operand(OperandType::FixedSym, 1u, false)); // dsync
+                        result.operands.push_back(Operand::fixed_sym(1u)); // dsync
                         return result;
         }
         case 0xD503229Fu: { // CSDB_HI_hints
@@ -5456,7 +5456,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CHKFEAT, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, 16u, true));
+                        result.operands.push_back(Operand::gp(16u, true));
                         return result;
         }
         case 0xD503269Fu: { // STCPH_HI_hints
@@ -5522,14 +5522,14 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::WFET, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.wfet_only_systeminstrswithreg.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.wfet_only_systeminstrswithreg.Rd, true));
                         return result;
         }
         case 0xD5031020u: { // WFIT_only_systeminstrswithreg
                         Instruction result(Mnemonic::WFIT, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.wfit_only_systeminstrswithreg.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.wfit_only_systeminstrswithreg.Rd, true));
                         return result;
         }
         case 0xD5087780u: { // GCSPUSHX_SYS_CR_systeminstrs
@@ -5537,7 +5537,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.gcspushx_sys_cr_systeminstrs.Rt, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.gcspushx_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
         }
         case 0xD50877A0u: { // GCSPOPCX_SYS_CR_systeminstrs
@@ -5545,7 +5545,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.gcspopcx_sys_cr_systeminstrs.Rt, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.gcspopcx_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
         }
         case 0xD50877C0u: { // GCSPOPX_SYS_CR_systeminstrs
@@ -5553,14 +5553,14 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        result.operands.push_back(Operand(OperandType::Register, enc.gcspopx_sys_cr_systeminstrs.Rt, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.gcspopx_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
         }
         case 0xD50B72E0u: { // TRCIT_SYS_CR_systeminstrs
                         Instruction result(Mnemonic::SYS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.trcit_sys_cr_systeminstrs.Rt, true));
+                        result.operands.push_back(Operand::gp(enc.trcit_sys_cr_systeminstrs.Rt, true));
                         return result;
         }
         case 0xD50B7380u: { // CFP_SYS_CR_systeminstrs
@@ -5575,12 +5575,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                             uint32_t _CRm = (insn >> 8) & 0xF;
                             uint32_t _op2 = (insn >> 5) & 7;
                             uint32_t _Rt  = insn & 0x1F;
-                            result.operands.push_back(Operand(OperandType::Immediate, _op1, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _CRn, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _op2, false));
+                            result.operands.push_back(Operand::imm(_op1));
+                            result.operands.push_back(Operand::imm(_CRn));
+                            result.operands.push_back(Operand::imm(_CRm));
+                            result.operands.push_back(Operand::imm(_op2));
                             if (_Rt != 31)
-                                result.operands.push_back(Operand(OperandType::Register, _Rt, true));
+                                result.operands.push_back(Operand::gp(_Rt, true));
                         }
                         return result;
         }
@@ -5596,12 +5596,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                             uint32_t _CRm = (insn >> 8) & 0xF;
                             uint32_t _op2 = (insn >> 5) & 7;
                             uint32_t _Rt  = insn & 0x1F;
-                            result.operands.push_back(Operand(OperandType::Immediate, _op1, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _CRn, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _op2, false));
+                            result.operands.push_back(Operand::imm(_op1));
+                            result.operands.push_back(Operand::imm(_CRn));
+                            result.operands.push_back(Operand::imm(_CRm));
+                            result.operands.push_back(Operand::imm(_op2));
                             if (_Rt != 31)
-                                result.operands.push_back(Operand(OperandType::Register, _Rt, true));
+                                result.operands.push_back(Operand::gp(_Rt, true));
                         }
                         return result;
         }
@@ -5609,7 +5609,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cosp_sys_cr_systeminstrs.Rt, true));
+                        result.operands.push_back(Operand::gp(enc.cosp_sys_cr_systeminstrs.Rt, true));
                         return result;
         }
         case 0xD50B73E0u: { // CPP_SYS_CR_systeminstrs
@@ -5624,12 +5624,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                             uint32_t _CRm = (insn >> 8) & 0xF;
                             uint32_t _op2 = (insn >> 5) & 7;
                             uint32_t _Rt  = insn & 0x1F;
-                            result.operands.push_back(Operand(OperandType::Immediate, _op1, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _CRn, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _op2, false));
+                            result.operands.push_back(Operand::imm(_op1));
+                            result.operands.push_back(Operand::imm(_CRn));
+                            result.operands.push_back(Operand::imm(_CRm));
+                            result.operands.push_back(Operand::imm(_op2));
                             if (_Rt != 31)
-                                result.operands.push_back(Operand(OperandType::Register, _Rt, true));
+                                result.operands.push_back(Operand::gp(_Rt, true));
                         }
                         return result;
         }
@@ -5637,14 +5637,14 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.gcspushm_sys_cr_systeminstrs.Rt, true));
+                        result.operands.push_back(Operand::gp(enc.gcspushm_sys_cr_systeminstrs.Rt, true));
                         return result;
         }
         case 0xD50B7740u: { // GCSSS1_SYS_CR_systeminstrs
                         Instruction result(Mnemonic::SYS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.gcsss1sys_cr_systeminstrs.Rt, true));
+                        result.operands.push_back(Operand::gp(enc.gcsss1sys_cr_systeminstrs.Rt, true));
                         return result;
         }
         case 0xD50E7000u: { // APAS_SYS_CR_systeminstrs
@@ -5659,12 +5659,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                             uint32_t _CRm = (insn >> 8) & 0xF;
                             uint32_t _op2 = (insn >> 5) & 7;
                             uint32_t _Rt  = insn & 0x1F;
-                            result.operands.push_back(Operand(OperandType::Immediate, _op1, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _CRn, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _op2, false));
+                            result.operands.push_back(Operand::imm(_op1));
+                            result.operands.push_back(Operand::imm(_CRn));
+                            result.operands.push_back(Operand::imm(_CRm));
+                            result.operands.push_back(Operand::imm(_op2));
                             if (_Rt != 31)
-                                result.operands.push_back(Operand(OperandType::Register, _Rt, true));
+                                result.operands.push_back(Operand::gp(_Rt, true));
                         }
                         return result;
         }
@@ -5672,14 +5672,14 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYSL, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.gcspopm_sysl_rc_systeminstrs.Rt, true));
+                        result.operands.push_back(Operand::gp(enc.gcspopm_sysl_rc_systeminstrs.Rt, true));
                         return result;
         }
         case 0xD52B7760u: { // GCSSS2_SYSL_RC_systeminstrs
                         Instruction result(Mnemonic::SYSL, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.gcsss2sysl_rc_systeminstrs.Rt, true));
+                        result.operands.push_back(Operand::gp(enc.gcsss2sysl_rc_systeminstrs.Rt, true));
                         return result;
         }
         case 0xD65F0BE0u: { // RETAASPPCR_64M_branch_reg
@@ -5687,7 +5687,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::RETAASPPCR, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.retaasppcr64m_branch_reg.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.retaasppcr64m_branch_reg.Rm, true));
                         return result;
         }
         case 0xD65F0FE0u: { // RETABSPPCR_64M_branch_reg
@@ -5695,7 +5695,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::RETABSPPCR, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.retabsppcr64m_branch_reg.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.retabsppcr64m_branch_reg.Rm, true));
                         return result;
         }
         default: break;
@@ -5725,7 +5725,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.mlbi_sys_cr_systeminstrs.Rt, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.mlbi_sys_cr_systeminstrs.Rt, is_64bit));
                         return result;
         }
         default: break;
@@ -5748,7 +5748,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.gsb_sys_cr_systeminstrs.op2, false));
+                        result.operands.push_back(Operand::imm(enc.gsb_sys_cr_systeminstrs.op2));
                         return result;
         }
         case 0xD5097200u: { // BRB_SYS_CR_systeminstrs
@@ -5763,12 +5763,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                             uint32_t _CRm = (insn >> 8) & 0xF;
                             uint32_t _op2 = (insn >> 5) & 7;
                             uint32_t _Rt  = insn & 0x1F;
-                            result.operands.push_back(Operand(OperandType::Immediate, _op1, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _CRn, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _op2, false));
+                            result.operands.push_back(Operand::imm(_op1));
+                            result.operands.push_back(Operand::imm(_CRn));
+                            result.operands.push_back(Operand::imm(_CRm));
+                            result.operands.push_back(Operand::imm(_op2));
                             if (_Rt != 31)
-                                result.operands.push_back(Operand(OperandType::Register, _Rt, true));
+                                result.operands.push_back(Operand::gp(_Rt, true));
                         }
                         return result;
         }
@@ -5776,8 +5776,8 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::SYSL, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.gicr_sysl_rc_systeminstrs.Rt, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.gicr_sysl_rc_systeminstrs.op2, false));
+                        result.operands.push_back(Operand::gp(enc.gicr_sysl_rc_systeminstrs.Rt, true));
+                        result.operands.push_back(Operand::imm(enc.gicr_sysl_rc_systeminstrs.op2));
                         return result;
         }
         default: break;
@@ -5797,12 +5797,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                             uint32_t _CRm = (insn >> 8) & 0xF;
                             uint32_t _op2 = (insn >> 5) & 7;
                             uint32_t _Rt  = insn & 0x1F;
-                            result.operands.push_back(Operand(OperandType::Immediate, _op1, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _CRn, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _op2, false));
+                            result.operands.push_back(Operand::imm(_op1));
+                            result.operands.push_back(Operand::imm(_CRn));
+                            result.operands.push_back(Operand::imm(_CRm));
+                            result.operands.push_back(Operand::imm(_op2));
                             if (_Rt != 31)
-                                result.operands.push_back(Operand(OperandType::Register, _Rt, true));
+                                result.operands.push_back(Operand::gp(_Rt, true));
                         }
                         return result;
         }
@@ -5815,49 +5815,49 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::BR, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.br64branch_reg.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.br64branch_reg.Rn, true));
                         return result;
         }
         case 0xD61F081Fu: { // BRAAZ_64_branch_reg
                         Instruction result(Mnemonic::BRAAZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.braaz64branch_reg.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.braaz64branch_reg.Rn, true));
                         return result;
         }
         case 0xD61F0C1Fu: { // BRABZ_64_branch_reg
                         Instruction result(Mnemonic::BRABZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.brabz64branch_reg.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.brabz64branch_reg.Rn, true));
                         return result;
         }
         case 0xD63F0000u: { // BLR_64_branch_reg
                         Instruction result(Mnemonic::BLR, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.blr64branch_reg.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.blr64branch_reg.Rn, true));
                         return result;
         }
         case 0xD63F081Fu: { // BLRAAZ_64_branch_reg
                         Instruction result(Mnemonic::BLRAAZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.blraaz64branch_reg.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.blraaz64branch_reg.Rn, true));
                         return result;
         }
         case 0xD63F0C1Fu: { // BLRABZ_64_branch_reg
                         Instruction result(Mnemonic::BLRABZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.blrabz64branch_reg.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.blrabz64branch_reg.Rn, true));
                         return result;
         }
         case 0xD65F0000u: { // RET_64R_branch_reg
                         Instruction result(Mnemonic::RET, insn);
                         ControlEncoding enc = {}; enc.raw = insn;
                         if (enc.ret64r_branch_reg.Rn != 30)
-                            result.operands.push_back(Operand(OperandType::Register, enc.ret64r_branch_reg.Rn, true));
+                            result.operands.push_back(Operand::gp(enc.ret64r_branch_reg.Rn, true));
                         return result;
         }
         default: break;
@@ -5869,32 +5869,32 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::BRAA, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.braa64p_branch_reg.Rn, true));
-                        { Operand op(OperandType::Register, enc.braa64p_branch_reg.Rm, true); op.is_sp = true; result.operands.push_back(op); }
+                        result.operands.push_back(Operand::gp(enc.braa64p_branch_reg.Rn, true));
+                        { result.operands.push_back(Operand::gp(enc.braa64p_branch_reg.Rm, true, true)); }
                         return result;
         }
         case 0xD71F0C00u: { // BRAB_64P_branch_reg
                         Instruction result(Mnemonic::BRAB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.brab64p_branch_reg.Rn, true));
-                        { Operand op(OperandType::Register, enc.brab64p_branch_reg.Rm, true); op.is_sp = true; result.operands.push_back(op); }
+                        result.operands.push_back(Operand::gp(enc.brab64p_branch_reg.Rn, true));
+                        { result.operands.push_back(Operand::gp(enc.brab64p_branch_reg.Rm, true, true)); }
                         return result;
         }
         case 0xD73F0800u: { // BLRAA_64P_branch_reg
                         Instruction result(Mnemonic::BLRAA, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.blraa64p_branch_reg.Rn, true));
-                        { Operand op(OperandType::Register, enc.blraa64p_branch_reg.Rm, true); op.is_sp = true; result.operands.push_back(op); }
+                        result.operands.push_back(Operand::gp(enc.blraa64p_branch_reg.Rn, true));
+                        { result.operands.push_back(Operand::gp(enc.blraa64p_branch_reg.Rm, true, true)); }
                         return result;
         }
         case 0xD73F0C00u: { // BLRAB_64P_branch_reg
                         Instruction result(Mnemonic::BLRAB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.blrab64p_branch_reg.Rn, true));
-                        { Operand op(OperandType::Register, enc.blrab64p_branch_reg.Rm, true); op.is_sp = true; result.operands.push_back(op); }
+                        result.operands.push_back(Operand::gp(enc.blrab64p_branch_reg.Rn, true));
+                        { result.operands.push_back(Operand::gp(enc.blrab64p_branch_reg.Rm, true, true)); }
                         return result;
         }
         default: break;
@@ -5909,9 +5909,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                             uint32_t _CRm = (insn >> 8) & 0xF;
                             uint32_t _op2 = (insn >> 5) & 7;
                             uint32_t _pf_val = (_op1 << 7) | (_CRm << 3) | _op2;
-                            result.operands.push_back(Operand(OperandType::PstateField, _pf_val, false));
+                            result.operands.push_back(Operand::pstate_op(static_cast<PstateField>(_pf_val)));
                             result.operands.back().pstate = pstate_from_value(_pf_val);
-                            result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));
+                            result.operands.push_back(Operand::imm(_CRm));
                             return result;
                         }
                         ControlEncoding enc = {};
@@ -5925,9 +5925,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                             uint32_t _CRm = (insn >> 8) & 0xF;
                             uint32_t _op2 = (insn >> 5) & 7;
                             uint32_t _pf_val = (_op1 << 7) | (_CRm << 3) | _op2;
-                            result.operands.push_back(Operand(OperandType::PstateField, _pf_val, false));
+                            result.operands.push_back(Operand::pstate_op(static_cast<PstateField>(_pf_val)));
                             result.operands.back().pstate = pstate_from_value(_pf_val);
-                            result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));
+                            result.operands.push_back(Operand::imm(_CRm));
                             return result;
                         }
                         ControlEncoding enc = {};
@@ -5943,7 +5943,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::DSB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Barrier, enc.dsb_bon_barriers.imm2, false));
+                        result.operands.push_back(Operand::barrier_op(static_cast<BarrierOp>(enc.dsb_bon_barriers.imm2)));
                         result.operands.back().barrier = barrier_from_value(enc.dsb_bon_barriers.imm2);
                         return result;
         }
@@ -5974,14 +5974,14 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CLREX, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        if (enc.clrex_bn_barriers.CRm != 15) result.operands.push_back(Operand(OperandType::Immediate, enc.clrex_bn_barriers.CRm, true));
+                        if (enc.clrex_bn_barriers.CRm != 15) result.operands.push_back(Operand::imm(enc.clrex_bn_barriers.CRm));
                         return result;
         }
         case 0xD503309Fu: { // DSB_BO_barriers
                         Instruction result(Mnemonic::DSB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Barrier, enc.dsb_bo_barriers.CRm, true));
+                        result.operands.push_back(Operand::barrier_op(static_cast<BarrierOp>(enc.dsb_bo_barriers.CRm)));
                         result.operands.back().barrier = barrier_from_value(enc.dsb_bo_barriers.CRm);
                         return result;
         }
@@ -5989,7 +5989,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::DMB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Barrier, enc.dmb_bo_barriers.CRm, true));
+                        result.operands.push_back(Operand::barrier_op(static_cast<BarrierOp>(enc.dmb_bo_barriers.CRm)));
                         result.operands.back().barrier = barrier_from_value(enc.dmb_bo_barriers.CRm);
                         return result;
         }
@@ -5997,7 +5997,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::ISB, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Barrier, enc.isb_bi_barriers.CRm, true));
+                        result.operands.push_back(Operand::barrier_op(static_cast<BarrierOp>(enc.isb_bi_barriers.CRm)));
                         result.operands.back().barrier = barrier_from_value(enc.isb_bi_barriers.CRm);
                         return result;
         }
@@ -6032,9 +6032,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                             case 12: result.mnemonic = Mnemonic::AUTIA1716; break;
                             case 14: result.mnemonic = Mnemonic::AUTIB1716; break;
                             case 16: result.mnemonic = Mnemonic::ESB; break;
-                            case 17: result.mnemonic = Mnemonic::PSB; result.operands.push_back(Operand(OperandType::FixedSym, 0, false)); break;  // csync
-                            case 18: result.mnemonic = Mnemonic::TSB; result.operands.push_back(Operand(OperandType::FixedSym, 0, false)); break;  // csync
-                            case 19: result.mnemonic = Mnemonic::GCSB; result.operands.push_back(Operand(OperandType::FixedSym, 1, false)); break; // dsync
+                            case 17: result.mnemonic = Mnemonic::PSB; result.operands.push_back(Operand::fixed_sym(0)); break;  // csync
+                            case 18: result.mnemonic = Mnemonic::TSB; result.operands.push_back(Operand::fixed_sym(0)); break;  // csync
+                            case 19: result.mnemonic = Mnemonic::GCSB; result.operands.push_back(Operand::fixed_sym(1)); break; // dsync
                             case 20: result.mnemonic = Mnemonic::CSDB; break;
                             case 22: result.mnemonic = Mnemonic::CLRBHB; break;
                             case 24: result.mnemonic = Mnemonic::PACIAZ; break;
@@ -6066,12 +6066,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                             uint32_t _CRm = (insn >> 8) & 0xF;
                             uint32_t _op2 = (insn >> 5) & 7;
                             uint32_t _Rt  = insn & 0x1F;
-                            result.operands.push_back(Operand(OperandType::Immediate, _op1, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _CRn, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _op2, false));
+                            result.operands.push_back(Operand::imm(_op1));
+                            result.operands.push_back(Operand::imm(_CRn));
+                            result.operands.push_back(Operand::imm(_CRm));
+                            result.operands.push_back(Operand::imm(_op2));
                             if (_Rt != 31)
-                                result.operands.push_back(Operand(OperandType::Register, _Rt, true));
+                                result.operands.push_back(Operand::gp(_Rt, true));
                         }
                         return result;
         }
@@ -6087,9 +6087,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                             uint32_t _CRm = (insn >> 8) & 0xF;
                             uint32_t _op2 = (insn >> 5) & 7;
                             uint32_t _pf_val = (_op1 << 7) | (_CRm << 3) | _op2;
-                            result.operands.push_back(Operand(OperandType::PstateField, _pf_val, false));
+                            result.operands.push_back(Operand::pstate_op(static_cast<PstateField>(_pf_val)));
                             result.operands.back().pstate = pstate_from_value(_pf_val);
-                            result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));
+                            result.operands.push_back(Operand::imm(_CRm));
                             return result;
                         }
                         ControlEncoding enc = {};
@@ -6114,12 +6114,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                             uint32_t _CRm = (insn >> 8) & 0xF;
                             uint32_t _op2 = (insn >> 5) & 7;
                             uint32_t _Rt  = insn & 0x1F;
-                            result.operands.push_back(Operand(OperandType::Immediate, _op1, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _CRn, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _op2, false));
+                            result.operands.push_back(Operand::imm(_op1));
+                            result.operands.push_back(Operand::imm(_CRn));
+                            result.operands.push_back(Operand::imm(_CRm));
+                            result.operands.push_back(Operand::imm(_op2));
                             if (_Rt != 31)
-                                result.operands.push_back(Operand(OperandType::Register, _Rt, true));
+                                result.operands.push_back(Operand::gp(_Rt, true));
                         }
                         return result;
         }
@@ -6140,12 +6140,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                             uint32_t _CRm = (insn >> 8) & 0xF;
                             uint32_t _op2 = (insn >> 5) & 7;
                             uint32_t _Rt  = insn & 0x1F;
-                            result.operands.push_back(Operand(OperandType::Immediate, _op1, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _CRn, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _CRm, false));
-                            result.operands.push_back(Operand(OperandType::Immediate, _op2, false));
+                            result.operands.push_back(Operand::imm(_op1));
+                            result.operands.push_back(Operand::imm(_CRn));
+                            result.operands.push_back(Operand::imm(_CRm));
+                            result.operands.push_back(Operand::imm(_op2));
                             if (_Rt != 31)
-                                result.operands.push_back(Operand(OperandType::Register, _Rt, true));
+                                result.operands.push_back(Operand::gp(_Rt, true));
                         }
                         return result;
         }
@@ -6154,7 +6154,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.tlbip_sysp_cr_syspairinstrs.Rt, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.tlbip_sysp_cr_syspairinstrs.Rt, is_64bit));
                         return result;
         }
         default: break;
@@ -6167,13 +6167,13 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sys_cr_systeminstrs.Rt, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.sys_cr_systeminstrs.Rt, is_64bit));
                         result.operands.clear();
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sys_cr_systeminstrs.op1, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sys_cr_systeminstrs.CRn, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sys_cr_systeminstrs.CRm, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sys_cr_systeminstrs.op2, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.sys_cr_systeminstrs.Rt, true));
+                        result.operands.push_back(Operand::imm(enc.sys_cr_systeminstrs.op1));
+                        result.operands.push_back(Operand::imm(enc.sys_cr_systeminstrs.CRn));
+                        result.operands.push_back(Operand::imm(enc.sys_cr_systeminstrs.CRm));
+                        result.operands.push_back(Operand::imm(enc.sys_cr_systeminstrs.op2));
+                        result.operands.push_back(Operand::gp(enc.sys_cr_systeminstrs.Rt, true));
                         return result;
         }
         case 0xD5280000u: { // SYSL_RC_systeminstrs
@@ -6181,13 +6181,13 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sysl_rc_systeminstrs.Rt, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.sysl_rc_systeminstrs.Rt, is_64bit));
                         result.operands.clear();
-                        result.operands.push_back(Operand(OperandType::Register, enc.sysl_rc_systeminstrs.Rt, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sysl_rc_systeminstrs.op1, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sysl_rc_systeminstrs.CRn, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sysl_rc_systeminstrs.CRm, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.sysl_rc_systeminstrs.op2, false));
+                        result.operands.push_back(Operand::gp(enc.sysl_rc_systeminstrs.Rt, true));
+                        result.operands.push_back(Operand::imm(enc.sysl_rc_systeminstrs.op1));
+                        result.operands.push_back(Operand::imm(enc.sysl_rc_systeminstrs.CRn));
+                        result.operands.push_back(Operand::imm(enc.sysl_rc_systeminstrs.CRm));
+                        result.operands.push_back(Operand::imm(enc.sysl_rc_systeminstrs.op2));
                         return result;
         }
         case 0xD5480000u: { // SYSP_CR_syspairinstrs
@@ -6195,7 +6195,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.sysp_cr_syspairinstrs.Rt, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.sysp_cr_syspairinstrs.Rt, is_64bit));
                         return result;
         }
         default: break;
@@ -6208,10 +6208,10 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         uint32_t sysreg = (enc.msr_sr_systemmove.o0 << 14) | (enc.msr_sr_systemmove.op1 << 11) | (enc.msr_sr_systemmove.CRn << 7) | (enc.msr_sr_systemmove.CRm << 3) | enc.msr_sr_systemmove.op2;
-                        Operand sysreg_op(OperandType::SystemRegister, sysreg, true);
+                        auto sysreg_op = Operand::sysreg_op(SystemRegister::UNKNOWN);
                         sysreg_op.sysreg = sysreg_from_encoding(2 + enc.msr_sr_systemmove.o0, enc.msr_sr_systemmove.op1, enc.msr_sr_systemmove.CRn, enc.msr_sr_systemmove.CRm, enc.msr_sr_systemmove.op2);
                         result.operands.push_back(sysreg_op);
-                        result.operands.push_back(Operand(OperandType::Register, enc.msr_sr_systemmove.Rt, true));
+                        result.operands.push_back(Operand::gp(enc.msr_sr_systemmove.Rt, true));
                         return result;
         }
         case 0xD5300000u: { // MRS_RS_systemmove
@@ -6219,9 +6219,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         uint32_t sysreg = (enc.mrs_rs_systemmove.o0 << 14) | (enc.mrs_rs_systemmove.op1 << 11) | (enc.mrs_rs_systemmove.CRn << 7) | (enc.mrs_rs_systemmove.CRm << 3) | enc.mrs_rs_systemmove.op2;
-                        Operand sysreg_op(OperandType::SystemRegister, sysreg, true);
+                        auto sysreg_op = Operand::sysreg_op(SystemRegister::UNKNOWN);
                         sysreg_op.sysreg = sysreg_from_encoding(2 + enc.mrs_rs_systemmove.o0, enc.mrs_rs_systemmove.op1, enc.mrs_rs_systemmove.CRn, enc.mrs_rs_systemmove.CRm, enc.mrs_rs_systemmove.op2);
-                        result.operands.push_back(Operand(OperandType::Register, enc.mrs_rs_systemmove.Rt, true));
+                        result.operands.push_back(Operand::gp(enc.mrs_rs_systemmove.Rt, true));
                         result.operands.push_back(sysreg_op);
                         return result;
         }
@@ -6230,7 +6230,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.msrr_sr_systemmovepr.Rt, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.msrr_sr_systemmovepr.Rt, is_64bit));
                         return result;
         }
         case 0xD5700000u: { // MRRS_RS_systemmovepr
@@ -6238,7 +6238,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
-                        result.operands.push_back(Operand(OperandType::Register, enc.mrrs_rs_systemmovepr.Rt, is_64bit));
+                        result.operands.push_back(Operand::gp(enc.mrrs_rs_systemmovepr.Rt, is_64bit));
                         return result;
         }
         default: break;
@@ -6251,12 +6251,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBGT, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbgt32regs.Rt, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbgt32regs.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.cbgt32regs.Rt, false));
+                        result.operands.push_back(Operand::gp(enc.cbgt32regs.Rm, false));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbgt32regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6265,12 +6265,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBBGT, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbbgt8regs.Rt, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbbgt8regs.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.cbbgt8regs.Rt, false));
+                        result.operands.push_back(Operand::gp(enc.cbbgt8regs.Rm, false));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbbgt8regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6279,12 +6279,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBHGT, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbhgt16regs.Rt, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbhgt16regs.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.cbhgt16regs.Rt, false));
+                        result.operands.push_back(Operand::gp(enc.cbhgt16regs.Rm, false));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbhgt16regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6293,12 +6293,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBGE, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbge32regs.Rt, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbge32regs.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.cbge32regs.Rt, false));
+                        result.operands.push_back(Operand::gp(enc.cbge32regs.Rm, false));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbge32regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6307,12 +6307,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBBGE, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbbge8regs.Rt, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbbge8regs.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.cbbge8regs.Rt, false));
+                        result.operands.push_back(Operand::gp(enc.cbbge8regs.Rm, false));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbbge8regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6321,12 +6321,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBHGE, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbhge16regs.Rt, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbhge16regs.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.cbhge16regs.Rt, false));
+                        result.operands.push_back(Operand::gp(enc.cbhge16regs.Rm, false));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbhge16regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6335,12 +6335,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBHI, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbhi32regs.Rt, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbhi32regs.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.cbhi32regs.Rt, false));
+                        result.operands.push_back(Operand::gp(enc.cbhi32regs.Rm, false));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbhi32regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6349,12 +6349,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBBHI, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbbhi8regs.Rt, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbbhi8regs.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.cbbhi8regs.Rt, false));
+                        result.operands.push_back(Operand::gp(enc.cbbhi8regs.Rm, false));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbbhi8regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6363,12 +6363,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBHHI, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbhhi16regs.Rt, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbhhi16regs.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.cbhhi16regs.Rt, false));
+                        result.operands.push_back(Operand::gp(enc.cbhhi16regs.Rm, false));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbhhi16regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6377,12 +6377,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBHS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbhs32regs.Rt, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbhs32regs.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.cbhs32regs.Rt, false));
+                        result.operands.push_back(Operand::gp(enc.cbhs32regs.Rm, false));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbhs32regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6391,12 +6391,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBBHS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbbhs8regs.Rt, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbbhs8regs.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.cbbhs8regs.Rt, false));
+                        result.operands.push_back(Operand::gp(enc.cbbhs8regs.Rm, false));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbbhs8regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6405,12 +6405,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBHHS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbhhs16regs.Rt, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbhhs16regs.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.cbhhs16regs.Rt, false));
+                        result.operands.push_back(Operand::gp(enc.cbhhs16regs.Rm, false));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbhhs16regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6418,12 +6418,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBEQ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbeq32regs.Rt, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbeq32regs.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.cbeq32regs.Rt, false));
+                        result.operands.push_back(Operand::gp(enc.cbeq32regs.Rm, false));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbeq32regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6431,12 +6431,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBBEQ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbbeq8regs.Rt, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbbeq8regs.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.cbbeq8regs.Rt, false));
+                        result.operands.push_back(Operand::gp(enc.cbbeq8regs.Rm, false));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbbeq8regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6444,12 +6444,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBHEQ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbheq16regs.Rt, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbheq16regs.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.cbheq16regs.Rt, false));
+                        result.operands.push_back(Operand::gp(enc.cbheq16regs.Rm, false));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbheq16regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6457,12 +6457,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBNE, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbne32regs.Rt, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbne32regs.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.cbne32regs.Rt, false));
+                        result.operands.push_back(Operand::gp(enc.cbne32regs.Rm, false));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbne32regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6470,12 +6470,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBBNE, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbbne8regs.Rt, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbbne8regs.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.cbbne8regs.Rt, false));
+                        result.operands.push_back(Operand::gp(enc.cbbne8regs.Rm, false));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbbne8regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6483,12 +6483,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBHNE, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbhne16regs.Rt, false));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbhne16regs.Rm, false));
+                        result.operands.push_back(Operand::gp(enc.cbhne16regs.Rt, false));
+                        result.operands.push_back(Operand::gp(enc.cbhne16regs.Rm, false));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbhne16regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6497,12 +6497,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBGT, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbgt64regs.Rt, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbgt64regs.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.cbgt64regs.Rt, true));
+                        result.operands.push_back(Operand::gp(enc.cbgt64regs.Rm, true));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbgt64regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6511,12 +6511,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBGE, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbge64regs.Rt, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbge64regs.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.cbge64regs.Rt, true));
+                        result.operands.push_back(Operand::gp(enc.cbge64regs.Rm, true));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbge64regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6525,12 +6525,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBHI, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbhi64regs.Rt, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbhi64regs.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.cbhi64regs.Rt, true));
+                        result.operands.push_back(Operand::gp(enc.cbhi64regs.Rm, true));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbhi64regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6539,12 +6539,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBHS, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbhs64regs.Rt, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbhs64regs.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.cbhs64regs.Rt, true));
+                        result.operands.push_back(Operand::gp(enc.cbhs64regs.Rm, true));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbhs64regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6552,12 +6552,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBEQ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbeq64regs.Rt, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbeq64regs.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.cbeq64regs.Rt, true));
+                        result.operands.push_back(Operand::gp(enc.cbeq64regs.Rm, true));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbeq64regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6565,12 +6565,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBNE, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbne64regs.Rt, true));
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbne64regs.Rm, true));
+                        result.operands.push_back(Operand::gp(enc.cbne64regs.Rt, true));
+                        result.operands.push_back(Operand::gp(enc.cbne64regs.Rm, true));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbne64regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6584,12 +6584,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBGT, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbgt32imm.Rt, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cbgt32imm.imm6, true));
+                        result.operands.push_back(Operand::gp(enc.cbgt32imm.Rt, false));
+                        result.operands.push_back(Operand::imm(enc.cbgt32imm.imm6));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbgt32imm.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6598,12 +6598,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBLT, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cblt32imm.Rt, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cblt32imm.imm6, true));
+                        result.operands.push_back(Operand::gp(enc.cblt32imm.Rt, false));
+                        result.operands.push_back(Operand::imm(enc.cblt32imm.imm6));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cblt32imm.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6612,12 +6612,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBHI, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbhi32imm.Rt, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cbhi32imm.imm6, true));
+                        result.operands.push_back(Operand::gp(enc.cbhi32imm.Rt, false));
+                        result.operands.push_back(Operand::imm(enc.cbhi32imm.imm6));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbhi32imm.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6626,12 +6626,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBLO, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cblo32imm.Rt, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cblo32imm.imm6, true));
+                        result.operands.push_back(Operand::gp(enc.cblo32imm.Rt, false));
+                        result.operands.push_back(Operand::imm(enc.cblo32imm.imm6));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cblo32imm.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6639,12 +6639,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBEQ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbeq32imm.Rt, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cbeq32imm.imm6, true));
+                        result.operands.push_back(Operand::gp(enc.cbeq32imm.Rt, false));
+                        result.operands.push_back(Operand::imm(enc.cbeq32imm.imm6));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbeq32imm.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6652,12 +6652,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBNE, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbne32imm.Rt, false));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cbne32imm.imm6, true));
+                        result.operands.push_back(Operand::gp(enc.cbne32imm.Rt, false));
+                        result.operands.push_back(Operand::imm(enc.cbne32imm.imm6));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbne32imm.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6666,12 +6666,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBGT, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbgt64imm.Rt, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cbgt64imm.imm6, true));
+                        result.operands.push_back(Operand::gp(enc.cbgt64imm.Rt, true));
+                        result.operands.push_back(Operand::imm(enc.cbgt64imm.imm6));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbgt64imm.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6680,12 +6680,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBLT, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cblt64imm.Rt, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cblt64imm.imm6, true));
+                        result.operands.push_back(Operand::gp(enc.cblt64imm.Rt, true));
+                        result.operands.push_back(Operand::imm(enc.cblt64imm.imm6));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cblt64imm.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6694,12 +6694,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBHI, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbhi64imm.Rt, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cbhi64imm.imm6, true));
+                        result.operands.push_back(Operand::gp(enc.cbhi64imm.Rt, true));
+                        result.operands.push_back(Operand::imm(enc.cbhi64imm.imm6));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbhi64imm.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6708,12 +6708,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBLO, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cblo64imm.Rt, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cblo64imm.imm6, true));
+                        result.operands.push_back(Operand::gp(enc.cblo64imm.Rt, true));
+                        result.operands.push_back(Operand::imm(enc.cblo64imm.imm6));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cblo64imm.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6721,12 +6721,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBEQ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbeq64imm.Rt, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cbeq64imm.imm6, true));
+                        result.operands.push_back(Operand::gp(enc.cbeq64imm.Rt, true));
+                        result.operands.push_back(Operand::imm(enc.cbeq64imm.imm6));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbeq64imm.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6734,12 +6734,12 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBNE, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbne64imm.Rt, true));
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.cbne64imm.imm6, true));
+                        result.operands.push_back(Operand::gp(enc.cbne64imm.Rt, true));
+                        result.operands.push_back(Operand::imm(enc.cbne64imm.imm6));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbne64imm.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6753,7 +6753,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         int32_t offset = -(int32_t)(enc.retaasppc_only_miscbranch.imm16 * 4u);
-                        result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));
+                        result.operands.push_back(Operand::relative(static_cast<uint32_t>(offset)));
                         return result;
         }
         case 0x5520001Fu: { // RETABSPPC_only_miscbranch
@@ -6761,63 +6761,63 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         int32_t offset = -(int32_t)(enc.retabsppc_only_miscbranch.imm16 * 4u);
-                        result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));
+                        result.operands.push_back(Operand::relative(static_cast<uint32_t>(offset)));
                         return result;
         }
         case 0xD4000001u: { // SVC_EX_exception
                         Instruction result(Mnemonic::SVC, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.svc_ex_exception.imm16, true));
+                        result.operands.push_back(Operand::imm(enc.svc_ex_exception.imm16));
                         return result;
         }
         case 0xD4000002u: { // HVC_EX_exception
                         Instruction result(Mnemonic::HVC, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.hvc_ex_exception.imm16, true));
+                        result.operands.push_back(Operand::imm(enc.hvc_ex_exception.imm16));
                         return result;
         }
         case 0xD4000003u: { // SMC_EX_exception
                         Instruction result(Mnemonic::SMC, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.smc_ex_exception.imm16, true));
+                        result.operands.push_back(Operand::imm(enc.smc_ex_exception.imm16));
                         return result;
         }
         case 0xD4200000u: { // BRK_EX_exception
                         Instruction result(Mnemonic::BRK, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.brk_ex_exception.imm16, true));
+                        result.operands.push_back(Operand::imm(enc.brk_ex_exception.imm16));
                         return result;
         }
         case 0xD4400000u: { // HLT_EX_exception
                         Instruction result(Mnemonic::HLT, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Immediate, enc.hlt_ex_exception.imm16, true));
+                        result.operands.push_back(Operand::imm(enc.hlt_ex_exception.imm16));
                         return result;
         }
         case 0xD4A00001u: { // DCPS1_DC_exception
                         Instruction result(Mnemonic::DCPS1, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        if (enc.dcps1dc_exception.imm16 != 0) result.operands.push_back(Operand(OperandType::Immediate, enc.dcps1dc_exception.imm16, true));
+                        if (enc.dcps1dc_exception.imm16 != 0) result.operands.push_back(Operand::imm(enc.dcps1dc_exception.imm16));
                         return result;
         }
         case 0xD4A00002u: { // DCPS2_DC_exception
                         Instruction result(Mnemonic::DCPS2, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        if (enc.dcps2dc_exception.imm16 != 0) result.operands.push_back(Operand(OperandType::Immediate, enc.dcps2dc_exception.imm16, true));
+                        if (enc.dcps2dc_exception.imm16 != 0) result.operands.push_back(Operand::imm(enc.dcps2dc_exception.imm16));
                         return result;
         }
         case 0xD4A00003u: { // DCPS3_DC_exception
                         Instruction result(Mnemonic::DCPS3, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        if (enc.dcps3dc_exception.imm16 != 0) result.operands.push_back(Operand(OperandType::Immediate, enc.dcps3dc_exception.imm16, true));
+                        if (enc.dcps3dc_exception.imm16 != 0) result.operands.push_back(Operand::imm(enc.dcps3dc_exception.imm16));
                         return result;
         }
         default: break;
@@ -6833,7 +6833,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.bonly_condbranch.imm19 << 13) >> 13;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6845,7 +6845,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.bc_only_condbranch.imm19 << 13) >> 13;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6858,11 +6858,11 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbz32compbranch.Rt, false));
+                        result.operands.push_back(Operand::gp(enc.cbz32compbranch.Rt, false));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbz32compbranch.imm19 << 13) >> 13;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6870,11 +6870,11 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBNZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbnz32compbranch.Rt, false));
+                        result.operands.push_back(Operand::gp(enc.cbnz32compbranch.Rt, false));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbnz32compbranch.imm19 << 13) >> 13;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6882,11 +6882,11 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbz64compbranch.Rt, true));
+                        result.operands.push_back(Operand::gp(enc.cbz64compbranch.Rt, true));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbz64compbranch.imm19 << 13) >> 13;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6894,11 +6894,11 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::CBNZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.cbnz64compbranch.Rt, true));
+                        result.operands.push_back(Operand::gp(enc.cbnz64compbranch.Rt, true));
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbnz64compbranch.imm19 << 13) >> 13;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6914,7 +6914,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.bonly_branch_imm.imm26 << 6) >> 6;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6925,7 +6925,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.bl_only_branch_imm.imm26 << 6) >> 6;
                             loff <<= 2;
-                            result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(loff), true));
+                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
                         }
                         return result;
         }
@@ -6938,22 +6938,22 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         Instruction result(Mnemonic::TBZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.tbz_only_testbranch.Rt, static_cast<bool>(enc.tbz_only_testbranch.b5)));
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.tbz_only_testbranch.b5 << 5) | enc.tbz_only_testbranch.b40, true));
+                        result.operands.push_back(Operand::gp(enc.tbz_only_testbranch.Rt, static_cast<bool>(enc.tbz_only_testbranch.b5)));
+                        result.operands.push_back(Operand::imm((enc.tbz_only_testbranch.b5 << 5) | enc.tbz_only_testbranch.b40));
                         int32_t offset = static_cast<int32_t>(enc.tbz_only_testbranch.imm14 << 18) >> 18;
                         offset *= 4;
-                        result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));
+                        result.operands.push_back(Operand::relative(static_cast<uint32_t>(offset)));
                         return result;
         }
         case 0x37000000u: { // TBNZ_only_testbranch
                         Instruction result(Mnemonic::TBNZ, insn);
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand(OperandType::Register, enc.tbnz_only_testbranch.Rt, static_cast<bool>(enc.tbnz_only_testbranch.b5)));
-                        result.operands.push_back(Operand(OperandType::Immediate, (enc.tbnz_only_testbranch.b5 << 5) | enc.tbnz_only_testbranch.b40, true));
+                        result.operands.push_back(Operand::gp(enc.tbnz_only_testbranch.Rt, static_cast<bool>(enc.tbnz_only_testbranch.b5)));
+                        result.operands.push_back(Operand::imm((enc.tbnz_only_testbranch.b5 << 5) | enc.tbnz_only_testbranch.b40));
                         int32_t offset = static_cast<int32_t>(enc.tbnz_only_testbranch.imm14 << 18) >> 18;
                         offset *= 4;
-                        result.operands.push_back(Operand(OperandType::Relative, static_cast<uint32_t>(offset), true));
+                        result.operands.push_back(Operand::relative(static_cast<uint32_t>(offset)));
                         return result;
         }
         default: break;

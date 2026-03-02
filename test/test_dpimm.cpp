@@ -14,7 +14,7 @@ void test_add_32_addsub_imm() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ADD);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  add_32_addsub_imm: " << result->to_string() << std::endl;
 }
 
@@ -26,7 +26,7 @@ void test_add_64_addsub_imm() {
     assert(result->operands.size() >= 3);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
-    assert(result->operands[2].type == OperandType::VectorRegisterList);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  add_64_addsub_imm: " << result->to_string() << std::endl;
 }
 
@@ -336,7 +336,7 @@ void test_movk_32_movewide() {
     assert(result->mnemonic == Mnemonic::MOVK);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::VectorRegisterList);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  movk_32_movewide: " << result->to_string() << std::endl;
 }
 
@@ -347,7 +347,7 @@ void test_movk_64_movewide() {
     assert(result->mnemonic == Mnemonic::MOVK);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::VectorRegisterList);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  movk_64_movewide: " << result->to_string() << std::endl;
 }
 

@@ -30,7 +30,7 @@ void test_add_za_zw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ADD);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  add_za_zw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -40,7 +40,7 @@ void test_add_za_zw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ADD);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  add_za_zw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -66,7 +66,7 @@ void test_add_za_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ADD);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  add_za_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -76,7 +76,7 @@ void test_add_za_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ADD);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  add_za_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -86,10 +86,10 @@ void test_addha_za_pp_z_32() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ADDHA);
     assert(result->operands.size() >= 4);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
     std::cout << "  addha_za_pp_z_32: " << result->to_string() << std::endl;
 }
 
@@ -99,10 +99,10 @@ void test_addha_za_pp_z_64() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ADDHA);
     assert(result->operands.size() >= 4);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
     std::cout << "  addha_za_pp_z_64: " << result->to_string() << std::endl;
 }
 
@@ -112,10 +112,10 @@ void test_addva_za_pp_z_32() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ADDVA);
     assert(result->operands.size() >= 4);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
     std::cout << "  addva_za_pp_z_32: " << result->to_string() << std::endl;
 }
 
@@ -125,10 +125,10 @@ void test_addva_za_pp_z_64() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ADDVA);
     assert(result->operands.size() >= 4);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
     std::cout << "  addva_za_pp_z_64: " << result->to_string() << std::endl;
 }
 
@@ -137,8 +137,8 @@ void test_bf1cvt_mz2_z8_() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bf1cvt_mz2_z8_: " << result->to_string() << std::endl;
 }
 
@@ -147,8 +147,8 @@ void test_bf2cvt_mz2_z8_() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bf2cvt_mz2_z8_: " << result->to_string() << std::endl;
 }
 
@@ -157,8 +157,8 @@ void test_bf1cvtl_mz2_z8_() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bf1cvtl_mz2_z8_: " << result->to_string() << std::endl;
 }
 
@@ -167,8 +167,8 @@ void test_bf2cvtl_mz2_z8_() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bf2cvtl_mz2_z8_: " << result->to_string() << std::endl;
 }
 
@@ -178,7 +178,7 @@ void test_bfadd_za_zw_2x2_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFADD);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfadd_za_zw_2x2_16: " << result->to_string() << std::endl;
 }
 
@@ -188,7 +188,7 @@ void test_bfadd_za_zw_4x4_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFADD);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfadd_za_zw_4x4_16: " << result->to_string() << std::endl;
 }
 
@@ -198,9 +198,9 @@ void test_bfclamp_mz_zz_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFCLAMP);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  bfclamp_mz_zz_2: " << result->to_string() << std::endl;
 }
 
@@ -210,9 +210,9 @@ void test_bfclamp_mz_zz_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFCLAMP);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  bfclamp_mz_zz_4: " << result->to_string() << std::endl;
 }
 
@@ -222,8 +222,8 @@ void test_bfcvt_z8_mz2_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFCVT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  bfcvt_z8_mz2_: " << result->to_string() << std::endl;
 }
 
@@ -233,8 +233,8 @@ void test_bfcvt_z_mz2_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFCVT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  bfcvt_z_mz2_: " << result->to_string() << std::endl;
 }
 
@@ -244,8 +244,8 @@ void test_bfcvtn_z_mz2_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFCVTN);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  bfcvtn_z_mz2_: " << result->to_string() << std::endl;
 }
 
@@ -255,8 +255,8 @@ void test_bfdot_za_zzi_2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfdot_za_zzi_2xi: " << result->to_string() << std::endl;
 }
 
@@ -266,8 +266,8 @@ void test_bfdot_za_zzi_4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfdot_za_zzi_4xi: " << result->to_string() << std::endl;
 }
 
@@ -277,8 +277,8 @@ void test_bfdot_za_zzv_2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfdot_za_zzv_2x1: " << result->to_string() << std::endl;
 }
 
@@ -288,8 +288,8 @@ void test_bfdot_za_zzv_4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfdot_za_zzv_4x1: " << result->to_string() << std::endl;
 }
 
@@ -299,7 +299,7 @@ void test_bfdot_za_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFDOT);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfdot_za_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -309,7 +309,7 @@ void test_bfdot_za_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFDOT);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfdot_za_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -319,8 +319,8 @@ void test_bfmax_mz_zzv_2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMAX);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfmax_mz_zzv_2x1: " << result->to_string() << std::endl;
 }
 
@@ -330,8 +330,8 @@ void test_bfmax_mz_zzv_4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMAX);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfmax_mz_zzv_4x1: " << result->to_string() << std::endl;
 }
 
@@ -341,7 +341,7 @@ void test_bfmax_mz_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMAX);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfmax_mz_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -351,7 +351,7 @@ void test_bfmax_mz_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMAX);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfmax_mz_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -361,8 +361,8 @@ void test_bfmaxnm_mz_zzv_2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMAXNM);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfmaxnm_mz_zzv_2x1: " << result->to_string() << std::endl;
 }
 
@@ -372,8 +372,8 @@ void test_bfmaxnm_mz_zzv_4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMAXNM);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfmaxnm_mz_zzv_4x1: " << result->to_string() << std::endl;
 }
 
@@ -383,7 +383,7 @@ void test_bfmaxnm_mz_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMAXNM);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfmaxnm_mz_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -393,7 +393,7 @@ void test_bfmaxnm_mz_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMAXNM);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfmaxnm_mz_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -403,8 +403,8 @@ void test_bfmin_mz_zzv_2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMIN);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfmin_mz_zzv_2x1: " << result->to_string() << std::endl;
 }
 
@@ -414,8 +414,8 @@ void test_bfmin_mz_zzv_4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMIN);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfmin_mz_zzv_4x1: " << result->to_string() << std::endl;
 }
 
@@ -425,7 +425,7 @@ void test_bfmin_mz_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMIN);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfmin_mz_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -435,7 +435,7 @@ void test_bfmin_mz_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMIN);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfmin_mz_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -445,8 +445,8 @@ void test_bfminnm_mz_zzv_2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMINNM);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfminnm_mz_zzv_2x1: " << result->to_string() << std::endl;
 }
 
@@ -456,8 +456,8 @@ void test_bfminnm_mz_zzv_4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMINNM);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfminnm_mz_zzv_4x1: " << result->to_string() << std::endl;
 }
 
@@ -467,7 +467,7 @@ void test_bfminnm_mz_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMINNM);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfminnm_mz_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -477,7 +477,7 @@ void test_bfminnm_mz_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMINNM);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfminnm_mz_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -487,8 +487,8 @@ void test_bfmla_za_zzi_h2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLA);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfmla_za_zzi_h2xi: " << result->to_string() << std::endl;
 }
 
@@ -498,8 +498,8 @@ void test_bfmla_za_zzi_h4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLA);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfmla_za_zzi_h4xi: " << result->to_string() << std::endl;
 }
 
@@ -509,8 +509,8 @@ void test_bfmla_za_zzv_2x1_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLA);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfmla_za_zzv_2x1_16: " << result->to_string() << std::endl;
 }
 
@@ -520,8 +520,8 @@ void test_bfmla_za_zzv_4x1_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLA);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfmla_za_zzv_4x1_16: " << result->to_string() << std::endl;
 }
 
@@ -531,7 +531,7 @@ void test_bfmla_za_zzw_2x2_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLA);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfmla_za_zzw_2x2_16: " << result->to_string() << std::endl;
 }
 
@@ -541,7 +541,7 @@ void test_bfmla_za_zzw_4x4_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLA);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfmla_za_zzw_4x4_16: " << result->to_string() << std::endl;
 }
 
@@ -559,8 +559,8 @@ void test_bfmlal_za_zzi_2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLAL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfmlal_za_zzi_2xi: " << result->to_string() << std::endl;
 }
 
@@ -570,8 +570,8 @@ void test_bfmlal_za_zzi_4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLAL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfmlal_za_zzi_4xi: " << result->to_string() << std::endl;
 }
 
@@ -589,8 +589,8 @@ void test_bfmlal_za_zzv_2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLAL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfmlal_za_zzv_2x1: " << result->to_string() << std::endl;
 }
 
@@ -600,8 +600,8 @@ void test_bfmlal_za_zzv_4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLAL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfmlal_za_zzv_4x1: " << result->to_string() << std::endl;
 }
 
@@ -611,7 +611,7 @@ void test_bfmlal_za_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLAL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfmlal_za_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -621,7 +621,7 @@ void test_bfmlal_za_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLAL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfmlal_za_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -631,8 +631,8 @@ void test_bfmls_za_zzi_h2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLS);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfmls_za_zzi_h2xi: " << result->to_string() << std::endl;
 }
 
@@ -642,8 +642,8 @@ void test_bfmls_za_zzi_h4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLS);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfmls_za_zzi_h4xi: " << result->to_string() << std::endl;
 }
 
@@ -653,8 +653,8 @@ void test_bfmls_za_zzv_2x1_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLS);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfmls_za_zzv_2x1_16: " << result->to_string() << std::endl;
 }
 
@@ -664,8 +664,8 @@ void test_bfmls_za_zzv_4x1_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLS);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfmls_za_zzv_4x1_16: " << result->to_string() << std::endl;
 }
 
@@ -675,7 +675,7 @@ void test_bfmls_za_zzw_2x2_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLS);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfmls_za_zzw_2x2_16: " << result->to_string() << std::endl;
 }
 
@@ -685,7 +685,7 @@ void test_bfmls_za_zzw_4x4_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLS);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfmls_za_zzw_4x4_16: " << result->to_string() << std::endl;
 }
 
@@ -703,8 +703,8 @@ void test_bfmlsl_za_zzi_2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLSL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfmlsl_za_zzi_2xi: " << result->to_string() << std::endl;
 }
 
@@ -714,8 +714,8 @@ void test_bfmlsl_za_zzi_4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLSL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfmlsl_za_zzi_4xi: " << result->to_string() << std::endl;
 }
 
@@ -733,8 +733,8 @@ void test_bfmlsl_za_zzv_2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLSL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfmlsl_za_zzv_2x1: " << result->to_string() << std::endl;
 }
 
@@ -744,8 +744,8 @@ void test_bfmlsl_za_zzv_4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLSL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfmlsl_za_zzv_4x1: " << result->to_string() << std::endl;
 }
 
@@ -755,7 +755,7 @@ void test_bfmlsl_za_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLSL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfmlsl_za_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -765,7 +765,7 @@ void test_bfmlsl_za_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLSL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfmlsl_za_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -775,9 +775,9 @@ void test_bfmop4a_za32_zz_h1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  bfmop4a_za32_zz_h1x2: " << result->to_string() << std::endl;
 }
 
@@ -787,9 +787,9 @@ void test_bfmop4a_za32_zz_h1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  bfmop4a_za32_zz_h1x1: " << result->to_string() << std::endl;
 }
 
@@ -799,9 +799,9 @@ void test_bfmop4a_za32_zz_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  bfmop4a_za32_zz_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -811,8 +811,8 @@ void test_bfmop4a_za32_zz_h2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMOP4A);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  bfmop4a_za32_zz_h2x2: " << result->to_string() << std::endl;
 }
 
@@ -822,9 +822,9 @@ void test_bfmop4a_za_zz_h1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  bfmop4a_za_zz_h1x2: " << result->to_string() << std::endl;
 }
 
@@ -834,9 +834,9 @@ void test_bfmop4a_za_zz_h1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  bfmop4a_za_zz_h1x1: " << result->to_string() << std::endl;
 }
 
@@ -846,9 +846,9 @@ void test_bfmop4a_za_zz_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  bfmop4a_za_zz_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -858,8 +858,8 @@ void test_bfmop4a_za_zz_h2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMOP4A);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  bfmop4a_za_zz_h2x2: " << result->to_string() << std::endl;
 }
 
@@ -869,9 +869,9 @@ void test_bfmop4s_za32_zz_h1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  bfmop4s_za32_zz_h1x2: " << result->to_string() << std::endl;
 }
 
@@ -881,9 +881,9 @@ void test_bfmop4s_za32_zz_h1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  bfmop4s_za32_zz_h1x1: " << result->to_string() << std::endl;
 }
 
@@ -893,9 +893,9 @@ void test_bfmop4s_za32_zz_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  bfmop4s_za32_zz_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -905,8 +905,8 @@ void test_bfmop4s_za32_zz_h2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMOP4S);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  bfmop4s_za32_zz_h2x2: " << result->to_string() << std::endl;
 }
 
@@ -916,9 +916,9 @@ void test_bfmop4s_za_zz_h1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  bfmop4s_za_zz_h1x2: " << result->to_string() << std::endl;
 }
 
@@ -928,9 +928,9 @@ void test_bfmop4s_za_zz_h1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  bfmop4s_za_zz_h1x1: " << result->to_string() << std::endl;
 }
 
@@ -940,9 +940,9 @@ void test_bfmop4s_za_zz_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  bfmop4s_za_zz_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -952,8 +952,8 @@ void test_bfmop4s_za_zz_h2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMOP4S);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  bfmop4s_za_zz_h2x2: " << result->to_string() << std::endl;
 }
 
@@ -963,11 +963,11 @@ void test_bfmopa_za32_pp_zz_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMOPA);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  bfmopa_za32_pp_zz_: " << result->to_string() << std::endl;
 }
 
@@ -977,11 +977,11 @@ void test_bfmopa_za_pp_zz_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMOPA);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  bfmopa_za_pp_zz_16: " << result->to_string() << std::endl;
 }
 
@@ -991,11 +991,11 @@ void test_bfmops_za32_pp_zz_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMOPS);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  bfmops_za32_pp_zz_: " << result->to_string() << std::endl;
 }
 
@@ -1005,11 +1005,11 @@ void test_bfmops_za_pp_zz_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMOPS);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  bfmops_za_pp_zz_16: " << result->to_string() << std::endl;
 }
 
@@ -1019,8 +1019,8 @@ void test_bfmul_mz_zzv_2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMUL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfmul_mz_zzv_2x1: " << result->to_string() << std::endl;
 }
 
@@ -1030,8 +1030,8 @@ void test_bfmul_mz_zzv_4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMUL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfmul_mz_zzv_4x1: " << result->to_string() << std::endl;
 }
 
@@ -1041,7 +1041,7 @@ void test_bfmul_mz_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMUL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfmul_mz_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -1051,7 +1051,7 @@ void test_bfmul_mz_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMUL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfmul_mz_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -1061,8 +1061,8 @@ void test_bfscale_mz_zzv_2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFSCALE);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfscale_mz_zzv_2x1: " << result->to_string() << std::endl;
 }
 
@@ -1072,8 +1072,8 @@ void test_bfscale_mz_zzv_4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFSCALE);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfscale_mz_zzv_4x1: " << result->to_string() << std::endl;
 }
 
@@ -1083,7 +1083,7 @@ void test_bfscale_mz_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFSCALE);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfscale_mz_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -1093,7 +1093,7 @@ void test_bfscale_mz_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFSCALE);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfscale_mz_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -1103,7 +1103,7 @@ void test_bfsub_za_zw_2x2_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFSUB);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfsub_za_zw_2x2_16: " << result->to_string() << std::endl;
 }
 
@@ -1113,7 +1113,7 @@ void test_bfsub_za_zw_4x4_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFSUB);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  bfsub_za_zw_4x4_16: " << result->to_string() << std::endl;
 }
 
@@ -1123,10 +1123,10 @@ void test_bftmopa_za32_zzzi_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFTMOPA);
     assert(result->operands.size() >= 4);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
     std::cout << "  bftmopa_za32_zzzi_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -1136,10 +1136,10 @@ void test_bftmopa_za_zzzi_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFTMOPA);
     assert(result->operands.size() >= 4);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
     std::cout << "  bftmopa_za_zzzi_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -1149,8 +1149,8 @@ void test_bfvdot_za_zzi_2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFVDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  bfvdot_za_zzi_2xi: " << result->to_string() << std::endl;
 }
 
@@ -1160,11 +1160,11 @@ void test_bmopa_za_pp_zz_32() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BMOPA);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  bmopa_za_pp_zz_32: " << result->to_string() << std::endl;
 }
 
@@ -1174,11 +1174,11 @@ void test_bmops_za_pp_zz_32() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BMOPS);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  bmops_za_pp_zz_32: " << result->to_string() << std::endl;
 }
 
@@ -1187,8 +1187,8 @@ void test_f1cvt_mz2_z8_() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  f1cvt_mz2_z8_: " << result->to_string() << std::endl;
 }
 
@@ -1197,8 +1197,8 @@ void test_f2cvt_mz2_z8_() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  f2cvt_mz2_z8_: " << result->to_string() << std::endl;
 }
 
@@ -1207,8 +1207,8 @@ void test_f1cvtl_mz2_z8_() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  f1cvtl_mz2_z8_: " << result->to_string() << std::endl;
 }
 
@@ -1217,8 +1217,8 @@ void test_f2cvtl_mz2_z8_() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  f2cvtl_mz2_z8_: " << result->to_string() << std::endl;
 }
 
@@ -1228,7 +1228,7 @@ void test_fadd_za_zw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FADD);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fadd_za_zw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -1238,7 +1238,7 @@ void test_fadd_za_zw_2x2_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FADD);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fadd_za_zw_2x2_16: " << result->to_string() << std::endl;
 }
 
@@ -1248,7 +1248,7 @@ void test_fadd_za_zw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FADD);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fadd_za_zw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -1258,7 +1258,7 @@ void test_fadd_za_zw_4x4_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FADD);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fadd_za_zw_4x4_16: " << result->to_string() << std::endl;
 }
 
@@ -1268,7 +1268,7 @@ void test_famax_mz_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FAMAX);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  famax_mz_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -1278,7 +1278,7 @@ void test_famax_mz_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FAMAX);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  famax_mz_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -1288,7 +1288,7 @@ void test_famin_mz_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FAMIN);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  famin_mz_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -1298,7 +1298,7 @@ void test_famin_mz_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FAMIN);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  famin_mz_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -1324,8 +1324,8 @@ void test_fcvt_mz2_z_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCVT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fcvt_mz2_z_: " << result->to_string() << std::endl;
 }
 
@@ -1335,8 +1335,8 @@ void test_fcvt_z8_mz2_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCVT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  fcvt_z8_mz2_: " << result->to_string() << std::endl;
 }
 
@@ -1346,8 +1346,8 @@ void test_fcvt_z8_mz4_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCVT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  fcvt_z8_mz4_: " << result->to_string() << std::endl;
 }
 
@@ -1357,8 +1357,8 @@ void test_fcvt_z_mz2_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCVT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  fcvt_z_mz2_: " << result->to_string() << std::endl;
 }
 
@@ -1368,8 +1368,8 @@ void test_fcvtl_mz2_z_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCVTL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fcvtl_mz2_z_: " << result->to_string() << std::endl;
 }
 
@@ -1379,8 +1379,8 @@ void test_fcvtn_z8_mz4_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCVTN);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  fcvtn_z8_mz4_: " << result->to_string() << std::endl;
 }
 
@@ -1390,8 +1390,8 @@ void test_fcvtn_z_mz2_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCVTN);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  fcvtn_z_mz2_: " << result->to_string() << std::endl;
 }
 
@@ -1401,7 +1401,7 @@ void test_fcvtzs_mz_z_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCVTZS);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fcvtzs_mz_z_2: " << result->to_string() << std::endl;
 }
 
@@ -1411,7 +1411,7 @@ void test_fcvtzs_mz_z_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCVTZS);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fcvtzs_mz_z_4: " << result->to_string() << std::endl;
 }
 
@@ -1421,7 +1421,7 @@ void test_fcvtzu_mz_z_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCVTZU);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fcvtzu_mz_z_2: " << result->to_string() << std::endl;
 }
 
@@ -1431,7 +1431,7 @@ void test_fcvtzu_mz_z_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCVTZU);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fcvtzu_mz_z_4: " << result->to_string() << std::endl;
 }
 
@@ -1441,8 +1441,8 @@ void test_fdot_za32_z8z8i_2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fdot_za32_z8z8i_2xi: " << result->to_string() << std::endl;
 }
 
@@ -1452,8 +1452,8 @@ void test_fdot_za32_z8z8i_4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fdot_za32_z8z8i_4xi: " << result->to_string() << std::endl;
 }
 
@@ -1463,8 +1463,8 @@ void test_fdot_za32_z8z8v_2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fdot_za32_z8z8v_2x1: " << result->to_string() << std::endl;
 }
 
@@ -1474,8 +1474,8 @@ void test_fdot_za32_z8z8v_4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fdot_za32_z8z8v_4x1: " << result->to_string() << std::endl;
 }
 
@@ -1485,7 +1485,7 @@ void test_fdot_za32_z8z8w_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FDOT);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fdot_za32_z8z8w_2x2: " << result->to_string() << std::endl;
 }
 
@@ -1495,7 +1495,7 @@ void test_fdot_za32_z8z8w_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FDOT);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fdot_za32_z8z8w_4x4: " << result->to_string() << std::endl;
 }
 
@@ -1505,8 +1505,8 @@ void test_fdot_za_z8z8i_2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fdot_za_z8z8i_2xi: " << result->to_string() << std::endl;
 }
 
@@ -1516,8 +1516,8 @@ void test_fdot_za_z8z8i_4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fdot_za_z8z8i_4xi: " << result->to_string() << std::endl;
 }
 
@@ -1527,8 +1527,8 @@ void test_fdot_za_z8z8v_2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fdot_za_z8z8v_2x1: " << result->to_string() << std::endl;
 }
 
@@ -1538,8 +1538,8 @@ void test_fdot_za_z8z8v_4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fdot_za_z8z8v_4x1: " << result->to_string() << std::endl;
 }
 
@@ -1549,7 +1549,7 @@ void test_fdot_za_z8z8w_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FDOT);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fdot_za_z8z8w_2x2: " << result->to_string() << std::endl;
 }
 
@@ -1559,7 +1559,7 @@ void test_fdot_za_z8z8w_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FDOT);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fdot_za_z8z8w_4x4: " << result->to_string() << std::endl;
 }
 
@@ -1569,8 +1569,8 @@ void test_fdot_za_zzi_2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fdot_za_zzi_2xi: " << result->to_string() << std::endl;
 }
 
@@ -1580,8 +1580,8 @@ void test_fdot_za_zzi_4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fdot_za_zzi_4xi: " << result->to_string() << std::endl;
 }
 
@@ -1591,8 +1591,8 @@ void test_fdot_za_zzv_2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fdot_za_zzv_2x1: " << result->to_string() << std::endl;
 }
 
@@ -1602,8 +1602,8 @@ void test_fdot_za_zzv_4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fdot_za_zzv_4x1: " << result->to_string() << std::endl;
 }
 
@@ -1613,7 +1613,7 @@ void test_fdot_za_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FDOT);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fdot_za_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -1623,7 +1623,7 @@ void test_fdot_za_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FDOT);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fdot_za_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -1649,7 +1649,7 @@ void test_fmax_mz_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMAX);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fmax_mz_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -1659,7 +1659,7 @@ void test_fmax_mz_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMAX);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fmax_mz_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -1685,7 +1685,7 @@ void test_fmaxnm_mz_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMAXNM);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fmaxnm_mz_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -1695,7 +1695,7 @@ void test_fmaxnm_mz_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMAXNM);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fmaxnm_mz_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -1721,7 +1721,7 @@ void test_fmin_mz_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMIN);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fmin_mz_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -1731,7 +1731,7 @@ void test_fmin_mz_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMIN);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fmin_mz_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -1757,7 +1757,7 @@ void test_fminnm_mz_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMINNM);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fminnm_mz_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -1767,7 +1767,7 @@ void test_fminnm_mz_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMINNM);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fminnm_mz_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -1777,8 +1777,8 @@ void test_fmla_za_zzi_h2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLA);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmla_za_zzi_h2xi: " << result->to_string() << std::endl;
 }
 
@@ -1788,8 +1788,8 @@ void test_fmla_za_zzi_s2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLA);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmla_za_zzi_s2xi: " << result->to_string() << std::endl;
 }
 
@@ -1799,8 +1799,8 @@ void test_fmla_za_zzi_d2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLA);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmla_za_zzi_d2xi: " << result->to_string() << std::endl;
 }
 
@@ -1810,8 +1810,8 @@ void test_fmla_za_zzi_h4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLA);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmla_za_zzi_h4xi: " << result->to_string() << std::endl;
 }
 
@@ -1821,8 +1821,8 @@ void test_fmla_za_zzi_s4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLA);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmla_za_zzi_s4xi: " << result->to_string() << std::endl;
 }
 
@@ -1832,8 +1832,8 @@ void test_fmla_za_zzi_d4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLA);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmla_za_zzi_d4xi: " << result->to_string() << std::endl;
 }
 
@@ -1851,8 +1851,8 @@ void test_fmla_za_zzv_2x1_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLA);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmla_za_zzv_2x1_16: " << result->to_string() << std::endl;
 }
 
@@ -1870,8 +1870,8 @@ void test_fmla_za_zzv_4x1_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLA);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmla_za_zzv_4x1_16: " << result->to_string() << std::endl;
 }
 
@@ -1881,7 +1881,7 @@ void test_fmla_za_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLA);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fmla_za_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -1891,7 +1891,7 @@ void test_fmla_za_zzw_2x2_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLA);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fmla_za_zzw_2x2_16: " << result->to_string() << std::endl;
 }
 
@@ -1901,7 +1901,7 @@ void test_fmla_za_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLA);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fmla_za_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -1911,7 +1911,7 @@ void test_fmla_za_zzw_4x4_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLA);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fmla_za_zzw_4x4_16: " << result->to_string() << std::endl;
 }
 
@@ -1929,8 +1929,8 @@ void test_fmlal_za_z8z8i_2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLAL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmlal_za_z8z8i_2xi: " << result->to_string() << std::endl;
 }
 
@@ -1940,8 +1940,8 @@ void test_fmlal_za_z8z8i_4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLAL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmlal_za_z8z8i_4xi: " << result->to_string() << std::endl;
 }
 
@@ -1959,8 +1959,8 @@ void test_fmlal_za_z8z8v_2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLAL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmlal_za_z8z8v_2x1: " << result->to_string() << std::endl;
 }
 
@@ -1970,8 +1970,8 @@ void test_fmlal_za_z8z8v_4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLAL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmlal_za_z8z8v_4x1: " << result->to_string() << std::endl;
 }
 
@@ -1981,7 +1981,7 @@ void test_fmlal_za_z8z8w_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLAL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fmlal_za_z8z8w_2x2: " << result->to_string() << std::endl;
 }
 
@@ -1991,7 +1991,7 @@ void test_fmlal_za_z8z8w_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLAL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fmlal_za_z8z8w_4x4: " << result->to_string() << std::endl;
 }
 
@@ -2009,8 +2009,8 @@ void test_fmlal_za_zzi_2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLAL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmlal_za_zzi_2xi: " << result->to_string() << std::endl;
 }
 
@@ -2020,8 +2020,8 @@ void test_fmlal_za_zzi_4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLAL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmlal_za_zzi_4xi: " << result->to_string() << std::endl;
 }
 
@@ -2039,8 +2039,8 @@ void test_fmlal_za_zzv_2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLAL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmlal_za_zzv_2x1: " << result->to_string() << std::endl;
 }
 
@@ -2050,8 +2050,8 @@ void test_fmlal_za_zzv_4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLAL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmlal_za_zzv_4x1: " << result->to_string() << std::endl;
 }
 
@@ -2061,7 +2061,7 @@ void test_fmlal_za_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLAL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fmlal_za_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -2071,7 +2071,7 @@ void test_fmlal_za_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLAL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fmlal_za_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -2089,8 +2089,8 @@ void test_fmlall_za32_z8z8i_2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLALL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmlall_za32_z8z8i_2xi: " << result->to_string() << std::endl;
 }
 
@@ -2100,8 +2100,8 @@ void test_fmlall_za32_z8z8i_4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLALL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmlall_za32_z8z8i_4xi: " << result->to_string() << std::endl;
 }
 
@@ -2119,8 +2119,8 @@ void test_fmlall_za32_z8z8v_2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLALL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmlall_za32_z8z8v_2x1: " << result->to_string() << std::endl;
 }
 
@@ -2130,8 +2130,8 @@ void test_fmlall_za32_z8z8v_4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLALL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmlall_za32_z8z8v_4x1: " << result->to_string() << std::endl;
 }
 
@@ -2141,7 +2141,7 @@ void test_fmlall_za32_z8z8w_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLALL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fmlall_za32_z8z8w_2x2: " << result->to_string() << std::endl;
 }
 
@@ -2151,7 +2151,7 @@ void test_fmlall_za32_z8z8w_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLALL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fmlall_za32_z8z8w_4x4: " << result->to_string() << std::endl;
 }
 
@@ -2161,8 +2161,8 @@ void test_fmls_za_zzi_h2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLS);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmls_za_zzi_h2xi: " << result->to_string() << std::endl;
 }
 
@@ -2172,8 +2172,8 @@ void test_fmls_za_zzi_s2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLS);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmls_za_zzi_s2xi: " << result->to_string() << std::endl;
 }
 
@@ -2183,8 +2183,8 @@ void test_fmls_za_zzi_d2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLS);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmls_za_zzi_d2xi: " << result->to_string() << std::endl;
 }
 
@@ -2194,8 +2194,8 @@ void test_fmls_za_zzi_h4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLS);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmls_za_zzi_h4xi: " << result->to_string() << std::endl;
 }
 
@@ -2205,8 +2205,8 @@ void test_fmls_za_zzi_s4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLS);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmls_za_zzi_s4xi: " << result->to_string() << std::endl;
 }
 
@@ -2216,8 +2216,8 @@ void test_fmls_za_zzi_d4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLS);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmls_za_zzi_d4xi: " << result->to_string() << std::endl;
 }
 
@@ -2235,8 +2235,8 @@ void test_fmls_za_zzv_2x1_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLS);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmls_za_zzv_2x1_16: " << result->to_string() << std::endl;
 }
 
@@ -2254,8 +2254,8 @@ void test_fmls_za_zzv_4x1_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLS);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmls_za_zzv_4x1_16: " << result->to_string() << std::endl;
 }
 
@@ -2265,7 +2265,7 @@ void test_fmls_za_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLS);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fmls_za_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -2275,7 +2275,7 @@ void test_fmls_za_zzw_2x2_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLS);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fmls_za_zzw_2x2_16: " << result->to_string() << std::endl;
 }
 
@@ -2285,7 +2285,7 @@ void test_fmls_za_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLS);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fmls_za_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -2295,7 +2295,7 @@ void test_fmls_za_zzw_4x4_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLS);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fmls_za_zzw_4x4_16: " << result->to_string() << std::endl;
 }
 
@@ -2313,8 +2313,8 @@ void test_fmlsl_za_zzi_2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLSL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmlsl_za_zzi_2xi: " << result->to_string() << std::endl;
 }
 
@@ -2324,8 +2324,8 @@ void test_fmlsl_za_zzi_4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLSL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmlsl_za_zzi_4xi: " << result->to_string() << std::endl;
 }
 
@@ -2343,8 +2343,8 @@ void test_fmlsl_za_zzv_2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLSL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmlsl_za_zzv_2x1: " << result->to_string() << std::endl;
 }
 
@@ -2354,8 +2354,8 @@ void test_fmlsl_za_zzv_4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLSL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmlsl_za_zzv_4x1: " << result->to_string() << std::endl;
 }
 
@@ -2365,7 +2365,7 @@ void test_fmlsl_za_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLSL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fmlsl_za_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -2375,7 +2375,7 @@ void test_fmlsl_za_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMLSL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fmlsl_za_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -2385,9 +2385,9 @@ void test_fmop4a_za16_z8z8_b1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  fmop4a_za16_z8z8_b1x2: " << result->to_string() << std::endl;
 }
 
@@ -2397,9 +2397,9 @@ void test_fmop4a_za16_z8z8_b1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmop4a_za16_z8z8_b1x1: " << result->to_string() << std::endl;
 }
 
@@ -2409,9 +2409,9 @@ void test_fmop4a_za16_z8z8_b2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmop4a_za16_z8z8_b2x1: " << result->to_string() << std::endl;
 }
 
@@ -2421,8 +2421,8 @@ void test_fmop4a_za16_z8z8_b2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4A);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  fmop4a_za16_z8z8_b2x2: " << result->to_string() << std::endl;
 }
 
@@ -2432,9 +2432,9 @@ void test_fmop4a_za32_z8z8_b1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  fmop4a_za32_z8z8_b1x2: " << result->to_string() << std::endl;
 }
 
@@ -2444,9 +2444,9 @@ void test_fmop4a_za32_z8z8_b1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmop4a_za32_z8z8_b1x1: " << result->to_string() << std::endl;
 }
 
@@ -2456,9 +2456,9 @@ void test_fmop4a_za32_z8z8_b2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmop4a_za32_z8z8_b2x1: " << result->to_string() << std::endl;
 }
 
@@ -2468,8 +2468,8 @@ void test_fmop4a_za32_z8z8_b2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4A);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  fmop4a_za32_z8z8_b2x2: " << result->to_string() << std::endl;
 }
 
@@ -2479,9 +2479,9 @@ void test_fmop4a_za32_zz_h1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  fmop4a_za32_zz_h1x2: " << result->to_string() << std::endl;
 }
 
@@ -2491,9 +2491,9 @@ void test_fmop4a_za32_zz_h1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmop4a_za32_zz_h1x1: " << result->to_string() << std::endl;
 }
 
@@ -2503,9 +2503,9 @@ void test_fmop4a_za32_zz_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmop4a_za32_zz_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -2515,8 +2515,8 @@ void test_fmop4a_za32_zz_h2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4A);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  fmop4a_za32_zz_h2x2: " << result->to_string() << std::endl;
 }
 
@@ -2526,9 +2526,9 @@ void test_fmop4a_za_zz_h1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  fmop4a_za_zz_h1x2: " << result->to_string() << std::endl;
 }
 
@@ -2538,9 +2538,9 @@ void test_fmop4a_za_zz_h1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmop4a_za_zz_h1x1: " << result->to_string() << std::endl;
 }
 
@@ -2550,9 +2550,9 @@ void test_fmop4a_za_zz_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmop4a_za_zz_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -2562,8 +2562,8 @@ void test_fmop4a_za_zz_h2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4A);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  fmop4a_za_zz_h2x2: " << result->to_string() << std::endl;
 }
 
@@ -2573,9 +2573,9 @@ void test_fmop4a_za_zz_s1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  fmop4a_za_zz_s1x2: " << result->to_string() << std::endl;
 }
 
@@ -2585,9 +2585,9 @@ void test_fmop4a_za_zz_s1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmop4a_za_zz_s1x1: " << result->to_string() << std::endl;
 }
 
@@ -2597,9 +2597,9 @@ void test_fmop4a_za_zz_s2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmop4a_za_zz_s2x1: " << result->to_string() << std::endl;
 }
 
@@ -2609,8 +2609,8 @@ void test_fmop4a_za_zz_s2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4A);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  fmop4a_za_zz_s2x2: " << result->to_string() << std::endl;
 }
 
@@ -2620,9 +2620,9 @@ void test_fmop4a_za_zz_d1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  fmop4a_za_zz_d1x2: " << result->to_string() << std::endl;
 }
 
@@ -2632,9 +2632,9 @@ void test_fmop4a_za_zz_d1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmop4a_za_zz_d1x1: " << result->to_string() << std::endl;
 }
 
@@ -2644,9 +2644,9 @@ void test_fmop4a_za_zz_d2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmop4a_za_zz_d2x1: " << result->to_string() << std::endl;
 }
 
@@ -2656,8 +2656,8 @@ void test_fmop4a_za_zz_d2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4A);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  fmop4a_za_zz_d2x2: " << result->to_string() << std::endl;
 }
 
@@ -2667,9 +2667,9 @@ void test_fmop4s_za32_zz_h1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  fmop4s_za32_zz_h1x2: " << result->to_string() << std::endl;
 }
 
@@ -2679,9 +2679,9 @@ void test_fmop4s_za32_zz_h1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmop4s_za32_zz_h1x1: " << result->to_string() << std::endl;
 }
 
@@ -2691,9 +2691,9 @@ void test_fmop4s_za32_zz_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmop4s_za32_zz_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -2703,8 +2703,8 @@ void test_fmop4s_za32_zz_h2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4S);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  fmop4s_za32_zz_h2x2: " << result->to_string() << std::endl;
 }
 
@@ -2714,9 +2714,9 @@ void test_fmop4s_za_zz_h1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  fmop4s_za_zz_h1x2: " << result->to_string() << std::endl;
 }
 
@@ -2726,9 +2726,9 @@ void test_fmop4s_za_zz_h1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmop4s_za_zz_h1x1: " << result->to_string() << std::endl;
 }
 
@@ -2738,9 +2738,9 @@ void test_fmop4s_za_zz_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmop4s_za_zz_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -2750,8 +2750,8 @@ void test_fmop4s_za_zz_h2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4S);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  fmop4s_za_zz_h2x2: " << result->to_string() << std::endl;
 }
 
@@ -2761,9 +2761,9 @@ void test_fmop4s_za_zz_s1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  fmop4s_za_zz_s1x2: " << result->to_string() << std::endl;
 }
 
@@ -2773,9 +2773,9 @@ void test_fmop4s_za_zz_s1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmop4s_za_zz_s1x1: " << result->to_string() << std::endl;
 }
 
@@ -2785,9 +2785,9 @@ void test_fmop4s_za_zz_s2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmop4s_za_zz_s2x1: " << result->to_string() << std::endl;
 }
 
@@ -2797,8 +2797,8 @@ void test_fmop4s_za_zz_s2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4S);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  fmop4s_za_zz_s2x2: " << result->to_string() << std::endl;
 }
 
@@ -2808,9 +2808,9 @@ void test_fmop4s_za_zz_d1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  fmop4s_za_zz_d1x2: " << result->to_string() << std::endl;
 }
 
@@ -2820,9 +2820,9 @@ void test_fmop4s_za_zz_d1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmop4s_za_zz_d1x1: " << result->to_string() << std::endl;
 }
 
@@ -2832,9 +2832,9 @@ void test_fmop4s_za_zz_d2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmop4s_za_zz_d2x1: " << result->to_string() << std::endl;
 }
 
@@ -2844,8 +2844,8 @@ void test_fmop4s_za_zz_d2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOP4S);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  fmop4s_za_zz_d2x2: " << result->to_string() << std::endl;
 }
 
@@ -2855,11 +2855,11 @@ void test_fmopa_za16_pp_z8z8_8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOPA);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  fmopa_za16_pp_z8z8_8: " << result->to_string() << std::endl;
 }
 
@@ -2869,11 +2869,11 @@ void test_fmopa_za32_pp_z8z8_8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOPA);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  fmopa_za32_pp_z8z8_8: " << result->to_string() << std::endl;
 }
 
@@ -2883,11 +2883,11 @@ void test_fmopa_za32_pp_zz_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOPA);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  fmopa_za32_pp_zz_16: " << result->to_string() << std::endl;
 }
 
@@ -2897,11 +2897,11 @@ void test_fmopa_za_pp_zz_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOPA);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  fmopa_za_pp_zz_16: " << result->to_string() << std::endl;
 }
 
@@ -2911,11 +2911,11 @@ void test_fmopa_za_pp_zz_32() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOPA);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  fmopa_za_pp_zz_32: " << result->to_string() << std::endl;
 }
 
@@ -2925,11 +2925,11 @@ void test_fmopa_za_pp_zz_64() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOPA);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  fmopa_za_pp_zz_64: " << result->to_string() << std::endl;
 }
 
@@ -2939,11 +2939,11 @@ void test_fmops_za32_pp_zz_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOPS);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  fmops_za32_pp_zz_16: " << result->to_string() << std::endl;
 }
 
@@ -2953,11 +2953,11 @@ void test_fmops_za_pp_zz_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOPS);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  fmops_za_pp_zz_16: " << result->to_string() << std::endl;
 }
 
@@ -2967,11 +2967,11 @@ void test_fmops_za_pp_zz_32() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOPS);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  fmops_za_pp_zz_32: " << result->to_string() << std::endl;
 }
 
@@ -2981,11 +2981,11 @@ void test_fmops_za_pp_zz_64() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOPS);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  fmops_za_pp_zz_64: " << result->to_string() << std::endl;
 }
 
@@ -3011,7 +3011,7 @@ void test_fmul_mz_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMUL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fmul_mz_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -3021,7 +3021,7 @@ void test_fmul_mz_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMUL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fmul_mz_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -3031,7 +3031,7 @@ void test_frinta_mz_z_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FRINTA);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  frinta_mz_z_2: " << result->to_string() << std::endl;
 }
 
@@ -3041,7 +3041,7 @@ void test_frinta_mz_z_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FRINTA);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  frinta_mz_z_4: " << result->to_string() << std::endl;
 }
 
@@ -3051,7 +3051,7 @@ void test_frintm_mz_z_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FRINTM);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  frintm_mz_z_2: " << result->to_string() << std::endl;
 }
 
@@ -3061,7 +3061,7 @@ void test_frintm_mz_z_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FRINTM);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  frintm_mz_z_4: " << result->to_string() << std::endl;
 }
 
@@ -3071,7 +3071,7 @@ void test_frintn_mz_z_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FRINTN);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  frintn_mz_z_2: " << result->to_string() << std::endl;
 }
 
@@ -3081,7 +3081,7 @@ void test_frintn_mz_z_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FRINTN);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  frintn_mz_z_4: " << result->to_string() << std::endl;
 }
 
@@ -3091,7 +3091,7 @@ void test_frintp_mz_z_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FRINTP);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  frintp_mz_z_2: " << result->to_string() << std::endl;
 }
 
@@ -3101,7 +3101,7 @@ void test_frintp_mz_z_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FRINTP);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  frintp_mz_z_4: " << result->to_string() << std::endl;
 }
 
@@ -3127,7 +3127,7 @@ void test_fscale_mz_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FSCALE);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fscale_mz_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -3137,7 +3137,7 @@ void test_fscale_mz_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FSCALE);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fscale_mz_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -3147,7 +3147,7 @@ void test_fsub_za_zw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FSUB);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fsub_za_zw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -3157,7 +3157,7 @@ void test_fsub_za_zw_2x2_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FSUB);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fsub_za_zw_2x2_16: " << result->to_string() << std::endl;
 }
 
@@ -3167,7 +3167,7 @@ void test_fsub_za_zw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FSUB);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fsub_za_zw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -3177,7 +3177,7 @@ void test_fsub_za_zw_4x4_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FSUB);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  fsub_za_zw_4x4_16: " << result->to_string() << std::endl;
 }
 
@@ -3187,10 +3187,10 @@ void test_ftmopa_za16_z8z8zi_b2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FTMOPA);
     assert(result->operands.size() >= 4);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
     std::cout << "  ftmopa_za16_z8z8zi_b2x1: " << result->to_string() << std::endl;
 }
 
@@ -3200,10 +3200,10 @@ void test_ftmopa_za32_z8z8zi_b2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FTMOPA);
     assert(result->operands.size() >= 4);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
     std::cout << "  ftmopa_za32_z8z8zi_b2x1: " << result->to_string() << std::endl;
 }
 
@@ -3213,10 +3213,10 @@ void test_ftmopa_za32_zzzi_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FTMOPA);
     assert(result->operands.size() >= 4);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
     std::cout << "  ftmopa_za32_zzzi_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -3226,10 +3226,10 @@ void test_ftmopa_za_zzzi_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FTMOPA);
     assert(result->operands.size() >= 4);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
     std::cout << "  ftmopa_za_zzzi_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -3239,10 +3239,10 @@ void test_ftmopa_za_zzzi_s2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FTMOPA);
     assert(result->operands.size() >= 4);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
     std::cout << "  ftmopa_za_zzzi_s2x1: " << result->to_string() << std::endl;
 }
 
@@ -3252,8 +3252,8 @@ void test_fvdot_za_z8z8i_2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FVDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fvdot_za_z8z8i_2xi: " << result->to_string() << std::endl;
 }
 
@@ -3263,8 +3263,8 @@ void test_fvdot_za_zzi_2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FVDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fvdot_za_zzi_2xi: " << result->to_string() << std::endl;
 }
 
@@ -3290,9 +3290,9 @@ void test_ld1b_mz_p_bi_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ld1b_mz_p_bi_2: " << result->to_string() << std::endl;
 }
 
@@ -3302,9 +3302,9 @@ void test_ld1b_mz_p_bi_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ld1b_mz_p_bi_4: " << result->to_string() << std::endl;
 }
 
@@ -3314,8 +3314,8 @@ void test_ld1b_mz_p_br_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ld1b_mz_p_br_2: " << result->to_string() << std::endl;
 }
@@ -3326,8 +3326,8 @@ void test_ld1b_mz_p_br_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ld1b_mz_p_br_4: " << result->to_string() << std::endl;
 }
@@ -3338,9 +3338,9 @@ void test_ld1b_mzx_p_bi_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ld1b_mzx_p_bi_2x8: " << result->to_string() << std::endl;
 }
 
@@ -3350,9 +3350,9 @@ void test_ld1b_mzx_p_bi_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ld1b_mzx_p_bi_4x4: " << result->to_string() << std::endl;
 }
 
@@ -3362,8 +3362,8 @@ void test_ld1b_mzx_p_br_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ld1b_mzx_p_br_2x8: " << result->to_string() << std::endl;
 }
@@ -3374,8 +3374,8 @@ void test_ld1b_mzx_p_br_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ld1b_mzx_p_br_4x4: " << result->to_string() << std::endl;
 }
@@ -3386,8 +3386,8 @@ void test_ld1b_za_p_rrr_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ld1b_za_p_rrr_: " << result->to_string() << std::endl;
 }
@@ -3398,9 +3398,9 @@ void test_ld1d_mz_p_bi_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ld1d_mz_p_bi_2: " << result->to_string() << std::endl;
 }
 
@@ -3410,9 +3410,9 @@ void test_ld1d_mz_p_bi_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ld1d_mz_p_bi_4: " << result->to_string() << std::endl;
 }
 
@@ -3422,8 +3422,8 @@ void test_ld1d_mz_p_br_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ld1d_mz_p_br_2: " << result->to_string() << std::endl;
 }
@@ -3434,8 +3434,8 @@ void test_ld1d_mz_p_br_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ld1d_mz_p_br_4: " << result->to_string() << std::endl;
 }
@@ -3446,9 +3446,9 @@ void test_ld1d_mzx_p_bi_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ld1d_mzx_p_bi_2x8: " << result->to_string() << std::endl;
 }
 
@@ -3458,9 +3458,9 @@ void test_ld1d_mzx_p_bi_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ld1d_mzx_p_bi_4x4: " << result->to_string() << std::endl;
 }
 
@@ -3470,8 +3470,8 @@ void test_ld1d_mzx_p_br_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ld1d_mzx_p_br_2x8: " << result->to_string() << std::endl;
 }
@@ -3482,8 +3482,8 @@ void test_ld1d_mzx_p_br_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ld1d_mzx_p_br_4x4: " << result->to_string() << std::endl;
 }
@@ -3494,8 +3494,8 @@ void test_ld1d_za_p_rrr_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ld1d_za_p_rrr_: " << result->to_string() << std::endl;
 }
@@ -3506,9 +3506,9 @@ void test_ld1h_mz_p_bi_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ld1h_mz_p_bi_2: " << result->to_string() << std::endl;
 }
 
@@ -3518,9 +3518,9 @@ void test_ld1h_mz_p_bi_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ld1h_mz_p_bi_4: " << result->to_string() << std::endl;
 }
 
@@ -3530,8 +3530,8 @@ void test_ld1h_mz_p_br_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ld1h_mz_p_br_2: " << result->to_string() << std::endl;
 }
@@ -3542,8 +3542,8 @@ void test_ld1h_mz_p_br_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ld1h_mz_p_br_4: " << result->to_string() << std::endl;
 }
@@ -3554,9 +3554,9 @@ void test_ld1h_mzx_p_bi_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ld1h_mzx_p_bi_2x8: " << result->to_string() << std::endl;
 }
 
@@ -3566,9 +3566,9 @@ void test_ld1h_mzx_p_bi_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ld1h_mzx_p_bi_4x4: " << result->to_string() << std::endl;
 }
 
@@ -3578,8 +3578,8 @@ void test_ld1h_mzx_p_br_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ld1h_mzx_p_br_2x8: " << result->to_string() << std::endl;
 }
@@ -3590,8 +3590,8 @@ void test_ld1h_mzx_p_br_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ld1h_mzx_p_br_4x4: " << result->to_string() << std::endl;
 }
@@ -3602,8 +3602,8 @@ void test_ld1h_za_p_rrr_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ld1h_za_p_rrr_: " << result->to_string() << std::endl;
 }
@@ -3614,8 +3614,8 @@ void test_ld1q_za_p_rrr_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1Q);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ld1q_za_p_rrr_: " << result->to_string() << std::endl;
 }
@@ -3626,9 +3626,9 @@ void test_ld1w_mz_p_bi_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ld1w_mz_p_bi_2: " << result->to_string() << std::endl;
 }
 
@@ -3638,9 +3638,9 @@ void test_ld1w_mz_p_bi_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ld1w_mz_p_bi_4: " << result->to_string() << std::endl;
 }
 
@@ -3650,8 +3650,8 @@ void test_ld1w_mz_p_br_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ld1w_mz_p_br_2: " << result->to_string() << std::endl;
 }
@@ -3662,8 +3662,8 @@ void test_ld1w_mz_p_br_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ld1w_mz_p_br_4: " << result->to_string() << std::endl;
 }
@@ -3674,9 +3674,9 @@ void test_ld1w_mzx_p_bi_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ld1w_mzx_p_bi_2x8: " << result->to_string() << std::endl;
 }
 
@@ -3686,9 +3686,9 @@ void test_ld1w_mzx_p_bi_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ld1w_mzx_p_bi_4x4: " << result->to_string() << std::endl;
 }
 
@@ -3698,8 +3698,8 @@ void test_ld1w_mzx_p_br_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ld1w_mzx_p_br_2x8: " << result->to_string() << std::endl;
 }
@@ -3710,8 +3710,8 @@ void test_ld1w_mzx_p_br_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ld1w_mzx_p_br_4x4: " << result->to_string() << std::endl;
 }
@@ -3722,8 +3722,8 @@ void test_ld1w_za_p_rrr_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LD1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ld1w_za_p_rrr_: " << result->to_string() << std::endl;
 }
@@ -3734,9 +3734,9 @@ void test_ldnt1b_mz_p_bi_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldnt1b_mz_p_bi_2: " << result->to_string() << std::endl;
 }
 
@@ -3746,9 +3746,9 @@ void test_ldnt1b_mz_p_bi_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldnt1b_mz_p_bi_4: " << result->to_string() << std::endl;
 }
 
@@ -3758,8 +3758,8 @@ void test_ldnt1b_mz_p_br_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ldnt1b_mz_p_br_2: " << result->to_string() << std::endl;
 }
@@ -3770,8 +3770,8 @@ void test_ldnt1b_mz_p_br_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ldnt1b_mz_p_br_4: " << result->to_string() << std::endl;
 }
@@ -3782,9 +3782,9 @@ void test_ldnt1b_mzx_p_bi_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldnt1b_mzx_p_bi_2x8: " << result->to_string() << std::endl;
 }
 
@@ -3794,9 +3794,9 @@ void test_ldnt1b_mzx_p_bi_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldnt1b_mzx_p_bi_4x4: " << result->to_string() << std::endl;
 }
 
@@ -3806,8 +3806,8 @@ void test_ldnt1b_mzx_p_br_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ldnt1b_mzx_p_br_2x8: " << result->to_string() << std::endl;
 }
@@ -3818,8 +3818,8 @@ void test_ldnt1b_mzx_p_br_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ldnt1b_mzx_p_br_4x4: " << result->to_string() << std::endl;
 }
@@ -3830,9 +3830,9 @@ void test_ldnt1d_mz_p_bi_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldnt1d_mz_p_bi_2: " << result->to_string() << std::endl;
 }
 
@@ -3842,9 +3842,9 @@ void test_ldnt1d_mz_p_bi_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldnt1d_mz_p_bi_4: " << result->to_string() << std::endl;
 }
 
@@ -3854,8 +3854,8 @@ void test_ldnt1d_mz_p_br_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ldnt1d_mz_p_br_2: " << result->to_string() << std::endl;
 }
@@ -3866,8 +3866,8 @@ void test_ldnt1d_mz_p_br_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ldnt1d_mz_p_br_4: " << result->to_string() << std::endl;
 }
@@ -3878,9 +3878,9 @@ void test_ldnt1d_mzx_p_bi_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldnt1d_mzx_p_bi_2x8: " << result->to_string() << std::endl;
 }
 
@@ -3890,9 +3890,9 @@ void test_ldnt1d_mzx_p_bi_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldnt1d_mzx_p_bi_4x4: " << result->to_string() << std::endl;
 }
 
@@ -3902,8 +3902,8 @@ void test_ldnt1d_mzx_p_br_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ldnt1d_mzx_p_br_2x8: " << result->to_string() << std::endl;
 }
@@ -3914,8 +3914,8 @@ void test_ldnt1d_mzx_p_br_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ldnt1d_mzx_p_br_4x4: " << result->to_string() << std::endl;
 }
@@ -3926,9 +3926,9 @@ void test_ldnt1h_mz_p_bi_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldnt1h_mz_p_bi_2: " << result->to_string() << std::endl;
 }
 
@@ -3938,9 +3938,9 @@ void test_ldnt1h_mz_p_bi_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldnt1h_mz_p_bi_4: " << result->to_string() << std::endl;
 }
 
@@ -3950,8 +3950,8 @@ void test_ldnt1h_mz_p_br_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ldnt1h_mz_p_br_2: " << result->to_string() << std::endl;
 }
@@ -3962,8 +3962,8 @@ void test_ldnt1h_mz_p_br_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ldnt1h_mz_p_br_4: " << result->to_string() << std::endl;
 }
@@ -3974,9 +3974,9 @@ void test_ldnt1h_mzx_p_bi_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldnt1h_mzx_p_bi_2x8: " << result->to_string() << std::endl;
 }
 
@@ -3986,9 +3986,9 @@ void test_ldnt1h_mzx_p_bi_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldnt1h_mzx_p_bi_4x4: " << result->to_string() << std::endl;
 }
 
@@ -3998,8 +3998,8 @@ void test_ldnt1h_mzx_p_br_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ldnt1h_mzx_p_br_2x8: " << result->to_string() << std::endl;
 }
@@ -4010,8 +4010,8 @@ void test_ldnt1h_mzx_p_br_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ldnt1h_mzx_p_br_4x4: " << result->to_string() << std::endl;
 }
@@ -4022,9 +4022,9 @@ void test_ldnt1w_mz_p_bi_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldnt1w_mz_p_bi_2: " << result->to_string() << std::endl;
 }
 
@@ -4034,9 +4034,9 @@ void test_ldnt1w_mz_p_bi_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldnt1w_mz_p_bi_4: " << result->to_string() << std::endl;
 }
 
@@ -4046,8 +4046,8 @@ void test_ldnt1w_mz_p_br_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ldnt1w_mz_p_br_2: " << result->to_string() << std::endl;
 }
@@ -4058,8 +4058,8 @@ void test_ldnt1w_mz_p_br_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ldnt1w_mz_p_br_4: " << result->to_string() << std::endl;
 }
@@ -4070,9 +4070,9 @@ void test_ldnt1w_mzx_p_bi_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldnt1w_mzx_p_bi_2x8: " << result->to_string() << std::endl;
 }
 
@@ -4082,9 +4082,9 @@ void test_ldnt1w_mzx_p_bi_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  ldnt1w_mzx_p_bi_4x4: " << result->to_string() << std::endl;
 }
 
@@ -4094,8 +4094,8 @@ void test_ldnt1w_mzx_p_br_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ldnt1w_mzx_p_br_2x8: " << result->to_string() << std::endl;
 }
@@ -4106,8 +4106,8 @@ void test_ldnt1w_mzx_p_br_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDNT1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  ldnt1w_mzx_p_br_4x4: " << result->to_string() << std::endl;
 }
@@ -4126,8 +4126,8 @@ void test_ldr_zt_br_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LDR);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SMEZTRegister);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldr_zt_br_: " << result->to_string() << std::endl;
 }
 
@@ -4137,9 +4137,9 @@ void test_luti2_mz2_ztz_1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LUTI2);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SMEZTRegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  luti2_mz2_ztz_1: " << result->to_string() << std::endl;
 }
 
@@ -4149,9 +4149,9 @@ void test_luti2_mz2_ztz_8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LUTI2);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SMEZTRegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  luti2_mz2_ztz_8: " << result->to_string() << std::endl;
 }
 
@@ -4161,9 +4161,9 @@ void test_luti2_mz4_ztz_1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LUTI2);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SMEZTRegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  luti2_mz4_ztz_1: " << result->to_string() << std::endl;
 }
 
@@ -4173,9 +4173,9 @@ void test_luti2_mz4_ztz_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LUTI2);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SMEZTRegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  luti2_mz4_ztz_4: " << result->to_string() << std::endl;
 }
 
@@ -4193,9 +4193,9 @@ void test_luti4_mz2_ztz_1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LUTI4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SMEZTRegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  luti4_mz2_ztz_1: " << result->to_string() << std::endl;
 }
 
@@ -4205,9 +4205,9 @@ void test_luti4_mz2_ztz_8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LUTI4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SMEZTRegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  luti4_mz2_ztz_8: " << result->to_string() << std::endl;
 }
 
@@ -4217,9 +4217,9 @@ void test_luti4_mz4_ztmz2_1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LUTI4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SMEZTRegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  luti4_mz4_ztmz2_1: " << result->to_string() << std::endl;
 }
 
@@ -4229,9 +4229,9 @@ void test_luti4_mz4_ztmz2_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LUTI4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SMEZTRegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  luti4_mz4_ztmz2_4: " << result->to_string() << std::endl;
 }
 
@@ -4241,9 +4241,9 @@ void test_luti4_mz4_ztz_1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LUTI4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SMEZTRegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  luti4_mz4_ztz_1: " << result->to_string() << std::endl;
 }
 
@@ -4253,9 +4253,9 @@ void test_luti4_mz4_ztz_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LUTI4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SMEZTRegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  luti4_mz4_ztz_4: " << result->to_string() << std::endl;
 }
 
@@ -4273,7 +4273,7 @@ void test_luti6_mz4_zmz2_1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LUTI6);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  luti6_mz4_zmz2_1: " << result->to_string() << std::endl;
 }
 
@@ -4283,7 +4283,7 @@ void test_luti6_mz4_zmz2_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LUTI6);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  luti6_mz4_zmz2_4: " << result->to_string() << std::endl;
 }
 
@@ -4293,9 +4293,9 @@ void test_luti6_mz4_ztmz3_1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LUTI6);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SMEZTRegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  luti6_mz4_ztmz3_1: " << result->to_string() << std::endl;
 }
 
@@ -4305,9 +4305,9 @@ void test_luti6_mz4_ztmz3_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LUTI6);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SMEZTRegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  luti6_mz4_ztmz3_4: " << result->to_string() << std::endl;
 }
 
@@ -4317,9 +4317,9 @@ void test_luti6_z_ztz_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LUTI6);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SMEZTRegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  luti6_z_ztz_: " << result->to_string() << std::endl;
 }
 
@@ -4393,7 +4393,7 @@ void test_mov_mz_za2_1_mova_mz_za2_1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::MOVA);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  mov_mz_za2_1_mova_mz_za2_1: " << result->to_string() << std::endl;
 }
 
@@ -4403,7 +4403,7 @@ void test_mov_mz_za4_1_mova_mz_za4_1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::MOVA);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  mov_mz_za4_1_mova_mz_za4_1: " << result->to_string() << std::endl;
 }
 
@@ -4517,7 +4517,7 @@ void test_mov_za_mz2_1_mova_za_mz2_1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::MOVA);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  mov_za_mz2_1_mova_za_mz2_1: " << result->to_string() << std::endl;
 }
 
@@ -4527,7 +4527,7 @@ void test_mov_za_mz4_1_mova_za_mz4_1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::MOVA);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  mov_za_mz4_1_mova_za_mz4_1: " << result->to_string() << std::endl;
 }
 
@@ -4641,7 +4641,7 @@ void test_mova_mz_za2_1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::MOVA);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  mova_mz_za2_1: " << result->to_string() << std::endl;
 }
 
@@ -4651,7 +4651,7 @@ void test_mova_mz_za4_1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::MOVA);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  mova_mz_za4_1: " << result->to_string() << std::endl;
 }
 
@@ -4765,7 +4765,7 @@ void test_mova_za_mz2_1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::MOVA);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  mova_za_mz2_1: " << result->to_string() << std::endl;
 }
 
@@ -4775,7 +4775,7 @@ void test_mova_za_mz4_1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::MOVA);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  mova_za_mz4_1: " << result->to_string() << std::endl;
 }
 
@@ -4889,7 +4889,7 @@ void test_movaz_mz_za2_1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::MOVAZ);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  movaz_mz_za2_1: " << result->to_string() << std::endl;
 }
 
@@ -4899,7 +4899,7 @@ void test_movaz_mz_za4_1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::MOVAZ);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  movaz_mz_za4_1: " << result->to_string() << std::endl;
 }
 
@@ -4965,8 +4965,8 @@ void test_movt_zt_z_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::MOVT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  movt_zt_z_: " << result->to_string() << std::endl;
 }
 
@@ -4992,7 +4992,7 @@ void test_scvtf_mz_z_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SCVTF);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  scvtf_mz_z_2: " << result->to_string() << std::endl;
 }
 
@@ -5002,7 +5002,7 @@ void test_scvtf_mz_z_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SCVTF);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  scvtf_mz_z_4: " << result->to_string() << std::endl;
 }
 
@@ -5012,8 +5012,8 @@ void test_sdot_za32_zzi_2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  sdot_za32_zzi_2xi: " << result->to_string() << std::endl;
 }
 
@@ -5023,8 +5023,8 @@ void test_sdot_za32_zzi_4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  sdot_za32_zzi_4xi: " << result->to_string() << std::endl;
 }
 
@@ -5034,8 +5034,8 @@ void test_sdot_za32_zzv_2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  sdot_za32_zzv_2x1: " << result->to_string() << std::endl;
 }
 
@@ -5045,8 +5045,8 @@ void test_sdot_za32_zzv_4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  sdot_za32_zzv_4x1: " << result->to_string() << std::endl;
 }
 
@@ -5056,7 +5056,7 @@ void test_sdot_za32_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SDOT);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  sdot_za32_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -5066,7 +5066,7 @@ void test_sdot_za32_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SDOT);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  sdot_za32_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -5076,8 +5076,8 @@ void test_sdot_za_zzi_s2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  sdot_za_zzi_s2xi: " << result->to_string() << std::endl;
 }
 
@@ -5087,8 +5087,8 @@ void test_sdot_za_zzi_d2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  sdot_za_zzi_d2xi: " << result->to_string() << std::endl;
 }
 
@@ -5098,8 +5098,8 @@ void test_sdot_za_zzi_s4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  sdot_za_zzi_s4xi: " << result->to_string() << std::endl;
 }
 
@@ -5109,8 +5109,8 @@ void test_sdot_za_zzi_d4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  sdot_za_zzi_d4xi: " << result->to_string() << std::endl;
 }
 
@@ -5136,7 +5136,7 @@ void test_sdot_za_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SDOT);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  sdot_za_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -5146,7 +5146,7 @@ void test_sdot_za_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SDOT);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  sdot_za_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -5156,9 +5156,9 @@ void test_sel_mz_p_zz_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SEL);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  sel_mz_p_zz_2: " << result->to_string() << std::endl;
 }
 
@@ -5168,9 +5168,9 @@ void test_sel_mz_p_zz_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SEL);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  sel_mz_p_zz_4: " << result->to_string() << std::endl;
 }
 
@@ -5196,7 +5196,7 @@ void test_smax_mz_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMAX);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  smax_mz_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -5206,7 +5206,7 @@ void test_smax_mz_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMAX);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  smax_mz_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -5232,7 +5232,7 @@ void test_smin_mz_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMIN);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  smin_mz_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -5242,7 +5242,7 @@ void test_smin_mz_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMIN);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  smin_mz_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -5260,8 +5260,8 @@ void test_smlal_za_zzi_2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLAL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  smlal_za_zzi_2xi: " << result->to_string() << std::endl;
 }
 
@@ -5271,8 +5271,8 @@ void test_smlal_za_zzi_4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLAL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  smlal_za_zzi_4xi: " << result->to_string() << std::endl;
 }
 
@@ -5290,8 +5290,8 @@ void test_smlal_za_zzv_2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLAL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  smlal_za_zzv_2x1: " << result->to_string() << std::endl;
 }
 
@@ -5301,8 +5301,8 @@ void test_smlal_za_zzv_4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLAL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  smlal_za_zzv_4x1: " << result->to_string() << std::endl;
 }
 
@@ -5312,7 +5312,7 @@ void test_smlal_za_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLAL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  smlal_za_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -5322,7 +5322,7 @@ void test_smlal_za_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLAL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  smlal_za_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -5348,8 +5348,8 @@ void test_smlall_za_zzi_s2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLALL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  smlall_za_zzi_s2xi: " << result->to_string() << std::endl;
 }
 
@@ -5359,8 +5359,8 @@ void test_smlall_za_zzi_d2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLALL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  smlall_za_zzi_d2xi: " << result->to_string() << std::endl;
 }
 
@@ -5370,8 +5370,8 @@ void test_smlall_za_zzi_s4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLALL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  smlall_za_zzi_s4xi: " << result->to_string() << std::endl;
 }
 
@@ -5381,8 +5381,8 @@ void test_smlall_za_zzi_d4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLALL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  smlall_za_zzi_d4xi: " << result->to_string() << std::endl;
 }
 
@@ -5416,7 +5416,7 @@ void test_smlall_za_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLALL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  smlall_za_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -5426,7 +5426,7 @@ void test_smlall_za_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLALL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  smlall_za_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -5444,8 +5444,8 @@ void test_smlsl_za_zzi_2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLSL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  smlsl_za_zzi_2xi: " << result->to_string() << std::endl;
 }
 
@@ -5455,8 +5455,8 @@ void test_smlsl_za_zzi_4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLSL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  smlsl_za_zzi_4xi: " << result->to_string() << std::endl;
 }
 
@@ -5474,8 +5474,8 @@ void test_smlsl_za_zzv_2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLSL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  smlsl_za_zzv_2x1: " << result->to_string() << std::endl;
 }
 
@@ -5485,8 +5485,8 @@ void test_smlsl_za_zzv_4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLSL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  smlsl_za_zzv_4x1: " << result->to_string() << std::endl;
 }
 
@@ -5496,7 +5496,7 @@ void test_smlsl_za_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLSL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  smlsl_za_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -5506,7 +5506,7 @@ void test_smlsl_za_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLSL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  smlsl_za_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -5532,8 +5532,8 @@ void test_smlsll_za_zzi_s2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLSLL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  smlsll_za_zzi_s2xi: " << result->to_string() << std::endl;
 }
 
@@ -5543,8 +5543,8 @@ void test_smlsll_za_zzi_d2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLSLL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  smlsll_za_zzi_d2xi: " << result->to_string() << std::endl;
 }
 
@@ -5554,8 +5554,8 @@ void test_smlsll_za_zzi_s4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLSLL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  smlsll_za_zzi_s4xi: " << result->to_string() << std::endl;
 }
 
@@ -5565,8 +5565,8 @@ void test_smlsll_za_zzi_d4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLSLL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  smlsll_za_zzi_d4xi: " << result->to_string() << std::endl;
 }
 
@@ -5600,7 +5600,7 @@ void test_smlsll_za_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLSLL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  smlsll_za_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -5610,7 +5610,7 @@ void test_smlsll_za_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMLSLL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  smlsll_za_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -5620,9 +5620,9 @@ void test_smop4a_za32_zz_h1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  smop4a_za32_zz_h1x2: " << result->to_string() << std::endl;
 }
 
@@ -5632,9 +5632,9 @@ void test_smop4a_za32_zz_h1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  smop4a_za32_zz_h1x1: " << result->to_string() << std::endl;
 }
 
@@ -5644,9 +5644,9 @@ void test_smop4a_za32_zz_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  smop4a_za32_zz_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -5656,8 +5656,8 @@ void test_smop4a_za32_zz_h2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOP4A);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  smop4a_za32_zz_h2x2: " << result->to_string() << std::endl;
 }
 
@@ -5667,9 +5667,9 @@ void test_smop4a_za_zz_b1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  smop4a_za_zz_b1x2: " << result->to_string() << std::endl;
 }
 
@@ -5679,9 +5679,9 @@ void test_smop4a_za_zz_b1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  smop4a_za_zz_b1x1: " << result->to_string() << std::endl;
 }
 
@@ -5691,9 +5691,9 @@ void test_smop4a_za_zz_b2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  smop4a_za_zz_b2x1: " << result->to_string() << std::endl;
 }
 
@@ -5703,8 +5703,8 @@ void test_smop4a_za_zz_b2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOP4A);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  smop4a_za_zz_b2x2: " << result->to_string() << std::endl;
 }
 
@@ -5714,9 +5714,9 @@ void test_smop4a_za_zz_h1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  smop4a_za_zz_h1x2: " << result->to_string() << std::endl;
 }
 
@@ -5726,9 +5726,9 @@ void test_smop4a_za_zz_h1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  smop4a_za_zz_h1x1: " << result->to_string() << std::endl;
 }
 
@@ -5738,9 +5738,9 @@ void test_smop4a_za_zz_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  smop4a_za_zz_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -5750,8 +5750,8 @@ void test_smop4a_za_zz_h2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOP4A);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  smop4a_za_zz_h2x2: " << result->to_string() << std::endl;
 }
 
@@ -5761,9 +5761,9 @@ void test_smop4s_za32_zz_h1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  smop4s_za32_zz_h1x2: " << result->to_string() << std::endl;
 }
 
@@ -5773,9 +5773,9 @@ void test_smop4s_za32_zz_h1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  smop4s_za32_zz_h1x1: " << result->to_string() << std::endl;
 }
 
@@ -5785,9 +5785,9 @@ void test_smop4s_za32_zz_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  smop4s_za32_zz_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -5797,8 +5797,8 @@ void test_smop4s_za32_zz_h2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOP4S);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  smop4s_za32_zz_h2x2: " << result->to_string() << std::endl;
 }
 
@@ -5808,9 +5808,9 @@ void test_smop4s_za_zz_b1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  smop4s_za_zz_b1x2: " << result->to_string() << std::endl;
 }
 
@@ -5820,9 +5820,9 @@ void test_smop4s_za_zz_b1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  smop4s_za_zz_b1x1: " << result->to_string() << std::endl;
 }
 
@@ -5832,9 +5832,9 @@ void test_smop4s_za_zz_b2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  smop4s_za_zz_b2x1: " << result->to_string() << std::endl;
 }
 
@@ -5844,8 +5844,8 @@ void test_smop4s_za_zz_b2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOP4S);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  smop4s_za_zz_b2x2: " << result->to_string() << std::endl;
 }
 
@@ -5855,9 +5855,9 @@ void test_smop4s_za_zz_h1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  smop4s_za_zz_h1x2: " << result->to_string() << std::endl;
 }
 
@@ -5867,9 +5867,9 @@ void test_smop4s_za_zz_h1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  smop4s_za_zz_h1x1: " << result->to_string() << std::endl;
 }
 
@@ -5879,9 +5879,9 @@ void test_smop4s_za_zz_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  smop4s_za_zz_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -5891,8 +5891,8 @@ void test_smop4s_za_zz_h2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOP4S);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  smop4s_za_zz_h2x2: " << result->to_string() << std::endl;
 }
 
@@ -5902,11 +5902,11 @@ void test_smopa_za32_pp_zz_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOPA);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  smopa_za32_pp_zz_16: " << result->to_string() << std::endl;
 }
 
@@ -5916,11 +5916,11 @@ void test_smopa_za_pp_zz_32() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOPA);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  smopa_za_pp_zz_32: " << result->to_string() << std::endl;
 }
 
@@ -5930,11 +5930,11 @@ void test_smopa_za_pp_zz_64() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOPA);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  smopa_za_pp_zz_64: " << result->to_string() << std::endl;
 }
 
@@ -5944,11 +5944,11 @@ void test_smops_za32_pp_zz_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOPS);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  smops_za32_pp_zz_16: " << result->to_string() << std::endl;
 }
 
@@ -5958,11 +5958,11 @@ void test_smops_za_pp_zz_32() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOPS);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  smops_za_pp_zz_32: " << result->to_string() << std::endl;
 }
 
@@ -5972,11 +5972,11 @@ void test_smops_za_pp_zz_64() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMOPS);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  smops_za_pp_zz_64: " << result->to_string() << std::endl;
 }
 
@@ -5986,8 +5986,8 @@ void test_sqcvt_z_mz2_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQCVT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  sqcvt_z_mz2_: " << result->to_string() << std::endl;
 }
 
@@ -6013,8 +6013,8 @@ void test_sqcvtu_z_mz2_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQCVTU);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  sqcvtu_z_mz2_: " << result->to_string() << std::endl;
 }
 
@@ -6056,7 +6056,7 @@ void test_sqdmulh_mz_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQDMULH);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  sqdmulh_mz_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -6066,7 +6066,7 @@ void test_sqdmulh_mz_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQDMULH);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  sqdmulh_mz_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -6140,7 +6140,7 @@ void test_srshl_mz_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SRSHL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  srshl_mz_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -6150,7 +6150,7 @@ void test_srshl_mz_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SRSHL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  srshl_mz_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -6160,9 +6160,9 @@ void test_st1b_mz_p_bi_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  st1b_mz_p_bi_2: " << result->to_string() << std::endl;
 }
 
@@ -6172,9 +6172,9 @@ void test_st1b_mz_p_bi_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  st1b_mz_p_bi_4: " << result->to_string() << std::endl;
 }
 
@@ -6184,8 +6184,8 @@ void test_st1b_mz_p_br_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  st1b_mz_p_br_2: " << result->to_string() << std::endl;
 }
@@ -6196,8 +6196,8 @@ void test_st1b_mz_p_br_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  st1b_mz_p_br_4: " << result->to_string() << std::endl;
 }
@@ -6208,9 +6208,9 @@ void test_st1b_mzx_p_bi_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  st1b_mzx_p_bi_2x8: " << result->to_string() << std::endl;
 }
 
@@ -6220,9 +6220,9 @@ void test_st1b_mzx_p_bi_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  st1b_mzx_p_bi_4x4: " << result->to_string() << std::endl;
 }
 
@@ -6232,8 +6232,8 @@ void test_st1b_mzx_p_br_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  st1b_mzx_p_br_2x8: " << result->to_string() << std::endl;
 }
@@ -6244,8 +6244,8 @@ void test_st1b_mzx_p_br_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  st1b_mzx_p_br_4x4: " << result->to_string() << std::endl;
 }
@@ -6256,8 +6256,8 @@ void test_st1b_za_p_rrr_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  st1b_za_p_rrr_: " << result->to_string() << std::endl;
 }
@@ -6268,9 +6268,9 @@ void test_st1d_mz_p_bi_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  st1d_mz_p_bi_2: " << result->to_string() << std::endl;
 }
 
@@ -6280,9 +6280,9 @@ void test_st1d_mz_p_bi_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  st1d_mz_p_bi_4: " << result->to_string() << std::endl;
 }
 
@@ -6292,8 +6292,8 @@ void test_st1d_mz_p_br_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  st1d_mz_p_br_2: " << result->to_string() << std::endl;
 }
@@ -6304,8 +6304,8 @@ void test_st1d_mz_p_br_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  st1d_mz_p_br_4: " << result->to_string() << std::endl;
 }
@@ -6316,9 +6316,9 @@ void test_st1d_mzx_p_bi_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  st1d_mzx_p_bi_2x8: " << result->to_string() << std::endl;
 }
 
@@ -6328,9 +6328,9 @@ void test_st1d_mzx_p_bi_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  st1d_mzx_p_bi_4x4: " << result->to_string() << std::endl;
 }
 
@@ -6340,8 +6340,8 @@ void test_st1d_mzx_p_br_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  st1d_mzx_p_br_2x8: " << result->to_string() << std::endl;
 }
@@ -6352,8 +6352,8 @@ void test_st1d_mzx_p_br_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  st1d_mzx_p_br_4x4: " << result->to_string() << std::endl;
 }
@@ -6364,8 +6364,8 @@ void test_st1d_za_p_rrr_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  st1d_za_p_rrr_: " << result->to_string() << std::endl;
 }
@@ -6376,9 +6376,9 @@ void test_st1h_mz_p_bi_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  st1h_mz_p_bi_2: " << result->to_string() << std::endl;
 }
 
@@ -6388,9 +6388,9 @@ void test_st1h_mz_p_bi_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  st1h_mz_p_bi_4: " << result->to_string() << std::endl;
 }
 
@@ -6400,8 +6400,8 @@ void test_st1h_mz_p_br_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  st1h_mz_p_br_2: " << result->to_string() << std::endl;
 }
@@ -6412,8 +6412,8 @@ void test_st1h_mz_p_br_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  st1h_mz_p_br_4: " << result->to_string() << std::endl;
 }
@@ -6424,9 +6424,9 @@ void test_st1h_mzx_p_bi_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  st1h_mzx_p_bi_2x8: " << result->to_string() << std::endl;
 }
 
@@ -6436,9 +6436,9 @@ void test_st1h_mzx_p_bi_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  st1h_mzx_p_bi_4x4: " << result->to_string() << std::endl;
 }
 
@@ -6448,8 +6448,8 @@ void test_st1h_mzx_p_br_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  st1h_mzx_p_br_2x8: " << result->to_string() << std::endl;
 }
@@ -6460,8 +6460,8 @@ void test_st1h_mzx_p_br_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  st1h_mzx_p_br_4x4: " << result->to_string() << std::endl;
 }
@@ -6472,8 +6472,8 @@ void test_st1h_za_p_rrr_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  st1h_za_p_rrr_: " << result->to_string() << std::endl;
 }
@@ -6484,8 +6484,8 @@ void test_st1q_za_p_rrr_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1Q);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  st1q_za_p_rrr_: " << result->to_string() << std::endl;
 }
@@ -6496,9 +6496,9 @@ void test_st1w_mz_p_bi_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  st1w_mz_p_bi_2: " << result->to_string() << std::endl;
 }
 
@@ -6508,9 +6508,9 @@ void test_st1w_mz_p_bi_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  st1w_mz_p_bi_4: " << result->to_string() << std::endl;
 }
 
@@ -6520,8 +6520,8 @@ void test_st1w_mz_p_br_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  st1w_mz_p_br_2: " << result->to_string() << std::endl;
 }
@@ -6532,8 +6532,8 @@ void test_st1w_mz_p_br_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  st1w_mz_p_br_4: " << result->to_string() << std::endl;
 }
@@ -6544,9 +6544,9 @@ void test_st1w_mzx_p_bi_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  st1w_mzx_p_bi_2x8: " << result->to_string() << std::endl;
 }
 
@@ -6556,9 +6556,9 @@ void test_st1w_mzx_p_bi_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  st1w_mzx_p_bi_4x4: " << result->to_string() << std::endl;
 }
 
@@ -6568,8 +6568,8 @@ void test_st1w_mzx_p_br_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  st1w_mzx_p_br_2x8: " << result->to_string() << std::endl;
 }
@@ -6580,8 +6580,8 @@ void test_st1w_mzx_p_br_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  st1w_mzx_p_br_4x4: " << result->to_string() << std::endl;
 }
@@ -6592,8 +6592,8 @@ void test_st1w_za_p_rrr_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ST1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  st1w_za_p_rrr_: " << result->to_string() << std::endl;
 }
@@ -6604,10 +6604,10 @@ void test_stmopa_za32_zzzi_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STMOPA);
     assert(result->operands.size() >= 4);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
     std::cout << "  stmopa_za32_zzzi_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -6617,10 +6617,10 @@ void test_stmopa_za_zzzi_b2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STMOPA);
     assert(result->operands.size() >= 4);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
     std::cout << "  stmopa_za_zzzi_b2x1: " << result->to_string() << std::endl;
 }
 
@@ -6630,9 +6630,9 @@ void test_stnt1b_mz_p_bi_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stnt1b_mz_p_bi_2: " << result->to_string() << std::endl;
 }
 
@@ -6642,9 +6642,9 @@ void test_stnt1b_mz_p_bi_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stnt1b_mz_p_bi_4: " << result->to_string() << std::endl;
 }
 
@@ -6654,8 +6654,8 @@ void test_stnt1b_mz_p_br_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  stnt1b_mz_p_br_2: " << result->to_string() << std::endl;
 }
@@ -6666,8 +6666,8 @@ void test_stnt1b_mz_p_br_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  stnt1b_mz_p_br_4: " << result->to_string() << std::endl;
 }
@@ -6678,9 +6678,9 @@ void test_stnt1b_mzx_p_bi_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stnt1b_mzx_p_bi_2x8: " << result->to_string() << std::endl;
 }
 
@@ -6690,9 +6690,9 @@ void test_stnt1b_mzx_p_bi_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stnt1b_mzx_p_bi_4x4: " << result->to_string() << std::endl;
 }
 
@@ -6702,8 +6702,8 @@ void test_stnt1b_mzx_p_br_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  stnt1b_mzx_p_br_2x8: " << result->to_string() << std::endl;
 }
@@ -6714,8 +6714,8 @@ void test_stnt1b_mzx_p_br_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  stnt1b_mzx_p_br_4x4: " << result->to_string() << std::endl;
 }
@@ -6726,9 +6726,9 @@ void test_stnt1d_mz_p_bi_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stnt1d_mz_p_bi_2: " << result->to_string() << std::endl;
 }
 
@@ -6738,9 +6738,9 @@ void test_stnt1d_mz_p_bi_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stnt1d_mz_p_bi_4: " << result->to_string() << std::endl;
 }
 
@@ -6750,8 +6750,8 @@ void test_stnt1d_mz_p_br_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  stnt1d_mz_p_br_2: " << result->to_string() << std::endl;
 }
@@ -6762,8 +6762,8 @@ void test_stnt1d_mz_p_br_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  stnt1d_mz_p_br_4: " << result->to_string() << std::endl;
 }
@@ -6774,9 +6774,9 @@ void test_stnt1d_mzx_p_bi_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stnt1d_mzx_p_bi_2x8: " << result->to_string() << std::endl;
 }
 
@@ -6786,9 +6786,9 @@ void test_stnt1d_mzx_p_bi_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stnt1d_mzx_p_bi_4x4: " << result->to_string() << std::endl;
 }
 
@@ -6798,8 +6798,8 @@ void test_stnt1d_mzx_p_br_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  stnt1d_mzx_p_br_2x8: " << result->to_string() << std::endl;
 }
@@ -6810,8 +6810,8 @@ void test_stnt1d_mzx_p_br_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1D);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  stnt1d_mzx_p_br_4x4: " << result->to_string() << std::endl;
 }
@@ -6822,9 +6822,9 @@ void test_stnt1h_mz_p_bi_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stnt1h_mz_p_bi_2: " << result->to_string() << std::endl;
 }
 
@@ -6834,9 +6834,9 @@ void test_stnt1h_mz_p_bi_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stnt1h_mz_p_bi_4: " << result->to_string() << std::endl;
 }
 
@@ -6846,8 +6846,8 @@ void test_stnt1h_mz_p_br_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  stnt1h_mz_p_br_2: " << result->to_string() << std::endl;
 }
@@ -6858,8 +6858,8 @@ void test_stnt1h_mz_p_br_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  stnt1h_mz_p_br_4: " << result->to_string() << std::endl;
 }
@@ -6870,9 +6870,9 @@ void test_stnt1h_mzx_p_bi_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stnt1h_mzx_p_bi_2x8: " << result->to_string() << std::endl;
 }
 
@@ -6882,9 +6882,9 @@ void test_stnt1h_mzx_p_bi_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stnt1h_mzx_p_bi_4x4: " << result->to_string() << std::endl;
 }
 
@@ -6894,8 +6894,8 @@ void test_stnt1h_mzx_p_br_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  stnt1h_mzx_p_br_2x8: " << result->to_string() << std::endl;
 }
@@ -6906,8 +6906,8 @@ void test_stnt1h_mzx_p_br_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1H);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  stnt1h_mzx_p_br_4x4: " << result->to_string() << std::endl;
 }
@@ -6918,9 +6918,9 @@ void test_stnt1w_mz_p_bi_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stnt1w_mz_p_bi_2: " << result->to_string() << std::endl;
 }
 
@@ -6930,9 +6930,9 @@ void test_stnt1w_mz_p_bi_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stnt1w_mz_p_bi_4: " << result->to_string() << std::endl;
 }
 
@@ -6942,8 +6942,8 @@ void test_stnt1w_mz_p_br_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  stnt1w_mz_p_br_2: " << result->to_string() << std::endl;
 }
@@ -6954,8 +6954,8 @@ void test_stnt1w_mz_p_br_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  stnt1w_mz_p_br_4: " << result->to_string() << std::endl;
 }
@@ -6966,9 +6966,9 @@ void test_stnt1w_mzx_p_bi_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stnt1w_mzx_p_bi_2x8: " << result->to_string() << std::endl;
 }
 
@@ -6978,9 +6978,9 @@ void test_stnt1w_mzx_p_bi_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
-    assert(result->operands[2].type == OperandType::MemoryOffsetMulVL);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Memory);
     std::cout << "  stnt1w_mzx_p_bi_4x4: " << result->to_string() << std::endl;
 }
 
@@ -6990,8 +6990,8 @@ void test_stnt1w_mzx_p_br_2x8() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  stnt1w_mzx_p_br_2x8: " << result->to_string() << std::endl;
 }
@@ -7002,8 +7002,8 @@ void test_stnt1w_mzx_p_br_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STNT1W);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::PredicateNRegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
     std::cout << "  stnt1w_mzx_p_br_4x4: " << result->to_string() << std::endl;
 }
@@ -7022,8 +7022,8 @@ void test_str_zt_br_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::STR);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SMEZTRegister);
-    assert(result->operands[1].type == OperandType::MemoryBase);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  str_zt_br_: " << result->to_string() << std::endl;
 }
 
@@ -7075,8 +7075,8 @@ void test_sudot_za_zzi_s2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  sudot_za_zzi_s2xi: " << result->to_string() << std::endl;
 }
 
@@ -7086,8 +7086,8 @@ void test_sudot_za_zzi_s4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  sudot_za_zzi_s4xi: " << result->to_string() << std::endl;
 }
 
@@ -7097,8 +7097,8 @@ void test_sudot_za_zzv_s2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  sudot_za_zzv_s2x1: " << result->to_string() << std::endl;
 }
 
@@ -7108,8 +7108,8 @@ void test_sudot_za_zzv_s4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  sudot_za_zzv_s4x1: " << result->to_string() << std::endl;
 }
 
@@ -7127,8 +7127,8 @@ void test_sumlall_za_zzi_s2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUMLALL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  sumlall_za_zzi_s2xi: " << result->to_string() << std::endl;
 }
 
@@ -7138,8 +7138,8 @@ void test_sumlall_za_zzi_s4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUMLALL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  sumlall_za_zzi_s4xi: " << result->to_string() << std::endl;
 }
 
@@ -7149,8 +7149,8 @@ void test_sumlall_za_zzv_s2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUMLALL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  sumlall_za_zzv_s2x1: " << result->to_string() << std::endl;
 }
 
@@ -7160,8 +7160,8 @@ void test_sumlall_za_zzv_s4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUMLALL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  sumlall_za_zzv_s4x1: " << result->to_string() << std::endl;
 }
 
@@ -7171,9 +7171,9 @@ void test_sumop4a_za_zz_b1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  sumop4a_za_zz_b1x2: " << result->to_string() << std::endl;
 }
 
@@ -7183,9 +7183,9 @@ void test_sumop4a_za_zz_b1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sumop4a_za_zz_b1x1: " << result->to_string() << std::endl;
 }
 
@@ -7195,9 +7195,9 @@ void test_sumop4a_za_zz_b2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sumop4a_za_zz_b2x1: " << result->to_string() << std::endl;
 }
 
@@ -7207,8 +7207,8 @@ void test_sumop4a_za_zz_b2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUMOP4A);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  sumop4a_za_zz_b2x2: " << result->to_string() << std::endl;
 }
 
@@ -7218,9 +7218,9 @@ void test_sumop4a_za_zz_h1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  sumop4a_za_zz_h1x2: " << result->to_string() << std::endl;
 }
 
@@ -7230,9 +7230,9 @@ void test_sumop4a_za_zz_h1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sumop4a_za_zz_h1x1: " << result->to_string() << std::endl;
 }
 
@@ -7242,9 +7242,9 @@ void test_sumop4a_za_zz_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sumop4a_za_zz_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -7254,8 +7254,8 @@ void test_sumop4a_za_zz_h2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUMOP4A);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  sumop4a_za_zz_h2x2: " << result->to_string() << std::endl;
 }
 
@@ -7265,9 +7265,9 @@ void test_sumop4s_za_zz_b1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  sumop4s_za_zz_b1x2: " << result->to_string() << std::endl;
 }
 
@@ -7277,9 +7277,9 @@ void test_sumop4s_za_zz_b1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sumop4s_za_zz_b1x1: " << result->to_string() << std::endl;
 }
 
@@ -7289,9 +7289,9 @@ void test_sumop4s_za_zz_b2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sumop4s_za_zz_b2x1: " << result->to_string() << std::endl;
 }
 
@@ -7301,8 +7301,8 @@ void test_sumop4s_za_zz_b2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUMOP4S);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  sumop4s_za_zz_b2x2: " << result->to_string() << std::endl;
 }
 
@@ -7312,9 +7312,9 @@ void test_sumop4s_za_zz_h1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  sumop4s_za_zz_h1x2: " << result->to_string() << std::endl;
 }
 
@@ -7324,9 +7324,9 @@ void test_sumop4s_za_zz_h1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sumop4s_za_zz_h1x1: " << result->to_string() << std::endl;
 }
 
@@ -7336,9 +7336,9 @@ void test_sumop4s_za_zz_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sumop4s_za_zz_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -7348,8 +7348,8 @@ void test_sumop4s_za_zz_h2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUMOP4S);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  sumop4s_za_zz_h2x2: " << result->to_string() << std::endl;
 }
 
@@ -7359,11 +7359,11 @@ void test_sumopa_za_pp_zz_32() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUMOPA);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  sumopa_za_pp_zz_32: " << result->to_string() << std::endl;
 }
 
@@ -7373,11 +7373,11 @@ void test_sumopa_za_pp_zz_64() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUMOPA);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  sumopa_za_pp_zz_64: " << result->to_string() << std::endl;
 }
 
@@ -7387,11 +7387,11 @@ void test_sumops_za_pp_zz_32() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUMOPS);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  sumops_za_pp_zz_32: " << result->to_string() << std::endl;
 }
 
@@ -7401,11 +7401,11 @@ void test_sumops_za_pp_zz_64() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUMOPS);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  sumops_za_pp_zz_64: " << result->to_string() << std::endl;
 }
 
@@ -7423,7 +7423,7 @@ void test_sunpk_mz_z_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUNPK);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  sunpk_mz_z_4: " << result->to_string() << std::endl;
 }
 
@@ -7433,10 +7433,10 @@ void test_sutmopa_za_zzzi_b2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUTMOPA);
     assert(result->operands.size() >= 4);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
     std::cout << "  sutmopa_za_zzzi_b2x1: " << result->to_string() << std::endl;
 }
 
@@ -7446,8 +7446,8 @@ void test_suvdot_za_zzi_s4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUVDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  suvdot_za_zzi_s4xi: " << result->to_string() << std::endl;
 }
 
@@ -7457,8 +7457,8 @@ void test_svdot_za32_zzi_2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SVDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  svdot_za32_zzi_2xi: " << result->to_string() << std::endl;
 }
 
@@ -7468,8 +7468,8 @@ void test_svdot_za_zzi_s4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SVDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  svdot_za_zzi_s4xi: " << result->to_string() << std::endl;
 }
 
@@ -7479,8 +7479,8 @@ void test_svdot_za_zzi_d4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SVDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  svdot_za_zzi_d4xi: " << result->to_string() << std::endl;
 }
 
@@ -7506,7 +7506,7 @@ void test_ucvtf_mz_z_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UCVTF);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  ucvtf_mz_z_2: " << result->to_string() << std::endl;
 }
 
@@ -7516,7 +7516,7 @@ void test_ucvtf_mz_z_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UCVTF);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  ucvtf_mz_z_4: " << result->to_string() << std::endl;
 }
 
@@ -7526,8 +7526,8 @@ void test_udot_za32_zzi_2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  udot_za32_zzi_2xi: " << result->to_string() << std::endl;
 }
 
@@ -7537,8 +7537,8 @@ void test_udot_za32_zzi_4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  udot_za32_zzi_4xi: " << result->to_string() << std::endl;
 }
 
@@ -7548,8 +7548,8 @@ void test_udot_za32_zzv_2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  udot_za32_zzv_2x1: " << result->to_string() << std::endl;
 }
 
@@ -7559,8 +7559,8 @@ void test_udot_za32_zzv_4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  udot_za32_zzv_4x1: " << result->to_string() << std::endl;
 }
 
@@ -7570,7 +7570,7 @@ void test_udot_za32_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UDOT);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  udot_za32_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -7580,7 +7580,7 @@ void test_udot_za32_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UDOT);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  udot_za32_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -7590,8 +7590,8 @@ void test_udot_za_zzi_s2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  udot_za_zzi_s2xi: " << result->to_string() << std::endl;
 }
 
@@ -7601,8 +7601,8 @@ void test_udot_za_zzi_d2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  udot_za_zzi_d2xi: " << result->to_string() << std::endl;
 }
 
@@ -7612,8 +7612,8 @@ void test_udot_za_zzi_s4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  udot_za_zzi_s4xi: " << result->to_string() << std::endl;
 }
 
@@ -7623,8 +7623,8 @@ void test_udot_za_zzi_d4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  udot_za_zzi_d4xi: " << result->to_string() << std::endl;
 }
 
@@ -7650,7 +7650,7 @@ void test_udot_za_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UDOT);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  udot_za_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -7660,7 +7660,7 @@ void test_udot_za_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UDOT);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  udot_za_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -7686,7 +7686,7 @@ void test_umax_mz_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMAX);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  umax_mz_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -7696,7 +7696,7 @@ void test_umax_mz_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMAX);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  umax_mz_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -7722,7 +7722,7 @@ void test_umin_mz_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMIN);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  umin_mz_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -7732,7 +7732,7 @@ void test_umin_mz_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMIN);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  umin_mz_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -7750,8 +7750,8 @@ void test_umlal_za_zzi_2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLAL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  umlal_za_zzi_2xi: " << result->to_string() << std::endl;
 }
 
@@ -7761,8 +7761,8 @@ void test_umlal_za_zzi_4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLAL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  umlal_za_zzi_4xi: " << result->to_string() << std::endl;
 }
 
@@ -7780,8 +7780,8 @@ void test_umlal_za_zzv_2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLAL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  umlal_za_zzv_2x1: " << result->to_string() << std::endl;
 }
 
@@ -7791,8 +7791,8 @@ void test_umlal_za_zzv_4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLAL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  umlal_za_zzv_4x1: " << result->to_string() << std::endl;
 }
 
@@ -7802,7 +7802,7 @@ void test_umlal_za_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLAL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  umlal_za_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -7812,7 +7812,7 @@ void test_umlal_za_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLAL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  umlal_za_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -7838,8 +7838,8 @@ void test_umlall_za_zzi_s2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLALL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  umlall_za_zzi_s2xi: " << result->to_string() << std::endl;
 }
 
@@ -7849,8 +7849,8 @@ void test_umlall_za_zzi_d2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLALL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  umlall_za_zzi_d2xi: " << result->to_string() << std::endl;
 }
 
@@ -7860,8 +7860,8 @@ void test_umlall_za_zzi_s4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLALL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  umlall_za_zzi_s4xi: " << result->to_string() << std::endl;
 }
 
@@ -7871,8 +7871,8 @@ void test_umlall_za_zzi_d4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLALL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  umlall_za_zzi_d4xi: " << result->to_string() << std::endl;
 }
 
@@ -7906,7 +7906,7 @@ void test_umlall_za_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLALL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  umlall_za_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -7916,7 +7916,7 @@ void test_umlall_za_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLALL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  umlall_za_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -7934,8 +7934,8 @@ void test_umlsl_za_zzi_2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLSL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  umlsl_za_zzi_2xi: " << result->to_string() << std::endl;
 }
 
@@ -7945,8 +7945,8 @@ void test_umlsl_za_zzi_4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLSL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  umlsl_za_zzi_4xi: " << result->to_string() << std::endl;
 }
 
@@ -7964,8 +7964,8 @@ void test_umlsl_za_zzv_2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLSL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  umlsl_za_zzv_2x1: " << result->to_string() << std::endl;
 }
 
@@ -7975,8 +7975,8 @@ void test_umlsl_za_zzv_4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLSL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  umlsl_za_zzv_4x1: " << result->to_string() << std::endl;
 }
 
@@ -7986,7 +7986,7 @@ void test_umlsl_za_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLSL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  umlsl_za_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -7996,7 +7996,7 @@ void test_umlsl_za_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLSL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  umlsl_za_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -8022,8 +8022,8 @@ void test_umlsll_za_zzi_s2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLSLL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  umlsll_za_zzi_s2xi: " << result->to_string() << std::endl;
 }
 
@@ -8033,8 +8033,8 @@ void test_umlsll_za_zzi_d2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLSLL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  umlsll_za_zzi_d2xi: " << result->to_string() << std::endl;
 }
 
@@ -8044,8 +8044,8 @@ void test_umlsll_za_zzi_s4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLSLL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  umlsll_za_zzi_s4xi: " << result->to_string() << std::endl;
 }
 
@@ -8055,8 +8055,8 @@ void test_umlsll_za_zzi_d4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLSLL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  umlsll_za_zzi_d4xi: " << result->to_string() << std::endl;
 }
 
@@ -8090,7 +8090,7 @@ void test_umlsll_za_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLSLL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  umlsll_za_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -8100,7 +8100,7 @@ void test_umlsll_za_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMLSLL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  umlsll_za_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -8110,9 +8110,9 @@ void test_umop4a_za32_zz_h1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  umop4a_za32_zz_h1x2: " << result->to_string() << std::endl;
 }
 
@@ -8122,9 +8122,9 @@ void test_umop4a_za32_zz_h1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  umop4a_za32_zz_h1x1: " << result->to_string() << std::endl;
 }
 
@@ -8134,9 +8134,9 @@ void test_umop4a_za32_zz_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  umop4a_za32_zz_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -8146,8 +8146,8 @@ void test_umop4a_za32_zz_h2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOP4A);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  umop4a_za32_zz_h2x2: " << result->to_string() << std::endl;
 }
 
@@ -8157,9 +8157,9 @@ void test_umop4a_za_zz_b1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  umop4a_za_zz_b1x2: " << result->to_string() << std::endl;
 }
 
@@ -8169,9 +8169,9 @@ void test_umop4a_za_zz_b1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  umop4a_za_zz_b1x1: " << result->to_string() << std::endl;
 }
 
@@ -8181,9 +8181,9 @@ void test_umop4a_za_zz_b2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  umop4a_za_zz_b2x1: " << result->to_string() << std::endl;
 }
 
@@ -8193,8 +8193,8 @@ void test_umop4a_za_zz_b2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOP4A);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  umop4a_za_zz_b2x2: " << result->to_string() << std::endl;
 }
 
@@ -8204,9 +8204,9 @@ void test_umop4a_za_zz_h1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  umop4a_za_zz_h1x2: " << result->to_string() << std::endl;
 }
 
@@ -8216,9 +8216,9 @@ void test_umop4a_za_zz_h1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  umop4a_za_zz_h1x1: " << result->to_string() << std::endl;
 }
 
@@ -8228,9 +8228,9 @@ void test_umop4a_za_zz_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  umop4a_za_zz_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -8240,8 +8240,8 @@ void test_umop4a_za_zz_h2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOP4A);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  umop4a_za_zz_h2x2: " << result->to_string() << std::endl;
 }
 
@@ -8251,9 +8251,9 @@ void test_umop4s_za32_zz_h1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  umop4s_za32_zz_h1x2: " << result->to_string() << std::endl;
 }
 
@@ -8263,9 +8263,9 @@ void test_umop4s_za32_zz_h1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  umop4s_za32_zz_h1x1: " << result->to_string() << std::endl;
 }
 
@@ -8275,9 +8275,9 @@ void test_umop4s_za32_zz_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  umop4s_za32_zz_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -8287,8 +8287,8 @@ void test_umop4s_za32_zz_h2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOP4S);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  umop4s_za32_zz_h2x2: " << result->to_string() << std::endl;
 }
 
@@ -8298,9 +8298,9 @@ void test_umop4s_za_zz_b1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  umop4s_za_zz_b1x2: " << result->to_string() << std::endl;
 }
 
@@ -8310,9 +8310,9 @@ void test_umop4s_za_zz_b1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  umop4s_za_zz_b1x1: " << result->to_string() << std::endl;
 }
 
@@ -8322,9 +8322,9 @@ void test_umop4s_za_zz_b2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  umop4s_za_zz_b2x1: " << result->to_string() << std::endl;
 }
 
@@ -8334,8 +8334,8 @@ void test_umop4s_za_zz_b2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOP4S);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  umop4s_za_zz_b2x2: " << result->to_string() << std::endl;
 }
 
@@ -8345,9 +8345,9 @@ void test_umop4s_za_zz_h1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  umop4s_za_zz_h1x2: " << result->to_string() << std::endl;
 }
 
@@ -8357,9 +8357,9 @@ void test_umop4s_za_zz_h1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  umop4s_za_zz_h1x1: " << result->to_string() << std::endl;
 }
 
@@ -8369,9 +8369,9 @@ void test_umop4s_za_zz_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  umop4s_za_zz_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -8381,8 +8381,8 @@ void test_umop4s_za_zz_h2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOP4S);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  umop4s_za_zz_h2x2: " << result->to_string() << std::endl;
 }
 
@@ -8392,11 +8392,11 @@ void test_umopa_za32_pp_zz_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOPA);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  umopa_za32_pp_zz_16: " << result->to_string() << std::endl;
 }
 
@@ -8406,11 +8406,11 @@ void test_umopa_za_pp_zz_32() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOPA);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  umopa_za_pp_zz_32: " << result->to_string() << std::endl;
 }
 
@@ -8420,11 +8420,11 @@ void test_umopa_za_pp_zz_64() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOPA);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  umopa_za_pp_zz_64: " << result->to_string() << std::endl;
 }
 
@@ -8434,11 +8434,11 @@ void test_umops_za32_pp_zz_16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOPS);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  umops_za32_pp_zz_16: " << result->to_string() << std::endl;
 }
 
@@ -8448,11 +8448,11 @@ void test_umops_za_pp_zz_32() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOPS);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  umops_za_pp_zz_32: " << result->to_string() << std::endl;
 }
 
@@ -8462,11 +8462,11 @@ void test_umops_za_pp_zz_64() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMOPS);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  umops_za_pp_zz_64: " << result->to_string() << std::endl;
 }
 
@@ -8476,8 +8476,8 @@ void test_uqcvt_z_mz2_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UQCVT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  uqcvt_z_mz2_: " << result->to_string() << std::endl;
 }
 
@@ -8543,7 +8543,7 @@ void test_urshl_mz_zzw_2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::URSHL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  urshl_mz_zzw_2x2: " << result->to_string() << std::endl;
 }
 
@@ -8553,7 +8553,7 @@ void test_urshl_mz_zzw_4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::URSHL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  urshl_mz_zzw_4x4: " << result->to_string() << std::endl;
 }
 
@@ -8563,8 +8563,8 @@ void test_usdot_za_zzi_s2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  usdot_za_zzi_s2xi: " << result->to_string() << std::endl;
 }
 
@@ -8574,8 +8574,8 @@ void test_usdot_za_zzi_s4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  usdot_za_zzi_s4xi: " << result->to_string() << std::endl;
 }
 
@@ -8585,8 +8585,8 @@ void test_usdot_za_zzv_s2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  usdot_za_zzv_s2x1: " << result->to_string() << std::endl;
 }
 
@@ -8596,8 +8596,8 @@ void test_usdot_za_zzv_s4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  usdot_za_zzv_s4x1: " << result->to_string() << std::endl;
 }
 
@@ -8607,7 +8607,7 @@ void test_usdot_za_zzw_s2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USDOT);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  usdot_za_zzw_s2x2: " << result->to_string() << std::endl;
 }
 
@@ -8617,7 +8617,7 @@ void test_usdot_za_zzw_s4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USDOT);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  usdot_za_zzw_s4x4: " << result->to_string() << std::endl;
 }
 
@@ -8635,8 +8635,8 @@ void test_usmlall_za_zzi_s2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMLALL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  usmlall_za_zzi_s2xi: " << result->to_string() << std::endl;
 }
 
@@ -8646,8 +8646,8 @@ void test_usmlall_za_zzi_s4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMLALL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  usmlall_za_zzi_s4xi: " << result->to_string() << std::endl;
 }
 
@@ -8665,8 +8665,8 @@ void test_usmlall_za_zzv_s2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMLALL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  usmlall_za_zzv_s2x1: " << result->to_string() << std::endl;
 }
 
@@ -8676,8 +8676,8 @@ void test_usmlall_za_zzv_s4x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMLALL);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  usmlall_za_zzv_s4x1: " << result->to_string() << std::endl;
 }
 
@@ -8687,7 +8687,7 @@ void test_usmlall_za_zzw_s2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMLALL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  usmlall_za_zzw_s2x2: " << result->to_string() << std::endl;
 }
 
@@ -8697,7 +8697,7 @@ void test_usmlall_za_zzw_s4x4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMLALL);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  usmlall_za_zzw_s4x4: " << result->to_string() << std::endl;
 }
 
@@ -8707,9 +8707,9 @@ void test_usmop4a_za_zz_b1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  usmop4a_za_zz_b1x2: " << result->to_string() << std::endl;
 }
 
@@ -8719,9 +8719,9 @@ void test_usmop4a_za_zz_b1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  usmop4a_za_zz_b1x1: " << result->to_string() << std::endl;
 }
 
@@ -8731,9 +8731,9 @@ void test_usmop4a_za_zz_b2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  usmop4a_za_zz_b2x1: " << result->to_string() << std::endl;
 }
 
@@ -8743,8 +8743,8 @@ void test_usmop4a_za_zz_b2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMOP4A);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  usmop4a_za_zz_b2x2: " << result->to_string() << std::endl;
 }
 
@@ -8754,9 +8754,9 @@ void test_usmop4a_za_zz_h1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  usmop4a_za_zz_h1x2: " << result->to_string() << std::endl;
 }
 
@@ -8766,9 +8766,9 @@ void test_usmop4a_za_zz_h1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  usmop4a_za_zz_h1x1: " << result->to_string() << std::endl;
 }
 
@@ -8778,9 +8778,9 @@ void test_usmop4a_za_zz_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMOP4A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  usmop4a_za_zz_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -8790,8 +8790,8 @@ void test_usmop4a_za_zz_h2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMOP4A);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  usmop4a_za_zz_h2x2: " << result->to_string() << std::endl;
 }
 
@@ -8801,9 +8801,9 @@ void test_usmop4s_za_zz_b1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  usmop4s_za_zz_b1x2: " << result->to_string() << std::endl;
 }
 
@@ -8813,9 +8813,9 @@ void test_usmop4s_za_zz_b1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  usmop4s_za_zz_b1x1: " << result->to_string() << std::endl;
 }
 
@@ -8825,9 +8825,9 @@ void test_usmop4s_za_zz_b2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  usmop4s_za_zz_b2x1: " << result->to_string() << std::endl;
 }
 
@@ -8837,8 +8837,8 @@ void test_usmop4s_za_zz_b2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMOP4S);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  usmop4s_za_zz_b2x2: " << result->to_string() << std::endl;
 }
 
@@ -8848,9 +8848,9 @@ void test_usmop4s_za_zz_h1x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::RegisterList);
     std::cout << "  usmop4s_za_zz_h1x2: " << result->to_string() << std::endl;
 }
 
@@ -8860,9 +8860,9 @@ void test_usmop4s_za_zz_h1x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  usmop4s_za_zz_h1x1: " << result->to_string() << std::endl;
 }
 
@@ -8872,9 +8872,9 @@ void test_usmop4s_za_zz_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMOP4S);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  usmop4s_za_zz_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -8884,8 +8884,8 @@ void test_usmop4s_za_zz_h2x2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMOP4S);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
     std::cout << "  usmop4s_za_zz_h2x2: " << result->to_string() << std::endl;
 }
 
@@ -8895,11 +8895,11 @@ void test_usmopa_za_pp_zz_32() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMOPA);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  usmopa_za_pp_zz_32: " << result->to_string() << std::endl;
 }
 
@@ -8909,11 +8909,11 @@ void test_usmopa_za_pp_zz_64() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMOPA);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  usmopa_za_pp_zz_64: " << result->to_string() << std::endl;
 }
 
@@ -8923,11 +8923,11 @@ void test_usmops_za_pp_zz_32() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMOPS);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  usmops_za_pp_zz_32: " << result->to_string() << std::endl;
 }
 
@@ -8937,11 +8937,11 @@ void test_usmops_za_pp_zz_64() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMOPS);
     assert(result->operands.size() >= 5);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::PredicateRegister);
-    assert(result->operands[2].type == OperandType::PredicateRegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
-    assert(result->operands[4].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
+    assert(result->operands[4].type == OperandType::Register);
     std::cout << "  usmops_za_pp_zz_64: " << result->to_string() << std::endl;
 }
 
@@ -8951,10 +8951,10 @@ void test_ustmopa_za_zzzi_b2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USTMOPA);
     assert(result->operands.size() >= 4);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
     std::cout << "  ustmopa_za_zzzi_b2x1: " << result->to_string() << std::endl;
 }
 
@@ -8964,8 +8964,8 @@ void test_usvdot_za_zzi_s4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USVDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  usvdot_za_zzi_s4xi: " << result->to_string() << std::endl;
 }
 
@@ -8975,10 +8975,10 @@ void test_utmopa_za32_zzzi_h2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UTMOPA);
     assert(result->operands.size() >= 4);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
     std::cout << "  utmopa_za32_zzzi_h2x1: " << result->to_string() << std::endl;
 }
 
@@ -8988,10 +8988,10 @@ void test_utmopa_za_zzzi_b2x1() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UTMOPA);
     assert(result->operands.size() >= 4);
-    assert(result->operands[0].type == OperandType::SVERegister);
-    assert(result->operands[1].type == OperandType::SVERegisterList);
-    assert(result->operands[2].type == OperandType::SVERegister);
-    assert(result->operands[3].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
     std::cout << "  utmopa_za_zzzi_b2x1: " << result->to_string() << std::endl;
 }
 
@@ -9009,7 +9009,7 @@ void test_uunpk_mz_z_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UUNPK);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  uunpk_mz_z_4: " << result->to_string() << std::endl;
 }
 
@@ -9019,8 +9019,8 @@ void test_uvdot_za32_zzi_2xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UVDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  uvdot_za32_zzi_2xi: " << result->to_string() << std::endl;
 }
 
@@ -9030,8 +9030,8 @@ void test_uvdot_za_zzi_s4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UVDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  uvdot_za_zzi_s4xi: " << result->to_string() << std::endl;
 }
 
@@ -9041,8 +9041,8 @@ void test_uvdot_za_zzi_d4xi() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UVDOT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  uvdot_za_zzi_d4xi: " << result->to_string() << std::endl;
 }
 
@@ -9052,7 +9052,7 @@ void test_uzp_mz_z_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UZP);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  uzp_mz_z_4: " << result->to_string() << std::endl;
 }
 
@@ -9062,7 +9062,7 @@ void test_uzp_mz_z_4q() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UZP);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  uzp_mz_z_4q: " << result->to_string() << std::endl;
 }
 
@@ -9080,9 +9080,9 @@ void test_uzp_mz_zz_2q() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UZP);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  uzp_mz_zz_2q: " << result->to_string() << std::endl;
 }
 
@@ -9156,7 +9156,7 @@ void test_zero_za_i_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ZERO);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::VectorRegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  zero_za_i_: " << result->to_string() << std::endl;
 }
 
@@ -9166,7 +9166,7 @@ void test_zero_zt_i_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ZERO);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SMEZTRegister);
+    assert(result->operands[0].type == OperandType::Register);
     std::cout << "  zero_zt_i_: " << result->to_string() << std::endl;
 }
 
@@ -9176,7 +9176,7 @@ void test_zip_mz_z_4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ZIP);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  zip_mz_z_4: " << result->to_string() << std::endl;
 }
 
@@ -9186,7 +9186,7 @@ void test_zip_mz_z_4q() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ZIP);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
+    assert(result->operands[0].type == OperandType::RegisterList);
     std::cout << "  zip_mz_z_4q: " << result->to_string() << std::endl;
 }
 
@@ -9204,9 +9204,9 @@ void test_zip_mz_zz_2q() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::ZIP);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::SVERegisterList);
-    assert(result->operands[1].type == OperandType::SVERegister);
-    assert(result->operands[2].type == OperandType::SVERegister);
+    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  zip_mz_zz_2q: " << result->to_string() << std::endl;
 }
 

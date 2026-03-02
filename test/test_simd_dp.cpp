@@ -78,8 +78,8 @@ void test_aesd_b_cryptoaes() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::AESD);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  aesd_b_cryptoaes: " << result->to_string() << std::endl;
 }
 
@@ -89,8 +89,8 @@ void test_aese_b_cryptoaes() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::AESE);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  aese_b_cryptoaes: " << result->to_string() << std::endl;
 }
 
@@ -100,8 +100,8 @@ void test_aesimc_b_cryptoaes() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::AESIMC);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  aesimc_b_cryptoaes: " << result->to_string() << std::endl;
 }
 
@@ -111,8 +111,8 @@ void test_aesmc_b_cryptoaes() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::AESMC);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  aesmc_b_cryptoaes: " << result->to_string() << std::endl;
 }
 
@@ -129,10 +129,10 @@ void test_bcax_vvv16_crypto4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BCAX);
     assert(result->operands.size() >= 4);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
-    assert(result->operands[3].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
     std::cout << "  bcax_vvv16_crypto4: " << result->to_string() << std::endl;
 }
 
@@ -188,9 +188,9 @@ void test_bfmlal_asimdelem_f() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLAL);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  bfmlal_asimdelem_f: " << result->to_string() << std::endl;
 }
 
@@ -200,9 +200,9 @@ void test_bfmlal_asimdsame2_f_() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMLAL);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  bfmlal_asimdsame2_f_: " << result->to_string() << std::endl;
 }
 
@@ -212,9 +212,9 @@ void test_bfmmla_asimdsame2_e() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::BFMMLA);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  bfmmla_asimdsame2_e: " << result->to_string() << std::endl;
 }
 
@@ -496,10 +496,10 @@ void test_eor3_vvv16_crypto4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::EOR3);
     assert(result->operands.size() >= 4);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
-    assert(result->operands[3].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
     std::cout << "  eor3_vvv16_crypto4: " << result->to_string() << std::endl;
 }
 
@@ -547,9 +547,9 @@ void test_fabd_asisdsame_only() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FABD);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fabd_asisdsame_only: " << result->to_string() << std::endl;
 }
 
@@ -623,9 +623,9 @@ void test_facge_asisdsame_only() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FACGE);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  facge_asisdsame_only: " << result->to_string() << std::endl;
 }
 
@@ -659,9 +659,9 @@ void test_facgt_asisdsame_only() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FACGT);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  facgt_asisdsame_only: " << result->to_string() << std::endl;
 }
 
@@ -855,9 +855,9 @@ void test_fcmeq_asisdsame_only() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCMEQ);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fcmeq_asisdsame_only: " << result->to_string() << std::endl;
 }
 
@@ -891,8 +891,8 @@ void test_fcmeq_asisdmisc_fz() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCMEQ);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fcmeq_asisdmisc_fz: " << result->to_string() << std::endl;
 }
 
@@ -926,9 +926,9 @@ void test_fcmge_asisdsame_only() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCMGE);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fcmge_asisdsame_only: " << result->to_string() << std::endl;
 }
 
@@ -962,8 +962,8 @@ void test_fcmge_asisdmisc_fz() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCMGE);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fcmge_asisdmisc_fz: " << result->to_string() << std::endl;
 }
 
@@ -997,9 +997,9 @@ void test_fcmgt_asisdsame_only() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCMGT);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fcmgt_asisdsame_only: " << result->to_string() << std::endl;
 }
 
@@ -1033,8 +1033,8 @@ void test_fcmgt_asisdmisc_fz() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCMGT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fcmgt_asisdmisc_fz: " << result->to_string() << std::endl;
 }
 
@@ -1084,8 +1084,8 @@ void test_fcmle_asisdmisc_fz() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCMLE);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fcmle_asisdmisc_fz: " << result->to_string() << std::endl;
 }
 
@@ -1119,8 +1119,8 @@ void test_fcmlt_asisdmisc_fz() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCMLT);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fcmlt_asisdmisc_fz: " << result->to_string() << std::endl;
 }
 
@@ -1322,8 +1322,8 @@ void test_fcvtas_asisdmisc_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCVTAS);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fcvtas_asisdmisc_r: " << result->to_string() << std::endl;
 }
 
@@ -1437,8 +1437,8 @@ void test_fcvtau_asisdmisc_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCVTAU);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fcvtau_asisdmisc_r: " << result->to_string() << std::endl;
 }
 
@@ -1560,8 +1560,8 @@ void test_fcvtms_asisdmisc_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCVTMS);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fcvtms_asisdmisc_r: " << result->to_string() << std::endl;
 }
 
@@ -1675,8 +1675,8 @@ void test_fcvtmu_asisdmisc_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCVTMU);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fcvtmu_asisdmisc_r: " << result->to_string() << std::endl;
 }
 
@@ -1814,8 +1814,8 @@ void test_fcvtns_asisdmisc_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCVTNS);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fcvtns_asisdmisc_r: " << result->to_string() << std::endl;
 }
 
@@ -1929,8 +1929,8 @@ void test_fcvtnu_asisdmisc_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCVTNU);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fcvtnu_asisdmisc_r: " << result->to_string() << std::endl;
 }
 
@@ -2044,8 +2044,8 @@ void test_fcvtps_asisdmisc_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCVTPS);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fcvtps_asisdmisc_r: " << result->to_string() << std::endl;
 }
 
@@ -2159,8 +2159,8 @@ void test_fcvtpu_asisdmisc_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCVTPU);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fcvtpu_asisdmisc_r: " << result->to_string() << std::endl;
 }
 
@@ -2306,8 +2306,8 @@ void test_fcvtzs_asisdmisc_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCVTZS);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fcvtzs_asisdmisc_r: " << result->to_string() << std::endl;
 }
 
@@ -2485,8 +2485,8 @@ void test_fcvtzu_asisdmisc_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FCVTZU);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fcvtzu_asisdmisc_r: " << result->to_string() << std::endl;
 }
 
@@ -3187,9 +3187,9 @@ void test_fmlalb_asimdelem_h() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmlalb_asimdelem_h: " << result->to_string() << std::endl;
 }
 
@@ -3198,9 +3198,9 @@ void test_fmlalt_asimdelem_h() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmlalt_asimdelem_h: " << result->to_string() << std::endl;
 }
 
@@ -3209,9 +3209,9 @@ void test_fmlalb_asimdsame2_j() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmlalb_asimdsame2_j: " << result->to_string() << std::endl;
 }
 
@@ -3220,9 +3220,9 @@ void test_fmlalt_asimdsame2_j() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmlalt_asimdsame2_j: " << result->to_string() << std::endl;
 }
 
@@ -3231,9 +3231,9 @@ void test_fmlallbb_asimdelem_j() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmlallbb_asimdelem_j: " << result->to_string() << std::endl;
 }
 
@@ -3242,9 +3242,9 @@ void test_fmlallbt_asimdelem_j() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmlallbt_asimdelem_j: " << result->to_string() << std::endl;
 }
 
@@ -3253,9 +3253,9 @@ void test_fmlalltb_asimdelem_j() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmlalltb_asimdelem_j: " << result->to_string() << std::endl;
 }
 
@@ -3264,9 +3264,9 @@ void test_fmlalltt_asimdelem_j() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmlalltt_asimdelem_j: " << result->to_string() << std::endl;
 }
 
@@ -3275,9 +3275,9 @@ void test_fmlallbb_asimdsame2_g() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmlallbb_asimdsame2_g: " << result->to_string() << std::endl;
 }
 
@@ -3286,9 +3286,9 @@ void test_fmlallbt_asimdsame2_g() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmlallbt_asimdsame2_g: " << result->to_string() << std::endl;
 }
 
@@ -3297,9 +3297,9 @@ void test_fmlalltb_asimdsame2_g() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmlalltb_asimdsame2_g: " << result->to_string() << std::endl;
 }
 
@@ -3308,9 +3308,9 @@ void test_fmlalltt_asimdsame2_g() {
     auto result = decode(insn);
     assert(result.has_value()); (void)result;
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmlalltt_asimdsame2_g: " << result->to_string() << std::endl;
 }
 
@@ -3396,9 +3396,9 @@ void test_fmmla_asimd_fp16fp16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMMLA);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmmla_asimd_fp16fp16: " << result->to_string() << std::endl;
 }
 
@@ -3408,9 +3408,9 @@ void test_fmmla_asimd_fp16fp32() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMMLA);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmmla_asimd_fp16fp32: " << result->to_string() << std::endl;
 }
 
@@ -3420,9 +3420,9 @@ void test_fmmla_asimd_fp8fp16() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMMLA);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmmla_asimd_fp8fp16: " << result->to_string() << std::endl;
 }
 
@@ -3432,9 +3432,9 @@ void test_fmmla_asimd_fp8fp32() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMMLA);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmmla_asimd_fp8fp32: " << result->to_string() << std::endl;
 }
 
@@ -3548,7 +3548,7 @@ void test_fmov_v64i_float2int() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMOV);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmov_v64i_float2int: " << result->to_string() << std::endl;
 }
@@ -3568,7 +3568,7 @@ void test_fmov_64vx_float2int() {
     assert(result->mnemonic == Mnemonic::FMOV);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  fmov_64vx_float2int: " << result->to_string() << std::endl;
 }
 
@@ -3738,9 +3738,9 @@ void test_fmulx_asisdsame_only() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FMULX);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  fmulx_asisdsame_only: " << result->to_string() << std::endl;
 }
 
@@ -3886,8 +3886,8 @@ void test_frecpe_asisdmisc_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FRECPE);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  frecpe_asisdmisc_r: " << result->to_string() << std::endl;
 }
 
@@ -3921,9 +3921,9 @@ void test_frecps_asisdsame_only() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FRECPS);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  frecps_asisdsame_only: " << result->to_string() << std::endl;
 }
 
@@ -3957,8 +3957,8 @@ void test_frecpx_asisdmisc_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FRECPX);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  frecpx_asisdmisc_r: " << result->to_string() << std::endl;
 }
 
@@ -4352,8 +4352,8 @@ void test_frsqrte_asisdmisc_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FRSQRTE);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  frsqrte_asisdmisc_r: " << result->to_string() << std::endl;
 }
 
@@ -4387,9 +4387,9 @@ void test_frsqrts_asisdsame_only() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::FRSQRTS);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  frsqrts_asisdsame_only: " << result->to_string() << std::endl;
 }
 
@@ -4527,9 +4527,9 @@ void test_luti2_asimdtbl_l5() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LUTI2);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegisterList);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  luti2_asimdtbl_l5: " << result->to_string() << std::endl;
 }
 
@@ -4539,9 +4539,9 @@ void test_luti2_asimdtbl_l6() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LUTI2);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegisterList);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  luti2_asimdtbl_l6: " << result->to_string() << std::endl;
 }
 
@@ -4551,9 +4551,9 @@ void test_luti4_asimdtbl_l5() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LUTI4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegisterList);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  luti4_asimdtbl_l5: " << result->to_string() << std::endl;
 }
 
@@ -4563,9 +4563,9 @@ void test_luti4_asimdtbl_l7() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::LUTI4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegisterList);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  luti4_asimdtbl_l7: " << result->to_string() << std::endl;
 }
 
@@ -4639,7 +4639,7 @@ void test_mov_umov_asimdins_w_w() {
     assert(result->mnemonic == Mnemonic::UMOV);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  mov_umov_asimdins_w_w: " << result->to_string() << std::endl;
 }
 
@@ -4650,7 +4650,7 @@ void test_mov_umov_asimdins_x_x() {
     assert(result->mnemonic == Mnemonic::UMOV);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  mov_umov_asimdins_x_x: " << result->to_string() << std::endl;
 }
 
@@ -4832,9 +4832,9 @@ void test_rax1_vvv2_cryptosha512_3() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::RAX1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  rax1_vvv2_cryptosha512_3: " << result->to_string() << std::endl;
 }
 
@@ -4988,8 +4988,8 @@ void test_scvtf_asisdmisc_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SCVTF);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  scvtf_asisdmisc_r: " << result->to_string() << std::endl;
 }
 
@@ -5191,9 +5191,9 @@ void test_sha1su0_vvv_cryptosha3() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SHA1SU0);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sha1su0_vvv_cryptosha3: " << result->to_string() << std::endl;
 }
 
@@ -5203,8 +5203,8 @@ void test_sha1su1_vv_cryptosha2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SHA1SU1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  sha1su1_vv_cryptosha2: " << result->to_string() << std::endl;
 }
 
@@ -5230,8 +5230,8 @@ void test_sha256su0_vv_cryptosha2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SHA256SU0);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  sha256su0_vv_cryptosha2: " << result->to_string() << std::endl;
 }
 
@@ -5241,9 +5241,9 @@ void test_sha256su1_vvv_cryptosha3() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SHA256SU1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sha256su1_vvv_cryptosha3: " << result->to_string() << std::endl;
 }
 
@@ -5269,8 +5269,8 @@ void test_sha512su0_vv2_cryptosha512_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SHA512SU0);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  sha512su0_vv2_cryptosha512_2: " << result->to_string() << std::endl;
 }
 
@@ -5280,9 +5280,9 @@ void test_sha512su1_vvv2_cryptosha512_3() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SHA512SU1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sha512su1_vvv2_cryptosha512_3: " << result->to_string() << std::endl;
 }
 
@@ -5356,9 +5356,9 @@ void test_sm3partw1_vvv4_cryptosha512_3() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SM3PARTW1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sm3partw1_vvv4_cryptosha512_3: " << result->to_string() << std::endl;
 }
 
@@ -5368,9 +5368,9 @@ void test_sm3partw2_vvv4_cryptosha512_3() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SM3PARTW2);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sm3partw2_vvv4_cryptosha512_3: " << result->to_string() << std::endl;
 }
 
@@ -5380,10 +5380,10 @@ void test_sm3ss1_vvv4_crypto4() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SM3SS1);
     assert(result->operands.size() >= 4);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
-    assert(result->operands[3].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
+    assert(result->operands[3].type == OperandType::Register);
     std::cout << "  sm3ss1_vvv4_crypto4: " << result->to_string() << std::endl;
 }
 
@@ -5393,9 +5393,9 @@ void test_sm3tt1a_vvv4_crypto3_imm2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SM3TT1A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sm3tt1a_vvv4_crypto3_imm2: " << result->to_string() << std::endl;
 }
 
@@ -5405,9 +5405,9 @@ void test_sm3tt1b_vvv4_crypto3_imm2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SM3TT1B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sm3tt1b_vvv4_crypto3_imm2: " << result->to_string() << std::endl;
 }
 
@@ -5417,9 +5417,9 @@ void test_sm3tt2a_vvv4_crypto3_imm2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SM3TT2A);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sm3tt2a_vvv4_crypto3_imm2: " << result->to_string() << std::endl;
 }
 
@@ -5429,9 +5429,9 @@ void test_sm3tt2b_vvv_crypto3_imm2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SM3TT2B);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sm3tt2b_vvv_crypto3_imm2: " << result->to_string() << std::endl;
 }
 
@@ -5441,8 +5441,8 @@ void test_sm4e_vv4_cryptosha512_2() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SM4E);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  sm4e_vv4_cryptosha512_2: " << result->to_string() << std::endl;
 }
 
@@ -5452,9 +5452,9 @@ void test_sm4ekey_vvv4_cryptosha512_3() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SM4EKEY);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sm4ekey_vvv4_cryptosha512_3: " << result->to_string() << std::endl;
 }
 
@@ -5544,9 +5544,9 @@ void test_smmla_asimdsame2_g() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SMMLA);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  smmla_asimdsame2_g: " << result->to_string() << std::endl;
 }
 
@@ -5588,8 +5588,8 @@ void test_sqabs_asisdmisc_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQABS);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  sqabs_asisdmisc_r: " << result->to_string() << std::endl;
 }
 
@@ -5607,9 +5607,9 @@ void test_sqadd_asisdsame_only() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQADD);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sqadd_asisdsame_only: " << result->to_string() << std::endl;
 }
 
@@ -5707,9 +5707,9 @@ void test_sqdmulh_asisdsame_only() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQDMULH);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sqdmulh_asisdsame_only: " << result->to_string() << std::endl;
 }
 
@@ -5759,8 +5759,8 @@ void test_sqneg_asisdmisc_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQNEG);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  sqneg_asisdmisc_r: " << result->to_string() << std::endl;
 }
 
@@ -5794,9 +5794,9 @@ void test_sqrdmlah_asisdsame2_only() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQRDMLAH);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sqrdmlah_asisdsame2_only: " << result->to_string() << std::endl;
 }
 
@@ -5830,9 +5830,9 @@ void test_sqrdmlsh_asisdsame2_only() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQRDMLSH);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sqrdmlsh_asisdsame2_only: " << result->to_string() << std::endl;
 }
 
@@ -5866,9 +5866,9 @@ void test_sqrdmulh_asisdsame_only() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQRDMULH);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sqrdmulh_asisdsame_only: " << result->to_string() << std::endl;
 }
 
@@ -5886,9 +5886,9 @@ void test_sqrshl_asisdsame_only() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQRSHL);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sqrshl_asisdsame_only: " << result->to_string() << std::endl;
 }
 
@@ -5954,9 +5954,9 @@ void test_sqshl_asisdsame_only() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQSHL);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sqshl_asisdsame_only: " << result->to_string() << std::endl;
 }
 
@@ -6022,9 +6022,9 @@ void test_sqsub_asisdsame_only() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SQSUB);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  sqsub_asisdsame_only: " << result->to_string() << std::endl;
 }
 
@@ -6248,8 +6248,8 @@ void test_suqadd_asisdmisc_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::SUQADD);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  suqadd_asisdmisc_r: " << result->to_string() << std::endl;
 }
 
@@ -6451,8 +6451,8 @@ void test_ucvtf_asisdmisc_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UCVTF);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  ucvtf_asisdmisc_r: " << result->to_string() << std::endl;
 }
 
@@ -6718,9 +6718,9 @@ void test_ummla_asimdsame2_g() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UMMLA);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ummla_asimdsame2_g: " << result->to_string() << std::endl;
 }
 
@@ -6739,7 +6739,7 @@ void test_umov_asimdins_x_x() {
     assert(result->mnemonic == Mnemonic::UMOV);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  umov_asimdins_x_x: " << result->to_string() << std::endl;
 }
 
@@ -6765,9 +6765,9 @@ void test_uqadd_asisdsame_only() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UQADD);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  uqadd_asisdsame_only: " << result->to_string() << std::endl;
 }
 
@@ -6785,9 +6785,9 @@ void test_uqrshl_asisdsame_only() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UQRSHL);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  uqrshl_asisdsame_only: " << result->to_string() << std::endl;
 }
 
@@ -6837,9 +6837,9 @@ void test_uqshl_asisdsame_only() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UQSHL);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  uqshl_asisdsame_only: " << result->to_string() << std::endl;
 }
 
@@ -6873,9 +6873,9 @@ void test_uqsub_asisdsame_only() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::UQSUB);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  uqsub_asisdsame_only: " << result->to_string() << std::endl;
 }
 
@@ -7037,9 +7037,9 @@ void test_usmmla_asimdsame2_g() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USMMLA);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
-    assert(result->operands[2].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
+    assert(result->operands[2].type == OperandType::Register);
     std::cout << "  usmmla_asimdsame2_g: " << result->to_string() << std::endl;
 }
 
@@ -7049,8 +7049,8 @@ void test_usqadd_asisdmisc_r() {
     assert(result.has_value()); (void)result;
     assert(result->mnemonic == Mnemonic::USQADD);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::VectorRegister);
-    assert(result->operands[1].type == OperandType::VectorRegister);
+    assert(result->operands[0].type == OperandType::Register);
+    assert(result->operands[1].type == OperandType::Register);
     std::cout << "  usqadd_asisdmisc_r: " << result->to_string() << std::endl;
 }
 
