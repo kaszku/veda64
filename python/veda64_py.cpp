@@ -1590,11 +1590,12 @@ NB_MODULE(veda64_py, m) {
         .def_ro("value",      &veda64::Operand::value)
         .def_ro("imm64",      &veda64::Operand::imm64)
         .def_prop_ro("arrangement", [](const veda64::Operand& op) -> nb::object {
-            if (op.arrangement == veda64::Arrangement::None) return nb::none();
-            return nb::str(veda64::Operand::arrangement_to_string(op.arrangement));
+            auto arr = veda64::register_arrangement(static_cast<veda64::Register>(op.value));
+            if (arr == veda64::Arrangement::None) return nb::none();
+            return nb::str(veda64::arrangement_to_string(arr));
         })
         .def_ro("index",      &veda64::Operand::index)
-        .def_ro("has_index",  &veda64::Operand::has_index)
+        .def_prop_ro("has_index", [](const veda64::Operand& op) { return (bool)op.flags.has_index; })
         .def_ro("base_reg",   &veda64::Operand::base_reg)
         .def_ro("offset",     &veda64::Operand::offset)
         .def_ro("index_reg",  &veda64::Operand::index_reg)

@@ -2603,7 +2603,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         result.operands.push_back(Operand::gp(enc.smax32minmax_imm.Rn, false));
                         {
                             int32_t simm = (int32_t)((enc.smax32minmax_imm.imm8 ^ (1u << 7)) - (1u << 7));
-                            result.operands.push_back(Operand::simm((uint32_t)simm));
+                            result.operands.push_back(Operand::simm(static_cast<int64_t>(simm)));
                         }
                         return result;
         }
@@ -2624,7 +2624,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         result.operands.push_back(Operand::gp(enc.smin32minmax_imm.Rn, false));
                         {
                             int32_t simm = (int32_t)((enc.smin32minmax_imm.imm8 ^ (1u << 7)) - (1u << 7));
-                            result.operands.push_back(Operand::simm((uint32_t)simm));
+                            result.operands.push_back(Operand::simm(static_cast<int64_t>(simm)));
                         }
                         return result;
         }
@@ -2645,7 +2645,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         result.operands.push_back(Operand::gp(enc.smax64minmax_imm.Rn, true));
                         {
                             int32_t simm = (int32_t)((enc.smax64minmax_imm.imm8 ^ (1u << 7)) - (1u << 7));
-                            result.operands.push_back(Operand::simm((uint32_t)simm));
+                            result.operands.push_back(Operand::simm(static_cast<int64_t>(simm)));
                         }
                         return result;
         }
@@ -2666,7 +2666,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         result.operands.push_back(Operand::gp(enc.smin64minmax_imm.Rn, true));
                         {
                             int32_t simm = (int32_t)((enc.smin64minmax_imm.imm8 ^ (1u << 7)) - (1u << 7));
-                            result.operands.push_back(Operand::simm((uint32_t)simm));
+                            result.operands.push_back(Operand::simm(static_cast<int64_t>(simm)));
                         }
                         return result;
         }
@@ -2707,7 +2707,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         enc.raw = insn;
                         {
                             int32_t loff = static_cast<int32_t>(enc.autiasppc_only_dp1src_imm.imm16 << 16) >> 16;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -2717,7 +2717,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         enc.raw = insn;
                         {
                             int32_t loff = static_cast<int32_t>(enc.autibsppc_only_dp1src_imm.imm16 << 16) >> 16;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -3276,7 +3276,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         int32_t imm21 = static_cast<int32_t>((enc.adr_only_pcreladdr.immhi << 2) | (enc.adr_only_pcreladdr.immlo & 0x3));
                         if (imm21 & 0x100000) imm21 |= static_cast<int32_t>(0xFFE00000);
                         int32_t offset = imm21;
-                        result.operands.push_back(Operand::relative(static_cast<uint32_t>(offset)));
+                        result.operands.push_back(Operand::relative(static_cast<int64_t>(offset)));
                         return result;
         }
         case 0x90000000u: { // ADRP_only_pcreladdr

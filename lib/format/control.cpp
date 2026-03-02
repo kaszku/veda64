@@ -6256,7 +6256,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbgt32regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6270,7 +6270,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbbgt8regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6284,7 +6284,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbhgt16regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6298,7 +6298,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbge32regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6312,7 +6312,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbbge8regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6326,7 +6326,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbhge16regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6340,7 +6340,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbhi32regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6354,7 +6354,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbbhi8regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6368,7 +6368,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbhhi16regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6382,7 +6382,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbhs32regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6396,7 +6396,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbbhs8regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6410,7 +6410,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbhhs16regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6423,7 +6423,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbeq32regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6436,7 +6436,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbbeq8regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6449,7 +6449,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbheq16regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6462,7 +6462,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbne32regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6475,7 +6475,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbbne8regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6488,7 +6488,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbhne16regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6502,7 +6502,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbgt64regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6516,7 +6516,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbge64regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6530,7 +6530,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbhi64regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6544,7 +6544,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbhs64regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6557,7 +6557,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbeq64regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6570,7 +6570,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbne64regs.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6589,7 +6589,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbgt32imm.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6603,7 +6603,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cblt32imm.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6617,7 +6617,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbhi32imm.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6631,7 +6631,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cblo32imm.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6644,7 +6644,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbeq32imm.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6657,7 +6657,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbne32imm.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6671,7 +6671,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbgt64imm.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6685,7 +6685,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cblt64imm.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6699,7 +6699,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbhi64imm.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6713,7 +6713,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cblo64imm.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6726,7 +6726,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbeq64imm.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6739,7 +6739,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbne64imm.imm9 << 23) >> 23;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6753,7 +6753,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         int32_t offset = -(int32_t)(enc.retaasppc_only_miscbranch.imm16 * 4u);
-                        result.operands.push_back(Operand::relative(static_cast<uint32_t>(offset)));
+                        result.operands.push_back(Operand::relative(static_cast<int64_t>(offset)));
                         return result;
         }
         case 0x5520001Fu: { // RETABSPPC_only_miscbranch
@@ -6761,7 +6761,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         int32_t offset = -(int32_t)(enc.retabsppc_only_miscbranch.imm16 * 4u);
-                        result.operands.push_back(Operand::relative(static_cast<uint32_t>(offset)));
+                        result.operands.push_back(Operand::relative(static_cast<int64_t>(offset)));
                         return result;
         }
         case 0xD4000001u: { // SVC_EX_exception
@@ -6833,7 +6833,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.bonly_condbranch.imm19 << 13) >> 13;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6845,7 +6845,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.bc_only_condbranch.imm19 << 13) >> 13;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6862,7 +6862,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbz32compbranch.imm19 << 13) >> 13;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6874,7 +6874,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbnz32compbranch.imm19 << 13) >> 13;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6886,7 +6886,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbz64compbranch.imm19 << 13) >> 13;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6898,7 +6898,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.cbnz64compbranch.imm19 << 13) >> 13;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6914,7 +6914,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.bonly_branch_imm.imm26 << 6) >> 6;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6925,7 +6925,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         {
                             int32_t loff = static_cast<int32_t>(enc.bl_only_branch_imm.imm26 << 6) >> 6;
                             loff <<= 2;
-                            result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));
+                            result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));
                         }
                         return result;
         }
@@ -6942,7 +6942,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand::imm((enc.tbz_only_testbranch.b5 << 5) | enc.tbz_only_testbranch.b40));
                         int32_t offset = static_cast<int32_t>(enc.tbz_only_testbranch.imm14 << 18) >> 18;
                         offset *= 4;
-                        result.operands.push_back(Operand::relative(static_cast<uint32_t>(offset)));
+                        result.operands.push_back(Operand::relative(static_cast<int64_t>(offset)));
                         return result;
         }
         case 0x37000000u: { // TBNZ_only_testbranch
@@ -6953,7 +6953,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         result.operands.push_back(Operand::imm((enc.tbnz_only_testbranch.b5 << 5) | enc.tbnz_only_testbranch.b40));
                         int32_t offset = static_cast<int32_t>(enc.tbnz_only_testbranch.imm14 << 18) >> 18;
                         offset *= 4;
-                        result.operands.push_back(Operand::relative(static_cast<uint32_t>(offset)));
+                        result.operands.push_back(Operand::relative(static_cast<int64_t>(offset)));
                         return result;
         }
         default: break;

@@ -1597,29 +1597,7 @@ Arrangement Operand::vec_arr(uint32_t size, uint32_t q) {
     return (size < 4 && q < 2) ? table[q][size] : Arrangement::None;
 }
 
-const char* Operand::arrangement_to_string(Arrangement a) {
-    switch (a) {
-        case Arrangement::None: return "";
-        case Arrangement::B: return "b";
-        case Arrangement::H: return "h";
-        case Arrangement::S: return "s";
-        case Arrangement::D: return "d";
-        case Arrangement::Q: return "q";
-        case Arrangement::B8: return "8b";
-        case Arrangement::H4: return "4h";
-        case Arrangement::S2: return "2s";
-        case Arrangement::D1: return "1d";
-        case Arrangement::B16: return "16b";
-        case Arrangement::H8: return "8h";
-        case Arrangement::S4: return "4s";
-        case Arrangement::D2: return "2d";
-        case Arrangement::Q1: return "1q";
-        case Arrangement::B2: return "2b";
-        case Arrangement::B4: return "4b";
-        case Arrangement::H2: return "2h";
-        default: return "";
-    }
-}
+// arrangement_to_string is now a free inline function in types.hpp
 
 // Determine vector arrangement for MOVI/MVNI based on Q and cmode fields
 Arrangement get_movi_arrangement(uint32_t insn) {
@@ -1710,7 +1688,7 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
         auto& op1 = insn.operands[1];
         auto& op2 = insn.operands[2];
         if ((is_sp_reg(op0.value) || is_sp_reg(op1.value)) &&
-            op2.type == OperandType::Immediate && op2.value == 0) {
+            op2.type == OperandType::Immediate && op2.imm64 == 0) {
             return std::string("mov ") + op0.to_string() + ", " + op1.to_string();
         }
         }
@@ -1734,7 +1712,7 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
     if (insn.mnemonic == Mnemonic::MOVZ && insn.operands.size() >= 2) {
         // hw = bits 22:21 of raw instruction; shift_amt = hw * 16
         uint32_t hw_val = (insn.raw_value >> 21) & 0x3;
-        uint64_t imm_val = insn.operands[1].value;
+        uint64_t imm_val = insn.operands[1].imm64;
         bool is_64z = register_is_64bit(static_cast<Register>(insn.operands[0].value));
         uint64_t final_val = imm_val << (hw_val * 16);
         std::ostringstream oss;
@@ -1751,7 +1729,7 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
     if (insn.mnemonic == Mnemonic::MOVN && insn.operands.size() >= 2) {
         // hw = bits 22:21 of raw instruction; shift_amt = hw * 16
         uint32_t hw_val = (insn.raw_value >> 21) & 0x3;
-        uint64_t imm_val = insn.operands[1].value;
+        uint64_t imm_val = insn.operands[1].imm64;
         bool is_64n = register_is_64bit(static_cast<Register>(insn.operands[0].value));
         uint64_t final_val = ~(imm_val << (hw_val * 16));
         if (!is_64n) final_val &= 0xFFFFFFFFULL;
@@ -2186,7 +2164,7 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
     }
 
     // SVE: DUP → MOV alias
-    if (insn.mnemonic == Mnemonic::DUP && insn.operands.size() >= 1 && insn.operands[0].type == OperandType::Register && insn.operands[0].value >= static_cast<uint32_t>(Register::Z0)) {
+    if (insn.mnemonic == Mnemonic::DUP && insn.operands.size() >= 1 && insn.operands[0].type == OperandType::Register && insn.operands[0].value >= static_cast<uint16_t>(Register::Z0)) {
         std::ostringstream oss;
         oss << "mov";
         for (size_t i = 0; i < insn.operands.size(); ++i) {
@@ -2210,7 +2188,7 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
     }
 
     // SVE: ORR z,z,z with Zn==Zm → MOV z,z
-    if (insn.mnemonic == Mnemonic::ORR && insn.operands.size() == 3 && insn.operands[0].type == OperandType::Register && insn.operands[0].value >= static_cast<uint32_t>(Register::Z0)) {
+    if (insn.mnemonic == Mnemonic::ORR && insn.operands.size() == 3 && insn.operands[0].type == OperandType::Register && insn.operands[0].value >= static_cast<uint16_t>(Register::Z0)) {
         auto& op1 = insn.operands[1]; auto& op2 = insn.operands[2];
         if (op1.type == OperandType::Register && op2.type == OperandType::Register && op1.value == op2.value) {
             std::ostringstream oss;
@@ -2246,7 +2224,7 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
     }
 
     // NOT (SIMD vector) → MVN alias (only for V registers, not SVE Z)
-    if (insn.mnemonic == Mnemonic::NOT && !insn.operands.empty() && insn.operands[0].type == OperandType::Register && insn.operands[0].value < static_cast<uint32_t>(Register::Z0)) {
+    if (insn.mnemonic == Mnemonic::NOT && !insn.operands.empty() && insn.operands[0].type == OperandType::Register && insn.operands[0].value < static_cast<uint16_t>(Register::Z0)) {
         std::ostringstream oss;
         oss << "mvn";
         for (size_t i = 0; i < insn.operands.size(); ++i) { oss << (i == 0 ? " " : ", ") << insn.operands[i].to_string(); }
@@ -2271,10 +2249,11 @@ std::string Instruction::to_string() const {
     // Only for SIMD (bit31=0); SME2 instructions have bit31=1 and must not get this suffix
     // Also exclude scalar forms (asisdmisc) which have bit30=1 as fixed but no Q field
     // Check: first operand must have a multi-element arrangement (not scalar B/H/S/D/Q)
+    Arrangement _first_arr = !operands.empty() ? register_arrangement(static_cast<Register>(operands[0].value)) : Arrangement::None;
     bool _has_vector_arr = !operands.empty() && operands[0].type == OperandType::Register &&
-        operands[0].arrangement != Arrangement::B && operands[0].arrangement != Arrangement::H &&
-        operands[0].arrangement != Arrangement::S && operands[0].arrangement != Arrangement::D &&
-        operands[0].arrangement != Arrangement::Q && operands[0].arrangement != Arrangement::None;
+        _first_arr != Arrangement::B && _first_arr != Arrangement::H &&
+        _first_arr != Arrangement::S && _first_arr != Arrangement::D &&
+        _first_arr != Arrangement::Q && _first_arr != Arrangement::None;
     if (_has_vector_arr && !(raw_value >> 31) && ((raw_value >> 30) & 1)) {  // Q bit, non-SME only
         if (mnemonic == Mnemonic::PMULL || mnemonic == Mnemonic::SMLAL || mnemonic == Mnemonic::SMLSL ||
             mnemonic == Mnemonic::UMLAL || mnemonic == Mnemonic::UMLSL || mnemonic == Mnemonic::SMULL ||
@@ -2330,76 +2309,34 @@ std::string Operand::to_string() const {
         case OperandType::Register: {
             auto rv = static_cast<Register>(value);
             uint16_t rv_i = static_cast<uint16_t>(rv);
-            // Wrapped GP register (W0-W30=0-30, WZR=31, WSP=32, X0-X30=33-63, XZR=64, SP=65)
-            if (rv_i <= 65) {
-                return register_to_string(rv);
-            }
-            // B/H/S/D/Q/V registers (66-257)
-            if (rv_i <= 257) {
-                // Future: wrapped vector register
-                std::string r = register_to_string(rv);
-                if (arrangement != Arrangement::None && r[0] == 'v') {
-                    r += "."; r += arrangement_to_string(arrangement);
-                }
-                if (has_index && arrangement != Arrangement::None) {
-                    std::string _idx_s;
-                    if (index >= 10) { std::ostringstream _oss; _oss << "0x" << std::hex << index; _idx_s = _oss.str(); }
-                    else _idx_s = std::to_string(index);
-                    return r + "[" + _idx_s + "]";
-                } else if (has_index) {
-                    return r + "[" + std::to_string(index) + "]";
-                }
-                return r;
-            }
-            // Z registers (258-289)
-            if (rv_i <= 289) {
-                std::string r = register_to_string(rv);
-                if (arrangement != Arrangement::None) { r += "."; r += arrangement_to_string(arrangement); }
-                if (has_index) {
-                    if (index >= 10) { std::ostringstream _oss; _oss << "[0x" << std::hex << index << "]"; r += _oss.str(); }
-                    else r += "[" + std::to_string(index) + "]";
-                }
-                return r;
-            }
-            // P registers (290-305)
-            if (rv_i <= 305) {
-                std::string r = register_to_string(rv);
-                if (arrangement != Arrangement::None) { r += "."; r += arrangement_to_string(arrangement); }
+            std::string r = register_to_string(rv);
+            // P registers: qualifier and PSEL index
+            if (rv_i >= REG_P_BASE && rv_i < REG_PN_BASE) {
                 if (extend == 1) r += "/z";
                 else if (extend == 2) r += "/m";
-                if (has_index) r += "[w" + std::to_string(index_reg) + ", " + std::to_string(index) + "]";
+                if (flags.has_index) r += std::string("[") + register_to_string(index_reg) + ", " + std::to_string(index) + "]";
                 return r;
             }
-            // PN registers (306-321)
-            if (rv_i <= 321) {
-                std::string r = register_to_string(rv);
-                if (arrangement != Arrangement::None) { r += "."; r += arrangement_to_string(arrangement); }
-                if (has_index) r += "[" + std::to_string(index) + "]";
+            // PN registers: index then qualifier
+            if (rv_i >= REG_PN_BASE && rv_i < REG_ZA_BASE) {
+                if (flags.has_index) r += "[" + std::to_string(index) + "]";
                 if (extend == 1) r += "/z";
                 else if (extend == 2) r += "/m";
                 return r;
             }
-            // ZA registers (322-330)
-            if (rv_i <= 330) {
-                std::string r = register_to_string(rv);
-                if (arrangement != Arrangement::None) { r += "."; r += arrangement_to_string(arrangement); }
-                return r;
+            // Generic index display for V/Z/ZT0 etc.
+            if (flags.has_index) {
+                if (index >= 10) { std::ostringstream _oss; _oss << "[0x" << std::hex << index << "]"; r += _oss.str(); }
+                else r += "[" + std::to_string(index) + "]";
             }
-            // ZT0 (331)
-            if (rv_i == 331) {
-                if (has_index) return "zt0[" + std::to_string(index) + "]";
-                return "zt0";
-            }
-            // Fallback: should not reach here (all regs now use Register enum)
-            return register_to_string(rv);
+            return r;
         }
 
         case OperandType::Immediate:
             {
                 std::ostringstream oss;
-                // Use imm64 for 64-bit logical immediates
-                uint64_t display_val = imm64 ? imm64 : static_cast<uint64_t>(value);
-                if (prefer_decimal || display_val <= 9) {
+                uint64_t display_val = imm64;
+                if (flags.prefer_decimal || display_val <= 9) {
                     oss << "#" << std::dec << display_val;
                 } else {
                     oss << "#0x" << std::hex << display_val;
@@ -2410,7 +2347,7 @@ std::string Operand::to_string() const {
         case OperandType::SignedImmediate:
             {
                 std::ostringstream oss;
-                int32_t sval = static_cast<int32_t>(value);
+                int32_t sval = offset;
                 if (sval < 0) {
                     if (sval >= -9) {
                         oss << "#" << std::dec << sval;
@@ -2429,10 +2366,14 @@ std::string Operand::to_string() const {
 
 
         case OperandType::SMETileRegister:
+            {
+            auto _sme_rv = static_cast<Register>(value);
+            auto _sme_arr = register_arrangement(_sme_rv);
+            auto _sme_num = register_num(_sme_rv);
             // extend==2: VGx mode: za.T[wN, offs{, vgxN}]
-            if (has_index && extend == 2) {
+            if (flags.has_index && extend == 2) {
                 std::string r = "za";
-                if (arrangement != Arrangement::None) { r += "."; r += Operand::arrangement_to_string(arrangement); }
+                if (_sme_arr != Arrangement::None) { r += "."; r += arrangement_to_string(_sme_arr); }
                 r += "[w" + std::to_string(index) + ", " + std::to_string(amount);
                 int32_t vgx = (int32_t)offset;
                 if (vgx > 1) r += ", vgx" + std::to_string(vgx);
@@ -2440,9 +2381,9 @@ std::string Operand::to_string() const {
                 return r;
             }
             // extend==1 or 3: ZA accumulator range za.T[wN, start:end{, vgxN}]
-            if (has_index && (extend == 1 || extend == 3)) {
+            if (flags.has_index && (extend == 1 || extend == 3)) {
                 std::string r = "za";
-                if (arrangement != Arrangement::None) { r += "."; r += Operand::arrangement_to_string(arrangement); }
+                if (_sme_arr != Arrangement::None) { r += "."; r += arrangement_to_string(_sme_arr); }
                 r += "[w" + std::to_string(index) + ", ";
                 if (amount >= 10) { std::ostringstream oss; oss << "0x" << std::hex << amount; r += oss.str(); }
                 else r += std::to_string(amount);
@@ -2455,16 +2396,16 @@ std::string Operand::to_string() const {
                 return r;
             }
             // extend==5: LDR/STR ZA: za[wN, offs] (no tile number, no H/V)
-            if (has_index && extend == 5) {
+            if (flags.has_index && extend == 5) {
                 std::string r = "za[w" + std::to_string(index) + ", " + std::to_string(amount) + "]";
                 return r;
             }
             // extend==4 or 12: MOVA-style za tile with H/V + range: zaTILEh/v.T[wN, start:end]
             // bit 3 of extend = vertical flag (4=h, 12=v)
-            if (has_index && (extend == 4 || extend == 12)) {
-                std::string r = "za" + std::to_string(value);
+            if (flags.has_index && (extend == 4 || extend == 12)) {
+                std::string r = "za" + std::to_string(_sme_num);
                 r += (extend & 8) ? "v" : "h";
-                if (arrangement != Arrangement::None) { r += "."; r += Operand::arrangement_to_string(arrangement); }
+                if (_sme_arr != Arrangement::None) { r += "."; r += arrangement_to_string(_sme_arr); }
                 r += "[w" + std::to_string(index) + ", ";
                 r += std::to_string(amount);
                 uint32_t range_end = (uint32_t)(offset & 0xFFFF);
@@ -2474,10 +2415,10 @@ std::string Operand::to_string() const {
             }
             // has_index=true: ZA tile slice {zaXv/h.T[wN, offs]} (no spaces inside braces)
             // bit 3 of extend = vertical flag (0=h, 8=v)
-            if (has_index) {
-                std::string r = "{za" + std::to_string(value);
+            if (flags.has_index) {
+                std::string r = "{za" + std::to_string(_sme_num);
                 r += (extend & 8) ? "v" : "h";
-                if (arrangement != Arrangement::None) { r += "."; r += Operand::arrangement_to_string(arrangement); }
+                if (_sme_arr != Arrangement::None) { r += "."; r += arrangement_to_string(_sme_arr); }
                 r += "[w" + std::to_string(index) + ", ";
                 if (amount >= 10) { std::ostringstream oss; oss << "0x" << std::hex << amount; r += oss.str(); }
                 else r += std::to_string(amount);
@@ -2485,9 +2426,9 @@ std::string Operand::to_string() const {
                 return r;
             }
             {
-                std::string r = "za" + std::to_string(value);
-                if (arrangement != Arrangement::None) { r += "."; r += Operand::arrangement_to_string(arrangement); }
+                std::string r = register_to_string(_sme_rv);
                 return r;
+            }
             }
 
 
@@ -2495,7 +2436,7 @@ std::string Operand::to_string() const {
             {
                 const char* s = pstate_to_string(pstate);
                 if (s) return s;
-                return "#" + std::to_string(value);
+                return "#" + std::to_string(static_cast<uint16_t>(pstate));
             }
 
         case OperandType::FixedSym:
@@ -2509,7 +2450,7 @@ std::string Operand::to_string() const {
             {
                 const char* s = sysop_to_string(sysop);
                 if (s) return s;
-                return sys_ops[value];
+                return sys_ops[static_cast<uint16_t>(sysop)];
             }
 
         case OperandType::Memory: {
@@ -2554,9 +2495,10 @@ std::string Operand::to_string() const {
             // [Xn|SP, Rm{, extend {#amount}}] or [Xn|SP, Zm.T{, lsl #N}]
             {
                 std::string result = "[" + format_base_reg(base_reg) + ", ";
-                if (arrangement != Arrangement::None) {
+                uint16_t idx_i = static_cast<uint16_t>(index_reg);
+                if (idx_i >= REG_Z_BASE && idx_i < REG_P_BASE) {
                     // SVE Z register index: [Xn, Zm.T{, mod #N}]
-                    result += "z" + std::to_string(index_reg) + "." + Operand::arrangement_to_string(arrangement);
+                    result += register_to_string(index_reg);
                     const char* sve_extends[] = {"uxtb", "uxth", "uxtw", "lsl",
                                                   "sxtb", "sxth", "sxtw", "sxtx"};
                     if (extend < 8 && extend != 0) {
@@ -2566,9 +2508,8 @@ std::string Operand::to_string() const {
                         result += ", lsl #" + std::to_string(amount);
                     }
                 } else {
-                    // Index register: W for UXTW(2)/SXTW(6), X for UXTX(3)/SXTX(7)/LSL
-                    bool index_is_32 = (extend == 2 || extend == 6);
-                    result += format_register(index_reg, !index_is_32, false);
+                    // GP index register (W/X already encoded in Register enum)
+                    result += register_to_string(index_reg);
                     // extend=3 (UXTX) is equivalent to LSL for 64-bit index
                     // Suppress extend=3 with amount=0 (it's the default)
                     if (extend == 3 && amount == 0) {
@@ -2649,7 +2590,7 @@ std::string Operand::to_string() const {
             // Format as signed hex offset
             {
                 std::ostringstream oss;
-                int32_t sval = static_cast<int32_t>(value);
+                int32_t sval = offset;
                 if (sval < 0) oss << "#-0x" << std::hex << (-sval);
                 else oss << "#0x" << std::hex << sval;
                 return oss.str();
@@ -2659,8 +2600,7 @@ std::string Operand::to_string() const {
             // Format as PC-relative offset (.+0x10 or .-0x10)
             {
                 std::ostringstream oss;
-                // Use imm64 for wide offsets (ADRP), fall back to value
-                int64_t sval = imm64 ? static_cast<int64_t>(imm64) : static_cast<int64_t>(static_cast<int32_t>(value));
+                int64_t sval = static_cast<int64_t>(imm64);
                 if (sval < 0) oss << ".-0x" << std::hex << (-sval);
                 else oss << ".+0x" << std::hex << sval;
                 return oss.str();
@@ -2670,7 +2610,7 @@ std::string Operand::to_string() const {
             {
                 const char* s = pattern_to_string(pattern);
                 if (s) return s;
-                return "#" + std::to_string(value);
+                return "#" + std::to_string(static_cast<uint16_t>(pattern));
             }
 
         case OperandType::SVEMulImm:
@@ -2690,14 +2630,14 @@ std::string Operand::to_string() const {
             {
                 const char* s = prefetch_to_string(prefetch);
                 if (s) return s;
-                return "#" + std::to_string(value);
+                return "#" + std::to_string(static_cast<uint16_t>(prefetch));
             }
 
         case OperandType::Barrier:
             {
                 const char* s = barrier_to_string(barrier);
                 if (s) return s;
-                return "#" + std::to_string(value);
+                return "#" + std::to_string(static_cast<uint16_t>(barrier));
             }
 
         case OperandType::FloatImmediate:
@@ -2725,31 +2665,32 @@ std::string Operand::to_string() const {
         case OperandType::RegisterList:
             {
                 // Detect list type from Register enum value of first element
-                // P registers: 290-305, Z registers: 258-289, V registers: 226-257
-                // Raw 0-31: legacy fallback (should not happen)
+                // Extract base register number and arrangement from the baked-in Register value
+                auto _list_reg = static_cast<Register>(value);
+                auto _list_arr = register_arrangement(_list_reg);
+                auto _list_num = register_num(_list_reg);
                 const char* prefix;
                 uint32_t mask;
-                uint32_t base_num;
-                if (value >= 290 && value <= 305) {
-                    prefix = "p"; mask = 15; base_num = value - 290;
-                } else if (value >= 258 && value <= 289) {
-                    prefix = "z"; mask = 31; base_num = value - 258;
-                } else if (value >= 226 && value <= 257) {
-                    prefix = "v"; mask = 31; base_num = value - 226;
+                uint32_t base_num = _list_num;
+                uint16_t rv = static_cast<uint16_t>(_list_reg);
+                if (rv >= REG_P_BASE && rv < REG_PN_BASE) {
+                    prefix = "p"; mask = 15;
+                } else if (rv >= REG_Z_BASE && rv < REG_P_BASE) {
+                    prefix = "z"; mask = 31;
+                } else if (rv >= REG_V_BASE && rv < REG_Z_BASE) {
+                    prefix = "v"; mask = 31;
                 } else {
-                    // Legacy raw values (should not happen — all lists now wrapped)
-                    mask = 31;
-                    prefix = "v";
-                    base_num = value;
+                    mask = 31; prefix = "v";
                 }
+                const char* arr_str = (_list_arr != Arrangement::None) ? arrangement_to_string(_list_arr) : nullptr;
                 uint32_t stride = (offset > 1) ? (uint32_t)offset : 1;
                 // Use range notation for count>=3 when consecutive and non-wrapping
-                bool is_sve = (value >= 258 && value <= 289);
+                bool is_sve = (rv >= REG_Z_BASE && rv < REG_P_BASE);
                 if (is_sve && stride == 1 && index >= 3 && (base_num + index - 1) <= 31) {
                     std::string result = std::string("{ ") + prefix + std::to_string(base_num);
-                    if (arrangement != Arrangement::None) { result += "."; result += Operand::arrangement_to_string(arrangement); }
+                    if (arr_str) { result += "."; result += arr_str; }
                     result += std::string(" - ") + prefix + std::to_string(base_num + index - 1);
-                    if (arrangement != Arrangement::None) { result += "."; result += Operand::arrangement_to_string(arrangement); }
+                    if (arr_str) { result += "."; result += arr_str; }
                     result += " }";
                     return result;
                 }
@@ -2758,13 +2699,10 @@ std::string Operand::to_string() const {
                     if (i > 0) result += ", ";
                     uint32_t reg = (base_num + i * stride) & mask;
                     result += std::string(prefix) + std::to_string(reg);
-                    if (arrangement != Arrangement::None) {
-                        result += ".";
-                        result += Operand::arrangement_to_string(arrangement);
-                    }
+                    if (arr_str) { result += "."; result += arr_str; }
                 }
                 result += " }";
-                if (has_index) {
+                if (flags.has_index) {
                     result += "[" + std::to_string(amount) + "]";
                 }
                 return result;
@@ -2774,8 +2712,7 @@ std::string Operand::to_string() const {
         case OperandType::MemorySVEOffset:
             // [Zn.T, #offset] or [Zn.T] when offset==0
             {
-                std::string result = "[z" + std::to_string(base_reg);
-                if (arrangement != Arrangement::None) { result += "."; result += Operand::arrangement_to_string(arrangement); }
+                std::string result = "[" + std::string(register_to_string(base_reg));
                 if (offset != 0) {
                     std::ostringstream oss;
                     oss << ", #";

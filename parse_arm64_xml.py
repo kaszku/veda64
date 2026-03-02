@@ -547,7 +547,7 @@ class ARM64XMLParser:
                 hi_f = field_map[hi]['name']
                 lo_f = field_map[lo]['name']
                 lo_width = field_map[lo]['width']
-                return f"op.index = (enc.{member_name}.{hi_f} << {lo_width}) | enc.{member_name}.{lo_f}; op.has_index = true;"
+                return f"op.index = (enc.{member_name}.{hi_f} << {lo_width}) | enc.{member_name}.{lo_f}; op.flags.has_index = true;"
         # Split i4A/i4B/i4C pattern (e.g., fmlal_za_z8z8i_1)
         if 'i4A' in field_map and 'i4B' in field_map and 'i4C' in field_map:
             a_f = field_map['i4A']['name']
@@ -555,12 +555,12 @@ class ARM64XMLParser:
             c_f = field_map['i4C']['name']
             b_w = field_map['i4B']['width']
             c_w = field_map['i4C']['width']
-            return f"op.index = (enc.{member_name}.{a_f} << {b_w + c_w}) | (enc.{member_name}.{b_f} << {c_w}) | enc.{member_name}.{c_f}; op.has_index = true;"
+            return f"op.index = (enc.{member_name}.{a_f} << {b_w + c_w}) | (enc.{member_name}.{b_f} << {c_w}) | enc.{member_name}.{c_f}; op.flags.has_index = true;"
         # Single index fields
         for idx_name in ['i4', 'i2', 'i3', 'i1']:
             if idx_name in field_map and not field_map[idx_name]['is_fixed']:
                 idx_f = field_map[idx_name]['name']
-                return f"op.index = enc.{member_name}.{idx_f}; op.has_index = true;"
+                return f"op.index = enc.{member_name}.{idx_f}; op.flags.has_index = true;"
         return None
 
     def _parse_operands(self, explanations_elem: ET.Element) -> List[Dict]:
@@ -1452,42 +1452,42 @@ class ARM64XMLParser:
         code.append("#endif")
         code.append("class Operand {")
         code.append("    // Private constructors — use static factory methods instead")
-        code.append("    Operand(OperandType t, uint32_t v, bool /*unused*/ = true)")
+        code.append("    Operand(OperandType t, uint16_t v, bool /*unused*/ = true)")
         code.append("        : type(t), value(v) {}")
-        code.append("    Operand(OperandType t, uint32_t base, int32_t off, uint32_t idx_reg = 0, uint32_t ext = 0, uint32_t amt = 0)")
+        code.append("    Operand(OperandType t, uint16_t base, int32_t off, uint32_t idx_reg = 0, uint32_t ext = 0, uint32_t amt = 0)")
         code.append("        : type(t), extend(static_cast<uint8_t>(ext)), index_reg(static_cast<uint8_t>(idx_reg)), base_reg(base), offset(off), amount(static_cast<uint8_t>(amt)) {}")
         code.append("public:")
         code.append("    Operand() = default;")
         code.append("")
         code.append("    // Static factory methods for memory operands")
-        code.append("    static Operand memory_base(uint32_t base) {")
+        code.append("    static Operand memory_base(uint16_t base) {")
         code.append("        Operand op(OperandType::Memory, base, 0);")
         code.append("        op.extend = static_cast<uint8_t>(MemoryMode::Base);")
         code.append("        return op;")
         code.append("    }")
-        code.append("    static Operand memory_offset(uint32_t base, int32_t offset) {")
+        code.append("    static Operand memory_offset(uint16_t base, int32_t offset) {")
         code.append("        Operand op(OperandType::Memory, base, offset);")
         code.append("        op.extend = (offset == 0) ? static_cast<uint8_t>(MemoryMode::Base) : static_cast<uint8_t>(MemoryMode::Offset);")
         code.append("        return op;")
         code.append("    }")
-        code.append("    static Operand memory_pre_index(uint32_t base, int32_t offset) {")
+        code.append("    static Operand memory_pre_index(uint16_t base, int32_t offset) {")
         code.append("        Operand op(OperandType::Memory, base, offset);")
         code.append("        op.extend = static_cast<uint8_t>(MemoryMode::PreIndex);")
         code.append("        return op;")
         code.append("    }")
-        code.append("    static Operand memory_post_index(uint32_t base, int32_t offset) {")
+        code.append("    static Operand memory_post_index(uint16_t base, int32_t offset) {")
         code.append("        Operand op(OperandType::Memory, base, offset);")
         code.append("        op.extend = static_cast<uint8_t>(MemoryMode::PostIndex);")
         code.append("        return op;")
         code.append("    }")
-        code.append("    static Operand memory_mul_vl(uint32_t base, int32_t offset) {")
+        code.append("    static Operand memory_mul_vl(uint16_t base, int32_t offset) {")
         code.append("        if (offset == 0) return memory_base(base);")
         code.append("        Operand op(OperandType::Memory, base, offset);")
         code.append("        op.extend = static_cast<uint8_t>(MemoryMode::MulVL);")
         code.append("        return op;")
         code.append("    }")
-        code.append("    static Operand memory_reg_offset(uint32_t base, uint32_t index, uint32_t extend = 0, uint32_t amount = 0) {")
-        code.append("        return Operand(OperandType::MemoryRegOffset, base, 0, index, extend, amount);")
+        code.append("    static Operand memory_reg_offset(uint16_t base, uint32_t index, uint32_t extend = 0, uint32_t amount = 0) {")
+        code.append("        return Operand(OperandType::MemoryRegOffset, base, 0, static_cast<uint32_t>(index), extend, amount);")
         code.append("    }")
         code.append("")
         code.extend(self._operand_factory_methods())
@@ -1521,7 +1521,7 @@ class ARM64XMLParser:
         code.append("    static Arrangement vec_arr(uint32_t size, uint32_t q);")
         code.append("#endif")
         code.append("};")
-        code.append("static_assert(sizeof(Operand) == 24, \"Operand must be 24 bytes\");")
+        code.append("static_assert(sizeof(Operand) == 16, \"Operand must be 16 bytes\");")
         code.append("#ifdef _MSC_VER")
         code.append("#pragma warning(pop)")
         code.append("#endif")
@@ -1840,29 +1840,7 @@ class ARM64XMLParser:
         code.append("    return (size < 4 && q < 2) ? table[q][size] : Arrangement::None;")
         code.append("}")
         code.append("")
-        code.append("const char* Operand::arrangement_to_string(Arrangement a) {")
-        code.append("    switch (a) {")
-        code.append("        case Arrangement::None: return \"\";")
-        code.append("        case Arrangement::B: return \"b\";")
-        code.append("        case Arrangement::H: return \"h\";")
-        code.append("        case Arrangement::S: return \"s\";")
-        code.append("        case Arrangement::D: return \"d\";")
-        code.append("        case Arrangement::Q: return \"q\";")
-        code.append("        case Arrangement::B8: return \"8b\";")
-        code.append("        case Arrangement::H4: return \"4h\";")
-        code.append("        case Arrangement::S2: return \"2s\";")
-        code.append("        case Arrangement::D1: return \"1d\";")
-        code.append("        case Arrangement::B16: return \"16b\";")
-        code.append("        case Arrangement::H8: return \"8h\";")
-        code.append("        case Arrangement::S4: return \"4s\";")
-        code.append("        case Arrangement::D2: return \"2d\";")
-        code.append("        case Arrangement::Q1: return \"1q\";")
-        code.append("        case Arrangement::B2: return \"2b\";")
-        code.append("        case Arrangement::B4: return \"4b\";")
-        code.append("        case Arrangement::H2: return \"2h\";")
-        code.append("        default: return \"\";")
-        code.append("    }")
-        code.append("}")
+        code.append("// arrangement_to_string is now a free inline function in types.hpp")
         code.append("")
 
         # Generate helper for MOVI/MVNI arrangement determination
@@ -1960,7 +1938,7 @@ class ARM64XMLParser:
         code.append("        auto& op1 = insn.operands[1];")
         code.append("        auto& op2 = insn.operands[2];")
         code.append("        if ((is_sp_reg(op0.value) || is_sp_reg(op1.value)) &&")
-        code.append("            op2.type == OperandType::Immediate && op2.value == 0) {")
+        code.append("            op2.type == OperandType::Immediate && op2.imm64 == 0) {")
         code.append('            return std::string("mov ") + op0.to_string() + ", " + op1.to_string();')
         code.append("        }")
         code.append("        }")
@@ -1984,7 +1962,7 @@ class ARM64XMLParser:
         code.append("    if (insn.mnemonic == Mnemonic::MOVZ && insn.operands.size() >= 2) {")
         code.append("        // hw = bits 22:21 of raw instruction; shift_amt = hw * 16")
         code.append("        uint32_t hw_val = (insn.raw_value >> 21) & 0x3;")
-        code.append("        uint64_t imm_val = insn.operands[1].value;")
+        code.append("        uint64_t imm_val = insn.operands[1].imm64;")
         code.append("        bool is_64z = register_is_64bit(static_cast<Register>(insn.operands[0].value));")
         code.append("        uint64_t final_val = imm_val << (hw_val * 16);")
         code.append("        std::ostringstream oss;")
@@ -2001,7 +1979,7 @@ class ARM64XMLParser:
         code.append("    if (insn.mnemonic == Mnemonic::MOVN && insn.operands.size() >= 2) {")
         code.append("        // hw = bits 22:21 of raw instruction; shift_amt = hw * 16")
         code.append("        uint32_t hw_val = (insn.raw_value >> 21) & 0x3;")
-        code.append("        uint64_t imm_val = insn.operands[1].value;")
+        code.append("        uint64_t imm_val = insn.operands[1].imm64;")
         code.append("        bool is_64n = register_is_64bit(static_cast<Register>(insn.operands[0].value));")
         code.append("        uint64_t final_val = ~(imm_val << (hw_val * 16));")
         code.append("        if (!is_64n) final_val &= 0xFFFFFFFFULL;")
@@ -2450,7 +2428,7 @@ class ARM64XMLParser:
         code.append("")
         # SVE DUP → MOV alias (all DUP Z forms)
         code.append("    // SVE: DUP → MOV alias")
-        code.append("    if (insn.mnemonic == Mnemonic::DUP && insn.operands.size() >= 1 && insn.operands[0].type == OperandType::Register && insn.operands[0].value >= static_cast<uint32_t>(Register::Z0)) {")
+        code.append("    if (insn.mnemonic == Mnemonic::DUP && insn.operands.size() >= 1 && insn.operands[0].type == OperandType::Register && insn.operands[0].value >= static_cast<uint16_t>(Register::Z0)) {")
         code.append("        std::ostringstream oss;")
         code.append('        oss << "mov";')
         code.append("        for (size_t i = 0; i < insn.operands.size(); ++i) {")
@@ -2477,7 +2455,7 @@ class ARM64XMLParser:
         code.append("")
         # SVE ORR Zd, Zn, Zm with Zn==Zm → MOV Zd, Zn
         code.append("    // SVE: ORR z,z,z with Zn==Zm → MOV z,z")
-        code.append("    if (insn.mnemonic == Mnemonic::ORR && insn.operands.size() == 3 && insn.operands[0].type == OperandType::Register && insn.operands[0].value >= static_cast<uint32_t>(Register::Z0)) {")
+        code.append("    if (insn.mnemonic == Mnemonic::ORR && insn.operands.size() == 3 && insn.operands[0].type == OperandType::Register && insn.operands[0].value >= static_cast<uint16_t>(Register::Z0)) {")
         code.append("        auto& op1 = insn.operands[1]; auto& op2 = insn.operands[2];")
         code.append("        if (op1.type == OperandType::Register && op2.type == OperandType::Register && op1.value == op2.value) {")
         code.append("            std::ostringstream oss;")
@@ -2515,7 +2493,7 @@ class ARM64XMLParser:
         code.append("    }")
         code.append("")
         code.append("    // NOT (SIMD vector) → MVN alias (only for V registers, not SVE Z)")
-        code.append("    if (insn.mnemonic == Mnemonic::NOT && !insn.operands.empty() && insn.operands[0].type == OperandType::Register && insn.operands[0].value < static_cast<uint32_t>(Register::Z0)) {")
+        code.append("    if (insn.mnemonic == Mnemonic::NOT && !insn.operands.empty() && insn.operands[0].type == OperandType::Register && insn.operands[0].value < static_cast<uint16_t>(Register::Z0)) {")
         code.append("        std::ostringstream oss;")
         code.append('        oss << "mvn";')
         code.append('        for (size_t i = 0; i < insn.operands.size(); ++i) { oss << (i == 0 ? " " : ", ") << insn.operands[i].to_string(); }')
@@ -2542,10 +2520,11 @@ class ARM64XMLParser:
         code.append("    // Only for SIMD (bit31=0); SME2 instructions have bit31=1 and must not get this suffix")
         code.append("    // Also exclude scalar forms (asisdmisc) which have bit30=1 as fixed but no Q field")
         code.append("    // Check: first operand must have a multi-element arrangement (not scalar B/H/S/D/Q)")
+        code.append("    Arrangement _first_arr = !operands.empty() ? register_arrangement(static_cast<Register>(operands[0].value)) : Arrangement::None;")
         code.append("    bool _has_vector_arr = !operands.empty() && operands[0].type == OperandType::Register &&")
-        code.append("        operands[0].arrangement != Arrangement::B && operands[0].arrangement != Arrangement::H &&")
-        code.append("        operands[0].arrangement != Arrangement::S && operands[0].arrangement != Arrangement::D &&")
-        code.append("        operands[0].arrangement != Arrangement::Q && operands[0].arrangement != Arrangement::None;")
+        code.append("        _first_arr != Arrangement::B && _first_arr != Arrangement::H &&")
+        code.append("        _first_arr != Arrangement::S && _first_arr != Arrangement::D &&")
+        code.append("        _first_arr != Arrangement::Q && _first_arr != Arrangement::None;")
         code.append("    if (_has_vector_arr && !(raw_value >> 31) && ((raw_value >> 30) & 1)) {  // Q bit, non-SME only")
         code.append("        if (mnemonic == Mnemonic::PMULL || mnemonic == Mnemonic::SMLAL || mnemonic == Mnemonic::SMLSL ||")
         code.append("            mnemonic == Mnemonic::UMLAL || mnemonic == Mnemonic::UMLSL || mnemonic == Mnemonic::SMULL ||")
@@ -2603,76 +2582,34 @@ class ARM64XMLParser:
         code.append("        case OperandType::Register: {")
         code.append("            auto rv = static_cast<Register>(value);")
         code.append("            uint16_t rv_i = static_cast<uint16_t>(rv);")
-        code.append("            // Wrapped GP register (W0-W30=0-30, WZR=31, WSP=32, X0-X30=33-63, XZR=64, SP=65)")
-        code.append("            if (rv_i <= 65) {")
-        code.append("                return register_to_string(rv);")
-        code.append("            }")
-        code.append("            // B/H/S/D/Q/V registers (66-257)")
-        code.append("            if (rv_i <= 257) {")
-        code.append("                // Future: wrapped vector register")
-        code.append("                std::string r = register_to_string(rv);")
-        code.append("                if (arrangement != Arrangement::None && r[0] == 'v') {")
-        code.append("                    r += \".\"; r += arrangement_to_string(arrangement);")
-        code.append("                }")
-        code.append("                if (has_index && arrangement != Arrangement::None) {")
-        code.append("                    std::string _idx_s;")
-        code.append("                    if (index >= 10) { std::ostringstream _oss; _oss << \"0x\" << std::hex << index; _idx_s = _oss.str(); }")
-        code.append("                    else _idx_s = std::to_string(index);")
-        code.append("                    return r + \"[\" + _idx_s + \"]\";")
-        code.append("                } else if (has_index) {")
-        code.append("                    return r + \"[\" + std::to_string(index) + \"]\";")
-        code.append("                }")
-        code.append("                return r;")
-        code.append("            }")
-        code.append("            // Z registers (258-289)")
-        code.append("            if (rv_i <= 289) {")
-        code.append("                std::string r = register_to_string(rv);")
-        code.append("                if (arrangement != Arrangement::None) { r += \".\"; r += arrangement_to_string(arrangement); }")
-        code.append("                if (has_index) {")
-        code.append("                    if (index >= 10) { std::ostringstream _oss; _oss << \"[0x\" << std::hex << index << \"]\"; r += _oss.str(); }")
-        code.append("                    else r += \"[\" + std::to_string(index) + \"]\";")
-        code.append("                }")
-        code.append("                return r;")
-        code.append("            }")
-        code.append("            // P registers (290-305)")
-        code.append("            if (rv_i <= 305) {")
-        code.append("                std::string r = register_to_string(rv);")
-        code.append("                if (arrangement != Arrangement::None) { r += \".\"; r += arrangement_to_string(arrangement); }")
+        code.append("            std::string r = register_to_string(rv);")
+        code.append("            // P registers: qualifier and PSEL index")
+        code.append(f"            if (rv_i >= REG_P_BASE && rv_i < REG_PN_BASE) {{")
         code.append("                if (extend == 1) r += \"/z\";")
         code.append("                else if (extend == 2) r += \"/m\";")
-        code.append("                if (has_index) r += \"[w\" + std::to_string(index_reg) + \", \" + std::to_string(index) + \"]\";")
+        code.append("                if (flags.has_index) r += std::string(\"[\") + register_to_string(index_reg) + \", \" + std::to_string(index) + \"]\";")
         code.append("                return r;")
         code.append("            }")
-        code.append("            // PN registers (306-321)")
-        code.append("            if (rv_i <= 321) {")
-        code.append("                std::string r = register_to_string(rv);")
-        code.append("                if (arrangement != Arrangement::None) { r += \".\"; r += arrangement_to_string(arrangement); }")
-        code.append("                if (has_index) r += \"[\" + std::to_string(index) + \"]\";")
+        code.append("            // PN registers: index then qualifier")
+        code.append(f"            if (rv_i >= REG_PN_BASE && rv_i < REG_ZA_BASE) {{")
+        code.append("                if (flags.has_index) r += \"[\" + std::to_string(index) + \"]\";")
         code.append("                if (extend == 1) r += \"/z\";")
         code.append("                else if (extend == 2) r += \"/m\";")
         code.append("                return r;")
         code.append("            }")
-        code.append("            // ZA registers (322-330)")
-        code.append("            if (rv_i <= 330) {")
-        code.append("                std::string r = register_to_string(rv);")
-        code.append("                if (arrangement != Arrangement::None) { r += \".\"; r += arrangement_to_string(arrangement); }")
-        code.append("                return r;")
+        code.append("            // Generic index display for V/Z/ZT0 etc.")
+        code.append("            if (flags.has_index) {")
+        code.append("                if (index >= 10) { std::ostringstream _oss; _oss << \"[0x\" << std::hex << index << \"]\"; r += _oss.str(); }")
+        code.append("                else r += \"[\" + std::to_string(index) + \"]\";")
         code.append("            }")
-        code.append("            // ZT0 (331)")
-        code.append("            if (rv_i == 331) {")
-        code.append("                if (has_index) return \"zt0[\" + std::to_string(index) + \"]\";")
-        code.append("                return \"zt0\";")
-        code.append("            }")
-        code.append("            // Fallback: should not reach here (all regs now use Register enum)")
-        code.append("            return register_to_string(rv);")
+        code.append("            return r;")
         code.append("        }")
         code.append("        ")
         code.append("        case OperandType::Immediate:")
         code.append("            {")
         code.append("                std::ostringstream oss;")
-        code.append("                // Use imm64 for 64-bit logical immediates")
-        code.append("                uint64_t display_val = imm64 ? imm64 : static_cast<uint64_t>(value);")
-        code.append("                if (prefer_decimal || display_val <= 9) {")
+        code.append("                uint64_t display_val = imm64;")
+        code.append("                if (flags.prefer_decimal || display_val <= 9) {")
         code.append("                    oss << \"#\" << std::dec << display_val;")
         code.append("                } else {")
         code.append("                    oss << \"#0x\" << std::hex << display_val;")
@@ -2683,7 +2620,7 @@ class ARM64XMLParser:
         code.append("        case OperandType::SignedImmediate:")
         code.append("            {")
         code.append("                std::ostringstream oss;")
-        code.append("                int32_t sval = static_cast<int32_t>(value);")
+        code.append("                int32_t sval = offset;")
         code.append("                if (sval < 0) {")
         code.append("                    if (sval >= -9) {")
         code.append("                        oss << \"#\" << std::dec << sval;")
@@ -2704,10 +2641,14 @@ class ARM64XMLParser:
         code.append("        ")
         code.extend("""\
         case OperandType::SMETileRegister:
+            {
+            auto _sme_rv = static_cast<Register>(value);
+            auto _sme_arr = register_arrangement(_sme_rv);
+            auto _sme_num = register_num(_sme_rv);
             // extend==2: VGx mode: za.T[wN, offs{, vgxN}]
-            if (has_index && extend == 2) {
+            if (flags.has_index && extend == 2) {
                 std::string r = "za";
-                if (arrangement != Arrangement::None) { r += "."; r += Operand::arrangement_to_string(arrangement); }
+                if (_sme_arr != Arrangement::None) { r += "."; r += arrangement_to_string(_sme_arr); }
                 r += "[w" + std::to_string(index) + ", " + std::to_string(amount);
                 int32_t vgx = (int32_t)offset;
                 if (vgx > 1) r += ", vgx" + std::to_string(vgx);
@@ -2715,9 +2656,9 @@ class ARM64XMLParser:
                 return r;
             }
             // extend==1 or 3: ZA accumulator range za.T[wN, start:end{, vgxN}]
-            if (has_index && (extend == 1 || extend == 3)) {
+            if (flags.has_index && (extend == 1 || extend == 3)) {
                 std::string r = "za";
-                if (arrangement != Arrangement::None) { r += "."; r += Operand::arrangement_to_string(arrangement); }
+                if (_sme_arr != Arrangement::None) { r += "."; r += arrangement_to_string(_sme_arr); }
                 r += "[w" + std::to_string(index) + ", ";
                 if (amount >= 10) { std::ostringstream oss; oss << "0x" << std::hex << amount; r += oss.str(); }
                 else r += std::to_string(amount);
@@ -2730,16 +2671,16 @@ class ARM64XMLParser:
                 return r;
             }
             // extend==5: LDR/STR ZA: za[wN, offs] (no tile number, no H/V)
-            if (has_index && extend == 5) {
+            if (flags.has_index && extend == 5) {
                 std::string r = "za[w" + std::to_string(index) + ", " + std::to_string(amount) + "]";
                 return r;
             }
             // extend==4 or 12: MOVA-style za tile with H/V + range: zaTILEh/v.T[wN, start:end]
             // bit 3 of extend = vertical flag (4=h, 12=v)
-            if (has_index && (extend == 4 || extend == 12)) {
-                std::string r = "za" + std::to_string(value);
+            if (flags.has_index && (extend == 4 || extend == 12)) {
+                std::string r = "za" + std::to_string(_sme_num);
                 r += (extend & 8) ? "v" : "h";
-                if (arrangement != Arrangement::None) { r += "."; r += Operand::arrangement_to_string(arrangement); }
+                if (_sme_arr != Arrangement::None) { r += "."; r += arrangement_to_string(_sme_arr); }
                 r += "[w" + std::to_string(index) + ", ";
                 r += std::to_string(amount);
                 uint32_t range_end = (uint32_t)(offset & 0xFFFF);
@@ -2749,10 +2690,10 @@ class ARM64XMLParser:
             }
             // has_index=true: ZA tile slice {zaXv/h.T[wN, offs]} (no spaces inside braces)
             // bit 3 of extend = vertical flag (0=h, 8=v)
-            if (has_index) {
-                std::string r = "{za" + std::to_string(value);
+            if (flags.has_index) {
+                std::string r = "{za" + std::to_string(_sme_num);
                 r += (extend & 8) ? "v" : "h";
-                if (arrangement != Arrangement::None) { r += "."; r += Operand::arrangement_to_string(arrangement); }
+                if (_sme_arr != Arrangement::None) { r += "."; r += arrangement_to_string(_sme_arr); }
                 r += "[w" + std::to_string(index) + ", ";
                 if (amount >= 10) { std::ostringstream oss; oss << "0x" << std::hex << amount; r += oss.str(); }
                 else r += std::to_string(amount);
@@ -2760,9 +2701,9 @@ class ARM64XMLParser:
                 return r;
             }
             {
-                std::string r = "za" + std::to_string(value);
-                if (arrangement != Arrangement::None) { r += "."; r += Operand::arrangement_to_string(arrangement); }
+                std::string r = register_to_string(_sme_rv);
                 return r;
+            }
             }""".split('\n'))
         code.append("        ")
         # (PredicateNRegister and SMEZTRegister cases removed — merged into Register above)
@@ -2771,7 +2712,7 @@ class ARM64XMLParser:
         code.append("            {")
         code.append("                const char* s = pstate_to_string(pstate);")
         code.append("                if (s) return s;")
-        code.append("                return \"#\" + std::to_string(value);")
+        code.append("                return \"#\" + std::to_string(static_cast<uint16_t>(pstate));")
         code.append("            }")
         code.append("        ")
         code.append("        case OperandType::FixedSym:")
@@ -2785,7 +2726,7 @@ class ARM64XMLParser:
         code.append("            {")
         code.append("                const char* s = sysop_to_string(sysop);")
         code.append("                if (s) return s;")
-        code.append("                return sys_ops[value];")
+        code.append("                return sys_ops[static_cast<uint16_t>(sysop)];")
         code.append("            }")
         code.append("        ")
         code.append("        case OperandType::Memory: {")
@@ -2830,9 +2771,10 @@ class ARM64XMLParser:
         code.append("            // [Xn|SP, Rm{, extend {#amount}}] or [Xn|SP, Zm.T{, lsl #N}]")
         code.append("            {")
         code.append("                std::string result = \"[\" + format_base_reg(base_reg) + \", \";")
-        code.append("                if (arrangement != Arrangement::None) {")
+        code.append(f"                uint16_t idx_i = static_cast<uint16_t>(index_reg);")
+        code.append(f"                if (idx_i >= REG_Z_BASE && idx_i < REG_P_BASE) {{")
         code.append("                    // SVE Z register index: [Xn, Zm.T{, mod #N}]")
-        code.append("                    result += \"z\" + std::to_string(index_reg) + \".\" + Operand::arrangement_to_string(arrangement);")
+        code.append("                    result += register_to_string(index_reg);")
         code.append("                    const char* sve_extends[] = {\"uxtb\", \"uxth\", \"uxtw\", \"lsl\",")
         code.append("                                                  \"sxtb\", \"sxth\", \"sxtw\", \"sxtx\"};")
         code.append("                    if (extend < 8 && extend != 0) {")
@@ -2842,9 +2784,8 @@ class ARM64XMLParser:
         code.append("                        result += \", lsl #\" + std::to_string(amount);")
         code.append("                    }")
         code.append("                } else {")
-        code.append("                    // Index register: W for UXTW(2)/SXTW(6), X for UXTX(3)/SXTX(7)/LSL")
-        code.append("                    bool index_is_32 = (extend == 2 || extend == 6);")
-        code.append("                    result += format_register(index_reg, !index_is_32, false);")
+        code.append("                    // GP index register (W/X already encoded in Register enum)")
+        code.append("                    result += register_to_string(index_reg);")
         code.append("                    // extend=3 (UXTX) is equivalent to LSL for 64-bit index")
         code.append("                    // Suppress extend=3 with amount=0 (it's the default)")
         code.append("                    if (extend == 3 && amount == 0) {")
@@ -2925,7 +2866,7 @@ class ARM64XMLParser:
         code.append("            // Format as signed hex offset")
         code.append("            {")
         code.append("                std::ostringstream oss;")
-        code.append("                int32_t sval = static_cast<int32_t>(value);")
+        code.append("                int32_t sval = offset;")
         code.append("                if (sval < 0) oss << \"#-0x\" << std::hex << (-sval);")
         code.append("                else oss << \"#0x\" << std::hex << sval;")
         code.append("                return oss.str();")
@@ -2935,8 +2876,7 @@ class ARM64XMLParser:
         code.append("            // Format as PC-relative offset (.+0x10 or .-0x10)")
         code.append("            {")
         code.append("                std::ostringstream oss;")
-        code.append("                // Use imm64 for wide offsets (ADRP), fall back to value")
-        code.append("                int64_t sval = imm64 ? static_cast<int64_t>(imm64) : static_cast<int64_t>(static_cast<int32_t>(value));")
+        code.append("                int64_t sval = static_cast<int64_t>(imm64);")
         code.append("                if (sval < 0) oss << \".-0x\" << std::hex << (-sval);")
         code.append("                else oss << \".+0x\" << std::hex << sval;")
         code.append("                return oss.str();")
@@ -2946,7 +2886,7 @@ class ARM64XMLParser:
         code.append("            {")
         code.append("                const char* s = pattern_to_string(pattern);")
         code.append("                if (s) return s;")
-        code.append("                return \"#\" + std::to_string(value);")
+        code.append("                return \"#\" + std::to_string(static_cast<uint16_t>(pattern));")
         code.append("            }")
         code.append("        ")
         code.append("        case OperandType::SVEMulImm:")
@@ -2967,14 +2907,14 @@ class ARM64XMLParser:
         code.append("            {")
         code.append("                const char* s = prefetch_to_string(prefetch);")
         code.append("                if (s) return s;")
-        code.append("                return \"#\" + std::to_string(value);")
+        code.append("                return \"#\" + std::to_string(static_cast<uint16_t>(prefetch));")
         code.append("            }")
         code.append("        ")
         code.append("        case OperandType::Barrier:")
         code.append("            {")
         code.append("                const char* s = barrier_to_string(barrier);")
         code.append("                if (s) return s;")
-        code.append("                return \"#\" + std::to_string(value);")
+        code.append("                return \"#\" + std::to_string(static_cast<uint16_t>(barrier));")
         code.append("            }")
         code.append("")
         code.append("        case OperandType::FloatImmediate:")
@@ -3003,31 +2943,32 @@ class ARM64XMLParser:
         case OperandType::RegisterList:
             {
                 // Detect list type from Register enum value of first element
-                // P registers: 290-305, Z registers: 258-289, V registers: 226-257
-                // Raw 0-31: legacy fallback (should not happen)
+                // Extract base register number and arrangement from the baked-in Register value
+                auto _list_reg = static_cast<Register>(value);
+                auto _list_arr = register_arrangement(_list_reg);
+                auto _list_num = register_num(_list_reg);
                 const char* prefix;
                 uint32_t mask;
-                uint32_t base_num;
-                if (value >= 290 && value <= 305) {
-                    prefix = "p"; mask = 15; base_num = value - 290;
-                } else if (value >= 258 && value <= 289) {
-                    prefix = "z"; mask = 31; base_num = value - 258;
-                } else if (value >= 226 && value <= 257) {
-                    prefix = "v"; mask = 31; base_num = value - 226;
+                uint32_t base_num = _list_num;
+                uint16_t rv = static_cast<uint16_t>(_list_reg);
+                if (rv >= REG_P_BASE && rv < REG_PN_BASE) {
+                    prefix = "p"; mask = 15;
+                } else if (rv >= REG_Z_BASE && rv < REG_P_BASE) {
+                    prefix = "z"; mask = 31;
+                } else if (rv >= REG_V_BASE && rv < REG_Z_BASE) {
+                    prefix = "v"; mask = 31;
                 } else {
-                    // Legacy raw values (should not happen — all lists now wrapped)
-                    mask = 31;
-                    prefix = "v";
-                    base_num = value;
+                    mask = 31; prefix = "v";
                 }
+                const char* arr_str = (_list_arr != Arrangement::None) ? arrangement_to_string(_list_arr) : nullptr;
                 uint32_t stride = (offset > 1) ? (uint32_t)offset : 1;
                 // Use range notation for count>=3 when consecutive and non-wrapping
-                bool is_sve = (value >= 258 && value <= 289);
+                bool is_sve = (rv >= REG_Z_BASE && rv < REG_P_BASE);
                 if (is_sve && stride == 1 && index >= 3 && (base_num + index - 1) <= 31) {
                     std::string result = std::string("{ ") + prefix + std::to_string(base_num);
-                    if (arrangement != Arrangement::None) { result += "."; result += Operand::arrangement_to_string(arrangement); }
+                    if (arr_str) { result += "."; result += arr_str; }
                     result += std::string(" - ") + prefix + std::to_string(base_num + index - 1);
-                    if (arrangement != Arrangement::None) { result += "."; result += Operand::arrangement_to_string(arrangement); }
+                    if (arr_str) { result += "."; result += arr_str; }
                     result += " }";
                     return result;
                 }
@@ -3036,13 +2977,10 @@ class ARM64XMLParser:
                     if (i > 0) result += ", ";
                     uint32_t reg = (base_num + i * stride) & mask;
                     result += std::string(prefix) + std::to_string(reg);
-                    if (arrangement != Arrangement::None) {
-                        result += ".";
-                        result += Operand::arrangement_to_string(arrangement);
-                    }
+                    if (arr_str) { result += "."; result += arr_str; }
                 }
                 result += " }";
-                if (has_index) {
+                if (flags.has_index) {
                     result += "[" + std::to_string(amount) + "]";
                 }
                 return result;""".split('\n'))
@@ -3053,8 +2991,7 @@ class ARM64XMLParser:
         code.append("        case OperandType::MemorySVEOffset:")
         code.append("            // [Zn.T, #offset] or [Zn.T] when offset==0")
         code.append("            {")
-        code.append("                std::string result = \"[z\" + std::to_string(base_reg);")
-        code.append("                if (arrangement != Arrangement::None) { result += \".\"; result += Operand::arrangement_to_string(arrangement); }")
+        code.append("                std::string result = \"[\" + std::string(register_to_string(base_reg));")
         code.append("                if (offset != 0) {")
         code.append("                    std::ostringstream oss;")
         code.append("                    oss << \", #\";")
@@ -3263,32 +3200,125 @@ class ARM64XMLParser:
         code.append("};")
         code.append("")
 
-        # Generate Register enum
+        # Generate Register enum with arrangement baked in
+        # Layout:
+        #   GP: 0-65 (unchanged)
+        #   Scalar B/H/S/D/Q: 66-225 (unchanged)
+        #   V × 18 arrangements: 226-801 (226 + arr*32 + num)
+        #   Z × 6 arrangements (None,B,H,S,D,Q): 802-993 (802 + arr_z*32 + num)
+        #   P × 5 arrangements (None,B,H,S,D): 994-1073 (994 + arr_p*16 + num)
+        #   PN × 5 arrangements (None,B,H,S,D): 1074-1153 (1074 + arr_p*16 + num)
+        #   ZA × 6 arrangements × 9: 1154-1207 (1154 + arr_za*6 + num, num=8 for generic ZA)
+        #                             Actually: 1154 + arr_za*9 + num
+        #   ZT0: 1208
+        V_BASE = 226
+        Z_BASE = 802
+        P_BASE = 994
+        PN_BASE = 1074
+        ZA_BASE = 1154
+        ZT0_VAL = 1208
+
+        # V arrangement order (18 arrangements, index 0-17):
+        # None=0, B=1, H=2, S=3, D=4, Q=5, B8=6, H4=7, S2=8, D1=9,
+        # B16=10, H8=11, S4=12, D2=13, Q1=14, B2=15, B4=16, H2=17
+        v_arr_names = ['None', 'B', 'H', 'S', 'D', 'Q', 'B8', 'H4', 'S2', 'D1',
+                       'B16', 'H8', 'S4', 'D2', 'Q1', 'B2', 'B4', 'H2']
+        v_arr_suffixes = ['', '.b', '.h', '.s', '.d', '.q', '.8b', '.4h', '.2s', '.1d',
+                          '.16b', '.8h', '.4s', '.2d', '.1q', '.2b', '.4b', '.2h']
+
+        # Z arrangement order (6): None=0, B=1, H=2, S=3, D=4, Q=5
+        z_arr_names = ['None', 'B', 'H', 'S', 'D', 'Q']
+        z_arr_suffixes = ['', '.b', '.h', '.s', '.d', '.q']
+
+        # P/PN arrangement order (5): None=0, B=1, H=2, S=3, D=4
+        p_arr_names = ['None', 'B', 'H', 'S', 'D']
+        p_arr_suffixes = ['', '.b', '.h', '.s', '.d']
+
+        # ZA arrangement order (6): None=0, B=1, H=2, S=3, D=4, Q=5
+        za_arr_names = ['None', 'B', 'H', 'S', 'D', 'Q']
+        za_arr_suffixes = ['', '.b', '.h', '.s', '.d', '.q']
+
         code.append("enum class Register : uint16_t {")
+        # GP registers (0-65) - unchanged
         for i in range(31):
             code.append(f"    W{i} = {i},")
         code.append("    WZR = 31, WSP = 32,")
         for i in range(31):
             code.append(f"    X{i} = {33 + i},")
         code.append("    XZR = 64, SP = 65,")
+        # Scalar B/H/S/D/Q (66-225) - unchanged
         base = 66
         for prefix, count in [("B", 32), ("H", 32), ("S", 32), ("D", 32), ("Q", 32)]:
             for i in range(count):
                 code.append(f"    {prefix}{i} = {base + i},")
             base += count
+        # V × 18 arrangements (226-801)
+        # Only emit named entries for None arrangement (V0-V31), rest are computed
         for i in range(32):
-            code.append(f"    V{i} = {226 + i},")
+            code.append(f"    V{i} = {V_BASE + i},  // V with None arrangement")
+        code.append(f"    // V registers with arrangements: {V_BASE} + arr_index*32 + num (arr 0-17, num 0-31)")
+        # Z × 6 arrangements (802-993)
         for i in range(32):
-            code.append(f"    Z{i} = {258 + i},")
+            code.append(f"    Z{i} = {Z_BASE + i},  // Z with None arrangement")
+        code.append(f"    // Z registers with arrangements: {Z_BASE} + arr_z*32 + num (arr_z 0-5, num 0-31)")
+        # P × 5 arrangements (994-1073)
         for i in range(16):
-            code.append(f"    P{i} = {290 + i},")
+            code.append(f"    P{i} = {P_BASE + i},  // P with None arrangement")
+        code.append(f"    // P registers with arrangements: {P_BASE} + arr_p*16 + num (arr_p 0-4, num 0-15)")
+        # PN × 5 arrangements (1074-1153)
         for i in range(16):
-            code.append(f"    PN{i} = {306 + i},")
+            code.append(f"    PN{i} = {PN_BASE + i},  // PN with None arrangement")
+        code.append(f"    // PN registers with arrangements: {PN_BASE} + arr_p*16 + num (arr_p 0-4, num 0-15)")
+        # ZA × 6 arrangements × 9 (1154-1207)
         for i in range(8):
-            code.append(f"    ZA{i} = {322 + i},")
-        code.append("    ZA = 330, ZT0 = 331,")
+            code.append(f"    ZA{i} = {ZA_BASE + i},  // ZA tile with None arrangement")
+        code.append(f"    ZA = {ZA_BASE + 8},  // Generic ZA with None arrangement")
+        code.append(f"    // ZA registers with arrangements: {ZA_BASE} + arr_za*9 + num (arr_za 0-5, num 0-7, 8=generic ZA)")
+        # ZT0
+        code.append(f"    ZT0 = {ZT0_VAL},")
         code.append("};")
         code.append("")
+
+        # Constants for layout
+        code.append(f"inline constexpr uint16_t REG_V_BASE = {V_BASE};")
+        code.append(f"inline constexpr uint16_t REG_Z_BASE = {Z_BASE};")
+        code.append(f"inline constexpr uint16_t REG_P_BASE = {P_BASE};")
+        code.append(f"inline constexpr uint16_t REG_PN_BASE = {PN_BASE};")
+        code.append(f"inline constexpr uint16_t REG_ZA_BASE = {ZA_BASE};")
+        code.append(f"inline constexpr uint16_t REG_ZT0 = {ZT0_VAL};")
+        code.append("")
+
+        # Arrangement mapping tables for each register family
+        # V uses all 18 arrangements directly (Arrangement enum ordinal = arr index)
+        # Z uses: None=0, B=1, H=2, S=3, D=4, Q=5
+        # P/PN uses: None=0, B=1, H=2, S=3, D=4
+        # ZA uses: None=0, B=1, H=2, S=3, D=4, Q=5
+
+        code.append("// Map Arrangement enum ordinal to block-specific index")
+        code.append("inline constexpr uint8_t arr_to_v_index(Arrangement a) {")
+        code.append("    return static_cast<uint8_t>(a);  // V uses all 18, direct mapping")
+        code.append("}")
+        code.append("")
+        code.append("inline constexpr uint8_t arr_to_z_index(Arrangement a) {")
+        code.append("    // Z supports None(0), B(1), H(2), S(3), D(4), Q(5)")
+        code.append("    auto v = static_cast<uint8_t>(a);")
+        code.append("    return (v <= 5) ? v : 0;")
+        code.append("}")
+        code.append("")
+        code.append("inline constexpr uint8_t arr_to_p_index(Arrangement a) {")
+        code.append("    // P/PN supports None(0), B(1), H(2), S(3), D(4)")
+        code.append("    auto v = static_cast<uint8_t>(a);")
+        code.append("    return (v <= 4) ? v : 0;")
+        code.append("}")
+        code.append("")
+        code.append("inline constexpr uint8_t arr_to_za_index(Arrangement a) {")
+        code.append("    // ZA supports None(0), B(1), H(2), S(3), D(4), Q(5)")
+        code.append("    auto v = static_cast<uint8_t>(a);")
+        code.append("    return (v <= 5) ? v : 0;")
+        code.append("}")
+        code.append("")
+
+        # make_gp_reg unchanged
         code.append("inline constexpr Register make_gp_reg(uint32_t num, bool is_64, bool is_sp = false) {")
         code.append("    if (is_64) {")
         code.append("        if (num == 31) return is_sp ? Register::SP : Register::XZR;")
@@ -3300,7 +3330,6 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
         code.append("inline constexpr Register make_scalar_reg(uint32_t num, Arrangement size) {")
-        code.append("    // size: B=1,H=2,S=3,D=4,Q=5")
         code.append("    switch (size) {")
         code.append("        case Arrangement::B: return static_cast<Register>(66 + num);")
         code.append("        case Arrangement::H: return static_cast<Register>(98 + num);")
@@ -3311,64 +3340,178 @@ class ARM64XMLParser:
         code.append("    }")
         code.append("}")
         code.append("")
-        code.append("inline constexpr Register make_vec_reg(uint32_t num) {")
-        code.append("    return static_cast<Register>(226 + num); // V0=226")
+        code.append(f"inline constexpr Register make_vec_reg(uint32_t num, Arrangement arr = Arrangement::None) {{")
+        code.append(f"    return static_cast<Register>({V_BASE} + arr_to_v_index(arr) * 32 + num);")
         code.append("}")
         code.append("")
-        code.append("inline constexpr Register make_sve_reg(uint32_t num) {")
-        code.append("    return static_cast<Register>(258 + num); // Z0=258")
+        code.append(f"inline constexpr Register make_sve_reg(uint32_t num, Arrangement arr = Arrangement::None) {{")
+        code.append(f"    return static_cast<Register>({Z_BASE} + arr_to_z_index(arr) * 32 + num);")
         code.append("}")
         code.append("")
-        code.append("inline constexpr Register make_pred_reg(uint32_t num) {")
-        code.append("    return static_cast<Register>(290 + num); // P0=290")
+        code.append(f"inline constexpr Register make_pred_reg(uint32_t num, Arrangement arr = Arrangement::None) {{")
+        code.append(f"    return static_cast<Register>({P_BASE} + arr_to_p_index(arr) * 16 + num);")
         code.append("}")
         code.append("")
-        code.append("inline constexpr Register make_predn_reg(uint32_t num) {")
-        code.append("    return static_cast<Register>(306 + num); // PN0=306")
+        code.append(f"inline constexpr Register make_predn_reg(uint32_t num, Arrangement arr = Arrangement::None) {{")
+        code.append(f"    return static_cast<Register>({PN_BASE} + arr_to_p_index(arr) * 16 + num);")
         code.append("}")
         code.append("")
+        code.append(f"inline constexpr Register make_za_reg(uint32_t num, Arrangement arr = Arrangement::None) {{")
+        code.append(f"    // num: 0-7 for tiles, 8 for generic ZA")
+        code.append(f"    return static_cast<Register>({ZA_BASE} + arr_to_za_index(arr) * 9 + num);")
+        code.append("}")
+        code.append("")
+
+        # register_num - updated for new ranges
         code.append("inline constexpr uint32_t register_num(Register r) {")
         code.append("    auto v = static_cast<uint16_t>(r);")
-        code.append("    if (v <= 32) return (v <= 30) ? v : 31;")
-        code.append("    if (v <= 65) return (v <= 63) ? v - 33 : 31;")
-        code.append("    if (v <= 289) return (v - 66) % 32;")
-        code.append("    if (v <= 321) return (v - 290) % 16;")
-        code.append("    return 0;")
+        code.append("    if (v <= 32) return (v <= 30) ? v : 31;")           # W0-WSP
+        code.append("    if (v <= 65) return (v <= 63) ? v - 33 : 31;")     # X0-SP
+        code.append(f"    if (v <= 225) return (v - 66) % 32;")              # B/H/S/D/Q scalars
+        code.append(f"    if (v <= {Z_BASE-1}) return (v - {V_BASE}) % 32;")  # V regs
+        code.append(f"    if (v <= {P_BASE-1}) return (v - {Z_BASE}) % 32;")  # Z regs
+        code.append(f"    if (v <= {PN_BASE-1}) return (v - {P_BASE}) % 16;") # P regs
+        code.append(f"    if (v <= {ZA_BASE-1}) return (v - {PN_BASE}) % 16;") # PN regs
+        code.append(f"    if (v <= {ZT0_VAL-1}) return (v - {ZA_BASE}) % 9;")  # ZA regs
+        code.append(f"    return 0;")
         code.append("}")
         code.append("")
+
+        # register_arrangement - extract Arrangement from Register enum value
+        code.append("inline constexpr Arrangement register_arrangement(Register r) {")
+        code.append("    auto v = static_cast<uint16_t>(r);")
+        code.append(f"    if (v < {V_BASE}) return Arrangement::None;")  # GP + scalar
+        code.append(f"    if (v <= {Z_BASE-1}) return static_cast<Arrangement>((v - {V_BASE}) / 32u);")  # V: direct
+        code.append(f"    if (v <= {P_BASE-1}) {{")  # Z
+        code.append(f"        auto idx = static_cast<uint8_t>((v - {Z_BASE}) / 32u);")
+        code.append("        static constexpr Arrangement z_arrs[] = {Arrangement::None, Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D, Arrangement::Q};")
+        code.append("        return (idx < 6) ? z_arrs[idx] : Arrangement::None;")
+        code.append("    }")
+        code.append(f"    if (v <= {PN_BASE-1}) {{")  # P
+        code.append(f"        auto idx = static_cast<uint8_t>((v - {P_BASE}) / 16u);")
+        code.append("        static constexpr Arrangement p_arrs[] = {Arrangement::None, Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};")
+        code.append("        return (idx < 5) ? p_arrs[idx] : Arrangement::None;")
+        code.append("    }")
+        code.append(f"    if (v <= {ZA_BASE-1}) {{")  # PN
+        code.append(f"        auto idx = static_cast<uint8_t>((v - {PN_BASE}) / 16u);")
+        code.append("        static constexpr Arrangement p_arrs[] = {Arrangement::None, Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};")
+        code.append("        return (idx < 5) ? p_arrs[idx] : Arrangement::None;")
+        code.append("    }")
+        code.append(f"    if (v <= {ZT0_VAL-1}) {{")  # ZA
+        code.append(f"        auto idx = static_cast<uint8_t>((v - {ZA_BASE}) / 9u);")
+        code.append("        static constexpr Arrangement za_arrs[] = {Arrangement::None, Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D, Arrangement::Q};")
+        code.append("        return (idx < 6) ? za_arrs[idx] : Arrangement::None;")
+        code.append("    }")
+        code.append("    return Arrangement::None;")
+        code.append("}")
+        code.append("")
+
+        # set_register_arrangement - re-encode with new arrangement
+        code.append("inline constexpr Register set_register_arrangement(Register r, Arrangement arr) {")
+        code.append("    auto v = static_cast<uint16_t>(r);")
+        code.append(f"    if (v < {V_BASE}) return r;")  # GP + scalar: no-op
+        code.append(f"    if (v <= {Z_BASE-1}) return make_vec_reg((v - {V_BASE}) % 32, arr);")
+        code.append(f"    if (v <= {P_BASE-1}) return make_sve_reg((v - {Z_BASE}) % 32, arr);")
+        code.append(f"    if (v <= {PN_BASE-1}) return make_pred_reg((v - {P_BASE}) % 16, arr);")
+        code.append(f"    if (v <= {ZA_BASE-1}) return make_predn_reg((v - {PN_BASE}) % 16, arr);")
+        code.append(f"    if (v <= {ZT0_VAL-1}) return make_za_reg((v - {ZA_BASE}) % 9, arr);")
+        code.append("    return r;")
+        code.append("}")
+        code.append("")
+
         code.append("inline constexpr bool register_is_64bit(Register r) {")
         code.append("    auto v = static_cast<uint16_t>(r);")
-        code.append("    return v >= 33 && v <= 65; // X0..XZR, SP")
+        code.append("    return v >= 33 && v <= 65;")
         code.append("}")
         code.append("")
         code.append("inline constexpr bool register_is_sp(Register r) {")
         code.append("    return r == Register::SP || r == Register::WSP;")
         code.append("}")
         code.append("")
+
+        # register_to_string - table-based for all 1209 entries
         code.append("#ifndef VEDA64_NO_STRINGS")
         code.append("inline const char* register_to_string(Register r) {")
-        code.append("    switch (r) {")
+        code.append("    auto v = static_cast<uint16_t>(r);")
+        # GP registers (0-65) - use switch
+        code.append("    if (v <= 65) {")
+        code.append("        switch (r) {")
         for i in range(31):
-            code.append(f'    case Register::W{i}: return "w{i}";')
-        code.append('    case Register::WZR: return "wzr";')
-        code.append('    case Register::WSP: return "wsp";')
+            code.append(f'        case Register::W{i}: return "w{i}";')
+        code.append('        case Register::WZR: return "wzr";')
+        code.append('        case Register::WSP: return "wsp";')
         for i in range(31):
-            code.append(f'    case Register::X{i}: return "x{i}";')
-        code.append('    case Register::XZR: return "xzr";')
-        code.append('    case Register::SP: return "sp";')
-        for prefix in ["B", "H", "S", "D", "Q", "V", "Z"]:
-            for i in range(32):
-                code.append(f'    case Register::{prefix}{i}: return "{prefix.lower()}{i}";')
-        for i in range(16):
-            code.append(f'    case Register::P{i}: return "p{i}";')
-        for i in range(16):
-            code.append(f'    case Register::PN{i}: return "pn{i}";')
-        for i in range(8):
-            code.append(f'    case Register::ZA{i}: return "za{i}";')
-        code.append('    case Register::ZA: return "za";')
-        code.append('    case Register::ZT0: return "zt0";')
-        code.append('    default: return "?";')
+            code.append(f'        case Register::X{i}: return "x{i}";')
+        code.append('        case Register::XZR: return "xzr";')
+        code.append('        case Register::SP: return "sp";')
+        code.append('        default: return "?";')
+        code.append("        }")
         code.append("    }")
+        # Scalar B/H/S/D/Q (66-225)
+        code.append("    if (v <= 225) {")
+        code.append("        static const char* scalar_names[] = {")
+        for prefix_lower, base_val in [("b", 66), ("h", 98), ("s", 130), ("d", 162), ("q", 194)]:
+            for i in range(32):
+                code.append(f'            "{prefix_lower}{i}",')
+        code.append("        };")
+        code.append("        return scalar_names[v - 66];")
+        code.append("    }")
+        # V registers with arrangements (226-801)
+        code.append(f"    if (v <= {Z_BASE-1}) {{")
+        code.append("        static const char* v_names[] = {")
+        for arr_idx, suffix in enumerate(v_arr_suffixes):
+            for i in range(32):
+                code.append(f'            "v{i}{suffix}",')
+        code.append("        };")
+        code.append(f"        return v_names[v - {V_BASE}];")
+        code.append("    }")
+        # Z registers with arrangements (802-993)
+        code.append(f"    if (v <= {P_BASE-1}) {{")
+        code.append("        static const char* z_names[] = {")
+        for arr_idx, suffix in enumerate(z_arr_suffixes):
+            for i in range(32):
+                code.append(f'            "z{i}{suffix}",')
+        code.append("        };")
+        code.append(f"        return z_names[v - {Z_BASE}];")
+        code.append("    }")
+        # P registers with arrangements (994-1073)
+        code.append(f"    if (v <= {PN_BASE-1}) {{")
+        code.append("        static const char* p_names[] = {")
+        for arr_idx, suffix in enumerate(p_arr_suffixes):
+            for i in range(16):
+                code.append(f'            "p{i}{suffix}",')
+        code.append("        };")
+        code.append(f"        return p_names[v - {P_BASE}];")
+        code.append("    }")
+        # PN registers with arrangements (1074-1153)
+        code.append(f"    if (v <= {ZA_BASE-1}) {{")
+        code.append("        static const char* pn_names[] = {")
+        for arr_idx, suffix in enumerate(p_arr_suffixes):
+            for i in range(16):
+                code.append(f'            "pn{i}{suffix}",')
+        code.append("        };")
+        code.append(f"        return pn_names[v - {PN_BASE}];")
+        code.append("    }")
+        # ZA registers with arrangements (1154-1207)
+        code.append(f"    if (v <= {ZT0_VAL-1}) {{")
+        code.append("        static const char* za_names[] = {")
+        for arr_idx, suffix in enumerate(za_arr_suffixes):
+            for i in range(8):
+                code.append(f'            "za{i}{suffix}",')
+            code.append(f'            "za{suffix}",')
+        code.append("        };")
+        code.append(f"        return za_names[v - {ZA_BASE}];")
+        code.append("    }")
+        # ZT0
+        code.append(f'    if (v == {ZT0_VAL}) return "zt0";')
+        code.append('    return "?";')
+        code.append("}")
+        code.append("")
+        # arrangement_to_string as free function
+        code.append("inline const char* arrangement_to_string(Arrangement a) {")
+        code.append('    static const char* names[] = {"", "b", "h", "s", "d", "q",')
+        code.append('        "8b", "4h", "2s", "1d", "16b", "8h", "4s", "2d", "1q", "2b", "4b", "2h"};')
+        code.append("    return names[static_cast<uint8_t>(a)];")
         code.append("}")
         code.append("#endif")
         code.append("")
@@ -3819,45 +3962,41 @@ class ARM64XMLParser:
         code = []
         code.append("    // ── Register factories ──")
         code.append("    static Operand gp(uint32_t num, bool is_64, bool is_sp = false) {")
-        code.append("        return Operand(OperandType::Register, static_cast<uint32_t>(make_gp_reg(num, is_64, is_sp)));")
+        code.append("        return Operand(OperandType::Register, static_cast<uint16_t>(make_gp_reg(num, is_64, is_sp)));")
         code.append("    }")
         code.append("    static Operand scalar(uint32_t num, Arrangement size) {")
-        code.append("        return Operand(OperandType::Register, static_cast<uint32_t>(make_scalar_reg(num, size)));")
+        code.append("        return Operand(OperandType::Register, static_cast<uint16_t>(make_scalar_reg(num, size)));")
         code.append("    }")
         code.append("    static Operand vec(uint32_t num, Arrangement arr = Arrangement::None) {")
-        code.append("        Operand op(OperandType::Register, static_cast<uint32_t>(make_vec_reg(num)));")
-        code.append("        op.arrangement = arr;")
-        code.append("        return op;")
+        code.append("        return Operand(OperandType::Register, static_cast<uint16_t>(make_vec_reg(num, arr)));")
         code.append("    }")
         code.append("    static Operand sve(uint32_t num, Arrangement arr = Arrangement::None) {")
-        code.append("        Operand op(OperandType::Register, static_cast<uint32_t>(make_sve_reg(num)));")
-        code.append("        op.arrangement = arr;")
-        code.append("        return op;")
+        code.append("        return Operand(OperandType::Register, static_cast<uint16_t>(make_sve_reg(num, arr)));")
         code.append("    }")
-        code.append("    static Operand pred(uint32_t num, uint8_t qualifier = 0) {")
-        code.append("        Operand op(OperandType::Register, static_cast<uint32_t>(make_pred_reg(num)));")
+        code.append("    static Operand pred(uint32_t num, uint8_t qualifier = 0, Arrangement arr = Arrangement::None) {")
+        code.append("        Operand op(OperandType::Register, static_cast<uint16_t>(make_pred_reg(num, arr)));")
         code.append("        op.extend = qualifier;")
         code.append("        return op;")
         code.append("    }")
-        code.append("    static Operand predn(uint32_t num) {")
-        code.append("        return Operand(OperandType::Register, static_cast<uint32_t>(make_predn_reg(num)));")
+        code.append("    static Operand predn(uint32_t num, Arrangement arr = Arrangement::None) {")
+        code.append("        return Operand(OperandType::Register, static_cast<uint16_t>(make_predn_reg(num, arr)));")
         code.append("    }")
         code.append("    static Operand zt0() {")
-        code.append("        return Operand(OperandType::Register, static_cast<uint32_t>(Register::ZT0));")
+        code.append("        return Operand(OperandType::Register, static_cast<uint16_t>(Register::ZT0));")
         code.append("    }")
         code.append("    static Operand reg(Register r) {")
-        code.append("        return Operand(OperandType::Register, static_cast<uint32_t>(r));")
+        code.append("        return Operand(OperandType::Register, static_cast<uint16_t>(r));")
         code.append("    }")
         code.append("")
         code.append("    // ── Immediate factories ──")
         code.append("    static Operand imm(uint64_t val) {")
-        code.append("        Operand op(OperandType::Immediate, static_cast<uint32_t>(val));")
+        code.append("        Operand op(OperandType::Immediate, 0);")
         code.append("        op.imm64 = val;")
         code.append("        return op;")
         code.append("    }")
         code.append("    static Operand simm(int64_t val) {")
-        code.append("        Operand op(OperandType::SignedImmediate, static_cast<uint32_t>(static_cast<uint64_t>(val)));")
-        code.append("        op.imm64 = static_cast<uint64_t>(val);")
+        code.append("        Operand op(OperandType::SignedImmediate, 0);")
+        code.append("        op.offset = static_cast<int32_t>(val);")
         code.append("        return op;")
         code.append("    }")
         code.append("    static Operand label(int64_t off) {")
@@ -3866,24 +4005,28 @@ class ARM64XMLParser:
         code.append("        return op;")
         code.append("    }")
         code.append("    static Operand relative(int64_t off) {")
-        code.append("        return Operand(OperandType::Relative, static_cast<uint32_t>(static_cast<uint64_t>(off)));")
+        code.append("        Operand op(OperandType::Relative, 0);")
+        code.append("        op.imm64 = static_cast<uint64_t>(off);")
+        code.append("        return op;")
         code.append("    }")
         code.append("    static Operand float_imm(uint32_t encoded) {")
-        code.append("        return Operand(OperandType::FloatImmediate, encoded);")
+        code.append("        return Operand(OperandType::FloatImmediate, static_cast<uint16_t>(encoded));")
         code.append("    }")
         code.append("")
         code.append("    // ── Misc factories ──")
         code.append("    static Operand shift(uint32_t type, uint32_t amount) {")
-        code.append("        return Operand(OperandType::Shift, (type << 8) | amount);")
+        code.append("        return Operand(OperandType::Shift, static_cast<uint16_t>((type << 8) | amount));")
         code.append("    }")
         code.append("    static Operand extend_op(uint32_t type, uint32_t amount, bool is_64 = false) {")
-        code.append("        return Operand(OperandType::Extend, type | (amount << 8) | (is_64 ? 0x800u : 0u));")
+        code.append("        return Operand(OperandType::Extend, static_cast<uint16_t>(type | (amount << 8) | (is_64 ? 0x800u : 0u)));")
         code.append("    }")
         code.append("    static Operand pat(SvePattern p) {")
-        code.append("        return Operand(OperandType::Pattern, static_cast<uint32_t>(p));")
+        code.append("        Operand op(OperandType::Pattern, 0);")
+        code.append("        op.pattern = p;")
+        code.append("        return op;")
         code.append("    }")
         code.append("    static Operand sve_mul(uint32_t val) {")
-        code.append("        return Operand(OperandType::SVEMulImm, val);")
+        code.append("        return Operand(OperandType::SVEMulImm, static_cast<uint16_t>(val));")
         code.append("    }")
         code.append("    static Operand prefetch_op(PrefetchOp p) {")
         code.append("        Operand op(OperandType::Prefetch, 0);")
@@ -3911,22 +4054,22 @@ class ARM64XMLParser:
         code.append("        return op;")
         code.append("    }")
         code.append("    static Operand fixed_sym(uint32_t idx) {")
-        code.append("        return Operand(OperandType::FixedSym, idx);")
+        code.append("        return Operand(OperandType::FixedSym, static_cast<uint16_t>(idx));")
         code.append("    }")
         code.append("    static Operand vlx(uint32_t n) {")
-        code.append("        return Operand(OperandType::SVEVLxImm, n);")
+        code.append("        return Operand(OperandType::SVEVLxImm, static_cast<uint16_t>(n));")
         code.append("    }")
-        code.append("    static Operand sme_tile(uint32_t val) {")
-        code.append("        return Operand(OperandType::SMETileRegister, val);")
+        code.append("    static Operand sme_tile(uint32_t val, Arrangement arr = Arrangement::None) {")
+        code.append("        return Operand(OperandType::SMETileRegister, static_cast<uint16_t>(make_za_reg(val, arr)));")
         code.append("    }")
         code.append("    static Operand memory_val(uint32_t val) {")
-        code.append("        return Operand(OperandType::Memory, val);")
+        code.append("        return Operand(OperandType::Memory, static_cast<uint16_t>(val));")
         code.append("    }")
         code.append("    static Operand reg_list(uint32_t first_reg) {")
-        code.append("        return Operand(OperandType::RegisterList, first_reg);")
+        code.append("        return Operand(OperandType::RegisterList, static_cast<uint16_t>(first_reg));")
         code.append("    }")
-        code.append("    static Operand memory_sve_offset(uint32_t base, int32_t offset = 0) {")
-        code.append("        return Operand(OperandType::MemorySVEOffset, base, offset);")
+        code.append("    static Operand memory_sve_offset(uint16_t base, int32_t offset = 0) {")
+        code.append("        return Operand(OperandType::MemorySVEOffset, static_cast<uint16_t>(base), offset);")
         code.append("    }")
         code.append("")
         return code
@@ -3956,79 +4099,86 @@ class ARM64XMLParser:
         code.append("#endif")
         code.append("class Operand {")
         code.append("    // Private constructors — use static factory methods instead")
-        code.append("    Operand(OperandType t, uint32_t v, bool /*unused*/ = true)")
+        code.append("    Operand(OperandType t, uint16_t v, bool /*unused*/ = true)")
         code.append("        : type(t), value(v) {}")
-        code.append("    Operand(OperandType t, uint32_t base, int32_t off, uint32_t idx_reg = 0, uint32_t ext = 0, uint32_t amt = 0)")
-        code.append("        : type(t), extend(static_cast<uint8_t>(ext)), index_reg(static_cast<uint8_t>(idx_reg)), base_reg(base), offset(off), amount(static_cast<uint8_t>(amt)) {}")
+        code.append("    Operand(OperandType t, uint16_t base, int32_t off)")
+        code.append("        : type(t), value(base) { offset = off; }")
         code.append("public:")
         code.append("    Operand() = default;")
         code.append("")
         code.append("    // Static factory methods for memory operands")
-        code.append("    static Operand memory_base(uint32_t base) {")
+        code.append("    static Operand memory_base(uint16_t base) {")
         code.append("        Operand op(OperandType::Memory, base, 0);")
         code.append("        op.extend = static_cast<uint8_t>(MemoryMode::Base);")
         code.append("        return op;")
         code.append("    }")
-        code.append("    static Operand memory_offset(uint32_t base, int32_t offset) {")
+        code.append("    static Operand memory_offset(uint16_t base, int32_t offset) {")
         code.append("        Operand op(OperandType::Memory, base, offset);")
         code.append("        op.extend = (offset == 0) ? static_cast<uint8_t>(MemoryMode::Base) : static_cast<uint8_t>(MemoryMode::Offset);")
         code.append("        return op;")
         code.append("    }")
-        code.append("    static Operand memory_pre_index(uint32_t base, int32_t offset) {")
+        code.append("    static Operand memory_pre_index(uint16_t base, int32_t offset) {")
         code.append("        Operand op(OperandType::Memory, base, offset);")
         code.append("        op.extend = static_cast<uint8_t>(MemoryMode::PreIndex);")
         code.append("        return op;")
         code.append("    }")
-        code.append("    static Operand memory_post_index(uint32_t base, int32_t offset) {")
+        code.append("    static Operand memory_post_index(uint16_t base, int32_t offset) {")
         code.append("        Operand op(OperandType::Memory, base, offset);")
         code.append("        op.extend = static_cast<uint8_t>(MemoryMode::PostIndex);")
         code.append("        return op;")
         code.append("    }")
-        code.append("    static Operand memory_mul_vl(uint32_t base, int32_t offset) {")
+        code.append("    static Operand memory_mul_vl(uint16_t base, int32_t offset) {")
         code.append("        if (offset == 0) return memory_base(base);")
         code.append("        Operand op(OperandType::Memory, base, offset);")
         code.append("        op.extend = static_cast<uint8_t>(MemoryMode::MulVL);")
         code.append("        return op;")
         code.append("    }")
-        code.append("    static Operand memory_reg_offset(uint32_t base, uint32_t index, uint32_t extend = 0, uint32_t amount = 0) {")
-        code.append("        return Operand(OperandType::MemoryRegOffset, base, 0, index, extend, amount);")
+        code.append("    static Operand memory_reg_offset(uint16_t base, uint32_t index, uint32_t extend = 0, uint32_t amount = 0) {")
+        code.append("        Operand op(OperandType::MemoryRegOffset, base, 0);")
+        code.append("        op.extend = static_cast<uint8_t>(extend);")
+        code.append("        op.amount = static_cast<uint8_t>(amount);")
+        code.append("        op.index_reg = make_gp_reg(index, !(extend == 2 || extend == 6));")
+        code.append("        return op;")
         code.append("    }")
         code.append("")
         code.extend(self._operand_factory_methods())
-        code.append("    // Compact 24-byte layout (8-byte aligned)")
+        code.append("    // Compact 16-byte layout (8-byte aligned)")
         code.append("    OperandType type = OperandType::Unknown;           // byte 0")
-        code.append("    Arrangement arrangement = Arrangement::None;       // byte 1")
-        code.append("    uint8_t extend = 0;                                // byte 2: MemoryMode / pred qualifier / extend type")
-        code.append("    uint8_t index_reg = 0;                             // byte 3: index register for reg+reg addressing")
-        code.append("    union { uint32_t value = 0; uint32_t base_reg; };  // bytes 4-7")
+        code.append("    uint8_t extend = 0;                                // byte 1: MemoryMode / pred qualifier / extend type")
+        code.append("    struct { bool has_index : 1; bool prefer_decimal : 1; uint8_t _reserved : 6; } flags = {};  // byte 2")
+        code.append("    uint8_t amount = 0;                                // byte 3: shift/extend amount")
+        code.append("    union { uint16_t value = 0; Register base_reg; };  // bytes 4-5")
+        code.append("    Register index_reg = static_cast<Register>(0);     // bytes 6-7")
         code.append("    union {                                            // bytes 8-15")
         code.append("        uint64_t imm64 = 0;")
         code.append("        struct { int32_t offset; uint32_t index; };")
+        code.append("        struct {")
+        code.append("            union {")
+        code.append("                SystemRegister sysreg;")
+        code.append("                PstateField pstate;")
+        code.append("                PrefetchOp prefetch;")
+        code.append("                BarrierOp barrier;")
+        code.append("                SvePattern pattern;")
+        code.append("                SysOp sysop;")
+        code.append("            };")
+        code.append("        };")
         code.append("    };")
-        code.append("    union {                                            // bytes 16-17")
-        code.append("        SystemRegister sysreg;")
-        code.append("        PstateField pstate;")
-        code.append("        PrefetchOp prefetch;")
-        code.append("        BarrierOp barrier;")
-        code.append("        SvePattern pattern;")
-        code.append("        SysOp sysop;")
-        code.append("        uint16_t enum_val = 0;")
-        code.append("    };")
-        code.append("    uint8_t amount = 0;                                // byte 18")
-        code.append("    bool has_index = false;                            // byte 19")
-        code.append("    bool prefer_decimal = false;                       // byte 20")
+        code.append("")
+        code.append("    // Set arrangement on register value (bakes into Register enum)")
+        code.append("    void set_arrangement(Arrangement arr) {")
+        code.append("        value = static_cast<uint16_t>(set_register_arrangement(static_cast<Register>(value), arr));")
+        code.append("    }")
         code.append("")
         code.append("#ifndef VEDA64_NO_STRINGS")
         code.append("    // Format operand for disassembly")
         code.append("    std::string to_string() const;")
-        code.append("    static const char* arrangement_to_string(Arrangement a);")
         code.append("")
         code.append("private:")
         code.append("    // Helper functions for formatting")
         code.append("    static std::string format_register(uint32_t reg, bool is_64bit, bool is_sp = false);")
-        code.append("    static std::string format_base_reg(uint32_t reg) {")
-        code.append("        if (reg > 31) return register_to_string(static_cast<Register>(reg));")
-        code.append("        return format_register(reg, true, true);")
+        code.append("    static std::string format_base_reg(Register reg) {")
+        code.append("        if (static_cast<uint16_t>(reg) > 31) return register_to_string(reg);")
+        code.append("        return format_register(static_cast<uint32_t>(reg), true, true);")
         code.append("    }")
         code.append("    static std::string format_vector_register(uint32_t reg, Arrangement arrangement);")
         code.append("    static Arrangement arr_from_size(uint32_t size);")
@@ -4037,7 +4187,7 @@ class ARM64XMLParser:
         code.append("    static Arrangement vec_arr(uint32_t size, uint32_t q);")
         code.append("#endif")
         code.append("};")
-        code.append("static_assert(sizeof(Operand) == 24, \"Operand must be 24 bytes\");")
+        code.append("static_assert(sizeof(Operand) == 16, \"Operand must be 16 bytes\");")
         code.append("#ifdef _MSC_VER")
         code.append("#pragma warning(pop)")
         code.append("#endif")
@@ -5377,7 +5527,7 @@ class ARM64XMLParser:
                         code.append(f"{ind}    int32_t simm = (int32_t){mem_ref};")
                     else:
                         code.append(f"{ind}    int32_t simm = (int32_t)(({mem_ref} ^ (1u << {sign_bit})) - (1u << {sign_bit}));")
-                    code.append(f"{ind}    result.operands.push_back(Operand::simm((uint32_t)simm));")
+                    code.append(f"{ind}    result.operands.push_back(Operand::simm(static_cast<int64_t>(simm)));")
                     code.append(f"{ind}}}")
             else:
                 code.append(f"{ind}result.operands.push_back(Operand::imm({mem_ref}));")
@@ -5390,12 +5540,12 @@ class ARM64XMLParser:
                 code.append(f"{ind}{{")
                 code.append(f"{ind}    int32_t loff = static_cast<int32_t>({mem_ref} << {32 - fw}) >> {32 - fw};")
                 code.append(f"{ind}    loff <<= {shift};")
-                code.append(f"{ind}    result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));")
+                code.append(f"{ind}    result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));")
                 code.append(f"{ind}}}")
             elif fw > 0:
                 code.append(f"{ind}{{")
                 code.append(f"{ind}    int32_t loff = static_cast<int32_t>({mem_ref} << {32 - fw}) >> {32 - fw};")
-                code.append(f"{ind}    result.operands.push_back(Operand::relative(static_cast<uint32_t>(loff)));")
+                code.append(f"{ind}    result.operands.push_back(Operand::relative(static_cast<int64_t>(loff)));")
                 code.append(f"{ind}}}")
             else:
                 code.append(f"{ind}result.operands.push_back(Operand::relative({mem_ref}));")
@@ -6090,7 +6240,7 @@ class ARM64XMLParser:
             else:
                 # ADR: offset is imm21 directly (fits in 32 bits)
                 code.append(f"{ind}int32_t offset = imm21;")
-                code.append(f"{ind}result.operands.push_back(Operand::relative(static_cast<uint32_t>(offset)));")
+                code.append(f"{ind}result.operands.push_back(Operand::relative(static_cast<int64_t>(offset)));")
 
             code.append(f"{ind}return result;")
             return code
@@ -6117,7 +6267,7 @@ class ARM64XMLParser:
                 # Sign-extend 26-bit immediate and multiply by 4
                 code.append(f"{ind}int32_t offset = static_cast<int32_t>(enc.{member_name}.{imm_field} << 6) >> 6;")
                 code.append(f"{ind}offset *= 4;")
-                code.append(f"{ind}result.operands.push_back(Operand::relative(static_cast<uint32_t>(offset)));")
+                code.append(f"{ind}result.operands.push_back(Operand::relative(static_cast<int64_t>(offset)));")
                 code.append(f"{ind}return result;")
                 return code
             elif mnemonic in ['B', 'BC'] and 'imm19' in field_map:
@@ -6129,7 +6279,7 @@ class ARM64XMLParser:
                 # Sign-extend 19-bit immediate and multiply by 4
                 code.append(f"{ind}int32_t offset = static_cast<int32_t>(enc.{member_name}.{imm_field} << 13) >> 13;")
                 code.append(f"{ind}offset *= 4;")
-                code.append(f"{ind}result.operands.push_back(Operand::relative(static_cast<uint32_t>(offset)));")
+                code.append(f"{ind}result.operands.push_back(Operand::relative(static_cast<int64_t>(offset)));")
                 code.append(f"{ind}return result;")
                 return code
             elif mnemonic in ['CBZ', 'CBNZ'] and 'Rt' in field_map and 'imm19' in field_map:
@@ -6145,7 +6295,7 @@ class ARM64XMLParser:
                 # Sign-extend 19-bit immediate and multiply by 4
                 code.append(f"{ind}int32_t offset = static_cast<int32_t>(enc.{member_name}.{imm_field} << 13) >> 13;")
                 code.append(f"{ind}offset *= 4;")
-                code.append(f"{ind}result.operands.push_back(Operand::relative(static_cast<uint32_t>(offset)));")
+                code.append(f"{ind}result.operands.push_back(Operand::relative(static_cast<int64_t>(offset)));")
                 code.append(f"{ind}return result;")
                 return code
             elif mnemonic in ['TBZ', 'TBNZ'] and 'Rt' in field_map and 'imm14' in field_map and 'b5' in field_map and 'b40' in field_map:
@@ -6160,7 +6310,7 @@ class ARM64XMLParser:
                 # Sign-extend 14-bit immediate and multiply by 4
                 code.append(f"{ind}int32_t offset = static_cast<int32_t>(enc.{member_name}.{imm_field} << 18) >> 18;")
                 code.append(f"{ind}offset *= 4;")
-                code.append(f"{ind}result.operands.push_back(Operand::relative(static_cast<uint32_t>(offset)));")
+                code.append(f"{ind}result.operands.push_back(Operand::relative(static_cast<int64_t>(offset)));")
                 code.append(f"{ind}return result;")
                 return code
             # RETAASPPC/RETABSPPC: label = PC - ZeroExtend(imm16:'00')
@@ -6168,7 +6318,7 @@ class ARM64XMLParser:
             elif mnemonic in ['RETAASPPC', 'RETABSPPC'] and 'imm16' in field_map:
                 imm_field = field_map['imm16']['name']
                 code.append(f"{ind}int32_t offset = -(int32_t)(enc.{member_name}.{imm_field} * 4u);")
-                code.append(f"{ind}result.operands.push_back(Operand::relative(static_cast<uint32_t>(offset)));")
+                code.append(f"{ind}result.operands.push_back(Operand::relative(static_cast<int64_t>(offset)));")
                 code.append(f"{ind}return result;")
                 return code
             # Fall through to default if required fields not found
@@ -6201,7 +6351,7 @@ class ARM64XMLParser:
             # Sign-extend 19-bit immediate and multiply by 4
             code.append(f"{ind}int32_t offset = static_cast<int32_t>(enc.{member_name}.{imm_field} << 13) >> 13;")
             code.append(f"{ind}offset *= 4;")
-            code.append(f"{ind}result.operands.push_back(Operand::relative(static_cast<uint32_t>(offset)));")
+            code.append(f"{ind}result.operands.push_back(Operand::relative(static_cast<int64_t>(offset)));")
             code.append(f"{ind}return result;")
             return code
 
@@ -6315,7 +6465,7 @@ class ARM64XMLParser:
                 imm_field = field_map['imm19']['name']
                 code.append(f"{ind}int32_t offset = static_cast<int32_t>(enc.{member_name}.{imm_field} << 13) >> 13;")
                 code.append(f"{ind}offset *= 4;")
-                code.append(f"{ind}result.operands.push_back(Operand::relative(static_cast<uint32_t>(offset)));")
+                code.append(f"{ind}result.operands.push_back(Operand::relative(static_cast<int64_t>(offset)));")
             else:
                 # Offset form
                 imm_field = None
@@ -6891,12 +7041,12 @@ class ARM64XMLParser:
             code.append(f"{ind}{{")
             code.append(f"{ind}    auto op = Operand::vec(enc.{member_name}.{rd_field});")
             code.append(f"{ind}    uint32_t idx = 0;")
-            code.append(f'{ind}    if (_imm5 & 1) {{ op.arrangement = Arrangement::B; idx = _imm5 >> 1; }}')
-            code.append(f'{ind}    else if (_imm5 & 2) {{ op.arrangement = Arrangement::H; idx = _imm5 >> 2; }}')
-            code.append(f'{ind}    else if (_imm5 & 4) {{ op.arrangement = Arrangement::S; idx = _imm5 >> 3; }}')
-            code.append(f'{ind}    else if (_imm5 & 8) {{ op.arrangement = Arrangement::D; idx = _imm5 >> 4; }}')
+            code.append(f'{ind}    if (_imm5 & 1) {{ op.set_arrangement(Arrangement::B); idx = _imm5 >> 1; }}')
+            code.append(f'{ind}    else if (_imm5 & 2) {{ op.set_arrangement(Arrangement::H); idx = _imm5 >> 2; }}')
+            code.append(f'{ind}    else if (_imm5 & 4) {{ op.set_arrangement(Arrangement::S); idx = _imm5 >> 3; }}')
+            code.append(f'{ind}    else if (_imm5 & 8) {{ op.set_arrangement(Arrangement::D); idx = _imm5 >> 4; }}')
             code.append(f"{ind}    op.index = idx;")
-            code.append(f"{ind}    op.has_index = true;")
+            code.append(f"{ind}    op.flags.has_index = true;")
             code.append(f"{ind}    result.operands.push_back(op);")
             code.append(f"{ind}}}")
             # Source is GPR: B/H/S → W register, D → X register
@@ -6917,24 +7067,24 @@ class ARM64XMLParser:
             code.append(f"{ind}{{")
             code.append(f"{ind}    auto op = Operand::vec(enc.{member_name}.{rd_field});")
             code.append(f"{ind}    uint32_t idx = 0;")
-            code.append(f'{ind}    if (_imm5 & 1) {{ op.arrangement = Arrangement::B; idx = _imm5 >> 1; }}')
-            code.append(f'{ind}    else if (_imm5 & 2) {{ op.arrangement = Arrangement::H; idx = _imm5 >> 2; }}')
-            code.append(f'{ind}    else if (_imm5 & 4) {{ op.arrangement = Arrangement::S; idx = _imm5 >> 3; }}')
-            code.append(f'{ind}    else if (_imm5 & 8) {{ op.arrangement = Arrangement::D; idx = _imm5 >> 4; }}')
+            code.append(f'{ind}    if (_imm5 & 1) {{ op.set_arrangement(Arrangement::B); idx = _imm5 >> 1; }}')
+            code.append(f'{ind}    else if (_imm5 & 2) {{ op.set_arrangement(Arrangement::H); idx = _imm5 >> 2; }}')
+            code.append(f'{ind}    else if (_imm5 & 4) {{ op.set_arrangement(Arrangement::S); idx = _imm5 >> 3; }}')
+            code.append(f'{ind}    else if (_imm5 & 8) {{ op.set_arrangement(Arrangement::D); idx = _imm5 >> 4; }}')
             code.append(f"{ind}    op.index = idx;")
-            code.append(f"{ind}    op.has_index = true;")
+            code.append(f"{ind}    op.flags.has_index = true;")
             code.append(f"{ind}    result.operands.push_back(op);")
             code.append(f"{ind}}}")
             # Source element
             code.append(f"{ind}{{")
             code.append(f"{ind}    auto op = Operand::vec(enc.{member_name}.{rn_field});")
             code.append(f"{ind}    uint32_t idx2 = 0;")
-            code.append(f'{ind}    if (_imm5 & 1) {{ op.arrangement = Arrangement::B; idx2 = _imm4; }}')
-            code.append(f'{ind}    else if (_imm5 & 2) {{ op.arrangement = Arrangement::H; idx2 = _imm4 >> 1; }}')
-            code.append(f'{ind}    else if (_imm5 & 4) {{ op.arrangement = Arrangement::S; idx2 = _imm4 >> 2; }}')
-            code.append(f'{ind}    else if (_imm5 & 8) {{ op.arrangement = Arrangement::D; idx2 = _imm4 >> 3; }}')
+            code.append(f'{ind}    if (_imm5 & 1) {{ op.set_arrangement(Arrangement::B); idx2 = _imm4; }}')
+            code.append(f'{ind}    else if (_imm5 & 2) {{ op.set_arrangement(Arrangement::H); idx2 = _imm4 >> 1; }}')
+            code.append(f'{ind}    else if (_imm5 & 4) {{ op.set_arrangement(Arrangement::S); idx2 = _imm4 >> 2; }}')
+            code.append(f'{ind}    else if (_imm5 & 8) {{ op.set_arrangement(Arrangement::D); idx2 = _imm4 >> 3; }}')
             code.append(f"{ind}    op.index = idx2;")
-            code.append(f"{ind}    op.has_index = true;")
+            code.append(f"{ind}    op.flags.has_index = true;")
             code.append(f"{ind}    result.operands.push_back(op);")
             code.append(f"{ind}}}")
             code.append(f"{ind}return result;")
@@ -6958,12 +7108,12 @@ class ARM64XMLParser:
             code.append(f"{ind}{{")
             code.append(f"{ind}    auto op = Operand::vec(enc.{member_name}.{rn_field});")
             code.append(f"{ind}    uint32_t idx = 0;")
-            code.append(f'{ind}    if (_imm5 & 1) {{ op.arrangement = Arrangement::B; idx = _imm5 >> 1; }}')
-            code.append(f'{ind}    else if (_imm5 & 2) {{ op.arrangement = Arrangement::H; idx = _imm5 >> 2; }}')
-            code.append(f'{ind}    else if (_imm5 & 4) {{ op.arrangement = Arrangement::S; idx = _imm5 >> 3; }}')
-            code.append(f'{ind}    else if (_imm5 & 8) {{ op.arrangement = Arrangement::D; idx = _imm5 >> 4; }}')
+            code.append(f'{ind}    if (_imm5 & 1) {{ op.set_arrangement(Arrangement::B); idx = _imm5 >> 1; }}')
+            code.append(f'{ind}    else if (_imm5 & 2) {{ op.set_arrangement(Arrangement::H); idx = _imm5 >> 2; }}')
+            code.append(f'{ind}    else if (_imm5 & 4) {{ op.set_arrangement(Arrangement::S); idx = _imm5 >> 3; }}')
+            code.append(f'{ind}    else if (_imm5 & 8) {{ op.set_arrangement(Arrangement::D); idx = _imm5 >> 4; }}')
             code.append(f"{ind}    op.index = idx;")
-            code.append(f"{ind}    op.has_index = true;")
+            code.append(f"{ind}    op.flags.has_index = true;")
             code.append(f"{ind}    result.operands.push_back(op);")
             code.append(f"{ind}}}")
             code.append(f"{ind}return result;")
@@ -6989,12 +7139,12 @@ class ARM64XMLParser:
             code.append(f"{ind}{{")
             code.append(f"{ind}    auto op = Operand::vec(enc.{member_name}.{rn_field});")
             code.append(f"{ind}    uint32_t idx = 0;")
-            code.append(f'{ind}    if (_imm5 & 1) {{ op.arrangement = Arrangement::B; idx = _imm5 >> 1; }}')
-            code.append(f'{ind}    else if (_imm5 & 2) {{ op.arrangement = Arrangement::H; idx = _imm5 >> 2; }}')
-            code.append(f'{ind}    else if (_imm5 & 4) {{ op.arrangement = Arrangement::S; idx = _imm5 >> 3; }}')
-            code.append(f'{ind}    else if (_imm5 & 8) {{ op.arrangement = Arrangement::D; idx = _imm5 >> 4; }}')
+            code.append(f'{ind}    if (_imm5 & 1) {{ op.set_arrangement(Arrangement::B); idx = _imm5 >> 1; }}')
+            code.append(f'{ind}    else if (_imm5 & 2) {{ op.set_arrangement(Arrangement::H); idx = _imm5 >> 2; }}')
+            code.append(f'{ind}    else if (_imm5 & 4) {{ op.set_arrangement(Arrangement::S); idx = _imm5 >> 3; }}')
+            code.append(f'{ind}    else if (_imm5 & 8) {{ op.set_arrangement(Arrangement::D); idx = _imm5 >> 4; }}')
             code.append(f"{ind}    op.index = idx;")
-            code.append(f"{ind}    op.has_index = true;")
+            code.append(f"{ind}    op.flags.has_index = true;")
             code.append(f"{ind}    result.operands.push_back(op);")
             code.append(f"{ind}}}")
             code.append(f"{ind}return result;")
@@ -7013,18 +7163,18 @@ class ARM64XMLParser:
                 # Byte variant: Vd.16B, { Vn.16B }, Vm[index]
                 # len field is partial (x1), index = len[1] (bit 14)
                 code.append(f"{ind}result.operands.push_back(Operand::vec(enc.{member_name}.{rd_field}, Arrangement::B16));")
-                code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.{member_name}.{rn_field}))); op.arrangement = Arrangement::B16; op.index = 1; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.{member_name}.{rn_field}))); op.set_arrangement(Arrangement::B16); op.index = 1; result.operands.push_back(op); }}")
                 if len_field:
-                    code.append(f"{ind}{{ auto op = Operand::vec(enc.{member_name}.{rm_field}); op.has_index = true; op.index = (enc.{member_name}.{len_field} >> 1); result.operands.push_back(op); }}")
+                    code.append(f"{ind}{{ auto op = Operand::vec(enc.{member_name}.{rm_field}); op.flags.has_index = true; op.index = (enc.{member_name}.{len_field} >> 1); result.operands.push_back(op); }}")
                 else:
                     code.append(f"{ind}result.operands.push_back(Operand::vec(enc.{member_name}.{rm_field}));")
             else:
                 # Halfword variant: Vd.8H, { Vn1.8H, Vn2.8H }, Vm[index]
                 # len field = index (2 bits)
                 code.append(f"{ind}result.operands.push_back(Operand::vec(enc.{member_name}.{rd_field}, Arrangement::H8));")
-                code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.{member_name}.{rn_field}))); op.arrangement = Arrangement::H8; op.index = 2; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.{member_name}.{rn_field}))); op.set_arrangement(Arrangement::H8); op.index = 2; result.operands.push_back(op); }}")
                 if len_field:
-                    code.append(f"{ind}{{ auto op = Operand::vec(enc.{member_name}.{rm_field}); op.has_index = true; op.index = enc.{member_name}.{len_field}; result.operands.push_back(op); }}")
+                    code.append(f"{ind}{{ auto op = Operand::vec(enc.{member_name}.{rm_field}); op.flags.has_index = true; op.index = enc.{member_name}.{len_field}; result.operands.push_back(op); }}")
                 else:
                     code.append(f"{ind}result.operands.push_back(Operand::vec(enc.{member_name}.{rm_field}));")
             code.append(f"{ind}return result;")
@@ -7051,7 +7201,7 @@ class ARM64XMLParser:
                 code.append(f'{ind}Arrangement _tbl_arr = Arrangement::B16;')
             code.append(f"{ind}result.operands.push_back(Operand::vec(enc.{member_name}.{rd_field}, _tbl_arr));")
             # Rn: vector register list with .16b arrangement (always 16b regardless of Q)
-            code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.{member_name}.{rn_field}))); op.arrangement = Arrangement::B16; op.index = {num_regs}; result.operands.push_back(op); }}")
+            code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.{member_name}.{rn_field}))); op.set_arrangement(Arrangement::B16); op.index = {num_regs}; result.operands.push_back(op); }}")
             # Rm: vector with Q-dependent arrangement
             code.append(f"{ind}result.operands.push_back(Operand::vec(enc.{member_name}.{rm_field}, _tbl_arr));")
             code.append(f"{ind}return result;")
@@ -7116,7 +7266,7 @@ class ARM64XMLParser:
 
             # Vector register list operand: { Vt.T, V(t+1).T, ... }
             code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.{member_name}.{rt_field})));")
-            code.append(f"{ind}  op.index = {num_regs}; op.arrangement = _arr; result.operands.push_back(op); }}")
+            code.append(f"{ind}  op.index = {num_regs}; op.set_arrangement(_arr); result.operands.push_back(op); }}")
 
             # Memory base operand: [Xn|SP]
             is_post_index = 'asisdlsep' in encoding_name
@@ -7197,8 +7347,8 @@ class ARM64XMLParser:
             code.append(f"{ind}{{")
             code.append(f"{ind}    auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.{member_name}.{rt_field})));")
             code.append(f"{ind}    op.index = {num_regs};")
-            code.append(f'{ind}    op.arrangement = {_CHAR_TO_ARR[elem_arr]};')
-            code.append(f"{ind}    op.has_index = true;")
+            code.append(f'{ind}    op.set_arrangement({_CHAR_TO_ARR[elem_arr]});')
+            code.append(f"{ind}    op.flags.has_index = true;")
             code.append(f"{ind}    op.amount = static_cast<uint8_t>(_elem_idx);")
             code.append(f"{ind}    result.operands.push_back(op);")
             code.append(f"{ind}}}")
@@ -7252,7 +7402,7 @@ class ARM64XMLParser:
             code.append(f"{ind}{{")
             code.append(f"{ind}    auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.{member_name}.{rt_field})));")
             code.append(f"{ind}    op.index = {num_regs};")
-            code.append(f"{ind}    op.arrangement = _rep_arr;")
+            code.append(f"{ind}    op.set_arrangement(_rep_arr);")
             code.append(f"{ind}    result.operands.push_back(op);")
             code.append(f"{ind}}}")
 
@@ -7456,9 +7606,9 @@ class ARM64XMLParser:
             elif h_f:
                 code.append(f"{ind}    _idx = enc.{member_name}.{h_f};")
             code.append(f"{ind}    auto op = Operand::vec(_vm_reg);")
-            code.append(f"{ind}    op.arrangement = _ts;")
+            code.append(f"{ind}    op.set_arrangement(_ts);")
             code.append(f"{ind}    op.index = _idx;")
-            code.append(f"{ind}    op.has_index = true;")
+            code.append(f"{ind}    op.flags.has_index = true;")
             code.append(f"{ind}    result.operands.push_back(op);")
             code.append(f"{ind}}}")
             # Rotation immediate: 0→0, 1→90, 2→180, 3→270
@@ -7466,7 +7616,7 @@ class ARM64XMLParser:
                 code.append(f"{ind}{{")
                 code.append(f"{ind}    static const int32_t _rot_vals[] = {{0, 90, 180, 270}};")
                 code.append(f"{ind}    result.operands.push_back(Operand::imm(_rot_vals[enc.{member_name}.{rot_f}]));")
-                code.append(f"{ind}    result.operands.back().prefer_decimal = true;")
+                code.append(f"{ind}    result.operands.back().flags.prefer_decimal = true;")
                 code.append(f"{ind}}}")
             code.append(f"{ind}return result;")
             return code
@@ -7496,12 +7646,12 @@ class ARM64XMLParser:
                     code.append(f"{ind}result.operands.push_back(Operand::scalar(enc.{member_name}.{rn_field}, Arrangement::H));")
                     code.append(f"{ind}{{")
                     code.append(f"{ind}    auto op = Operand::vec(enc.{member_name}.{rm_field});")
-                    code.append(f"{ind}    op.arrangement = Arrangement::H;")
+                    code.append(f"{ind}    op.set_arrangement(Arrangement::H);")
                     if h_f and l_f and m_f:
                         code.append(f"{ind}    op.index = (enc.{member_name}.{h_f} << 2) | (enc.{member_name}.{l_f} << 1) | enc.{member_name}.{m_f};")
                     else:
                         code.append(f"{ind}    op.index = 0;")
-                    code.append(f"{ind}    op.has_index = true;")
+                    code.append(f"{ind}    op.flags.has_index = true;")
                     code.append(f"{ind}    result.operands.push_back(op);")
                     code.append(f"{ind}}}")
                 else:
@@ -7525,10 +7675,10 @@ class ARM64XMLParser:
                             if sz_val == 0:
                                 code.append(f"{ind}    _rm_reg |= (enc.{member_name}.{m_f} << 4);  // S: M extends Rm")
                         code.append(f"{ind}    auto op = Operand::vec(_rm_reg);")
-                        code.append(f"{ind}    op.arrangement = _el_arr;")
+                        code.append(f"{ind}    op.set_arrangement(_el_arr);")
                     else:
                         code.append(f"{ind}    auto op = Operand::vec(enc.{member_name}.{rm_field});")
-                        code.append(f"{ind}    op.arrangement = _sc_arr;")
+                        code.append(f"{ind}    op.set_arrangement(_sc_arr);")
                     # Index: sz=0(S) → H:L (2-bit), sz=1(D) → H (1-bit)
                     if h_f and has_l:
                         if sz_f:
@@ -7542,7 +7692,7 @@ class ARM64XMLParser:
                         code.append(f"{ind}    op.index = enc.{member_name}.{h_f};")
                     else:
                         code.append(f"{ind}    op.index = 0;")
-                    code.append(f"{ind}    op.has_index = true;")
+                    code.append(f"{ind}    op.flags.has_index = true;")
                     code.append(f"{ind}    result.operands.push_back(op);")
                     code.append(f"{ind}}}")
                 code.append(f"{ind}return result;")
@@ -7566,9 +7716,9 @@ class ARM64XMLParser:
                 else:
                     code.append(f"{ind}    uint32_t _idx = 0;")
                 code.append(f"{ind}    auto op = Operand::vec(_vm_reg);")
-                code.append(f"{ind}    op.arrangement = Arrangement::B;")
+                code.append(f"{ind}    op.set_arrangement(Arrangement::B);")
                 code.append(f"{ind}    op.index = _idx;")
-                code.append(f"{ind}    op.has_index = true;")
+                code.append(f"{ind}    op.flags.has_index = true;")
                 code.append(f"{ind}    result.operands.push_back(op);")
                 code.append(f"{ind}}}")
                 code.append(f"{ind}return result;")
@@ -7597,9 +7747,9 @@ class ARM64XMLParser:
                 else:
                     code.append(f"{ind}    uint32_t _idx = 0;")
                 code.append(f"{ind}    auto op = Operand::vec(enc.{member_name}.{rm_field});")
-                code.append(f"{ind}    op.arrangement = Arrangement::H;")
+                code.append(f"{ind}    op.set_arrangement(Arrangement::H);")
                 code.append(f"{ind}    op.index = _idx;")
-                code.append(f"{ind}    op.has_index = true;")
+                code.append(f"{ind}    op.flags.has_index = true;")
                 code.append(f"{ind}    result.operands.push_back(op);")
                 code.append(f"{ind}}}")
                 code.append(f"{ind}return result;")
@@ -7621,8 +7771,8 @@ class ARM64XMLParser:
                 else:
                     code.append(f"{ind}    uint32_t _idx = 0;")
                 code.append(f"{ind}    auto op = Operand::vec(_vm_reg);")
-                code.append(f"{ind}    op.arrangement = Arrangement::B;")
-                code.append(f"{ind}    op.index = _idx; op.has_index = true;")
+                code.append(f"{ind}    op.set_arrangement(Arrangement::B);")
+                code.append(f"{ind}    op.index = _idx; op.flags.has_index = true;")
                 code.append(f"{ind}    result.operands.push_back(op);")
                 code.append(f"{ind}}}")
                 code.append(f"{ind}return result;")
@@ -7644,7 +7794,7 @@ class ARM64XMLParser:
                 idx_expr = '0u'
                 if _h_f and _l_f:
                     idx_expr = f"(enc.{member_name}.{_h_f} << 1) | enc.{member_name}.{_l_f}"
-                code.append(f"{ind}{{ auto op = Operand::vec(enc.{member_name}.{rm_field}); op.arrangement = Arrangement::B4; op.index = {idx_expr}; op.has_index = true; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ auto op = Operand::vec(enc.{member_name}.{rm_field}); op.set_arrangement(Arrangement::B4); op.index = {idx_expr}; op.flags.has_index = true; result.operands.push_back(op); }}")
                 code.append(f"{ind}return result;")
                 return code
 
@@ -7847,7 +7997,7 @@ class ARM64XMLParser:
             # size=3 (D): Rm=M:Rm[3:0], index=H (1 bit)
             if has_h and has_l and has_m:
                 code.append(f'{ind}    static const Arrangement _elem_scalar[] = {{Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D}};')
-                code.append(f"{ind}    op.arrangement = _elem_scalar[_sz];")
+                code.append(f"{ind}    op.set_arrangement(_elem_scalar[_sz]);")
                 if fdot_m_is_rm:
                     # M is part of Rm, so index is always H:L (2 bits)
                     code.append(f"{ind}    _idx = (enc.{member_name}.{h_f} << 1) | enc.{member_name}.{l_f};")
@@ -7857,14 +8007,14 @@ class ARM64XMLParser:
                     code.append(f"{ind}    else if (_sz == 3) _idx = enc.{member_name}.{h_f};")
             elif has_h and has_l:
                 code.append(f'{ind}    static const Arrangement _elem_scalar[] = {{Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D}};')
-                code.append(f"{ind}    op.arrangement = _elem_scalar[_sz];")
+                code.append(f"{ind}    op.set_arrangement(_elem_scalar[_sz]);")
                 code.append(f"{ind}    _idx = (enc.{member_name}.{h_f} << 1) | enc.{member_name}.{l_f};")
             elif has_h:
-                code.append(f'{ind}    op.arrangement = Arrangement::D;')
+                code.append(f'{ind}    op.set_arrangement(Arrangement::D);')
                 code.append(f"{ind}    _idx = enc.{member_name}.{h_f};")
             else:
                 code.append(f'{ind}    static const Arrangement _elem_scalar[] = {{Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D}};')
-                code.append(f"{ind}    op.arrangement = _elem_scalar[_sz];")
+                code.append(f"{ind}    op.set_arrangement(_elem_scalar[_sz]);")
 
             # Override arrangement for dot product Rm: use grouped element arrangement
             if is_dot_product:
@@ -7875,18 +8025,18 @@ class ARM64XMLParser:
                 # SDOT/UDOT/USDOT/SUDOT: Rm.4B[idx]
                 if mnemonic == 'FDOT':
                     if 'asimdelem_g' in encoding_name.lower():
-                        code.append(f'{ind}    op.arrangement = Arrangement::B2;')
+                        code.append(f'{ind}    op.set_arrangement(Arrangement::B2);')
                     elif 'fp16fp32' in encoding_name.lower():
-                        code.append(f'{ind}    op.arrangement = Arrangement::H2;')
+                        code.append(f'{ind}    op.set_arrangement(Arrangement::H2);')
                     else:
-                        code.append(f'{ind}    op.arrangement = Arrangement::B4;')
+                        code.append(f'{ind}    op.set_arrangement(Arrangement::B4);')
                 elif mnemonic == 'BFDOT':
-                    code.append(f'{ind}    op.arrangement = Arrangement::H2;')
+                    code.append(f'{ind}    op.set_arrangement(Arrangement::H2);')
                 else:
-                    code.append(f'{ind}    op.arrangement = Arrangement::B4;')
+                    code.append(f'{ind}    op.set_arrangement(Arrangement::B4);')
 
             code.append(f"{ind}    op.index = _idx;")
-            code.append(f"{ind}    op.has_index = true;")
+            code.append(f"{ind}    op.flags.has_index = true;")
             code.append(f"{ind}    result.operands.push_back(op);")
             code.append(f"{ind}}}")
             code.append(f"{ind}return result;")
@@ -8057,7 +8207,7 @@ class ARM64XMLParser:
                 idx_expr = f"(enc.{member_name}.{h_f} << 2) | (enc.{member_name}.{l_f} << 1) | enc.{member_name}.{m_f}"
             elif h_f and l_f:
                 idx_expr = f"(enc.{member_name}.{h_f} << 1) | enc.{member_name}.{l_f}"
-            code.append(f"{ind}{{ auto op = Operand::scalar(enc.{member_name}.{rm_f}, Arrangement::H); op.arrangement = Arrangement::H; op.index = {idx_expr}; op.has_index = true; result.operands.push_back(op); }}")
+            code.append(f"{ind}{{ auto op = Operand::scalar(enc.{member_name}.{rm_f}, Arrangement::H); op.set_arrangement(Arrangement::H); op.index = {idx_expr}; op.flags.has_index = true; result.operands.push_back(op); }}")
             code.append(f"{ind}return result;")
             return code
 
@@ -8130,7 +8280,7 @@ class ARM64XMLParser:
                 idx_expr = f"(enc.{member_name}.{h_f} << 1) | enc.{member_name}.{l_f}"
             code.append(f"{ind}result.operands.push_back(Operand::vec(enc.{member_name}.{rd_f}, Arrangement::S4));")
             code.append(f"{ind}result.operands.push_back(Operand::vec(enc.{member_name}.{rn_f}, Arrangement::B16));")
-            code.append(f"{ind}{{ auto op = Operand::scalar(enc.{member_name}.{rm_f}, Arrangement::B); op.arrangement = Arrangement::B; op.index = {idx_expr}; op.has_index = true; result.operands.push_back(op); }}")
+            code.append(f"{ind}{{ auto op = Operand::scalar(enc.{member_name}.{rm_f}, Arrangement::B); op.set_arrangement(Arrangement::B); op.index = {idx_expr}; op.flags.has_index = true; result.operands.push_back(op); }}")
             code.append(f"{ind}return result;")
             return code
 
@@ -8170,7 +8320,7 @@ class ARM64XMLParser:
             code.append(f"{ind}result.operands.push_back(Operand::vec(enc.{member_name}.{rd_f}, Arrangement::S4));")
             code.append(f"{ind}result.operands.push_back(Operand::vec(enc.{member_name}.{rn_f}, Arrangement::S4));")
             if imm2_f:
-                code.append(f"{ind}{{ auto op = Operand::vec(enc.{member_name}.{rm_f}); op.arrangement = Arrangement::S; op.index = enc.{member_name}.{imm2_f}; op.has_index = true; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ auto op = Operand::vec(enc.{member_name}.{rm_f}); op.set_arrangement(Arrangement::S); op.index = enc.{member_name}.{imm2_f}; op.flags.has_index = true; result.operands.push_back(op); }}")
             else:
                 code.append(f"{ind}result.operands.push_back(Operand::vec(enc.{member_name}.{rm_f}, Arrangement::S4));")
             code.append(f"{ind}return result;")
@@ -8464,12 +8614,12 @@ class ARM64XMLParser:
             code.append(f"{ind}{{")
             code.append(f"{ind}    auto op = Operand::vec(enc.{member_name}.{rn_field});")
             code.append(f"{ind}    uint32_t idx = 0;")
-            code.append(f'{ind}    if (_imm5 & 1) {{ op.arrangement = Arrangement::B; idx = _imm5 >> 1; }}')
-            code.append(f'{ind}    else if (_imm5 & 2) {{ op.arrangement = Arrangement::H; idx = _imm5 >> 2; }}')
-            code.append(f'{ind}    else if (_imm5 & 4) {{ op.arrangement = Arrangement::S; idx = _imm5 >> 3; }}')
-            code.append(f'{ind}    else if (_imm5 & 8) {{ op.arrangement = Arrangement::D; idx = _imm5 >> 4; }}')
+            code.append(f'{ind}    if (_imm5 & 1) {{ op.set_arrangement(Arrangement::B); idx = _imm5 >> 1; }}')
+            code.append(f'{ind}    else if (_imm5 & 2) {{ op.set_arrangement(Arrangement::H); idx = _imm5 >> 2; }}')
+            code.append(f'{ind}    else if (_imm5 & 4) {{ op.set_arrangement(Arrangement::S); idx = _imm5 >> 3; }}')
+            code.append(f'{ind}    else if (_imm5 & 8) {{ op.set_arrangement(Arrangement::D); idx = _imm5 >> 4; }}')
             code.append(f"{ind}    op.index = idx;")
-            code.append(f"{ind}    op.has_index = true;")
+            code.append(f"{ind}    op.flags.has_index = true;")
             code.append(f"{ind}    result.operands.push_back(op);")
             code.append(f"{ind}}}")
             code.append(f"{ind}return result;")
@@ -8764,8 +8914,8 @@ class ARM64XMLParser:
             else:
                 code.append(f"{ind}    uint32_t _offs = 0;")
             code.append(f"{ind}    auto op = Operand::sme_tile(_tile);")
-            code.append(f"{ind}    op.arrangement = {_arr};")
-            code.append(f"{ind}    op.has_index = true;")
+            code.append(f"{ind}    op.set_arrangement({_arr});")
+            code.append(f"{ind}    op.flags.has_index = true;")
             if v_field:
                 code.append(f"{ind}    op.extend = static_cast<uint8_t>((enc.{member_name}.{v_field} != 0) ? 8u : 0u);")
             else:
@@ -8776,9 +8926,9 @@ class ARM64XMLParser:
             code.append(f"{ind}}}")
             # Emit predicate
             if is_load:
-                code.append(f"{ind}{{ auto op = Operand::pred(enc.{member_name}.{pg_field}); op.arrangement = Arrangement::None; op.extend = 1; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ auto op = Operand::pred(enc.{member_name}.{pg_field}); op.set_arrangement(Arrangement::None); op.extend = 1; result.operands.push_back(op); }}")
             else:
-                code.append(f"{ind}{{ Operand op = Operand::pred(enc.{member_name}.{pg_field}); op.arrangement = Arrangement::None; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ Operand op = Operand::pred(enc.{member_name}.{pg_field}); op.set_arrangement(Arrangement::None); result.operands.push_back(op); }}")
             # Emit memory operand
             if rm_field:
                 if _lsl > 0:
@@ -8885,10 +9035,10 @@ class ARM64XMLParser:
             code.append(f"{ind}    uint32_t _end = _start + _m - 1;")
             code.append(f"{ind}    auto op = Operand::sme_tile(0);")
             if _za_arr_is_variable:
-                code.append(f"{ind}    op.arrangement = _sve_arr;")
+                code.append(f"{ind}    op.set_arrangement(_sve_arr);")
             else:
-                code.append(f"{ind}    op.arrangement = {_za_arr};")
-            code.append(f"{ind}    op.has_index = true;")
+                code.append(f"{ind}    op.set_arrangement({_za_arr});")
+            code.append(f"{ind}    op.flags.has_index = true;")
             # Check if VGx is also present in the template
             _range_vgx_m = _re.search(r'(?:\{, |\b)VGx(\d+)', _asm_tmpl)
             if _range_vgx_m:
@@ -8931,7 +9081,7 @@ class ARM64XMLParser:
                             if _fw + _lc == 5:
                                 _scale = f' * {_cnt}'
                         if _cnt > 1:
-                            code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.{member_name}.{_fn}{_scale}))); op.arrangement = {_arr or _src_arr}; op.index = {_cnt}; result.operands.push_back(op); }}")
+                            code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.{member_name}.{_fn}{_scale}))); op.set_arrangement({_arr or _src_arr}); op.index = {_cnt}; result.operands.push_back(op); }}")
                         else:
                             code.append(f"{ind}result.operands.push_back(Operand::sve(enc.{member_name}.{_fn}, {_arr or _src_arr}));")
                         _za_list_emitted.add(_base_key)
@@ -8958,9 +9108,9 @@ class ARM64XMLParser:
                             if _fw + _lc == 5:
                                 _scale = f' * {_cnt}'
                         if _cnt > 1:
-                            code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.{member_name}.{_fn}{_scale}))); op.arrangement = {_arr or _src_arr}; op.index = {_cnt}; result.operands.push_back(op); }}")
+                            code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.{member_name}.{_fn}{_scale}))); op.set_arrangement({_arr or _src_arr}); op.index = {_cnt}; result.operands.push_back(op); }}")
                         elif _has_idx and _idx_expr:
-                            code.append(f"{ind}{{ auto op = Operand::sve(enc.{member_name}.{_fn}); op.arrangement = {_arr or _src_arr}; {_idx_expr} result.operands.push_back(op); }}")
+                            code.append(f"{ind}{{ auto op = Operand::sve(enc.{member_name}.{_fn}); op.set_arrangement({_arr or _src_arr}); {_idx_expr} result.operands.push_back(op); }}")
                         else:
                             code.append(f"{ind}result.operands.push_back(Operand::sve(enc.{member_name}.{_fn}, {_arr or _src_arr}));")
                         _za_list_emitted.add('Zm')
@@ -9040,8 +9190,8 @@ class ARM64XMLParser:
             else:
                 code.append(f"{ind}    uint32_t _off = 0;")
             code.append(f"{ind}    auto op = Operand::sme_tile(0);")
-            code.append(f"{ind}    op.arrangement = {_za_arr};")
-            code.append(f"{ind}    op.has_index = true;")
+            code.append(f"{ind}    op.set_arrangement({_za_arr});")
+            code.append(f"{ind}    op.flags.has_index = true;")
             code.append(f"{ind}    op.extend = 2;  // VGx mode")
             code.append(f"{ind}    op.index = enc.{member_name}.{rv_field} + 8;")
             code.append(f"{ind}    op.amount = static_cast<uint8_t>(_off);")
@@ -9092,7 +9242,7 @@ class ARM64XMLParser:
                         if _fw_zn + _lc == 5:
                             _scale_zn = f' * {_cnt}'
                     if _cnt > 1:
-                        code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.{member_name}.{_fn}{_scale_zn}))); op.arrangement = {_arr or _src_arr}; op.index = {_cnt}; result.operands.push_back(op); }}")
+                        code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.{member_name}.{_fn}{_scale_zn}))); op.set_arrangement({_arr or _src_arr}); op.index = {_cnt}; result.operands.push_back(op); }}")
                     else:
                         code.append(f"{ind}result.operands.push_back(Operand::sve(enc.{member_name}.{_fn}, {_arr or _src_arr}));")
                 elif _is_zm:
@@ -9130,9 +9280,9 @@ class ARM64XMLParser:
                         if _fw_zm + _lc == 5:
                             _scale_zm = f' * {_cnt}'
                     if _cnt > 1:
-                        code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.{member_name}.{_fn}{_scale_zm}))); op.arrangement = {_arr or _src_arr}; op.index = {_cnt}; result.operands.push_back(op); }}")
+                        code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.{member_name}.{_fn}{_scale_zm}))); op.set_arrangement({_arr or _src_arr}); op.index = {_cnt}; result.operands.push_back(op); }}")
                     elif _has_idx and _idx_expr:
-                        code.append(f"{ind}{{ auto op = Operand::sve(enc.{member_name}.{_fn}); op.arrangement = {_arr or _src_arr}; {_idx_expr} result.operands.push_back(op); }}")
+                        code.append(f"{ind}{{ auto op = Operand::sve(enc.{member_name}.{_fn}); op.set_arrangement({_arr or _src_arr}); {_idx_expr} result.operands.push_back(op); }}")
                     else:
                         code.append(f"{ind}result.operands.push_back(Operand::sve(enc.{member_name}.{_fn}, {_arr or _src_arr}));")
             code.append(f"{ind}return result;")
@@ -9168,7 +9318,7 @@ class ARM64XMLParser:
                     break
             # Emit: SVERegister(Zd), PredicateRegister(Pg/M), SMETileRegister(ZA slice)
             code.append(f"{ind}result.operands.push_back(Operand::sve(enc.{member_name}.{zd_field}, {_arr}));")
-            code.append(f"{ind}{{ auto op = Operand::pred(enc.{member_name}.{pg_field}); op.arrangement = Arrangement::None; op.extend = 1; result.operands.push_back(op); }}")
+            code.append(f"{ind}{{ auto op = Operand::pred(enc.{member_name}.{pg_field}); op.set_arrangement(Arrangement::None); op.extend = 1; result.operands.push_back(op); }}")
             code.append(f"{ind}{{")
             if _tile_field:
                 code.append(f"{ind}    uint32_t _tile = enc.{member_name}.{_tile_field};")
@@ -9179,8 +9329,8 @@ class ARM64XMLParser:
             else:
                 code.append(f"{ind}    uint32_t _offs = 0;")
             code.append(f"{ind}    auto op = Operand::sme_tile(_tile);")
-            code.append(f"{ind}    op.arrangement = {_arr};")
-            code.append(f"{ind}    op.has_index = true;")
+            code.append(f"{ind}    op.set_arrangement({_arr});")
+            code.append(f"{ind}    op.flags.has_index = true;")
             if v_field:
                 code.append(f"{ind}    op.extend = static_cast<uint8_t>((enc.{member_name}.{v_field} != 0) ? 8u : 0u);")
             else:
@@ -9231,8 +9381,8 @@ class ARM64XMLParser:
             else:
                 code.append(f"{ind}    uint32_t _offs = 0;")
             code.append(f"{ind}    auto op = Operand::sme_tile(_tile);")
-            code.append(f"{ind}    op.arrangement = {_arr};")
-            code.append(f"{ind}    op.has_index = true;")
+            code.append(f"{ind}    op.set_arrangement({_arr});")
+            code.append(f"{ind}    op.flags.has_index = true;")
             if v_field:
                 code.append(f"{ind}    op.extend = static_cast<uint8_t>((enc.{member_name}.{v_field} != 0) ? 8u : 0u);")
             else:
@@ -9241,7 +9391,7 @@ class ARM64XMLParser:
             code.append(f"{ind}    op.amount = static_cast<uint8_t>(_offs);")
             code.append(f"{ind}    result.operands.push_back(op);")
             code.append(f"{ind}}}")
-            code.append(f"{ind}{{ auto op = Operand::pred(enc.{member_name}.{pg_field}); op.arrangement = Arrangement::None; op.extend = 1; result.operands.push_back(op); }}")
+            code.append(f"{ind}{{ auto op = Operand::pred(enc.{member_name}.{pg_field}); op.set_arrangement(Arrangement::None); op.extend = 1; result.operands.push_back(op); }}")
             code.append(f"{ind}result.operands.push_back(Operand::sve(enc.{member_name}.{zn_field}, {_arr}));")
             code.append(f"{ind}return result;")
             return code
@@ -9260,7 +9410,7 @@ class ARM64XMLParser:
                 else:
                     # Default to S for outer product ops
                     _za_first_arr_expr = 'Arrangement::S'
-                code.append(f"{ind}{{ auto op = Operand::sme_tile(enc.{member_name}.{_za_cpp}); op.arrangement = {_za_first_arr_expr}; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ auto op = Operand::sme_tile(enc.{member_name}.{_za_cpp}); op.set_arrangement({_za_first_arr_expr}); result.operands.push_back(op); }}")
                 _za_first_emitted = True
 
         # Pre-compute: which GP registers appear in the SVE/predicate template (will be emitted in template order)
@@ -9390,12 +9540,12 @@ class ARM64XMLParser:
                             if 'Q' in field_map and not field_map['Q']['is_fixed']:
                                 q_f = field_map['Q']['name']
                                 code.append(f'{ind}    static const Arrangement _plong_arrs[2][4] = {{{{Arrangement::H4, Arrangement::S2, Arrangement::D1, Arrangement::D1}}, {{Arrangement::H8, Arrangement::S4, Arrangement::D2, Arrangement::D2}}}};')
-                                code.append(f"{ind}    op.arrangement = _plong_arrs[enc.{member_name}.{q_f}][enc.{member_name}.{size_f}];")
+                                code.append(f"{ind}    op.set_arrangement(_plong_arrs[enc.{member_name}.{q_f}][enc.{member_name}.{size_f}]);")
                             else:
                                 code.append(f'{ind}    static const Arrangement _plong_arrs[] = {{Arrangement::H8, Arrangement::S4, Arrangement::D2, Arrangement::D2}};')
-                                code.append(f"{ind}    op.arrangement = _plong_arrs[enc.{member_name}.{size_f}];")
+                                code.append(f"{ind}    op.set_arrangement(_plong_arrs[enc.{member_name}.{size_f}]);")
                         else:
-                            code.append(f"{ind}    op.arrangement = _simd_arr;  // fallback")
+                            code.append(f"{ind}    op.set_arrangement(_simd_arr);  // fallback")
                         code.append(f"{ind}    result.operands.push_back(op);")
                         code.append(f"{ind}}}")
                     elif mnemonic in ['ADDHN', 'SUBHN', 'RADDHN', 'RSUBHN'] and reg_name in ('Rn', 'Rm') and simd_arrangement == 'runtime':
@@ -9406,9 +9556,9 @@ class ARM64XMLParser:
                         if 'size' in field_map and not field_map['size']['is_fixed']:
                             size_f = field_map['size']['name']
                             code.append(f'{ind}    static const Arrangement _wide_arrs[] = {{Arrangement::H8, Arrangement::S4, Arrangement::D2, Arrangement::D2}};')
-                            code.append(f"{ind}    op.arrangement = _wide_arrs[enc.{member_name}.{size_f}];")
+                            code.append(f"{ind}    op.set_arrangement(_wide_arrs[enc.{member_name}.{size_f}]);")
                         else:
-                            code.append(f"{ind}    op.arrangement = _simd_arr;  // fallback")
+                            code.append(f"{ind}    op.set_arrangement(_simd_arr);  // fallback")
                         code.append(f"{ind}    result.operands.push_back(op);")
                         code.append(f"{ind}}}")
                     elif mnemonic in ['SMLAL', 'SMLSL', 'UMLAL', 'UMLSL', 'SMULL', 'UMULL', 'SQDMLAL', 'SQDMLSL', 'SQDMULL', 'SABAL', 'UABAL', 'SABDL', 'UABDL', 'SADDL', 'UADDL', 'SSUBL', 'USUBL', 'SSHLL', 'USHLL', 'SADDW', 'UADDW', 'SSUBW', 'USUBW'] and (reg_name == 'Rd' or (reg_name == 'Rn' and mnemonic in ['SADDW', 'UADDW', 'SSUBW', 'USUBW'])) and simd_arrangement == 'runtime':
@@ -9421,12 +9571,12 @@ class ARM64XMLParser:
                             if 'Q' in field_map and not field_map['Q']['is_fixed']:
                                 q_f = field_map['Q']['name']
                                 code.append(f'{ind}    static const Arrangement _wide_arrs[][2] = {{{{Arrangement::H8, Arrangement::H8}}, {{Arrangement::S4, Arrangement::S4}}, {{Arrangement::D2, Arrangement::D2}}}};')
-                                code.append(f"{ind}    op.arrangement = _wide_arrs[enc.{member_name}.{size_f}][0];")
+                                code.append(f"{ind}    op.set_arrangement(_wide_arrs[enc.{member_name}.{size_f}][0]);")
                             else:
                                 code.append(f'{ind}    static const Arrangement _wide_arrs[] = {{Arrangement::H8, Arrangement::S4, Arrangement::D2, Arrangement::D2}};')
-                                code.append(f"{ind}    op.arrangement = _wide_arrs[enc.{member_name}.{size_f}];")
+                                code.append(f"{ind}    op.set_arrangement(_wide_arrs[enc.{member_name}.{size_f}]);")
                         else:
-                            code.append(f"{ind}    op.arrangement = _simd_arr;  // fallback")
+                            code.append(f"{ind}    op.set_arrangement(_simd_arr);  // fallback")
                         code.append(f"{ind}    result.operands.push_back(op);")
                         code.append(f"{ind}}}")
                     elif mnemonic in ['XTN', 'SQXTN', 'UQXTN', 'SQXTUN'] and reg_name == 'Rn' and simd_arrangement == 'runtime':
@@ -9438,9 +9588,9 @@ class ARM64XMLParser:
                         if 'size' in field_map and not field_map['size']['is_fixed']:
                             size_f = field_map['size']['name']
                             code.append(f'{ind}    static const Arrangement _narrow_src[] = {{Arrangement::H8, Arrangement::S4, Arrangement::D2, Arrangement::D2}};')
-                            code.append(f"{ind}    op.arrangement = _narrow_src[enc.{member_name}.{size_f}];")
+                            code.append(f"{ind}    op.set_arrangement(_narrow_src[enc.{member_name}.{size_f}]);")
                         else:
-                            code.append(f"{ind}    op.arrangement = _simd_arr;  // fallback")
+                            code.append(f"{ind}    op.set_arrangement(_simd_arr);  // fallback")
                         code.append(f"{ind}    result.operands.push_back(op);")
                         code.append(f"{ind}}}")
                     elif (mnemonic in ['MOVI', 'MVNI'] or (mnemonic == 'FMOV' and 'asimdimm' in encoding_name)) and reg_name == 'Rd':
@@ -9452,7 +9602,7 @@ class ARM64XMLParser:
                         code.append(f"{ind}        result.operands.push_back(Operand::scalar(enc.{member_name}.{field_cpp_name}, Arrangement::D));")
                         code.append(f"{ind}    }} else {{")
                         code.append(f"{ind}        auto op = Operand::vec(enc.{member_name}.{field_cpp_name});")
-                        code.append(f"{ind}        op.arrangement = _marr;")
+                        code.append(f"{ind}        op.set_arrangement(_marr);")
                         code.append(f"{ind}        result.operands.push_back(op);")
                         code.append(f"{ind}    }}")
                         code.append(f"{ind}}}")
@@ -9537,7 +9687,7 @@ class ARM64XMLParser:
                 code.append(f"{ind}result.operands.push_back(Operand::pred(enc.{member_name}.{pn_cpp}));")
                 code.append(f"{ind}uint32_t _imm5 = (enc.{member_name}.{i1_cpp} << 4) | (enc.{member_name}.{tszh_cpp} << {tszl_w}) | enc.{member_name}.{tszl_cpp};")
                 code.append(f"{ind}uint32_t _psel_idx = (_tsize & 1) ? (_imm5 >> 1) : (_tsize & 2) ? (_imm5 >> 2) : (_tsize & 4) ? (_imm5 >> 3) : (_imm5 >> 4);")
-                code.append(f"{ind}{{ auto op = Operand::pred(enc.{member_name}.{pm_cpp}); op.arrangement = _sve_arr; op.has_index = true; op.index = _psel_idx; op.index_reg = static_cast<uint8_t>(enc.{member_name}.{rv_cpp} + 12); result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ auto op = Operand::pred(enc.{member_name}.{pm_cpp}); op.set_arrangement(_sve_arr); op.flags.has_index = true; op.index = _psel_idx; op.index_reg = make_gp_reg(enc.{member_name}.{rv_cpp} + 12, false); result.operands.push_back(op); }}")
                 code.append(f"{ind}return result;")
                 return code
 
@@ -9555,9 +9705,9 @@ class ARM64XMLParser:
                 code.append(f"{ind}    case 0: _sve_arr = Arrangement::B; break; case 1: _sve_arr = Arrangement::H; break;")
                 code.append(f"{ind}    case 2: _sve_arr = Arrangement::S; break; case 3: _sve_arr = Arrangement::D; break;")
                 code.append(f"{ind}}}")
-                code.append(f"{ind}{{ Operand op = Operand::pred(enc.{member_name}.{pd_cpp}); op.arrangement = _sve_arr; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ Operand op = Operand::pred(enc.{member_name}.{pd_cpp}); op.set_arrangement(_sve_arr); result.operands.push_back(op); }}")
                 if imm2_cpp:
-                    code.append(f"{ind}{{ auto op = Operand::predn(enc.{member_name}.{pnn_cpp} | 8u); op.has_index = true; op.index = enc.{member_name}.{imm2_cpp}; result.operands.push_back(op); }}")
+                    code.append(f"{ind}{{ auto op = Operand::predn(enc.{member_name}.{pnn_cpp} | 8u); op.flags.has_index = true; op.index = enc.{member_name}.{imm2_cpp}; result.operands.push_back(op); }}")
                 else:
                     code.append(f"{ind}result.operands.push_back(Operand::predn(enc.{member_name}.{pnn_cpp} | 8u));")
                 code.append(f"{ind}return result;")
@@ -9578,9 +9728,9 @@ class ARM64XMLParser:
                 code.append(f"{ind}    case 2: _sve_arr = Arrangement::S; break; case 3: _sve_arr = Arrangement::D; break;")
                 code.append(f"{ind}}}")
                 code.append(f"{ind}uint32_t _pd1 = enc.{member_name}.{pd_cpp};  // 4-bit Pd1, Pd2=Pd1+1")
-                code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_pred_reg(_pd1))); op.arrangement = _sve_arr; op.index = 2; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_pred_reg(_pd1))); op.set_arrangement(_sve_arr); op.index = 2; result.operands.push_back(op); }}")
                 if i1_cpp:
-                    code.append(f"{ind}{{ auto op = Operand::predn(enc.{member_name}.{pnn_cpp} | 8u); op.has_index = true; op.index = enc.{member_name}.{i1_cpp}; result.operands.push_back(op); }}")
+                    code.append(f"{ind}{{ auto op = Operand::predn(enc.{member_name}.{pnn_cpp} | 8u); op.flags.has_index = true; op.index = enc.{member_name}.{i1_cpp}; result.operands.push_back(op); }}")
                 else:
                     code.append(f"{ind}result.operands.push_back(Operand::predn(enc.{member_name}.{pnn_cpp} | 8u));")
                 code.append(f"{ind}return result;")
@@ -9669,7 +9819,7 @@ class ARM64XMLParser:
                     if _zd_field:
                         _zd_mul = _grp_sz if _grp_sz > 1 else 1
                         _zd_expr = f"enc.{member_name}.{_zd_field}{f' * {_zd_mul}' if _zd_mul > 1 else ''}"
-                        code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg({_zd_expr}))); op.arrangement = {_arr_str}; op.index = {_grp_sz}; result.operands.push_back(op); }}")
+                        code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg({_zd_expr}))); op.set_arrangement({_arr_str}); op.index = {_grp_sz}; result.operands.push_back(op); }}")
                 elif _is_z_rza:
                     if _zd_field:
                         code.append(f"{ind}result.operands.push_back(Operand::sve(enc.{member_name}.{_zd_field}, {_arr_str}));")
@@ -9679,8 +9829,8 @@ class ARM64XMLParser:
                     _v_expr = f"enc.{member_name}.{field_map['V']['name']}"
                     code.append(f"{ind}{{")
                     code.append(f"{ind}    auto op = Operand::sme_tile({_tile_expr});")
-                    code.append(f"{ind}    op.arrangement = {_arr_str};")
-                    code.append(f"{ind}    op.has_index = true;")
+                    code.append(f"{ind}    op.set_arrangement({_arr_str});")
+                    code.append(f"{ind}    op.flags.has_index = true;")
                     code.append(f"{ind}    op.index = {_ws_expr};")
                     code.append(f"{ind}    op.amount = static_cast<uint8_t>({_start_expr});")
                     code.append(f"{ind}    op.offset = {_end_expr};")
@@ -9691,8 +9841,8 @@ class ARM64XMLParser:
                     # No V field, range + VGx — extend=3: za.T[wN, start:end, vgxN]
                     code.append(f"{ind}{{")
                     code.append(f"{ind}    auto op = Operand::sme_tile(0);")
-                    code.append(f"{ind}    op.arrangement = {_arr_str};")
-                    code.append(f"{ind}    op.has_index = true;")
+                    code.append(f"{ind}    op.set_arrangement({_arr_str});")
+                    code.append(f"{ind}    op.flags.has_index = true;")
                     code.append(f"{ind}    op.extend = 3;  // range + VGx mode")
                     code.append(f"{ind}    op.index = {_ws_expr};")
                     code.append(f"{ind}    op.amount = static_cast<uint8_t>({_start_expr});")
@@ -9703,8 +9853,8 @@ class ARM64XMLParser:
                     # No V field, no range — VGx mode za.T[wN, offs, vgxN]
                     code.append(f"{ind}{{")
                     code.append(f"{ind}    auto op = Operand::sme_tile(0);")
-                    code.append(f"{ind}    op.arrangement = {_arr_str};")
-                    code.append(f"{ind}    op.has_index = true;")
+                    code.append(f"{ind}    op.set_arrangement({_arr_str});")
+                    code.append(f"{ind}    op.flags.has_index = true;")
                     code.append(f"{ind}    op.extend = 2;  // VGx mode")
                     code.append(f"{ind}    op.index = {_ws_expr};")
                     code.append(f"{ind}    op.amount = static_cast<uint8_t>({_off_cpp});  // raw offset (not scaled)")
@@ -9718,7 +9868,7 @@ class ARM64XMLParser:
                     if _zn:
                         _zn_mul = _grp_sz if _grp_sz > 1 else 1
                         _zn_expr = f"enc.{member_name}.{_zn}{f' * {_zn_mul}' if _zn_mul > 1 else ''}"
-                        code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg({_zn_expr}))); op.arrangement = {_arr_str}; op.index = {_grp_sz}; result.operands.push_back(op); }}")
+                        code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg({_zn_expr}))); op.set_arrangement({_arr_str}); op.index = {_grp_sz}; result.operands.push_back(op); }}")
 
                 code.append(f"{ind}return result;")
                 return code
@@ -9737,7 +9887,7 @@ class ARM64XMLParser:
             code.append(f"{ind}result.operands.clear();")
             code.append(f"{ind}{{")
             code.append(f"{ind}    auto op = Operand::sme_tile(0u);")
-            code.append(f"{ind}    op.has_index = true;")
+            code.append(f"{ind}    op.flags.has_index = true;")
             code.append(f"{ind}    op.extend = 5;  // LDR/STR ZA format")
             code.append(f"{ind}    op.index = enc.{member_name}.{rv_f} + 12;")
             code.append(f"{ind}    op.amount = static_cast<uint8_t>(enc.{member_name}.{off_f});")
@@ -9755,10 +9905,10 @@ class ARM64XMLParser:
             if encoding_name == 'movt_r_zt_':
                 # movt Xt, zt0[off3]
                 code.append(f"{ind}result.operands.push_back(Operand::gp(enc.{member_name}.{rt_f}, true));")
-                code.append(f"{ind}{{ auto op = Operand::zt0(); op.has_index = true; op.index = enc.{member_name}.{off_f}; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ auto op = Operand::zt0(); op.flags.has_index = true; op.index = enc.{member_name}.{off_f}; result.operands.push_back(op); }}")
             else:
                 # movt zt0[off3], Xt
-                code.append(f"{ind}{{ auto op = Operand::zt0(); op.has_index = true; op.index = enc.{member_name}.{off_f}; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ auto op = Operand::zt0(); op.flags.has_index = true; op.index = enc.{member_name}.{off_f}; result.operands.push_back(op); }}")
                 code.append(f"{ind}result.operands.push_back(Operand::gp(enc.{member_name}.{rt_f}, true));")
             code.append(f"{ind}return result;")
             return code
@@ -9825,17 +9975,17 @@ class ARM64XMLParser:
             idx = _pmov_idx_expr()
             code.append(f"{ind}result.operands.clear();  // PMOV special case")
             if is_z_to_p and 'Pd' in field_map and 'Zn' in field_map:
-                code.append(f"{ind}{{ Operand op = Operand::pred(enc.{member_name}.{field_map['Pd']['name']}); op.arrangement = {arr}; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ Operand op = Operand::pred(enc.{member_name}.{field_map['Pd']['name']}); op.set_arrangement({arr}); result.operands.push_back(op); }}")
                 if idx:
-                    code.append(f"{ind}{{ auto op = Operand::sve(enc.{member_name}.{field_map['Zn']['name']}); op.has_index = true; op.index = {idx}; result.operands.push_back(op); }}")
+                    code.append(f"{ind}{{ auto op = Operand::sve(enc.{member_name}.{field_map['Zn']['name']}); op.flags.has_index = true; op.index = {idx}; result.operands.push_back(op); }}")
                 else:
                     code.append(f"{ind}result.operands.push_back(Operand::sve(enc.{member_name}.{field_map['Zn']['name']}));")
             elif not is_z_to_p and 'Zd' in field_map and 'Pn' in field_map:
                 if idx:
-                    code.append(f"{ind}{{ auto op = Operand::sve(enc.{member_name}.{field_map['Zd']['name']}); op.has_index = true; op.index = {idx}; result.operands.push_back(op); }}")
+                    code.append(f"{ind}{{ auto op = Operand::sve(enc.{member_name}.{field_map['Zd']['name']}); op.flags.has_index = true; op.index = {idx}; result.operands.push_back(op); }}")
                 else:
                     code.append(f"{ind}result.operands.push_back(Operand::sve(enc.{member_name}.{field_map['Zd']['name']}));")
-                code.append(f"{ind}{{ Operand op = Operand::pred(enc.{member_name}.{field_map['Pn']['name']}); op.arrangement = {arr}; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ Operand op = Operand::pred(enc.{member_name}.{field_map['Pn']['name']}); op.set_arrangement({arr}); result.operands.push_back(op); }}")
             code.append(f"{ind}return result;")
             return code
 
@@ -9856,7 +10006,7 @@ class ARM64XMLParser:
                 code.append(f"{ind}    case 0: _sve_arr = Arrangement::B; break; case 1: _sve_arr = Arrangement::H; break;")
                 code.append(f"{ind}    case 2: _sve_arr = Arrangement::S; break; case 3: _sve_arr = Arrangement::D; break;")
                 code.append(f"{ind}}}")
-                code.append(f"{ind}{{ auto op = Operand::predn(enc.{member_name}.{pnn_cpp} {pnn_offset}); op.arrangement = _sve_arr; result.operands.push_back(op);; }}")
+                code.append(f"{ind}{{ auto op = Operand::predn(enc.{member_name}.{pnn_cpp} {pnn_offset}); op.set_arrangement(_sve_arr); result.operands.push_back(op);; }}")
             else:
                 code.append(f"{ind}result.operands.push_back(Operand::predn(enc.{member_name}.{pnn_cpp} {pnn_offset}));")
             if vl_cpp:
@@ -9880,7 +10030,7 @@ class ARM64XMLParser:
                 code.append(f"{ind}    case 0: _sve_arr = Arrangement::B; break; case 1: _sve_arr = Arrangement::H; break;")
                 code.append(f"{ind}    case 2: _sve_arr = Arrangement::S; break; case 3: _sve_arr = Arrangement::D; break;")
                 code.append(f"{ind}}}")
-                code.append(f"{ind}{{ auto op = Operand::predn(enc.{member_name}.{pnd_cpp} | 8u); op.arrangement = _sve_arr; result.operands.push_back(op);; }}")
+                code.append(f"{ind}{{ auto op = Operand::predn(enc.{member_name}.{pnd_cpp} | 8u); op.set_arrangement(_sve_arr); result.operands.push_back(op);; }}")
                 code.append(f"{ind}result.operands.push_back(Operand::gp(enc.{member_name}.{rn_cpp}, true));")
                 code.append(f"{ind}result.operands.push_back(Operand::gp(enc.{member_name}.{rm_cpp}, true));")
                 if vl_cpp:
@@ -9904,7 +10054,7 @@ class ARM64XMLParser:
                 code.append(f"{ind}    case 2: _sve_arr = Arrangement::S; break; case 3: _sve_arr = Arrangement::D; break;")
                 code.append(f"{ind}}}")
                 code.append(f"{ind}uint32_t _pd1 = enc.{member_name}.{pd_cpp} * 2;  // 3-bit field encodes pair index")
-                code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_pred_reg(_pd1))); op.arrangement = _sve_arr; op.index = 2; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_pred_reg(_pd1))); op.set_arrangement(_sve_arr); op.index = 2; result.operands.push_back(op); }}")
                 code.append(f"{ind}result.operands.push_back(Operand::gp(enc.{member_name}.{rn_cpp}, true));")
                 code.append(f"{ind}result.operands.push_back(Operand::gp(enc.{member_name}.{rm_cpp}, true));")
                 code.append(f"{ind}return result;")
@@ -9931,7 +10081,7 @@ class ARM64XMLParser:
                 code.append(f"{ind}Arrangement _dst_arr = {_dst_arr};")
                 code.append(f"{ind}Arrangement _src_arr = {_src_arr};")
             code.append(f"{ind}result.operands.push_back(Operand::sve(enc.{member_name}.{zd_f}, _dst_arr));")
-            code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.{member_name}.{zn_f} * {_zn_mul}u))); op.arrangement = _src_arr; op.index = {_list_count}; result.operands.push_back(op); }}")
+            code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.{member_name}.{zn_f} * {_zn_mul}u))); op.set_arrangement(_src_arr); op.index = {_list_count}; result.operands.push_back(op); }}")
             code.append(f"{ind}return result;")
             return code
 
@@ -10141,9 +10291,9 @@ class ARM64XMLParser:
                     else:
                         reg_expr = f"enc.{member_name}.{field_cpp_name}"
                     if stride_val > 1:
-                        code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg({reg_expr}))); op.arrangement = {arr_expr}; op.index = {count}; op.offset = {stride_val}; result.operands.push_back(op); }}")
+                        code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg({reg_expr}))); op.set_arrangement({arr_expr}); op.index = {count}; op.offset = {stride_val}; result.operands.push_back(op); }}")
                     else:
-                        code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg({reg_expr}))); op.arrangement = {arr_expr}; op.index = {count}; result.operands.push_back(op); }}")
+                        code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg({reg_expr}))); op.set_arrangement({arr_expr}); op.index = {count}; result.operands.push_back(op); }}")
                     emitted_fields.add(base)
                     continue
 
@@ -10335,13 +10485,13 @@ class ARM64XMLParser:
                                 # xs=0 → uxtw(2), xs=1 → sxtw(6)
                                 _ext_expr = f"(enc.{member_name}.{_xs_field} ? 6u : 2u)"
                                 if _xs_shift > 0:
-                                    code.append(f'{ind}{{ Operand op = Operand::memory_reg_offset(static_cast<uint32_t>(make_gp_reg(enc.{member_name}.{rn_field_cpp}, true, true)), enc.{member_name}.{zm_field_cpp}, {_ext_expr}, {_xs_shift}); op.arrangement = {_zm_arr_cpp}; result.operands.push_back(op); }}')
+                                    code.append(f'{ind}{{ Operand op = Operand::memory_reg_offset(static_cast<uint32_t>(make_gp_reg(enc.{member_name}.{rn_field_cpp}, true, true)), enc.{member_name}.{zm_field_cpp}, {_ext_expr}, {_xs_shift}); op.index_reg = make_sve_reg(enc.{member_name}.{zm_field_cpp}, {_zm_arr_cpp}); result.operands.push_back(op); }}')
                                 else:
-                                    code.append(f'{ind}{{ Operand op = Operand::memory_reg_offset(static_cast<uint32_t>(make_gp_reg(enc.{member_name}.{rn_field_cpp}, true, true)), enc.{member_name}.{zm_field_cpp}, {_ext_expr}); op.arrangement = {_zm_arr_cpp}; result.operands.push_back(op); }}')
+                                    code.append(f'{ind}{{ Operand op = Operand::memory_reg_offset(static_cast<uint32_t>(make_gp_reg(enc.{member_name}.{rn_field_cpp}, true, true)), enc.{member_name}.{zm_field_cpp}, {_ext_expr}); op.index_reg = make_sve_reg(enc.{member_name}.{zm_field_cpp}, {_zm_arr_cpp}); result.operands.push_back(op); }}')
                             elif _lsl > 0:
-                                code.append(f'{ind}{{ Operand op = Operand::memory_reg_offset(static_cast<uint32_t>(make_gp_reg(enc.{member_name}.{rn_field_cpp}, true, true)), enc.{member_name}.{zm_field_cpp}, 3, {_lsl}); op.arrangement = {_zm_arr_cpp}; result.operands.push_back(op); }}')
+                                code.append(f'{ind}{{ Operand op = Operand::memory_reg_offset(static_cast<uint32_t>(make_gp_reg(enc.{member_name}.{rn_field_cpp}, true, true)), enc.{member_name}.{zm_field_cpp}, 3, {_lsl}); op.index_reg = make_sve_reg(enc.{member_name}.{zm_field_cpp}, {_zm_arr_cpp}); result.operands.push_back(op); }}')
                             else:
-                                code.append(f'{ind}{{ Operand op = Operand::memory_reg_offset(static_cast<uint32_t>(make_gp_reg(enc.{member_name}.{rn_field_cpp}, true, true)), enc.{member_name}.{zm_field_cpp}); op.arrangement = {_zm_arr_cpp}; result.operands.push_back(op); }}')
+                                code.append(f'{ind}{{ Operand op = Operand::memory_reg_offset(static_cast<uint32_t>(make_gp_reg(enc.{member_name}.{rn_field_cpp}, true, true)), enc.{member_name}.{zm_field_cpp}); op.index_reg = make_sve_reg(enc.{member_name}.{zm_field_cpp}, {_zm_arr_cpp}); result.operands.push_back(op); }}')
                             emitted_fields.add(rn_key)
                             emitted_fields.add(_zm_key)
                     continue  # Skip Xm/Zm (already consumed as part of memory operand)
@@ -10442,24 +10592,23 @@ class ARM64XMLParser:
                             imm_field_cpp = field_map[mem_imm]['name']
                             code.append(f"{ind}{{")
                             code.append(f"{ind}    int32_t _imm = (int32_t)enc.{member_name}.{imm_field_cpp} * {_esz};")
-                            code.append(f"{ind}    auto op = Operand::memory_sve_offset({reg_val_expr}, _imm);")
-                            code.append(f"{ind}    op.arrangement = {arr_expr};")
-                            code.append(f"{ind}    result.operands.push_back(op);")
+                            code.append(f"{ind}    result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg({reg_val_expr}, {arr_expr})), _imm));")
                             code.append(f"{ind}}}")
                             consumed_imm_fields.add(mem_imm)
                         else:
-                            code.append(f"{ind}{{ auto op = Operand::memory_sve_offset({reg_val_expr}); op.arrangement = {arr_expr}; result.operands.push_back(op); }}")
+                            code.append(f"{ind}result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg({reg_val_expr}, {arr_expr}))));")
+
                     elif top.get('is_list') and not top.get('in_mem_bracket'):
                         # Single { Zt.T } (no numbered suffix) → SVERegisterList with count=1
                         if top.get('has_elem_index'):
                             idx_code = self._generate_sve_index_expr(field_map, member_name, encoding_name)
                             if idx_code:
-                                code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg({reg_val_expr}))); op.arrangement = {arr_expr}; op.index = 1; {idx_code} result.operands.push_back(op); }}")
+                                code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg({reg_val_expr}))); op.set_arrangement({arr_expr}); op.index = 1; {idx_code} result.operands.push_back(op); }}")
                                 sve_index_consumed = True
                             else:
-                                code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg({reg_val_expr}))); op.arrangement = {arr_expr}; op.index = 1; result.operands.push_back(op); }}")
+                                code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg({reg_val_expr}))); op.set_arrangement({arr_expr}); op.index = 1; result.operands.push_back(op); }}")
                         else:
-                            code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg({reg_val_expr}))); op.arrangement = {arr_expr}; op.index = 1; result.operands.push_back(op); }}")
+                            code.append(f"{ind}{{ auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg({reg_val_expr}))); op.set_arrangement({arr_expr}); op.index = 1; result.operands.push_back(op); }}")
                     else:
                         # Normal SVERegister (also used for complex_mem Z registers)
                         if top.get('has_elem_index'):
@@ -10468,7 +10617,7 @@ class ARM64XMLParser:
                             idx_arr_expr = arr_expr if arr else 'Arrangement::None'
                             idx_code = self._generate_sve_index_expr(field_map, member_name, encoding_name)
                             if idx_code:
-                                code.append(f"{ind}{{ auto op = Operand::sve({reg_val_expr}); op.arrangement = {idx_arr_expr}; {idx_code} result.operands.push_back(op); }}")
+                                code.append(f"{ind}{{ auto op = Operand::sve({reg_val_expr}); op.set_arrangement({idx_arr_expr}); {idx_code} result.operands.push_back(op); }}")
                                 sve_index_consumed = True
                             else:
                                 code.append(f"{ind}result.operands.push_back(Operand::sve({reg_val_expr}, {idx_arr_expr}));")
@@ -10512,9 +10661,9 @@ class ARM64XMLParser:
                             _m_field = field_map['M']['name']
                             code.append(f"{ind}{{ Operand op = Operand::pred(enc.{member_name}.{field_cpp_name}); op.extend = static_cast<uint8_t>((enc.{member_name}.{_m_field} != 0) ? 2u : 1u); result.operands.push_back(op); }}")
                         else:
-                            code.append(f"{ind}{{ auto op = Operand::pred(enc.{member_name}.{field_cpp_name}); op.arrangement = Arrangement::None; op.extend = 1; result.operands.push_back(op); }}")
+                            code.append(f"{ind}{{ auto op = Operand::pred(enc.{member_name}.{field_cpp_name}); op.set_arrangement(Arrangement::None); op.extend = 1; result.operands.push_back(op); }}")
                     else:
-                        code.append(f"{ind}{{ Operand op = Operand::pred(enc.{member_name}.{field_cpp_name}); op.arrangement = {arr_expr}; result.operands.push_back(op); }}")
+                        code.append(f"{ind}{{ Operand op = Operand::pred(enc.{member_name}.{field_cpp_name}); op.set_arrangement({arr_expr}); result.operands.push_back(op); }}")
                 elif actual_field in ('Rdn', 'Rda', 'Rd', 'Rn', 'Rm', 'Ra', 'Rt', 'Rs', 'Rt2'):
                     # GP register in SVE template (e.g., CLASTA <R><dn>, <Pg>, <R><dn>, <Zm>.<T>)
                     # Determine register width from 'sf' field or encoding size
@@ -10699,7 +10848,7 @@ class ARM64XMLParser:
             code.append(f"{ind}else if ((_imms & 0x38) == 0x30) {{ _sve_log_arr = Arrangement::B; }}")
             code.append(f"{ind}else {{ _sve_log_arr = Arrangement::D; }}")
             # Fix SVE register operands already pushed (with Arrangement::None) with correct arrangement
-            code.append(f"{ind}for (auto& op : result.operands) {{ if (op.type == OperandType::Register) op.arrangement = _sve_log_arr; }}")
+            code.append(f"{ind}for (auto& op : result.operands) {{ if (op.type == OperandType::Register) op.set_arrangement(_sve_log_arr); }}")
             # Truncate immediate to element size for display
             code.append(f"{ind}if (_sve_log_arr == Arrangement::B) _imm_val &= 0xFF;")
             code.append(f"{ind}else if (_sve_log_arr == Arrangement::H) _imm_val &= 0xFFFF;")
@@ -10783,7 +10932,7 @@ class ARM64XMLParser:
                     code.append(f"{ind}{{")
                     code.append(f"{ind}    int32_t _signed_imm8 = static_cast<int32_t>(enc.{member_name}.{field_cpp_name} << 24) >> 24;")
                     code.append(f"{ind}    if (enc.{member_name}.{sh_cpp}) _signed_imm8 <<= 8;")
-                    code.append(f"{ind}    result.operands.push_back(Operand::simm(static_cast<uint32_t>(_signed_imm8)));")
+                    code.append(f"{ind}    result.operands.push_back(Operand::simm(static_cast<int64_t>(_signed_imm8)));")
                     code.append(f"{ind}}}")
                     continue
 
@@ -10797,7 +10946,7 @@ class ARM64XMLParser:
                     # Sign extend
                     code.append(f"{ind}{{")
                     code.append(f"{ind}    int32_t val = static_cast<int32_t>(enc.{member_name}.{field_cpp_name} << {32-bits}) >> {32-bits};")
-                    code.append(f"{ind}    result.operands.push_back(Operand::simm(static_cast<uint32_t>(val)));")
+                    code.append(f"{ind}    result.operands.push_back(Operand::simm(static_cast<int64_t>(val)));")
                     code.append(f"{ind}}}")
 
         # Extract SVE/SME offset fields
@@ -10894,10 +11043,10 @@ class ARM64XMLParser:
             rot_width = field_map['rot'].get('width', 2)
             if rot_width == 1:
                 # 1-bit rot: 0→90°, 1→270° (CADD/SQCADD etc.)
-                code.append(f"{ind}{{ auto op = Operand::imm(enc.{member_name}.{rot_field} * 180u + 90u); op.prefer_decimal = true; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ auto op = Operand::imm(enc.{member_name}.{rot_field} * 180u + 90u); op.flags.prefer_decimal = true; result.operands.push_back(op); }}")
             else:
                 # 2-bit rot: 0→0°, 1→90°, 2→180°, 3→270°
-                code.append(f"{ind}{{ auto op = Operand::imm(enc.{member_name}.{rot_field} * 90u); op.prefer_decimal = true; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ auto op = Operand::imm(enc.{member_name}.{rot_field} * 90u); op.flags.prefer_decimal = true; result.operands.push_back(op); }}")
 
         # Handle fixed-point scale (FCVT/SCVTF)
         if 'scale' in field_map and not field_map['scale']['is_fixed']:
@@ -11224,11 +11373,12 @@ class ARM64XMLParser:
         code.append("        .def_ro(\"value\",      &veda64::Operand::value)")
         code.append("        .def_ro(\"imm64\",      &veda64::Operand::imm64)")
         code.append("        .def_prop_ro(\"arrangement\", [](const veda64::Operand& op) -> nb::object {")
-        code.append("            if (op.arrangement == veda64::Arrangement::None) return nb::none();")
-        code.append("            return nb::str(veda64::Operand::arrangement_to_string(op.arrangement));")
+        code.append("            auto arr = veda64::register_arrangement(static_cast<veda64::Register>(op.value));")
+        code.append("            if (arr == veda64::Arrangement::None) return nb::none();")
+        code.append("            return nb::str(veda64::arrangement_to_string(arr));")
         code.append("        })")
         code.append("        .def_ro(\"index\",      &veda64::Operand::index)")
-        code.append("        .def_ro(\"has_index\",  &veda64::Operand::has_index)")
+        code.append("        .def_prop_ro(\"has_index\", [](const veda64::Operand& op) { return (bool)op.flags.has_index; })")
         code.append("        .def_ro(\"base_reg\",   &veda64::Operand::base_reg)")
         code.append("        .def_ro(\"offset\",     &veda64::Operand::offset)")
         code.append("        .def_ro(\"index_reg\",  &veda64::Operand::index_reg)")

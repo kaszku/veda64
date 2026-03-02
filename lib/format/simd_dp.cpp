@@ -35121,7 +35121,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                                 result.operands.push_back(Operand::scalar(enc.movi_asimdimm_dds.Rd, Arrangement::D));
                             } else {
                                 auto op = Operand::vec(enc.movi_asimdimm_dds.Rd);
-                                op.arrangement = _marr;
+                                op.set_arrangement(_marr);
                                 result.operands.push_back(op);
                             }
                         }
@@ -35158,7 +35158,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                                 result.operands.push_back(Operand::scalar(enc.movi_asimdimm_d2d.Rd, Arrangement::D));
                             } else {
                                 auto op = Operand::vec(enc.movi_asimdimm_d2d.Rd);
-                                op.arrangement = _marr;
+                                op.set_arrangement(_marr);
                                 result.operands.push_back(op);
                             }
                         }
@@ -35195,7 +35195,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                                 result.operands.push_back(Operand::scalar(enc.fmov_asimdimm_d2d.Rd, Arrangement::D));
                             } else {
                                 auto op = Operand::vec(enc.fmov_asimdimm_d2d.Rd);
-                                op.arrangement = _marr;
+                                op.set_arrangement(_marr);
                                 result.operands.push_back(op);
                             }
                         }
@@ -35218,12 +35218,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.mov_umov_asimdins_xx.Rn);
                             uint32_t idx = 0;
-                            if (_imm5 & 1) { op.arrangement = Arrangement::B; idx = _imm5 >> 1; }
-                            else if (_imm5 & 2) { op.arrangement = Arrangement::H; idx = _imm5 >> 2; }
-                            else if (_imm5 & 4) { op.arrangement = Arrangement::S; idx = _imm5 >> 3; }
-                            else if (_imm5 & 8) { op.arrangement = Arrangement::D; idx = _imm5 >> 4; }
+                            if (_imm5 & 1) { op.set_arrangement(Arrangement::B); idx = _imm5 >> 1; }
+                            else if (_imm5 & 2) { op.set_arrangement(Arrangement::H); idx = _imm5 >> 2; }
+                            else if (_imm5 & 4) { op.set_arrangement(Arrangement::S); idx = _imm5 >> 3; }
+                            else if (_imm5 & 8) { op.set_arrangement(Arrangement::D); idx = _imm5 >> 4; }
                             op.index = idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -35243,12 +35243,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.mov_umov_asimdins_ww.Rn);
                             uint32_t idx = 0;
-                            if (_imm5 & 1) { op.arrangement = Arrangement::B; idx = _imm5 >> 1; }
-                            else if (_imm5 & 2) { op.arrangement = Arrangement::H; idx = _imm5 >> 2; }
-                            else if (_imm5 & 4) { op.arrangement = Arrangement::S; idx = _imm5 >> 3; }
-                            else if (_imm5 & 8) { op.arrangement = Arrangement::D; idx = _imm5 >> 4; }
+                            if (_imm5 & 1) { op.set_arrangement(Arrangement::B); idx = _imm5 >> 1; }
+                            else if (_imm5 & 2) { op.set_arrangement(Arrangement::H); idx = _imm5 >> 2; }
+                            else if (_imm5 & 4) { op.set_arrangement(Arrangement::S); idx = _imm5 >> 3; }
+                            else if (_imm5 & 8) { op.set_arrangement(Arrangement::D); idx = _imm5 >> 4; }
                             op.index = idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -35381,12 +35381,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.smov_asimdins_ww.Rn);
                             uint32_t idx = 0;
-                            if (_imm5 & 1) { op.arrangement = Arrangement::B; idx = _imm5 >> 1; }
-                            else if (_imm5 & 2) { op.arrangement = Arrangement::H; idx = _imm5 >> 2; }
-                            else if (_imm5 & 4) { op.arrangement = Arrangement::S; idx = _imm5 >> 3; }
-                            else if (_imm5 & 8) { op.arrangement = Arrangement::D; idx = _imm5 >> 4; }
+                            if (_imm5 & 1) { op.set_arrangement(Arrangement::B); idx = _imm5 >> 1; }
+                            else if (_imm5 & 2) { op.set_arrangement(Arrangement::H); idx = _imm5 >> 2; }
+                            else if (_imm5 & 4) { op.set_arrangement(Arrangement::S); idx = _imm5 >> 3; }
+                            else if (_imm5 & 8) { op.set_arrangement(Arrangement::D); idx = _imm5 >> 4; }
                             op.index = idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -35401,12 +35401,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.umov_asimdins_ww.Rn);
                             uint32_t idx = 0;
-                            if (_imm5 & 1) { op.arrangement = Arrangement::B; idx = _imm5 >> 1; }
-                            else if (_imm5 & 2) { op.arrangement = Arrangement::H; idx = _imm5 >> 2; }
-                            else if (_imm5 & 4) { op.arrangement = Arrangement::S; idx = _imm5 >> 3; }
-                            else if (_imm5 & 8) { op.arrangement = Arrangement::D; idx = _imm5 >> 4; }
+                            if (_imm5 & 1) { op.set_arrangement(Arrangement::B); idx = _imm5 >> 1; }
+                            else if (_imm5 & 2) { op.set_arrangement(Arrangement::H); idx = _imm5 >> 2; }
+                            else if (_imm5 & 4) { op.set_arrangement(Arrangement::S); idx = _imm5 >> 3; }
+                            else if (_imm5 & 8) { op.set_arrangement(Arrangement::D); idx = _imm5 >> 4; }
                             op.index = idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -35721,12 +35721,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.ins_asimdins_ir_r.Rd);
                             uint32_t idx = 0;
-                            if (_imm5 & 1) { op.arrangement = Arrangement::B; idx = _imm5 >> 1; }
-                            else if (_imm5 & 2) { op.arrangement = Arrangement::H; idx = _imm5 >> 2; }
-                            else if (_imm5 & 4) { op.arrangement = Arrangement::S; idx = _imm5 >> 3; }
-                            else if (_imm5 & 8) { op.arrangement = Arrangement::D; idx = _imm5 >> 4; }
+                            if (_imm5 & 1) { op.set_arrangement(Arrangement::B); idx = _imm5 >> 1; }
+                            else if (_imm5 & 2) { op.set_arrangement(Arrangement::H); idx = _imm5 >> 2; }
+                            else if (_imm5 & 4) { op.set_arrangement(Arrangement::S); idx = _imm5 >> 3; }
+                            else if (_imm5 & 8) { op.set_arrangement(Arrangement::D); idx = _imm5 >> 4; }
                             op.index = idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         bool _rn_64 = !(_imm5 & 0x7);
@@ -35743,12 +35743,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.smov_asimdins_xx.Rn);
                             uint32_t idx = 0;
-                            if (_imm5 & 1) { op.arrangement = Arrangement::B; idx = _imm5 >> 1; }
-                            else if (_imm5 & 2) { op.arrangement = Arrangement::H; idx = _imm5 >> 2; }
-                            else if (_imm5 & 4) { op.arrangement = Arrangement::S; idx = _imm5 >> 3; }
-                            else if (_imm5 & 8) { op.arrangement = Arrangement::D; idx = _imm5 >> 4; }
+                            if (_imm5 & 1) { op.set_arrangement(Arrangement::B); idx = _imm5 >> 1; }
+                            else if (_imm5 & 2) { op.set_arrangement(Arrangement::H); idx = _imm5 >> 2; }
+                            else if (_imm5 & 4) { op.set_arrangement(Arrangement::S); idx = _imm5 >> 3; }
+                            else if (_imm5 & 8) { op.set_arrangement(Arrangement::D); idx = _imm5 >> 4; }
                             op.index = idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -35850,12 +35850,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.dup_asisdone_only.Rn);
                             uint32_t idx = 0;
-                            if (_imm5 & 1) { op.arrangement = Arrangement::B; idx = _imm5 >> 1; }
-                            else if (_imm5 & 2) { op.arrangement = Arrangement::H; idx = _imm5 >> 2; }
-                            else if (_imm5 & 4) { op.arrangement = Arrangement::S; idx = _imm5 >> 3; }
-                            else if (_imm5 & 8) { op.arrangement = Arrangement::D; idx = _imm5 >> 4; }
+                            if (_imm5 & 1) { op.set_arrangement(Arrangement::B); idx = _imm5 >> 1; }
+                            else if (_imm5 & 2) { op.set_arrangement(Arrangement::H); idx = _imm5 >> 2; }
+                            else if (_imm5 & 4) { op.set_arrangement(Arrangement::S); idx = _imm5 >> 3; }
+                            else if (_imm5 & 8) { op.set_arrangement(Arrangement::D); idx = _imm5 >> 4; }
                             op.index = idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -36252,7 +36252,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand::vec(enc.sm3tt1a_vvv4crypto3imm2.Rd, Arrangement::S4));
                         result.operands.push_back(Operand::vec(enc.sm3tt1a_vvv4crypto3imm2.Rn, Arrangement::S4));
-                        { auto op = Operand::vec(enc.sm3tt1a_vvv4crypto3imm2.Rm); op.arrangement = Arrangement::S; op.index = enc.sm3tt1a_vvv4crypto3imm2.imm2; op.has_index = true; result.operands.push_back(op); }
+                        { auto op = Operand::vec(enc.sm3tt1a_vvv4crypto3imm2.Rm); op.set_arrangement(Arrangement::S); op.index = enc.sm3tt1a_vvv4crypto3imm2.imm2; op.flags.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0xCE408400u: { // SM3TT1B_VVV4_crypto3_imm2
@@ -36262,7 +36262,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand::vec(enc.sm3tt1b_vvv4crypto3imm2.Rd, Arrangement::S4));
                         result.operands.push_back(Operand::vec(enc.sm3tt1b_vvv4crypto3imm2.Rn, Arrangement::S4));
-                        { auto op = Operand::vec(enc.sm3tt1b_vvv4crypto3imm2.Rm); op.arrangement = Arrangement::S; op.index = enc.sm3tt1b_vvv4crypto3imm2.imm2; op.has_index = true; result.operands.push_back(op); }
+                        { auto op = Operand::vec(enc.sm3tt1b_vvv4crypto3imm2.Rm); op.set_arrangement(Arrangement::S); op.index = enc.sm3tt1b_vvv4crypto3imm2.imm2; op.flags.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0xCE408800u: { // SM3TT2A_VVV4_crypto3_imm2
@@ -36272,7 +36272,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand::vec(enc.sm3tt2a_vvv4crypto3imm2.Rd, Arrangement::S4));
                         result.operands.push_back(Operand::vec(enc.sm3tt2a_vvv4crypto3imm2.Rn, Arrangement::S4));
-                        { auto op = Operand::vec(enc.sm3tt2a_vvv4crypto3imm2.Rm); op.arrangement = Arrangement::S; op.index = enc.sm3tt2a_vvv4crypto3imm2.imm2; op.has_index = true; result.operands.push_back(op); }
+                        { auto op = Operand::vec(enc.sm3tt2a_vvv4crypto3imm2.Rm); op.set_arrangement(Arrangement::S); op.index = enc.sm3tt2a_vvv4crypto3imm2.imm2; op.flags.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0xCE408C00u: { // SM3TT2B_VVV_crypto3_imm2
@@ -36282,7 +36282,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         bool is_64bit = false;
                         result.operands.push_back(Operand::vec(enc.sm3tt2b_vvv_crypto3imm2.Rd, Arrangement::S4));
                         result.operands.push_back(Operand::vec(enc.sm3tt2b_vvv_crypto3imm2.Rn, Arrangement::S4));
-                        { auto op = Operand::vec(enc.sm3tt2b_vvv_crypto3imm2.Rm); op.arrangement = Arrangement::S; op.index = enc.sm3tt2b_vvv_crypto3imm2.imm2; op.has_index = true; result.operands.push_back(op); }
+                        { auto op = Operand::vec(enc.sm3tt2b_vvv_crypto3imm2.Rm); op.set_arrangement(Arrangement::S); op.index = enc.sm3tt2b_vvv_crypto3imm2.imm2; op.flags.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         default: break;
@@ -36296,8 +36296,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand::vec(enc.luti4asimdtbl_l5.Rd, Arrangement::B16));
-                        { auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.luti4asimdtbl_l5.Rn))); op.arrangement = Arrangement::B16; op.index = 1; result.operands.push_back(op); }
-                        { auto op = Operand::vec(enc.luti4asimdtbl_l5.Rm); op.has_index = true; op.index = (enc.luti4asimdtbl_l5.len >> 1); result.operands.push_back(op); }
+                        { auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.luti4asimdtbl_l5.Rn))); op.set_arrangement(Arrangement::B16); op.index = 1; result.operands.push_back(op); }
+                        { auto op = Operand::vec(enc.luti4asimdtbl_l5.Rm); op.flags.has_index = true; op.index = (enc.luti4asimdtbl_l5.len >> 1); result.operands.push_back(op); }
                         return result;
         }
         default: break;
@@ -36311,8 +36311,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         result.operands.push_back(Operand::vec(enc.luti4asimdtbl_l7.Rd, Arrangement::H8));
-                        { auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.luti4asimdtbl_l7.Rn))); op.arrangement = Arrangement::H8; op.index = 2; result.operands.push_back(op); }
-                        { auto op = Operand::vec(enc.luti4asimdtbl_l7.Rm); op.has_index = true; op.index = enc.luti4asimdtbl_l7.len; result.operands.push_back(op); }
+                        { auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.luti4asimdtbl_l7.Rn))); op.set_arrangement(Arrangement::H8); op.index = 2; result.operands.push_back(op); }
+                        { auto op = Operand::vec(enc.luti4asimdtbl_l7.Rm); op.flags.has_index = true; op.index = enc.luti4asimdtbl_l7.len; result.operands.push_back(op); }
                         return result;
         }
         case 0x4E801000u: { // LUTI2_asimdtbl_L5
@@ -36356,23 +36356,23 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.ins_asimdins_iv_v.Rd);
                             uint32_t idx = 0;
-                            if (_imm5 & 1) { op.arrangement = Arrangement::B; idx = _imm5 >> 1; }
-                            else if (_imm5 & 2) { op.arrangement = Arrangement::H; idx = _imm5 >> 2; }
-                            else if (_imm5 & 4) { op.arrangement = Arrangement::S; idx = _imm5 >> 3; }
-                            else if (_imm5 & 8) { op.arrangement = Arrangement::D; idx = _imm5 >> 4; }
+                            if (_imm5 & 1) { op.set_arrangement(Arrangement::B); idx = _imm5 >> 1; }
+                            else if (_imm5 & 2) { op.set_arrangement(Arrangement::H); idx = _imm5 >> 2; }
+                            else if (_imm5 & 4) { op.set_arrangement(Arrangement::S); idx = _imm5 >> 3; }
+                            else if (_imm5 & 8) { op.set_arrangement(Arrangement::D); idx = _imm5 >> 4; }
                             op.index = idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         {
                             auto op = Operand::vec(enc.ins_asimdins_iv_v.Rn);
                             uint32_t idx2 = 0;
-                            if (_imm5 & 1) { op.arrangement = Arrangement::B; idx2 = _imm4; }
-                            else if (_imm5 & 2) { op.arrangement = Arrangement::H; idx2 = _imm4 >> 1; }
-                            else if (_imm5 & 4) { op.arrangement = Arrangement::S; idx2 = _imm4 >> 2; }
-                            else if (_imm5 & 8) { op.arrangement = Arrangement::D; idx2 = _imm4 >> 3; }
+                            if (_imm5 & 1) { op.set_arrangement(Arrangement::B); idx2 = _imm4; }
+                            else if (_imm5 & 2) { op.set_arrangement(Arrangement::H); idx2 = _imm4 >> 1; }
+                            else if (_imm5 & 4) { op.set_arrangement(Arrangement::S); idx2 = _imm4 >> 2; }
+                            else if (_imm5 & 8) { op.set_arrangement(Arrangement::D); idx2 = _imm4 >> 3; }
                             op.index = idx2;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -36925,9 +36925,9 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             uint32_t _vm_reg = _rm_val & 0x7;  // Rm[2:0]
                             uint32_t _idx = (enc.fmlalb_asimdelem_h.H << 3) | (enc.fmlalb_asimdelem_h.L << 2) | (enc.fmlalb_asimdelem_h.M << 1) | ((_rm_val >> 3) & 1);
                             auto op = Operand::vec(_vm_reg);
-                            op.arrangement = Arrangement::B;
+                            op.set_arrangement(Arrangement::B);
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -36944,8 +36944,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             uint32_t _vm_reg = _rm_val & 0x7;  // Rm[2:0]
                             uint32_t _idx = (enc.fmlallbb_asimdelem_j.H << 3) | (enc.fmlallbb_asimdelem_j.L << 2) | (enc.fmlallbb_asimdelem_j.M << 1) | ((_rm_val >> 3) & 1);
                             auto op = Operand::vec(_vm_reg);
-                            op.arrangement = Arrangement::B;
-                            op.index = _idx; op.has_index = true;
+                            op.set_arrangement(Arrangement::B);
+                            op.index = _idx; op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -36962,8 +36962,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             uint32_t _vm_reg = _rm_val & 0x7;  // Rm[2:0]
                             uint32_t _idx = (enc.fmlallbt_asimdelem_j.H << 3) | (enc.fmlallbt_asimdelem_j.L << 2) | (enc.fmlallbt_asimdelem_j.M << 1) | ((_rm_val >> 3) & 1);
                             auto op = Operand::vec(_vm_reg);
-                            op.arrangement = Arrangement::B;
-                            op.index = _idx; op.has_index = true;
+                            op.set_arrangement(Arrangement::B);
+                            op.index = _idx; op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -36981,9 +36981,9 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             uint32_t _vm_reg = _rm_val & 0x7;  // Rm[2:0]
                             uint32_t _idx = (enc.fmlalt_asimdelem_h.H << 3) | (enc.fmlalt_asimdelem_h.L << 2) | (enc.fmlalt_asimdelem_h.M << 1) | ((_rm_val >> 3) & 1);
                             auto op = Operand::vec(_vm_reg);
-                            op.arrangement = Arrangement::B;
+                            op.set_arrangement(Arrangement::B);
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -36997,9 +36997,9 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         result.operands.push_back(Operand::scalar(enc.fmla_asisdelem_rh_h.Rn, Arrangement::H));
                         {
                             auto op = Operand::vec(enc.fmla_asisdelem_rh_h.Rm);
-                            op.arrangement = Arrangement::H;
+                            op.set_arrangement(Arrangement::H);
                             op.index = (enc.fmla_asisdelem_rh_h.H << 2) | (enc.fmla_asisdelem_rh_h.L << 1) | enc.fmla_asisdelem_rh_h.M;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -37013,9 +37013,9 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         result.operands.push_back(Operand::scalar(enc.fmls_asisdelem_rh_h.Rn, Arrangement::H));
                         {
                             auto op = Operand::vec(enc.fmls_asisdelem_rh_h.Rm);
-                            op.arrangement = Arrangement::H;
+                            op.set_arrangement(Arrangement::H);
                             op.index = (enc.fmls_asisdelem_rh_h.H << 2) | (enc.fmls_asisdelem_rh_h.L << 1) | enc.fmls_asisdelem_rh_h.M;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -37029,9 +37029,9 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         result.operands.push_back(Operand::scalar(enc.fmul_asisdelem_rh_h.Rn, Arrangement::H));
                         {
                             auto op = Operand::vec(enc.fmul_asisdelem_rh_h.Rm);
-                            op.arrangement = Arrangement::H;
+                            op.set_arrangement(Arrangement::H);
                             op.index = (enc.fmul_asisdelem_rh_h.H << 2) | (enc.fmul_asisdelem_rh_h.L << 1) | enc.fmul_asisdelem_rh_h.M;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -37048,8 +37048,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             uint32_t _vm_reg = _rm_val & 0x7;  // Rm[2:0]
                             uint32_t _idx = (enc.fmlalltb_asimdelem_j.H << 3) | (enc.fmlalltb_asimdelem_j.L << 2) | (enc.fmlalltb_asimdelem_j.M << 1) | ((_rm_val >> 3) & 1);
                             auto op = Operand::vec(_vm_reg);
-                            op.arrangement = Arrangement::B;
-                            op.index = _idx; op.has_index = true;
+                            op.set_arrangement(Arrangement::B);
+                            op.index = _idx; op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -37066,8 +37066,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             uint32_t _vm_reg = _rm_val & 0x7;  // Rm[2:0]
                             uint32_t _idx = (enc.fmlalltt_asimdelem_j.H << 3) | (enc.fmlalltt_asimdelem_j.L << 2) | (enc.fmlalltt_asimdelem_j.M << 1) | ((_rm_val >> 3) & 1);
                             auto op = Operand::vec(_vm_reg);
-                            op.arrangement = Arrangement::B;
-                            op.index = _idx; op.has_index = true;
+                            op.set_arrangement(Arrangement::B);
+                            op.index = _idx; op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -37081,9 +37081,9 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         result.operands.push_back(Operand::scalar(enc.fmulx_asisdelem_rh_h.Rn, Arrangement::H));
                         {
                             auto op = Operand::vec(enc.fmulx_asisdelem_rh_h.Rm);
-                            op.arrangement = Arrangement::H;
+                            op.set_arrangement(Arrangement::H);
                             op.index = (enc.fmulx_asisdelem_rh_h.H << 2) | (enc.fmulx_asisdelem_rh_h.L << 1) | enc.fmulx_asisdelem_rh_h.M;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -37810,9 +37810,9 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             Arrangement _el_arr = _sc_arr;
                             if (!enc.fmla_asisdelem_rsd.sz) _rm_reg |= (enc.fmla_asisdelem_rsd.M << 4);  // S: M extends Rm
                             auto op = Operand::vec(_rm_reg);
-                            op.arrangement = _el_arr;
+                            op.set_arrangement(_el_arr);
                             op.index = enc.fmla_asisdelem_rsd.sz ? enc.fmla_asisdelem_rsd.H : ((enc.fmla_asisdelem_rsd.H << 1) | enc.fmla_asisdelem_rsd.L);
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -37830,9 +37830,9 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             Arrangement _el_arr = _sc_arr;
                             if (!enc.fmls_asisdelem_rsd.sz) _rm_reg |= (enc.fmls_asisdelem_rsd.M << 4);  // S: M extends Rm
                             auto op = Operand::vec(_rm_reg);
-                            op.arrangement = _el_arr;
+                            op.set_arrangement(_el_arr);
                             op.index = enc.fmls_asisdelem_rsd.sz ? enc.fmls_asisdelem_rsd.H : ((enc.fmls_asisdelem_rsd.H << 1) | enc.fmls_asisdelem_rsd.L);
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -37850,9 +37850,9 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             Arrangement _el_arr = _sc_arr;
                             if (!enc.fmul_asisdelem_rsd.sz) _rm_reg |= (enc.fmul_asisdelem_rsd.M << 4);  // S: M extends Rm
                             auto op = Operand::vec(_rm_reg);
-                            op.arrangement = _el_arr;
+                            op.set_arrangement(_el_arr);
                             op.index = enc.fmul_asisdelem_rsd.sz ? enc.fmul_asisdelem_rsd.H : ((enc.fmul_asisdelem_rsd.H << 1) | enc.fmul_asisdelem_rsd.L);
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -37870,9 +37870,9 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             Arrangement _el_arr = _sc_arr;
                             if (!enc.fmulx_asisdelem_rsd.sz) _rm_reg |= (enc.fmulx_asisdelem_rsd.M << 4);  // S: M extends Rm
                             auto op = Operand::vec(_rm_reg);
-                            op.arrangement = _el_arr;
+                            op.set_arrangement(_el_arr);
                             op.index = enc.fmulx_asisdelem_rsd.sz ? enc.fmulx_asisdelem_rsd.H : ((enc.fmulx_asisdelem_rsd.H << 1) | enc.fmulx_asisdelem_rsd.L);
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38180,9 +38180,9 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             Arrangement _el_arr = _sc_arr;
                             _rm_reg |= (enc.sqdmlal_asisdelem_l.M << 4);  // S: M extends Rm
                             auto op = Operand::vec(_rm_reg);
-                            op.arrangement = _el_arr;
+                            op.set_arrangement(_el_arr);
                             op.index = (enc.sqdmlal_asisdelem_l.H << 1) | enc.sqdmlal_asisdelem_l.L;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38200,9 +38200,9 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             Arrangement _el_arr = _sc_arr;
                             _rm_reg |= (enc.sqdmlsl_asisdelem_l.M << 4);  // S: M extends Rm
                             auto op = Operand::vec(_rm_reg);
-                            op.arrangement = _el_arr;
+                            op.set_arrangement(_el_arr);
                             op.index = (enc.sqdmlsl_asisdelem_l.H << 1) | enc.sqdmlsl_asisdelem_l.L;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38220,9 +38220,9 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             Arrangement _el_arr = _sc_arr;
                             _rm_reg |= (enc.sqdmull_asisdelem_l.M << 4);  // S: M extends Rm
                             auto op = Operand::vec(_rm_reg);
-                            op.arrangement = _el_arr;
+                            op.set_arrangement(_el_arr);
                             op.index = (enc.sqdmull_asisdelem_l.H << 1) | enc.sqdmull_asisdelem_l.L;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38240,9 +38240,9 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             Arrangement _el_arr = _sc_arr;
                             _rm_reg |= (enc.sqdmulh_asisdelem_r.M << 4);  // S: M extends Rm
                             auto op = Operand::vec(_rm_reg);
-                            op.arrangement = _el_arr;
+                            op.set_arrangement(_el_arr);
                             op.index = (enc.sqdmulh_asisdelem_r.H << 1) | enc.sqdmulh_asisdelem_r.L;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38260,9 +38260,9 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             Arrangement _el_arr = _sc_arr;
                             _rm_reg |= (enc.sqrdmulh_asisdelem_r.M << 4);  // S: M extends Rm
                             auto op = Operand::vec(_rm_reg);
-                            op.arrangement = _el_arr;
+                            op.set_arrangement(_el_arr);
                             op.index = (enc.sqrdmulh_asisdelem_r.H << 1) | enc.sqrdmulh_asisdelem_r.L;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38280,9 +38280,9 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             Arrangement _el_arr = _sc_arr;
                             _rm_reg |= (enc.sqrdmlah_asisdelem_r.M << 4);  // S: M extends Rm
                             auto op = Operand::vec(_rm_reg);
-                            op.arrangement = _el_arr;
+                            op.set_arrangement(_el_arr);
                             op.index = (enc.sqrdmlah_asisdelem_r.H << 1) | enc.sqrdmlah_asisdelem_r.L;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38300,9 +38300,9 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             Arrangement _el_arr = _sc_arr;
                             _rm_reg |= (enc.sqrdmlsh_asisdelem_r.M << 4);  // S: M extends Rm
                             auto op = Operand::vec(_rm_reg);
-                            op.arrangement = _el_arr;
+                            op.set_arrangement(_el_arr);
                             op.index = (enc.sqrdmlsh_asisdelem_r.H << 1) | enc.sqrdmlsh_asisdelem_r.L;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38737,7 +38737,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                                 result.operands.push_back(Operand::scalar(enc.movi_asimdimm_nb.Rd, Arrangement::D));
                             } else {
                                 auto op = Operand::vec(enc.movi_asimdimm_nb.Rd);
-                                op.arrangement = _marr;
+                                op.set_arrangement(_marr);
                                 result.operands.push_back(op);
                             }
                         }
@@ -38774,7 +38774,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                                 result.operands.push_back(Operand::scalar(enc.fmov_asimdimm_ss.Rd, Arrangement::D));
                             } else {
                                 auto op = Operand::vec(enc.fmov_asimdimm_ss.Rd);
-                                op.arrangement = _marr;
+                                op.set_arrangement(_marr);
                                 result.operands.push_back(op);
                             }
                         }
@@ -38793,7 +38793,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                                 result.operands.push_back(Operand::scalar(enc.fmov_asimdimm_hh.Rd, Arrangement::D));
                             } else {
                                 auto op = Operand::vec(enc.fmov_asimdimm_hh.Rd);
-                                op.arrangement = _marr;
+                                op.set_arrangement(_marr);
                                 result.operands.push_back(op);
                             }
                         }
@@ -38817,7 +38817,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                                 result.operands.push_back(Operand::scalar(enc.movi_asimdimm_msm.Rd, Arrangement::D));
                             } else {
                                 auto op = Operand::vec(enc.movi_asimdimm_msm.Rd);
-                                op.arrangement = _marr;
+                                op.set_arrangement(_marr);
                                 result.operands.push_back(op);
                             }
                         }
@@ -38854,7 +38854,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                                 result.operands.push_back(Operand::scalar(enc.mvni_asimdimm_msm.Rd, Arrangement::D));
                             } else {
                                 auto op = Operand::vec(enc.mvni_asimdimm_msm.Rd);
-                                op.arrangement = _marr;
+                                op.set_arrangement(_marr);
                                 result.operands.push_back(op);
                             }
                         }
@@ -38886,7 +38886,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                                 result.operands.push_back(Operand::scalar(enc.movi_asimdimm_lhl.Rd, Arrangement::D));
                             } else {
                                 auto op = Operand::vec(enc.movi_asimdimm_lhl.Rd);
-                                op.arrangement = _marr;
+                                op.set_arrangement(_marr);
                                 result.operands.push_back(op);
                             }
                         }
@@ -38932,7 +38932,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                                 result.operands.push_back(Operand::scalar(enc.mvni_asimdimm_lhl.Rd, Arrangement::D));
                             } else {
                                 auto op = Operand::vec(enc.mvni_asimdimm_lhl.Rd);
-                                op.arrangement = _marr;
+                                op.set_arrangement(_marr);
                                 result.operands.push_back(op);
                             }
                         }
@@ -38973,7 +38973,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                                 result.operands.push_back(Operand::scalar(enc.movi_asimdimm_lsl.Rd, Arrangement::D));
                             } else {
                                 auto op = Operand::vec(enc.movi_asimdimm_lsl.Rd);
-                                op.arrangement = _marr;
+                                op.set_arrangement(_marr);
                                 result.operands.push_back(op);
                             }
                         }
@@ -39019,7 +39019,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                                 result.operands.push_back(Operand::scalar(enc.mvni_asimdimm_lsl.Rd, Arrangement::D));
                             } else {
                                 auto op = Operand::vec(enc.mvni_asimdimm_lsl.Rd);
-                                op.arrangement = _marr;
+                                op.set_arrangement(_marr);
                                 result.operands.push_back(op);
                             }
                         }
@@ -39055,7 +39055,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         bool is_64bit = false;
                         Arrangement _tbl_arr = enc.tbl_asimdtbl_l11.Q ? Arrangement::B16 : Arrangement::B8;
                         result.operands.push_back(Operand::vec(enc.tbl_asimdtbl_l11.Rd, _tbl_arr));
-                        { auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.tbl_asimdtbl_l11.Rn))); op.arrangement = Arrangement::B16; op.index = 1; result.operands.push_back(op); }
+                        { auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.tbl_asimdtbl_l11.Rn))); op.set_arrangement(Arrangement::B16); op.index = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::vec(enc.tbl_asimdtbl_l11.Rm, _tbl_arr));
                         return result;
         }
@@ -39075,12 +39075,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.dup_asimdins_dv_v.Rn);
                             uint32_t idx = 0;
-                            if (_imm5 & 1) { op.arrangement = Arrangement::B; idx = _imm5 >> 1; }
-                            else if (_imm5 & 2) { op.arrangement = Arrangement::H; idx = _imm5 >> 2; }
-                            else if (_imm5 & 4) { op.arrangement = Arrangement::S; idx = _imm5 >> 3; }
-                            else if (_imm5 & 8) { op.arrangement = Arrangement::D; idx = _imm5 >> 4; }
+                            if (_imm5 & 1) { op.set_arrangement(Arrangement::B); idx = _imm5 >> 1; }
+                            else if (_imm5 & 2) { op.set_arrangement(Arrangement::H); idx = _imm5 >> 2; }
+                            else if (_imm5 & 4) { op.set_arrangement(Arrangement::S); idx = _imm5 >> 3; }
+                            else if (_imm5 & 8) { op.set_arrangement(Arrangement::D); idx = _imm5 >> 4; }
                             op.index = idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -39109,7 +39109,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         bool is_64bit = false;
                         Arrangement _tbl_arr = enc.tbx_asimdtbl_l11.Q ? Arrangement::B16 : Arrangement::B8;
                         result.operands.push_back(Operand::vec(enc.tbx_asimdtbl_l11.Rd, _tbl_arr));
-                        { auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.tbx_asimdtbl_l11.Rn))); op.arrangement = Arrangement::B16; op.index = 1; result.operands.push_back(op); }
+                        { auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.tbx_asimdtbl_l11.Rn))); op.set_arrangement(Arrangement::B16); op.index = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::vec(enc.tbx_asimdtbl_l11.Rm, _tbl_arr));
                         return result;
         }
@@ -39120,7 +39120,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         bool is_64bit = false;
                         Arrangement _tbl_arr = enc.tbl_asimdtbl_l22.Q ? Arrangement::B16 : Arrangement::B8;
                         result.operands.push_back(Operand::vec(enc.tbl_asimdtbl_l22.Rd, _tbl_arr));
-                        { auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.tbl_asimdtbl_l22.Rn))); op.arrangement = Arrangement::B16; op.index = 2; result.operands.push_back(op); }
+                        { auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.tbl_asimdtbl_l22.Rn))); op.set_arrangement(Arrangement::B16); op.index = 2; result.operands.push_back(op); }
                         result.operands.push_back(Operand::vec(enc.tbl_asimdtbl_l22.Rm, _tbl_arr));
                         return result;
         }
@@ -39131,7 +39131,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         bool is_64bit = false;
                         Arrangement _tbl_arr = enc.tbx_asimdtbl_l22.Q ? Arrangement::B16 : Arrangement::B8;
                         result.operands.push_back(Operand::vec(enc.tbx_asimdtbl_l22.Rd, _tbl_arr));
-                        { auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.tbx_asimdtbl_l22.Rn))); op.arrangement = Arrangement::B16; op.index = 2; result.operands.push_back(op); }
+                        { auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.tbx_asimdtbl_l22.Rn))); op.set_arrangement(Arrangement::B16); op.index = 2; result.operands.push_back(op); }
                         result.operands.push_back(Operand::vec(enc.tbx_asimdtbl_l22.Rm, _tbl_arr));
                         return result;
         }
@@ -39142,7 +39142,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         bool is_64bit = false;
                         Arrangement _tbl_arr = enc.tbl_asimdtbl_l33.Q ? Arrangement::B16 : Arrangement::B8;
                         result.operands.push_back(Operand::vec(enc.tbl_asimdtbl_l33.Rd, _tbl_arr));
-                        { auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.tbl_asimdtbl_l33.Rn))); op.arrangement = Arrangement::B16; op.index = 3; result.operands.push_back(op); }
+                        { auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.tbl_asimdtbl_l33.Rn))); op.set_arrangement(Arrangement::B16); op.index = 3; result.operands.push_back(op); }
                         result.operands.push_back(Operand::vec(enc.tbl_asimdtbl_l33.Rm, _tbl_arr));
                         return result;
         }
@@ -39153,7 +39153,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         bool is_64bit = false;
                         Arrangement _tbl_arr = enc.tbx_asimdtbl_l33.Q ? Arrangement::B16 : Arrangement::B8;
                         result.operands.push_back(Operand::vec(enc.tbx_asimdtbl_l33.Rd, _tbl_arr));
-                        { auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.tbx_asimdtbl_l33.Rn))); op.arrangement = Arrangement::B16; op.index = 3; result.operands.push_back(op); }
+                        { auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.tbx_asimdtbl_l33.Rn))); op.set_arrangement(Arrangement::B16); op.index = 3; result.operands.push_back(op); }
                         result.operands.push_back(Operand::vec(enc.tbx_asimdtbl_l33.Rm, _tbl_arr));
                         return result;
         }
@@ -39164,7 +39164,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         bool is_64bit = false;
                         Arrangement _tbl_arr = enc.tbl_asimdtbl_l44.Q ? Arrangement::B16 : Arrangement::B8;
                         result.operands.push_back(Operand::vec(enc.tbl_asimdtbl_l44.Rd, _tbl_arr));
-                        { auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.tbl_asimdtbl_l44.Rn))); op.arrangement = Arrangement::B16; op.index = 4; result.operands.push_back(op); }
+                        { auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.tbl_asimdtbl_l44.Rn))); op.set_arrangement(Arrangement::B16); op.index = 4; result.operands.push_back(op); }
                         result.operands.push_back(Operand::vec(enc.tbl_asimdtbl_l44.Rm, _tbl_arr));
                         return result;
         }
@@ -39175,7 +39175,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         bool is_64bit = false;
                         Arrangement _tbl_arr = enc.tbx_asimdtbl_l44.Q ? Arrangement::B16 : Arrangement::B8;
                         result.operands.push_back(Operand::vec(enc.tbx_asimdtbl_l44.Rd, _tbl_arr));
-                        { auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.tbx_asimdtbl_l44.Rn))); op.arrangement = Arrangement::B16; op.index = 4; result.operands.push_back(op); }
+                        { auto op = Operand::reg_list(static_cast<uint32_t>(make_vec_reg(enc.tbx_asimdtbl_l44.Rn))); op.set_arrangement(Arrangement::B16); op.index = 4; result.operands.push_back(op); }
                         result.operands.push_back(Operand::vec(enc.tbx_asimdtbl_l44.Rm, _tbl_arr));
                         return result;
         }
@@ -39737,11 +39737,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             _idx = (enc.fdot_asimdelem_d.H << 1) | enc.fdot_asimdelem_d.L;
-                            op.arrangement = Arrangement::B4;
+                            op.set_arrangement(Arrangement::B4);
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -39763,12 +39763,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.fmla_asimdelem_rh_h.H << 2) | (enc.fmla_asimdelem_rh_h.L << 1) | enc.fmla_asimdelem_rh_h.M;
                             else if (_sz == 2) _idx = (enc.fmla_asimdelem_rh_h.H << 1) | enc.fmla_asimdelem_rh_h.L;
                             else if (_sz == 3) _idx = enc.fmla_asimdelem_rh_h.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -39790,12 +39790,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.fmls_asimdelem_rh_h.H << 2) | (enc.fmls_asimdelem_rh_h.L << 1) | enc.fmls_asimdelem_rh_h.M;
                             else if (_sz == 2) _idx = (enc.fmls_asimdelem_rh_h.H << 1) | enc.fmls_asimdelem_rh_h.L;
                             else if (_sz == 3) _idx = enc.fmls_asimdelem_rh_h.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -39817,12 +39817,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.fmul_asimdelem_rh_h.H << 2) | (enc.fmul_asimdelem_rh_h.L << 1) | enc.fmul_asimdelem_rh_h.M;
                             else if (_sz == 2) _idx = (enc.fmul_asimdelem_rh_h.H << 1) | enc.fmul_asimdelem_rh_h.L;
                             else if (_sz == 3) _idx = enc.fmul_asimdelem_rh_h.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -39835,7 +39835,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Arrangement _dst = enc.sudot_asimdelem_d.Q ? Arrangement::S4 : Arrangement::S2;
                         result.operands.push_back(Operand::vec(enc.sudot_asimdelem_d.Rd, _dst));
                         result.operands.push_back(Operand::vec(enc.sudot_asimdelem_d.Rn, Arrangement::B8));
-                        { auto op = Operand::vec(enc.sudot_asimdelem_d.Rm); op.arrangement = Arrangement::B4; op.index = (enc.sudot_asimdelem_d.H << 1) | enc.sudot_asimdelem_d.L; op.has_index = true; result.operands.push_back(op); }
+                        { auto op = Operand::vec(enc.sudot_asimdelem_d.Rm); op.set_arrangement(Arrangement::B4); op.index = (enc.sudot_asimdelem_d.H << 1) | enc.sudot_asimdelem_d.L; op.flags.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x0F400000u: { // FDOT_asimdelem_G
@@ -39853,13 +39853,13 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.fdot_asimdelem_g.H << 2) | (enc.fdot_asimdelem_g.L << 1) | enc.fdot_asimdelem_g.M;
                             else if (_sz == 2) _idx = (enc.fdot_asimdelem_g.H << 1) | enc.fdot_asimdelem_g.L;
                             else if (_sz == 3) _idx = enc.fdot_asimdelem_g.H;
-                            op.arrangement = Arrangement::B2;
+                            op.set_arrangement(Arrangement::B2);
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -39879,11 +39879,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             _idx = (enc.fdot_asimdelem_fp16fp32.H << 1) | enc.fdot_asimdelem_fp16fp32.L;
-                            op.arrangement = Arrangement::H2;
+                            op.set_arrangement(Arrangement::H2);
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -39903,11 +39903,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             _idx = (enc.bfdot_asimdelem_e.H << 1) | enc.bfdot_asimdelem_e.L;
-                            op.arrangement = Arrangement::H2;
+                            op.set_arrangement(Arrangement::H2);
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -39933,12 +39933,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.fmlal_asimdelem_lh.H << 2) | (enc.fmlal_asimdelem_lh.L << 1) | enc.fmlal_asimdelem_lh.M;
                             else if (_sz == 2) _idx = (enc.fmlal_asimdelem_lh.H << 1) | enc.fmlal_asimdelem_lh.L;
                             else if (_sz == 3) _idx = enc.fmlal_asimdelem_lh.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -39964,12 +39964,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.fmlsl_asimdelem_lh.H << 2) | (enc.fmlsl_asimdelem_lh.L << 1) | enc.fmlsl_asimdelem_lh.M;
                             else if (_sz == 2) _idx = (enc.fmlsl_asimdelem_lh.H << 1) | enc.fmlsl_asimdelem_lh.L;
                             else if (_sz == 3) _idx = enc.fmlsl_asimdelem_lh.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -39982,7 +39982,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         Arrangement _dst = enc.usdot_asimdelem_d.Q ? Arrangement::S4 : Arrangement::S2;
                         result.operands.push_back(Operand::vec(enc.usdot_asimdelem_d.Rd, _dst));
                         result.operands.push_back(Operand::vec(enc.usdot_asimdelem_d.Rn, Arrangement::B8));
-                        { auto op = Operand::vec(enc.usdot_asimdelem_d.Rm); op.arrangement = Arrangement::B4; op.index = (enc.usdot_asimdelem_d.H << 1) | enc.usdot_asimdelem_d.L; op.has_index = true; result.operands.push_back(op); }
+                        { auto op = Operand::vec(enc.usdot_asimdelem_d.Rm); op.set_arrangement(Arrangement::B4); op.index = (enc.usdot_asimdelem_d.H << 1) | enc.usdot_asimdelem_d.L; op.flags.has_index = true; result.operands.push_back(op); }
                         return result;
         }
         case 0x0FC0F000u: { // BFMLAL_asimdelem_F
@@ -39997,9 +39997,9 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             // BF16 by-element: Vm=Rm (v0-v15, no M extension), index=H:L:M (3-bit)
                             uint32_t _idx = (enc.bfmlal_asimdelem_f.H << 2) | (enc.bfmlal_asimdelem_f.L << 1) | enc.bfmlal_asimdelem_f.M;
                             auto op = Operand::vec(enc.bfmlal_asimdelem_f.Rm);
-                            op.arrangement = Arrangement::H;
+                            op.set_arrangement(Arrangement::H);
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -40021,12 +40021,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.fmulx_asimdelem_rh_h.H << 2) | (enc.fmulx_asimdelem_rh_h.L << 1) | enc.fmulx_asimdelem_rh_h.M;
                             else if (_sz == 2) _idx = (enc.fmulx_asimdelem_rh_h.H << 1) | enc.fmulx_asimdelem_rh_h.L;
                             else if (_sz == 3) _idx = enc.fmulx_asimdelem_rh_h.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -40052,12 +40052,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.fmlal2asimdelem_lh.H << 2) | (enc.fmlal2asimdelem_lh.L << 1) | enc.fmlal2asimdelem_lh.M;
                             else if (_sz == 2) _idx = (enc.fmlal2asimdelem_lh.H << 1) | enc.fmlal2asimdelem_lh.L;
                             else if (_sz == 3) _idx = enc.fmlal2asimdelem_lh.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -40083,12 +40083,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.fmlsl2asimdelem_lh.H << 2) | (enc.fmlsl2asimdelem_lh.L << 1) | enc.fmlsl2asimdelem_lh.M;
                             else if (_sz == 2) _idx = (enc.fmlsl2asimdelem_lh.H << 1) | enc.fmlsl2asimdelem_lh.L;
                             else if (_sz == 3) _idx = enc.fmlsl2asimdelem_lh.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -41903,12 +41903,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.fmla_asimdelem_rsd.H << 2) | (enc.fmla_asimdelem_rsd.L << 1) | enc.fmla_asimdelem_rsd.M;
                             else if (_sz == 2) _idx = (enc.fmla_asimdelem_rsd.H << 1) | enc.fmla_asimdelem_rsd.L;
                             else if (_sz == 3) _idx = enc.fmla_asimdelem_rsd.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -41930,12 +41930,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.fmls_asimdelem_rsd.H << 2) | (enc.fmls_asimdelem_rsd.L << 1) | enc.fmls_asimdelem_rsd.M;
                             else if (_sz == 2) _idx = (enc.fmls_asimdelem_rsd.H << 1) | enc.fmls_asimdelem_rsd.L;
                             else if (_sz == 3) _idx = enc.fmls_asimdelem_rsd.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -41957,12 +41957,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.fmul_asimdelem_rsd.H << 2) | (enc.fmul_asimdelem_rsd.L << 1) | enc.fmul_asimdelem_rsd.M;
                             else if (_sz == 2) _idx = (enc.fmul_asimdelem_rsd.H << 1) | enc.fmul_asimdelem_rsd.L;
                             else if (_sz == 3) _idx = enc.fmul_asimdelem_rsd.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -41984,12 +41984,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.fmulx_asimdelem_rsd.H << 2) | (enc.fmulx_asimdelem_rsd.L << 1) | enc.fmulx_asimdelem_rsd.M;
                             else if (_sz == 2) _idx = (enc.fmulx_asimdelem_rsd.H << 1) | enc.fmulx_asimdelem_rsd.L;
                             else if (_sz == 3) _idx = enc.fmulx_asimdelem_rsd.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -42050,7 +42050,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.saddlp_asimdmisc_p.Rd);
                             static const Arrangement _plong_arrs[2][4] = {{Arrangement::H4, Arrangement::S2, Arrangement::D1, Arrangement::D1}, {Arrangement::H8, Arrangement::S4, Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _plong_arrs[enc.saddlp_asimdmisc_p.Q][enc.saddlp_asimdmisc_p.size];
+                            op.set_arrangement(_plong_arrs[enc.saddlp_asimdmisc_p.Q][enc.saddlp_asimdmisc_p.size]);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::vec(enc.saddlp_asimdmisc_p.Rn, _simd_arr));
@@ -42126,7 +42126,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.sadalp_asimdmisc_p.Rd);
                             static const Arrangement _plong_arrs[2][4] = {{Arrangement::H4, Arrangement::S2, Arrangement::D1, Arrangement::D1}, {Arrangement::H8, Arrangement::S4, Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _plong_arrs[enc.sadalp_asimdmisc_p.Q][enc.sadalp_asimdmisc_p.size];
+                            op.set_arrangement(_plong_arrs[enc.sadalp_asimdmisc_p.Q][enc.sadalp_asimdmisc_p.size]);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::vec(enc.sadalp_asimdmisc_p.Rn, _simd_arr));
@@ -42238,7 +42238,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.xtn_asimdmisc_n.Rn);
                             static const Arrangement _narrow_src[] = {Arrangement::H8, Arrangement::S4, Arrangement::D2, Arrangement::D2};
-                            op.arrangement = _narrow_src[enc.xtn_asimdmisc_n.size];
+                            op.set_arrangement(_narrow_src[enc.xtn_asimdmisc_n.size]);
                             result.operands.push_back(op);
                         }
                         return result;
@@ -42261,7 +42261,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.sqxtn_asimdmisc_n.Rn);
                             static const Arrangement _narrow_src[] = {Arrangement::H8, Arrangement::S4, Arrangement::D2, Arrangement::D2};
-                            op.arrangement = _narrow_src[enc.sqxtn_asimdmisc_n.size];
+                            op.set_arrangement(_narrow_src[enc.sqxtn_asimdmisc_n.size]);
                             result.operands.push_back(op);
                         }
                         return result;
@@ -42384,7 +42384,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.uaddlp_asimdmisc_p.Rd);
                             static const Arrangement _plong_arrs[2][4] = {{Arrangement::H4, Arrangement::S2, Arrangement::D1, Arrangement::D1}, {Arrangement::H8, Arrangement::S4, Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _plong_arrs[enc.uaddlp_asimdmisc_p.Q][enc.uaddlp_asimdmisc_p.size];
+                            op.set_arrangement(_plong_arrs[enc.uaddlp_asimdmisc_p.Q][enc.uaddlp_asimdmisc_p.size]);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::vec(enc.uaddlp_asimdmisc_p.Rn, _simd_arr));
@@ -42442,7 +42442,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.uadalp_asimdmisc_p.Rd);
                             static const Arrangement _plong_arrs[2][4] = {{Arrangement::H4, Arrangement::S2, Arrangement::D1, Arrangement::D1}, {Arrangement::H8, Arrangement::S4, Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _plong_arrs[enc.uadalp_asimdmisc_p.Q][enc.uadalp_asimdmisc_p.size];
+                            op.set_arrangement(_plong_arrs[enc.uadalp_asimdmisc_p.Q][enc.uadalp_asimdmisc_p.size]);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::vec(enc.uadalp_asimdmisc_p.Rn, _simd_arr));
@@ -42536,7 +42536,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.sqxtun_asimdmisc_n.Rn);
                             static const Arrangement _narrow_src[] = {Arrangement::H8, Arrangement::S4, Arrangement::D2, Arrangement::D2};
-                            op.arrangement = _narrow_src[enc.sqxtun_asimdmisc_n.size];
+                            op.set_arrangement(_narrow_src[enc.sqxtun_asimdmisc_n.size]);
                             result.operands.push_back(op);
                         }
                         return result;
@@ -42575,7 +42575,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.uqxtn_asimdmisc_n.Rn);
                             static const Arrangement _narrow_src[] = {Arrangement::H8, Arrangement::S4, Arrangement::D2, Arrangement::D2};
-                            op.arrangement = _narrow_src[enc.uqxtn_asimdmisc_n.size];
+                            op.set_arrangement(_narrow_src[enc.uqxtn_asimdmisc_n.size]);
                             result.operands.push_back(op);
                         }
                         return result;
@@ -42792,7 +42792,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.saddl_asimddiff_l.Rd);
                             static const Arrangement _wide_arrs[][2] = {{Arrangement::H8, Arrangement::H8}, {Arrangement::S4, Arrangement::S4}, {Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _wide_arrs[enc.saddl_asimddiff_l.size][0];
+                            op.set_arrangement(_wide_arrs[enc.saddl_asimddiff_l.size][0]);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::vec(enc.saddl_asimddiff_l.Rn, _simd_arr));
@@ -42853,13 +42853,13 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.saddw_asimddiff_w.Rd);
                             static const Arrangement _wide_arrs[][2] = {{Arrangement::H8, Arrangement::H8}, {Arrangement::S4, Arrangement::S4}, {Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _wide_arrs[enc.saddw_asimddiff_w.size][0];
+                            op.set_arrangement(_wide_arrs[enc.saddw_asimddiff_w.size][0]);
                             result.operands.push_back(op);
                         }
                         {
                             auto op = Operand::vec(enc.saddw_asimddiff_w.Rn);
                             static const Arrangement _wide_arrs[][2] = {{Arrangement::H8, Arrangement::H8}, {Arrangement::S4, Arrangement::S4}, {Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _wide_arrs[enc.saddw_asimddiff_w.size][0];
+                            op.set_arrangement(_wide_arrs[enc.saddw_asimddiff_w.size][0]);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::vec(enc.saddw_asimddiff_w.Rm, _simd_arr));
@@ -42901,7 +42901,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.ssubl_asimddiff_l.Rd);
                             static const Arrangement _wide_arrs[][2] = {{Arrangement::H8, Arrangement::H8}, {Arrangement::S4, Arrangement::S4}, {Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _wide_arrs[enc.ssubl_asimddiff_l.size][0];
+                            op.set_arrangement(_wide_arrs[enc.ssubl_asimddiff_l.size][0]);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::vec(enc.ssubl_asimddiff_l.Rn, _simd_arr));
@@ -42962,13 +42962,13 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.ssubw_asimddiff_w.Rd);
                             static const Arrangement _wide_arrs[][2] = {{Arrangement::H8, Arrangement::H8}, {Arrangement::S4, Arrangement::S4}, {Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _wide_arrs[enc.ssubw_asimddiff_w.size][0];
+                            op.set_arrangement(_wide_arrs[enc.ssubw_asimddiff_w.size][0]);
                             result.operands.push_back(op);
                         }
                         {
                             auto op = Operand::vec(enc.ssubw_asimddiff_w.Rn);
                             static const Arrangement _wide_arrs[][2] = {{Arrangement::H8, Arrangement::H8}, {Arrangement::S4, Arrangement::S4}, {Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _wide_arrs[enc.ssubw_asimddiff_w.size][0];
+                            op.set_arrangement(_wide_arrs[enc.ssubw_asimddiff_w.size][0]);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::vec(enc.ssubw_asimddiff_w.Rm, _simd_arr));
@@ -43028,13 +43028,13 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.addhn_asimddiff_n.Rn);
                             static const Arrangement _wide_arrs[] = {Arrangement::H8, Arrangement::S4, Arrangement::D2, Arrangement::D2};
-                            op.arrangement = _wide_arrs[enc.addhn_asimddiff_n.size];
+                            op.set_arrangement(_wide_arrs[enc.addhn_asimddiff_n.size]);
                             result.operands.push_back(op);
                         }
                         {
                             auto op = Operand::vec(enc.addhn_asimddiff_n.Rm);
                             static const Arrangement _wide_arrs[] = {Arrangement::H8, Arrangement::S4, Arrangement::D2, Arrangement::D2};
-                            op.arrangement = _wide_arrs[enc.addhn_asimddiff_n.size];
+                            op.set_arrangement(_wide_arrs[enc.addhn_asimddiff_n.size]);
                             result.operands.push_back(op);
                         }
                         return result;
@@ -43092,7 +43092,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.sabal_asimddiff_l.Rd);
                             static const Arrangement _wide_arrs[][2] = {{Arrangement::H8, Arrangement::H8}, {Arrangement::S4, Arrangement::S4}, {Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _wide_arrs[enc.sabal_asimddiff_l.size][0];
+                            op.set_arrangement(_wide_arrs[enc.sabal_asimddiff_l.size][0]);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::vec(enc.sabal_asimddiff_l.Rn, _simd_arr));
@@ -43153,13 +43153,13 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.subhn_asimddiff_n.Rn);
                             static const Arrangement _wide_arrs[] = {Arrangement::H8, Arrangement::S4, Arrangement::D2, Arrangement::D2};
-                            op.arrangement = _wide_arrs[enc.subhn_asimddiff_n.size];
+                            op.set_arrangement(_wide_arrs[enc.subhn_asimddiff_n.size]);
                             result.operands.push_back(op);
                         }
                         {
                             auto op = Operand::vec(enc.subhn_asimddiff_n.Rm);
                             static const Arrangement _wide_arrs[] = {Arrangement::H8, Arrangement::S4, Arrangement::D2, Arrangement::D2};
-                            op.arrangement = _wide_arrs[enc.subhn_asimddiff_n.size];
+                            op.set_arrangement(_wide_arrs[enc.subhn_asimddiff_n.size]);
                             result.operands.push_back(op);
                         }
                         return result;
@@ -43219,7 +43219,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.sabdl_asimddiff_l.Rd);
                             static const Arrangement _wide_arrs[][2] = {{Arrangement::H8, Arrangement::H8}, {Arrangement::S4, Arrangement::S4}, {Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _wide_arrs[enc.sabdl_asimddiff_l.size][0];
+                            op.set_arrangement(_wide_arrs[enc.sabdl_asimddiff_l.size][0]);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::vec(enc.sabdl_asimddiff_l.Rn, _simd_arr));
@@ -43281,7 +43281,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.smlal_asimddiff_l.Rd);
                             static const Arrangement _wide_arrs[][2] = {{Arrangement::H8, Arrangement::H8}, {Arrangement::S4, Arrangement::S4}, {Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _wide_arrs[enc.smlal_asimddiff_l.size][0];
+                            op.set_arrangement(_wide_arrs[enc.smlal_asimddiff_l.size][0]);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::vec(enc.smlal_asimddiff_l.Rn, _simd_arr));
@@ -43340,7 +43340,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.sqdmlal_asimddiff_l.Rd);
                             static const Arrangement _wide_arrs[][2] = {{Arrangement::H8, Arrangement::H8}, {Arrangement::S4, Arrangement::S4}, {Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _wide_arrs[enc.sqdmlal_asimddiff_l.size][0];
+                            op.set_arrangement(_wide_arrs[enc.sqdmlal_asimddiff_l.size][0]);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::vec(enc.sqdmlal_asimddiff_l.Rn, _simd_arr));
@@ -43402,7 +43402,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.smlsl_asimddiff_l.Rd);
                             static const Arrangement _wide_arrs[][2] = {{Arrangement::H8, Arrangement::H8}, {Arrangement::S4, Arrangement::S4}, {Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _wide_arrs[enc.smlsl_asimddiff_l.size][0];
+                            op.set_arrangement(_wide_arrs[enc.smlsl_asimddiff_l.size][0]);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::vec(enc.smlsl_asimddiff_l.Rn, _simd_arr));
@@ -43463,7 +43463,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.sqdmlsl_asimddiff_l.Rd);
                             static const Arrangement _wide_arrs[][2] = {{Arrangement::H8, Arrangement::H8}, {Arrangement::S4, Arrangement::S4}, {Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _wide_arrs[enc.sqdmlsl_asimddiff_l.size][0];
+                            op.set_arrangement(_wide_arrs[enc.sqdmlsl_asimddiff_l.size][0]);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::vec(enc.sqdmlsl_asimddiff_l.Rn, _simd_arr));
@@ -43523,7 +43523,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.smull_asimddiff_l.Rd);
                             static const Arrangement _wide_arrs[][2] = {{Arrangement::H8, Arrangement::H8}, {Arrangement::S4, Arrangement::S4}, {Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _wide_arrs[enc.smull_asimddiff_l.size][0];
+                            op.set_arrangement(_wide_arrs[enc.smull_asimddiff_l.size][0]);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::vec(enc.smull_asimddiff_l.Rn, _simd_arr));
@@ -43546,7 +43546,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.sqdmull_asimddiff_l.Rd);
                             static const Arrangement _wide_arrs[][2] = {{Arrangement::H8, Arrangement::H8}, {Arrangement::S4, Arrangement::S4}, {Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _wide_arrs[enc.sqdmull_asimddiff_l.size][0];
+                            op.set_arrangement(_wide_arrs[enc.sqdmull_asimddiff_l.size][0]);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::vec(enc.sqdmull_asimddiff_l.Rn, _simd_arr));
@@ -43643,7 +43643,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.uaddl_asimddiff_l.Rd);
                             static const Arrangement _wide_arrs[][2] = {{Arrangement::H8, Arrangement::H8}, {Arrangement::S4, Arrangement::S4}, {Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _wide_arrs[enc.uaddl_asimddiff_l.size][0];
+                            op.set_arrangement(_wide_arrs[enc.uaddl_asimddiff_l.size][0]);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::vec(enc.uaddl_asimddiff_l.Rn, _simd_arr));
@@ -43704,13 +43704,13 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.uaddw_asimddiff_w.Rd);
                             static const Arrangement _wide_arrs[][2] = {{Arrangement::H8, Arrangement::H8}, {Arrangement::S4, Arrangement::S4}, {Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _wide_arrs[enc.uaddw_asimddiff_w.size][0];
+                            op.set_arrangement(_wide_arrs[enc.uaddw_asimddiff_w.size][0]);
                             result.operands.push_back(op);
                         }
                         {
                             auto op = Operand::vec(enc.uaddw_asimddiff_w.Rn);
                             static const Arrangement _wide_arrs[][2] = {{Arrangement::H8, Arrangement::H8}, {Arrangement::S4, Arrangement::S4}, {Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _wide_arrs[enc.uaddw_asimddiff_w.size][0];
+                            op.set_arrangement(_wide_arrs[enc.uaddw_asimddiff_w.size][0]);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::vec(enc.uaddw_asimddiff_w.Rm, _simd_arr));
@@ -43752,7 +43752,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.usubl_asimddiff_l.Rd);
                             static const Arrangement _wide_arrs[][2] = {{Arrangement::H8, Arrangement::H8}, {Arrangement::S4, Arrangement::S4}, {Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _wide_arrs[enc.usubl_asimddiff_l.size][0];
+                            op.set_arrangement(_wide_arrs[enc.usubl_asimddiff_l.size][0]);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::vec(enc.usubl_asimddiff_l.Rn, _simd_arr));
@@ -43813,13 +43813,13 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.usubw_asimddiff_w.Rd);
                             static const Arrangement _wide_arrs[][2] = {{Arrangement::H8, Arrangement::H8}, {Arrangement::S4, Arrangement::S4}, {Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _wide_arrs[enc.usubw_asimddiff_w.size][0];
+                            op.set_arrangement(_wide_arrs[enc.usubw_asimddiff_w.size][0]);
                             result.operands.push_back(op);
                         }
                         {
                             auto op = Operand::vec(enc.usubw_asimddiff_w.Rn);
                             static const Arrangement _wide_arrs[][2] = {{Arrangement::H8, Arrangement::H8}, {Arrangement::S4, Arrangement::S4}, {Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _wide_arrs[enc.usubw_asimddiff_w.size][0];
+                            op.set_arrangement(_wide_arrs[enc.usubw_asimddiff_w.size][0]);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::vec(enc.usubw_asimddiff_w.Rm, _simd_arr));
@@ -43879,13 +43879,13 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.raddhn_asimddiff_n.Rn);
                             static const Arrangement _wide_arrs[] = {Arrangement::H8, Arrangement::S4, Arrangement::D2, Arrangement::D2};
-                            op.arrangement = _wide_arrs[enc.raddhn_asimddiff_n.size];
+                            op.set_arrangement(_wide_arrs[enc.raddhn_asimddiff_n.size]);
                             result.operands.push_back(op);
                         }
                         {
                             auto op = Operand::vec(enc.raddhn_asimddiff_n.Rm);
                             static const Arrangement _wide_arrs[] = {Arrangement::H8, Arrangement::S4, Arrangement::D2, Arrangement::D2};
-                            op.arrangement = _wide_arrs[enc.raddhn_asimddiff_n.size];
+                            op.set_arrangement(_wide_arrs[enc.raddhn_asimddiff_n.size]);
                             result.operands.push_back(op);
                         }
                         return result;
@@ -43943,7 +43943,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.uabal_asimddiff_l.Rd);
                             static const Arrangement _wide_arrs[][2] = {{Arrangement::H8, Arrangement::H8}, {Arrangement::S4, Arrangement::S4}, {Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _wide_arrs[enc.uabal_asimddiff_l.size][0];
+                            op.set_arrangement(_wide_arrs[enc.uabal_asimddiff_l.size][0]);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::vec(enc.uabal_asimddiff_l.Rn, _simd_arr));
@@ -44004,13 +44004,13 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.rsubhn_asimddiff_n.Rn);
                             static const Arrangement _wide_arrs[] = {Arrangement::H8, Arrangement::S4, Arrangement::D2, Arrangement::D2};
-                            op.arrangement = _wide_arrs[enc.rsubhn_asimddiff_n.size];
+                            op.set_arrangement(_wide_arrs[enc.rsubhn_asimddiff_n.size]);
                             result.operands.push_back(op);
                         }
                         {
                             auto op = Operand::vec(enc.rsubhn_asimddiff_n.Rm);
                             static const Arrangement _wide_arrs[] = {Arrangement::H8, Arrangement::S4, Arrangement::D2, Arrangement::D2};
-                            op.arrangement = _wide_arrs[enc.rsubhn_asimddiff_n.size];
+                            op.set_arrangement(_wide_arrs[enc.rsubhn_asimddiff_n.size]);
                             result.operands.push_back(op);
                         }
                         return result;
@@ -44070,7 +44070,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.uabdl_asimddiff_l.Rd);
                             static const Arrangement _wide_arrs[][2] = {{Arrangement::H8, Arrangement::H8}, {Arrangement::S4, Arrangement::S4}, {Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _wide_arrs[enc.uabdl_asimddiff_l.size][0];
+                            op.set_arrangement(_wide_arrs[enc.uabdl_asimddiff_l.size][0]);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::vec(enc.uabdl_asimddiff_l.Rn, _simd_arr));
@@ -44132,7 +44132,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.umlal_asimddiff_l.Rd);
                             static const Arrangement _wide_arrs[][2] = {{Arrangement::H8, Arrangement::H8}, {Arrangement::S4, Arrangement::S4}, {Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _wide_arrs[enc.umlal_asimddiff_l.size][0];
+                            op.set_arrangement(_wide_arrs[enc.umlal_asimddiff_l.size][0]);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::vec(enc.umlal_asimddiff_l.Rn, _simd_arr));
@@ -44230,7 +44230,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.umlsl_asimddiff_l.Rd);
                             static const Arrangement _wide_arrs[][2] = {{Arrangement::H8, Arrangement::H8}, {Arrangement::S4, Arrangement::S4}, {Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _wide_arrs[enc.umlsl_asimddiff_l.size][0];
+                            op.set_arrangement(_wide_arrs[enc.umlsl_asimddiff_l.size][0]);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::vec(enc.umlsl_asimddiff_l.Rn, _simd_arr));
@@ -44310,7 +44310,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         {
                             auto op = Operand::vec(enc.umull_asimddiff_l.Rd);
                             static const Arrangement _wide_arrs[][2] = {{Arrangement::H8, Arrangement::H8}, {Arrangement::S4, Arrangement::S4}, {Arrangement::D2, Arrangement::D2}};
-                            op.arrangement = _wide_arrs[enc.umull_asimddiff_l.size][0];
+                            op.set_arrangement(_wide_arrs[enc.umull_asimddiff_l.size][0]);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::vec(enc.umull_asimddiff_l.Rn, _simd_arr));
@@ -44340,7 +44340,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         result.operands.push_back(Operand::vec(enc.fcadd_asimdsame2c.Rd, _simd_arr));
                         result.operands.push_back(Operand::vec(enc.fcadd_asimdsame2c.Rn, _simd_arr));
                         result.operands.push_back(Operand::vec(enc.fcadd_asimdsame2c.Rm, _simd_arr));
-                        { auto op = Operand::imm(enc.fcadd_asimdsame2c.rot * 180u + 90u); op.prefer_decimal = true; result.operands.push_back(op); }
+                        { auto op = Operand::imm(enc.fcadd_asimdsame2c.rot * 180u + 90u); op.flags.prefer_decimal = true; result.operands.push_back(op); }
                         return result;
         }
         default: break;
@@ -44366,7 +44366,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         result.operands.push_back(Operand::vec(enc.fcmla_asimdsame2c.Rd, _simd_arr));
                         result.operands.push_back(Operand::vec(enc.fcmla_asimdsame2c.Rn, _simd_arr));
                         result.operands.push_back(Operand::vec(enc.fcmla_asimdsame2c.Rm, _simd_arr));
-                        { auto op = Operand::imm(enc.fcmla_asimdsame2c.rot * 90u); op.prefer_decimal = true; result.operands.push_back(op); }
+                        { auto op = Operand::imm(enc.fcmla_asimdsame2c.rot * 90u); op.flags.prefer_decimal = true; result.operands.push_back(op); }
                         return result;
         }
         default: break;
@@ -44402,12 +44402,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.smlal_asimdelem_l.H << 2) | (enc.smlal_asimdelem_l.L << 1) | enc.smlal_asimdelem_l.M;
                             else if (_sz == 2) _idx = (enc.smlal_asimdelem_l.H << 1) | enc.smlal_asimdelem_l.L;
                             else if (_sz == 3) _idx = enc.smlal_asimdelem_l.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -44440,12 +44440,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.sqdmlal_asimdelem_l.H << 2) | (enc.sqdmlal_asimdelem_l.L << 1) | enc.sqdmlal_asimdelem_l.M;
                             else if (_sz == 2) _idx = (enc.sqdmlal_asimdelem_l.H << 1) | enc.sqdmlal_asimdelem_l.L;
                             else if (_sz == 3) _idx = enc.sqdmlal_asimdelem_l.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -44478,12 +44478,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.smlsl_asimdelem_l.H << 2) | (enc.smlsl_asimdelem_l.L << 1) | enc.smlsl_asimdelem_l.M;
                             else if (_sz == 2) _idx = (enc.smlsl_asimdelem_l.H << 1) | enc.smlsl_asimdelem_l.L;
                             else if (_sz == 3) _idx = enc.smlsl_asimdelem_l.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -44516,12 +44516,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.sqdmlsl_asimdelem_l.H << 2) | (enc.sqdmlsl_asimdelem_l.L << 1) | enc.sqdmlsl_asimdelem_l.M;
                             else if (_sz == 2) _idx = (enc.sqdmlsl_asimdelem_l.H << 1) | enc.sqdmlsl_asimdelem_l.L;
                             else if (_sz == 3) _idx = enc.sqdmlsl_asimdelem_l.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -44548,12 +44548,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.mul_asimdelem_r.H << 2) | (enc.mul_asimdelem_r.L << 1) | enc.mul_asimdelem_r.M;
                             else if (_sz == 2) _idx = (enc.mul_asimdelem_r.H << 1) | enc.mul_asimdelem_r.L;
                             else if (_sz == 3) _idx = enc.mul_asimdelem_r.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -44586,12 +44586,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.smull_asimdelem_l.H << 2) | (enc.smull_asimdelem_l.L << 1) | enc.smull_asimdelem_l.M;
                             else if (_sz == 2) _idx = (enc.smull_asimdelem_l.H << 1) | enc.smull_asimdelem_l.L;
                             else if (_sz == 3) _idx = enc.smull_asimdelem_l.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -44624,12 +44624,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.sqdmull_asimdelem_l.H << 2) | (enc.sqdmull_asimdelem_l.L << 1) | enc.sqdmull_asimdelem_l.M;
                             else if (_sz == 2) _idx = (enc.sqdmull_asimdelem_l.H << 1) | enc.sqdmull_asimdelem_l.L;
                             else if (_sz == 3) _idx = enc.sqdmull_asimdelem_l.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -44656,12 +44656,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.sqdmulh_asimdelem_r.H << 2) | (enc.sqdmulh_asimdelem_r.L << 1) | enc.sqdmulh_asimdelem_r.M;
                             else if (_sz == 2) _idx = (enc.sqdmulh_asimdelem_r.H << 1) | enc.sqdmulh_asimdelem_r.L;
                             else if (_sz == 3) _idx = enc.sqdmulh_asimdelem_r.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -44688,12 +44688,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.sqrdmulh_asimdelem_r.H << 2) | (enc.sqrdmulh_asimdelem_r.L << 1) | enc.sqrdmulh_asimdelem_r.M;
                             else if (_sz == 2) _idx = (enc.sqrdmulh_asimdelem_r.H << 1) | enc.sqrdmulh_asimdelem_r.L;
                             else if (_sz == 3) _idx = enc.sqrdmulh_asimdelem_r.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -44721,13 +44721,13 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.sdot_asimdelem_d.H << 2) | (enc.sdot_asimdelem_d.L << 1) | enc.sdot_asimdelem_d.M;
                             else if (_sz == 2) _idx = (enc.sdot_asimdelem_d.H << 1) | enc.sdot_asimdelem_d.L;
                             else if (_sz == 3) _idx = enc.sdot_asimdelem_d.H;
-                            op.arrangement = Arrangement::B4;
+                            op.set_arrangement(Arrangement::B4);
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -44754,12 +44754,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.mla_asimdelem_r.H << 2) | (enc.mla_asimdelem_r.L << 1) | enc.mla_asimdelem_r.M;
                             else if (_sz == 2) _idx = (enc.mla_asimdelem_r.H << 1) | enc.mla_asimdelem_r.L;
                             else if (_sz == 3) _idx = enc.mla_asimdelem_r.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -44792,12 +44792,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.umlal_asimdelem_l.H << 2) | (enc.umlal_asimdelem_l.L << 1) | enc.umlal_asimdelem_l.M;
                             else if (_sz == 2) _idx = (enc.umlal_asimdelem_l.H << 1) | enc.umlal_asimdelem_l.L;
                             else if (_sz == 3) _idx = enc.umlal_asimdelem_l.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -44824,12 +44824,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.mls_asimdelem_r.H << 2) | (enc.mls_asimdelem_r.L << 1) | enc.mls_asimdelem_r.M;
                             else if (_sz == 2) _idx = (enc.mls_asimdelem_r.H << 1) | enc.mls_asimdelem_r.L;
                             else if (_sz == 3) _idx = enc.mls_asimdelem_r.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -44862,12 +44862,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.umlsl_asimdelem_l.H << 2) | (enc.umlsl_asimdelem_l.L << 1) | enc.umlsl_asimdelem_l.M;
                             else if (_sz == 2) _idx = (enc.umlsl_asimdelem_l.H << 1) | enc.umlsl_asimdelem_l.L;
                             else if (_sz == 3) _idx = enc.umlsl_asimdelem_l.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -44900,12 +44900,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.umull_asimdelem_l.H << 2) | (enc.umull_asimdelem_l.L << 1) | enc.umull_asimdelem_l.M;
                             else if (_sz == 2) _idx = (enc.umull_asimdelem_l.H << 1) | enc.umull_asimdelem_l.L;
                             else if (_sz == 3) _idx = enc.umull_asimdelem_l.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -44932,12 +44932,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.sqrdmlah_asimdelem_r.H << 2) | (enc.sqrdmlah_asimdelem_r.L << 1) | enc.sqrdmlah_asimdelem_r.M;
                             else if (_sz == 2) _idx = (enc.sqrdmlah_asimdelem_r.H << 1) | enc.sqrdmlah_asimdelem_r.L;
                             else if (_sz == 3) _idx = enc.sqrdmlah_asimdelem_r.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -44965,13 +44965,13 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.udot_asimdelem_d.H << 2) | (enc.udot_asimdelem_d.L << 1) | enc.udot_asimdelem_d.M;
                             else if (_sz == 2) _idx = (enc.udot_asimdelem_d.H << 1) | enc.udot_asimdelem_d.L;
                             else if (_sz == 3) _idx = enc.udot_asimdelem_d.H;
-                            op.arrangement = Arrangement::B4;
+                            op.set_arrangement(Arrangement::B4);
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -44998,12 +44998,12 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             auto op = Operand::vec(_rm_reg);
                             uint32_t _idx = 0;
                             static const Arrangement _elem_scalar[] = {Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-                            op.arrangement = _elem_scalar[_sz];
+                            op.set_arrangement(_elem_scalar[_sz]);
                             if (_sz == 1) _idx = (enc.sqrdmlsh_asimdelem_r.H << 2) | (enc.sqrdmlsh_asimdelem_r.L << 1) | enc.sqrdmlsh_asimdelem_r.M;
                             else if (_sz == 2) _idx = (enc.sqrdmlsh_asimdelem_r.H << 1) | enc.sqrdmlsh_asimdelem_r.L;
                             else if (_sz == 3) _idx = enc.sqrdmlsh_asimdelem_r.H;
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         return result;
@@ -45029,15 +45029,15 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             if (enc.fcmla_advsimd_elt.size == 1) _idx = (enc.fcmla_advsimd_elt.H << 1) | enc.fcmla_advsimd_elt.L;
                             else _idx = enc.fcmla_advsimd_elt.H;
                             auto op = Operand::vec(_vm_reg);
-                            op.arrangement = _ts;
+                            op.set_arrangement(_ts);
                             op.index = _idx;
-                            op.has_index = true;
+                            op.flags.has_index = true;
                             result.operands.push_back(op);
                         }
                         {
                             static const int32_t _rot_vals[] = {0, 90, 180, 270};
                             result.operands.push_back(Operand::imm(_rot_vals[enc.fcmla_advsimd_elt.rot]));
-                            result.operands.back().prefer_decimal = true;
+                            result.operands.back().flags.prefer_decimal = true;
                         }
                         return result;
         }
