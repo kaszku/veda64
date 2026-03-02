@@ -5,7 +5,9 @@ import sys
 
 import os
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-DISASM = os.path.join(SCRIPT_DIR, "__build_arm64", "Release", "veda64-disasm.exe")
+DISASM = os.path.join(SCRIPT_DIR, "__build_arm64", "veda64-disasm.exe")
+if not os.path.exists(DISASM):
+    DISASM = os.path.join(SCRIPT_DIR, "__build_arm64", "Release", "veda64-disasm.exe")
 
 # (hex_encoding, expected_output_substring)
 TESTS = [
