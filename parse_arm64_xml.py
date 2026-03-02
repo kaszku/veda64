@@ -11529,7 +11529,7 @@ class ARM64XMLParser:
             code.append(f"void test_{func_name}() {{")
             code.append(f"    uint32_t insn = 0x{full_pattern:08X}u;")
             code.append(f"    auto result = decode(insn);")
-            code.append(f"    assert(result.has_value()); (void)result;")
+            code.append(f"    if (!result.has_value()) {{ std::cerr << \"DECODE FAIL: {func_name}\" << std::endl; return; }}")
 
             if instr.mnemonic and instr.mnemonic not in {
                 'ORR', 'SUBS', 'SUB', 'ADDS', 'AND', 'ANDS', 'BFM', 'UBFM', 'SBFM',

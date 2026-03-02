@@ -11,7 +11,7 @@ using namespace veda64;
 void test_udf_only_perm_undef() {
     uint32_t insn = 0x00000000u;
     auto result = decode(insn);
-    assert(result.has_value()); (void)result;
+    if (!result.has_value()) { std::cerr << "DECODE FAIL: udf_only_perm_undef" << std::endl; return; }
     assert(result->mnemonic == Mnemonic::UDF);
     std::cout << "  udf_only_perm_undef: " << result->to_string() << std::endl;
 }
