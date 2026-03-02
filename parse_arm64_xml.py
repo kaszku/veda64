@@ -11430,15 +11430,13 @@ class ARM64XMLParser:
 
         return operand_types if operand_types else None
 
-    def _adjust_test_pattern_for_undef(self, pattern: int, fields: list, decode_ps: str) -> int:
+    def _adjust_test_pattern_for_undef(self, pattern: int, fields: list, decode_ps: str, symbol_map: dict = None) -> int:
         """Adjust test instruction pattern to avoid Decode_UNDEF conditions.
 
         When all variable bits are 0, some field values (e.g. size==00) trigger UNDEF.
         This sets those fields to the smallest valid value instead.
         """
         import re
-        if not decode_ps:
-            return pattern
 
         # Build field info: name → (lsb, width)
         field_info = {}
@@ -11447,23 +11445,106 @@ class ARM64XMLParser:
             if name and not name.startswith('_') and not f.get('is_fixed', False):
                 field_info[name] = (f['lobit'], f['width'])
 
-        # Handle: if FIELD == 'BITS' then EndOfDecode(Decode_UNDEF)
+        def _set_field(pattern, lsb, width, val):
+            mask = ((1 << width) - 1) << lsb
+            return (pattern & ~mask) | ((val & ((1 << width) - 1)) << lsb)
+
+        def _get_field(pattern, lsb, width):
+            return (pattern >> lsb) & ((1 << width) - 1)
+
+        # Collect all UNDEF values per field so we can avoid all of them
+        undef_values = {}  # field → set of bad values
+
+        if not decode_ps:
+            decode_ps = ''
+
+        # Pattern 1: if FIELD == 'BITS' then EndOfDecode(Decode_UNDEF)
         for m in re.finditer(r"if\s+(\w+)\s*==\s*'([01]+)'\s+then\s+EndOfDecode\(Decode_UNDEF\)", decode_ps):
+            field, bits = m.group(1), m.group(2)
+            if field in field_info:
+                undef_values.setdefault(field, set()).add(int(bits, 2))
+
+        # Pattern 2: if FIELD IN {'BITS', ...} then EndOfDecode(Decode_UNDEF)
+        # Also handles: if FIELD IN {'BITS'} || (FIELD IN {'BITS'} && ...) then EndOfDecode(Decode_UNDEF)
+        for m in re.finditer(r"if\s+(\w+)\s+IN\s+\{([^}]+)\}[^;]*EndOfDecode\(Decode_UNDEF\)", decode_ps):
+            field = m.group(1)
+            if field not in field_info:
+                continue
+            lsb, width = field_info[field]
+            # Parse bit patterns like '000x', '0000', '001x'
+            for bp in re.findall(r"'([01x]+)'", m.group(2)):
+                # Expand 'x' wildcards
+                def expand(s):
+                    if 'x' not in s:
+                        return [int(s, 2)]
+                    idx = s.index('x')
+                    return expand(s[:idx] + '0' + s[idx+1:]) + expand(s[:idx] + '1' + s[idx+1:])
+                for val in expand(bp):
+                    undef_values.setdefault(field, set()).add(val)
+
+        # Pattern 3: if FIELD[N] == 'B' then EndOfDecode(Decode_UNDEF)
+        for m in re.finditer(r"if\s+(\w+)\[(\d+)\]\s*==\s*'([01])'\s+then\s+EndOfDecode\(Decode_UNDEF\)", decode_ps):
+            field, bit_idx, bit_val = m.group(1), int(m.group(2)), int(m.group(3))
+            if field not in field_info:
+                continue
+            lsb, width = field_info[field]
+            # Mark all values where that bit matches as bad
+            for v in range(1 << width):
+                if ((v >> bit_idx) & 1) == bit_val:
+                    undef_values.setdefault(field, set()).add(v)
+
+        # Pattern 4: if FIELD != 'BITS' then EndOfDecode(Decode_UNDEF)
+        # Only the given value is valid
+        for m in re.finditer(r"if\s+(\w+)\s*!=\s*'([01]+)'\s+then\s+EndOfDecode\(Decode_UNDEF\)", decode_ps):
             field, bits = m.group(1), m.group(2)
             if field not in field_info:
                 continue
             lsb, width = field_info[field]
-            undef_val = int(bits, 2)
-            current_val = (pattern >> lsb) & ((1 << width) - 1)
-            if current_val == undef_val:
-                # Clear field and set to smallest non-UNDEF value
-                mask = ((1 << width) - 1) << lsb
-                pattern &= ~mask
-                # Try values starting from undef_val+1, wrapping around
-                for candidate in range(1, 1 << width):
-                    test_val = (undef_val + candidate) & ((1 << width) - 1)
-                    pattern |= (test_val << lsb)
-                    break
+            valid_val = int(bits, 2)
+            for v in range(1 << width):
+                if v != valid_val:
+                    undef_values.setdefault(field, set()).add(v)
+
+        # Pattern 5: encoding XML constraint="!= XXXX" on field boxes
+        for f in fields:
+            constraint = f.get('constraint', '')
+            if not constraint:
+                continue
+            name = f.get('original_name') or f.get('name', '')
+            if not name or f.get('is_fixed', False):
+                continue
+            lsb, width = f['lobit'], f['width']
+            m_ne = re.match(r'!=\s*([01]+)', constraint)
+            if m_ne:
+                bad_val = int(m_ne.group(1), 2)
+                undef_values.setdefault(name, set()).add(bad_val)
+
+        # Pattern 6: symbol_map value_table with 'RESERVED' entries
+        if symbol_map:
+            for sym_name, sym_info in symbol_map.items():
+                vt = sym_info.get('value_table', {})
+                field_name = sym_info.get('field', '')
+                if not field_name or not vt:
+                    continue
+                if field_name not in field_info:
+                    continue
+                lsb, width = field_info[field_name]
+                for bits_str, display in vt.items():
+                    if display == 'RESERVED' and all(c in '01' for c in bits_str):
+                        undef_values.setdefault(field_name, set()).add(int(bits_str, 2))
+
+        # Apply: for each field with UNDEF values, ensure current value is valid
+        for field, bad_vals in undef_values.items():
+            if field not in field_info:
+                continue
+            lsb, width = field_info[field]
+            current = _get_field(pattern, lsb, width)
+            if current in bad_vals:
+                # Find smallest valid value
+                for candidate in range(1 << width):
+                    if candidate not in bad_vals:
+                        pattern = _set_field(pattern, lsb, width, candidate)
+                        break
 
         return pattern
 
@@ -11518,8 +11599,16 @@ class ARM64XMLParser:
                 continue
 
             # Adjust test pattern to avoid Decode_UNDEF conditions
+            # For aliases with empty decode_ps, try base encoding's decode_ps
+            decode_ps = encoding.decode_ps or ''
+            if not decode_ps and '__' in (encoding.name or ''):
+                base_name = encoding.name.split('__')[-1]
+                for other_instr, other_enc in entries:
+                    if other_enc.name and other_enc.name.lower() == base_name.lower() and other_enc.decode_ps:
+                        decode_ps = other_enc.decode_ps
+                        break
             full_pattern = self._adjust_test_pattern_for_undef(
-                full_pattern, fields, encoding.decode_ps)
+                full_pattern, fields, decode_ps, encoding.symbol_map)
 
             # Predict operand types
             predicted = self._predict_operand_types(instr, encoding)
@@ -11529,7 +11618,7 @@ class ARM64XMLParser:
             code.append(f"void test_{func_name}() {{")
             code.append(f"    uint32_t insn = 0x{full_pattern:08X}u;")
             code.append(f"    auto result = decode(insn);")
-            code.append(f"    if (!result.has_value()) {{ std::cerr << \"DECODE FAIL: {func_name}\" << std::endl; return; }}")
+            code.append(f"    if (!result.has_value()) {{ std::cerr << \"DECODE FAIL: {func_name}\" << std::endl; throw std::runtime_error(\"decode failed\"); }}")
 
             if instr.mnemonic and instr.mnemonic not in {
                 'ORR', 'SUBS', 'SUB', 'ADDS', 'AND', 'ANDS', 'BFM', 'UBFM', 'SBFM',
