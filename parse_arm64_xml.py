@@ -7199,7 +7199,7 @@ class ARM64XMLParser:
             code.append(f"{ind}    op.index = {num_regs};")
             code.append(f'{ind}    op.arrangement = {_CHAR_TO_ARR[elem_arr]};')
             code.append(f"{ind}    op.has_index = true;")
-            code.append(f"{ind}    op.amount = _elem_idx;")
+            code.append(f"{ind}    op.amount = static_cast<uint8_t>(_elem_idx);")
             code.append(f"{ind}    result.operands.push_back(op);")
             code.append(f"{ind}}}")
 
@@ -8767,11 +8767,11 @@ class ARM64XMLParser:
             code.append(f"{ind}    op.arrangement = {_arr};")
             code.append(f"{ind}    op.has_index = true;")
             if v_field:
-                code.append(f"{ind}    op.extend = (enc.{member_name}.{v_field} != 0) ? 8u : 0u;")
+                code.append(f"{ind}    op.extend = static_cast<uint8_t>((enc.{member_name}.{v_field} != 0) ? 8u : 0u);")
             else:
                 code.append(f"{ind}    op.extend = 0;")
             code.append(f"{ind}    op.index = 12 + enc.{member_name}.{rs_field};")
-            code.append(f"{ind}    op.amount = _offs;")
+            code.append(f"{ind}    op.amount = static_cast<uint8_t>(_offs);")
             code.append(f"{ind}    result.operands.push_back(op);")
             code.append(f"{ind}}}")
             # Emit predicate
@@ -8895,12 +8895,12 @@ class ARM64XMLParser:
                 _range_vgx = int(_range_vgx_m.group(1))
                 code.append(f"{ind}    op.extend = 3;  // range + VGx mode")
                 code.append(f"{ind}    op.index = enc.{member_name}.{rv_field} + 8;")
-                code.append(f"{ind}    op.amount = _start;")
+                code.append(f"{ind}    op.amount = static_cast<uint8_t>(_start);")
                 code.append(f"{ind}    op.offset = (int32_t)((_end & 0xFFFF) | ({_range_vgx} << 16));")
             else:
                 code.append(f"{ind}    op.extend = 1;  // range mode")
                 code.append(f"{ind}    op.index = enc.{member_name}.{rv_field} + 8;")
-                code.append(f"{ind}    op.amount = _start;")
+                code.append(f"{ind}    op.amount = static_cast<uint8_t>(_start);")
                 code.append(f"{ind}    op.offset = (int32_t)_end;")
             code.append(f"{ind}    result.operands.push_back(op);")
             code.append(f"{ind}}}")
@@ -9044,7 +9044,7 @@ class ARM64XMLParser:
             code.append(f"{ind}    op.has_index = true;")
             code.append(f"{ind}    op.extend = 2;  // VGx mode")
             code.append(f"{ind}    op.index = enc.{member_name}.{rv_field} + 8;")
-            code.append(f"{ind}    op.amount = _off;")
+            code.append(f"{ind}    op.amount = static_cast<uint8_t>(_off);")
             code.append(f"{ind}    op.offset = {_vgx};  // VGx count")
             code.append(f"{ind}    result.operands.push_back(op);")
             code.append(f"{ind}}}")
@@ -9182,11 +9182,11 @@ class ARM64XMLParser:
             code.append(f"{ind}    op.arrangement = {_arr};")
             code.append(f"{ind}    op.has_index = true;")
             if v_field:
-                code.append(f"{ind}    op.extend = (enc.{member_name}.{v_field} != 0) ? 8u : 0u;")
+                code.append(f"{ind}    op.extend = static_cast<uint8_t>((enc.{member_name}.{v_field} != 0) ? 8u : 0u);")
             else:
                 code.append(f"{ind}    op.extend = 0;")
             code.append(f"{ind}    op.index = 12 + enc.{member_name}.{rs_field};")
-            code.append(f"{ind}    op.amount = _offs;")
+            code.append(f"{ind}    op.amount = static_cast<uint8_t>(_offs);")
             code.append(f"{ind}    result.operands.push_back(op);")
             code.append(f"{ind}}}")
             code.append(f"{ind}return result;")
@@ -9234,11 +9234,11 @@ class ARM64XMLParser:
             code.append(f"{ind}    op.arrangement = {_arr};")
             code.append(f"{ind}    op.has_index = true;")
             if v_field:
-                code.append(f"{ind}    op.extend = (enc.{member_name}.{v_field} != 0) ? 8u : 0u;")
+                code.append(f"{ind}    op.extend = static_cast<uint8_t>((enc.{member_name}.{v_field} != 0) ? 8u : 0u);")
             else:
                 code.append(f"{ind}    op.extend = 0;")
             code.append(f"{ind}    op.index = 12 + enc.{member_name}.{rs_field};")
-            code.append(f"{ind}    op.amount = _offs;")
+            code.append(f"{ind}    op.amount = static_cast<uint8_t>(_offs);")
             code.append(f"{ind}    result.operands.push_back(op);")
             code.append(f"{ind}}}")
             code.append(f"{ind}{{ auto op = Operand::pred(enc.{member_name}.{pg_field}); op.arrangement = Arrangement::None; op.extend = 1; result.operands.push_back(op); }}")
@@ -9537,7 +9537,7 @@ class ARM64XMLParser:
                 code.append(f"{ind}result.operands.push_back(Operand::pred(enc.{member_name}.{pn_cpp}));")
                 code.append(f"{ind}uint32_t _imm5 = (enc.{member_name}.{i1_cpp} << 4) | (enc.{member_name}.{tszh_cpp} << {tszl_w}) | enc.{member_name}.{tszl_cpp};")
                 code.append(f"{ind}uint32_t _psel_idx = (_tsize & 1) ? (_imm5 >> 1) : (_tsize & 2) ? (_imm5 >> 2) : (_tsize & 4) ? (_imm5 >> 3) : (_imm5 >> 4);")
-                code.append(f"{ind}{{ auto op = Operand::pred(enc.{member_name}.{pm_cpp}); op.arrangement = _sve_arr; op.has_index = true; op.index = _psel_idx; op.index_reg = enc.{member_name}.{rv_cpp} + 12; result.operands.push_back(op); }}")
+                code.append(f"{ind}{{ auto op = Operand::pred(enc.{member_name}.{pm_cpp}); op.arrangement = _sve_arr; op.has_index = true; op.index = _psel_idx; op.index_reg = static_cast<uint8_t>(enc.{member_name}.{rv_cpp} + 12); result.operands.push_back(op); }}")
                 code.append(f"{ind}return result;")
                 return code
 
@@ -9682,9 +9682,9 @@ class ARM64XMLParser:
                     code.append(f"{ind}    op.arrangement = {_arr_str};")
                     code.append(f"{ind}    op.has_index = true;")
                     code.append(f"{ind}    op.index = {_ws_expr};")
-                    code.append(f"{ind}    op.amount = {_start_expr};")
+                    code.append(f"{ind}    op.amount = static_cast<uint8_t>({_start_expr});")
                     code.append(f"{ind}    op.offset = {_end_expr};")
-                    code.append(f"{ind}    op.extend = ({_v_expr} != 0) ? 12u : 4u;  // bit 3 = vertical")
+                    code.append(f"{ind}    op.extend = static_cast<uint8_t>(({_v_expr} != 0) ? 12u : 4u);  // bit 3 = vertical")
                     code.append(f"{ind}    result.operands.push_back(op);")
                     code.append(f"{ind}}}")
                 elif (_is_z_to_za or '_ri' in _prefix) and _grp_sz > 1 and not _is_za1:
@@ -9695,7 +9695,7 @@ class ARM64XMLParser:
                     code.append(f"{ind}    op.has_index = true;")
                     code.append(f"{ind}    op.extend = 3;  // range + VGx mode")
                     code.append(f"{ind}    op.index = {_ws_expr};")
-                    code.append(f"{ind}    op.amount = {_start_expr};")
+                    code.append(f"{ind}    op.amount = static_cast<uint8_t>({_start_expr});")
                     code.append(f"{ind}    op.offset = ({_grp_sz} << 16) | (uint32_t)({_end_expr});  // VGx in high 16, range_end in low 16")
                     code.append(f"{ind}    result.operands.push_back(op);")
                     code.append(f"{ind}}}")
@@ -9707,7 +9707,7 @@ class ARM64XMLParser:
                     code.append(f"{ind}    op.has_index = true;")
                     code.append(f"{ind}    op.extend = 2;  // VGx mode")
                     code.append(f"{ind}    op.index = {_ws_expr};")
-                    code.append(f"{ind}    op.amount = {_off_cpp};  // raw offset (not scaled)")
+                    code.append(f"{ind}    op.amount = static_cast<uint8_t>({_off_cpp});  // raw offset (not scaled)")
                     code.append(f"{ind}    op.offset = {_grp_sz};  // VGx count")
                     code.append(f"{ind}    result.operands.push_back(op);")
                     code.append(f"{ind}}}")
@@ -9740,7 +9740,7 @@ class ARM64XMLParser:
             code.append(f"{ind}    op.has_index = true;")
             code.append(f"{ind}    op.extend = 5;  // LDR/STR ZA format")
             code.append(f"{ind}    op.index = enc.{member_name}.{rv_f} + 12;")
-            code.append(f"{ind}    op.amount = enc.{member_name}.{off_f};")
+            code.append(f"{ind}    op.amount = static_cast<uint8_t>(enc.{member_name}.{off_f});")
             code.append(f"{ind}    result.operands.push_back(op);")
             code.append(f"{ind}}}")
             code.append(f"{ind}result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.{member_name}.{rn_f}, true, true))));")
@@ -10510,7 +10510,7 @@ class ARM64XMLParser:
                         # Variable qualifier: M field determines /Z (M=0) or /M (M=1)
                         if 'M' in field_map and not field_map['M']['is_fixed']:
                             _m_field = field_map['M']['name']
-                            code.append(f"{ind}{{ Operand op = Operand::pred(enc.{member_name}.{field_cpp_name}); op.extend = (enc.{member_name}.{_m_field} != 0) ? 2u : 1u; result.operands.push_back(op); }}")
+                            code.append(f"{ind}{{ Operand op = Operand::pred(enc.{member_name}.{field_cpp_name}); op.extend = static_cast<uint8_t>((enc.{member_name}.{_m_field} != 0) ? 2u : 1u); result.operands.push_back(op); }}")
                         else:
                             code.append(f"{ind}{{ auto op = Operand::pred(enc.{member_name}.{field_cpp_name}); op.arrangement = Arrangement::None; op.extend = 1; result.operands.push_back(op); }}")
                     else:

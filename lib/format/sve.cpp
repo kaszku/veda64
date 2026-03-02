@@ -50887,7 +50887,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.brka_ppp.Pd); op.arrangement = Arrangement::B; result.operands.push_back(op); }
-                        { Operand op = Operand::pred(enc.brka_ppp.Pg); op.extend = (enc.brka_ppp.M != 0) ? 2u : 1u; result.operands.push_back(op); }
+                        { Operand op = Operand::pred(enc.brka_ppp.Pg); op.extend = static_cast<uint8_t>((enc.brka_ppp.M != 0) ? 2u : 1u); result.operands.push_back(op); }
                         { Operand op = Operand::pred(enc.brka_ppp.Pn); op.arrangement = Arrangement::B; result.operands.push_back(op); }
                         return result;
         }
@@ -50896,7 +50896,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.brkb_ppp.Pd); op.arrangement = Arrangement::B; result.operands.push_back(op); }
-                        { Operand op = Operand::pred(enc.brkb_ppp.Pg); op.extend = (enc.brkb_ppp.M != 0) ? 2u : 1u; result.operands.push_back(op); }
+                        { Operand op = Operand::pred(enc.brkb_ppp.Pg); op.extend = static_cast<uint8_t>((enc.brkb_ppp.M != 0) ? 2u : 1u); result.operands.push_back(op); }
                         { Operand op = Operand::pred(enc.brkb_ppp.Pn); op.arrangement = Arrangement::B; result.operands.push_back(op); }
                         return result;
         }
@@ -64356,7 +64356,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                             case 3: _sve_arr = Arrangement::D; break;
                         }
                         result.operands.push_back(Operand::sve(enc.movprfx_zpz.Zd, _sve_arr));
-                        { Operand op = Operand::pred(enc.movprfx_zpz.Pg); op.extend = (enc.movprfx_zpz.M != 0) ? 2u : 1u; result.operands.push_back(op); }
+                        { Operand op = Operand::pred(enc.movprfx_zpz.Pg); op.extend = static_cast<uint8_t>((enc.movprfx_zpz.M != 0) ? 2u : 1u); result.operands.push_back(op); }
                         result.operands.push_back(Operand::sve(enc.movprfx_zpz.Zn, _sve_arr));
                         return result;
         }
@@ -68524,7 +68524,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         result.operands.push_back(Operand::pred(enc.psel_pppi.Pn));
                         uint32_t _imm5 = (enc.psel_pppi.i1 << 4) | (enc.psel_pppi.tszh << 3) | enc.psel_pppi.tszl;
                         uint32_t _psel_idx = (_tsize & 1) ? (_imm5 >> 1) : (_tsize & 2) ? (_imm5 >> 2) : (_tsize & 4) ? (_imm5 >> 3) : (_imm5 >> 4);
-                        { auto op = Operand::pred(enc.psel_pppi.Pm); op.arrangement = _sve_arr; op.has_index = true; op.index = _psel_idx; op.index_reg = enc.psel_pppi.Rv + 12; result.operands.push_back(op); }
+                        { auto op = Operand::pred(enc.psel_pppi.Pm); op.arrangement = _sve_arr; op.has_index = true; op.index = _psel_idx; op.index_reg = static_cast<uint8_t>(enc.psel_pppi.Rv + 12); result.operands.push_back(op); }
                         return result;
         }
         default: break;

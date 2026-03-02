@@ -37685,7 +37685,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.zero_za4ri2.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -37705,7 +37705,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.zero_za4ri4.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -37730,7 +37730,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.zero_za2ri2.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -37750,7 +37750,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.zero_za2ri4.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -37770,7 +37770,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.zero_za4ri1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -37792,7 +37792,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.zero_za1ri2.Rv + 8;
-                            op.amount = enc.zero_za1ri2.off3;  // raw offset (not scaled)
+                            op.amount = static_cast<uint8_t>(enc.zero_za1ri2.off3);  // raw offset (not scaled)
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -37812,7 +37812,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.zero_za2ri1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -37829,7 +37829,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.zero_za1ri4.Rv + 8;
-                            op.amount = enc.zero_za1ri4.off3;  // raw offset (not scaled)
+                            op.amount = static_cast<uint8_t>(enc.zero_za1ri4.off3);  // raw offset (not scaled)
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -37853,7 +37853,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.mov_mz_za41mova_mz_za41.Rv + 8;
-                            op.amount = enc.mov_mz_za41mova_mz_za41.off3;  // raw offset (not scaled)
+                            op.amount = static_cast<uint8_t>(enc.mov_mz_za41mova_mz_za41.off3);  // raw offset (not scaled)
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -37871,7 +37871,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.movaz_mz_za41.Rv + 8;
-                            op.amount = enc.movaz_mz_za41.off3;  // raw offset (not scaled)
+                            op.amount = static_cast<uint8_t>(enc.movaz_mz_za41.off3);  // raw offset (not scaled)
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -37895,7 +37895,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.mov_mz_za21mova_mz_za21.Rv + 8;
-                            op.amount = enc.mov_mz_za21mova_mz_za21.off3;  // raw offset (not scaled)
+                            op.amount = static_cast<uint8_t>(enc.mov_mz_za21mova_mz_za21.off3);  // raw offset (not scaled)
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -37913,7 +37913,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.movaz_mz_za21.Rv + 8;
-                            op.amount = enc.movaz_mz_za21.off3;  // raw offset (not scaled)
+                            op.amount = static_cast<uint8_t>(enc.movaz_mz_za21.off3);  // raw offset (not scaled)
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -37936,7 +37936,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.mov_za_mz41mova_za_mz41.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -37954,7 +37954,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fadd_za_zw4x416.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -37972,7 +37972,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fsub_za_zw4x416.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -37990,7 +37990,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.bfadd_za_zw4x416.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -38008,7 +38008,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.bfsub_za_zw4x416.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -38032,7 +38032,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.mov_za_mz21mova_za_mz21.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -38050,7 +38050,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fadd_za_zw2x216.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -38068,7 +38068,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fsub_za_zw2x216.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -38086,7 +38086,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.bfadd_za_zw2x216.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -38104,7 +38104,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.bfsub_za_zw2x216.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -38128,7 +38128,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 5;  // LDR/STR ZA format
                             op.index = enc.ldr_za_ri.Rv + 12;
-                            op.amount = enc.ldr_za_ri.off4;
+                            op.amount = static_cast<uint8_t>(enc.ldr_za_ri.off4);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ldr_za_ri.Rn, true, true))));
@@ -38146,7 +38146,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 5;  // LDR/STR ZA format
                             op.index = enc.str_za_ri.Rv + 12;
-                            op.amount = enc.str_za_ri.off4;
+                            op.amount = static_cast<uint8_t>(enc.str_za_ri.off4);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.str_za_ri.Rn, true, true))));
@@ -38198,9 +38198,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.index = enc.mov_mz4za_b1mova_mz4za_b1.Rs + 12;
-                            op.amount = (enc.mov_mz4za_b1mova_mz4za_b1.off2 * 4);
+                            op.amount = static_cast<uint8_t>((enc.mov_mz4za_b1mova_mz4za_b1.off2 * 4));
                             op.offset = (enc.mov_mz4za_b1mova_mz4za_b1.off2 * 4 + 3);
-                            op.extend = (enc.mov_mz4za_b1mova_mz4za_b1.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.mov_mz4za_b1mova_mz4za_b1.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38218,9 +38218,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.index = enc.movaz_mz4za_b1.Rs + 12;
-                            op.amount = (enc.movaz_mz4za_b1.off2 * 4);
+                            op.amount = static_cast<uint8_t>((enc.movaz_mz4za_b1.off2 * 4));
                             op.offset = (enc.movaz_mz4za_b1.off2 * 4 + 3);
-                            op.extend = (enc.movaz_mz4za_b1.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.movaz_mz4za_b1.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38239,9 +38239,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.index = enc.mov_mz4za_h1mova_mz4za_h1.Rs + 12;
-                            op.amount = (enc.mov_mz4za_h1mova_mz4za_h1.o1 * 4);
+                            op.amount = static_cast<uint8_t>((enc.mov_mz4za_h1mova_mz4za_h1.o1 * 4));
                             op.offset = (enc.mov_mz4za_h1mova_mz4za_h1.o1 * 4 + 3);
-                            op.extend = (enc.mov_mz4za_h1mova_mz4za_h1.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.mov_mz4za_h1mova_mz4za_h1.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38259,9 +38259,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.index = enc.movaz_mz4za_h1.Rs + 12;
-                            op.amount = (enc.movaz_mz4za_h1.o1 * 4);
+                            op.amount = static_cast<uint8_t>((enc.movaz_mz4za_h1.o1 * 4));
                             op.offset = (enc.movaz_mz4za_h1.o1 * 4 + 3);
-                            op.extend = (enc.movaz_mz4za_h1.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.movaz_mz4za_h1.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38280,9 +38280,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.index = enc.mov_mz4za_w1mova_mz4za_w1.Rs + 12;
-                            op.amount = (0u * 4);
+                            op.amount = static_cast<uint8_t>((0u * 4));
                             op.offset = (0u * 4 + 3);
-                            op.extend = (enc.mov_mz4za_w1mova_mz4za_w1.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.mov_mz4za_w1mova_mz4za_w1.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38300,9 +38300,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.index = enc.movaz_mz4za_w1.Rs + 12;
-                            op.amount = (0u * 4);
+                            op.amount = static_cast<uint8_t>((0u * 4));
                             op.offset = (0u * 4 + 3);
-                            op.extend = (enc.movaz_mz4za_w1.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.movaz_mz4za_w1.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38326,9 +38326,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.index = enc.mov_mz4za_d1mova_mz4za_d1.Rs + 12;
-                            op.amount = (0u * 4);
+                            op.amount = static_cast<uint8_t>((0u * 4));
                             op.offset = (0u * 4 + 3);
-                            op.extend = (enc.mov_mz4za_d1mova_mz4za_d1.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.mov_mz4za_d1mova_mz4za_d1.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38346,9 +38346,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.index = enc.movaz_mz4za_d1.Rs + 12;
-                            op.amount = (0u * 4);
+                            op.amount = static_cast<uint8_t>((0u * 4));
                             op.offset = (0u * 4 + 3);
-                            op.extend = (enc.movaz_mz4za_d1.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.movaz_mz4za_d1.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38372,9 +38372,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.index = enc.mov_mz2za_b1mova_mz2za_b1.Rs + 12;
-                            op.amount = (enc.mov_mz2za_b1mova_mz2za_b1.off3 * 2);
+                            op.amount = static_cast<uint8_t>((enc.mov_mz2za_b1mova_mz2za_b1.off3 * 2));
                             op.offset = (enc.mov_mz2za_b1mova_mz2za_b1.off3 * 2 + 1);
-                            op.extend = (enc.mov_mz2za_b1mova_mz2za_b1.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.mov_mz2za_b1mova_mz2za_b1.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38392,9 +38392,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.index = enc.movaz_mz2za_b1.Rs + 12;
-                            op.amount = (enc.movaz_mz2za_b1.off3 * 2);
+                            op.amount = static_cast<uint8_t>((enc.movaz_mz2za_b1.off3 * 2));
                             op.offset = (enc.movaz_mz2za_b1.off3 * 2 + 1);
-                            op.extend = (enc.movaz_mz2za_b1.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.movaz_mz2za_b1.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38413,9 +38413,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.index = enc.mov_mz2za_h1mova_mz2za_h1.Rs + 12;
-                            op.amount = (enc.mov_mz2za_h1mova_mz2za_h1.off2 * 2);
+                            op.amount = static_cast<uint8_t>((enc.mov_mz2za_h1mova_mz2za_h1.off2 * 2));
                             op.offset = (enc.mov_mz2za_h1mova_mz2za_h1.off2 * 2 + 1);
-                            op.extend = (enc.mov_mz2za_h1mova_mz2za_h1.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.mov_mz2za_h1mova_mz2za_h1.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38433,9 +38433,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.index = enc.movaz_mz2za_h1.Rs + 12;
-                            op.amount = (enc.movaz_mz2za_h1.off2 * 2);
+                            op.amount = static_cast<uint8_t>((enc.movaz_mz2za_h1.off2 * 2));
                             op.offset = (enc.movaz_mz2za_h1.off2 * 2 + 1);
-                            op.extend = (enc.movaz_mz2za_h1.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.movaz_mz2za_h1.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38454,9 +38454,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.index = enc.mov_mz2za_w1mova_mz2za_w1.Rs + 12;
-                            op.amount = (enc.mov_mz2za_w1mova_mz2za_w1.o1 * 2);
+                            op.amount = static_cast<uint8_t>((enc.mov_mz2za_w1mova_mz2za_w1.o1 * 2));
                             op.offset = (enc.mov_mz2za_w1mova_mz2za_w1.o1 * 2 + 1);
-                            op.extend = (enc.mov_mz2za_w1mova_mz2za_w1.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.mov_mz2za_w1mova_mz2za_w1.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38474,9 +38474,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.index = enc.movaz_mz2za_w1.Rs + 12;
-                            op.amount = (enc.movaz_mz2za_w1.o1 * 2);
+                            op.amount = static_cast<uint8_t>((enc.movaz_mz2za_w1.o1 * 2));
                             op.offset = (enc.movaz_mz2za_w1.o1 * 2 + 1);
-                            op.extend = (enc.movaz_mz2za_w1.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.movaz_mz2za_w1.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38495,9 +38495,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.index = enc.mov_mz2za_d1mova_mz2za_d1.Rs + 12;
-                            op.amount = (0u * 2);
+                            op.amount = static_cast<uint8_t>((0u * 2));
                             op.offset = (0u * 2 + 1);
-                            op.extend = (enc.mov_mz2za_d1mova_mz2za_d1.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.mov_mz2za_d1mova_mz2za_d1.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38515,9 +38515,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.index = enc.movaz_mz2za_d1.Rs + 12;
-                            op.amount = (0u * 2);
+                            op.amount = static_cast<uint8_t>((0u * 2));
                             op.offset = (0u * 2 + 1);
-                            op.extend = (enc.movaz_mz2za_d1.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.movaz_mz2za_d1.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38540,9 +38540,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.index = enc.movaz_zrza_b.Rs + 12;
-                            op.amount = enc.movaz_zrza_b.off4;
+                            op.amount = static_cast<uint8_t>(enc.movaz_zrza_b.off4);
                             op.offset = enc.movaz_zrza_b.off4;
-                            op.extend = (enc.movaz_zrza_b.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.movaz_zrza_b.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38560,9 +38560,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.index = enc.movaz_zrza_h.Rs + 12;
-                            op.amount = enc.movaz_zrza_h.off3;
+                            op.amount = static_cast<uint8_t>(enc.movaz_zrza_h.off3);
                             op.offset = enc.movaz_zrza_h.off3;
-                            op.extend = (enc.movaz_zrza_h.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.movaz_zrza_h.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38580,9 +38580,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.index = enc.movaz_zrza_w.Rs + 12;
-                            op.amount = enc.movaz_zrza_w.off2;
+                            op.amount = static_cast<uint8_t>(enc.movaz_zrza_w.off2);
                             op.offset = enc.movaz_zrza_w.off2;
-                            op.extend = (enc.movaz_zrza_w.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.movaz_zrza_w.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38600,9 +38600,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.index = enc.movaz_zrza_d.Rs + 12;
-                            op.amount = enc.movaz_zrza_d.o1;
+                            op.amount = static_cast<uint8_t>(enc.movaz_zrza_d.o1);
                             op.offset = enc.movaz_zrza_d.o1;
-                            op.extend = (enc.movaz_zrza_d.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.movaz_zrza_d.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38620,9 +38620,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::Q;
                             op.has_index = true;
                             op.index = enc.movaz_zrza_q.Rs + 12;
-                            op.amount = 0u;
+                            op.amount = static_cast<uint8_t>(0u);
                             op.offset = 0u;
-                            op.extend = (enc.movaz_zrza_q.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.movaz_zrza_q.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38645,9 +38645,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.index = enc.mov_za4zb1mova_za4zb1.Rs + 12;
-                            op.amount = (enc.mov_za4zb1mova_za4zb1.off2 * 4);
+                            op.amount = static_cast<uint8_t>((enc.mov_za4zb1mova_za4zb1.off2 * 4));
                             op.offset = (enc.mov_za4zb1mova_za4zb1.off2 * 4 + 3);
-                            op.extend = (enc.mov_za4zb1mova_za4zb1.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.mov_za4zb1mova_za4zb1.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.mov_za4zb1mova_za4zb1.Zn * 4))); op.arrangement = Arrangement::B; op.index = 4; result.operands.push_back(op); }
@@ -38667,9 +38667,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.index = enc.mov_za4zh1mova_za4zh1.Rs + 12;
-                            op.amount = (enc.mov_za4zh1mova_za4zh1.o1 * 4);
+                            op.amount = static_cast<uint8_t>((enc.mov_za4zh1mova_za4zh1.o1 * 4));
                             op.offset = (enc.mov_za4zh1mova_za4zh1.o1 * 4 + 3);
-                            op.extend = (enc.mov_za4zh1mova_za4zh1.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.mov_za4zh1mova_za4zh1.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.mov_za4zh1mova_za4zh1.Zn * 4))); op.arrangement = Arrangement::H; op.index = 4; result.operands.push_back(op); }
@@ -38689,9 +38689,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.index = enc.mov_za4zw1mova_za4zw1.Rs + 12;
-                            op.amount = (0u * 4);
+                            op.amount = static_cast<uint8_t>((0u * 4));
                             op.offset = (0u * 4 + 3);
-                            op.extend = (enc.mov_za4zw1mova_za4zw1.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.mov_za4zw1mova_za4zw1.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.mov_za4zw1mova_za4zw1.Zn * 4))); op.arrangement = Arrangement::S; op.index = 4; result.operands.push_back(op); }
@@ -38716,9 +38716,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.index = enc.mov_za4zd1mova_za4zd1.Rs + 12;
-                            op.amount = (0u * 4);
+                            op.amount = static_cast<uint8_t>((0u * 4));
                             op.offset = (0u * 4 + 3);
-                            op.extend = (enc.mov_za4zd1mova_za4zd1.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.mov_za4zd1mova_za4zd1.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.mov_za4zd1mova_za4zd1.Zn * 4))); op.arrangement = Arrangement::D; op.index = 4; result.operands.push_back(op); }
@@ -38742,9 +38742,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
                             op.index = enc.mov_za2zb1mova_za2zb1.Rs + 12;
-                            op.amount = (enc.mov_za2zb1mova_za2zb1.off3 * 2);
+                            op.amount = static_cast<uint8_t>((enc.mov_za2zb1mova_za2zb1.off3 * 2));
                             op.offset = (enc.mov_za2zb1mova_za2zb1.off3 * 2 + 1);
-                            op.extend = (enc.mov_za2zb1mova_za2zb1.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.mov_za2zb1mova_za2zb1.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.mov_za2zb1mova_za2zb1.Zn * 2))); op.arrangement = Arrangement::B; op.index = 2; result.operands.push_back(op); }
@@ -38764,9 +38764,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
                             op.index = enc.mov_za2zh1mova_za2zh1.Rs + 12;
-                            op.amount = (enc.mov_za2zh1mova_za2zh1.off2 * 2);
+                            op.amount = static_cast<uint8_t>((enc.mov_za2zh1mova_za2zh1.off2 * 2));
                             op.offset = (enc.mov_za2zh1mova_za2zh1.off2 * 2 + 1);
-                            op.extend = (enc.mov_za2zh1mova_za2zh1.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.mov_za2zh1mova_za2zh1.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.mov_za2zh1mova_za2zh1.Zn * 2))); op.arrangement = Arrangement::H; op.index = 2; result.operands.push_back(op); }
@@ -38786,9 +38786,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
                             op.index = enc.mov_za2zw1mova_za2zw1.Rs + 12;
-                            op.amount = (enc.mov_za2zw1mova_za2zw1.o1 * 2);
+                            op.amount = static_cast<uint8_t>((enc.mov_za2zw1mova_za2zw1.o1 * 2));
                             op.offset = (enc.mov_za2zw1mova_za2zw1.o1 * 2 + 1);
-                            op.extend = (enc.mov_za2zw1mova_za2zw1.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.mov_za2zw1mova_za2zw1.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.mov_za2zw1mova_za2zw1.Zn * 2))); op.arrangement = Arrangement::S; op.index = 2; result.operands.push_back(op); }
@@ -38808,9 +38808,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
                             op.index = enc.mov_za2zd1mova_za2zd1.Rs + 12;
-                            op.amount = (0u * 2);
+                            op.amount = static_cast<uint8_t>((0u * 2));
                             op.offset = (0u * 2 + 1);
-                            op.extend = (enc.mov_za2zd1mova_za2zd1.V != 0) ? 12u : 4u;  // bit 3 = vertical
+                            op.extend = static_cast<uint8_t>((enc.mov_za2zd1mova_za2zd1.V != 0) ? 12u : 4u);  // bit 3 = vertical
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.mov_za2zd1mova_za2zd1.Zn * 2))); op.arrangement = Arrangement::D; op.index = 2; result.operands.push_back(op); }
@@ -38835,9 +38835,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             auto op = Operand::sme_tile(_tile);
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.extend = (enc.mov_zprza_bmova_zprza_b.V != 0) ? 8u : 0u;
+                            op.extend = static_cast<uint8_t>((enc.mov_zprza_bmova_zprza_b.V != 0) ? 8u : 0u);
                             op.index = 12 + enc.mov_zprza_bmova_zprza_b.Rs;
-                            op.amount = _offs;
+                            op.amount = static_cast<uint8_t>(_offs);
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38856,9 +38856,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             auto op = Operand::sme_tile(_tile);
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.extend = (enc.mov_zprza_hmova_zprza_h.V != 0) ? 8u : 0u;
+                            op.extend = static_cast<uint8_t>((enc.mov_zprza_hmova_zprza_h.V != 0) ? 8u : 0u);
                             op.index = 12 + enc.mov_zprza_hmova_zprza_h.Rs;
-                            op.amount = _offs;
+                            op.amount = static_cast<uint8_t>(_offs);
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38877,9 +38877,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             auto op = Operand::sme_tile(_tile);
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.extend = (enc.mov_zprza_wmova_zprza_w.V != 0) ? 8u : 0u;
+                            op.extend = static_cast<uint8_t>((enc.mov_zprza_wmova_zprza_w.V != 0) ? 8u : 0u);
                             op.index = 12 + enc.mov_zprza_wmova_zprza_w.Rs;
-                            op.amount = _offs;
+                            op.amount = static_cast<uint8_t>(_offs);
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38898,9 +38898,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             auto op = Operand::sme_tile(_tile);
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.extend = (enc.mov_zprza_dmova_zprza_d.V != 0) ? 8u : 0u;
+                            op.extend = static_cast<uint8_t>((enc.mov_zprza_dmova_zprza_d.V != 0) ? 8u : 0u);
                             op.index = 12 + enc.mov_zprza_dmova_zprza_d.Rs;
-                            op.amount = _offs;
+                            op.amount = static_cast<uint8_t>(_offs);
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38919,9 +38919,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             auto op = Operand::sme_tile(_tile);
                             op.arrangement = Arrangement::Q;
                             op.has_index = true;
-                            op.extend = (enc.mov_zprza_qmova_zprza_q.V != 0) ? 8u : 0u;
+                            op.extend = static_cast<uint8_t>((enc.mov_zprza_qmova_zprza_q.V != 0) ? 8u : 0u);
                             op.index = 12 + enc.mov_zprza_qmova_zprza_q.Rs;
-                            op.amount = _offs;
+                            op.amount = static_cast<uint8_t>(_offs);
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38993,9 +38993,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             auto op = Operand::sme_tile(_tile);
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.extend = (enc.mov_za_prz_bmova_za_prz_b.V != 0) ? 8u : 0u;
+                            op.extend = static_cast<uint8_t>((enc.mov_za_prz_bmova_za_prz_b.V != 0) ? 8u : 0u);
                             op.index = 12 + enc.mov_za_prz_bmova_za_prz_b.Rs;
-                            op.amount = _offs;
+                            op.amount = static_cast<uint8_t>(_offs);
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::pred(enc.mov_za_prz_bmova_za_prz_b.Pg); op.arrangement = Arrangement::None; op.extend = 1; result.operands.push_back(op); }
@@ -39014,9 +39014,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             auto op = Operand::sme_tile(_tile);
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.extend = (enc.mov_za_prz_hmova_za_prz_h.V != 0) ? 8u : 0u;
+                            op.extend = static_cast<uint8_t>((enc.mov_za_prz_hmova_za_prz_h.V != 0) ? 8u : 0u);
                             op.index = 12 + enc.mov_za_prz_hmova_za_prz_h.Rs;
-                            op.amount = _offs;
+                            op.amount = static_cast<uint8_t>(_offs);
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::pred(enc.mov_za_prz_hmova_za_prz_h.Pg); op.arrangement = Arrangement::None; op.extend = 1; result.operands.push_back(op); }
@@ -39035,9 +39035,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             auto op = Operand::sme_tile(_tile);
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.extend = (enc.mov_za_prz_wmova_za_prz_w.V != 0) ? 8u : 0u;
+                            op.extend = static_cast<uint8_t>((enc.mov_za_prz_wmova_za_prz_w.V != 0) ? 8u : 0u);
                             op.index = 12 + enc.mov_za_prz_wmova_za_prz_w.Rs;
-                            op.amount = _offs;
+                            op.amount = static_cast<uint8_t>(_offs);
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::pred(enc.mov_za_prz_wmova_za_prz_w.Pg); op.arrangement = Arrangement::None; op.extend = 1; result.operands.push_back(op); }
@@ -39056,9 +39056,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             auto op = Operand::sme_tile(_tile);
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.extend = (enc.mov_za_prz_dmova_za_prz_d.V != 0) ? 8u : 0u;
+                            op.extend = static_cast<uint8_t>((enc.mov_za_prz_dmova_za_prz_d.V != 0) ? 8u : 0u);
                             op.index = 12 + enc.mov_za_prz_dmova_za_prz_d.Rs;
-                            op.amount = _offs;
+                            op.amount = static_cast<uint8_t>(_offs);
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::pred(enc.mov_za_prz_dmova_za_prz_d.Pg); op.arrangement = Arrangement::None; op.extend = 1; result.operands.push_back(op); }
@@ -39077,9 +39077,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             auto op = Operand::sme_tile(_tile);
                             op.arrangement = Arrangement::Q;
                             op.has_index = true;
-                            op.extend = (enc.mov_za_prz_qmova_za_prz_q.V != 0) ? 8u : 0u;
+                            op.extend = static_cast<uint8_t>((enc.mov_za_prz_qmova_za_prz_q.V != 0) ? 8u : 0u);
                             op.index = 12 + enc.mov_za_prz_qmova_za_prz_q.Rs;
-                            op.amount = _offs;
+                            op.amount = static_cast<uint8_t>(_offs);
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::pred(enc.mov_za_prz_qmova_za_prz_q.Pg); op.arrangement = Arrangement::None; op.extend = 1; result.operands.push_back(op); }
@@ -41682,7 +41682,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.fmlall_za32z8z8v2x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -41704,7 +41704,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.usmlall_za_zzv_s2x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -41726,7 +41726,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.sumlall_za_zzv_s2x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -41748,7 +41748,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.fmlall_za32z8z8v4x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -41770,7 +41770,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.usmlall_za_zzv_s4x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -41792,7 +41792,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.sumlall_za_zzv_s4x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -41819,7 +41819,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.usmlall_za_zzv_s.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -41841,7 +41841,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.fmlal_za_zzv2x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -41863,7 +41863,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.fmlal_za_z8z8v2x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -41885,7 +41885,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.fmlsl_za_zzv2x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -41907,7 +41907,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.bfmlal_za_zzv2x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -41929,7 +41929,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.bfmlsl_za_zzv2x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -41951,7 +41951,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.fmlall_za32z8z8v1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -41973,7 +41973,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.fmlal_za_zzv4x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -41995,7 +41995,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.fmlal_za_z8z8v4x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -42017,7 +42017,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.fmlsl_za_zzv4x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -42039,7 +42039,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.bfmlal_za_zzv4x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -42061,7 +42061,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.bfmlsl_za_zzv4x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -42083,7 +42083,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlal_za_zzv2x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -42105,7 +42105,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlsl_za_zzv2x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -42127,7 +42127,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlal_za_zzv2x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -42149,7 +42149,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlsl_za_zzv2x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -42171,7 +42171,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlal_za_zzv4x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -42193,7 +42193,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlsl_za_zzv4x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -42215,7 +42215,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlal_za_zzv4x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -42237,7 +42237,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlsl_za_zzv4x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -42264,7 +42264,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.fmlal_za_zzv1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -42286,7 +42286,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.fmlsl_za_zzv1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -42308,7 +42308,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.bfmlal_za_zzv1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -42330,7 +42330,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.bfmlsl_za_zzv1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -42349,7 +42349,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fdot_za_zzv2x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -42368,7 +42368,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fdot_za_z8z8v2x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -42387,7 +42387,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.bfdot_za_zzv2x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -42406,7 +42406,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fdot_za32z8z8v2x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -42425,7 +42425,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.usdot_za_zzv_s2x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -42444,7 +42444,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.sudot_za_zzv_s2x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -42463,7 +42463,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmla_za_zzv2x116.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -42482,7 +42482,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmls_za_zzv2x116.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -42504,7 +42504,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.fmlal_za_z8z8v1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -42523,7 +42523,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fdot_za_zzv4x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -42542,7 +42542,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fdot_za_z8z8v4x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -42561,7 +42561,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.bfdot_za_zzv4x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -42580,7 +42580,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fdot_za32z8z8v4x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -42599,7 +42599,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.usdot_za_zzv_s4x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -42618,7 +42618,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.sudot_za_zzv_s4x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -42637,7 +42637,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmla_za_zzv4x116.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -42656,7 +42656,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmls_za_zzv4x116.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -42678,7 +42678,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.smlal_za_zzv1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -42700,7 +42700,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.smlsl_za_zzv1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -42722,7 +42722,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.umlal_za_zzv1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -42744,7 +42744,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.umlsl_za_zzv1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -42763,7 +42763,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.sdot_za32zzv2x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -42782,7 +42782,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.udot_za32zzv2x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -42801,7 +42801,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.bfmla_za_zzv2x116.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -42820,7 +42820,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.bfmls_za_zzv2x116.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -42839,7 +42839,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.sdot_za32zzv4x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -42858,7 +42858,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.udot_za32zzv4x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -42877,7 +42877,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.bfmla_za_zzv4x116.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -42896,7 +42896,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.bfmls_za_zzv4x116.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -42923,7 +42923,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlall_za_zzi_d4xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -42945,7 +42945,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlsll_za_zzi_d4xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -42967,7 +42967,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlall_za_zzi_d4xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -42989,7 +42989,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlsll_za_zzi_d4xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -43008,7 +43008,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmla_za_zzi_d4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43027,7 +43027,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.sdot_za_zzi_d4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43046,7 +43046,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmls_za_zzi_d4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43065,7 +43065,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.udot_za_zzi_d4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43084,7 +43084,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.svdot_za_zzi_d4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43103,7 +43103,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.uvdot_za_zzi_d4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43130,7 +43130,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlall_za_zzi_d2xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -43152,7 +43152,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlsll_za_zzi_d2xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -43174,7 +43174,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlall_za_zzi_d2xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -43196,7 +43196,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlsll_za_zzi_d2xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -43215,7 +43215,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmla_za_zzi_d2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43234,7 +43234,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.sdot_za_zzi_d2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43253,7 +43253,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmls_za_zzi_d2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43272,7 +43272,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.udot_za_zzi_d2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43296,7 +43296,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fvdotb_za32z8z8i2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43315,7 +43315,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fvdott_za32z8z8i2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43342,7 +43342,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlall_za_zzi_s4xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -43364,7 +43364,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlsll_za_zzi_s4xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -43386,7 +43386,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlall_za_zzi_s4xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -43408,7 +43408,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlsll_za_zzi_s4xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -43430,7 +43430,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.usmlall_za_zzi_s4xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -43452,7 +43452,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.sumlall_za_zzi_s4xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -43474,7 +43474,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.fmlall_za32z8z8i4xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -43493,7 +43493,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmla_za_zzi_s4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43512,7 +43512,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fdot_za32z8z8i4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43531,7 +43531,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmls_za_zzi_s4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43550,7 +43550,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.svdot_za_zzi_s4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43569,7 +43569,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.usvdot_za_zzi_s4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43588,7 +43588,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.uvdot_za_zzi_s4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43607,7 +43607,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.suvdot_za_zzi_s4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43626,7 +43626,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.sdot_za32zzi4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43645,7 +43645,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fdot_za_zzi4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43664,7 +43664,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.udot_za32zzi4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43683,7 +43683,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.bfdot_za_zzi4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43702,7 +43702,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.sdot_za_zzi_s4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43721,7 +43721,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.usdot_za_zzi_s4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43740,7 +43740,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.udot_za_zzi_s4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43759,7 +43759,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.sudot_za_zzi_s4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43781,7 +43781,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.fmlal_za_zzi4xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -43803,7 +43803,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.fmlsl_za_zzi4xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -43825,7 +43825,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.bfmlal_za_zzi4xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -43847,7 +43847,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.bfmlsl_za_zzi4xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -43869,7 +43869,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlal_za_zzi4xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -43891,7 +43891,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlsl_za_zzi4xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -43913,7 +43913,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlal_za_zzi4xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -43935,7 +43935,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlsl_za_zzi4xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -43959,7 +43959,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmla_za_zzi_h4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43978,7 +43978,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmls_za_zzi_h4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -43997,7 +43997,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.bfmla_za_zzi_h4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -44016,7 +44016,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.bfmls_za_zzi_h4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -44035,7 +44035,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fdot_za_z8z8i4xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -44057,7 +44057,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.fmlal_za_z8z8i4xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -44084,7 +44084,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlall_za_zzi_s2xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -44106,7 +44106,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlsll_za_zzi_s2xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -44128,7 +44128,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlall_za_zzi_s2xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -44150,7 +44150,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlsll_za_zzi_s2xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -44172,7 +44172,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.usmlall_za_zzi_s2xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -44194,7 +44194,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.sumlall_za_zzi_s2xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -44213,7 +44213,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmla_za_zzi_s2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -44232,7 +44232,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fvdot_za_zzi2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -44251,7 +44251,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmls_za_zzi_s2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -44270,7 +44270,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.bfvdot_za_zzi2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -44289,7 +44289,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.svdot_za32zzi2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -44308,7 +44308,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.uvdot_za32zzi2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -44327,7 +44327,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fdot_za32z8z8i2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -44346,7 +44346,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.sdot_za32zzi2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -44365,7 +44365,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fdot_za_zzi2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -44384,7 +44384,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.udot_za32zzi2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -44403,7 +44403,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.bfdot_za_zzi2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -44422,7 +44422,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.sdot_za_zzi_s2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -44441,7 +44441,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.usdot_za_zzi_s2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -44460,7 +44460,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.udot_za_zzi_s2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -44479,7 +44479,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.sudot_za_zzi_s2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -44501,7 +44501,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.fmlall_za32z8z8i2xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -44523,7 +44523,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.fmlal_za_zzi2xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -44545,7 +44545,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.fmlsl_za_zzi2xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -44567,7 +44567,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.bfmlal_za_zzi2xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -44589,7 +44589,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.bfmlsl_za_zzi2xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -44611,7 +44611,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlal_za_zzi2xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -44633,7 +44633,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlsl_za_zzi2xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -44655,7 +44655,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlal_za_zzi2xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -44677,7 +44677,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlsl_za_zzi2xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -44701,7 +44701,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmla_za_zzi_h2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -44720,7 +44720,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmls_za_zzi_h2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -44739,7 +44739,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.bfmla_za_zzi_h2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -44758,7 +44758,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.bfmls_za_zzi_h2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -44780,7 +44780,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.fmlal_za_z8z8i2xi.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -44799,7 +44799,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fdot_za_z8z8i2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -44818,7 +44818,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fvdot_za_z8z8i2xi.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -44845,7 +44845,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.smlall_za_zzi_d.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -44867,7 +44867,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.smlsll_za_zzi_d.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -44889,7 +44889,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.umlall_za_zzi_d.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -44911,7 +44911,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.umlsll_za_zzi_d.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -44938,7 +44938,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.fmlal_za_zzi1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -44960,7 +44960,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.fmlsl_za_zzi1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -44982,7 +44982,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.bfmlal_za_zzi1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -45004,7 +45004,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.bfmlsl_za_zzi1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -45026,7 +45026,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.smlal_za_zzi1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -45048,7 +45048,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.smlsl_za_zzi1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -45070,7 +45070,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.umlal_za_zzi1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -45092,7 +45092,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.umlsl_za_zzi1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -45119,7 +45119,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.fmlal_za_z8z8i1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -45146,7 +45146,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.smlall_za_zzi_s.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -45168,7 +45168,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.usmlall_za_zzi_s.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -45190,7 +45190,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.smlsll_za_zzi_s.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -45212,7 +45212,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.umlall_za_zzi_s.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -45234,7 +45234,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.sumlall_za_zzi_s.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -45256,7 +45256,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.umlsll_za_zzi_s.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -45278,7 +45278,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.fmlall_za32z8z8i1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -45369,7 +45369,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.usmlall_za_zzw_s4x4.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -45391,7 +45391,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.fmlall_za32z8z8w4x4.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -45418,7 +45418,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.fmlal_za_zzw4x4.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -45440,7 +45440,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.fmlsl_za_zzw4x4.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -45462,7 +45462,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.bfmlal_za_zzw4x4.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -45484,7 +45484,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.bfmlsl_za_zzw4x4.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -45506,7 +45506,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.fmlal_za_z8z8w4x4.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -45528,7 +45528,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlal_za_zzw4x4.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -45550,7 +45550,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlsl_za_zzw4x4.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -45572,7 +45572,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlal_za_zzw4x4.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -45594,7 +45594,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlsl_za_zzw4x4.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -45618,7 +45618,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fdot_za_zzw4x4.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -45637,7 +45637,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmla_za_zzw4x416.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -45656,7 +45656,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.bfdot_za_zzw4x4.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -45675,7 +45675,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmls_za_zzw4x416.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -45694,7 +45694,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fdot_za_z8z8w4x4.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -45713,7 +45713,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fdot_za32z8z8w4x4.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -45732,7 +45732,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.usdot_za_zzw_s4x4.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -45751,7 +45751,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.bfmla_za_zzw4x416.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -45770,7 +45770,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.bfmls_za_zzw4x416.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -45789,7 +45789,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.sdot_za32zzw4x4.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -45808,7 +45808,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.udot_za32zzw4x4.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -45922,7 +45922,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.usmlall_za_zzw_s2x2.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -45944,7 +45944,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.fmlall_za32z8z8w2x2.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -45971,7 +45971,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.fmlal_za_zzw2x2.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -45993,7 +45993,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.fmlsl_za_zzw2x2.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -46015,7 +46015,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.bfmlal_za_zzw2x2.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -46037,7 +46037,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.bfmlsl_za_zzw2x2.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -46059,7 +46059,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.fmlal_za_z8z8w2x2.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -46081,7 +46081,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlal_za_zzw2x2.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -46103,7 +46103,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlsl_za_zzw2x2.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -46125,7 +46125,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlal_za_zzw2x2.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -46147,7 +46147,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlsl_za_zzw2x2.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -46171,7 +46171,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fdot_za_zzw2x2.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -46190,7 +46190,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmla_za_zzw2x216.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -46209,7 +46209,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.bfdot_za_zzw2x2.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -46228,7 +46228,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmls_za_zzw2x216.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -46247,7 +46247,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fdot_za_z8z8w2x2.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -46266,7 +46266,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fdot_za32z8z8w2x2.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -46285,7 +46285,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.usdot_za_zzw_s2x2.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -46304,7 +46304,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.bfmla_za_zzw2x216.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -46323,7 +46323,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.bfmls_za_zzw2x216.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -46342,7 +46342,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.sdot_za32zzw2x2.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -46361,7 +46361,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.udot_za32zzw2x2.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -47647,9 +47647,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             auto op = Operand::sme_tile(_tile);
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.extend = (enc.ld1b_za_prrr.V != 0) ? 8u : 0u;
+                            op.extend = static_cast<uint8_t>((enc.ld1b_za_prrr.V != 0) ? 8u : 0u);
                             op.index = 12 + enc.ld1b_za_prrr.Rs;
-                            op.amount = _offs;
+                            op.amount = static_cast<uint8_t>(_offs);
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::pred(enc.ld1b_za_prrr.Pg); op.arrangement = Arrangement::None; op.extend = 1; result.operands.push_back(op); }
@@ -47670,9 +47670,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             auto op = Operand::sme_tile(_tile);
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.extend = (enc.st1b_za_prrr.V != 0) ? 8u : 0u;
+                            op.extend = static_cast<uint8_t>((enc.st1b_za_prrr.V != 0) ? 8u : 0u);
                             op.index = 12 + enc.st1b_za_prrr.Rs;
-                            op.amount = _offs;
+                            op.amount = static_cast<uint8_t>(_offs);
                             result.operands.push_back(op);
                         }
                         { Operand op = Operand::pred(enc.st1b_za_prrr.Pg); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -47693,9 +47693,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             auto op = Operand::sme_tile(_tile);
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.extend = (enc.ld1h_za_prrr.V != 0) ? 8u : 0u;
+                            op.extend = static_cast<uint8_t>((enc.ld1h_za_prrr.V != 0) ? 8u : 0u);
                             op.index = 12 + enc.ld1h_za_prrr.Rs;
-                            op.amount = _offs;
+                            op.amount = static_cast<uint8_t>(_offs);
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::pred(enc.ld1h_za_prrr.Pg); op.arrangement = Arrangement::None; op.extend = 1; result.operands.push_back(op); }
@@ -47716,9 +47716,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             auto op = Operand::sme_tile(_tile);
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.extend = (enc.st1h_za_prrr.V != 0) ? 8u : 0u;
+                            op.extend = static_cast<uint8_t>((enc.st1h_za_prrr.V != 0) ? 8u : 0u);
                             op.index = 12 + enc.st1h_za_prrr.Rs;
-                            op.amount = _offs;
+                            op.amount = static_cast<uint8_t>(_offs);
                             result.operands.push_back(op);
                         }
                         { Operand op = Operand::pred(enc.st1h_za_prrr.Pg); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -47739,9 +47739,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             auto op = Operand::sme_tile(_tile);
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.extend = (enc.ld1w_za_prrr.V != 0) ? 8u : 0u;
+                            op.extend = static_cast<uint8_t>((enc.ld1w_za_prrr.V != 0) ? 8u : 0u);
                             op.index = 12 + enc.ld1w_za_prrr.Rs;
-                            op.amount = _offs;
+                            op.amount = static_cast<uint8_t>(_offs);
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::pred(enc.ld1w_za_prrr.Pg); op.arrangement = Arrangement::None; op.extend = 1; result.operands.push_back(op); }
@@ -47762,9 +47762,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             auto op = Operand::sme_tile(_tile);
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.extend = (enc.st1w_za_prrr.V != 0) ? 8u : 0u;
+                            op.extend = static_cast<uint8_t>((enc.st1w_za_prrr.V != 0) ? 8u : 0u);
                             op.index = 12 + enc.st1w_za_prrr.Rs;
-                            op.amount = _offs;
+                            op.amount = static_cast<uint8_t>(_offs);
                             result.operands.push_back(op);
                         }
                         { Operand op = Operand::pred(enc.st1w_za_prrr.Pg); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -47785,9 +47785,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             auto op = Operand::sme_tile(_tile);
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.extend = (enc.ld1d_za_prrr.V != 0) ? 8u : 0u;
+                            op.extend = static_cast<uint8_t>((enc.ld1d_za_prrr.V != 0) ? 8u : 0u);
                             op.index = 12 + enc.ld1d_za_prrr.Rs;
-                            op.amount = _offs;
+                            op.amount = static_cast<uint8_t>(_offs);
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::pred(enc.ld1d_za_prrr.Pg); op.arrangement = Arrangement::None; op.extend = 1; result.operands.push_back(op); }
@@ -47808,9 +47808,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             auto op = Operand::sme_tile(_tile);
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.extend = (enc.st1d_za_prrr.V != 0) ? 8u : 0u;
+                            op.extend = static_cast<uint8_t>((enc.st1d_za_prrr.V != 0) ? 8u : 0u);
                             op.index = 12 + enc.st1d_za_prrr.Rs;
-                            op.amount = _offs;
+                            op.amount = static_cast<uint8_t>(_offs);
                             result.operands.push_back(op);
                         }
                         { Operand op = Operand::pred(enc.st1d_za_prrr.Pg); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -47831,9 +47831,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             auto op = Operand::sme_tile(_tile);
                             op.arrangement = Arrangement::Q;
                             op.has_index = true;
-                            op.extend = (enc.ld1q_za_prrr.V != 0) ? 8u : 0u;
+                            op.extend = static_cast<uint8_t>((enc.ld1q_za_prrr.V != 0) ? 8u : 0u);
                             op.index = 12 + enc.ld1q_za_prrr.Rs;
-                            op.amount = _offs;
+                            op.amount = static_cast<uint8_t>(_offs);
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::pred(enc.ld1q_za_prrr.Pg); op.arrangement = Arrangement::None; op.extend = 1; result.operands.push_back(op); }
@@ -47854,9 +47854,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             auto op = Operand::sme_tile(_tile);
                             op.arrangement = Arrangement::Q;
                             op.has_index = true;
-                            op.extend = (enc.st1q_za_prrr.V != 0) ? 8u : 0u;
+                            op.extend = static_cast<uint8_t>((enc.st1q_za_prrr.V != 0) ? 8u : 0u);
                             op.index = 12 + enc.st1q_za_prrr.Rs;
-                            op.amount = _offs;
+                            op.amount = static_cast<uint8_t>(_offs);
                             result.operands.push_back(op);
                         }
                         { Operand op = Operand::pred(enc.st1q_za_prrr.Pg); op.arrangement = Arrangement::None; result.operands.push_back(op); }
@@ -47884,7 +47884,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fadd_za_zw4x4.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -47904,7 +47904,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fsub_za_zw4x4.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -47924,7 +47924,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.add_za_zw4x4.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -47944,7 +47944,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.sub_za_zw4x4.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -47969,7 +47969,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fadd_za_zw2x2.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -47989,7 +47989,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fsub_za_zw2x2.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -48009,7 +48009,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.add_za_zw2x2.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -48029,7 +48029,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.sub_za_zw2x2.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -48057,7 +48057,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlall_za_zzv2x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -48081,7 +48081,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlsll_za_zzv2x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -48105,7 +48105,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlall_za_zzv2x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -48129,7 +48129,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlsll_za_zzv2x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -48153,7 +48153,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlall_za_zzv4x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -48177,7 +48177,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlsll_za_zzv4x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -48201,7 +48201,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlall_za_zzv4x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -48225,7 +48225,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlsll_za_zzv4x1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -48254,7 +48254,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.smlall_za_zzv1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -48278,7 +48278,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.smlsll_za_zzv1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -48302,7 +48302,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.umlall_za_zzv1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -48326,7 +48326,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 1;  // range mode
                             op.index = enc.umlsll_za_zzv1.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)_end;
                             result.operands.push_back(op);
                         }
@@ -48352,7 +48352,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.sdot_za_zzv2x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -48373,7 +48373,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.udot_za_zzv2x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -48394,7 +48394,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmla_za_zzv2x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -48415,7 +48415,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmls_za_zzv2x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -48436,7 +48436,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.add_za_zzv2x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -48457,7 +48457,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.sub_za_zzv2x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -48478,7 +48478,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.sdot_za_zzv4x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -48499,7 +48499,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.udot_za_zzv4x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -48520,7 +48520,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmla_za_zzv4x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -48541,7 +48541,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmls_za_zzv4x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -48562,7 +48562,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.add_za_zzv4x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -48583,7 +48583,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.sub_za_zzv4x1.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -48612,7 +48612,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlall_za_zzw4x4.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -48636,7 +48636,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlsll_za_zzw4x4.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -48660,7 +48660,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlall_za_zzw4x4.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -48684,7 +48684,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlsll_za_zzw4x4.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
@@ -48710,7 +48710,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.sdot_za_zzw4x4.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -48731,7 +48731,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.udot_za_zzw4x4.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -48752,7 +48752,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmla_za_zzw4x4.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -48773,7 +48773,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmls_za_zzw4x4.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -48794,7 +48794,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.add_za_zzw4x4.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -48815,7 +48815,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.sub_za_zzw4x4.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 4;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -48844,7 +48844,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlall_za_zzw2x2.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -48868,7 +48868,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.smlsll_za_zzw2x2.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -48892,7 +48892,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlall_za_zzw2x2.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -48916,7 +48916,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 3;  // range + VGx mode
                             op.index = enc.umlsll_za_zzw2x2.Rv + 8;
-                            op.amount = _start;
+                            op.amount = static_cast<uint8_t>(_start);
                             op.offset = (int32_t)((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
@@ -48942,7 +48942,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.sdot_za_zzw2x2.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -48963,7 +48963,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.udot_za_zzw2x2.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -48984,7 +48984,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmla_za_zzw2x2.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -49005,7 +49005,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.fmls_za_zzw2x2.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -49026,7 +49026,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.add_za_zzw2x2.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }
@@ -49047,7 +49047,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.has_index = true;
                             op.extend = 2;  // VGx mode
                             op.index = enc.sub_za_zzw2x2.Rv + 8;
-                            op.amount = _off;
+                            op.amount = static_cast<uint8_t>(_off);
                             op.offset = 2;  // VGx count
                             result.operands.push_back(op);
                         }

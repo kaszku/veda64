@@ -46273,7 +46273,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st1asisdlso_d11d.Rn, true, true))));
@@ -46291,7 +46291,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 3;
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st3asisdlso_d33d.Rn, true, true))));
@@ -46308,7 +46308,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.stl1asisdlso_d1.Rn, true, true))));
@@ -46326,7 +46326,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 2;
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st2asisdlso_d22d.Rn, true, true))));
@@ -46344,7 +46344,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 4;
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st4asisdlso_d44d.Rn, true, true))));
@@ -46362,7 +46362,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1asisdlso_d11d.Rn, true, true))));
@@ -46380,7 +46380,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 3;
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld3asisdlso_d33d.Rn, true, true))));
@@ -46397,7 +46397,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ldap1asisdlso_d1.Rn, true, true))));
@@ -46415,7 +46415,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 2;
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld2asisdlso_d22d.Rn, true, true))));
@@ -46433,7 +46433,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 4;
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld4asisdlso_d44d.Rn, true, true))));
@@ -46451,7 +46451,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.st1asisdlsop_d1i1d.Rn, true, true)), 8));
@@ -46469,7 +46469,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 3;
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.st3asisdlsop_d3i3d.Rn, true, true)), 24));
@@ -46487,7 +46487,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 2;
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.st2asisdlsop_d2i2d.Rn, true, true)), 16));
@@ -46505,7 +46505,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 4;
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.st4asisdlsop_d4i4d.Rn, true, true)), 32));
@@ -46523,7 +46523,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.ld1asisdlsop_d1i1d.Rn, true, true)), 8));
@@ -46541,7 +46541,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 3;
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.ld3asisdlsop_d3i3d.Rn, true, true)), 24));
@@ -46559,7 +46559,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 2;
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.ld2asisdlsop_d2i2d.Rn, true, true)), 16));
@@ -46577,7 +46577,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 4;
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.ld4asisdlsop_d4i4d.Rn, true, true)), 32));
@@ -47291,7 +47291,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st1asisdlso_s11s.Rn, true, true))));
@@ -47309,7 +47309,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 3;
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st3asisdlso_s33s.Rn, true, true))));
@@ -47327,7 +47327,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 2;
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st2asisdlso_s22s.Rn, true, true))));
@@ -47345,7 +47345,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 4;
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st4asisdlso_s44s.Rn, true, true))));
@@ -47363,7 +47363,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1asisdlso_s11s.Rn, true, true))));
@@ -47381,7 +47381,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 3;
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld3asisdlso_s33s.Rn, true, true))));
@@ -47399,7 +47399,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 2;
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld2asisdlso_s22s.Rn, true, true))));
@@ -47417,7 +47417,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 4;
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld4asisdlso_s44s.Rn, true, true))));
@@ -47435,7 +47435,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.st1asisdlsop_s1i1s.Rn, true, true)), 4));
@@ -47453,7 +47453,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 3;
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.st3asisdlsop_s3i3s.Rn, true, true)), 12));
@@ -47471,7 +47471,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 2;
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.st2asisdlsop_s2i2s.Rn, true, true)), 8));
@@ -47489,7 +47489,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 4;
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.st4asisdlsop_s4i4s.Rn, true, true)), 16));
@@ -47507,7 +47507,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.ld1asisdlsop_s1i1s.Rn, true, true)), 4));
@@ -47525,7 +47525,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 3;
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.ld3asisdlsop_s3i3s.Rn, true, true)), 12));
@@ -47543,7 +47543,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 2;
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.ld2asisdlsop_s2i2s.Rn, true, true)), 8));
@@ -47561,7 +47561,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 4;
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.ld4asisdlsop_s4i4s.Rn, true, true)), 16));
@@ -47584,7 +47584,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st1asisdlso_h11h.Rn, true, true))));
@@ -47602,7 +47602,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 3;
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st3asisdlso_h33h.Rn, true, true))));
@@ -47620,7 +47620,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 2;
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st2asisdlso_h22h.Rn, true, true))));
@@ -47638,7 +47638,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 4;
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st4asisdlso_h44h.Rn, true, true))));
@@ -47656,7 +47656,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1asisdlso_h11h.Rn, true, true))));
@@ -47674,7 +47674,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 3;
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld3asisdlso_h33h.Rn, true, true))));
@@ -47692,7 +47692,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 2;
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld2asisdlso_h22h.Rn, true, true))));
@@ -47710,7 +47710,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 4;
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld4asisdlso_h44h.Rn, true, true))));
@@ -47728,7 +47728,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.st1asisdlsop_h1i1h.Rn, true, true)), 2));
@@ -47746,7 +47746,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 3;
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.st3asisdlsop_h3i3h.Rn, true, true)), 6));
@@ -47764,7 +47764,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 2;
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.st2asisdlsop_h2i2h.Rn, true, true)), 4));
@@ -47782,7 +47782,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 4;
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.st4asisdlsop_h4i4h.Rn, true, true)), 8));
@@ -47800,7 +47800,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.ld1asisdlsop_h1i1h.Rn, true, true)), 2));
@@ -47818,7 +47818,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 3;
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.ld3asisdlsop_h3i3h.Rn, true, true)), 6));
@@ -47836,7 +47836,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 2;
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.ld2asisdlsop_h2i2h.Rn, true, true)), 4));
@@ -47854,7 +47854,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 4;
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.ld4asisdlsop_h4i4h.Rn, true, true)), 8));
@@ -47877,7 +47877,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st1asisdlso_b11b.Rn, true, true))));
@@ -47895,7 +47895,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 3;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st3asisdlso_b33b.Rn, true, true))));
@@ -47913,7 +47913,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 2;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st2asisdlso_b22b.Rn, true, true))));
@@ -47931,7 +47931,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 4;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st4asisdlso_b44b.Rn, true, true))));
@@ -47949,7 +47949,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1asisdlso_b11b.Rn, true, true))));
@@ -47967,7 +47967,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 3;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld3asisdlso_b33b.Rn, true, true))));
@@ -47985,7 +47985,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 2;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld2asisdlso_b22b.Rn, true, true))));
@@ -48003,7 +48003,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 4;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld4asisdlso_b44b.Rn, true, true))));
@@ -48021,7 +48021,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.st1asisdlsop_b1i1b.Rn, true, true)), 1));
@@ -48039,7 +48039,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 3;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.st3asisdlsop_b3i3b.Rn, true, true)), 3));
@@ -48057,7 +48057,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 2;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.st2asisdlsop_b2i2b.Rn, true, true)), 2));
@@ -48075,7 +48075,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 4;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.st4asisdlsop_b4i4b.Rn, true, true)), 4));
@@ -48093,7 +48093,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.ld1asisdlsop_b1i1b.Rn, true, true)), 1));
@@ -48111,7 +48111,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 3;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.ld3asisdlsop_b3i3b.Rn, true, true)), 3));
@@ -48129,7 +48129,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 2;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.ld2asisdlsop_b2i2b.Rn, true, true)), 2));
@@ -48147,7 +48147,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 4;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_post_index(static_cast<uint32_t>(make_gp_reg(enc.ld4asisdlsop_b4i4b.Rn, true, true)), 4));
@@ -48170,7 +48170,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st1asisdlsop_dx1r1d.Rn, true, true))));
@@ -48189,7 +48189,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 3;
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st3asisdlsop_dx3r3d.Rn, true, true))));
@@ -48208,7 +48208,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 2;
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st2asisdlsop_dx2r2d.Rn, true, true))));
@@ -48227,7 +48227,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 4;
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st4asisdlsop_dx4r4d.Rn, true, true))));
@@ -48246,7 +48246,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1asisdlsop_dx1r1d.Rn, true, true))));
@@ -48265,7 +48265,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 3;
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld3asisdlsop_dx3r3d.Rn, true, true))));
@@ -48284,7 +48284,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 2;
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld2asisdlsop_dx2r2d.Rn, true, true))));
@@ -48303,7 +48303,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 4;
                             op.arrangement = Arrangement::D;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld4asisdlsop_dx4r4d.Rn, true, true))));
@@ -48678,7 +48678,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st1asisdlsop_sx1r1s.Rn, true, true))));
@@ -48697,7 +48697,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 3;
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st3asisdlsop_sx3r3s.Rn, true, true))));
@@ -48716,7 +48716,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 2;
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st2asisdlsop_sx2r2s.Rn, true, true))));
@@ -48735,7 +48735,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 4;
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st4asisdlsop_sx4r4s.Rn, true, true))));
@@ -48754,7 +48754,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1asisdlsop_sx1r1s.Rn, true, true))));
@@ -48773,7 +48773,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 3;
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld3asisdlsop_sx3r3s.Rn, true, true))));
@@ -48792,7 +48792,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 2;
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld2asisdlsop_sx2r2s.Rn, true, true))));
@@ -48811,7 +48811,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 4;
                             op.arrangement = Arrangement::S;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld4asisdlsop_sx4r4s.Rn, true, true))));
@@ -48835,7 +48835,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st1asisdlsop_hx1r1h.Rn, true, true))));
@@ -48854,7 +48854,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 3;
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st3asisdlsop_hx3r3h.Rn, true, true))));
@@ -48873,7 +48873,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 2;
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st2asisdlsop_hx2r2h.Rn, true, true))));
@@ -48892,7 +48892,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 4;
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st4asisdlsop_hx4r4h.Rn, true, true))));
@@ -48911,7 +48911,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1asisdlsop_hx1r1h.Rn, true, true))));
@@ -48930,7 +48930,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 3;
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld3asisdlsop_hx3r3h.Rn, true, true))));
@@ -48949,7 +48949,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 2;
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld2asisdlsop_hx2r2h.Rn, true, true))));
@@ -48968,7 +48968,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 4;
                             op.arrangement = Arrangement::H;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld4asisdlsop_hx4r4h.Rn, true, true))));
@@ -48992,7 +48992,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st1asisdlsop_bx1r1b.Rn, true, true))));
@@ -49011,7 +49011,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 3;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st3asisdlsop_bx3r3b.Rn, true, true))));
@@ -49030,7 +49030,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 2;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st2asisdlsop_bx2r2b.Rn, true, true))));
@@ -49049,7 +49049,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 4;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.st4asisdlsop_bx4r4b.Rn, true, true))));
@@ -49068,7 +49068,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 1;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1asisdlsop_bx1r1b.Rn, true, true))));
@@ -49087,7 +49087,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 3;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld3asisdlsop_bx3r3b.Rn, true, true))));
@@ -49106,7 +49106,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 2;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld2asisdlsop_bx2r2b.Rn, true, true))));
@@ -49125,7 +49125,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                             op.index = 4;
                             op.arrangement = Arrangement::B;
                             op.has_index = true;
-                            op.amount = _elem_idx;
+                            op.amount = static_cast<uint8_t>(_elem_idx);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld4asisdlsop_bx4r4b.Rn, true, true))));

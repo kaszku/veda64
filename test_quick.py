@@ -61,7 +61,7 @@ TESTS = [
     # DUP vector element
     ("0x4e0804e7", "dup v7.2d, v7.d[0]"),
     # TBX with byte arrangement
-    ("0x4e0811a1", "tbx v1.16b, v13.16b, v8.16b"),
+    ("0x4e0811a1", "tbx v1.16b, { v13.16b }, v8.16b"),
 ]
 
 def main():
