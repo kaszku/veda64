@@ -7931,7 +7931,7 @@ void test_pmov_p_zi_d() {
     assert(result->mnemonic == Mnemonic::PMOV);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::IndexedRegisterList);
     std::cout << "  pmov_p_zi_d: " << result->to_string() << std::endl;
 }
 
@@ -7942,7 +7942,7 @@ void test_pmov_p_zi_h() {
     assert(result->mnemonic == Mnemonic::PMOV);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::IndexedRegisterList);
     std::cout << "  pmov_p_zi_h: " << result->to_string() << std::endl;
 }
 
@@ -7953,7 +7953,7 @@ void test_pmov_p_zi_s() {
     assert(result->mnemonic == Mnemonic::PMOV);
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
-    assert(result->operands[1].type == OperandType::RegisterList);
+    assert(result->operands[1].type == OperandType::IndexedRegisterList);
     std::cout << "  pmov_p_zi_s: " << result->to_string() << std::endl;
 }
 
@@ -7974,7 +7974,7 @@ void test_pmov_z_pi_d() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: pmov_z_pi_d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::PMOV);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  pmov_z_pi_d: " << result->to_string() << std::endl;
 }
@@ -7985,7 +7985,7 @@ void test_pmov_z_pi_h() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: pmov_z_pi_h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::PMOV);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  pmov_z_pi_h: " << result->to_string() << std::endl;
 }
@@ -7996,7 +7996,7 @@ void test_pmov_z_pi_s() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: pmov_z_pi_s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::PMOV);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Register);
     std::cout << "  pmov_z_pi_s: " << result->to_string() << std::endl;
 }

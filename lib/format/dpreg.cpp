@@ -7454,9 +7454,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         result.operands.push_back(Operand::gp(enc.addpt64addsub_pt.Rm, is_64bit));
                         result.operands.push_back(Operand::imm(enc.addpt64addsub_pt.imm3));
                         if (!result.operands.empty() && result.operands.back().type == OperandType::Immediate) {
-                            uint32_t _amt = result.operands.back().value;
+                            uint32_t _amt = static_cast<uint32_t>(result.operands.back().iv.value);
                             result.operands.pop_back();
-                            if (_amt != 0) result.operands.push_back(Operand::shift(0u, _amt));
+                            if (_amt != 0) result.operands.push_back(Operand::shift(ShiftType::LSL,_amt));
                         }
                         return result;
         }
@@ -7470,9 +7470,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         result.operands.push_back(Operand::gp(enc.subpt64addsub_pt.Rm, is_64bit));
                         result.operands.push_back(Operand::imm(enc.subpt64addsub_pt.imm3));
                         if (!result.operands.empty() && result.operands.back().type == OperandType::Immediate) {
-                            uint32_t _amt = result.operands.back().value;
+                            uint32_t _amt = static_cast<uint32_t>(result.operands.back().iv.value);
                             result.operands.pop_back();
-                            if (_amt != 0) result.operands.push_back(Operand::shift(0u, _amt));
+                            if (_amt != 0) result.operands.push_back(Operand::shift(ShiftType::LSL,_amt));
                         }
                         return result;
         }
@@ -7850,7 +7850,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         uint32_t _rn = enc.cmn_adds32s_addsub_ext.Rn;
                         bool is_default = (is_64bit ? (option == 3 && _rn == 31) : (option == 2 && _rn == 31)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand::extend_op(option, imm3, is_64bit));
+                            result.operands.push_back(Operand::extend_op(static_cast<ExtendType>(option),imm3, is_64bit));
                         }
                         return result;
         }
@@ -7867,7 +7867,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         uint32_t _rn = enc.cmp_subs32s_addsub_ext.Rn;
                         bool is_default = (is_64bit ? (option == 3 && _rn == 31) : (option == 2 && _rn == 31)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand::extend_op(option, imm3, is_64bit));
+                            result.operands.push_back(Operand::extend_op(static_cast<ExtendType>(option),imm3, is_64bit));
                         }
                         return result;
         }
@@ -7884,7 +7884,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         uint32_t _rn = enc.cmn_adds64s_addsub_ext.Rn;
                         bool is_default = (is_64bit ? (option == 3 && _rn == 31) : (option == 2 && _rn == 31)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand::extend_op(option, imm3, is_64bit));
+                            result.operands.push_back(Operand::extend_op(static_cast<ExtendType>(option),imm3, is_64bit));
                         }
                         return result;
         }
@@ -7901,7 +7901,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         uint32_t _rn = enc.cmp_subs64s_addsub_ext.Rn;
                         bool is_default = (is_64bit ? (option == 3 && _rn == 31) : (option == 2 && _rn == 31)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand::extend_op(option, imm3, is_64bit));
+                            result.operands.push_back(Operand::extend_op(static_cast<ExtendType>(option),imm3, is_64bit));
                         }
                         return result;
         }
@@ -7924,7 +7924,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         uint32_t _rn = enc.add32addsub_ext.Rn;
                         bool is_default = (is_64bit ? (option == 3 && _rn == 31) : (option == 2 && _rn == 31)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand::extend_op(option, imm3, is_64bit));
+                            result.operands.push_back(Operand::extend_op(static_cast<ExtendType>(option),imm3, is_64bit));
                         }
                         return result;
         }
@@ -7942,7 +7942,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         uint32_t _rn = enc.adds32s_addsub_ext.Rn;
                         bool is_default = (is_64bit ? (option == 3 && _rn == 31) : (option == 2 && _rn == 31)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand::extend_op(option, imm3, is_64bit));
+                            result.operands.push_back(Operand::extend_op(static_cast<ExtendType>(option),imm3, is_64bit));
                         }
                         return result;
         }
@@ -7960,7 +7960,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         uint32_t _rn = enc.sub32addsub_ext.Rn;
                         bool is_default = (is_64bit ? (option == 3 && _rn == 31) : (option == 2 && _rn == 31)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand::extend_op(option, imm3, is_64bit));
+                            result.operands.push_back(Operand::extend_op(static_cast<ExtendType>(option),imm3, is_64bit));
                         }
                         return result;
         }
@@ -7978,7 +7978,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         uint32_t _rn = enc.subs32s_addsub_ext.Rn;
                         bool is_default = (is_64bit ? (option == 3 && _rn == 31) : (option == 2 && _rn == 31)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand::extend_op(option, imm3, is_64bit));
+                            result.operands.push_back(Operand::extend_op(static_cast<ExtendType>(option),imm3, is_64bit));
                         }
                         return result;
         }
@@ -7996,7 +7996,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         uint32_t _rn = enc.add64addsub_ext.Rn;
                         bool is_default = (is_64bit ? (option == 3 && _rn == 31) : (option == 2 && _rn == 31)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand::extend_op(option, imm3, is_64bit));
+                            result.operands.push_back(Operand::extend_op(static_cast<ExtendType>(option),imm3, is_64bit));
                         }
                         return result;
         }
@@ -8014,7 +8014,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         uint32_t _rn = enc.adds64s_addsub_ext.Rn;
                         bool is_default = (is_64bit ? (option == 3 && _rn == 31) : (option == 2 && _rn == 31)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand::extend_op(option, imm3, is_64bit));
+                            result.operands.push_back(Operand::extend_op(static_cast<ExtendType>(option),imm3, is_64bit));
                         }
                         return result;
         }
@@ -8032,7 +8032,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         uint32_t _rn = enc.sub64addsub_ext.Rn;
                         bool is_default = (is_64bit ? (option == 3 && _rn == 31) : (option == 2 && _rn == 31)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand::extend_op(option, imm3, is_64bit));
+                            result.operands.push_back(Operand::extend_op(static_cast<ExtendType>(option),imm3, is_64bit));
                         }
                         return result;
         }
@@ -8050,7 +8050,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                         uint32_t _rn = enc.subs64s_addsub_ext.Rn;
                         bool is_default = (is_64bit ? (option == 3 && _rn == 31) : (option == 2 && _rn == 31)) && imm3 == 0;
                         if (!is_default) {
-                            result.operands.push_back(Operand::extend_op(option, imm3, is_64bit));
+                            result.operands.push_back(Operand::extend_op(static_cast<ExtendType>(option),imm3, is_64bit));
                         }
                         return result;
         }
@@ -8071,7 +8071,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.mvn_orn32log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8088,7 +8088,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.neg_sub32addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8106,7 +8106,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.negs_subs32addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8123,7 +8123,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.mvn_orn64log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8140,7 +8140,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.neg_sub64addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8158,7 +8158,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.negs_subs64addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8180,7 +8180,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.cmn_adds32addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8197,7 +8197,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.tst_ands32log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8214,7 +8214,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.cmp_subs32addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8231,7 +8231,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.cmn_adds64addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8248,7 +8248,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.tst_ands64log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8265,7 +8265,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.cmp_subs64addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8288,7 +8288,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.and32log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8306,7 +8306,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.bic32log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8325,7 +8325,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.add32addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8343,7 +8343,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.orr32log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8361,7 +8361,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.orn32log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8380,7 +8380,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.adds32addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8398,7 +8398,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.eor32log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8416,7 +8416,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.eon32log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8435,7 +8435,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.sub32addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8453,7 +8453,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.ands32log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8471,7 +8471,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.bics32log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8490,7 +8490,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.subs32addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8508,7 +8508,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.and64log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8526,7 +8526,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.bic64log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8545,7 +8545,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.add64addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8563,7 +8563,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.orr64log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8581,7 +8581,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.orn64log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8600,7 +8600,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.adds64addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8618,7 +8618,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.eor64log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8636,7 +8636,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.eon64log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8655,7 +8655,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.sub64addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8673,7 +8673,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.ands64log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8691,7 +8691,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.bics64log_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;
@@ -8710,7 +8710,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
                             uint32_t shift_amount = enc.subs64addsub_shift.imm6;
                             // Only emit shift operand if non-zero (suppress LSL #0)
                             if (shift_type < 4 && (shift_type != 0 || shift_amount != 0)) {
-                                result.operands.push_back(Operand::shift(shift_type, shift_amount));
+                                result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
                         return result;

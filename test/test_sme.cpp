@@ -4273,7 +4273,7 @@ void test_luti6_mz4_zmz2_1() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: luti6_mz4_zmz2_1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LUTI6);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     std::cout << "  luti6_mz4_zmz2_1: " << result->to_string() << std::endl;
 }
 
@@ -4283,7 +4283,7 @@ void test_luti6_mz4_zmz2_4() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: luti6_mz4_zmz2_4" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LUTI6);
     assert(result->operands.size() >= 1);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     std::cout << "  luti6_mz4_zmz2_4: " << result->to_string() << std::endl;
 }
 

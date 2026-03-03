@@ -1472,7 +1472,7 @@ void test_ld1_asisdlso_b1_1b() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld1_asisdlso_b1_1b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld1_asisdlso_b1_1b: " << result->to_string() << std::endl;
 }
@@ -1483,7 +1483,7 @@ void test_ld1_asisdlso_h1_1h() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld1_asisdlso_h1_1h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld1_asisdlso_h1_1h: " << result->to_string() << std::endl;
 }
@@ -1494,7 +1494,7 @@ void test_ld1_asisdlso_s1_1s() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld1_asisdlso_s1_1s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld1_asisdlso_s1_1s: " << result->to_string() << std::endl;
 }
@@ -1505,7 +1505,7 @@ void test_ld1_asisdlso_d1_1d() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld1_asisdlso_d1_1d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld1_asisdlso_d1_1d: " << result->to_string() << std::endl;
 }
@@ -1516,7 +1516,7 @@ void test_ld1_asisdlsop_b1_i1b() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld1_asisdlsop_b1_i1b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld1_asisdlsop_b1_i1b: " << result->to_string() << std::endl;
 }
@@ -1527,7 +1527,7 @@ void test_ld1_asisdlsop_bx1_r1b() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld1_asisdlsop_bx1_r1b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld1_asisdlsop_bx1_r1b: " << result->to_string() << std::endl;
@@ -1539,7 +1539,7 @@ void test_ld1_asisdlsop_d1_i1d() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld1_asisdlsop_d1_i1d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld1_asisdlsop_d1_i1d: " << result->to_string() << std::endl;
 }
@@ -1550,7 +1550,7 @@ void test_ld1_asisdlsop_dx1_r1d() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld1_asisdlsop_dx1_r1d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld1_asisdlsop_dx1_r1d: " << result->to_string() << std::endl;
@@ -1562,7 +1562,7 @@ void test_ld1_asisdlsop_h1_i1h() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld1_asisdlsop_h1_i1h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld1_asisdlsop_h1_i1h: " << result->to_string() << std::endl;
 }
@@ -1573,7 +1573,7 @@ void test_ld1_asisdlsop_hx1_r1h() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld1_asisdlsop_hx1_r1h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld1_asisdlsop_hx1_r1h: " << result->to_string() << std::endl;
@@ -1585,7 +1585,7 @@ void test_ld1_asisdlsop_s1_i1s() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld1_asisdlsop_s1_i1s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld1_asisdlsop_s1_i1s: " << result->to_string() << std::endl;
 }
@@ -1596,7 +1596,7 @@ void test_ld1_asisdlsop_sx1_r1s() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld1_asisdlsop_sx1_r1s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld1_asisdlsop_sx1_r1s: " << result->to_string() << std::endl;
@@ -1670,7 +1670,7 @@ void test_ld2_asisdlso_b2_2b() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld2_asisdlso_b2_2b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld2_asisdlso_b2_2b: " << result->to_string() << std::endl;
 }
@@ -1681,7 +1681,7 @@ void test_ld2_asisdlso_h2_2h() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld2_asisdlso_h2_2h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld2_asisdlso_h2_2h: " << result->to_string() << std::endl;
 }
@@ -1692,7 +1692,7 @@ void test_ld2_asisdlso_s2_2s() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld2_asisdlso_s2_2s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld2_asisdlso_s2_2s: " << result->to_string() << std::endl;
 }
@@ -1703,7 +1703,7 @@ void test_ld2_asisdlso_d2_2d() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld2_asisdlso_d2_2d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld2_asisdlso_d2_2d: " << result->to_string() << std::endl;
 }
@@ -1714,7 +1714,7 @@ void test_ld2_asisdlsop_b2_i2b() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld2_asisdlsop_b2_i2b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld2_asisdlsop_b2_i2b: " << result->to_string() << std::endl;
 }
@@ -1725,7 +1725,7 @@ void test_ld2_asisdlsop_bx2_r2b() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld2_asisdlsop_bx2_r2b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld2_asisdlsop_bx2_r2b: " << result->to_string() << std::endl;
@@ -1737,7 +1737,7 @@ void test_ld2_asisdlsop_h2_i2h() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld2_asisdlsop_h2_i2h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld2_asisdlsop_h2_i2h: " << result->to_string() << std::endl;
 }
@@ -1748,7 +1748,7 @@ void test_ld2_asisdlsop_hx2_r2h() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld2_asisdlsop_hx2_r2h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld2_asisdlsop_hx2_r2h: " << result->to_string() << std::endl;
@@ -1760,7 +1760,7 @@ void test_ld2_asisdlsop_s2_i2s() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld2_asisdlsop_s2_i2s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld2_asisdlsop_s2_i2s: " << result->to_string() << std::endl;
 }
@@ -1771,7 +1771,7 @@ void test_ld2_asisdlsop_sx2_r2s() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld2_asisdlsop_sx2_r2s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld2_asisdlsop_sx2_r2s: " << result->to_string() << std::endl;
@@ -1783,7 +1783,7 @@ void test_ld2_asisdlsop_d2_i2d() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld2_asisdlsop_d2_i2d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld2_asisdlsop_d2_i2d: " << result->to_string() << std::endl;
 }
@@ -1794,7 +1794,7 @@ void test_ld2_asisdlsop_dx2_r2d() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld2_asisdlsop_dx2_r2d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD2);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld2_asisdlsop_dx2_r2d: " << result->to_string() << std::endl;
@@ -1868,7 +1868,7 @@ void test_ld3_asisdlso_b3_3b() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld3_asisdlso_b3_3b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld3_asisdlso_b3_3b: " << result->to_string() << std::endl;
 }
@@ -1879,7 +1879,7 @@ void test_ld3_asisdlso_h3_3h() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld3_asisdlso_h3_3h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld3_asisdlso_h3_3h: " << result->to_string() << std::endl;
 }
@@ -1890,7 +1890,7 @@ void test_ld3_asisdlso_s3_3s() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld3_asisdlso_s3_3s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld3_asisdlso_s3_3s: " << result->to_string() << std::endl;
 }
@@ -1901,7 +1901,7 @@ void test_ld3_asisdlso_d3_3d() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld3_asisdlso_d3_3d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld3_asisdlso_d3_3d: " << result->to_string() << std::endl;
 }
@@ -1912,7 +1912,7 @@ void test_ld3_asisdlsop_b3_i3b() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld3_asisdlsop_b3_i3b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld3_asisdlsop_b3_i3b: " << result->to_string() << std::endl;
 }
@@ -1923,7 +1923,7 @@ void test_ld3_asisdlsop_bx3_r3b() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld3_asisdlsop_bx3_r3b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld3_asisdlsop_bx3_r3b: " << result->to_string() << std::endl;
@@ -1935,7 +1935,7 @@ void test_ld3_asisdlsop_h3_i3h() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld3_asisdlsop_h3_i3h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld3_asisdlsop_h3_i3h: " << result->to_string() << std::endl;
 }
@@ -1946,7 +1946,7 @@ void test_ld3_asisdlsop_hx3_r3h() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld3_asisdlsop_hx3_r3h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld3_asisdlsop_hx3_r3h: " << result->to_string() << std::endl;
@@ -1958,7 +1958,7 @@ void test_ld3_asisdlsop_s3_i3s() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld3_asisdlsop_s3_i3s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld3_asisdlsop_s3_i3s: " << result->to_string() << std::endl;
 }
@@ -1969,7 +1969,7 @@ void test_ld3_asisdlsop_sx3_r3s() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld3_asisdlsop_sx3_r3s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld3_asisdlsop_sx3_r3s: " << result->to_string() << std::endl;
@@ -1981,7 +1981,7 @@ void test_ld3_asisdlsop_d3_i3d() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld3_asisdlsop_d3_i3d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld3_asisdlsop_d3_i3d: " << result->to_string() << std::endl;
 }
@@ -1992,7 +1992,7 @@ void test_ld3_asisdlsop_dx3_r3d() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld3_asisdlsop_dx3_r3d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD3);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld3_asisdlsop_dx3_r3d: " << result->to_string() << std::endl;
@@ -2066,7 +2066,7 @@ void test_ld4_asisdlso_b4_4b() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld4_asisdlso_b4_4b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld4_asisdlso_b4_4b: " << result->to_string() << std::endl;
 }
@@ -2077,7 +2077,7 @@ void test_ld4_asisdlso_h4_4h() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld4_asisdlso_h4_4h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld4_asisdlso_h4_4h: " << result->to_string() << std::endl;
 }
@@ -2088,7 +2088,7 @@ void test_ld4_asisdlso_s4_4s() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld4_asisdlso_s4_4s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld4_asisdlso_s4_4s: " << result->to_string() << std::endl;
 }
@@ -2099,7 +2099,7 @@ void test_ld4_asisdlso_d4_4d() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld4_asisdlso_d4_4d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld4_asisdlso_d4_4d: " << result->to_string() << std::endl;
 }
@@ -2110,7 +2110,7 @@ void test_ld4_asisdlsop_b4_i4b() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld4_asisdlsop_b4_i4b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld4_asisdlsop_b4_i4b: " << result->to_string() << std::endl;
 }
@@ -2121,7 +2121,7 @@ void test_ld4_asisdlsop_bx4_r4b() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld4_asisdlsop_bx4_r4b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld4_asisdlsop_bx4_r4b: " << result->to_string() << std::endl;
@@ -2133,7 +2133,7 @@ void test_ld4_asisdlsop_h4_i4h() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld4_asisdlsop_h4_i4h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld4_asisdlsop_h4_i4h: " << result->to_string() << std::endl;
 }
@@ -2144,7 +2144,7 @@ void test_ld4_asisdlsop_hx4_r4h() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld4_asisdlsop_hx4_r4h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld4_asisdlsop_hx4_r4h: " << result->to_string() << std::endl;
@@ -2156,7 +2156,7 @@ void test_ld4_asisdlsop_s4_i4s() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld4_asisdlsop_s4_i4s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld4_asisdlsop_s4_i4s: " << result->to_string() << std::endl;
 }
@@ -2167,7 +2167,7 @@ void test_ld4_asisdlsop_sx4_r4s() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld4_asisdlsop_sx4_r4s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld4_asisdlsop_sx4_r4s: " << result->to_string() << std::endl;
@@ -2179,7 +2179,7 @@ void test_ld4_asisdlsop_d4_i4d() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld4_asisdlsop_d4_i4d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ld4_asisdlsop_d4_i4d: " << result->to_string() << std::endl;
 }
@@ -2190,7 +2190,7 @@ void test_ld4_asisdlsop_dx4_r4d() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld4_asisdlsop_dx4_r4d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  ld4_asisdlsop_dx4_r4d: " << result->to_string() << std::endl;
@@ -2420,7 +2420,7 @@ void test_ldap1_asisdlso_d1() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldap1_asisdlso_d1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDAP1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  ldap1_asisdlso_d1: " << result->to_string() << std::endl;
 }
@@ -7480,7 +7480,7 @@ void test_st1_asisdlso_b1_1b() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st1_asisdlso_b1_1b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st1_asisdlso_b1_1b: " << result->to_string() << std::endl;
 }
@@ -7491,7 +7491,7 @@ void test_st1_asisdlso_h1_1h() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st1_asisdlso_h1_1h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st1_asisdlso_h1_1h: " << result->to_string() << std::endl;
 }
@@ -7502,7 +7502,7 @@ void test_st1_asisdlso_s1_1s() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st1_asisdlso_s1_1s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st1_asisdlso_s1_1s: " << result->to_string() << std::endl;
 }
@@ -7513,7 +7513,7 @@ void test_st1_asisdlso_d1_1d() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st1_asisdlso_d1_1d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st1_asisdlso_d1_1d: " << result->to_string() << std::endl;
 }
@@ -7524,7 +7524,7 @@ void test_st1_asisdlsop_b1_i1b() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st1_asisdlsop_b1_i1b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st1_asisdlsop_b1_i1b: " << result->to_string() << std::endl;
 }
@@ -7535,7 +7535,7 @@ void test_st1_asisdlsop_bx1_r1b() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st1_asisdlsop_bx1_r1b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st1_asisdlsop_bx1_r1b: " << result->to_string() << std::endl;
@@ -7547,7 +7547,7 @@ void test_st1_asisdlsop_h1_i1h() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st1_asisdlsop_h1_i1h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st1_asisdlsop_h1_i1h: " << result->to_string() << std::endl;
 }
@@ -7558,7 +7558,7 @@ void test_st1_asisdlsop_hx1_r1h() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st1_asisdlsop_hx1_r1h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st1_asisdlsop_hx1_r1h: " << result->to_string() << std::endl;
@@ -7570,7 +7570,7 @@ void test_st1_asisdlsop_s1_i1s() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st1_asisdlsop_s1_i1s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st1_asisdlsop_s1_i1s: " << result->to_string() << std::endl;
 }
@@ -7581,7 +7581,7 @@ void test_st1_asisdlsop_sx1_r1s() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st1_asisdlsop_sx1_r1s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st1_asisdlsop_sx1_r1s: " << result->to_string() << std::endl;
@@ -7593,7 +7593,7 @@ void test_st1_asisdlsop_d1_i1d() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st1_asisdlsop_d1_i1d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st1_asisdlsop_d1_i1d: " << result->to_string() << std::endl;
 }
@@ -7604,7 +7604,7 @@ void test_st1_asisdlsop_dx1_r1d() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st1_asisdlsop_dx1_r1d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST1);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st1_asisdlsop_dx1_r1d: " << result->to_string() << std::endl;
@@ -7647,7 +7647,7 @@ void test_st2_asisdlso_b2_2b() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st2_asisdlso_b2_2b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st2_asisdlso_b2_2b: " << result->to_string() << std::endl;
 }
@@ -7658,7 +7658,7 @@ void test_st2_asisdlso_h2_2h() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st2_asisdlso_h2_2h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st2_asisdlso_h2_2h: " << result->to_string() << std::endl;
 }
@@ -7669,7 +7669,7 @@ void test_st2_asisdlso_s2_2s() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st2_asisdlso_s2_2s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st2_asisdlso_s2_2s: " << result->to_string() << std::endl;
 }
@@ -7680,7 +7680,7 @@ void test_st2_asisdlso_d2_2d() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st2_asisdlso_d2_2d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st2_asisdlso_d2_2d: " << result->to_string() << std::endl;
 }
@@ -7691,7 +7691,7 @@ void test_st2_asisdlsop_b2_i2b() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st2_asisdlsop_b2_i2b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st2_asisdlsop_b2_i2b: " << result->to_string() << std::endl;
 }
@@ -7702,7 +7702,7 @@ void test_st2_asisdlsop_bx2_r2b() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st2_asisdlsop_bx2_r2b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st2_asisdlsop_bx2_r2b: " << result->to_string() << std::endl;
@@ -7714,7 +7714,7 @@ void test_st2_asisdlsop_h2_i2h() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st2_asisdlsop_h2_i2h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st2_asisdlsop_h2_i2h: " << result->to_string() << std::endl;
 }
@@ -7725,7 +7725,7 @@ void test_st2_asisdlsop_hx2_r2h() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st2_asisdlsop_hx2_r2h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st2_asisdlsop_hx2_r2h: " << result->to_string() << std::endl;
@@ -7737,7 +7737,7 @@ void test_st2_asisdlsop_s2_i2s() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st2_asisdlsop_s2_i2s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st2_asisdlsop_s2_i2s: " << result->to_string() << std::endl;
 }
@@ -7748,7 +7748,7 @@ void test_st2_asisdlsop_sx2_r2s() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st2_asisdlsop_sx2_r2s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st2_asisdlsop_sx2_r2s: " << result->to_string() << std::endl;
@@ -7760,7 +7760,7 @@ void test_st2_asisdlsop_d2_i2d() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st2_asisdlsop_d2_i2d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st2_asisdlsop_d2_i2d: " << result->to_string() << std::endl;
 }
@@ -7771,7 +7771,7 @@ void test_st2_asisdlsop_dx2_r2d() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st2_asisdlsop_dx2_r2d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST2);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st2_asisdlsop_dx2_r2d: " << result->to_string() << std::endl;
@@ -7844,7 +7844,7 @@ void test_st3_asisdlso_b3_3b() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st3_asisdlso_b3_3b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st3_asisdlso_b3_3b: " << result->to_string() << std::endl;
 }
@@ -7855,7 +7855,7 @@ void test_st3_asisdlso_h3_3h() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st3_asisdlso_h3_3h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st3_asisdlso_h3_3h: " << result->to_string() << std::endl;
 }
@@ -7866,7 +7866,7 @@ void test_st3_asisdlso_s3_3s() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st3_asisdlso_s3_3s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st3_asisdlso_s3_3s: " << result->to_string() << std::endl;
 }
@@ -7877,7 +7877,7 @@ void test_st3_asisdlso_d3_3d() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st3_asisdlso_d3_3d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st3_asisdlso_d3_3d: " << result->to_string() << std::endl;
 }
@@ -7888,7 +7888,7 @@ void test_st3_asisdlsop_b3_i3b() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st3_asisdlsop_b3_i3b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st3_asisdlsop_b3_i3b: " << result->to_string() << std::endl;
 }
@@ -7899,7 +7899,7 @@ void test_st3_asisdlsop_bx3_r3b() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st3_asisdlsop_bx3_r3b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st3_asisdlsop_bx3_r3b: " << result->to_string() << std::endl;
@@ -7911,7 +7911,7 @@ void test_st3_asisdlsop_h3_i3h() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st3_asisdlsop_h3_i3h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st3_asisdlsop_h3_i3h: " << result->to_string() << std::endl;
 }
@@ -7922,7 +7922,7 @@ void test_st3_asisdlsop_hx3_r3h() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st3_asisdlsop_hx3_r3h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st3_asisdlsop_hx3_r3h: " << result->to_string() << std::endl;
@@ -7934,7 +7934,7 @@ void test_st3_asisdlsop_s3_i3s() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st3_asisdlsop_s3_i3s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st3_asisdlsop_s3_i3s: " << result->to_string() << std::endl;
 }
@@ -7945,7 +7945,7 @@ void test_st3_asisdlsop_sx3_r3s() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st3_asisdlsop_sx3_r3s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st3_asisdlsop_sx3_r3s: " << result->to_string() << std::endl;
@@ -7957,7 +7957,7 @@ void test_st3_asisdlsop_d3_i3d() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st3_asisdlsop_d3_i3d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st3_asisdlsop_d3_i3d: " << result->to_string() << std::endl;
 }
@@ -7968,7 +7968,7 @@ void test_st3_asisdlsop_dx3_r3d() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st3_asisdlsop_dx3_r3d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST3);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st3_asisdlsop_dx3_r3d: " << result->to_string() << std::endl;
@@ -8011,7 +8011,7 @@ void test_st4_asisdlso_b4_4b() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st4_asisdlso_b4_4b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st4_asisdlso_b4_4b: " << result->to_string() << std::endl;
 }
@@ -8022,7 +8022,7 @@ void test_st4_asisdlso_h4_4h() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st4_asisdlso_h4_4h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st4_asisdlso_h4_4h: " << result->to_string() << std::endl;
 }
@@ -8033,7 +8033,7 @@ void test_st4_asisdlso_s4_4s() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st4_asisdlso_s4_4s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st4_asisdlso_s4_4s: " << result->to_string() << std::endl;
 }
@@ -8044,7 +8044,7 @@ void test_st4_asisdlso_d4_4d() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st4_asisdlso_d4_4d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st4_asisdlso_d4_4d: " << result->to_string() << std::endl;
 }
@@ -8055,7 +8055,7 @@ void test_st4_asisdlsop_b4_i4b() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st4_asisdlsop_b4_i4b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st4_asisdlsop_b4_i4b: " << result->to_string() << std::endl;
 }
@@ -8066,7 +8066,7 @@ void test_st4_asisdlsop_bx4_r4b() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st4_asisdlsop_bx4_r4b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st4_asisdlsop_bx4_r4b: " << result->to_string() << std::endl;
@@ -8078,7 +8078,7 @@ void test_st4_asisdlsop_h4_i4h() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st4_asisdlsop_h4_i4h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st4_asisdlsop_h4_i4h: " << result->to_string() << std::endl;
 }
@@ -8089,7 +8089,7 @@ void test_st4_asisdlsop_hx4_r4h() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st4_asisdlsop_hx4_r4h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st4_asisdlsop_hx4_r4h: " << result->to_string() << std::endl;
@@ -8101,7 +8101,7 @@ void test_st4_asisdlsop_s4_i4s() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st4_asisdlsop_s4_i4s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st4_asisdlsop_s4_i4s: " << result->to_string() << std::endl;
 }
@@ -8112,7 +8112,7 @@ void test_st4_asisdlsop_sx4_r4s() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st4_asisdlsop_sx4_r4s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st4_asisdlsop_sx4_r4s: " << result->to_string() << std::endl;
@@ -8124,7 +8124,7 @@ void test_st4_asisdlsop_d4_i4d() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st4_asisdlsop_d4_i4d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  st4_asisdlsop_d4_i4d: " << result->to_string() << std::endl;
 }
@@ -8135,7 +8135,7 @@ void test_st4_asisdlsop_dx4_r4d() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st4_asisdlsop_dx4_r4d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST4);
     assert(result->operands.size() >= 3);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
     std::cout << "  st4_asisdlsop_dx4_r4d: " << result->to_string() << std::endl;
@@ -8823,7 +8823,7 @@ void test_stl1_asisdlso_d1() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stl1_asisdlso_d1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STL1);
     assert(result->operands.size() >= 2);
-    assert(result->operands[0].type == OperandType::RegisterList);
+    assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     std::cout << "  stl1_asisdlso_d1: " << result->to_string() << std::endl;
 }

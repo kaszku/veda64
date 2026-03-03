@@ -20,7 +20,7 @@ BarrierOp barrier_from_value(uint32_t crm) {
         case 13u: return BarrierOp::LD;
         case 14u: return BarrierOp::ST;
         case 15u: return BarrierOp::SY;
-        default: return BarrierOp::UNKNOWN;
+        default: return static_cast<BarrierOp>(crm);
     }
 }
 

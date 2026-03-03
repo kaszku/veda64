@@ -31,11 +31,13 @@ enum class Condition : int8_t {
 
 // Operand type enumeration
 enum class OperandType : uint8_t {
-    Register,           // Any register (GP, Vector, SVE, Predicate — distinguished by Register enum value)
-    SMETileRegister,    // SME tile register (ZAn) — special display semantics
-    Immediate,          // Immediate value
+    Register,           // Any register (GP, Vector, SVE, Predicate)
+    IndexedRegister,    // Register with element index (v0.s[2], p0[w12])
+    SMETileRegister,    // SME tile register (ZAn)
+    Immediate,          // Immediate value (hex display)
+    DecimalImmediate,   // Immediate value (decimal display)
     SignedImmediate,    // Signed immediate value
-    Memory,             // Memory operand [base{, #offset}] — mode in extend byte
+    Memory,             // Memory operand [base{, #offset}]
     MemoryRegOffset,    // Memory operand [base, Rm{, extend {#amount}}]
     MemorySVEOffset,    // SVE gather memory [Zn.T, #offset]
     Label,              // Branch target label/offset
@@ -43,21 +45,32 @@ enum class OperandType : uint8_t {
     SystemRegister,     // System register
     Shift,              // Shift specifier (LSL, LSR, ASR, ROR)
     Extend,             // Extend specifier (UXTB, SXTW, etc.)
+    Extend64,           // Extend specifier — 64-bit (UXTX index 3 → LSL)
     Index,              // Element index
     Pattern,            // SVE pattern specifier
-    SVEMulImm,          // SVE mul multiplier (MUL #N where N=imm4+1)
+    SVEMulImm,          // SVE mul multiplier
     Prefetch,           // Prefetch operation
     Barrier,            // Barrier option
-    FloatImmediate,     // Floating-point immediate (#0.0, etc.)
-    RegisterList,       // Register list { Rt.T, Rt+1.T, ... } — first element type distinguishes V/Z/P
-    PstateField,        // PSTATE field name for MSR/MRS immediate (SPSel, DAIFSet, etc.)
-    FixedSym,           // Fixed symbolic operand (e.g. CSYNC, DSYNC)
-    SysOp,              // SYS alias operation name (tlbi vmalle1 etc.)
-    SVEVLxImm,          // SVE VL specifier (vlx2 or vlx4) for WHILE* pn_rr
+    FloatImmediate,     // Floating-point immediate
+    RegisterList,       // Register list { Rt.T, ... }
+    IndexedRegisterList, // Register list with element index { Vt.S }[n]
+    PstateField,        // PSTATE field name
+    FixedSym,           // Fixed symbolic operand
+    SysOp,              // SYS alias operation name
+    SVEVLxImm,          // SVE VL specifier (vlx2/vlx4)
     Unknown
 };
 
-// Memory addressing mode (stored in extend byte for OperandType::Memory)
+// Shift type specifier
+enum class ShiftType : uint8_t { LSL=0, LSR=1, ASR=2, ROR=3, MSL=4 };
+
+// Extend type specifier
+enum class ExtendType : uint8_t { UXTB=0, UXTH=1, UXTW=2, UXTX=3, SXTB=4, SXTH=5, SXTW=6, SXTX=7 };
+
+// Predicate qualifier
+enum class PredQual : uint8_t { None=0, Zeroing=1, Merging=2 };
+
+// Memory addressing mode
 enum class MemoryMode : uint8_t {
     Base = 0,      // [base]
     Offset = 1,    // [base, #offset]

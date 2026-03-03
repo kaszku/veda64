@@ -7,8 +7,7 @@
 namespace veda64 {
 
 PrefetchOp prefetch_from_value(uint32_t prfop) {
-    if (prfop < 24) return static_cast<PrefetchOp>(prfop);
-    return PrefetchOp::UNKNOWN;
+    return static_cast<PrefetchOp>(prfop & 0x1F);
 }
 
 #ifndef VEDA64_NO_STRINGS

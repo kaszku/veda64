@@ -2960,7 +2960,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         result.operands.push_back(Operand::gp(enc.movk32movewide.Rd, false));
                         result.operands.push_back(Operand::imm(enc.movk32movewide.imm16));
                         if (enc.movk32movewide.hw != 0) {
-                            result.operands.push_back(Operand::shift(0, enc.movk32movewide.hw * 16));
+                            result.operands.push_back(Operand::shift(ShiftType::LSL,enc.movk32movewide.hw * 16));
                         }
                         return result;
         }
@@ -3064,7 +3064,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         enc.raw = insn;
                         { result.operands.push_back(Operand::gp(enc.cmn_adds32s_addsub_imm.Rn, false, true)); }
                         result.operands.push_back(Operand::imm(enc.cmn_adds32s_addsub_imm.imm12));
-                        if (enc.cmn_adds32s_addsub_imm.sh != 0) result.operands.push_back(Operand::shift(0, 12));
+                        if (enc.cmn_adds32s_addsub_imm.sh != 0) result.operands.push_back(Operand::shift(ShiftType::LSL,12));
                         return result;
         }
         case 0x7100001Fu: { // CMP_SUBS_32S_addsub_imm
@@ -3073,7 +3073,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         enc.raw = insn;
                         { result.operands.push_back(Operand::gp(enc.cmp_subs32s_addsub_imm.Rn, false, true)); }
                         result.operands.push_back(Operand::imm(enc.cmp_subs32s_addsub_imm.imm12));
-                        if (enc.cmp_subs32s_addsub_imm.sh != 0) result.operands.push_back(Operand::shift(0, 12));
+                        if (enc.cmp_subs32s_addsub_imm.sh != 0) result.operands.push_back(Operand::shift(ShiftType::LSL,12));
                         return result;
         }
         case 0xB100001Fu: { // CMN_ADDS_64S_addsub_imm
@@ -3082,7 +3082,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         enc.raw = insn;
                         { result.operands.push_back(Operand::gp(enc.cmn_adds64s_addsub_imm.Rn, true, true)); }
                         result.operands.push_back(Operand::imm(enc.cmn_adds64s_addsub_imm.imm12));
-                        if (enc.cmn_adds64s_addsub_imm.sh != 0) result.operands.push_back(Operand::shift(0, 12));
+                        if (enc.cmn_adds64s_addsub_imm.sh != 0) result.operands.push_back(Operand::shift(ShiftType::LSL,12));
                         return result;
         }
         case 0xF100001Fu: { // CMP_SUBS_64S_addsub_imm
@@ -3091,7 +3091,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         enc.raw = insn;
                         { result.operands.push_back(Operand::gp(enc.cmp_subs64s_addsub_imm.Rn, true, true)); }
                         result.operands.push_back(Operand::imm(enc.cmp_subs64s_addsub_imm.imm12));
-                        if (enc.cmp_subs64s_addsub_imm.sh != 0) result.operands.push_back(Operand::shift(0, 12));
+                        if (enc.cmp_subs64s_addsub_imm.sh != 0) result.operands.push_back(Operand::shift(ShiftType::LSL,12));
                         return result;
         }
         case 0xF200001Fu: { // TST_ANDS_64S_log_imm
@@ -3117,7 +3117,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         { result.operands.push_back(Operand::gp(enc.add32addsub_imm.Rd, false, true)); }
                         { result.operands.push_back(Operand::gp(enc.add32addsub_imm.Rn, false, true)); }
                         result.operands.push_back(Operand::imm(enc.add32addsub_imm.imm12));
-                        if (enc.add32addsub_imm.sh != 0) result.operands.push_back(Operand::shift(0, 12));
+                        if (enc.add32addsub_imm.sh != 0) result.operands.push_back(Operand::shift(ShiftType::LSL,12));
                         return result;
         }
         case 0x31000000u: { // ADDS_32S_addsub_imm
@@ -3127,7 +3127,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         result.operands.push_back(Operand::gp(enc.adds32s_addsub_imm.Rd, false));
                         { result.operands.push_back(Operand::gp(enc.adds32s_addsub_imm.Rn, false, true)); }
                         result.operands.push_back(Operand::imm(enc.adds32s_addsub_imm.imm12));
-                        if (enc.adds32s_addsub_imm.sh != 0) result.operands.push_back(Operand::shift(0, 12));
+                        if (enc.adds32s_addsub_imm.sh != 0) result.operands.push_back(Operand::shift(ShiftType::LSL,12));
                         return result;
         }
         case 0x51000000u: { // SUB_32_addsub_imm
@@ -3137,7 +3137,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         { result.operands.push_back(Operand::gp(enc.sub32addsub_imm.Rd, false, true)); }
                         { result.operands.push_back(Operand::gp(enc.sub32addsub_imm.Rn, false, true)); }
                         result.operands.push_back(Operand::imm(enc.sub32addsub_imm.imm12));
-                        if (enc.sub32addsub_imm.sh != 0) result.operands.push_back(Operand::shift(0, 12));
+                        if (enc.sub32addsub_imm.sh != 0) result.operands.push_back(Operand::shift(ShiftType::LSL,12));
                         return result;
         }
         case 0x71000000u: { // SUBS_32S_addsub_imm
@@ -3147,7 +3147,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         result.operands.push_back(Operand::gp(enc.subs32s_addsub_imm.Rd, false));
                         { result.operands.push_back(Operand::gp(enc.subs32s_addsub_imm.Rn, false, true)); }
                         result.operands.push_back(Operand::imm(enc.subs32s_addsub_imm.imm12));
-                        if (enc.subs32s_addsub_imm.sh != 0) result.operands.push_back(Operand::shift(0, 12));
+                        if (enc.subs32s_addsub_imm.sh != 0) result.operands.push_back(Operand::shift(ShiftType::LSL,12));
                         return result;
         }
         case 0x91000000u: { // ADD_64_addsub_imm
@@ -3157,7 +3157,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         { result.operands.push_back(Operand::gp(enc.add64addsub_imm.Rd, true, true)); }
                         { result.operands.push_back(Operand::gp(enc.add64addsub_imm.Rn, true, true)); }
                         result.operands.push_back(Operand::imm(enc.add64addsub_imm.imm12));
-                        if (enc.add64addsub_imm.sh != 0) result.operands.push_back(Operand::shift(0, 12));
+                        if (enc.add64addsub_imm.sh != 0) result.operands.push_back(Operand::shift(ShiftType::LSL,12));
                         return result;
         }
         case 0x92000000u: { // AND_64_log_imm
@@ -3187,7 +3187,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         result.operands.push_back(Operand::gp(enc.adds64s_addsub_imm.Rd, true));
                         { result.operands.push_back(Operand::gp(enc.adds64s_addsub_imm.Rn, true, true)); }
                         result.operands.push_back(Operand::imm(enc.adds64s_addsub_imm.imm12));
-                        if (enc.adds64s_addsub_imm.sh != 0) result.operands.push_back(Operand::shift(0, 12));
+                        if (enc.adds64s_addsub_imm.sh != 0) result.operands.push_back(Operand::shift(ShiftType::LSL,12));
                         return result;
         }
         case 0xB2000000u: { // ORR_64_log_imm
@@ -3208,7 +3208,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         { result.operands.push_back(Operand::gp(enc.sub64addsub_imm.Rd, true, true)); }
                         { result.operands.push_back(Operand::gp(enc.sub64addsub_imm.Rn, true, true)); }
                         result.operands.push_back(Operand::imm(enc.sub64addsub_imm.imm12));
-                        if (enc.sub64addsub_imm.sh != 0) result.operands.push_back(Operand::shift(0, 12));
+                        if (enc.sub64addsub_imm.sh != 0) result.operands.push_back(Operand::shift(ShiftType::LSL,12));
                         return result;
         }
         case 0xD2000000u: { // EOR_64_log_imm
@@ -3238,7 +3238,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         result.operands.push_back(Operand::gp(enc.subs64s_addsub_imm.Rd, true));
                         { result.operands.push_back(Operand::gp(enc.subs64s_addsub_imm.Rn, true, true)); }
                         result.operands.push_back(Operand::imm(enc.subs64s_addsub_imm.imm12));
-                        if (enc.subs64s_addsub_imm.sh != 0) result.operands.push_back(Operand::shift(0, 12));
+                        if (enc.subs64s_addsub_imm.sh != 0) result.operands.push_back(Operand::shift(ShiftType::LSL,12));
                         return result;
         }
         case 0xF2000000u: { // ANDS_64S_log_imm
@@ -3259,7 +3259,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         result.operands.push_back(Operand::gp(enc.movk64movewide.Rd, true));
                         result.operands.push_back(Operand::imm(enc.movk64movewide.imm16));
                         if (enc.movk64movewide.hw != 0) {
-                            result.operands.push_back(Operand::shift(0, enc.movk64movewide.hw * 16));
+                            result.operands.push_back(Operand::shift(ShiftType::LSL,enc.movk64movewide.hw * 16));
                         }
                         return result;
         }
@@ -3288,7 +3288,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         if (imm21 & 0x100000) imm21 |= static_cast<int32_t>(0xFFE00000);
                         int64_t offset = static_cast<int64_t>(imm21) << 12;
                         auto op = Operand::relative(offset);
-                        op.imm64 = static_cast<uint64_t>(offset);
+                        op.iv.value = static_cast<uint64_t>(offset);
                         result.operands.push_back(op);
                         return result;
         }

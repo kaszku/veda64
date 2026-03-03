@@ -5278,7 +5278,7 @@ static bool decode_sys_alias(uint32_t insn, Instruction& result) {
         if (sys_table[i].key == key) {
             result.mnemonic = sys_table[i].mnem;
             result.operands.push_back(Operand::sysop_op(static_cast<SysOp>(sys_table[i].op_idx)));
-            result.operands.back().sysop = sysop_from_value(sys_table[i].op_idx);
+            result.operands.back().e.sysop = sysop_from_value(sys_table[i].op_idx);
             if (sys_table[i].has_xt)
                 result.operands.push_back(Operand::gp(Rt, true));
             return true;
@@ -5910,7 +5910,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                             uint32_t _op2 = (insn >> 5) & 7;
                             uint32_t _pf_val = (_op1 << 7) | (_CRm << 3) | _op2;
                             result.operands.push_back(Operand::pstate_op(static_cast<PstateField>(_pf_val)));
-                            result.operands.back().pstate = pstate_from_value(_pf_val);
+                            result.operands.back().e.pstate = pstate_from_value(_pf_val);
                             result.operands.push_back(Operand::imm(_CRm));
                             return result;
                         }
@@ -5926,7 +5926,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                             uint32_t _op2 = (insn >> 5) & 7;
                             uint32_t _pf_val = (_op1 << 7) | (_CRm << 3) | _op2;
                             result.operands.push_back(Operand::pstate_op(static_cast<PstateField>(_pf_val)));
-                            result.operands.back().pstate = pstate_from_value(_pf_val);
+                            result.operands.back().e.pstate = pstate_from_value(_pf_val);
                             result.operands.push_back(Operand::imm(_CRm));
                             return result;
                         }
@@ -5944,7 +5944,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::barrier_op(static_cast<BarrierOp>(enc.dsb_bon_barriers.imm2)));
-                        result.operands.back().barrier = barrier_from_value(enc.dsb_bon_barriers.imm2);
+                        result.operands.back().e.barrier = barrier_from_value(enc.dsb_bon_barriers.imm2);
                         return result;
         }
         default: break;
@@ -5982,7 +5982,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::barrier_op(static_cast<BarrierOp>(enc.dsb_bo_barriers.CRm)));
-                        result.operands.back().barrier = barrier_from_value(enc.dsb_bo_barriers.CRm);
+                        result.operands.back().e.barrier = barrier_from_value(enc.dsb_bo_barriers.CRm);
                         return result;
         }
         case 0xD50330BFu: { // DMB_BO_barriers
@@ -5990,7 +5990,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::barrier_op(static_cast<BarrierOp>(enc.dmb_bo_barriers.CRm)));
-                        result.operands.back().barrier = barrier_from_value(enc.dmb_bo_barriers.CRm);
+                        result.operands.back().e.barrier = barrier_from_value(enc.dmb_bo_barriers.CRm);
                         return result;
         }
         case 0xD50330DFu: { // ISB_BI_barriers
@@ -5998,7 +5998,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::barrier_op(static_cast<BarrierOp>(enc.isb_bi_barriers.CRm)));
-                        result.operands.back().barrier = barrier_from_value(enc.isb_bi_barriers.CRm);
+                        result.operands.back().e.barrier = barrier_from_value(enc.isb_bi_barriers.CRm);
                         return result;
         }
         case 0xD50330FFu: { // SB_only_barriers
@@ -6088,7 +6088,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                             uint32_t _op2 = (insn >> 5) & 7;
                             uint32_t _pf_val = (_op1 << 7) | (_CRm << 3) | _op2;
                             result.operands.push_back(Operand::pstate_op(static_cast<PstateField>(_pf_val)));
-                            result.operands.back().pstate = pstate_from_value(_pf_val);
+                            result.operands.back().e.pstate = pstate_from_value(_pf_val);
                             result.operands.push_back(Operand::imm(_CRm));
                             return result;
                         }
@@ -6209,7 +6209,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         enc.raw = insn;
                         uint32_t sysreg = (enc.msr_sr_systemmove.o0 << 14) | (enc.msr_sr_systemmove.op1 << 11) | (enc.msr_sr_systemmove.CRn << 7) | (enc.msr_sr_systemmove.CRm << 3) | enc.msr_sr_systemmove.op2;
                         auto sysreg_op = Operand::sysreg_op(SystemRegister::UNKNOWN);
-                        sysreg_op.sysreg = sysreg_from_encoding(2 + enc.msr_sr_systemmove.o0, enc.msr_sr_systemmove.op1, enc.msr_sr_systemmove.CRn, enc.msr_sr_systemmove.CRm, enc.msr_sr_systemmove.op2);
+                        sysreg_op.sys.sysreg = sysreg_from_encoding(2 + enc.msr_sr_systemmove.o0, enc.msr_sr_systemmove.op1, enc.msr_sr_systemmove.CRn, enc.msr_sr_systemmove.CRm, enc.msr_sr_systemmove.op2);
                         result.operands.push_back(sysreg_op);
                         result.operands.push_back(Operand::gp(enc.msr_sr_systemmove.Rt, true));
                         return result;
@@ -6220,7 +6220,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         enc.raw = insn;
                         uint32_t sysreg = (enc.mrs_rs_systemmove.o0 << 14) | (enc.mrs_rs_systemmove.op1 << 11) | (enc.mrs_rs_systemmove.CRn << 7) | (enc.mrs_rs_systemmove.CRm << 3) | enc.mrs_rs_systemmove.op2;
                         auto sysreg_op = Operand::sysreg_op(SystemRegister::UNKNOWN);
-                        sysreg_op.sysreg = sysreg_from_encoding(2 + enc.mrs_rs_systemmove.o0, enc.mrs_rs_systemmove.op1, enc.mrs_rs_systemmove.CRn, enc.mrs_rs_systemmove.CRm, enc.mrs_rs_systemmove.op2);
+                        sysreg_op.sys.sysreg = sysreg_from_encoding(2 + enc.mrs_rs_systemmove.o0, enc.mrs_rs_systemmove.op1, enc.mrs_rs_systemmove.CRn, enc.mrs_rs_systemmove.CRm, enc.mrs_rs_systemmove.op2);
                         result.operands.push_back(Operand::gp(enc.mrs_rs_systemmove.Rt, true));
                         result.operands.push_back(sysreg_op);
                         return result;

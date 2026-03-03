@@ -1560,6 +1560,7 @@ NB_MODULE(veda64_py, m) {
 
     nb::enum_<veda64::OperandType>(m, "OperandType")
         .value("Register", veda64::OperandType::Register)
+        .value("IndexedRegister", veda64::OperandType::IndexedRegister)
         .value("SMETileRegister", veda64::OperandType::SMETileRegister)
         .value("Immediate", veda64::OperandType::Immediate)
         .value("SignedImmediate", veda64::OperandType::SignedImmediate)
@@ -1585,22 +1586,44 @@ NB_MODULE(veda64_py, m) {
         .value("Unknown", veda64::OperandType::Unknown)
         ;
 
+    nb::enum_<veda64::ShiftType>(m, "ShiftType")
+        .value("LSL", veda64::ShiftType::LSL)
+        .value("LSR", veda64::ShiftType::LSR)
+        .value("ASR", veda64::ShiftType::ASR)
+        .value("ROR", veda64::ShiftType::ROR)
+        .value("MSL", veda64::ShiftType::MSL);
+
+    nb::enum_<veda64::ExtendType>(m, "ExtendType")
+        .value("UXTB", veda64::ExtendType::UXTB)
+        .value("UXTH", veda64::ExtendType::UXTH)
+        .value("UXTW", veda64::ExtendType::UXTW)
+        .value("UXTX", veda64::ExtendType::UXTX)
+        .value("SXTB", veda64::ExtendType::SXTB)
+        .value("SXTH", veda64::ExtendType::SXTH)
+        .value("SXTW", veda64::ExtendType::SXTW)
+        .value("SXTX", veda64::ExtendType::SXTX);
+
+    nb::enum_<veda64::PredQual>(m, "PredQual")
+        .value("NONE", veda64::PredQual::None)
+        .value("ZEROING", veda64::PredQual::Zeroing)
+        .value("MERGING", veda64::PredQual::Merging);
+
     nb::class_<veda64::Operand>(m, "Operand")
         .def_ro("type",       &veda64::Operand::type)
-        .def_ro("value",      &veda64::Operand::value)
-        .def_ro("imm64",      &veda64::Operand::imm64)
+        .def_prop_ro("value", [](const veda64::Operand& op) { return op.reg_val(); })
+        .def_prop_ro("imm64", [](const veda64::Operand& op) { return op.iv.value; })
         .def_prop_ro("arrangement", [](const veda64::Operand& op) -> nb::object {
-            auto arr = veda64::register_arrangement(static_cast<veda64::Register>(op.value));
+            auto arr = veda64::register_arrangement(op.r.reg);
             if (arr == veda64::Arrangement::None) return nb::none();
             return nb::str(veda64::arrangement_to_string(arr));
         })
-        .def_ro("index",      &veda64::Operand::index)
-        .def_prop_ro("has_index", [](const veda64::Operand& op) { return (bool)op.flags.has_index; })
-        .def_ro("base_reg",   &veda64::Operand::base_reg)
-        .def_ro("offset",     &veda64::Operand::offset)
-        .def_ro("index_reg",  &veda64::Operand::index_reg)
-        .def_ro("extend",     &veda64::Operand::extend)
-        .def_ro("amount",     &veda64::Operand::amount)
+        .def_prop_ro("reg",       [](const veda64::Operand& op) { return op.r.reg; })
+        .def_prop_ro("index",     [](const veda64::Operand& op) { return op.r.index; })
+        .def_prop_ro("has_index", [](const veda64::Operand& op) { return op.type == veda64::OperandType::IndexedRegister; })
+        .def_prop_ro("imm_value", [](const veda64::Operand& op) { return op.iv.value; })
+        .def_prop_ro("si_offset", [](const veda64::Operand& op) { return op.si.offset; })
+        .def_prop_ro("mem_base",  [](const veda64::Operand& op) { return op.mem.base; })
+        .def_prop_ro("mem_offset",[](const veda64::Operand& op) { return op.mem.offset; })
         .def("to_string",     &veda64::Operand::to_string)
         .def("__repr__",      &veda64::Operand::to_string)
         ;
