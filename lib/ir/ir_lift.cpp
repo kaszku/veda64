@@ -503,6 +503,14 @@ static Lifted interpret_simd_binop(uint32_t insn, const IrEntry& e) {
         num_elems = vec_size;
     }
 
+    // FP SIMD ops use bit 22 as sz (0=single/4B, 1=double/8B), not standard size field
+    bool is_float = (e.opcode == Opcode::FADD || e.opcode == Opcode::FSUB ||
+                     e.opcode == Opcode::FMUL || e.opcode == Opcode::FDIV);
+    if (is_float) {
+        esize = ((insn >> 22) & 1) ? 8 : 4;
+        num_elems = vec_size / esize;
+    }
+
     auto src1_reg = VarNode::simd(rn, vec_size);
     auto src2_reg = VarNode::simd(rm, vec_size);
     VarNode result = {};
@@ -551,6 +559,14 @@ static Lifted interpret_simd_unary(uint32_t insn, const IrEntry& e) {
     if (e.opcode == Opcode::NOT) {
         esize = 1;
         num_elems = vec_size;
+    }
+
+    // FP SIMD unary ops use bit 22 as sz (0=single/4B, 1=double/8B)
+    bool is_float = (e.opcode == Opcode::FNEG || e.opcode == Opcode::FABS ||
+                     e.opcode == Opcode::FSQRT);
+    if (is_float) {
+        esize = ((insn >> 22) & 1) ? 8 : 4;
+        num_elems = vec_size / esize;
     }
 
     auto src_reg = VarNode::simd(rn, vec_size);
