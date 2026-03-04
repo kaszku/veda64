@@ -14,6 +14,7 @@ option(VEDA64_NO_STRINGS "Disable all string functions (to_string, mnemonic_to_s
 option(VEDA64_BUILD_TESTS "Build test executables" ON)
 option(VEDA64_HOOK "Enable inline hooking support (Windows only)" ON)
 option(VEDA64_PYTHON "Build Python bindings via nanobind (requires vcpkg toolchain)" ON)
+option(VEDA64_NO_IR "Disable IR lifting support" OFF)
 
 # Compiler warnings
 if(MSVC)
@@ -25,6 +26,10 @@ endif()
 # Pass options as compile definitions
 if(VEDA64_NO_STRINGS)
     add_compile_definitions(VEDA64_NO_STRINGS)
+endif()
+
+if(VEDA64_NO_IR)
+    add_compile_definitions(VEDA64_NO_IR)
 endif()
 
 # Collect all source and header files

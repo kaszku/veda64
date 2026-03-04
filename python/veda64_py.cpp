@@ -6,7 +6,11 @@
 #include <nanobind/stl/optional.h>
 #include <nanobind/stl/vector.h>
 #include <nanobind/stl/string.h>
+#include <nanobind/make_iterator.h>
 #include <veda64.hpp>
+#ifndef VEDA64_NO_IR
+#include <veda64/ir.hpp>
+#endif
 
 namespace nb = nanobind;
 using namespace nb::literals;
@@ -1663,4 +1667,116 @@ NB_MODULE(veda64_py, m) {
     m.attr("VERSION_MAJOR") = veda64::VERSION_MAJOR;
     m.attr("VERSION_MINOR") = veda64::VERSION_MINOR;
     m.attr("VERSION_PATCH") = veda64::VERSION_PATCH;
+
+#ifndef VEDA64_NO_IR
+    // === IR (Intermediate Representation) ===
+    auto ir_mod = m.def_submodule("ir", "P-Code style intermediate representation");
+
+    nb::enum_<veda64::ir::Opcode>(ir_mod, "Opcode")
+        .value("COPY", veda64::ir::Opcode::COPY)
+        .value("LOAD", veda64::ir::Opcode::LOAD)
+        .value("STORE", veda64::ir::Opcode::STORE)
+        .value("ADD", veda64::ir::Opcode::ADD)
+        .value("SUB", veda64::ir::Opcode::SUB)
+        .value("MUL", veda64::ir::Opcode::MUL)
+        .value("SDIV", veda64::ir::Opcode::SDIV)
+        .value("UDIV", veda64::ir::Opcode::UDIV)
+        .value("NEG", veda64::ir::Opcode::NEG)
+        .value("AND", veda64::ir::Opcode::AND)
+        .value("OR", veda64::ir::Opcode::OR)
+        .value("XOR", veda64::ir::Opcode::XOR)
+        .value("NOT", veda64::ir::Opcode::NOT)
+        .value("SHL", veda64::ir::Opcode::SHL)
+        .value("SHR", veda64::ir::Opcode::SHR)
+        .value("SAR", veda64::ir::Opcode::SAR)
+        .value("ROR", veda64::ir::Opcode::ROR)
+        .value("CMP_EQ", veda64::ir::Opcode::CMP_EQ)
+        .value("CMP_NE", veda64::ir::Opcode::CMP_NE)
+        .value("CMP_SLT", veda64::ir::Opcode::CMP_SLT)
+        .value("CMP_ULT", veda64::ir::Opcode::CMP_ULT)
+        .value("CMP_SLE", veda64::ir::Opcode::CMP_SLE)
+        .value("CMP_ULE", veda64::ir::Opcode::CMP_ULE)
+        .value("ZEXT", veda64::ir::Opcode::ZEXT)
+        .value("SEXT", veda64::ir::Opcode::SEXT)
+        .value("TRUNC", veda64::ir::Opcode::TRUNC)
+        .value("INT2FLOAT", veda64::ir::Opcode::INT2FLOAT)
+        .value("FLOAT2INT", veda64::ir::Opcode::FLOAT2INT)
+        .value("FLOAT2FLOAT", veda64::ir::Opcode::FLOAT2FLOAT)
+        .value("FADD", veda64::ir::Opcode::FADD)
+        .value("FSUB", veda64::ir::Opcode::FSUB)
+        .value("FMUL", veda64::ir::Opcode::FMUL)
+        .value("FDIV", veda64::ir::Opcode::FDIV)
+        .value("FSQRT", veda64::ir::Opcode::FSQRT)
+        .value("FNEG", veda64::ir::Opcode::FNEG)
+        .value("FABS", veda64::ir::Opcode::FABS)
+        .value("BRANCH", veda64::ir::Opcode::BRANCH)
+        .value("CBRANCH", veda64::ir::Opcode::CBRANCH)
+        .value("CALL", veda64::ir::Opcode::CALL)
+        .value("RET", veda64::ir::Opcode::RET)
+        .value("ADD_CARRY", veda64::ir::Opcode::ADD_CARRY)
+        .value("SUB_CARRY", veda64::ir::Opcode::SUB_CARRY)
+        .value("FLAG_READ", veda64::ir::Opcode::FLAG_READ)
+        .value("FLAG_WRITE", veda64::ir::Opcode::FLAG_WRITE)
+        .value("EXTRACT", veda64::ir::Opcode::EXTRACT)
+        .value("INSERT", veda64::ir::Opcode::INSERT)
+        .value("CONCAT", veda64::ir::Opcode::CONCAT)
+        .value("VEXTRACT_ELEM", veda64::ir::Opcode::VEXTRACT_ELEM)
+        .value("VINSERT_ELEM", veda64::ir::Opcode::VINSERT_ELEM)
+        .value("VBROADCAST", veda64::ir::Opcode::VBROADCAST)
+        .value("BARRIER", veda64::ir::Opcode::BARRIER)
+        .value("NOP", veda64::ir::Opcode::NOP)
+        .value("UNDEF", veda64::ir::Opcode::UNDEF)
+        ;
+
+    nb::enum_<veda64::ir::Space>(ir_mod, "Space")
+        .value("Const", veda64::ir::Space::Const)
+        .value("Temp", veda64::ir::Space::Temp)
+        .value("GPR", veda64::ir::Space::GPR)
+        .value("SIMD", veda64::ir::Space::SIMD)
+        .value("SVE_Z", veda64::ir::Space::SVE_Z)
+        .value("SVE_P", veda64::ir::Space::SVE_P)
+        .value("SysReg", veda64::ir::Space::SysReg)
+        .value("Flags", veda64::ir::Space::Flags)
+        .value("RAM", veda64::ir::Space::RAM)
+        ;
+
+    nb::class_<veda64::ir::VarNode>(ir_mod, "VarNode")
+        .def_rw("space",  &veda64::ir::VarNode::space)
+        .def_rw("offset", &veda64::ir::VarNode::offset)
+        .def_rw("size",   &veda64::ir::VarNode::size)
+        .def_rw("value",  &veda64::ir::VarNode::value)
+        .def("__repr__",  [](const veda64::ir::VarNode& v) { return veda64::ir::to_string(v); })
+        ;
+
+    nb::class_<veda64::ir::Op>(ir_mod, "Op")
+        .def_rw("opcode",     &veda64::ir::Op::opcode)
+        .def_rw("output",     &veda64::ir::Op::output)
+        .def_rw("num_inputs", &veda64::ir::Op::num_inputs)
+        .def_prop_ro("inputs", [](const veda64::ir::Op& o) {
+            std::vector<veda64::ir::VarNode> v;
+            for (uint8_t i = 0; i < o.num_inputs; ++i) v.push_back(o.inputs[i]);
+            return v;
+        })
+        .def("__repr__", [](const veda64::ir::Op& o) { return veda64::ir::to_string(o); })
+        ;
+
+    nb::class_<veda64::ir::Lifted>(ir_mod, "Lifted")
+        .def_rw("ops", &veda64::ir::Lifted::ops)
+        .def("__repr__", [](const veda64::ir::Lifted& l) { return veda64::ir::to_string(l); })
+        .def("__len__", [](const veda64::ir::Lifted& l) { return l.ops.size(); })
+        .def("__iter__", [](const veda64::ir::Lifted& l) {
+            return nb::make_iterator(nb::type<veda64::ir::Lifted>(), "OpIterator", l.ops.begin(), l.ops.end());
+        }, nb::keep_alive<0, 1>())
+        ;
+
+    ir_mod.def("lift", [](uint32_t insn) { return veda64::ir::lift(insn); },
+        "insn"_a, "Lift a raw ARM64 instruction to IR");
+
+    ir_mod.def("simplify", &veda64::ir::simplify,
+        "lifted"_a, "Simplify IR: copy propagation + dead code elimination");
+
+    ir_mod.def("opcode_name", &veda64::ir::opcode_name,
+        "op"_a, "Get string name of an IR opcode");
+
+#endif // !VEDA64_NO_IR
 }

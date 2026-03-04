@@ -3,6 +3,9 @@
 // Auto-generated — do not edit
 
 #include "veda64.hpp"
+#ifndef VEDA64_NO_IR
+#include "veda64/ir.hpp"
+#endif
 #include <iostream>
 #include <cstdlib>
 #include <cstring>
@@ -39,6 +42,9 @@ void print_usage(const char* progname) {
     std::cerr << "\n";
     std::cerr << "Options:\n";
     std::cerr << "  -b, --big-endian  Input values are in big-endian byte order\n";
+#ifndef VEDA64_NO_IR
+    std::cerr << "      --ir          Show IR (intermediate representation) output\n";
+#endif
     std::cerr << "  -h, --help        Show this help message\n";
     std::cerr << "\n";
     std::cerr << "Arguments:\n";
@@ -59,12 +65,16 @@ int main(int argc, char* argv[]) {
     }
 
     bool big_endian = false;
+    bool show_ir = false;
     int start_idx = 1;
 
     // Parse options
     while (start_idx < argc && argv[start_idx][0] == '-') {
         if (std::strcmp(argv[start_idx], "-b") == 0 || std::strcmp(argv[start_idx], "--big-endian") == 0) {
             big_endian = true;
+            start_idx++;
+        } else if (std::strcmp(argv[start_idx], "--ir") == 0) {
+            show_ir = true;
             start_idx++;
         } else if (std::strcmp(argv[start_idx], "-h") == 0 || std::strcmp(argv[start_idx], "--help") == 0) {
             print_usage(argv[0]);
@@ -82,6 +92,9 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
+#ifdef VEDA64_NO_IR
+    (void)show_ir;
+#endif
     int errors = 0;
 
     for (int i = start_idx; i < argc; i++) {
@@ -105,6 +118,19 @@ int main(int argc, char* argv[]) {
         } else {
             std::cout << "0x" << std::hex << (big_endian ? bswap32(insn) : insn) << std::dec << ": <unknown>\n";
         }
+
+#ifndef VEDA64_NO_IR
+        if (show_ir) {
+            auto ir_result = ir::lift(insn);
+            if (ir_result) {
+                auto simplified = ir::simplify(*ir_result);
+                for (auto& op : simplified.ops)
+                    std::cout << "  " << ir::to_string(op) << "\n";
+            } else {
+                std::cout << "  <no IR>\n";
+            }
+        }
+#endif
     }
 
     return errors > 0 ? 1 : 0;

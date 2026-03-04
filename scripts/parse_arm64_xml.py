@@ -11219,6 +11219,7 @@ class ARM64XMLParser:
         code.append("option(VEDA64_BUILD_TESTS \"Build test executables\" ON)")
         code.append("option(VEDA64_HOOK \"Enable inline hooking support (Windows only)\" ON)")
         code.append("option(VEDA64_PYTHON \"Build Python bindings via nanobind (requires vcpkg toolchain)\" ON)")
+        code.append("option(VEDA64_NO_IR \"Disable IR lifting support\" OFF)")
         code.append("")
         code.append("# Compiler warnings")
         code.append("if(MSVC)")
@@ -11230,6 +11231,10 @@ class ARM64XMLParser:
         code.append("# Pass options as compile definitions")
         code.append("if(VEDA64_NO_STRINGS)")
         code.append("    add_compile_definitions(VEDA64_NO_STRINGS)")
+        code.append("endif()")
+        code.append("")
+        code.append("if(VEDA64_NO_IR)")
+        code.append("    add_compile_definitions(VEDA64_NO_IR)")
         code.append("endif()")
         code.append("")
         code.append("# Collect all source and header files")
@@ -11351,7 +11356,11 @@ class ARM64XMLParser:
         code.append("#include <nanobind/stl/optional.h>")
         code.append("#include <nanobind/stl/vector.h>")
         code.append("#include <nanobind/stl/string.h>")
+        code.append("#include <nanobind/make_iterator.h>")
         code.append("#include <veda64.hpp>")
+        code.append("#ifndef VEDA64_NO_IR")
+        code.append("#include <veda64/ir.hpp>")
+        code.append("#endif")
         code.append("")
         code.append("namespace nb = nanobind;")
         code.append("using namespace nb::literals;")
@@ -11470,6 +11479,89 @@ class ARM64XMLParser:
         code.append("    m.attr(\"VERSION_MAJOR\") = veda64::VERSION_MAJOR;")
         code.append("    m.attr(\"VERSION_MINOR\") = veda64::VERSION_MINOR;")
         code.append("    m.attr(\"VERSION_PATCH\") = veda64::VERSION_PATCH;")
+        code.append("")
+
+        # --- IR bindings ---
+        code.append("#ifndef VEDA64_NO_IR")
+        code.append("    // === IR (Intermediate Representation) ===")
+        code.append("    auto ir_mod = m.def_submodule(\"ir\", \"P-Code style intermediate representation\");")
+        code.append("")
+
+        # IR Opcode enum
+        ir_opcodes = [
+            'COPY', 'LOAD', 'STORE',
+            'ADD', 'SUB', 'MUL', 'SDIV', 'UDIV', 'NEG',
+            'AND', 'OR', 'XOR', 'NOT', 'SHL', 'SHR', 'SAR', 'ROR',
+            'CMP_EQ', 'CMP_NE', 'CMP_SLT', 'CMP_ULT', 'CMP_SLE', 'CMP_ULE',
+            'ZEXT', 'SEXT', 'TRUNC', 'INT2FLOAT', 'FLOAT2INT', 'FLOAT2FLOAT',
+            'FADD', 'FSUB', 'FMUL', 'FDIV', 'FSQRT', 'FNEG', 'FABS',
+            'BRANCH', 'CBRANCH', 'CALL', 'RET',
+            'ADD_CARRY', 'SUB_CARRY', 'FLAG_READ', 'FLAG_WRITE',
+            'EXTRACT', 'INSERT', 'CONCAT',
+            'VEXTRACT_ELEM', 'VINSERT_ELEM', 'VBROADCAST',
+            'BARRIER', 'NOP', 'UNDEF',
+        ]
+        code.append("    nb::enum_<veda64::ir::Opcode>(ir_mod, \"Opcode\")")
+        for opc in ir_opcodes:
+            code.append(f"        .value(\"{opc}\", veda64::ir::Opcode::{opc})")
+        code.append("        ;")
+        code.append("")
+
+        # IR Space enum
+        ir_spaces = ['Const', 'Temp', 'GPR', 'SIMD', 'SVE_Z', 'SVE_P', 'SysReg', 'Flags', 'RAM']
+        code.append("    nb::enum_<veda64::ir::Space>(ir_mod, \"Space\")")
+        for sp in ir_spaces:
+            code.append(f"        .value(\"{sp}\", veda64::ir::Space::{sp})")
+        code.append("        ;")
+        code.append("")
+
+        # VarNode class
+        code.append("    nb::class_<veda64::ir::VarNode>(ir_mod, \"VarNode\")")
+        code.append("        .def_rw(\"space\",  &veda64::ir::VarNode::space)")
+        code.append("        .def_rw(\"offset\", &veda64::ir::VarNode::offset)")
+        code.append("        .def_rw(\"size\",   &veda64::ir::VarNode::size)")
+        code.append("        .def_rw(\"value\",  &veda64::ir::VarNode::value)")
+        code.append("        .def(\"__repr__\",  [](const veda64::ir::VarNode& v) { return veda64::ir::to_string(v); })")
+        code.append("        ;")
+        code.append("")
+
+        # Op class
+        code.append("    nb::class_<veda64::ir::Op>(ir_mod, \"Op\")")
+        code.append("        .def_rw(\"opcode\",     &veda64::ir::Op::opcode)")
+        code.append("        .def_rw(\"output\",     &veda64::ir::Op::output)")
+        code.append("        .def_rw(\"num_inputs\", &veda64::ir::Op::num_inputs)")
+        code.append("        .def_prop_ro(\"inputs\", [](const veda64::ir::Op& o) {")
+        code.append("            std::vector<veda64::ir::VarNode> v;")
+        code.append("            for (uint8_t i = 0; i < o.num_inputs; ++i) v.push_back(o.inputs[i]);")
+        code.append("            return v;")
+        code.append("        })")
+        code.append("        .def(\"__repr__\", [](const veda64::ir::Op& o) { return veda64::ir::to_string(o); })")
+        code.append("        ;")
+        code.append("")
+
+        # Lifted class
+        code.append("    nb::class_<veda64::ir::Lifted>(ir_mod, \"Lifted\")")
+        code.append("        .def_rw(\"ops\", &veda64::ir::Lifted::ops)")
+        code.append("        .def(\"__repr__\", [](const veda64::ir::Lifted& l) { return veda64::ir::to_string(l); })")
+        code.append("        .def(\"__len__\", [](const veda64::ir::Lifted& l) { return l.ops.size(); })")
+        code.append("        .def(\"__iter__\", [](const veda64::ir::Lifted& l) {")
+        code.append("            return nb::make_iterator(nb::type<veda64::ir::Lifted>(), \"OpIterator\", l.ops.begin(), l.ops.end());")
+        code.append("        }, nb::keep_alive<0, 1>())")
+        code.append("        ;")
+        code.append("")
+
+        # Free functions
+        code.append("    ir_mod.def(\"lift\", [](uint32_t insn) { return veda64::ir::lift(insn); },")
+        code.append("        \"insn\"_a, \"Lift a raw ARM64 instruction to IR\");")
+        code.append("")
+        code.append("    ir_mod.def(\"simplify\", &veda64::ir::simplify,")
+        code.append("        \"lifted\"_a, \"Simplify IR: copy propagation + dead code elimination\");")
+        code.append("")
+        code.append("    ir_mod.def(\"opcode_name\", &veda64::ir::opcode_name,")
+        code.append("        \"op\"_a, \"Get string name of an IR opcode\");")
+        code.append("")
+        code.append("#endif // !VEDA64_NO_IR")
+
         code.append("}")
         code.append("")
 
@@ -11979,6 +12071,9 @@ class ARM64XMLParser:
 
         code = self._license_header()
         code.append("#include \"veda64.hpp\"")
+        code.append("#ifndef VEDA64_NO_IR")
+        code.append("#include \"veda64/ir.hpp\"")
+        code.append("#endif")
         code.append("#include <iostream>")
         code.append("#include <cstdlib>")
         code.append("#include <cstring>")
@@ -12015,6 +12110,9 @@ class ARM64XMLParser:
         code.append("    std::cerr << \"\\n\";")
         code.append("    std::cerr << \"Options:\\n\";")
         code.append("    std::cerr << \"  -b, --big-endian  Input values are in big-endian byte order\\n\";")
+        code.append("#ifndef VEDA64_NO_IR")
+        code.append("    std::cerr << \"      --ir          Show IR (intermediate representation) output\\n\";")
+        code.append("#endif")
         code.append("    std::cerr << \"  -h, --help        Show this help message\\n\";")
         code.append("    std::cerr << \"\\n\";")
         code.append("    std::cerr << \"Arguments:\\n\";")
@@ -12035,12 +12133,16 @@ class ARM64XMLParser:
         code.append("    }")
         code.append("")
         code.append("    bool big_endian = false;")
+        code.append("    bool show_ir = false;")
         code.append("    int start_idx = 1;")
         code.append("")
         code.append("    // Parse options")
         code.append("    while (start_idx < argc && argv[start_idx][0] == '-') {")
         code.append("        if (std::strcmp(argv[start_idx], \"-b\") == 0 || std::strcmp(argv[start_idx], \"--big-endian\") == 0) {")
         code.append("            big_endian = true;")
+        code.append("            start_idx++;")
+        code.append("        } else if (std::strcmp(argv[start_idx], \"--ir\") == 0) {")
+        code.append("            show_ir = true;")
         code.append("            start_idx++;")
         code.append("        } else if (std::strcmp(argv[start_idx], \"-h\") == 0 || std::strcmp(argv[start_idx], \"--help\") == 0) {")
         code.append("            print_usage(argv[0]);")
@@ -12058,6 +12160,9 @@ class ARM64XMLParser:
         code.append("        return 1;")
         code.append("    }")
         code.append("")
+        code.append("#ifdef VEDA64_NO_IR")
+        code.append("    (void)show_ir;")
+        code.append("#endif")
         code.append("    int errors = 0;")
         code.append("")
         code.append("    for (int i = start_idx; i < argc; i++) {")
@@ -12081,6 +12186,19 @@ class ARM64XMLParser:
         code.append("        } else {")
         code.append("            std::cout << \"0x\" << std::hex << (big_endian ? bswap32(insn) : insn) << std::dec << \": <unknown>\\n\";")
         code.append("        }")
+        code.append("")
+        code.append("#ifndef VEDA64_NO_IR")
+        code.append("        if (show_ir) {")
+        code.append("            auto ir_result = ir::lift(insn);")
+        code.append("            if (ir_result) {")
+        code.append("                auto simplified = ir::simplify(*ir_result);")
+        code.append("                for (auto& op : simplified.ops)")
+        code.append("                    std::cout << \"  \" << ir::to_string(op) << \"\\n\";")
+        code.append("            } else {")
+        code.append("                std::cout << \"  <no IR>\\n\";")
+        code.append("            }")
+        code.append("        }")
+        code.append("#endif")
         code.append("    }")
         code.append("")
         code.append("    return errors > 0 ? 1 : 0;")
@@ -14886,14 +15004,776 @@ class ARM64XMLParser:
         self._write_file(output_file, code)
         print(f"Generated {output_file.name}")
 
+    # ========================================================================
+    # IR Generation
+    # ========================================================================
+
+    def _classify_ir_template(self, mnemonic: str, format_group: str, format_iclass: str,
+                               field_names: set, docvars: dict) -> Optional[tuple]:
+        """Classify an encoding into an IR template.
+
+        Returns (template_name, opcode_name, extra) or None if not classifiable.
+        template_name maps to IrTemplate enum, opcode_name to Opcode enum.
+        """
+        mnem = mnemonic.upper()
+
+        # --- NOP/Hints ---
+        if mnem == 'NOP' or format_iclass == 'hints':
+            return ('Nop', 'NOP', 0)
+
+        # --- Barriers ---
+        if format_iclass == 'barriers':
+            return ('Nop', 'BARRIER', 0)
+
+        # --- System ---
+        if format_group == 'control' and format_iclass in (
+            'systeminstrs', 'systemmove', 'systemmovepr', 'syspairinstrs',
+            'systeminstrswithreg', 'pstate'
+        ):
+            return ('System', 'UNDEF', 0)
+
+        # --- Branches ---
+        if format_iclass == 'branch_imm':
+            if mnem == 'BL':
+                return ('BranchUncond', 'CALL', 0)
+            return ('BranchUncond', 'BRANCH', 0)
+
+        if format_iclass == 'condbranch':
+            return ('BranchCond', 'CBRANCH', 0)
+
+        if format_iclass == 'branch_reg':
+            if mnem == 'BLR' or 'BLR' in mnem:
+                return ('BranchReg', 'CALL', 0)
+            if mnem == 'RET' or mnem.startswith('RET'):
+                return ('BranchReg', 'RET', 0)
+            return ('BranchReg', 'BRANCH', 0)
+
+        if format_iclass == 'compbranch':
+            if mnem == 'CBZ':
+                return ('CompareBranch', 'CMP_EQ', 0)
+            return ('CompareBranch', 'CMP_NE', 0)
+
+        if format_iclass == 'testbranch':
+            return ('TestBranch', 'CMP_EQ' if mnem == 'TBZ' else 'CMP_NE', 0)
+
+        # --- Exception ---
+        if format_iclass == 'exception':
+            return ('System', 'UNDEF', 0)
+
+        # --- PC-relative ---
+        if format_iclass == 'pcreladdr':
+            return ('GpBinopImm', 'ADD', 0)  # ADR/ADRP: PC + offset
+
+        # --- Data Processing Immediate ---
+        if format_iclass == 'addsub_imm':
+            flag_set = mnem in ('ADDS', 'SUBS', 'CMN', 'CMP')
+            op = 'SUB' if mnem in ('SUB', 'SUBS', 'CMP') else 'ADD'
+            tpl = 'GpBinopImmFlags' if flag_set else 'GpBinopImm'
+            return (tpl, op, 0)
+
+        if format_iclass == 'log_imm':
+            op_map = {'AND': 'AND', 'ANDS': 'AND', 'ORR': 'OR', 'EOR': 'XOR', 'TST': 'AND'}
+            op = op_map.get(mnem, 'AND')
+            flag_set = mnem in ('ANDS', 'TST')
+            tpl = 'GpBinopImmFlags' if flag_set else 'GpBinopImm'
+            return (tpl, op, 0)
+
+        if format_iclass == 'movewide':
+            if mnem == 'MOVN':
+                return ('GpMoveImm', 'NOT', 0)
+            return ('GpMoveImm', 'COPY', 0)  # MOVZ, MOVK
+
+        if format_iclass == 'bitfield':
+            return ('GpBitfield', 'EXTRACT', 0)
+
+        if format_iclass == 'extract':
+            return ('GpBitfield', 'EXTRACT', 0)
+
+        if format_iclass == 'minmax_imm':
+            return ('GpBinopImm', 'ADD', 0)  # Simplified
+
+        # --- Data Processing Register ---
+        if format_iclass in ('addsub_shift', 'addsub_ext'):
+            flag_set = mnem in ('ADDS', 'SUBS', 'CMN', 'CMP')
+            op = 'SUB' if mnem in ('SUB', 'SUBS', 'CMP') else 'ADD'
+            tpl = 'GpBinopFlags' if flag_set else 'GpBinop'
+            return (tpl, op, 0)
+
+        if format_iclass == 'log_shift':
+            op_map = {'AND': 'AND', 'ANDS': 'AND', 'ORR': 'OR', 'EOR': 'XOR',
+                      'BIC': 'AND', 'BICS': 'AND', 'EON': 'XOR', 'ORN': 'OR',
+                      'TST': 'AND', 'MOV': 'OR', 'MVN': 'NOT'}
+            op = op_map.get(mnem, 'AND')
+            flag_set = mnem in ('ANDS', 'BICS', 'TST')
+            tpl = 'GpBinopFlags' if flag_set else 'GpBinop'
+            return (tpl, op, 0)
+
+        if format_iclass == 'addsub_carry':
+            flag_set = mnem in ('ADCS', 'SBCS')
+            op = 'ADD_CARRY' if mnem in ('ADC', 'ADCS') else 'SUB_CARRY'
+            tpl = 'GpBinopFlags' if flag_set else 'GpBinop'
+            return (tpl, op, 0)
+
+        if format_iclass == 'condsel':
+            return ('CondSelect', 'COPY', 0)
+
+        if format_iclass == 'condcmp_imm' or format_iclass == 'condcmp_reg':
+            return ('GpBinopFlags', 'SUB', 0)  # CCMP/CCMN
+
+        if format_iclass == 'dp_2src':
+            op_map = {'LSLV': 'SHL', 'LSRV': 'SHR', 'ASRV': 'SAR', 'RORV': 'ROR',
+                      'SDIV': 'SDIV', 'UDIV': 'UDIV'}
+            op = op_map.get(mnem)
+            if op in ('SHL', 'SHR', 'SAR', 'ROR'):
+                return ('GpShift', op, 0)
+            if op in ('SDIV', 'UDIV'):
+                return ('GpDiv', op, 0)
+            # CRC, IRG, PACGA, SUBP, etc. — system/complex
+            return ('System', 'UNDEF', 0)
+
+        if format_iclass == 'dp_3src':
+            if mnem in ('MADD', 'MADDPT'):
+                return ('GpMul', 'MUL', 0)
+            if mnem in ('MSUB', 'MSUBPT'):
+                return ('GpMul', 'MUL', 1)
+            if mnem in ('SMADDL', 'UMADDL'):
+                return ('GpMul', 'MUL', 0)
+            if mnem in ('SMSUBL', 'UMSUBL'):
+                return ('GpMul', 'MUL', 1)
+            if mnem in ('SMULH', 'UMULH'):
+                return ('GpMul', 'MUL', 2)  # high multiply
+            return None
+
+        if format_iclass == 'dp_1src':
+            if mnem in ('REV', 'REV16', 'REV32', 'REV64'):
+                return ('SimdUnary', 'COPY', 0)  # byte-reversal simplified
+            if mnem in ('CLZ', 'CLS'):
+                return ('SimdUnary', 'COPY', 0)  # count leading simplified
+            if mnem == 'ABS':
+                return ('GpBinop', 'SUB', 0)
+            # PAC/AUT instructions — system-level
+            return ('System', 'UNDEF', 0)
+
+        # --- Loads and Stores ---
+        if format_iclass == 'ldst_pos':
+            if mnem.startswith('LDR') or mnem.startswith('LDRS'):
+                return ('LoadReg', 'LOAD', 0)
+            if mnem.startswith('STR'):
+                return ('StoreReg', 'STORE', 0)
+            if mnem == 'PRFM':
+                return ('Nop', 'NOP', 0)
+            return None
+
+        if format_iclass in ('ldst_immpost', 'ldst_immpre', 'ldst_unscaled', 'ldst_unpriv'):
+            if mnem.startswith('LDR') or mnem.startswith('LDRS') or mnem.startswith('LDUR') or mnem.startswith('LDTR'):
+                return ('LoadReg', 'LOAD', 0)
+            if mnem.startswith('STR') or mnem.startswith('STUR') or mnem.startswith('STTR'):
+                return ('StoreReg', 'STORE', 0)
+            if mnem in ('PRFUM',):
+                return ('Nop', 'NOP', 0)
+            return None
+
+        if format_iclass == 'ldst_regoff':
+            if mnem.startswith('LDR') or mnem.startswith('LDRS'):
+                return ('LoadReg', 'LOAD', 0)
+            if mnem.startswith('STR'):
+                return ('StoreReg', 'STORE', 0)
+            if mnem in ('PRFM', 'RPRFM'):
+                return ('Nop', 'NOP', 0)
+            return None
+
+        if format_iclass in ('ldstpair_off', 'ldstpair_post', 'ldstpair_pre'):
+            if mnem in ('LDP', 'LDPSW', 'LDTP'):
+                return ('LoadPair', 'LOAD', 0)
+            if mnem in ('STP', 'STGP', 'STTP'):
+                return ('StorePair', 'STORE', 0)
+            return None
+
+        if format_iclass == 'loadlit':
+            return ('LoadReg', 'LOAD', 0)
+
+        if format_iclass == 'ldst_pac':
+            return ('LoadReg', 'LOAD', 0)  # LDRAA, LDRAB
+
+        if format_iclass == 'ldst_gcs':
+            return ('System', 'UNDEF', 0)  # GCS instructions
+
+        if format_iclass in ('ldstexclr', 'ldstord', 'ldapstl_unscaled', 'ldapstl_writeback',
+                              'ldapstl_simd', 'ldiappstilp', 'ldstexclr_unpriv'):
+            if 'LD' in mnem or 'LDA' in mnem:
+                return ('LoadReg', 'LOAD', 0)
+            if 'ST' in mnem:
+                return ('StoreReg', 'STORE', 0)
+            return None
+
+        if format_iclass == 'ldstnapair_offs':
+            if mnem.startswith('LD'):
+                return ('LoadPair', 'LOAD', 0)
+            return ('StorePair', 'STORE', 0)
+
+        if format_iclass == 'ldstexclp':
+            if mnem.startswith('LD'):
+                return ('LoadPair', 'LOAD', 0)
+            return ('StorePair', 'STORE', 0)
+
+        # SIMD structure loads/stores (in ldst group)
+        if format_iclass.startswith('asisdls'):
+            if mnem.startswith('LD'):
+                return ('LoadReg', 'LOAD', 0)
+            return ('StoreReg', 'STORE', 0)
+
+        # Atomics
+        if format_iclass in ('memop', 'memop_128', 'memop_unpriv', 'comswap',
+                              'comswappr', 'comswap_unpriv', 'comswappr_unpriv',
+                              'rcwcomswap', 'rcwcomswappr'):
+            return ('Atomic', 'UNDEF', 0)
+
+        # Memory copy/set
+        if format_iclass == 'memcms':
+            return ('System', 'UNDEF', 0)
+
+        # Tags
+        if format_iclass == 'ldsttags':
+            return ('System', 'UNDEF', 0)
+
+        # --- SIMD/FP ---
+        if format_group == 'simd_dp':
+            # Scalar FP binary ops
+            if format_iclass == 'floatdp2':
+                op_map = {'FADD': 'FADD', 'FSUB': 'FSUB', 'FMUL': 'FMUL',
+                          'FDIV': 'FDIV', 'FMAX': 'FADD', 'FMIN': 'FSUB',
+                          'FNMUL': 'FMUL', 'FMAXNM': 'FADD', 'FMINNM': 'FSUB'}
+                op = op_map.get(mnem)
+                if op:
+                    return ('FpBinop', op, 0)
+                return None
+
+            if format_iclass == 'floatdp1':
+                op_map = {'FABS': 'FABS', 'FNEG': 'FNEG', 'FSQRT': 'FSQRT',
+                          'FMOV': 'COPY', 'FCVT': 'FLOAT2FLOAT',
+                          'FRINT32X': 'COPY', 'FRINT32Z': 'COPY',
+                          'FRINT64X': 'COPY', 'FRINT64Z': 'COPY',
+                          'FRINTA': 'COPY', 'FRINTI': 'COPY',
+                          'FRINTM': 'COPY', 'FRINTN': 'COPY',
+                          'FRINTP': 'COPY', 'FRINTX': 'COPY',
+                          'FRINTZ': 'COPY', 'BFCVT': 'FLOAT2FLOAT'}
+                op = op_map.get(mnem)
+                if op:
+                    return ('SimdUnary', op, 0)
+                return ('SimdUnary', 'COPY', 0)
+
+            if format_iclass in ('float2int', 'float2fix'):
+                if mnem.startswith('FCVT') or mnem.startswith('FJCVT'):
+                    return ('FpConvert', 'FLOAT2INT', 0)
+                if mnem.startswith('SCVTF') or mnem.startswith('UCVTF'):
+                    return ('FpConvert', 'INT2FLOAT', 0)
+                if mnem == 'FMOV':
+                    return ('SimdUnary', 'COPY', 0)
+                return None
+
+            if format_iclass == 'floatcmp':
+                return ('FpBinop', 'FSUB', 0)  # FCMP/FCMPE → compare
+
+            if format_iclass == 'floatsel':
+                return ('CondSelect', 'COPY', 0)  # FCSEL
+
+            if format_iclass == 'floatccmp':
+                return ('GpBinopFlags', 'FSUB', 0)  # FCCMP
+
+            # SIMD vector ops
+            if format_iclass in ('asimdsamefp16', 'asimdsame2', 'asimdsame'):
+                op_map = {
+                    'ADD': 'ADD', 'SUB': 'SUB', 'MUL': 'MUL',
+                    'AND': 'AND', 'ORR': 'OR', 'EOR': 'XOR',
+                    'BIC': 'AND', 'BIF': 'AND', 'BIT': 'AND', 'BSL': 'AND',
+                    'ORN': 'OR',
+                    'FADD': 'FADD', 'FSUB': 'FSUB', 'FMUL': 'FMUL',
+                    'FDIV': 'FDIV', 'FMAX': 'FADD', 'FMIN': 'FSUB',
+                    'SMAX': 'ADD', 'SMIN': 'SUB', 'UMAX': 'ADD', 'UMIN': 'SUB',
+                    'SHADD': 'ADD', 'SHSUB': 'SUB', 'UHADD': 'ADD', 'UHSUB': 'SUB',
+                    'SQADD': 'ADD', 'SQSUB': 'SUB', 'UQADD': 'ADD', 'UQSUB': 'SUB',
+                    'SSHL': 'SHL', 'USHL': 'SHL', 'SRSHL': 'SHL', 'URSHL': 'SHL',
+                    'SQSHL': 'SHL', 'UQSHL': 'SHL',
+                    'CMGT': 'CMP_SLT', 'CMGE': 'CMP_SLE', 'CMHI': 'CMP_ULT',
+                    'CMHS': 'CMP_ULE', 'CMEQ': 'CMP_EQ', 'CMTST': 'AND',
+                }
+                op = op_map.get(mnem)
+                if op:
+                    return ('SimdBinop', op, 0)
+                # Remaining: FCADD, FCMLA, BFDOT, BFMLAL, FDOT, etc.
+                return ('SimdBinop', 'FADD', 0)
+
+            if format_iclass in ('asimdmisc', 'asimdmiscfp16'):
+                op_map = {
+                    'ABS': 'NEG', 'NEG': 'NEG', 'NOT': 'NOT', 'MVN': 'NOT',
+                    'REV16': 'COPY', 'REV32': 'COPY', 'REV64': 'COPY',
+                    'CNT': 'COPY', 'CLS': 'COPY', 'CLZ': 'COPY',
+                    'FABS': 'FABS', 'FNEG': 'FNEG', 'FSQRT': 'FSQRT',
+                    'FCVTL': 'FLOAT2FLOAT', 'FCVTN': 'FLOAT2FLOAT',
+                    'FCVTXN': 'FLOAT2FLOAT',
+                    'SXTL': 'SEXT', 'UXTL': 'ZEXT',
+                    'SQABS': 'NEG', 'SQNEG': 'NEG',
+                    'CMGT': 'CMP_SLT', 'CMGE': 'CMP_SLE', 'CMEQ': 'CMP_EQ',
+                    'CMLE': 'CMP_SLE', 'CMLT': 'CMP_SLT',
+                    'FCMGT': 'CMP_SLT', 'FCMGE': 'CMP_SLE', 'FCMEQ': 'CMP_EQ',
+                    'FCMLE': 'CMP_SLE', 'FCMLT': 'CMP_SLT',
+                }
+                op = op_map.get(mnem)
+                if op:
+                    return ('SimdUnary', op, 0)
+                # Remaining: FCVT variants, BF/F1/F2CVTL, SHLL, XTN, etc.
+                if mnem.startswith('FCVT') or mnem.endswith('CVTL') or mnem.startswith('BF'):
+                    return ('SimdUnary', 'FLOAT2FLOAT', 0)
+                return ('SimdUnary', 'COPY', 0)
+
+            if format_iclass in ('asimdall',):
+                return ('SimdUnary', 'ADD', 0)  # Reduce ops
+
+            if format_iclass in ('asimddiff',):
+                return ('SimdBinop', 'ADD', 0)  # Widening/narrowing
+
+            if format_iclass in ('asimdelem',):
+                return ('SimdBinop', 'MUL', 0)  # Element-wise
+
+            if format_iclass in ('asimdshf',):
+                return ('SimdBinop', 'SHL', 0)  # Shift by immediate
+
+            if format_iclass in ('asimdins',):
+                return ('SimdUnary', 'COPY', 0)  # INS, DUP, MOV
+
+            if format_iclass in ('asimdext',):
+                return ('SimdBinop', 'EXTRACT', 0)  # EXT
+
+            if format_iclass in ('asimdimm',):
+                return ('SimdUnary', 'COPY', 0)  # MOVI, MVNI
+
+            if format_iclass in ('asimdperm',):
+                return ('SimdBinop', 'COPY', 0)  # UZP, ZIP, TRN
+
+            if format_iclass in ('asimdtbl',):
+                return ('SimdBinop', 'COPY', 0)  # TBL, TBX
+
+            if format_iclass in ('cryptoaes', 'cryptosha2', 'cryptosha3',
+                                  'cryptosha512_2', 'cryptosha512_3',
+                                  'crypto3_imm2', 'crypto3_imm6', 'crypto4'):
+                return ('System', 'UNDEF', 0)  # Crypto
+
+            # Scalar SIMD (asisd*) — same patterns as vector but scalar
+            if format_iclass in ('asisdsame', 'asisdsame2', 'asisdsamefp16'):
+                return ('FpBinop', 'FADD', 0)
+
+            if format_iclass in ('asisdmisc', 'asisdmiscfp16'):
+                return ('SimdUnary', 'COPY', 0)
+
+            if format_iclass in ('asisddiff',):
+                return ('FpBinop', 'FADD', 0)
+
+            if format_iclass in ('asisdelem',):
+                return ('FpBinop', 'FMUL', 0)
+
+            if format_iclass in ('asisdshf',):
+                return ('SimdUnary', 'SHL', 0)
+
+            if format_iclass in ('asisdone',):
+                return ('SimdUnary', 'COPY', 0)  # DUP
+
+            if format_iclass in ('asisdpair',):
+                return ('SimdUnary', 'ADD', 0)  # Pairwise
+
+            # SIMD structure loads/stores (LD1-LD4, ST1-ST4)
+            if format_iclass.startswith('asisdls'):
+                if mnem.startswith('LD'):
+                    return ('LoadReg', 'LOAD', 0)
+                return ('StoreReg', 'STORE', 0)
+
+            # Catch-all for remaining SIMD
+            if format_iclass.startswith('asimd') or format_iclass.startswith('asisd') or format_iclass.startswith('float'):
+                return ('SimdBinop', 'UNDEF', 0)
+
+            return None
+
+        # --- SVE ---
+        if format_group == 'sve':
+            # SVE is complex; classify broadly
+            if 'mem' in format_iclass:
+                if 'ld' in mnem.lower() or 'LD' in mnem:
+                    return ('LoadReg', 'LOAD', 0)
+                return ('StoreReg', 'STORE', 0)
+            if format_iclass.startswith('sve_int'):
+                return ('SimdBinop', 'ADD', 0)
+            if format_iclass.startswith('sve_fp'):
+                return ('FpBinop', 'FADD', 0)
+            if format_iclass.startswith('sve_pred'):
+                return ('SimdBinop', 'AND', 0)
+            if format_iclass.startswith('sve_perm'):
+                return ('SimdUnary', 'COPY', 0)
+            if format_iclass.startswith('sve_wide'):
+                return ('SimdUnary', 'COPY', 0)
+            if format_iclass.startswith('sve_mask'):
+                return ('SimdBinop', 'AND', 0)
+            if format_iclass.startswith('sve_while'):
+                return ('SimdBinop', 'CMP_SLT', 0)
+            return ('System', 'UNDEF', 0)
+
+        # --- SME ---
+        if format_group == 'sme':
+            return ('System', 'UNDEF', 0)
+
+        # --- Reserved ---
+        if format_group == 'reserved':
+            return ('System', 'UNDEF', 0)
+
+        # Remaining control flow
+        if format_group == 'control':
+            if format_iclass in ('compbranch_imm', 'compbranch_regs', 'compbranch_regs2'):
+                return ('CompareBranch', 'CMP_SLT', 0)
+            if format_iclass == 'miscbranch':
+                return ('BranchReg', 'BRANCH', 0)
+            return ('System', 'UNDEF', 0)
+
+        # Remaining dpimm
+        if format_group == 'dpimm':
+            return ('GpBinopImm', 'ADD', 0)
+
+        # Remaining dpreg
+        if format_group == 'dpreg':
+            return ('GpBinop', 'ADD', 0)
+
+        return None
+
+    def generate_ir_files(self, include_dir: Path, lib_ir_dir: Path, test_dir: Path):
+        """Generate IR lifting files: header, tables, and tests."""
+        print(f"\n=== Generating IR Files ===")
+
+        lib_ir_dir.mkdir(parents=True, exist_ok=True)
+
+        # Classify all encodings
+        by_group = self._classify_by_arm64_decode_group()
+        ir_entries = []
+        unclassified = 0
+
+        for group_name, data in by_group.items():
+            seen = set()
+            for instr, encoding in data['encodings']:
+                if encoding.name in seen:
+                    continue
+                seen.add(encoding.name)
+
+                mnemonic = encoding.docvars.get('mnemonic', instr.mnemonic)
+                field_names = set(encoding.fields.keys())
+                result = self._classify_ir_template(
+                    mnemonic, encoding.format_group, encoding.format_iclass,
+                    field_names, encoding.docvars
+                )
+
+                if result is None:
+                    unclassified += 1
+                    continue
+
+                tpl_name, opcode_name, extra = result
+                fixed_bits, fixed_mask = self._get_encoding_fixed_bits(encoding)
+
+                # Determine field IDs based on template
+                dst = 'Rd'
+                src1 = 'Rn'
+                src2 = 'Rm'
+                size_field = 'Sf'
+
+                if tpl_name in ('BranchUncond',):
+                    dst = 'None'; src1 = 'Imm26'; src2 = 'None'; size_field = 'None'
+                elif tpl_name in ('BranchCond',):
+                    dst = 'None'; src1 = 'Imm19'; src2 = 'None'; size_field = 'None'
+                elif tpl_name in ('BranchReg',):
+                    dst = 'None'; src1 = 'Rn'; src2 = 'None'; size_field = 'None'
+                elif tpl_name in ('CompareBranch',):
+                    dst = 'Rd'; src1 = 'Imm19'; src2 = 'None'; size_field = 'Sf'
+                elif tpl_name in ('TestBranch',):
+                    dst = 'Rd'; src1 = 'Imm14'; src2 = 'None'; size_field = 'None'
+                elif tpl_name in ('GpBinopImm', 'GpBinopImmFlags'):
+                    src2 = 'Imm12'; size_field = 'Sf'
+                elif tpl_name in ('GpMoveImm',):
+                    src1 = 'Imm16'; src2 = 'None'; size_field = 'Sf'
+                elif tpl_name in ('GpBitfield',):
+                    src2 = 'Imm6'; size_field = 'Sf'
+                elif tpl_name in ('Nop', 'System'):
+                    dst = 'None'; src1 = 'None'; src2 = 'None'; size_field = 'None'
+                elif tpl_name in ('LoadReg', 'StoreReg', 'LoadPair', 'StorePair'):
+                    src2 = 'Imm12'; size_field = 'None'
+                elif tpl_name in ('Atomic',):
+                    size_field = 'None'
+
+                ir_entries.append({
+                    'mask': fixed_mask,
+                    'match': fixed_bits,
+                    'template': tpl_name,
+                    'opcode': opcode_name,
+                    'dst': dst,
+                    'src1': src1,
+                    'src2': src2,
+                    'size_field': size_field,
+                    'extra': extra,
+                    'mnemonic': mnemonic,
+                    'encoding_name': encoding.name,
+                })
+
+        total = len(ir_entries) + unclassified
+        print(f"Classified {len(ir_entries)}/{total} encodings into IR templates ({unclassified} unclassified)")
+
+        # --- Generate ir_tables.cpp ---
+        self._generate_ir_tables(lib_ir_dir, ir_entries)
+
+        # --- Generate test_ir.cpp ---
+        self._generate_ir_test(test_dir, ir_entries)
+
+        print(f"Generated IR files ({len(ir_entries)} table entries)")
+
+    def _generate_ir_tables(self, lib_ir_dir: Path, ir_entries: list):
+        """Generate lib/ir/ir_tables.cpp with the data table."""
+        code = self._license_header()
+        code.append("#ifndef VEDA64_NO_IR")
+        code.append("")
+        code.append('#include "ir_internal.hpp"')
+        code.append("")
+        code.append("namespace veda64::ir {")
+        code.append("")
+        code.append("// Auto-generated IR classification table")
+        code.append(f"// {len(ir_entries)} entries covering classified encodings")
+        code.append("")
+
+        # Sort by mask popcount descending (most specific first)
+        ir_entries_sorted = sorted(ir_entries, key=lambda e: -bin(e['mask']).count('1'))
+
+        code.append(f"const IrEntry ir_table[] = {{")
+        for entry in ir_entries_sorted:
+            mask = f"0x{entry['mask']:08X}U"
+            match = f"0x{entry['match']:08X}U"
+            tpl = f"IrTemplate::{entry['template']}"
+            opc = f"Opcode::{entry['opcode']}"
+            dst = f"FieldId::{entry['dst']}"
+            src1 = f"FieldId::{entry['src1']}"
+            src2 = f"FieldId::{entry['src2']}"
+            sz = f"FieldId::{entry['size_field']}"
+            ex = str(entry['extra'])
+            comment = entry.get('mnemonic', '')
+            code.append(f"    {{ {mask}, {match}, {tpl}, {opc}, {dst}, {src1}, {src2}, {sz}, {ex} }}, // {comment}")
+        code.append("};")
+        code.append("")
+        code.append(f"const size_t ir_table_size = {len(ir_entries_sorted)};")
+        code.append("")
+        code.append("} // namespace veda64::ir")
+        code.append("")
+        code.append("#endif // !VEDA64_NO_IR")
+        code.append("")
+
+        self._write_file(lib_ir_dir / "ir_tables.cpp", code)
+        print(f"Generated ir_tables.cpp ({len(ir_entries_sorted)} entries)")
+
+    def _generate_ir_test(self, test_dir: Path, ir_entries: list):
+        """Generate test/test_ir.cpp that validates lift() on sample encodings."""
+        code = self._license_header()
+        code.append("#ifndef VEDA64_NO_IR")
+        code.append("")
+        code.append('#include "veda64/ir.hpp"')
+        code.append("#include <cstdio>")
+        code.append("#include <cassert>")
+        code.append("")
+        code.append("using namespace veda64;")
+        code.append("using namespace veda64::ir;")
+        code.append("")
+        code.append("static int tests_run = 0;")
+        code.append("static int tests_passed = 0;")
+        code.append("")
+
+        # Generate test cases for representative instructions
+        test_cases = [
+            # (name, hex_encoding, expected_opcode, description)
+            ("ADD_X0_X1_X2", "0x8B020020", "ADD", "GP register add"),
+            ("SUB_X0_X1_X2", "0xCB020020", "SUB", "GP register sub"),
+            ("ADDS_X0_X1_X2", "0xAB020020", "ADD", "GP register add with flags"),
+            ("AND_X0_X1_X2", "0x8A020020", "AND", "GP register AND"),
+            ("ORR_X0_X1_X2", "0xAA020020", "OR", "GP register ORR"),
+            ("EOR_X0_X1_X2", "0xCA020020", "XOR", "GP register EOR"),
+            ("ADD_X0_X1_imm42", "0x91010820", "ADD", "GP immediate add"),
+            ("SUB_X0_X1_imm42", "0xD1010820", "SUB", "GP immediate sub"),
+            ("MOVZ_X0_0x1234", "0xD2824680", "COPY", "Move wide immediate"),
+            ("SDIV_X0_X1_X2", "0x9AC20C20", "SDIV", "Signed divide"),
+            ("UDIV_X0_X1_X2", "0x9AC20820", "UDIV", "Unsigned divide"),
+            ("MADD_X0_X1_X2_X3", "0x9B020C20", "MUL", "Multiply-add"),
+            ("LDR_X0_X1_8", "0xF9400420", "LOAD", "Load 64-bit unsigned offset"),
+            ("STR_X0_X1_8", "0xF9000420", "STORE", "Store 64-bit unsigned offset"),
+            ("B_0x100", "0x14000040", "BRANCH", "Unconditional branch"),
+            ("BL_0x100", "0x94000040", "CALL", "Branch with link"),
+            ("RET", "0xD65F03C0", "RET", "Return"),
+            ("CBZ_X0", "0xB4000080", "CMP_EQ", "Compare and branch zero"),
+            ("CBNZ_X0", "0xB5000080", "CMP_NE", "Compare and branch non-zero"),
+            ("NOP", "0xD503201F", "NOP", "No operation"),
+            ("ADD_W0_W1_W2", "0x0B020020", "ADD", "32-bit register add"),
+            ("SUBS_X0_X1_X2", "0xEB020020", "SUB", "GP sub with flags"),
+            # SIMD vector element-level unrolling tests
+            ("SIMD_ADD_V0_4S", "0x4EA28420", "VEXTRACT_ELEM", "SIMD ADD V0.4S produces VEXTRACT_ELEM"),
+            ("SIMD_ADD_V0_16B", "0x4E228420", "VEXTRACT_ELEM", "SIMD ADD V0.16B produces VEXTRACT_ELEM"),
+            ("SIMD_SUB_V0_4S", "0x6EA28420", "VEXTRACT_ELEM", "SIMD SUB V0.4S produces VEXTRACT_ELEM"),
+            ("SIMD_FNEG_V0_4S", "0x6EA0F820", "VEXTRACT_ELEM", "SIMD FNEG V0.4S unary unrolling"),
+        ]
+
+        code.append("static void run_tests() {")
+        for name, hex_val, expected_opcode, desc in test_cases:
+            code.append(f"    // {desc}")
+            code.append(f"    {{")
+            code.append(f"        tests_run++;")
+            code.append(f'        printf("  %-40s ", "{name}");')
+            code.append(f"        auto r = lift({hex_val});")
+            code.append(f"        if (!r.has_value()) {{")
+            code.append(f'            printf("FAIL: lift returned nullopt\\n");')
+            code.append(f"        }} else {{")
+            code.append(f"            bool found = false;")
+            code.append(f"            for (auto& op : r->ops) {{")
+            code.append(f"                if (op.opcode == Opcode::{expected_opcode}) found = true;")
+            code.append(f"            }}")
+            code.append(f"            if (found) {{")
+            code.append(f'                printf("PASS\\n");')
+            code.append(f"                tests_passed++;")
+            code.append(f"            }} else {{")
+            code.append(f'                printf("FAIL: expected {expected_opcode}\\n");')
+            code.append(f"            }}")
+            code.append(f"        }}")
+            code.append(f"    }}")
+        code.append("")
+
+        # SIMD lane count tests
+        code.append('    // SIMD ADD V0.4S should have exactly 4 VEXTRACT_ELEM ops')
+        code.append('    {')
+        code.append('        tests_run++;')
+        code.append('        printf("  %-40s ", "SIMD_ADD_4S_lane_count");')
+        code.append('        auto r = lift(0x4EA28420);  // ADD V0.4S, V1.4S, V2.4S')
+        code.append('        if (!r.has_value()) {')
+        code.append('            printf("FAIL: lift returned nullopt\\n");')
+        code.append('        } else {')
+        code.append('            int extract_count = 0;')
+        code.append('            for (auto& op : r->ops) {')
+        code.append('                if (op.opcode == Opcode::VEXTRACT_ELEM) extract_count++;')
+        code.append('            }')
+        code.append('            if (extract_count == 8) {  // 4 lanes x 2 sources')
+        code.append('                printf("PASS\\n");')
+        code.append('                tests_passed++;')
+        code.append('            } else {')
+        code.append('                printf("FAIL: expected 8 VEXTRACT_ELEM, got %d\\n", extract_count);')
+        code.append('            }')
+        code.append('        }')
+        code.append('    }')
+        code.append('')
+        code.append('    // SIMD ADD V0.16B should have exactly 16 VEXTRACT_ELEM ops (16 lanes x 2 srcs = 32)')
+        code.append('    {')
+        code.append('        tests_run++;')
+        code.append('        printf("  %-40s ", "SIMD_ADD_16B_lane_count");')
+        code.append('        auto r = lift(0x4E228420);  // ADD V0.16B, V1.16B, V2.16B')
+        code.append('        if (!r.has_value()) {')
+        code.append('            printf("FAIL: lift returned nullopt\\n");')
+        code.append('        } else {')
+        code.append('            int extract_count = 0;')
+        code.append('            for (auto& op : r->ops) {')
+        code.append('                if (op.opcode == Opcode::VEXTRACT_ELEM) extract_count++;')
+        code.append('            }')
+        code.append('            if (extract_count == 32) {  // 16 lanes x 2 sources')
+        code.append('                printf("PASS\\n");')
+        code.append('                tests_passed++;')
+        code.append('            } else {')
+        code.append('                printf("FAIL: expected 32 VEXTRACT_ELEM, got %d\\n", extract_count);')
+        code.append('            }')
+        code.append('        }')
+        code.append('    }')
+        code.append('')
+        code.append('    // SIMD FNEG V0.4S unary should have 4 VEXTRACT_ELEM ops')
+        code.append('    {')
+        code.append('        tests_run++;')
+        code.append('        printf("  %-40s ", "SIMD_FNEG_4S_lane_count");')
+        code.append('        auto r = lift(0x6EA0F820);  // FNEG V0.4S, V1.4S')
+        code.append('        if (!r.has_value()) {')
+        code.append('            printf("FAIL: lift returned nullopt\\n");')
+        code.append('        } else {')
+        code.append('            int extract_count = 0;')
+        code.append('            for (auto& op : r->ops) {')
+        code.append('                if (op.opcode == Opcode::VEXTRACT_ELEM) extract_count++;')
+        code.append('            }')
+        code.append('            if (extract_count == 4) {  // 4 lanes x 1 source')
+        code.append('                printf("PASS\\n");')
+        code.append('                tests_passed++;')
+        code.append('            } else {')
+        code.append('                printf("FAIL: expected 4 VEXTRACT_ELEM, got %d\\n", extract_count);')
+        code.append('            }')
+        code.append('        }')
+        code.append('    }')
+        code.append('')
+
+        # Test to_string
+        code.append('    // to_string test')
+        code.append('    {')
+        code.append('        tests_run++;')
+        code.append('        printf("  %-40s ", "to_string");')
+        code.append('        auto r = lift(0x8B020020);')
+        code.append('        if (r.has_value()) {')
+        code.append('            auto s = to_string(*r);')
+        code.append('            if (!s.empty()) {')
+        code.append('                printf("PASS\\n");')
+        code.append('                tests_passed++;')
+        code.append('            } else {')
+        code.append('                printf("FAIL: empty string\\n");')
+        code.append('            }')
+        code.append('        } else {')
+        code.append('            printf("FAIL: lift returned nullopt\\n");')
+        code.append('        }')
+        code.append('    }')
+
+        # Test UDF (0x00000000) returns UNDEF
+        code.append('')
+        code.append('    // UDF instruction returns UNDEF opcode')
+        code.append('    {')
+        code.append('        tests_run++;')
+        code.append('        printf("  %-40s ", "UDF_0x00000000");')
+        code.append('        auto r = lift(0x00000000);')
+        code.append('        if (r.has_value() && r->ops.size() > 0 && r->ops[0].opcode == Opcode::UNDEF) {')
+        code.append('            printf("PASS\\n");')
+        code.append('            tests_passed++;')
+        code.append('        } else if (!r.has_value()) {')
+        code.append('            printf("PASS\\n"); // also acceptable')
+        code.append('            tests_passed++;')
+        code.append('        } else {')
+        code.append('            printf("FAIL: expected UNDEF or nullopt\\n");')
+        code.append('        }')
+        code.append('    }')
+
+        code.append("}")
+        code.append("")
+        code.append("int main() {")
+        code.append('    printf("=== IR Lifting Tests ===\\n");')
+        code.append("    run_tests();")
+        code.append('    printf("\\n%d/%d tests passed\\n", tests_passed, tests_run);')
+        code.append("    return (tests_passed == tests_run) ? 0 : 1;")
+        code.append("}")
+        code.append("")
+        code.append("#else // VEDA64_NO_IR")
+        code.append("")
+        code.append("#include <cstdio>")
+        code.append("int main() {")
+        code.append('    printf("IR tests skipped (VEDA64_NO_IR)\\n");')
+        code.append("    return 0;")
+        code.append("}")
+        code.append("")
+        code.append("#endif")
+        code.append("")
+
+        self._write_file(test_dir / "test_ir.cpp", code)
+        print(f"Generated test_ir.cpp ({len(test_cases) + 2} tests)")
+
 def main():
     """Main entry point."""
     # Use the 2025-12 version (latest)
-    xml_dir = Path(__file__).parent / "arm64" / "ISA_A64_xml_A_profile-2025-12"
+    repo_root = Path(__file__).parent.parent
+    xml_dir = repo_root / "arm64" / "ISA_A64_xml_A_profile-2025-12"
 
     if not xml_dir.exists():
         # Fallback to 2025-09 version
-        xml_dir = Path(__file__).parent / "arm64" / "ISA_A64_xml_A_profile-2025-09"
+        xml_dir = repo_root / "arm64" / "ISA_A64_xml_A_profile-2025-09"
 
     if not xml_dir.exists():
         print(f"Error: XML directory not found: {xml_dir}")
@@ -14908,8 +15788,8 @@ def main():
     # Print summary
     parser.print_summary()
 
-    # Create output directories
-    base_dir = Path(__file__).parent
+    # Create output directories (repo root is one level up from scripts/)
+    base_dir = Path(__file__).parent.parent
     include_dir = base_dir / "include"
     include_format_dir = include_dir / "format"
     lib_dir = base_dir / "lib"
@@ -14948,6 +15828,11 @@ def main():
     parser.generate_hook_test(test_dir)
     parser.generate_hook_examples(test_dir)
     print(f"Generated test files")
+
+    # Generate IR files
+    include_ir_dir = include_dir
+    lib_ir_dir = base_dir / "lib" / "ir"
+    parser.generate_ir_files(include_ir_dir, lib_ir_dir, test_dir)
 
     # Generate tools
     print(f"\n=== Generating Tools ===")
