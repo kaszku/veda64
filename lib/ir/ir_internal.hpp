@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 // Copyright (c) 2026 Kevin Szkudlapski
 // Auto-generated — do not edit
+
 // Internal header shared between ir_lift.cpp and ir_tables.cpp
 
 #pragma once

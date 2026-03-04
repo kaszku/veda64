@@ -105,7 +105,7 @@ enum class Space : uint8_t {
     RAM,        // Memory
 };
 
-// Variable node — identifies a storage location or constant
+// Variable node -- identifies a storage location or constant
 struct VarNode {
     Space space = Space::Const;
     uint16_t offset = 0;    // Register number or temp index

@@ -69,6 +69,17 @@ static Op make_op2(Opcode opc, VarNode out, VarNode in0, VarNode in1) {
     return o;
 }
 
+static Op make_op3(Opcode opc, VarNode out, VarNode in0, VarNode in1, VarNode in2) {
+    Op o;
+    o.opcode = opc;
+    o.output = out;
+    o.inputs[0] = in0;
+    o.inputs[1] = in1;
+    o.inputs[2] = in2;
+    o.num_inputs = 3;
+    return o;
+}
+
 static Lifted interpret_gp_binop(uint32_t insn, const IrEntry& e) {
     Lifted l;
     uint8_t sz = reg_size(insn);
@@ -454,17 +465,6 @@ static Lifted interpret_cond_select(uint32_t insn, const IrEntry& e) {
     return l;
 }
 
-static Op make_op3(Opcode opc, VarNode out, VarNode in0, VarNode in1, VarNode in2) {
-    Op o;
-    o.opcode = opc;
-    o.output = out;
-    o.inputs[0] = in0;
-    o.inputs[1] = in1;
-    o.inputs[2] = in2;
-    o.num_inputs = 3;
-    return o;
-}
-
 static void simd_arrangement(uint32_t insn, uint8_t& esize_bytes, uint8_t& num_elems) {
     uint32_t Q = (insn >> 30) & 1;
     uint32_t size = (insn >> 22) & 3;
@@ -494,6 +494,14 @@ static Lifted interpret_simd_binop(uint32_t insn, const IrEntry& e) {
     uint8_t esize = 0, num_elems = 0;
     simd_arrangement(insn, esize, num_elems);
     uint8_t vec_size = ((insn >> 30) & 1) ? 16 : 8;
+
+    // Bitwise ops (AND/OR/XOR/NOT) always operate on bytes regardless of size field
+    bool is_bitwise = (e.opcode == Opcode::AND || e.opcode == Opcode::OR ||
+                       e.opcode == Opcode::XOR || e.opcode == Opcode::NOT);
+    if (is_bitwise) {
+        esize = 1;
+        num_elems = vec_size;
+    }
 
     auto src1_reg = VarNode::simd(rn, vec_size);
     auto src2_reg = VarNode::simd(rm, vec_size);
@@ -538,6 +546,12 @@ static Lifted interpret_simd_unary(uint32_t insn, const IrEntry& e) {
     uint8_t esize = 0, num_elems = 0;
     simd_arrangement(insn, esize, num_elems);
     uint8_t vec_size = ((insn >> 30) & 1) ? 16 : 8;
+
+    // Bitwise ops always operate on bytes regardless of size field
+    if (e.opcode == Opcode::NOT) {
+        esize = 1;
+        num_elems = vec_size;
+    }
 
     auto src_reg = VarNode::simd(rn, vec_size);
     VarNode result = {};

@@ -35,7 +35,7 @@ static void replace_input(VarNode& v, const std::unordered_map<uint16_t, VarNode
 }
 
 Lifted simplify(const Lifted& l) {
-    // Pass 1: Copy propagation — build substitution map for temp = copy X
+    // Pass 1: Copy propagation -- build substitution map for temp = copy X
     std::unordered_map<uint16_t, VarNode> subs;
     std::vector<Op> ops;
     ops.reserve(l.ops.size());
@@ -54,7 +54,7 @@ Lifted simplify(const Lifted& l) {
         ops.push_back(o);
     }
 
-    // Pass 2: Output folding — if dest = copy temp, and temp defined by exactly
+    // Pass 2: Output folding -- if dest = copy temp, and temp defined by exactly
     // one op with one use, fold the defining op's opcode+inputs into dest
     // Count temp references
     std::unordered_map<uint16_t, int> temp_uses;
