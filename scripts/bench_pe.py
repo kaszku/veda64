@@ -19,7 +19,8 @@ _veda64_py = None
 def _try_load_binding() -> bool:
     global _veda64_py
     candidates = [
-        Path(__file__).parent / '__build_arm64' / 'Release',
+        Path(__file__).parent.parent / '__build_arm64',
+        Path(__file__).parent.parent / '__build_arm64' / 'Release',
         Path(__file__).parent,
     ]
     for d in candidates:

@@ -25,7 +25,7 @@ from pathlib import Path
 #!interpreter: Use ARM64 Python (C:\Python311-arm64\python.exe) to run this script
 # since veda64_py binding is built for ARM64.
 
-XML_DIR = Path(__file__).parent / "arm64" / "ISA_A64_xml_A_profile-2025-12"
+XML_DIR = Path(__file__).parent.parent / "arm64" / "ISA_A64_xml_A_profile-2025-12"
 
 
 # ── XML Parsing ──────────────────────────────────────────────────────────────
@@ -618,8 +618,8 @@ def _load_veda64():
     if _veda64_py is not None:
         return True
     candidates = [
-        Path(__file__).parent / '__build_arm64',
-        Path(__file__).parent / '__build_arm64' / 'Release',
+        Path(__file__).parent.parent / '__build_arm64',
+        Path(__file__).parent.parent / '__build_arm64' / 'Release',
         Path(__file__).parent,
     ]
     for d in candidates:
