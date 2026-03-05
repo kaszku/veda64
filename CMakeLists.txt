@@ -62,6 +62,12 @@ add_executable(veda64-disasm tools/veda64-disasm.cpp)
 target_link_libraries(veda64-disasm PRIVATE veda64)
 set_target_properties(veda64-disasm PROPERTIES FOLDER "tools")
 
+if(NOT VEDA64_NO_IR)
+    add_executable(veda64-interp tools/veda64-interp.cpp)
+    target_link_libraries(veda64-interp PRIVATE veda64)
+    set_target_properties(veda64-interp PROPERTIES FOLDER "tools")
+endif()
+
 # Enable testing
 if(VEDA64_BUILD_TESTS)
     enable_testing()

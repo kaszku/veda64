@@ -9,6 +9,7 @@
 #ifndef VEDA64_NO_IR
 
 #include "veda64/ir.hpp"
+#include "veda64/mnemonic.hpp"
 
 namespace veda64::ir {
 
@@ -43,22 +44,12 @@ enum class IrTemplate : uint8_t {
     Nop,            // NOP, HINT
 };
 
-enum class FieldId : uint8_t {
-    Rd, Rn, Rm, Ra,
-    Imm12, Imm16, Imm26, Imm19, Imm14, Imm9,
-    Sf, Shift, Imm6, Opc, Op, S, Cond,
-    None,
-};
-
 struct IrEntry {
     uint32_t mask;
     uint32_t match;
+    Mnemonic mnemonic;
     IrTemplate tpl;
     Opcode opcode;
-    FieldId dst;
-    FieldId src1;
-    FieldId src2;
-    FieldId size_field;
     uint8_t extra;
 };
 

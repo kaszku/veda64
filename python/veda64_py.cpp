@@ -6,6 +6,7 @@
 #include <nanobind/stl/optional.h>
 #include <nanobind/stl/vector.h>
 #include <nanobind/stl/string.h>
+#include <nanobind/stl/shared_ptr.h>
 #include <nanobind/make_iterator.h>
 #include <veda64.hpp>
 #ifndef VEDA64_NO_IR
@@ -1715,8 +1716,10 @@ NB_MODULE(veda64_py, m) {
         .value("RET", veda64::ir::Opcode::RET)
         .value("ADD_CARRY", veda64::ir::Opcode::ADD_CARRY)
         .value("SUB_CARRY", veda64::ir::Opcode::SUB_CARRY)
-        .value("FLAG_READ", veda64::ir::Opcode::FLAG_READ)
-        .value("FLAG_WRITE", veda64::ir::Opcode::FLAG_WRITE)
+        .value("CARRY_ADD", veda64::ir::Opcode::CARRY_ADD)
+        .value("CARRY_SUB", veda64::ir::Opcode::CARRY_SUB)
+        .value("OVERFLOW_ADD", veda64::ir::Opcode::OVERFLOW_ADD)
+        .value("OVERFLOW_SUB", veda64::ir::Opcode::OVERFLOW_SUB)
         .value("EXTRACT", veda64::ir::Opcode::EXTRACT)
         .value("INSERT", veda64::ir::Opcode::INSERT)
         .value("CONCAT", veda64::ir::Opcode::CONCAT)
@@ -1739,6 +1742,10 @@ NB_MODULE(veda64_py, m) {
         .value("Flags", veda64::ir::Space::Flags)
         .value("RAM", veda64::ir::Space::RAM)
         ;
+
+    nb::enum_<veda64::ir::IrDetail>(ir_mod, "IrDetail")
+        .value("Semantic", veda64::ir::IrDetail::Semantic)
+        .value("Expanded", veda64::ir::IrDetail::Expanded);
 
     nb::class_<veda64::ir::VarNode>(ir_mod, "VarNode")
         .def_rw("space",  &veda64::ir::VarNode::space)
@@ -1777,6 +1784,77 @@ NB_MODULE(veda64_py, m) {
 
     ir_mod.def("opcode_name", &veda64::ir::opcode_name,
         "op"_a, "Get string name of an IR opcode");
+
+    // --- AST bindings ---
+    nb::enum_<veda64::ir::Expr::Kind>(ir_mod, "ExprKind")
+        .value("Var", veda64::ir::Expr::Kind::Var)
+        .value("Const", veda64::ir::Expr::Kind::Const)
+        .value("Op", veda64::ir::Expr::Kind::Op);
+
+    nb::class_<veda64::ir::Expr>(ir_mod, "Expr")
+        .def_ro("kind", &veda64::ir::Expr::kind)
+        .def_ro("opcode", &veda64::ir::Expr::opcode)
+        .def_ro("var", &veda64::ir::Expr::var)
+        .def_ro("children", &veda64::ir::Expr::children)
+        .def_ro("size", &veda64::ir::Expr::size)
+        .def("__repr__", [](const veda64::ir::Expr& e) { return veda64::ir::to_string(e); })
+        ;
+
+    nb::enum_<veda64::ir::Effect::Kind>(ir_mod, "EffectKind")
+        .value("Assign", veda64::ir::Effect::Kind::Assign)
+        .value("Store", veda64::ir::Effect::Kind::Store)
+        .value("Branch", veda64::ir::Effect::Kind::Branch)
+        .value("CBranch", veda64::ir::Effect::Kind::CBranch)
+        .value("Call", veda64::ir::Effect::Kind::Call)
+        .value("Nop", veda64::ir::Effect::Kind::Nop);
+
+    nb::class_<veda64::ir::Effect>(ir_mod, "Effect")
+        .def_ro("kind", &veda64::ir::Effect::kind)
+        .def_ro("dest", &veda64::ir::Effect::dest)
+        .def_ro("expr", &veda64::ir::Effect::expr)
+        .def_ro("value", &veda64::ir::Effect::value)
+        .def_ro("size", &veda64::ir::Effect::size)
+        .def("__repr__", [](const veda64::ir::Effect& e) { return veda64::ir::to_string(e); })
+        ;
+
+    nb::class_<veda64::ir::Ast>(ir_mod, "Ast")
+        .def_ro("effects", &veda64::ir::Ast::effects)
+        .def("__repr__", [](const veda64::ir::Ast& a) { return veda64::ir::to_string(a); })
+        .def("__len__", [](const veda64::ir::Ast& a) { return a.effects.size(); })
+        ;
+
+    ir_mod.def("lift_ast", [](uint32_t insn, veda64::ir::IrDetail detail) { return veda64::ir::lift_ast(insn, detail); },
+        "insn"_a, "detail"_a = veda64::ir::IrDetail::Semantic, "Lift ARM64 instruction to AST expression tree");
+
+    // --- Context + execute bindings ---
+    nb::class_<veda64::ir::Context>(ir_mod, "Context")
+        .def(nb::init<>())
+        .def("get_gpr", [](const veda64::ir::Context& c, int reg) -> uint64_t {
+            if (reg < 0 || reg > 31) return 0;
+            return c.gpr[reg];
+        }, "reg"_a)
+        .def("set_gpr", [](veda64::ir::Context& c, int reg, uint64_t val) {
+            if (reg >= 0 && reg <= 31) c.gpr[reg] = val;
+        }, "reg"_a, "val"_a)
+        .def("get_flag", [](const veda64::ir::Context& c, int idx) -> int {
+            if (idx < 0 || idx > 3) return 0;
+            return c.flags[idx];
+        }, "idx"_a)
+        .def("set_flag", [](veda64::ir::Context& c, int idx, int val) {
+            if (idx >= 0 && idx <= 3) c.flags[idx] = val ? 1 : 0;
+        }, "idx"_a, "val"_a)
+        .def_rw("pc", &veda64::ir::Context::pc)
+        .def_rw("halted", &veda64::ir::Context::halted)
+        ;
+
+    ir_mod.def("execute", [](veda64::ir::Context& ctx, uint32_t insn) {
+        if (!ctx.memory) {
+            static std::vector<uint8_t> default_mem(65536, 0);
+            ctx.memory = default_mem.data();
+            ctx.memory_size = default_mem.size();
+        }
+        veda64::ir::execute(ctx, insn);
+    }, "ctx"_a, "insn"_a, "Execute a single ARM64 instruction against a context");
 
 #endif // !VEDA64_NO_IR
 }

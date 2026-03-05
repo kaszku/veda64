@@ -5,39 +5,64 @@
 #ifndef VEDA64_NO_IR
 
 #include "ir_internal.hpp"
+#include "veda64/types.hpp"
+#include "veda64/operand.hpp"
+#include <unordered_map>
 
 namespace veda64::ir {
 
 // ============================================================================
-// Field extractors
+// Operand helpers — extract from decoded Instruction
 // ============================================================================
 
-static uint32_t extract_field(uint32_t insn, FieldId f) {
-    switch (f) {
-    case FieldId::Rd:    return insn & 0x1F;
-    case FieldId::Rn:    return (insn >> 5) & 0x1F;
-    case FieldId::Rm:    return (insn >> 16) & 0x1F;
-    case FieldId::Ra:    return (insn >> 10) & 0x1F;
-    case FieldId::Imm12: return (insn >> 10) & 0xFFF;
-    case FieldId::Imm16: return (insn >> 5) & 0xFFFF;
-    case FieldId::Imm26: return insn & 0x3FFFFFF;
-    case FieldId::Imm19: return (insn >> 5) & 0x7FFFF;
-    case FieldId::Imm14: return (insn >> 5) & 0x3FFF;
-    case FieldId::Imm9:  return (insn >> 12) & 0x1FF;
-    case FieldId::Sf:    return (insn >> 31) & 1;
-    case FieldId::Shift: return (insn >> 22) & 3;
-    case FieldId::Imm6:  return (insn >> 10) & 0x3F;
-    case FieldId::Opc:   return (insn >> 29) & 3;
-    case FieldId::Op:    return (insn >> 30) & 1;
-    case FieldId::S:     return (insn >> 29) & 1;
-    case FieldId::Cond:  return (insn >> 12) & 0xF;
-    case FieldId::None:  return 0;
-    }
-    return 0;
+static uint32_t op_reg(const Instruction& insn, int idx) {
+    return register_num(insn.operands[idx].r.reg);
 }
 
-static uint8_t reg_size(uint32_t insn) {
-    return (insn >> 31) & 1 ? 8 : 4;
+static uint8_t op_reg_sz(const Instruction& insn, int idx) {
+    auto r = insn.operands[idx].r.reg;
+    // GP: W regs (0-32) = 4 bytes, X regs (33-65) = 8 bytes
+    auto v = static_cast<uint16_t>(r);
+    if (v <= 65) return (v >= 33) ? 8 : 4;
+    return 8; // default for other reg types
+}
+
+static int64_t op_imm(const Instruction& insn, int idx) {
+    auto& op = insn.operands[idx];
+    if (op.type == OperandType::SignedImmediate || op.type == OperandType::Label)
+        return op.si.offset;
+    if (op.type == OperandType::Relative)
+        return static_cast<int64_t>(op.iv.value);
+    return static_cast<int64_t>(op.iv.value);
+}
+
+static int64_t op_mem_offset(const Instruction& insn, int idx) {
+    return insn.operands[idx].mem.offset;
+}
+
+static uint32_t op_mem_base(const Instruction& insn, int idx) {
+    return register_num(static_cast<Register>(insn.operands[idx].mem.base));
+}
+
+static uint8_t arr_elem_size(Register r) {
+    Arrangement a = register_arrangement(r);
+    switch (a) {
+    case Arrangement::B: case Arrangement::B8: case Arrangement::B16: return 1;
+    case Arrangement::H: case Arrangement::H4: case Arrangement::H8: return 2;
+    case Arrangement::S: case Arrangement::S2: case Arrangement::S4: return 4;
+    case Arrangement::D: case Arrangement::D1: case Arrangement::D2: return 8;
+    case Arrangement::Q: case Arrangement::Q1: return 16;
+    default: return 4; // fallback
+    }
+}
+
+static uint8_t arr_vec_size(Register r) {
+    Arrangement a = register_arrangement(r);
+    switch (a) {
+    case Arrangement::B8: case Arrangement::H4: case Arrangement::S2: case Arrangement::D1: return 8;
+    case Arrangement::B16: case Arrangement::H8: case Arrangement::S4: case Arrangement::D2: return 16;
+    default: return 16;
+    }
 }
 
 // ============================================================================
@@ -80,12 +105,13 @@ static Op make_op3(Opcode opc, VarNode out, VarNode in0, VarNode in1, VarNode in
     return o;
 }
 
-static Lifted interpret_gp_binop(uint32_t insn, const IrEntry& e) {
+// GP binary: Rd, Rn, Rm [, shift]
+static Lifted interpret_gp_binop(const Instruction& insn, const IrEntry& e, IrDetail) {
     Lifted l;
-    uint8_t sz = reg_size(insn);
-    uint32_t rd = extract_field(insn, e.dst);
-    uint32_t rn = extract_field(insn, e.src1);
-    uint32_t rm = extract_field(insn, e.src2);
+    uint8_t sz = op_reg_sz(insn, 0);
+    uint32_t rd = op_reg(insn, 0);
+    uint32_t rn = op_reg(insn, 1);
+    uint32_t rm = op_reg(insn, 2);
 
     auto t0 = next_temp(sz);
     auto t1 = next_temp(sz);
@@ -98,26 +124,68 @@ static Lifted interpret_gp_binop(uint32_t insn, const IrEntry& e) {
     return l;
 }
 
-static Lifted interpret_gp_binop_flags(uint32_t insn, const IrEntry& e) {
-    Lifted l = interpret_gp_binop(insn, e);
+static void emit_flags(Lifted& l, VarNode result, VarNode a, VarNode b, bool is_sub, IrDetail detail) {
+    uint8_t sz = result.size;
+    int msb = sz * 8 - 1;
+    // N = shr result, msb
+    l.ops.push_back(make_op2(Opcode::SHR, VarNode::flags_n(), result, VarNode::constant(msb, sz)));
+    // Z = cmp_eq result, 0
+    l.ops.push_back(make_op2(Opcode::CMP_EQ, VarNode::flags_z(), result, VarNode::constant(0, sz)));
+    // C
+    if (detail == IrDetail::Semantic) {
+        l.ops.push_back(make_op2(is_sub ? Opcode::CARRY_SUB : Opcode::CARRY_ADD,
+            VarNode::flags_c(), a, b));
+    } else {
+        if (is_sub)
+            l.ops.push_back(make_op2(Opcode::CMP_ULE, VarNode::flags_c(), b, a));
+        else
+            l.ops.push_back(make_op2(Opcode::CMP_ULT, VarNode::flags_c(), result, a));
+    }
+    // V
+    if (detail == IrDetail::Semantic) {
+        l.ops.push_back(make_op2(is_sub ? Opcode::OVERFLOW_SUB : Opcode::OVERFLOW_ADD,
+            VarNode::flags_v(), a, b));
+    } else {
+        if (is_sub) {
+            auto t1 = next_temp(sz); // a ^ b
+            auto t2 = next_temp(sz); // a ^ result
+            auto t3 = next_temp(sz); // t1 & t2
+            l.ops.push_back(make_op2(Opcode::XOR, t1, a, b));
+            l.ops.push_back(make_op2(Opcode::XOR, t2, a, result));
+            l.ops.push_back(make_op2(Opcode::AND, t3, t1, t2));
+            l.ops.push_back(make_op2(Opcode::SHR, VarNode::flags_v(), t3, VarNode::constant(msb, sz)));
+        } else {
+            auto t1 = next_temp(sz); // a ^ result
+            auto t2 = next_temp(sz); // b ^ result
+            auto t3 = next_temp(sz); // t1 & t2
+            l.ops.push_back(make_op2(Opcode::XOR, t1, a, result));
+            l.ops.push_back(make_op2(Opcode::XOR, t2, b, result));
+            l.ops.push_back(make_op2(Opcode::AND, t3, t1, t2));
+            l.ops.push_back(make_op2(Opcode::SHR, VarNode::flags_v(), t3, VarNode::constant(msb, sz)));
+        }
+    }
+}
+
+static Lifted interpret_gp_binop_flags(const Instruction& insn, const IrEntry& e, IrDetail detail) {
+    Lifted l = interpret_gp_binop(insn, e, detail);
+    // The last op is COPY result -> gpr(rd). The input is the temp holding the result.
     auto result = l.ops.back().inputs[0];
-    Op fw;
-    fw.opcode = Opcode::FLAG_WRITE;
-    fw.output = VarNode::flags();
-    fw.inputs[0] = result;
-    fw.num_inputs = 1;
-    l.ops.push_back(fw);
+    // a and b are the inputs to the binop (3rd from last op)
+    auto& binop = l.ops[l.ops.size() - 2];
+    auto a = binop.inputs[0];
+    auto b = binop.inputs[1];
+    bool is_sub = (e.opcode == Opcode::SUB);
+    emit_flags(l, result, a, b, is_sub, detail);
     return l;
 }
 
-static Lifted interpret_gp_binop_imm(uint32_t insn, const IrEntry& e) {
+// GP binary immediate: Rd, Rn, #imm [, shift]
+static Lifted interpret_gp_binop_imm(const Instruction& insn, const IrEntry& e, IrDetail) {
     Lifted l;
-    uint8_t sz = reg_size(insn);
-    uint32_t rd = extract_field(insn, e.dst);
-    uint32_t rn = extract_field(insn, e.src1);
-    uint32_t imm = extract_field(insn, FieldId::Imm12);
-    uint32_t sh = (insn >> 22) & 1;
-    if (sh) imm <<= 12;
+    uint8_t sz = op_reg_sz(insn, 0);
+    uint32_t rd = op_reg(insn, 0);
+    uint32_t rn = op_reg(insn, 1);
+    int64_t imm = op_imm(insn, 2);
 
     auto t0 = next_temp(sz);
     auto t1 = next_temp(sz);
@@ -128,24 +196,30 @@ static Lifted interpret_gp_binop_imm(uint32_t insn, const IrEntry& e) {
     return l;
 }
 
-static Lifted interpret_gp_binop_imm_flags(uint32_t insn, const IrEntry& e) {
-    Lifted l = interpret_gp_binop_imm(insn, e);
+static Lifted interpret_gp_binop_imm_flags(const Instruction& insn, const IrEntry& e, IrDetail detail) {
+    Lifted l = interpret_gp_binop_imm(insn, e, detail);
+    // Last op is COPY result -> gpr(rd). Second-to-last is the binop.
     auto result = l.ops[l.ops.size() - 2].output;
-    Op fw;
-    fw.opcode = Opcode::FLAG_WRITE;
-    fw.output = VarNode::flags();
-    fw.inputs[0] = result;
-    fw.num_inputs = 1;
-    l.ops.push_back(fw);
+    auto& binop = l.ops[l.ops.size() - 2];
+    auto a = binop.inputs[0];
+    auto b = binop.inputs[1];
+    bool is_sub = (e.opcode == Opcode::SUB);
+    emit_flags(l, result, a, b, is_sub, detail);
     return l;
 }
 
-static Lifted interpret_gp_move_imm(uint32_t insn, const IrEntry& e) {
+// GP move wide: Rd, #imm
+static Lifted interpret_gp_move_imm(const Instruction& insn, const IrEntry& e, IrDetail) {
     Lifted l;
-    uint8_t sz = reg_size(insn);
-    uint32_t rd = extract_field(insn, e.dst);
-    uint32_t imm16 = extract_field(insn, FieldId::Imm16);
-    uint32_t hw = (insn >> 21) & 3;
+    uint8_t sz = op_reg_sz(insn, 0);
+    uint32_t rd = op_reg(insn, 0);
+    // The decoder already computes the shifted immediate and handles MOVN inversion
+    // For MOVZ/MOVN, operand 1 is the immediate with hw shift applied
+    // We still need to handle hw shift + NOT for MOVN from raw bits
+    // because the decoder may present the aliased form
+    uint32_t raw = insn.raw_value;
+    uint32_t imm16 = (raw >> 5) & 0xFFFF;
+    uint32_t hw = (raw >> 21) & 3;
     int64_t val = static_cast<int64_t>(imm16) << (hw * 16);
     if (e.opcode == Opcode::NOT) val = ~val;
 
@@ -155,12 +229,13 @@ static Lifted interpret_gp_move_imm(uint32_t insn, const IrEntry& e) {
     return l;
 }
 
-static Lifted interpret_gp_div(uint32_t insn, const IrEntry& e) {
+// GP divide: Rd, Rn, Rm
+static Lifted interpret_gp_div(const Instruction& insn, const IrEntry& e, IrDetail) {
     Lifted l;
-    uint8_t sz = reg_size(insn);
-    uint32_t rd = extract_field(insn, e.dst);
-    uint32_t rn = extract_field(insn, e.src1);
-    uint32_t rm = extract_field(insn, e.src2);
+    uint8_t sz = op_reg_sz(insn, 0);
+    uint32_t rd = op_reg(insn, 0);
+    uint32_t rn = op_reg(insn, 1);
+    uint32_t rm = op_reg(insn, 2);
 
     auto t0 = next_temp(sz);
     auto t1 = next_temp(sz);
@@ -173,13 +248,15 @@ static Lifted interpret_gp_div(uint32_t insn, const IrEntry& e) {
     return l;
 }
 
-static Lifted interpret_gp_mul(uint32_t insn, const IrEntry& e) {
+// GP multiply: Rd, Rn, Rm [, Ra]
+static Lifted interpret_gp_mul(const Instruction& insn, const IrEntry& e, IrDetail) {
     Lifted l;
-    uint8_t sz = reg_size(insn);
-    uint32_t rd = extract_field(insn, e.dst);
-    uint32_t rn = extract_field(insn, e.src1);
-    uint32_t rm = extract_field(insn, e.src2);
-    uint32_t ra = extract_field(insn, FieldId::Ra);
+    uint8_t sz = op_reg_sz(insn, 0);
+    uint32_t rd = op_reg(insn, 0);
+    uint32_t rn = op_reg(insn, 1);
+    uint32_t rm = op_reg(insn, 2);
+    // Ra from raw bits (operand 3 may or may not exist depending on alias)
+    uint32_t ra = (insn.raw_value >> 10) & 0x1F;
 
     auto tn = next_temp(sz);
     auto tm = next_temp(sz);
@@ -207,12 +284,13 @@ static Lifted interpret_gp_mul(uint32_t insn, const IrEntry& e) {
     return l;
 }
 
-static Lifted interpret_gp_shift(uint32_t insn, const IrEntry& e) {
+// GP shift: Rd, Rn, Rm
+static Lifted interpret_gp_shift(const Instruction& insn, const IrEntry& e, IrDetail) {
     Lifted l;
-    uint8_t sz = reg_size(insn);
-    uint32_t rd = extract_field(insn, e.dst);
-    uint32_t rn = extract_field(insn, e.src1);
-    uint32_t rm = extract_field(insn, e.src2);
+    uint8_t sz = op_reg_sz(insn, 0);
+    uint32_t rd = op_reg(insn, 0);
+    uint32_t rn = op_reg(insn, 1);
+    uint32_t rm = op_reg(insn, 2);
 
     auto t0 = next_temp(sz);
     auto t1 = next_temp(sz);
@@ -225,12 +303,13 @@ static Lifted interpret_gp_shift(uint32_t insn, const IrEntry& e) {
     return l;
 }
 
-static Lifted interpret_gp_bitfield(uint32_t insn, const IrEntry& e) {
+// GP bitfield: Rd, Rn, #immr, #imms
+static Lifted interpret_gp_bitfield(const Instruction& insn, const IrEntry& e, IrDetail) {
     (void)e;
     Lifted l;
-    uint8_t sz = reg_size(insn);
-    uint32_t rd = extract_field(insn, FieldId::Rd);
-    uint32_t rn = extract_field(insn, FieldId::Rn);
+    uint8_t sz = op_reg_sz(insn, 0);
+    uint32_t rd = op_reg(insn, 0);
+    uint32_t rn = op_reg(insn, 1);
 
     auto t0 = next_temp(sz);
     auto t1 = next_temp(sz);
@@ -240,12 +319,16 @@ static Lifted interpret_gp_bitfield(uint32_t insn, const IrEntry& e) {
     return l;
 }
 
-static Lifted interpret_load_reg(uint32_t insn, const IrEntry& e) {
+// Load: Rt, [Xn, #off]
+static Lifted interpret_load_reg(const Instruction& insn, const IrEntry& e, IrDetail) {
+    (void)e;
     Lifted l;
-    uint8_t sz = 1 << ((insn >> 30) & 3);
-    uint32_t rd = extract_field(insn, e.dst);
-    uint32_t rn = extract_field(insn, e.src1);
-    int32_t imm = static_cast<int32_t>(extract_field(insn, FieldId::Imm12)) * sz;
+    // Size from raw bits [31:30]
+    uint8_t sz = 1 << ((insn.raw_value >> 30) & 3);
+    uint32_t rd = op_reg(insn, 0);
+    // Operand 1 is Memory
+    uint32_t rn = op_mem_base(insn, 1);
+    int64_t imm = op_mem_offset(insn, 1);
 
     auto taddr = next_temp(8);
     auto tval = next_temp(sz);
@@ -263,12 +346,14 @@ static Lifted interpret_load_reg(uint32_t insn, const IrEntry& e) {
     return l;
 }
 
-static Lifted interpret_store_reg(uint32_t insn, const IrEntry& e) {
+// Store: Rt, [Xn, #off]
+static Lifted interpret_store_reg(const Instruction& insn, const IrEntry& e, IrDetail) {
+    (void)e;
     Lifted l;
-    uint8_t sz = 1 << ((insn >> 30) & 3);
-    uint32_t rt = extract_field(insn, e.dst);
-    uint32_t rn = extract_field(insn, e.src1);
-    int32_t imm = static_cast<int32_t>(extract_field(insn, FieldId::Imm12)) * sz;
+    uint8_t sz = 1 << ((insn.raw_value >> 30) & 3);
+    uint32_t rt = op_reg(insn, 0);
+    uint32_t rn = op_mem_base(insn, 1);
+    int64_t imm = op_mem_offset(insn, 1);
 
     auto taddr = next_temp(8);
     auto tval = next_temp(sz);
@@ -282,20 +367,20 @@ static Lifted interpret_store_reg(uint32_t insn, const IrEntry& e) {
     return l;
 }
 
-static Lifted interpret_load_pair(uint32_t insn, const IrEntry& e) {
+// Load pair: Rt1, Rt2, [Xn, #off]
+static Lifted interpret_load_pair(const Instruction& insn, const IrEntry& e, IrDetail) {
     (void)e;
     Lifted l;
-    uint8_t sz = ((insn >> 31) & 1) ? 8 : 4;
-    uint32_t rt1 = extract_field(insn, FieldId::Rd);
-    uint32_t rt2 = extract_field(insn, FieldId::Ra); // Rt2 is at bits [14:10]
-    uint32_t rn = extract_field(insn, FieldId::Rn);
-    int32_t imm7 = static_cast<int32_t>((insn >> 15) & 0x7F);
-    if (imm7 & 0x40) imm7 |= ~0x7F; // sign-extend
-    imm7 *= sz;
+    uint8_t sz = op_reg_sz(insn, 0);
+    uint32_t rt1 = op_reg(insn, 0);
+    uint32_t rt2 = op_reg(insn, 1);
+    // Operand 2 is Memory
+    uint32_t rn = op_mem_base(insn, 2);
+    int64_t imm = op_mem_offset(insn, 2);
 
     auto taddr = next_temp(8);
     l.ops.push_back(make_op2(Opcode::ADD, taddr,
-        VarNode::gpr(rn, 8), VarNode::constant(imm7, 8)));
+        VarNode::gpr(rn, 8), VarNode::constant(imm, 8)));
 
     auto tv1 = next_temp(sz);
     l.ops.push_back(make_op(Opcode::LOAD, tv1, taddr));
@@ -309,20 +394,19 @@ static Lifted interpret_load_pair(uint32_t insn, const IrEntry& e) {
     return l;
 }
 
-static Lifted interpret_store_pair(uint32_t insn, const IrEntry& e) {
+// Store pair: Rt1, Rt2, [Xn, #off]
+static Lifted interpret_store_pair(const Instruction& insn, const IrEntry& e, IrDetail) {
     (void)e;
     Lifted l;
-    uint8_t sz = ((insn >> 31) & 1) ? 8 : 4;
-    uint32_t rt1 = extract_field(insn, FieldId::Rd);
-    uint32_t rt2 = extract_field(insn, FieldId::Ra);
-    uint32_t rn = extract_field(insn, FieldId::Rn);
-    int32_t imm7 = static_cast<int32_t>((insn >> 15) & 0x7F);
-    if (imm7 & 0x40) imm7 |= ~0x7F;
-    imm7 *= sz;
+    uint8_t sz = op_reg_sz(insn, 0);
+    uint32_t rt1 = op_reg(insn, 0);
+    uint32_t rt2 = op_reg(insn, 1);
+    uint32_t rn = op_mem_base(insn, 2);
+    int64_t imm = op_mem_offset(insn, 2);
 
     auto taddr = next_temp(8);
     l.ops.push_back(make_op2(Opcode::ADD, taddr,
-        VarNode::gpr(rn, 8), VarNode::constant(imm7, 8)));
+        VarNode::gpr(rn, 8), VarNode::constant(imm, 8)));
 
     auto tv1 = next_temp(sz);
     l.ops.push_back(make_op(Opcode::COPY, tv1, VarNode::gpr(rt1, sz)));
@@ -340,11 +424,10 @@ static Lifted interpret_store_pair(uint32_t insn, const IrEntry& e) {
     return l;
 }
 
-static Lifted interpret_branch_uncond(uint32_t insn, const IrEntry& e) {
+// Unconditional branch: label (op[0] = Label/Relative)
+static Lifted interpret_branch_uncond(const Instruction& insn, const IrEntry& e, IrDetail) {
     Lifted l;
-    int32_t imm26 = static_cast<int32_t>(extract_field(insn, FieldId::Imm26));
-    if (imm26 & (1 << 25)) imm26 |= ~((1 << 26) - 1);
-    int64_t offset = static_cast<int64_t>(imm26) << 2;
+    int64_t offset = op_imm(insn, 0);
 
     Op o;
     o.opcode = e.opcode; // BRANCH or CALL
@@ -354,15 +437,62 @@ static Lifted interpret_branch_uncond(uint32_t insn, const IrEntry& e) {
     return l;
 }
 
-static Lifted interpret_branch_cond(uint32_t insn, const IrEntry&) {
-    Lifted l;
-    int32_t imm19 = static_cast<int32_t>(extract_field(insn, FieldId::Imm19));
-    if (imm19 & (1 << 18)) imm19 |= ~((1 << 19) - 1);
-    int64_t offset = static_cast<int64_t>(imm19) << 2;
-    uint32_t cond = insn & 0xF;
+// Expand a condition code into a boolean temp from individual N/Z/C/V flags
+static VarNode emit_condition(Lifted& l, uint32_t cond) {
+    auto N = VarNode::flags_n();
+    auto Z = VarNode::flags_z();
+    auto C = VarNode::flags_c();
+    auto V = VarNode::flags_v();
+    VarNode result;
+    switch (cond >> 1) {
+    case 0: // EQ/NE
+        result = Z; break;
+    case 1: // CS/CC
+        result = C; break;
+    case 2: // MI/PL
+        result = N; break;
+    case 3: // VS/VC
+        result = V; break;
+    case 4: { // HI/LS: C && !Z
+        auto tnz = next_temp(1);
+        l.ops.push_back(make_op(Opcode::NOT, tnz, Z));
+        auto tr = next_temp(1);
+        l.ops.push_back(make_op2(Opcode::AND, tr, C, tnz));
+        result = tr; break;
+    }
+    case 5: { // GE/LT: N == V
+        auto tr = next_temp(1);
+        l.ops.push_back(make_op2(Opcode::CMP_EQ, tr, N, V));
+        result = tr; break;
+    }
+    case 6: { // GT/LE: (N == V) && !Z
+        auto teq = next_temp(1);
+        l.ops.push_back(make_op2(Opcode::CMP_EQ, teq, N, V));
+        auto tnz = next_temp(1);
+        l.ops.push_back(make_op(Opcode::NOT, tnz, Z));
+        auto tr = next_temp(1);
+        l.ops.push_back(make_op2(Opcode::AND, tr, teq, tnz));
+        result = tr; break;
+    }
+    default: // AL
+        result = VarNode::constant(1, 1); break;
+    }
+    // Invert for odd condition codes (NE, CC, PL, VC, LS, LT, LE)
+    if ((cond & 1) && cond != 15) {
+        auto inv = next_temp(1);
+        l.ops.push_back(make_op(Opcode::NOT, inv, result));
+        return inv;
+    }
+    return result;
+}
 
-    auto tcond = next_temp(1);
-    l.ops.push_back(make_op(Opcode::FLAG_READ, tcond, VarNode::constant(cond, 1)));
+// Conditional branch: label (op[0] = Label, condition in insn.condition)
+static Lifted interpret_branch_cond(const Instruction& insn, const IrEntry&, IrDetail) {
+    Lifted l;
+    int64_t offset = op_imm(insn, 0);
+    uint32_t cond = static_cast<uint32_t>(insn.condition);
+
+    auto tcond = emit_condition(l, cond);
 
     Op o;
     o.opcode = Opcode::CBRANCH;
@@ -373,9 +503,11 @@ static Lifted interpret_branch_cond(uint32_t insn, const IrEntry&) {
     return l;
 }
 
-static Lifted interpret_branch_reg(uint32_t insn, const IrEntry& e) {
+// Branch register: Xn (op[0] = Reg) or no operands (RET uses X30)
+static Lifted interpret_branch_reg(const Instruction& insn, const IrEntry& e, IrDetail) {
     Lifted l;
-    uint32_t rn = extract_field(insn, e.src1);
+    // RET may have no explicit operands (defaults to X30)
+    uint32_t rn = insn.operands.empty() ? 30 : op_reg(insn, 0);
 
     auto taddr = next_temp(8);
     l.ops.push_back(make_op(Opcode::COPY, taddr, VarNode::gpr(rn, 8)));
@@ -388,13 +520,12 @@ static Lifted interpret_branch_reg(uint32_t insn, const IrEntry& e) {
     return l;
 }
 
-static Lifted interpret_compare_branch(uint32_t insn, const IrEntry& e) {
+// Compare and branch: Rt, label
+static Lifted interpret_compare_branch(const Instruction& insn, const IrEntry& e, IrDetail) {
     Lifted l;
-    uint8_t sz = reg_size(insn);
-    uint32_t rt = extract_field(insn, FieldId::Rd);
-    int32_t imm19 = static_cast<int32_t>(extract_field(insn, FieldId::Imm19));
-    if (imm19 & (1 << 18)) imm19 |= ~((1 << 19) - 1);
-    int64_t offset = static_cast<int64_t>(imm19) << 2;
+    uint8_t sz = op_reg_sz(insn, 0);
+    uint32_t rt = op_reg(insn, 0);
+    int64_t offset = op_imm(insn, 1);
 
     auto tval = next_temp(sz);
     auto tcmp = next_temp(1);
@@ -411,17 +542,14 @@ static Lifted interpret_compare_branch(uint32_t insn, const IrEntry& e) {
     return l;
 }
 
-static Lifted interpret_test_branch(uint32_t insn, const IrEntry& e) {
+// Test and branch: Rt, #bit, label
+static Lifted interpret_test_branch(const Instruction& insn, const IrEntry& e, IrDetail) {
     Lifted l;
-    uint32_t rt = extract_field(insn, FieldId::Rd);
-    uint32_t b5 = (insn >> 31) & 1;
-    uint32_t b40 = (insn >> 19) & 0x1F;
-    uint32_t bit_pos = (b5 << 5) | b40;
-    int32_t imm14 = static_cast<int32_t>(extract_field(insn, FieldId::Imm14));
-    if (imm14 & (1 << 13)) imm14 |= ~((1 << 14) - 1);
-    int64_t offset = static_cast<int64_t>(imm14) << 2;
+    uint32_t rt = op_reg(insn, 0);
+    uint32_t bit_pos = static_cast<uint32_t>(op_imm(insn, 1));
+    int64_t offset = op_imm(insn, 2);
 
-    uint8_t sz = b5 ? 8 : 4;
+    uint8_t sz = (bit_pos >= 32) ? 8 : 4;
     auto tval = next_temp(sz);
     auto tbit = next_temp(1);
     auto tmask = VarNode::constant(1LL << bit_pos, sz);
@@ -442,17 +570,17 @@ static Lifted interpret_test_branch(uint32_t insn, const IrEntry& e) {
     return l;
 }
 
-static Lifted interpret_cond_select(uint32_t insn, const IrEntry& e) {
+// Conditional select: Rd, Rn, Rm, cond
+static Lifted interpret_cond_select(const Instruction& insn, const IrEntry& e, IrDetail) {
     (void)e;
     Lifted l;
-    uint8_t sz = reg_size(insn);
-    uint32_t rd = extract_field(insn, FieldId::Rd);
-    uint32_t rn = extract_field(insn, FieldId::Rn);
-    uint32_t rm = extract_field(insn, FieldId::Rm);
-    uint32_t cond = extract_field(insn, FieldId::Cond);
+    uint8_t sz = op_reg_sz(insn, 0);
+    uint32_t rd = op_reg(insn, 0);
+    uint32_t rn = op_reg(insn, 1);
+    uint32_t rm = op_reg(insn, 2);
+    uint32_t cond = static_cast<uint32_t>(insn.condition);
 
-    auto tcond = next_temp(1);
-    l.ops.push_back(make_op(Opcode::FLAG_READ, tcond, VarNode::constant(cond, 1)));
+    auto tcond = emit_condition(l, cond);
 
     Op o;
     o.opcode = Opcode::COPY;
@@ -465,18 +593,12 @@ static Lifted interpret_cond_select(uint32_t insn, const IrEntry& e) {
     return l;
 }
 
-static void simd_arrangement(uint32_t insn, uint8_t& esize_bytes, uint8_t& num_elems) {
-    uint32_t Q = (insn >> 30) & 1;
-    uint32_t size = (insn >> 22) & 3;
-    esize_bytes = 1 << size;
-    num_elems = (Q ? 16 : 8) / esize_bytes;
-}
-
-static Lifted interpret_simd_binop(uint32_t insn, const IrEntry& e) {
+// SIMD binop: Vd.T, Vn.T, Vm.T
+static Lifted interpret_simd_binop(const Instruction& insn, const IrEntry& e, IrDetail) {
     Lifted l;
-    uint32_t rd = extract_field(insn, FieldId::Rd);
-    uint32_t rn = extract_field(insn, FieldId::Rn);
-    uint32_t rm = extract_field(insn, FieldId::Rm);
+    uint32_t rd = op_reg(insn, 0);
+    uint32_t rn = op_reg(insn, 1);
+    uint32_t rm = op_reg(insn, 2);
 
     // Fall back to opaque for UNDEF or unsupported opcodes
     if (e.opcode == Opcode::UNDEF || e.opcode == Opcode::COPY || e.opcode == Opcode::EXTRACT) {
@@ -490,12 +612,12 @@ static Lifted interpret_simd_binop(uint32_t insn, const IrEntry& e) {
         return l;
     }
 
-    // Element-level loop unrolling
-    uint8_t esize = 0, num_elems = 0;
-    simd_arrangement(insn, esize, num_elems);
-    uint8_t vec_size = ((insn >> 30) & 1) ? 16 : 8;
+    // Get element size and vector size from register arrangement
+    uint8_t esize = arr_elem_size(insn.operands[0].r.reg);
+    uint8_t vec_size = arr_vec_size(insn.operands[0].r.reg);
+    uint8_t num_elems = vec_size / esize;
 
-    // Bitwise ops (AND/OR/XOR/NOT) always operate on bytes regardless of size field
+    // Bitwise ops (AND/OR/XOR/NOT) always operate on bytes regardless of arrangement
     bool is_bitwise = (e.opcode == Opcode::AND || e.opcode == Opcode::OR ||
                        e.opcode == Opcode::XOR || e.opcode == Opcode::NOT);
     if (is_bitwise) {
@@ -503,13 +625,7 @@ static Lifted interpret_simd_binop(uint32_t insn, const IrEntry& e) {
         num_elems = vec_size;
     }
 
-    // FP SIMD ops use bit 22 as sz (0=single/4B, 1=double/8B), not standard size field
-    bool is_float = (e.opcode == Opcode::FADD || e.opcode == Opcode::FSUB ||
-                     e.opcode == Opcode::FMUL || e.opcode == Opcode::FDIV);
-    if (is_float) {
-        esize = ((insn >> 22) & 1) ? 8 : 4;
-        num_elems = vec_size / esize;
-    }
+    // FP SIMD ops: arrangement from register is already correct (S4=4B, D2=8B)
 
     auto src1_reg = VarNode::simd(rn, vec_size);
     auto src2_reg = VarNode::simd(rm, vec_size);
@@ -534,10 +650,11 @@ static Lifted interpret_simd_binop(uint32_t insn, const IrEntry& e) {
     return l;
 }
 
-static Lifted interpret_simd_unary(uint32_t insn, const IrEntry& e) {
+// SIMD unary: Vd.T, Vn.T
+static Lifted interpret_simd_unary(const Instruction& insn, const IrEntry& e, IrDetail) {
     Lifted l;
-    uint32_t rd = extract_field(insn, FieldId::Rd);
-    uint32_t rn = extract_field(insn, FieldId::Rn);
+    uint32_t rd = op_reg(insn, 0);
+    uint32_t rn = op_reg(insn, 1);
 
     // Fall back to opaque for UNDEF/COPY or complex ops
     if (e.opcode == Opcode::UNDEF || e.opcode == Opcode::COPY || e.opcode == Opcode::SEXT ||
@@ -550,23 +667,14 @@ static Lifted interpret_simd_unary(uint32_t insn, const IrEntry& e) {
         return l;
     }
 
-    // Element-level loop unrolling
-    uint8_t esize = 0, num_elems = 0;
-    simd_arrangement(insn, esize, num_elems);
-    uint8_t vec_size = ((insn >> 30) & 1) ? 16 : 8;
+    uint8_t esize = arr_elem_size(insn.operands[0].r.reg);
+    uint8_t vec_size = arr_vec_size(insn.operands[0].r.reg);
+    uint8_t num_elems = vec_size / esize;
 
-    // Bitwise ops always operate on bytes regardless of size field
+    // Bitwise ops always operate on bytes
     if (e.opcode == Opcode::NOT) {
         esize = 1;
         num_elems = vec_size;
-    }
-
-    // FP SIMD unary ops use bit 22 as sz (0=single/4B, 1=double/8B)
-    bool is_float = (e.opcode == Opcode::FNEG || e.opcode == Opcode::FABS ||
-                     e.opcode == Opcode::FSQRT);
-    if (is_float) {
-        esize = ((insn >> 22) & 1) ? 8 : 4;
-        num_elems = vec_size / esize;
     }
 
     auto src_reg = VarNode::simd(rn, vec_size);
@@ -589,13 +697,14 @@ static Lifted interpret_simd_unary(uint32_t insn, const IrEntry& e) {
     return l;
 }
 
-static Lifted interpret_fp_binop(uint32_t insn, const IrEntry& e) {
+// Scalar FP binary: Sd, Sn, Sm
+static Lifted interpret_fp_binop(const Instruction& insn, const IrEntry& e, IrDetail) {
     Lifted l;
-    uint32_t rd = extract_field(insn, FieldId::Rd);
-    uint32_t rn = extract_field(insn, FieldId::Rn);
-    uint32_t rm = extract_field(insn, FieldId::Rm);
+    uint32_t rd = op_reg(insn, 0);
+    uint32_t rn = op_reg(insn, 1);
+    uint32_t rm = op_reg(insn, 2);
     // FP type from bits [23:22]: 00=S, 01=D, 11=H
-    uint32_t ftype = (insn >> 22) & 3;
+    uint32_t ftype = (insn.raw_value >> 22) & 3;
     uint8_t sz = (ftype == 1) ? 8 : (ftype == 3) ? 2 : 4;
 
     auto t0 = next_temp(sz);
@@ -609,10 +718,11 @@ static Lifted interpret_fp_binop(uint32_t insn, const IrEntry& e) {
     return l;
 }
 
-static Lifted interpret_fp_convert(uint32_t insn, const IrEntry& e) {
+// FP convert: Sd<->Xn
+static Lifted interpret_fp_convert(const Instruction& insn, const IrEntry& e, IrDetail) {
     Lifted l;
-    uint32_t rd = extract_field(insn, FieldId::Rd);
-    uint32_t rn = extract_field(insn, FieldId::Rn);
+    uint32_t rd = op_reg(insn, 0);
+    uint32_t rn = op_reg(insn, 1);
 
     auto t0 = next_temp(8);
     auto t1 = next_temp(8);
@@ -629,7 +739,7 @@ static Lifted interpret_fp_convert(uint32_t insn, const IrEntry& e) {
     return l;
 }
 
-static Lifted interpret_nop(uint32_t, const IrEntry&) {
+static Lifted interpret_nop(const Instruction&, const IrEntry&, IrDetail) {
     Lifted l;
     Op o;
     o.opcode = Opcode::NOP;
@@ -638,7 +748,7 @@ static Lifted interpret_nop(uint32_t, const IrEntry&) {
     return l;
 }
 
-static Lifted interpret_system(uint32_t, const IrEntry&) {
+static Lifted interpret_system(const Instruction&, const IrEntry&, IrDetail) {
     Lifted l;
     Op o;
     o.opcode = Opcode::UNDEF;
@@ -647,7 +757,7 @@ static Lifted interpret_system(uint32_t, const IrEntry&) {
     return l;
 }
 
-static Lifted interpret_atomic(uint32_t, const IrEntry&) {
+static Lifted interpret_atomic(const Instruction&, const IrEntry&, IrDetail) {
     Lifted l;
     Op o;
     o.opcode = Opcode::UNDEF;
@@ -660,7 +770,7 @@ static Lifted interpret_atomic(uint32_t, const IrEntry&) {
 // Dispatch
 // ============================================================================
 
-using Interpreter = Lifted(*)(uint32_t insn, const IrEntry& e);
+using Interpreter = Lifted(*)(const Instruction& insn, const IrEntry& e, IrDetail detail);
 
 static Interpreter get_interpreter(IrTemplate tpl) {
     switch (tpl) {
@@ -696,14 +806,30 @@ static Interpreter get_interpreter(IrTemplate tpl) {
     return nullptr;
 }
 
-std::optional<Lifted> lift_from_table(uint32_t insn) {
+// Mnemonic-indexed lookup table (built on first call)
+static std::unordered_map<uint16_t, std::vector<size_t>> mnemonic_index;
+static bool mnemonic_index_built = false;
+
+static void build_mnemonic_index() {
+    for (size_t i = 0; i < ir_table_size; ++i)
+        mnemonic_index[static_cast<uint16_t>(ir_table[i].mnemonic)].push_back(i);
+    mnemonic_index_built = true;
+}
+
+std::optional<Lifted> lift_from_instruction(const Instruction& insn, IrDetail detail) {
     temp_idx = 0;
 
-    for (size_t i = 0; i < ir_table_size; ++i) {
-        const auto& e = ir_table[i];
-        if ((insn & e.mask) == e.match) {
+    if (!mnemonic_index_built) build_mnemonic_index();
+
+    auto it = mnemonic_index.find(static_cast<uint16_t>(insn.mnemonic));
+    if (it == mnemonic_index.end()) return std::nullopt;
+
+    uint32_t raw = insn.raw_value;
+    for (size_t idx : it->second) {
+        const auto& e = ir_table[idx];
+        if ((raw & e.mask) == e.match) {
             auto interp = get_interpreter(e.tpl);
-            if (interp) return interp(insn, e);
+            if (interp) return interp(insn, e, detail);
             return std::nullopt;
         }
     }

@@ -11267,6 +11267,12 @@ class ARM64XMLParser:
         code.append("target_link_libraries(veda64-disasm PRIVATE veda64)")
         code.append("set_target_properties(veda64-disasm PROPERTIES FOLDER \"tools\")")
         code.append("")
+        code.append("if(NOT VEDA64_NO_IR)")
+        code.append("    add_executable(veda64-interp tools/veda64-interp.cpp)")
+        code.append("    target_link_libraries(veda64-interp PRIVATE veda64)")
+        code.append("    set_target_properties(veda64-interp PROPERTIES FOLDER \"tools\")")
+        code.append("endif()")
+        code.append("")
         code.append("# Enable testing")
         code.append("if(VEDA64_BUILD_TESTS)")
         code.append("    enable_testing()")
@@ -11356,6 +11362,7 @@ class ARM64XMLParser:
         code.append("#include <nanobind/stl/optional.h>")
         code.append("#include <nanobind/stl/vector.h>")
         code.append("#include <nanobind/stl/string.h>")
+        code.append("#include <nanobind/stl/shared_ptr.h>")
         code.append("#include <nanobind/make_iterator.h>")
         code.append("#include <veda64.hpp>")
         code.append("#ifndef VEDA64_NO_IR")
@@ -11496,7 +11503,7 @@ class ARM64XMLParser:
             'ZEXT', 'SEXT', 'TRUNC', 'INT2FLOAT', 'FLOAT2INT', 'FLOAT2FLOAT',
             'FADD', 'FSUB', 'FMUL', 'FDIV', 'FSQRT', 'FNEG', 'FABS',
             'BRANCH', 'CBRANCH', 'CALL', 'RET',
-            'ADD_CARRY', 'SUB_CARRY', 'FLAG_READ', 'FLAG_WRITE',
+            'ADD_CARRY', 'SUB_CARRY', 'CARRY_ADD', 'CARRY_SUB', 'OVERFLOW_ADD', 'OVERFLOW_SUB',
             'EXTRACT', 'INSERT', 'CONCAT',
             'VEXTRACT_ELEM', 'VINSERT_ELEM', 'VBROADCAST',
             'BARRIER', 'NOP', 'UNDEF',
@@ -11513,6 +11520,10 @@ class ARM64XMLParser:
         for sp in ir_spaces:
             code.append(f"        .value(\"{sp}\", veda64::ir::Space::{sp})")
         code.append("        ;")
+        code.append("")
+        code.append("    nb::enum_<veda64::ir::IrDetail>(ir_mod, \"IrDetail\")")
+        code.append("        .value(\"Semantic\", veda64::ir::IrDetail::Semantic)")
+        code.append("        .value(\"Expanded\", veda64::ir::IrDetail::Expanded);")
         code.append("")
 
         # VarNode class
@@ -11559,6 +11570,77 @@ class ARM64XMLParser:
         code.append("")
         code.append("    ir_mod.def(\"opcode_name\", &veda64::ir::opcode_name,")
         code.append("        \"op\"_a, \"Get string name of an IR opcode\");")
+        code.append("")
+        code.append("    // --- AST bindings ---")
+        code.append("    nb::enum_<veda64::ir::Expr::Kind>(ir_mod, \"ExprKind\")")
+        code.append("        .value(\"Var\", veda64::ir::Expr::Kind::Var)")
+        code.append("        .value(\"Const\", veda64::ir::Expr::Kind::Const)")
+        code.append("        .value(\"Op\", veda64::ir::Expr::Kind::Op);")
+        code.append("")
+        code.append("    nb::class_<veda64::ir::Expr>(ir_mod, \"Expr\")")
+        code.append("        .def_ro(\"kind\", &veda64::ir::Expr::kind)")
+        code.append("        .def_ro(\"opcode\", &veda64::ir::Expr::opcode)")
+        code.append("        .def_ro(\"var\", &veda64::ir::Expr::var)")
+        code.append("        .def_ro(\"children\", &veda64::ir::Expr::children)")
+        code.append("        .def_ro(\"size\", &veda64::ir::Expr::size)")
+        code.append("        .def(\"__repr__\", [](const veda64::ir::Expr& e) { return veda64::ir::to_string(e); })")
+        code.append("        ;")
+        code.append("")
+        code.append("    nb::enum_<veda64::ir::Effect::Kind>(ir_mod, \"EffectKind\")")
+        code.append("        .value(\"Assign\", veda64::ir::Effect::Kind::Assign)")
+        code.append("        .value(\"Store\", veda64::ir::Effect::Kind::Store)")
+        code.append("        .value(\"Branch\", veda64::ir::Effect::Kind::Branch)")
+        code.append("        .value(\"CBranch\", veda64::ir::Effect::Kind::CBranch)")
+        code.append("        .value(\"Call\", veda64::ir::Effect::Kind::Call)")
+        code.append("        .value(\"Nop\", veda64::ir::Effect::Kind::Nop);")
+        code.append("")
+        code.append("    nb::class_<veda64::ir::Effect>(ir_mod, \"Effect\")")
+        code.append("        .def_ro(\"kind\", &veda64::ir::Effect::kind)")
+        code.append("        .def_ro(\"dest\", &veda64::ir::Effect::dest)")
+        code.append("        .def_ro(\"expr\", &veda64::ir::Effect::expr)")
+        code.append("        .def_ro(\"value\", &veda64::ir::Effect::value)")
+        code.append("        .def_ro(\"size\", &veda64::ir::Effect::size)")
+        code.append("        .def(\"__repr__\", [](const veda64::ir::Effect& e) { return veda64::ir::to_string(e); })")
+        code.append("        ;")
+        code.append("")
+        code.append("    nb::class_<veda64::ir::Ast>(ir_mod, \"Ast\")")
+        code.append("        .def_ro(\"effects\", &veda64::ir::Ast::effects)")
+        code.append("        .def(\"__repr__\", [](const veda64::ir::Ast& a) { return veda64::ir::to_string(a); })")
+        code.append("        .def(\"__len__\", [](const veda64::ir::Ast& a) { return a.effects.size(); })")
+        code.append("        ;")
+        code.append("")
+        code.append("    ir_mod.def(\"lift_ast\", [](uint32_t insn, veda64::ir::IrDetail detail) { return veda64::ir::lift_ast(insn, detail); },")
+        code.append("        \"insn\"_a, \"detail\"_a = veda64::ir::IrDetail::Semantic, \"Lift ARM64 instruction to AST expression tree\");")
+        code.append("")
+        code.append("    // --- Context + execute bindings ---")
+        code.append("    nb::class_<veda64::ir::Context>(ir_mod, \"Context\")")
+        code.append("        .def(nb::init<>())")
+        code.append("        .def(\"get_gpr\", [](const veda64::ir::Context& c, int reg) -> uint64_t {")
+        code.append("            if (reg < 0 || reg > 31) return 0;")
+        code.append("            return c.gpr[reg];")
+        code.append("        }, \"reg\"_a)")
+        code.append("        .def(\"set_gpr\", [](veda64::ir::Context& c, int reg, uint64_t val) {")
+        code.append("            if (reg >= 0 && reg <= 31) c.gpr[reg] = val;")
+        code.append("        }, \"reg\"_a, \"val\"_a)")
+        code.append("        .def(\"get_flag\", [](const veda64::ir::Context& c, int idx) -> int {")
+        code.append("            if (idx < 0 || idx > 3) return 0;")
+        code.append("            return c.flags[idx];")
+        code.append("        }, \"idx\"_a)")
+        code.append("        .def(\"set_flag\", [](veda64::ir::Context& c, int idx, int val) {")
+        code.append("            if (idx >= 0 && idx <= 3) c.flags[idx] = val ? 1 : 0;")
+        code.append("        }, \"idx\"_a, \"val\"_a)")
+        code.append("        .def_rw(\"pc\", &veda64::ir::Context::pc)")
+        code.append("        .def_rw(\"halted\", &veda64::ir::Context::halted)")
+        code.append("        ;")
+        code.append("")
+        code.append("    ir_mod.def(\"execute\", [](veda64::ir::Context& ctx, uint32_t insn) {")
+        code.append("        if (!ctx.memory) {")
+        code.append("            static std::vector<uint8_t> default_mem(65536, 0);")
+        code.append("            ctx.memory = default_mem.data();")
+        code.append("            ctx.memory_size = default_mem.size();")
+        code.append("        }")
+        code.append("        veda64::ir::execute(ctx, insn);")
+        code.append("    }, \"ctx\"_a, \"insn\"_a, \"Execute a single ARM64 instruction against a context\");")
         code.append("")
         code.append("#endif // !VEDA64_NO_IR")
 
@@ -12112,6 +12194,9 @@ class ARM64XMLParser:
         code.append("    std::cerr << \"  -b, --big-endian  Input values are in big-endian byte order\\n\";")
         code.append("#ifndef VEDA64_NO_IR")
         code.append("    std::cerr << \"      --ir          Show IR (intermediate representation) output\\n\";")
+        code.append("    std::cerr << \"      --ir-expanded Show IR with expanded flag primitives\\n\";")
+        code.append("    std::cerr << \"      --ast         Show AST (expression tree) output\\n\";")
+        code.append("    std::cerr << \"      --ast-expanded Show AST with expanded flag primitives\\n\";")
         code.append("#endif")
         code.append("    std::cerr << \"  -h, --help        Show this help message\\n\";")
         code.append("    std::cerr << \"\\n\";")
@@ -12134,6 +12219,8 @@ class ARM64XMLParser:
         code.append("")
         code.append("    bool big_endian = false;")
         code.append("    bool show_ir = false;")
+        code.append("    bool ir_expanded = false;")
+        code.append("    bool show_ast = false;")
         code.append("    int start_idx = 1;")
         code.append("")
         code.append("    // Parse options")
@@ -12143,6 +12230,17 @@ class ARM64XMLParser:
         code.append("            start_idx++;")
         code.append("        } else if (std::strcmp(argv[start_idx], \"--ir\") == 0) {")
         code.append("            show_ir = true;")
+        code.append("            start_idx++;")
+        code.append("        } else if (std::strcmp(argv[start_idx], \"--ir-expanded\") == 0) {")
+        code.append("            show_ir = true;")
+        code.append("            ir_expanded = true;")
+        code.append("            start_idx++;")
+        code.append("        } else if (std::strcmp(argv[start_idx], \"--ast\") == 0) {")
+        code.append("            show_ast = true;")
+        code.append("            start_idx++;")
+        code.append("        } else if (std::strcmp(argv[start_idx], \"--ast-expanded\") == 0) {")
+        code.append("            show_ast = true;")
+        code.append("            ir_expanded = true;")
         code.append("            start_idx++;")
         code.append("        } else if (std::strcmp(argv[start_idx], \"-h\") == 0 || std::strcmp(argv[start_idx], \"--help\") == 0) {")
         code.append("            print_usage(argv[0]);")
@@ -12162,6 +12260,8 @@ class ARM64XMLParser:
         code.append("")
         code.append("#ifdef VEDA64_NO_IR")
         code.append("    (void)show_ir;")
+        code.append("    (void)ir_expanded;")
+        code.append("    (void)show_ast;")
         code.append("#endif")
         code.append("    int errors = 0;")
         code.append("")
@@ -12189,13 +12289,24 @@ class ARM64XMLParser:
         code.append("")
         code.append("#ifndef VEDA64_NO_IR")
         code.append("        if (show_ir) {")
-        code.append("            auto ir_result = ir::lift(insn);")
+        code.append("            auto detail = ir_expanded ? ir::IrDetail::Expanded : ir::IrDetail::Semantic;")
+        code.append("            auto ir_result = result ? ir::lift(*result, detail) : ir::lift(insn, detail);")
         code.append("            if (ir_result) {")
         code.append("                auto simplified = ir::simplify(*ir_result);")
         code.append("                for (auto& op : simplified.ops)")
         code.append("                    std::cout << \"  \" << ir::to_string(op) << \"\\n\";")
         code.append("            } else {")
         code.append("                std::cout << \"  <no IR>\\n\";")
+        code.append("            }")
+        code.append("        }")
+        code.append("        if (show_ast) {")
+        code.append("            auto ast_detail = ir_expanded ? ir::IrDetail::Expanded : ir::IrDetail::Semantic;")
+        code.append("            auto ast_result = ir::lift_ast(insn, ast_detail);")
+        code.append("            if (ast_result) {")
+        code.append("                for (auto& eff : ast_result->effects)")
+        code.append("                    std::cout << \"  \" << ir::to_string(eff) << \"\\n\";")
+        code.append("            } else {")
+        code.append("                std::cout << \"  <no AST>\\n\";")
         code.append("            }")
         code.append("        }")
         code.append("#endif")
@@ -12206,6 +12317,112 @@ class ARM64XMLParser:
         code.append("")
 
         output_file = tools_dir / "veda64-disasm.cpp"
+        self._write_file(output_file, code)
+        print(f"Generated {output_file.name}")
+
+    def generate_interp_tool(self, tools_dir: Path):
+        """Generate the veda64-interp tool."""
+        tools_dir.mkdir(exist_ok=True)
+
+        code = self._license_header()
+        code.append("#ifndef VEDA64_NO_IR")
+        code.append("")
+        code.append('#include "veda64.hpp"')
+        code.append('#include "veda64/ir.hpp"')
+        code.append("#include <iostream>")
+        code.append("#include <cstdlib>")
+        code.append("#include <cstring>")
+        code.append("#include <vector>")
+        code.append("#include <cstdio>")
+        code.append("")
+        code.append("using namespace veda64;")
+        code.append("")
+        code.append("static uint64_t parse_hex(const char* s) {")
+        code.append("    return strtoull(s, nullptr, 0);")
+        code.append("}")
+        code.append("")
+        code.append("static void dump_context(const ir::Context& ctx) {")
+        code.append("    for (int i = 0; i < 31; ++i) {")
+        code.append('        if (ctx.gpr[i]) printf("  x%-2d = 0x%016llx  (%llu)\\n", i, (unsigned long long)ctx.gpr[i], (unsigned long long)ctx.gpr[i]);')
+        code.append("    }")
+        code.append('    if (ctx.gpr[31]) printf("  sp  = 0x%016llx\\n", (unsigned long long)ctx.gpr[31]);')
+        code.append('    printf("  pc  = 0x%016llx\\n", (unsigned long long)ctx.pc);')
+        code.append("    if (ctx.flags[0] || ctx.flags[1] || ctx.flags[2] || ctx.flags[3])")
+        code.append('        printf("  flags: N=%d Z=%d C=%d V=%d\\n", ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]);')
+        code.append("}")
+        code.append("")
+        code.append("int main(int argc, char** argv) {")
+        code.append("    ir::Context ctx;")
+        code.append("    size_t mem_size = 65536;")
+        code.append("    bool dump = false;")
+        code.append("    bool step = false;")
+        code.append("    std::vector<uint32_t> insns;")
+        code.append("")
+        code.append("    for (int i = 1; i < argc; ++i) {")
+        code.append("        if (strncmp(argv[i], \"--x\", 3) == 0 && strchr(argv[i], '=')) {")
+        code.append("            int reg = atoi(argv[i] + 3);")
+        code.append("            const char* val = strchr(argv[i], '=') + 1;")
+        code.append("            if (reg >= 0 && reg <= 30) ctx.gpr[reg] = parse_hex(val);")
+        code.append("        } else if (strncmp(argv[i], \"--sp=\", 5) == 0) {")
+        code.append("            ctx.gpr[31] = parse_hex(argv[i] + 5);")
+        code.append("        } else if (strncmp(argv[i], \"--pc=\", 5) == 0) {")
+        code.append("            ctx.pc = parse_hex(argv[i] + 5);")
+        code.append("        } else if (strncmp(argv[i], \"--mem=\", 6) == 0) {")
+        code.append("            mem_size = (size_t)parse_hex(argv[i] + 6);")
+        code.append("        } else if (strcmp(argv[i], \"--dump\") == 0) {")
+        code.append("            dump = true;")
+        code.append("        } else if (strcmp(argv[i], \"--step\") == 0) {")
+        code.append("            step = true;")
+        code.append("        } else if (strncmp(argv[i], \"0x\", 2) == 0 || strncmp(argv[i], \"0X\", 2) == 0) {")
+        code.append("            insns.push_back((uint32_t)strtoul(argv[i], nullptr, 16));")
+        code.append("        } else {")
+        code.append('            fprintf(stderr, "Unknown argument: %s\\n", argv[i]);')
+        code.append("            return 1;")
+        code.append("        }")
+        code.append("    }")
+        code.append("")
+        code.append("    if (insns.empty()) {")
+        code.append('        fprintf(stderr, "Usage: veda64-interp [--x0=VAL] [--sp=VAL] [--pc=VAL] [--mem=SIZE] [--dump] [--step] 0xINSN...\\n");')
+        code.append("        return 1;")
+        code.append("    }")
+        code.append("")
+        code.append("    std::vector<uint8_t> mem(mem_size, 0);")
+        code.append("    ctx.memory = mem.data();")
+        code.append("    ctx.memory_size = mem_size;")
+        code.append("")
+        code.append("    for (size_t idx = 0; idx < insns.size() && !ctx.halted; ) {")
+        code.append("        uint32_t insn = insns[idx];")
+        code.append("        if (step) {")
+        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("            auto decoded = decode(insn);")
+        code.append('            if (decoded) printf("[0x%llx] %s\\n", (unsigned long long)ctx.pc, decoded->to_string().c_str());')
+        code.append('#else')
+        code.append('            printf("[0x%llx] 0x%08x\\n", (unsigned long long)ctx.pc, insn);')
+        code.append('#endif')
+        code.append("        }")
+        code.append("        uint64_t old_pc = ctx.pc;")
+        code.append("        ir::execute(ctx, insn);")
+        code.append("        if (ctx.pc != old_pc + 4) {")
+        code.append("            // Branch taken — currently no memory-based PC fetch, just stop")
+        code.append("            break;")
+        code.append("        }")
+        code.append("        ++idx;")
+        code.append("    }")
+        code.append("")
+        code.append("    if (dump) dump_context(ctx);")
+        code.append("")
+        code.append("    return 0;")
+        code.append("}")
+        code.append("")
+        code.append("#else // VEDA64_NO_IR")
+        code.append("")
+        code.append("#include <cstdio>")
+        code.append('int main() { fprintf(stderr, "IR interpreter disabled (VEDA64_NO_IR)\\n"); return 1; }')
+        code.append("")
+        code.append("#endif")
+        code.append("")
+
+        output_file = tools_dir / "veda64-interp.cpp"
         self._write_file(output_file, code)
         print(f"Generated {output_file.name}")
 
@@ -15473,44 +15690,11 @@ class ARM64XMLParser:
                 tpl_name, opcode_name, extra = result
                 fixed_bits, fixed_mask = self._get_encoding_fixed_bits(encoding)
 
-                # Determine field IDs based on template
-                dst = 'Rd'
-                src1 = 'Rn'
-                src2 = 'Rm'
-                size_field = 'Sf'
-
-                if tpl_name in ('BranchUncond',):
-                    dst = 'None'; src1 = 'Imm26'; src2 = 'None'; size_field = 'None'
-                elif tpl_name in ('BranchCond',):
-                    dst = 'None'; src1 = 'Imm19'; src2 = 'None'; size_field = 'None'
-                elif tpl_name in ('BranchReg',):
-                    dst = 'None'; src1 = 'Rn'; src2 = 'None'; size_field = 'None'
-                elif tpl_name in ('CompareBranch',):
-                    dst = 'Rd'; src1 = 'Imm19'; src2 = 'None'; size_field = 'Sf'
-                elif tpl_name in ('TestBranch',):
-                    dst = 'Rd'; src1 = 'Imm14'; src2 = 'None'; size_field = 'None'
-                elif tpl_name in ('GpBinopImm', 'GpBinopImmFlags'):
-                    src2 = 'Imm12'; size_field = 'Sf'
-                elif tpl_name in ('GpMoveImm',):
-                    src1 = 'Imm16'; src2 = 'None'; size_field = 'Sf'
-                elif tpl_name in ('GpBitfield',):
-                    src2 = 'Imm6'; size_field = 'Sf'
-                elif tpl_name in ('Nop', 'System'):
-                    dst = 'None'; src1 = 'None'; src2 = 'None'; size_field = 'None'
-                elif tpl_name in ('LoadReg', 'StoreReg', 'LoadPair', 'StorePair'):
-                    src2 = 'Imm12'; size_field = 'None'
-                elif tpl_name in ('Atomic',):
-                    size_field = 'None'
-
                 ir_entries.append({
                     'mask': fixed_mask,
                     'match': fixed_bits,
                     'template': tpl_name,
                     'opcode': opcode_name,
-                    'dst': dst,
-                    'src1': src1,
-                    'src2': src2,
-                    'size_field': size_field,
                     'extra': extra,
                     'mnemonic': mnemonic,
                     'encoding_name': encoding.name,
@@ -15550,6 +15734,7 @@ class ARM64XMLParser:
         code.append("#include <string>")
         code.append("#include <vector>")
         code.append("#include <optional>")
+        code.append("#include <memory>")
         code.append('#include "instruction.hpp"')
         code.append("")
         code.append("namespace veda64::ir {")
@@ -15613,8 +15798,10 @@ class ARM64XMLParser:
         code.append("    // Flags")
         code.append("    ADD_CARRY,")
         code.append("    SUB_CARRY,")
-        code.append("    FLAG_READ,")
-        code.append("    FLAG_WRITE,")
+        code.append("    CARRY_ADD,")
+        code.append("    CARRY_SUB,")
+        code.append("    OVERFLOW_ADD,")
+        code.append("    OVERFLOW_SUB,")
         code.append("")
         code.append("    // Bit manipulation")
         code.append("    EXTRACT,")
@@ -15630,6 +15817,12 @@ class ARM64XMLParser:
         code.append("    BARRIER,")
         code.append("    NOP,")
         code.append("    UNDEF,")
+        code.append("};")
+        code.append("")
+        code.append("// Detail level for IR lifting")
+        code.append("enum class IrDetail : uint8_t {")
+        code.append("    Semantic,   // Uses semantic opcodes (carry_add, overflow_sub, etc.)")
+        code.append("    Expanded,   // Everything in primitives (cmp_ule, xor chains, etc.)")
         code.append("};")
         code.append("")
         code.append("// Address space for VarNode")
@@ -15668,6 +15861,10 @@ class ARM64XMLParser:
         code.append("    static VarNode flags(uint16_t flag_idx = 0) {")
         code.append("        return {Space::Flags, flag_idx, 1, 0};")
         code.append("    }")
+        code.append("    static VarNode flags_n() { return {Space::Flags, 0, 1, 0}; }")
+        code.append("    static VarNode flags_z() { return {Space::Flags, 1, 1, 0}; }")
+        code.append("    static VarNode flags_c() { return {Space::Flags, 2, 1, 0}; }")
+        code.append("    static VarNode flags_v() { return {Space::Flags, 3, 1, 0}; }")
         code.append("    static VarNode ram(uint8_t sz = 8) {")
         code.append("        return {Space::RAM, 0, sz, 0};")
         code.append("    }")
@@ -15687,10 +15884,10 @@ class ARM64XMLParser:
         code.append("};")
         code.append("")
         code.append("// Lift a raw instruction word to IR")
-        code.append("std::optional<Lifted> lift(uint32_t insn);")
+        code.append("std::optional<Lifted> lift(uint32_t insn, IrDetail detail = IrDetail::Semantic);")
         code.append("")
         code.append("// Lift a decoded instruction to IR")
-        code.append("std::optional<Lifted> lift(const Instruction& insn);")
+        code.append("std::optional<Lifted> lift(const Instruction& insn, IrDetail detail = IrDetail::Semantic);")
         code.append("")
         code.append("// Simplify IR: copy propagation + output folding + dead temp elimination")
         code.append("Lifted simplify(const Lifted& l);")
@@ -15702,6 +15899,91 @@ class ARM64XMLParser:
         code.append("std::string to_string(const Lifted& l);")
         code.append("std::string opcode_name(Opcode op);")
         code.append("#endif")
+        code.append("")
+        code.append("// ============================================================")
+        code.append("// AST (Expression Tree) layer on top of flat IR")
+        code.append("// ============================================================")
+        code.append("")
+        code.append("// Expression tree node (heap-allocated, shared via shared_ptr)")
+        code.append("struct Expr {")
+        code.append("    enum class Kind : uint8_t {")
+        code.append("        Var,    // Leaf: register, flag, or memory location")
+        code.append("        Const,  // Leaf: constant value")
+        code.append("        Op,     // Interior: opcode + children")
+        code.append("    };")
+        code.append("")
+        code.append("    Kind kind;")
+        code.append("    Opcode opcode = Opcode::NOP;")
+        code.append("    VarNode var = {};")
+        code.append("    std::vector<std::shared_ptr<Expr>> children;")
+        code.append("    uint8_t size = 0;")
+        code.append("")
+        code.append("    static std::shared_ptr<Expr> make_var(VarNode v);")
+        code.append("    static std::shared_ptr<Expr> make_const(int64_t val, uint8_t sz);")
+        code.append("    static std::shared_ptr<Expr> make_op(Opcode opc, uint8_t sz,")
+        code.append("        std::vector<std::shared_ptr<Expr>> args);")
+        code.append("};")
+        code.append("")
+        code.append("using ExprPtr = std::shared_ptr<Expr>;")
+        code.append("")
+        code.append("// A single effect: writing an expression result to a destination")
+        code.append("struct Effect {")
+        code.append("    enum class Kind : uint8_t {")
+        code.append("        Assign,  // dest <- expr")
+        code.append("        Store,   // mem[addr] <- value")
+        code.append("        Branch,  // goto expr")
+        code.append("        CBranch, // if (cond) goto target")
+        code.append("        Call,    // call target")
+        code.append("        Nop,")
+        code.append("    };")
+        code.append("")
+        code.append("    Kind kind;")
+        code.append("    VarNode dest = {};")
+        code.append("    ExprPtr expr;")
+        code.append("    ExprPtr value;")
+        code.append("    uint8_t size = 0;")
+        code.append("};")
+        code.append("")
+        code.append("// AST representation of a single instruction")
+        code.append("struct Ast {")
+        code.append("    std::vector<Effect> effects;")
+        code.append("};")
+        code.append("")
+        code.append("// Build AST from flat IR (calls simplify internally)")
+        code.append("Ast to_ast(const Lifted& l);")
+        code.append("")
+        code.append("// Convenience: lift + to_ast in one call")
+        code.append("std::optional<Ast> lift_ast(uint32_t insn, IrDetail detail = IrDetail::Semantic);")
+        code.append("std::optional<Ast> lift_ast(const Instruction& insn, IrDetail detail = IrDetail::Semantic);")
+        code.append("")
+        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("std::string to_string(const Expr& e);")
+        code.append("std::string to_string(const Effect& eff);")
+        code.append("std::string to_string(const Ast& ast);")
+        code.append("#endif")
+        code.append("")
+        code.append("// ============================================================")
+        code.append("// Interpreter: Context + execute")
+        code.append("// ============================================================")
+        code.append("")
+        code.append("struct Context {")
+        code.append("    uint64_t gpr[32] = {};      // X0-X30, gpr[31] = SP")
+        code.append("    uint8_t simd[32][16] = {};   // V0-V31, 128-bit each")
+        code.append("    uint8_t flags[4] = {};       // 0=N, 1=Z, 2=C, 3=V")
+        code.append("    uint64_t pc = 0;")
+        code.append("    uint8_t* memory = nullptr;")
+        code.append("    size_t memory_size = 0;")
+        code.append("    bool halted = false;")
+        code.append("")
+        code.append("    uint64_t read_gpr(uint16_t reg, uint8_t size) const;")
+        code.append("    void write_gpr(uint16_t reg, uint64_t val, uint8_t size);")
+        code.append("    uint64_t read_mem(uint64_t addr, uint8_t size) const;")
+        code.append("    void write_mem(uint64_t addr, uint64_t val, uint8_t size);")
+        code.append("};")
+        code.append("")
+        code.append("uint64_t eval_expr(const Context& ctx, const Expr& e);")
+        code.append("void execute_ast(Context& ctx, const Ast& ast);")
+        code.append("void execute(Context& ctx, uint32_t insn);")
         code.append("")
         code.append("} // namespace veda64::ir")
         code.append("")
@@ -15723,6 +16005,7 @@ class ARM64XMLParser:
         code.append("#ifndef VEDA64_NO_IR")
         code.append("")
         code.append('#include "veda64/ir.hpp"')
+        code.append('#include "veda64/mnemonic.hpp"')
         code.append("")
         code.append("namespace veda64::ir {")
         code.append("")
@@ -15757,22 +16040,12 @@ class ARM64XMLParser:
         code.append("    Nop,            // NOP, HINT")
         code.append("};")
         code.append("")
-        code.append("enum class FieldId : uint8_t {")
-        code.append("    Rd, Rn, Rm, Ra,")
-        code.append("    Imm12, Imm16, Imm26, Imm19, Imm14, Imm9,")
-        code.append("    Sf, Shift, Imm6, Opc, Op, S, Cond,")
-        code.append("    None,")
-        code.append("};")
-        code.append("")
         code.append("struct IrEntry {")
         code.append("    uint32_t mask;")
         code.append("    uint32_t match;")
+        code.append("    Mnemonic mnemonic;")
         code.append("    IrTemplate tpl;")
         code.append("    Opcode opcode;")
-        code.append("    FieldId dst;")
-        code.append("    FieldId src1;")
-        code.append("    FieldId src2;")
-        code.append("    FieldId size_field;")
         code.append("    uint8_t extra;")
         code.append("};")
         code.append("")
@@ -15794,20 +16067,26 @@ class ARM64XMLParser:
         code.append("#ifndef VEDA64_NO_IR")
         code.append("")
         code.append('#include "veda64/ir.hpp"')
+        code.append('#include "veda64.hpp"')
         code.append("#include <sstream>")
         code.append("#include <unordered_map>")
+        code.append("#include <functional>")
+        code.append("#include <cmath>")
+        code.append("#include <cstring>")
         code.append("")
         code.append("namespace veda64::ir {")
         code.append("")
         code.append("// Forward declaration from ir_lift.cpp")
-        code.append("std::optional<Lifted> lift_from_table(uint32_t insn);")
+        code.append("std::optional<Lifted> lift_from_instruction(const Instruction& insn, IrDetail detail);")
         code.append("")
-        code.append("std::optional<Lifted> lift(uint32_t insn) {")
-        code.append("    return lift_from_table(insn);")
+        code.append("std::optional<Lifted> lift(uint32_t raw, IrDetail detail) {")
+        code.append("    auto decoded = decode(raw);")
+        code.append("    if (!decoded) return std::nullopt;")
+        code.append("    return lift(*decoded, detail);")
         code.append("}")
         code.append("")
-        code.append("std::optional<Lifted> lift(const Instruction& insn) {")
-        code.append("    return lift(insn.raw_value);")
+        code.append("std::optional<Lifted> lift(const Instruction& insn, IrDetail detail) {")
+        code.append("    return lift_from_instruction(insn, detail);")
         code.append("}")
         code.append("")
         code.append("static bool is_temp(const VarNode& v) { return v.space == Space::Temp; }")
@@ -15913,7 +16192,7 @@ class ARM64XMLParser:
         code.append('    "zext", "sext", "trunc", "int2float", "float2int", "float2float",')
         code.append('    "fadd", "fsub", "fmul", "fdiv", "fsqrt", "fneg", "fabs",')
         code.append('    "branch", "cbranch", "call", "ret",')
-        code.append('    "add_carry", "sub_carry", "flag_read", "flag_write",')
+        code.append('    "add_carry", "sub_carry", "carry_add", "carry_sub", "overflow_add", "overflow_sub",')
         code.append('    "extract", "insert", "concat",')
         code.append('    "vextract_elem", "vinsert_elem", "vbroadcast",')
         code.append('    "barrier", "nop", "undef",')
@@ -15926,25 +16205,43 @@ class ARM64XMLParser:
         code.append('    return "???";')
         code.append("}")
         code.append("")
-        code.append("static const char* space_names[] = {")
-        code.append('    "const", "t", "gpr", "simd", "z", "p", "sys", "flags", "ram"')
-        code.append("};")
-        code.append("")
         code.append("std::string to_string(const VarNode& v) {")
-        code.append("    std::string s;")
         code.append("    if (v.space == Space::Const) {")
-        code.append("        s = std::to_string(v.value);")
+        code.append("        auto s = std::to_string(v.value);")
         code.append('        if (v.size > 0) s += ":" + std::to_string(v.size);')
         code.append("        return s;")
         code.append("    }")
-        code.append("    auto si = static_cast<size_t>(v.space);")
-        code.append("    if (si < sizeof(space_names) / sizeof(space_names[0]))")
-        code.append("        s = space_names[si];")
-        code.append("    else")
-        code.append('        s = "?";')
-        code.append('    s += "[" + std::to_string(v.offset) + "]";')
-        code.append('    if (v.size > 0) s += ":" + std::to_string(v.size);')
-        code.append("    return s;")
+        code.append("    switch (v.space) {")
+        code.append("    case Space::Temp: {")
+        code.append('        auto s = "tmp" + std::to_string(v.offset);')
+        code.append('        if (v.size > 0) s += ":" + std::to_string(v.size);')
+        code.append("        return s;")
+        code.append("    }")
+        code.append("    case Space::GPR:")
+        code.append('        if (v.offset == 31) return (v.size == 8) ? "sp" : "wsp";')
+        code.append('        return (v.size == 8 ? "x" : "w") + std::to_string(v.offset);')
+        code.append("    case Space::SIMD:")
+        code.append('        if (v.size <= 2) return "h" + std::to_string(v.offset);')
+        code.append('        if (v.size == 4) return "s" + std::to_string(v.offset);')
+        code.append('        if (v.size == 8) return "d" + std::to_string(v.offset);')
+        code.append('        return "v" + std::to_string(v.offset);')
+        code.append('    case Space::SVE_Z: return "z" + std::to_string(v.offset);')
+        code.append('    case Space::SVE_P: return "p" + std::to_string(v.offset);')
+        code.append('    case Space::Flags:')
+        code.append('        switch (v.offset) {')
+        code.append('        case 0: return "N";')
+        code.append('        case 1: return "Z";')
+        code.append('        case 2: return "C";')
+        code.append('        case 3: return "V";')
+        code.append('        default: return "flags";')
+        code.append('        }')
+        code.append("    case Space::RAM: {")
+        code.append('        std::string s = "mem";')
+        code.append('        if (v.size > 0) s += ":" + std::to_string(v.size);')
+        code.append("        return s;")
+        code.append("    }")
+        code.append('    default: return "?";')
+        code.append("    }")
         code.append("}")
         code.append("")
         code.append("std::string to_string(const Op& op) {")
@@ -15972,6 +16269,443 @@ class ARM64XMLParser:
         code.append("")
         code.append("#endif // !VEDA64_NO_STRINGS")
         code.append("")
+        code.append("// ============================================================")
+        code.append("// AST (Expression Tree) layer")
+        code.append("// ============================================================")
+        code.append("")
+        code.append("ExprPtr Expr::make_var(VarNode v) {")
+        code.append("    auto e = std::make_shared<Expr>();")
+        code.append("    e->kind = Kind::Var;")
+        code.append("    e->var = v;")
+        code.append("    e->size = v.size;")
+        code.append("    return e;")
+        code.append("}")
+        code.append("")
+        code.append("ExprPtr Expr::make_const(int64_t val, uint8_t sz) {")
+        code.append("    auto e = std::make_shared<Expr>();")
+        code.append("    e->kind = Kind::Const;")
+        code.append("    e->var = VarNode::constant(val, sz);")
+        code.append("    e->size = sz;")
+        code.append("    return e;")
+        code.append("}")
+        code.append("")
+        code.append("ExprPtr Expr::make_op(Opcode opc, uint8_t sz, std::vector<ExprPtr> args) {")
+        code.append("    auto e = std::make_shared<Expr>();")
+        code.append("    e->kind = Kind::Op;")
+        code.append("    e->opcode = opc;")
+        code.append("    e->children = std::move(args);")
+        code.append("    e->size = sz;")
+        code.append("    return e;")
+        code.append("}")
+        code.append("")
+        code.append("Ast to_ast(const Lifted& l) {")
+        code.append("    auto sim = simplify(l);")
+        code.append("")
+        code.append("    // Build def map: temp offset -> op index")
+        code.append("    std::unordered_map<uint16_t, size_t> temp_def;")
+        code.append("    for (size_t i = 0; i < sim.ops.size(); ++i) {")
+        code.append("        if (is_temp(sim.ops[i].output))")
+        code.append("            temp_def[sim.ops[i].output.offset] = i;")
+        code.append("    }")
+        code.append("")
+        code.append("    // Expr cache for shared subexpressions")
+        code.append("    std::unordered_map<uint16_t, ExprPtr> expr_cache;")
+        code.append("")
+        code.append("    // Recursive builder")
+        code.append("    std::function<ExprPtr(const VarNode&)> build_expr;")
+        code.append("    build_expr = [&](const VarNode& v) -> ExprPtr {")
+        code.append("        if (v.space == Space::Const)")
+        code.append("            return Expr::make_const(v.value, v.size);")
+        code.append("        if (v.space != Space::Temp)")
+        code.append("            return Expr::make_var(v);")
+        code.append("        // Temp: check cache")
+        code.append("        auto cit = expr_cache.find(v.offset);")
+        code.append("        if (cit != expr_cache.end()) return cit->second;")
+        code.append("        auto dit = temp_def.find(v.offset);")
+        code.append("        if (dit == temp_def.end())")
+        code.append("            return Expr::make_var(v); // undefined temp, shouldn't happen")
+        code.append("        auto& op = sim.ops[dit->second];")
+        code.append("        std::vector<ExprPtr> children;")
+        code.append("        for (uint8_t i = 0; i < op.num_inputs; ++i)")
+        code.append("            children.push_back(build_expr(op.inputs[i]));")
+        code.append("        auto result = Expr::make_op(op.opcode, op.output.size, std::move(children));")
+        code.append("        expr_cache[v.offset] = result;")
+        code.append("        return result;")
+        code.append("    };")
+        code.append("")
+        code.append("    Ast ast;")
+        code.append("    for (auto& op : sim.ops) {")
+        code.append("        if (is_temp(op.output)) continue; // temps are inlined")
+        code.append("")
+        code.append("        Effect eff;")
+        code.append("        eff.size = op.output.size;")
+        code.append("")
+        code.append("        if (op.opcode == Opcode::STORE) {")
+        code.append("            eff.kind = Effect::Kind::Store;")
+        code.append("            eff.expr = (op.num_inputs >= 1) ? build_expr(op.inputs[0]) : nullptr;")
+        code.append("            eff.value = (op.num_inputs >= 2) ? build_expr(op.inputs[1]) : nullptr;")
+        code.append("            eff.size = op.output.size;")
+        code.append("        } else if (op.opcode == Opcode::BRANCH) {")
+        code.append("            eff.kind = Effect::Kind::Branch;")
+        code.append("            eff.expr = (op.num_inputs >= 1) ? build_expr(op.inputs[0]) : nullptr;")
+        code.append("        } else if (op.opcode == Opcode::CBRANCH) {")
+        code.append("            eff.kind = Effect::Kind::CBranch;")
+        code.append("            eff.expr = (op.num_inputs >= 1) ? build_expr(op.inputs[0]) : nullptr;")
+        code.append("            eff.value = (op.num_inputs >= 2) ? build_expr(op.inputs[1]) : nullptr;")
+        code.append("        } else if (op.opcode == Opcode::CALL) {")
+        code.append("            eff.kind = Effect::Kind::Call;")
+        code.append("            eff.expr = (op.num_inputs >= 1) ? build_expr(op.inputs[0]) : nullptr;")
+        code.append("        } else if (op.opcode == Opcode::NOP || op.opcode == Opcode::BARRIER) {")
+        code.append("            eff.kind = Effect::Kind::Nop;")
+        code.append("        } else {")
+        code.append("            // Assign: build expression from this op's inputs")
+        code.append("            eff.kind = Effect::Kind::Assign;")
+        code.append("            eff.dest = op.output;")
+        code.append("            // For COPY with 3 inputs (CSEL), rewrite as SELECT(cond, true, false)")
+        code.append("            if (op.opcode == Opcode::COPY && op.num_inputs == 3) {")
+        code.append("                std::vector<ExprPtr> args;")
+        code.append("                args.push_back(build_expr(op.inputs[2])); // condition first")
+        code.append("                args.push_back(build_expr(op.inputs[0])); // true value")
+        code.append("                args.push_back(build_expr(op.inputs[1])); // false value")
+        code.append("                eff.expr = Expr::make_op(Opcode::COPY, op.output.size, std::move(args));")
+        code.append("            } else if (op.opcode == Opcode::COPY && op.num_inputs == 1) {")
+        code.append("                eff.expr = build_expr(op.inputs[0]);")
+        code.append("            } else {")
+        code.append("                std::vector<ExprPtr> args;")
+        code.append("                for (uint8_t i = 0; i < op.num_inputs; ++i)")
+        code.append("                    args.push_back(build_expr(op.inputs[i]));")
+        code.append("                eff.expr = Expr::make_op(op.opcode, op.output.size, std::move(args));")
+        code.append("            }")
+        code.append("        }")
+        code.append("        ast.effects.push_back(std::move(eff));")
+        code.append("    }")
+        code.append("    return ast;")
+        code.append("}")
+        code.append("")
+        code.append("std::optional<Ast> lift_ast(uint32_t insn, IrDetail detail) {")
+        code.append("    auto l = lift(insn, detail);")
+        code.append("    if (!l) return std::nullopt;")
+        code.append("    return to_ast(*l);")
+        code.append("}")
+        code.append("")
+        code.append("std::optional<Ast> lift_ast(const Instruction& insn, IrDetail detail) {")
+        code.append("    auto l = lift(insn, detail);")
+        code.append("    if (!l) return std::nullopt;")
+        code.append("    return to_ast(*l);")
+        code.append("}")
+        code.append("")
+        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("")
+        code.append("std::string to_string(const Expr& e) {")
+        code.append("    switch (e.kind) {")
+        code.append("    case Expr::Kind::Var:")
+        code.append("        return to_string(e.var);")
+        code.append("    case Expr::Kind::Const: {")
+        code.append("        return std::to_string(e.var.value);")
+        code.append("    }")
+        code.append("    case Expr::Kind::Op: {")
+        code.append("        std::string s = opcode_name(e.opcode) + \"(\";")
+        code.append("        for (size_t i = 0; i < e.children.size(); ++i) {")
+        code.append("            if (i > 0) s += \", \";")
+        code.append("            s += to_string(*e.children[i]);")
+        code.append("        }")
+        code.append("        s += \")\";")
+        code.append("        return s;")
+        code.append("    }")
+        code.append("    }")
+        code.append("    return \"?\";")
+        code.append("}")
+        code.append("")
+        code.append("std::string to_string(const Effect& eff) {")
+        code.append("    switch (eff.kind) {")
+        code.append("    case Effect::Kind::Assign:")
+        code.append("        return to_string(eff.dest) + \" <- \" + (eff.expr ? to_string(*eff.expr) : \"?\");")
+        code.append("    case Effect::Kind::Store:")
+        code.append("        return \"store \" + (eff.expr ? to_string(*eff.expr) : \"?\") + \", \" + (eff.value ? to_string(*eff.value) : \"?\");")
+        code.append("    case Effect::Kind::Branch:")
+        code.append("        return \"branch \" + (eff.expr ? to_string(*eff.expr) : \"?\");")
+        code.append("    case Effect::Kind::CBranch:")
+        code.append("        return \"cbranch \" + (eff.expr ? to_string(*eff.expr) : \"?\") + \", \" + (eff.value ? to_string(*eff.value) : \"?\");")
+        code.append("    case Effect::Kind::Call:")
+        code.append("        return \"call \" + (eff.expr ? to_string(*eff.expr) : \"?\");")
+        code.append("    case Effect::Kind::Nop:")
+        code.append("        return \"nop\";")
+        code.append("    }")
+        code.append("    return \"?\";")
+        code.append("}")
+        code.append("")
+        code.append("std::string to_string(const Ast& ast) {")
+        code.append("    std::string s;")
+        code.append("    for (size_t i = 0; i < ast.effects.size(); ++i) {")
+        code.append("        if (i > 0) s += \"\\n\";")
+        code.append("        s += to_string(ast.effects[i]);")
+        code.append("    }")
+        code.append("    return s;")
+        code.append("}")
+        code.append("")
+        code.append("#endif // !VEDA64_NO_STRINGS")
+        code.append("")
+        code.append("// ============================================================")
+        code.append("// Interpreter implementation")
+        code.append("// ============================================================")
+        code.append("")
+        code.append("static uint64_t size_mask(uint8_t size) {")
+        code.append("    if (size >= 8) return ~0ULL;")
+        code.append("    return (1ULL << (size * 8)) - 1;")
+        code.append("}")
+        code.append("")
+        code.append("uint64_t Context::read_gpr(uint16_t reg, uint8_t size) const {")
+        code.append("    if (reg == 31) return gpr[31]; // SP or XZR depending on context, use SP here")
+        code.append("    if (reg > 31) return 0;")
+        code.append("    return gpr[reg] & size_mask(size);")
+        code.append("}")
+        code.append("")
+        code.append("void Context::write_gpr(uint16_t reg, uint64_t val, uint8_t size) {")
+        code.append("    if (reg > 31) return;")
+        code.append("    if (size <= 4) val &= 0xFFFFFFFFULL; // 32-bit write zero-extends")
+        code.append("    gpr[reg] = val & size_mask(size);")
+        code.append("}")
+        code.append("")
+        code.append("uint64_t Context::read_mem(uint64_t addr, uint8_t size) const {")
+        code.append("    if (!memory || addr + size > memory_size) return 0;")
+        code.append("    uint64_t val = 0;")
+        code.append("    for (uint8_t i = 0; i < size && i < 8; ++i)")
+        code.append("        val |= (uint64_t)memory[addr + i] << (i * 8);")
+        code.append("    return val;")
+        code.append("}")
+        code.append("")
+        code.append("void Context::write_mem(uint64_t addr, uint64_t val, uint8_t size) {")
+        code.append("    if (!memory || addr + size > memory_size) return;")
+        code.append("    for (uint8_t i = 0; i < size && i < 8; ++i)")
+        code.append("        memory[addr + i] = (uint8_t)(val >> (i * 8));")
+        code.append("}")
+        code.append("")
+        code.append("static uint64_t sign_extend(uint64_t val, uint8_t from_size) {")
+        code.append("    if (from_size >= 8) return val;")
+        code.append("    uint64_t sign_bit = 1ULL << (from_size * 8 - 1);")
+        code.append("    if (val & sign_bit) return val | ~((1ULL << (from_size * 8)) - 1);")
+        code.append("    return val;")
+        code.append("}")
+        code.append("")
+        code.append("static uint64_t fp_binop(Opcode opc, uint64_t a, uint64_t b, uint8_t size) {")
+        code.append("    if (size == 4) {")
+        code.append("        float fa, fb, fr;")
+        code.append("        memcpy(&fa, &a, 4); memcpy(&fb, &b, 4);")
+        code.append("        switch (opc) {")
+        code.append("        case Opcode::FADD: fr = fa + fb; break;")
+        code.append("        case Opcode::FSUB: fr = fa - fb; break;")
+        code.append("        case Opcode::FMUL: fr = fa * fb; break;")
+        code.append("        case Opcode::FDIV: fr = fa / fb; break;")
+        code.append("        default: fr = 0; break;")
+        code.append("        }")
+        code.append("        uint64_t r = 0; memcpy(&r, &fr, 4); return r;")
+        code.append("    } else {")
+        code.append("        double da, db, dr;")
+        code.append("        memcpy(&da, &a, 8); memcpy(&db, &b, 8);")
+        code.append("        switch (opc) {")
+        code.append("        case Opcode::FADD: dr = da + db; break;")
+        code.append("        case Opcode::FSUB: dr = da - db; break;")
+        code.append("        case Opcode::FMUL: dr = da * db; break;")
+        code.append("        case Opcode::FDIV: dr = da / db; break;")
+        code.append("        default: dr = 0; break;")
+        code.append("        }")
+        code.append("        uint64_t r; memcpy(&r, &dr, 8); return r;")
+        code.append("    }")
+        code.append("}")
+        code.append("")
+        code.append("static uint64_t fp_unaryop(Opcode opc, uint64_t a, uint8_t size) {")
+        code.append("    if (size == 4) {")
+        code.append("        float fa, fr;")
+        code.append("        memcpy(&fa, &a, 4);")
+        code.append("        switch (opc) {")
+        code.append("        case Opcode::FNEG: fr = -fa; break;")
+        code.append("        case Opcode::FABS: fr = fa < 0 ? -fa : fa; break;")
+        code.append("        case Opcode::FSQRT: fr = sqrtf(fa); break;")
+        code.append("        default: fr = 0; break;")
+        code.append("        }")
+        code.append("        uint64_t r = 0; memcpy(&r, &fr, 4); return r;")
+        code.append("    } else {")
+        code.append("        double da, dr;")
+        code.append("        memcpy(&da, &a, 8);")
+        code.append("        switch (opc) {")
+        code.append("        case Opcode::FNEG: dr = -da; break;")
+        code.append("        case Opcode::FABS: dr = da < 0 ? -da : da; break;")
+        code.append("        case Opcode::FSQRT: dr = sqrt(da); break;")
+        code.append("        default: dr = 0; break;")
+        code.append("        }")
+        code.append("        uint64_t r; memcpy(&r, &dr, 8); return r;")
+        code.append("    }")
+        code.append("}")
+        code.append("")
+        code.append("uint64_t eval_expr(const Context& ctx, const Expr& e) {")
+        code.append("    switch (e.kind) {")
+        code.append("    case Expr::Kind::Const:")
+        code.append("        return (uint64_t)e.var.value & size_mask(e.size ? e.size : e.var.size);")
+        code.append("    case Expr::Kind::Var:")
+        code.append("        switch (e.var.space) {")
+        code.append("        case Space::GPR: return ctx.read_gpr(e.var.offset, e.var.size);")
+        code.append("        case Space::Flags: return ctx.flags[e.var.offset] ? 1ULL : 0ULL;")
+        code.append("        case Space::SIMD: {")
+        code.append("            uint64_t v = 0;")
+        code.append("            uint8_t sz = e.var.size < 8 ? e.var.size : 8;")
+        code.append("            for (uint8_t i = 0; i < sz; ++i) v |= (uint64_t)ctx.simd[e.var.offset][i] << (i*8);")
+        code.append("            return v;")
+        code.append("        }")
+        code.append("        default: return 0;")
+        code.append("        }")
+        code.append("    case Expr::Kind::Op: break;")
+        code.append("    }")
+        code.append("")
+        code.append("    // Op case: evaluate children")
+        code.append("    auto nc = e.children.size();")
+        code.append("    uint64_t c[3] = {};")
+        code.append("    for (size_t i = 0; i < nc && i < 3; ++i)")
+        code.append("        c[i] = eval_expr(ctx, *e.children[i]);")
+        code.append("    uint64_t mask = size_mask(e.size);")
+        code.append("    uint8_t bits = e.size * 8;")
+        code.append("")
+        code.append("    switch (e.opcode) {")
+        code.append("    case Opcode::COPY:")
+        code.append("        if (nc == 1) return c[0] & mask;")
+        code.append("        if (nc == 3) return c[0] ? c[1] : c[2]; // CSEL")
+        code.append("        return c[0];")
+        code.append("    case Opcode::ADD: return (c[0] + c[1]) & mask;")
+        code.append("    case Opcode::SUB: return (c[0] - c[1]) & mask;")
+        code.append("    case Opcode::MUL: return (c[0] * c[1]) & mask;")
+        code.append("    case Opcode::SDIV: {")
+        code.append("        int64_t sa = (int64_t)sign_extend(c[0], e.size);")
+        code.append("        int64_t sb = (int64_t)sign_extend(c[1], e.size);")
+        code.append("        return sb ? ((uint64_t)(sa / sb) & mask) : 0;")
+        code.append("    }")
+        code.append("    case Opcode::UDIV: return c[1] ? ((c[0] / c[1]) & mask) : 0;")
+        code.append("    case Opcode::NEG: return ((~c[0] + 1) & mask);")
+        code.append("    case Opcode::AND: return (c[0] & c[1]) & mask;")
+        code.append("    case Opcode::OR:  return (c[0] | c[1]) & mask;")
+        code.append("    case Opcode::XOR: return (c[0] ^ c[1]) & mask;")
+        code.append("    case Opcode::NOT: return (~c[0]) & mask;")
+        code.append("    case Opcode::SHL: {")
+        code.append("        uint8_t csz = nc > 0 && e.children[0]->size > e.size ? e.children[0]->size : e.size;")
+        code.append("        uint8_t cbits = csz * 8;")
+        code.append("        return (c[0] << (c[1] % cbits)) & mask;")
+        code.append("    }")
+        code.append("    case Opcode::SHR: {")
+        code.append("        uint8_t csz = nc > 0 && e.children[0]->size > e.size ? e.children[0]->size : e.size;")
+        code.append("        uint64_t cmask = size_mask(csz);")
+        code.append("        uint8_t cbits = csz * 8;")
+        code.append("        return ((c[0] & cmask) >> (c[1] % cbits)) & mask;")
+        code.append("    }")
+        code.append("    case Opcode::SAR: {")
+        code.append("        uint8_t csz = nc > 0 && e.children[0]->size > e.size ? e.children[0]->size : e.size;")
+        code.append("        uint8_t cbits = csz * 8;")
+        code.append("        int64_t sv = (int64_t)sign_extend(c[0], csz);")
+        code.append("        return ((uint64_t)(sv >> (c[1] % cbits))) & mask;")
+        code.append("    }")
+        code.append("    case Opcode::ROR: {")
+        code.append("        uint8_t csz = nc > 0 && e.children[0]->size > e.size ? e.children[0]->size : e.size;")
+        code.append("        uint64_t cmask = size_mask(csz);")
+        code.append("        uint8_t cbits = csz * 8;")
+        code.append("        auto sh = c[1] % cbits;")
+        code.append("        auto v = c[0] & cmask;")
+        code.append("        return ((v >> sh) | (v << (cbits - sh))) & mask;")
+        code.append("    }")
+        code.append("    case Opcode::CMP_EQ: {")
+        code.append("        uint8_t csz = nc > 0 ? e.children[0]->size : e.size;")
+        code.append("        uint64_t cmask = size_mask(csz);")
+        code.append("        return (c[0] & cmask) == (c[1] & cmask) ? 1 : 0;")
+        code.append("    }")
+        code.append("    case Opcode::CMP_NE: {")
+        code.append("        uint8_t csz = nc > 0 ? e.children[0]->size : e.size;")
+        code.append("        uint64_t cmask = size_mask(csz);")
+        code.append("        return (c[0] & cmask) != (c[1] & cmask) ? 1 : 0;")
+        code.append("    }")
+        code.append("    case Opcode::CMP_SLT: {")
+        code.append("        uint8_t csz = nc > 0 ? e.children[0]->size : e.size;")
+        code.append("        return (int64_t)sign_extend(c[0],csz) <  (int64_t)sign_extend(c[1],csz) ? 1 : 0;")
+        code.append("    }")
+        code.append("    case Opcode::CMP_ULT: {")
+        code.append("        uint8_t csz = nc > 0 ? e.children[0]->size : e.size;")
+        code.append("        uint64_t cmask = size_mask(csz);")
+        code.append("        return (c[0] & cmask) <  (c[1] & cmask) ? 1 : 0;")
+        code.append("    }")
+        code.append("    case Opcode::CMP_SLE: {")
+        code.append("        uint8_t csz = nc > 0 ? e.children[0]->size : e.size;")
+        code.append("        return (int64_t)sign_extend(c[0],csz) <= (int64_t)sign_extend(c[1],csz) ? 1 : 0;")
+        code.append("    }")
+        code.append("    case Opcode::CMP_ULE: {")
+        code.append("        uint8_t csz = nc > 0 ? e.children[0]->size : e.size;")
+        code.append("        uint64_t cmask = size_mask(csz);")
+        code.append("        return (c[0] & cmask) <= (c[1] & cmask) ? 1 : 0;")
+        code.append("    }")
+        code.append("    case Opcode::ZEXT: return c[0] & mask;")
+        code.append("    case Opcode::SEXT: {")
+        code.append("        uint8_t child_sz = e.children[0]->size;")
+        code.append("        return sign_extend(c[0], child_sz) & mask;")
+        code.append("    }")
+        code.append("    case Opcode::TRUNC: return c[0] & mask;")
+        code.append("    case Opcode::LOAD: return ctx.read_mem(c[0], e.size);")
+        code.append("    case Opcode::FADD: case Opcode::FSUB:")
+        code.append("    case Opcode::FMUL: case Opcode::FDIV:")
+        code.append("        return fp_binop(e.opcode, c[0], c[1], e.size);")
+        code.append("    case Opcode::FNEG: case Opcode::FABS: case Opcode::FSQRT:")
+        code.append("        return fp_unaryop(e.opcode, c[0], e.size);")
+        code.append("    default: return 0;")
+        code.append("    }")
+        code.append("}")
+        code.append("")
+        code.append("void execute_ast(Context& ctx, const Ast& ast) {")
+        code.append("    bool branch_taken = false;")
+        code.append("    for (auto& eff : ast.effects) {")
+        code.append("        switch (eff.kind) {")
+        code.append("        case Effect::Kind::Assign: {")
+        code.append("            uint64_t val = eff.expr ? eval_expr(ctx, *eff.expr) : 0;")
+        code.append("            switch (eff.dest.space) {")
+        code.append("            case Space::GPR: ctx.write_gpr(eff.dest.offset, val, eff.dest.size); break;")
+        code.append("            case Space::Flags: ctx.flags[eff.dest.offset] = val ? 1 : 0; break;")
+        code.append("            case Space::SIMD: {")
+        code.append("                uint8_t sz = eff.dest.size < 16 ? eff.dest.size : 8;")
+        code.append("                for (uint8_t i = 0; i < sz && i < 8; ++i)")
+        code.append("                    ctx.simd[eff.dest.offset][i] = (uint8_t)(val >> (i*8));")
+        code.append("                break;")
+        code.append("            }")
+        code.append("            default: break;")
+        code.append("            }")
+        code.append("            break;")
+        code.append("        }")
+        code.append("        case Effect::Kind::Store: {")
+        code.append("            uint64_t addr = eff.expr ? eval_expr(ctx, *eff.expr) : 0;")
+        code.append("            uint64_t val = eff.value ? eval_expr(ctx, *eff.value) : 0;")
+        code.append("            ctx.write_mem(addr, val, eff.size);")
+        code.append("            break;")
+        code.append("        }")
+        code.append("        case Effect::Kind::Branch:")
+        code.append("            ctx.pc = eff.expr ? eval_expr(ctx, *eff.expr) : 0;")
+        code.append("            branch_taken = true;")
+        code.append("            break;")
+        code.append("        case Effect::Kind::CBranch:")
+        code.append("            if (eff.expr && eval_expr(ctx, *eff.expr)) {")
+        code.append("                ctx.pc = eff.value ? eval_expr(ctx, *eff.value) : 0;")
+        code.append("                branch_taken = true;")
+        code.append("            }")
+        code.append("            break;")
+        code.append("        case Effect::Kind::Call:")
+        code.append("            ctx.pc = eff.expr ? eval_expr(ctx, *eff.expr) : 0;")
+        code.append("            branch_taken = true;")
+        code.append("            break;")
+        code.append("        case Effect::Kind::Nop: break;")
+        code.append("        }")
+        code.append("    }")
+        code.append("    (void)branch_taken;")
+        code.append("}")
+        code.append("")
+        code.append("void execute(Context& ctx, uint32_t insn) {")
+        code.append("    auto ast = lift_ast(insn, IrDetail::Expanded);")
+        code.append("    if (!ast) return;")
+        code.append("    uint64_t old_pc = ctx.pc;")
+        code.append("    execute_ast(ctx, *ast);")
+        code.append("    if (ctx.pc == old_pc) ctx.pc += 4;")
+        code.append("    else ctx.pc += old_pc; // Branch offsets are PC-relative")
+        code.append("}")
+        code.append("")
         code.append("} // namespace veda64::ir")
         code.append("")
         code.append("#endif // !VEDA64_NO_IR")
@@ -15986,39 +16720,64 @@ class ARM64XMLParser:
         code.append("#ifndef VEDA64_NO_IR")
         code.append("")
         code.append('#include "ir_internal.hpp"')
+        code.append('#include "veda64/types.hpp"')
+        code.append('#include "veda64/operand.hpp"')
+        code.append("#include <unordered_map>")
         code.append("")
         code.append("namespace veda64::ir {")
         code.append("")
         code.append("// ============================================================================")
-        code.append("// Field extractors")
+        code.append("// Operand helpers — extract from decoded Instruction")
         code.append("// ============================================================================")
         code.append("")
-        code.append("static uint32_t extract_field(uint32_t insn, FieldId f) {")
-        code.append("    switch (f) {")
-        code.append("    case FieldId::Rd:    return insn & 0x1F;")
-        code.append("    case FieldId::Rn:    return (insn >> 5) & 0x1F;")
-        code.append("    case FieldId::Rm:    return (insn >> 16) & 0x1F;")
-        code.append("    case FieldId::Ra:    return (insn >> 10) & 0x1F;")
-        code.append("    case FieldId::Imm12: return (insn >> 10) & 0xFFF;")
-        code.append("    case FieldId::Imm16: return (insn >> 5) & 0xFFFF;")
-        code.append("    case FieldId::Imm26: return insn & 0x3FFFFFF;")
-        code.append("    case FieldId::Imm19: return (insn >> 5) & 0x7FFFF;")
-        code.append("    case FieldId::Imm14: return (insn >> 5) & 0x3FFF;")
-        code.append("    case FieldId::Imm9:  return (insn >> 12) & 0x1FF;")
-        code.append("    case FieldId::Sf:    return (insn >> 31) & 1;")
-        code.append("    case FieldId::Shift: return (insn >> 22) & 3;")
-        code.append("    case FieldId::Imm6:  return (insn >> 10) & 0x3F;")
-        code.append("    case FieldId::Opc:   return (insn >> 29) & 3;")
-        code.append("    case FieldId::Op:    return (insn >> 30) & 1;")
-        code.append("    case FieldId::S:     return (insn >> 29) & 1;")
-        code.append("    case FieldId::Cond:  return (insn >> 12) & 0xF;")
-        code.append("    case FieldId::None:  return 0;")
-        code.append("    }")
-        code.append("    return 0;")
+        code.append("static uint32_t op_reg(const Instruction& insn, int idx) {")
+        code.append("    return register_num(insn.operands[idx].r.reg);")
         code.append("}")
         code.append("")
-        code.append("static uint8_t reg_size(uint32_t insn) {")
-        code.append("    return (insn >> 31) & 1 ? 8 : 4;")
+        code.append("static uint8_t op_reg_sz(const Instruction& insn, int idx) {")
+        code.append("    auto r = insn.operands[idx].r.reg;")
+        code.append("    // GP: W regs (0-32) = 4 bytes, X regs (33-65) = 8 bytes")
+        code.append("    auto v = static_cast<uint16_t>(r);")
+        code.append("    if (v <= 65) return (v >= 33) ? 8 : 4;")
+        code.append("    return 8; // default for other reg types")
+        code.append("}")
+        code.append("")
+        code.append("static int64_t op_imm(const Instruction& insn, int idx) {")
+        code.append("    auto& op = insn.operands[idx];")
+        code.append("    if (op.type == OperandType::SignedImmediate || op.type == OperandType::Label)")
+        code.append("        return op.si.offset;")
+        code.append("    if (op.type == OperandType::Relative)")
+        code.append("        return static_cast<int64_t>(op.iv.value);")
+        code.append("    return static_cast<int64_t>(op.iv.value);")
+        code.append("}")
+        code.append("")
+        code.append("static int64_t op_mem_offset(const Instruction& insn, int idx) {")
+        code.append("    return insn.operands[idx].mem.offset;")
+        code.append("}")
+        code.append("")
+        code.append("static uint32_t op_mem_base(const Instruction& insn, int idx) {")
+        code.append("    return register_num(static_cast<Register>(insn.operands[idx].mem.base));")
+        code.append("}")
+        code.append("")
+        code.append("static uint8_t arr_elem_size(Register r) {")
+        code.append("    Arrangement a = register_arrangement(r);")
+        code.append("    switch (a) {")
+        code.append("    case Arrangement::B: case Arrangement::B8: case Arrangement::B16: return 1;")
+        code.append("    case Arrangement::H: case Arrangement::H4: case Arrangement::H8: return 2;")
+        code.append("    case Arrangement::S: case Arrangement::S2: case Arrangement::S4: return 4;")
+        code.append("    case Arrangement::D: case Arrangement::D1: case Arrangement::D2: return 8;")
+        code.append("    case Arrangement::Q: case Arrangement::Q1: return 16;")
+        code.append("    default: return 4; // fallback")
+        code.append("    }")
+        code.append("}")
+        code.append("")
+        code.append("static uint8_t arr_vec_size(Register r) {")
+        code.append("    Arrangement a = register_arrangement(r);")
+        code.append("    switch (a) {")
+        code.append("    case Arrangement::B8: case Arrangement::H4: case Arrangement::S2: case Arrangement::D1: return 8;")
+        code.append("    case Arrangement::B16: case Arrangement::H8: case Arrangement::S4: case Arrangement::D2: return 16;")
+        code.append("    default: return 16;")
+        code.append("    }")
         code.append("}")
         code.append("")
         code.append("// ============================================================================")
@@ -16062,13 +16821,14 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
 
-        # GP interpreters
-        code.append("static Lifted interpret_gp_binop(uint32_t insn, const IrEntry& e) {")
+        # GP interpreters — now take const Instruction&
+        code.append("// GP binary: Rd, Rn, Rm [, shift]")
+        code.append("static Lifted interpret_gp_binop(const Instruction& insn, const IrEntry& e, IrDetail) {")
         code.append("    Lifted l;")
-        code.append("    uint8_t sz = reg_size(insn);")
-        code.append("    uint32_t rd = extract_field(insn, e.dst);")
-        code.append("    uint32_t rn = extract_field(insn, e.src1);")
-        code.append("    uint32_t rm = extract_field(insn, e.src2);")
+        code.append("    uint8_t sz = op_reg_sz(insn, 0);")
+        code.append("    uint32_t rd = op_reg(insn, 0);")
+        code.append("    uint32_t rn = op_reg(insn, 1);")
+        code.append("    uint32_t rm = op_reg(insn, 2);")
         code.append("")
         code.append("    auto t0 = next_temp(sz);")
         code.append("    auto t1 = next_temp(sz);")
@@ -16082,27 +16842,69 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
 
-        code.append("static Lifted interpret_gp_binop_flags(uint32_t insn, const IrEntry& e) {")
-        code.append("    Lifted l = interpret_gp_binop(insn, e);")
+        code.append("static void emit_flags(Lifted& l, VarNode result, VarNode a, VarNode b, bool is_sub, IrDetail detail) {")
+        code.append("    uint8_t sz = result.size;")
+        code.append("    int msb = sz * 8 - 1;")
+        code.append("    // N = shr result, msb")
+        code.append("    l.ops.push_back(make_op2(Opcode::SHR, VarNode::flags_n(), result, VarNode::constant(msb, sz)));")
+        code.append("    // Z = cmp_eq result, 0")
+        code.append("    l.ops.push_back(make_op2(Opcode::CMP_EQ, VarNode::flags_z(), result, VarNode::constant(0, sz)));")
+        code.append("    // C")
+        code.append("    if (detail == IrDetail::Semantic) {")
+        code.append("        l.ops.push_back(make_op2(is_sub ? Opcode::CARRY_SUB : Opcode::CARRY_ADD,")
+        code.append("            VarNode::flags_c(), a, b));")
+        code.append("    } else {")
+        code.append("        if (is_sub)")
+        code.append("            l.ops.push_back(make_op2(Opcode::CMP_ULE, VarNode::flags_c(), b, a));")
+        code.append("        else")
+        code.append("            l.ops.push_back(make_op2(Opcode::CMP_ULT, VarNode::flags_c(), result, a));")
+        code.append("    }")
+        code.append("    // V")
+        code.append("    if (detail == IrDetail::Semantic) {")
+        code.append("        l.ops.push_back(make_op2(is_sub ? Opcode::OVERFLOW_SUB : Opcode::OVERFLOW_ADD,")
+        code.append("            VarNode::flags_v(), a, b));")
+        code.append("    } else {")
+        code.append("        if (is_sub) {")
+        code.append("            auto t1 = next_temp(sz); // a ^ b")
+        code.append("            auto t2 = next_temp(sz); // a ^ result")
+        code.append("            auto t3 = next_temp(sz); // t1 & t2")
+        code.append("            l.ops.push_back(make_op2(Opcode::XOR, t1, a, b));")
+        code.append("            l.ops.push_back(make_op2(Opcode::XOR, t2, a, result));")
+        code.append("            l.ops.push_back(make_op2(Opcode::AND, t3, t1, t2));")
+        code.append("            l.ops.push_back(make_op2(Opcode::SHR, VarNode::flags_v(), t3, VarNode::constant(msb, sz)));")
+        code.append("        } else {")
+        code.append("            auto t1 = next_temp(sz); // a ^ result")
+        code.append("            auto t2 = next_temp(sz); // b ^ result")
+        code.append("            auto t3 = next_temp(sz); // t1 & t2")
+        code.append("            l.ops.push_back(make_op2(Opcode::XOR, t1, a, result));")
+        code.append("            l.ops.push_back(make_op2(Opcode::XOR, t2, b, result));")
+        code.append("            l.ops.push_back(make_op2(Opcode::AND, t3, t1, t2));")
+        code.append("            l.ops.push_back(make_op2(Opcode::SHR, VarNode::flags_v(), t3, VarNode::constant(msb, sz)));")
+        code.append("        }")
+        code.append("    }")
+        code.append("}")
+        code.append("")
+        code.append("static Lifted interpret_gp_binop_flags(const Instruction& insn, const IrEntry& e, IrDetail detail) {")
+        code.append("    Lifted l = interpret_gp_binop(insn, e, detail);")
+        code.append("    // The last op is COPY result -> gpr(rd). The input is the temp holding the result.")
         code.append("    auto result = l.ops.back().inputs[0];")
-        code.append("    Op fw;")
-        code.append("    fw.opcode = Opcode::FLAG_WRITE;")
-        code.append("    fw.output = VarNode::flags();")
-        code.append("    fw.inputs[0] = result;")
-        code.append("    fw.num_inputs = 1;")
-        code.append("    l.ops.push_back(fw);")
+        code.append("    // a and b are the inputs to the binop (3rd from last op)")
+        code.append("    auto& binop = l.ops[l.ops.size() - 2];")
+        code.append("    auto a = binop.inputs[0];")
+        code.append("    auto b = binop.inputs[1];")
+        code.append("    bool is_sub = (e.opcode == Opcode::SUB);")
+        code.append("    emit_flags(l, result, a, b, is_sub, detail);")
         code.append("    return l;")
         code.append("}")
         code.append("")
 
-        code.append("static Lifted interpret_gp_binop_imm(uint32_t insn, const IrEntry& e) {")
+        code.append("// GP binary immediate: Rd, Rn, #imm [, shift]")
+        code.append("static Lifted interpret_gp_binop_imm(const Instruction& insn, const IrEntry& e, IrDetail) {")
         code.append("    Lifted l;")
-        code.append("    uint8_t sz = reg_size(insn);")
-        code.append("    uint32_t rd = extract_field(insn, e.dst);")
-        code.append("    uint32_t rn = extract_field(insn, e.src1);")
-        code.append("    uint32_t imm = extract_field(insn, FieldId::Imm12);")
-        code.append("    uint32_t sh = (insn >> 22) & 1;")
-        code.append("    if (sh) imm <<= 12;")
+        code.append("    uint8_t sz = op_reg_sz(insn, 0);")
+        code.append("    uint32_t rd = op_reg(insn, 0);")
+        code.append("    uint32_t rn = op_reg(insn, 1);")
+        code.append("    int64_t imm = op_imm(insn, 2);")
         code.append("")
         code.append("    auto t0 = next_temp(sz);")
         code.append("    auto t1 = next_temp(sz);")
@@ -16114,25 +16916,31 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
 
-        code.append("static Lifted interpret_gp_binop_imm_flags(uint32_t insn, const IrEntry& e) {")
-        code.append("    Lifted l = interpret_gp_binop_imm(insn, e);")
+        code.append("static Lifted interpret_gp_binop_imm_flags(const Instruction& insn, const IrEntry& e, IrDetail detail) {")
+        code.append("    Lifted l = interpret_gp_binop_imm(insn, e, detail);")
+        code.append("    // Last op is COPY result -> gpr(rd). Second-to-last is the binop.")
         code.append("    auto result = l.ops[l.ops.size() - 2].output;")
-        code.append("    Op fw;")
-        code.append("    fw.opcode = Opcode::FLAG_WRITE;")
-        code.append("    fw.output = VarNode::flags();")
-        code.append("    fw.inputs[0] = result;")
-        code.append("    fw.num_inputs = 1;")
-        code.append("    l.ops.push_back(fw);")
+        code.append("    auto& binop = l.ops[l.ops.size() - 2];")
+        code.append("    auto a = binop.inputs[0];")
+        code.append("    auto b = binop.inputs[1];")
+        code.append("    bool is_sub = (e.opcode == Opcode::SUB);")
+        code.append("    emit_flags(l, result, a, b, is_sub, detail);")
         code.append("    return l;")
         code.append("}")
         code.append("")
 
-        code.append("static Lifted interpret_gp_move_imm(uint32_t insn, const IrEntry& e) {")
+        code.append("// GP move wide: Rd, #imm")
+        code.append("static Lifted interpret_gp_move_imm(const Instruction& insn, const IrEntry& e, IrDetail) {")
         code.append("    Lifted l;")
-        code.append("    uint8_t sz = reg_size(insn);")
-        code.append("    uint32_t rd = extract_field(insn, e.dst);")
-        code.append("    uint32_t imm16 = extract_field(insn, FieldId::Imm16);")
-        code.append("    uint32_t hw = (insn >> 21) & 3;")
+        code.append("    uint8_t sz = op_reg_sz(insn, 0);")
+        code.append("    uint32_t rd = op_reg(insn, 0);")
+        code.append("    // The decoder already computes the shifted immediate and handles MOVN inversion")
+        code.append("    // For MOVZ/MOVN, operand 1 is the immediate with hw shift applied")
+        code.append("    // We still need to handle hw shift + NOT for MOVN from raw bits")
+        code.append("    // because the decoder may present the aliased form")
+        code.append("    uint32_t raw = insn.raw_value;")
+        code.append("    uint32_t imm16 = (raw >> 5) & 0xFFFF;")
+        code.append("    uint32_t hw = (raw >> 21) & 3;")
         code.append("    int64_t val = static_cast<int64_t>(imm16) << (hw * 16);")
         code.append("    if (e.opcode == Opcode::NOT) val = ~val;")
         code.append("")
@@ -16143,12 +16951,13 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
 
-        code.append("static Lifted interpret_gp_div(uint32_t insn, const IrEntry& e) {")
+        code.append("// GP divide: Rd, Rn, Rm")
+        code.append("static Lifted interpret_gp_div(const Instruction& insn, const IrEntry& e, IrDetail) {")
         code.append("    Lifted l;")
-        code.append("    uint8_t sz = reg_size(insn);")
-        code.append("    uint32_t rd = extract_field(insn, e.dst);")
-        code.append("    uint32_t rn = extract_field(insn, e.src1);")
-        code.append("    uint32_t rm = extract_field(insn, e.src2);")
+        code.append("    uint8_t sz = op_reg_sz(insn, 0);")
+        code.append("    uint32_t rd = op_reg(insn, 0);")
+        code.append("    uint32_t rn = op_reg(insn, 1);")
+        code.append("    uint32_t rm = op_reg(insn, 2);")
         code.append("")
         code.append("    auto t0 = next_temp(sz);")
         code.append("    auto t1 = next_temp(sz);")
@@ -16162,13 +16971,15 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
 
-        code.append("static Lifted interpret_gp_mul(uint32_t insn, const IrEntry& e) {")
+        code.append("// GP multiply: Rd, Rn, Rm [, Ra]")
+        code.append("static Lifted interpret_gp_mul(const Instruction& insn, const IrEntry& e, IrDetail) {")
         code.append("    Lifted l;")
-        code.append("    uint8_t sz = reg_size(insn);")
-        code.append("    uint32_t rd = extract_field(insn, e.dst);")
-        code.append("    uint32_t rn = extract_field(insn, e.src1);")
-        code.append("    uint32_t rm = extract_field(insn, e.src2);")
-        code.append("    uint32_t ra = extract_field(insn, FieldId::Ra);")
+        code.append("    uint8_t sz = op_reg_sz(insn, 0);")
+        code.append("    uint32_t rd = op_reg(insn, 0);")
+        code.append("    uint32_t rn = op_reg(insn, 1);")
+        code.append("    uint32_t rm = op_reg(insn, 2);")
+        code.append("    // Ra from raw bits (operand 3 may or may not exist depending on alias)")
+        code.append("    uint32_t ra = (insn.raw_value >> 10) & 0x1F;")
         code.append("")
         code.append("    auto tn = next_temp(sz);")
         code.append("    auto tm = next_temp(sz);")
@@ -16197,12 +17008,13 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
 
-        code.append("static Lifted interpret_gp_shift(uint32_t insn, const IrEntry& e) {")
+        code.append("// GP shift: Rd, Rn, Rm")
+        code.append("static Lifted interpret_gp_shift(const Instruction& insn, const IrEntry& e, IrDetail) {")
         code.append("    Lifted l;")
-        code.append("    uint8_t sz = reg_size(insn);")
-        code.append("    uint32_t rd = extract_field(insn, e.dst);")
-        code.append("    uint32_t rn = extract_field(insn, e.src1);")
-        code.append("    uint32_t rm = extract_field(insn, e.src2);")
+        code.append("    uint8_t sz = op_reg_sz(insn, 0);")
+        code.append("    uint32_t rd = op_reg(insn, 0);")
+        code.append("    uint32_t rn = op_reg(insn, 1);")
+        code.append("    uint32_t rm = op_reg(insn, 2);")
         code.append("")
         code.append("    auto t0 = next_temp(sz);")
         code.append("    auto t1 = next_temp(sz);")
@@ -16216,12 +17028,13 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
 
-        code.append("static Lifted interpret_gp_bitfield(uint32_t insn, const IrEntry& e) {")
+        code.append("// GP bitfield: Rd, Rn, #immr, #imms")
+        code.append("static Lifted interpret_gp_bitfield(const Instruction& insn, const IrEntry& e, IrDetail) {")
         code.append("    (void)e;")
         code.append("    Lifted l;")
-        code.append("    uint8_t sz = reg_size(insn);")
-        code.append("    uint32_t rd = extract_field(insn, FieldId::Rd);")
-        code.append("    uint32_t rn = extract_field(insn, FieldId::Rn);")
+        code.append("    uint8_t sz = op_reg_sz(insn, 0);")
+        code.append("    uint32_t rd = op_reg(insn, 0);")
+        code.append("    uint32_t rn = op_reg(insn, 1);")
         code.append("")
         code.append("    auto t0 = next_temp(sz);")
         code.append("    auto t1 = next_temp(sz);")
@@ -16232,13 +17045,17 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
 
-        # Load/Store interpreters
-        code.append("static Lifted interpret_load_reg(uint32_t insn, const IrEntry& e) {")
+        # Load/Store interpreters — use Memory operand
+        code.append("// Load: Rt, [Xn, #off]")
+        code.append("static Lifted interpret_load_reg(const Instruction& insn, const IrEntry& e, IrDetail) {")
+        code.append("    (void)e;")
         code.append("    Lifted l;")
-        code.append("    uint8_t sz = 1 << ((insn >> 30) & 3);")
-        code.append("    uint32_t rd = extract_field(insn, e.dst);")
-        code.append("    uint32_t rn = extract_field(insn, e.src1);")
-        code.append("    int32_t imm = static_cast<int32_t>(extract_field(insn, FieldId::Imm12)) * sz;")
+        code.append("    // Size from raw bits [31:30]")
+        code.append("    uint8_t sz = 1 << ((insn.raw_value >> 30) & 3);")
+        code.append("    uint32_t rd = op_reg(insn, 0);")
+        code.append("    // Operand 1 is Memory")
+        code.append("    uint32_t rn = op_mem_base(insn, 1);")
+        code.append("    int64_t imm = op_mem_offset(insn, 1);")
         code.append("")
         code.append("    auto taddr = next_temp(8);")
         code.append("    auto tval = next_temp(sz);")
@@ -16257,12 +17074,14 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
 
-        code.append("static Lifted interpret_store_reg(uint32_t insn, const IrEntry& e) {")
+        code.append("// Store: Rt, [Xn, #off]")
+        code.append("static Lifted interpret_store_reg(const Instruction& insn, const IrEntry& e, IrDetail) {")
+        code.append("    (void)e;")
         code.append("    Lifted l;")
-        code.append("    uint8_t sz = 1 << ((insn >> 30) & 3);")
-        code.append("    uint32_t rt = extract_field(insn, e.dst);")
-        code.append("    uint32_t rn = extract_field(insn, e.src1);")
-        code.append("    int32_t imm = static_cast<int32_t>(extract_field(insn, FieldId::Imm12)) * sz;")
+        code.append("    uint8_t sz = 1 << ((insn.raw_value >> 30) & 3);")
+        code.append("    uint32_t rt = op_reg(insn, 0);")
+        code.append("    uint32_t rn = op_mem_base(insn, 1);")
+        code.append("    int64_t imm = op_mem_offset(insn, 1);")
         code.append("")
         code.append("    auto taddr = next_temp(8);")
         code.append("    auto tval = next_temp(sz);")
@@ -16277,20 +17096,20 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
 
-        code.append("static Lifted interpret_load_pair(uint32_t insn, const IrEntry& e) {")
+        code.append("// Load pair: Rt1, Rt2, [Xn, #off]")
+        code.append("static Lifted interpret_load_pair(const Instruction& insn, const IrEntry& e, IrDetail) {")
         code.append("    (void)e;")
         code.append("    Lifted l;")
-        code.append("    uint8_t sz = ((insn >> 31) & 1) ? 8 : 4;")
-        code.append("    uint32_t rt1 = extract_field(insn, FieldId::Rd);")
-        code.append("    uint32_t rt2 = extract_field(insn, FieldId::Ra); // Rt2 is at bits [14:10]")
-        code.append("    uint32_t rn = extract_field(insn, FieldId::Rn);")
-        code.append("    int32_t imm7 = static_cast<int32_t>((insn >> 15) & 0x7F);")
-        code.append("    if (imm7 & 0x40) imm7 |= ~0x7F; // sign-extend")
-        code.append("    imm7 *= sz;")
+        code.append("    uint8_t sz = op_reg_sz(insn, 0);")
+        code.append("    uint32_t rt1 = op_reg(insn, 0);")
+        code.append("    uint32_t rt2 = op_reg(insn, 1);")
+        code.append("    // Operand 2 is Memory")
+        code.append("    uint32_t rn = op_mem_base(insn, 2);")
+        code.append("    int64_t imm = op_mem_offset(insn, 2);")
         code.append("")
         code.append("    auto taddr = next_temp(8);")
         code.append("    l.ops.push_back(make_op2(Opcode::ADD, taddr,")
-        code.append("        VarNode::gpr(rn, 8), VarNode::constant(imm7, 8)));")
+        code.append("        VarNode::gpr(rn, 8), VarNode::constant(imm, 8)));")
         code.append("")
         code.append("    auto tv1 = next_temp(sz);")
         code.append("    l.ops.push_back(make_op(Opcode::LOAD, tv1, taddr));")
@@ -16305,20 +17124,19 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
 
-        code.append("static Lifted interpret_store_pair(uint32_t insn, const IrEntry& e) {")
+        code.append("// Store pair: Rt1, Rt2, [Xn, #off]")
+        code.append("static Lifted interpret_store_pair(const Instruction& insn, const IrEntry& e, IrDetail) {")
         code.append("    (void)e;")
         code.append("    Lifted l;")
-        code.append("    uint8_t sz = ((insn >> 31) & 1) ? 8 : 4;")
-        code.append("    uint32_t rt1 = extract_field(insn, FieldId::Rd);")
-        code.append("    uint32_t rt2 = extract_field(insn, FieldId::Ra);")
-        code.append("    uint32_t rn = extract_field(insn, FieldId::Rn);")
-        code.append("    int32_t imm7 = static_cast<int32_t>((insn >> 15) & 0x7F);")
-        code.append("    if (imm7 & 0x40) imm7 |= ~0x7F;")
-        code.append("    imm7 *= sz;")
+        code.append("    uint8_t sz = op_reg_sz(insn, 0);")
+        code.append("    uint32_t rt1 = op_reg(insn, 0);")
+        code.append("    uint32_t rt2 = op_reg(insn, 1);")
+        code.append("    uint32_t rn = op_mem_base(insn, 2);")
+        code.append("    int64_t imm = op_mem_offset(insn, 2);")
         code.append("")
         code.append("    auto taddr = next_temp(8);")
         code.append("    l.ops.push_back(make_op2(Opcode::ADD, taddr,")
-        code.append("        VarNode::gpr(rn, 8), VarNode::constant(imm7, 8)));")
+        code.append("        VarNode::gpr(rn, 8), VarNode::constant(imm, 8)));")
         code.append("")
         code.append("    auto tv1 = next_temp(sz);")
         code.append("    l.ops.push_back(make_op(Opcode::COPY, tv1, VarNode::gpr(rt1, sz)));")
@@ -16338,11 +17156,10 @@ class ARM64XMLParser:
         code.append("")
 
         # Branch interpreters
-        code.append("static Lifted interpret_branch_uncond(uint32_t insn, const IrEntry& e) {")
+        code.append("// Unconditional branch: label (op[0] = Label/Relative)")
+        code.append("static Lifted interpret_branch_uncond(const Instruction& insn, const IrEntry& e, IrDetail) {")
         code.append("    Lifted l;")
-        code.append("    int32_t imm26 = static_cast<int32_t>(extract_field(insn, FieldId::Imm26));")
-        code.append("    if (imm26 & (1 << 25)) imm26 |= ~((1 << 26) - 1);")
-        code.append("    int64_t offset = static_cast<int64_t>(imm26) << 2;")
+        code.append("    int64_t offset = op_imm(insn, 0);")
         code.append("")
         code.append("    Op o;")
         code.append("    o.opcode = e.opcode; // BRANCH or CALL")
@@ -16353,15 +17170,62 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
 
-        code.append("static Lifted interpret_branch_cond(uint32_t insn, const IrEntry&) {")
-        code.append("    Lifted l;")
-        code.append("    int32_t imm19 = static_cast<int32_t>(extract_field(insn, FieldId::Imm19));")
-        code.append("    if (imm19 & (1 << 18)) imm19 |= ~((1 << 19) - 1);")
-        code.append("    int64_t offset = static_cast<int64_t>(imm19) << 2;")
-        code.append("    uint32_t cond = insn & 0xF;")
+        code.append("// Expand a condition code into a boolean temp from individual N/Z/C/V flags")
+        code.append("static VarNode emit_condition(Lifted& l, uint32_t cond) {")
+        code.append("    auto N = VarNode::flags_n();")
+        code.append("    auto Z = VarNode::flags_z();")
+        code.append("    auto C = VarNode::flags_c();")
+        code.append("    auto V = VarNode::flags_v();")
+        code.append("    VarNode result;")
+        code.append("    switch (cond >> 1) {")
+        code.append("    case 0: // EQ/NE")
+        code.append("        result = Z; break;")
+        code.append("    case 1: // CS/CC")
+        code.append("        result = C; break;")
+        code.append("    case 2: // MI/PL")
+        code.append("        result = N; break;")
+        code.append("    case 3: // VS/VC")
+        code.append("        result = V; break;")
+        code.append("    case 4: { // HI/LS: C && !Z")
+        code.append("        auto tnz = next_temp(1);")
+        code.append("        l.ops.push_back(make_op(Opcode::NOT, tnz, Z));")
+        code.append("        auto tr = next_temp(1);")
+        code.append("        l.ops.push_back(make_op2(Opcode::AND, tr, C, tnz));")
+        code.append("        result = tr; break;")
+        code.append("    }")
+        code.append("    case 5: { // GE/LT: N == V")
+        code.append("        auto tr = next_temp(1);")
+        code.append("        l.ops.push_back(make_op2(Opcode::CMP_EQ, tr, N, V));")
+        code.append("        result = tr; break;")
+        code.append("    }")
+        code.append("    case 6: { // GT/LE: (N == V) && !Z")
+        code.append("        auto teq = next_temp(1);")
+        code.append("        l.ops.push_back(make_op2(Opcode::CMP_EQ, teq, N, V));")
+        code.append("        auto tnz = next_temp(1);")
+        code.append("        l.ops.push_back(make_op(Opcode::NOT, tnz, Z));")
+        code.append("        auto tr = next_temp(1);")
+        code.append("        l.ops.push_back(make_op2(Opcode::AND, tr, teq, tnz));")
+        code.append("        result = tr; break;")
+        code.append("    }")
+        code.append("    default: // AL")
+        code.append("        result = VarNode::constant(1, 1); break;")
+        code.append("    }")
+        code.append("    // Invert for odd condition codes (NE, CC, PL, VC, LS, LT, LE)")
+        code.append("    if ((cond & 1) && cond != 15) {")
+        code.append("        auto inv = next_temp(1);")
+        code.append("        l.ops.push_back(make_op(Opcode::NOT, inv, result));")
+        code.append("        return inv;")
+        code.append("    }")
+        code.append("    return result;")
+        code.append("}")
         code.append("")
-        code.append("    auto tcond = next_temp(1);")
-        code.append("    l.ops.push_back(make_op(Opcode::FLAG_READ, tcond, VarNode::constant(cond, 1)));")
+        code.append("// Conditional branch: label (op[0] = Label, condition in insn.condition)")
+        code.append("static Lifted interpret_branch_cond(const Instruction& insn, const IrEntry&, IrDetail) {")
+        code.append("    Lifted l;")
+        code.append("    int64_t offset = op_imm(insn, 0);")
+        code.append("    uint32_t cond = static_cast<uint32_t>(insn.condition);")
+        code.append("")
+        code.append("    auto tcond = emit_condition(l, cond);")
         code.append("")
         code.append("    Op o;")
         code.append("    o.opcode = Opcode::CBRANCH;")
@@ -16373,9 +17237,11 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
 
-        code.append("static Lifted interpret_branch_reg(uint32_t insn, const IrEntry& e) {")
+        code.append("// Branch register: Xn (op[0] = Reg) or no operands (RET uses X30)")
+        code.append("static Lifted interpret_branch_reg(const Instruction& insn, const IrEntry& e, IrDetail) {")
         code.append("    Lifted l;")
-        code.append("    uint32_t rn = extract_field(insn, e.src1);")
+        code.append("    // RET may have no explicit operands (defaults to X30)")
+        code.append("    uint32_t rn = insn.operands.empty() ? 30 : op_reg(insn, 0);")
         code.append("")
         code.append("    auto taddr = next_temp(8);")
         code.append("    l.ops.push_back(make_op(Opcode::COPY, taddr, VarNode::gpr(rn, 8)));")
@@ -16389,13 +17255,12 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
 
-        code.append("static Lifted interpret_compare_branch(uint32_t insn, const IrEntry& e) {")
+        code.append("// Compare and branch: Rt, label")
+        code.append("static Lifted interpret_compare_branch(const Instruction& insn, const IrEntry& e, IrDetail) {")
         code.append("    Lifted l;")
-        code.append("    uint8_t sz = reg_size(insn);")
-        code.append("    uint32_t rt = extract_field(insn, FieldId::Rd);")
-        code.append("    int32_t imm19 = static_cast<int32_t>(extract_field(insn, FieldId::Imm19));")
-        code.append("    if (imm19 & (1 << 18)) imm19 |= ~((1 << 19) - 1);")
-        code.append("    int64_t offset = static_cast<int64_t>(imm19) << 2;")
+        code.append("    uint8_t sz = op_reg_sz(insn, 0);")
+        code.append("    uint32_t rt = op_reg(insn, 0);")
+        code.append("    int64_t offset = op_imm(insn, 1);")
         code.append("")
         code.append("    auto tval = next_temp(sz);")
         code.append("    auto tcmp = next_temp(1);")
@@ -16413,17 +17278,14 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
 
-        code.append("static Lifted interpret_test_branch(uint32_t insn, const IrEntry& e) {")
+        code.append("// Test and branch: Rt, #bit, label")
+        code.append("static Lifted interpret_test_branch(const Instruction& insn, const IrEntry& e, IrDetail) {")
         code.append("    Lifted l;")
-        code.append("    uint32_t rt = extract_field(insn, FieldId::Rd);")
-        code.append("    uint32_t b5 = (insn >> 31) & 1;")
-        code.append("    uint32_t b40 = (insn >> 19) & 0x1F;")
-        code.append("    uint32_t bit_pos = (b5 << 5) | b40;")
-        code.append("    int32_t imm14 = static_cast<int32_t>(extract_field(insn, FieldId::Imm14));")
-        code.append("    if (imm14 & (1 << 13)) imm14 |= ~((1 << 14) - 1);")
-        code.append("    int64_t offset = static_cast<int64_t>(imm14) << 2;")
+        code.append("    uint32_t rt = op_reg(insn, 0);")
+        code.append("    uint32_t bit_pos = static_cast<uint32_t>(op_imm(insn, 1));")
+        code.append("    int64_t offset = op_imm(insn, 2);")
         code.append("")
-        code.append("    uint8_t sz = b5 ? 8 : 4;")
+        code.append("    uint8_t sz = (bit_pos >= 32) ? 8 : 4;")
         code.append("    auto tval = next_temp(sz);")
         code.append("    auto tbit = next_temp(1);")
         code.append("    auto tmask = VarNode::constant(1LL << bit_pos, sz);")
@@ -16445,17 +17307,17 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
 
-        code.append("static Lifted interpret_cond_select(uint32_t insn, const IrEntry& e) {")
+        code.append("// Conditional select: Rd, Rn, Rm, cond")
+        code.append("static Lifted interpret_cond_select(const Instruction& insn, const IrEntry& e, IrDetail) {")
         code.append("    (void)e;")
         code.append("    Lifted l;")
-        code.append("    uint8_t sz = reg_size(insn);")
-        code.append("    uint32_t rd = extract_field(insn, FieldId::Rd);")
-        code.append("    uint32_t rn = extract_field(insn, FieldId::Rn);")
-        code.append("    uint32_t rm = extract_field(insn, FieldId::Rm);")
-        code.append("    uint32_t cond = extract_field(insn, FieldId::Cond);")
+        code.append("    uint8_t sz = op_reg_sz(insn, 0);")
+        code.append("    uint32_t rd = op_reg(insn, 0);")
+        code.append("    uint32_t rn = op_reg(insn, 1);")
+        code.append("    uint32_t rm = op_reg(insn, 2);")
+        code.append("    uint32_t cond = static_cast<uint32_t>(insn.condition);")
         code.append("")
-        code.append("    auto tcond = next_temp(1);")
-        code.append("    l.ops.push_back(make_op(Opcode::FLAG_READ, tcond, VarNode::constant(cond, 1)));")
+        code.append("    auto tcond = emit_condition(l, cond);")
         code.append("")
         code.append("    Op o;")
         code.append("    o.opcode = Opcode::COPY;")
@@ -16469,21 +17331,13 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
 
-        # SIMD arrangement helper
-        code.append("static void simd_arrangement(uint32_t insn, uint8_t& esize_bytes, uint8_t& num_elems) {")
-        code.append("    uint32_t Q = (insn >> 30) & 1;")
-        code.append("    uint32_t size = (insn >> 22) & 3;")
-        code.append("    esize_bytes = 1 << size;")
-        code.append("    num_elems = (Q ? 16 : 8) / esize_bytes;")
-        code.append("}")
-        code.append("")
-
-        # SIMD binop with element-level unrolling + bitwise fix
-        code.append("static Lifted interpret_simd_binop(uint32_t insn, const IrEntry& e) {")
+        # SIMD — use arrangement from register for element size
+        code.append("// SIMD binop: Vd.T, Vn.T, Vm.T")
+        code.append("static Lifted interpret_simd_binop(const Instruction& insn, const IrEntry& e, IrDetail) {")
         code.append("    Lifted l;")
-        code.append("    uint32_t rd = extract_field(insn, FieldId::Rd);")
-        code.append("    uint32_t rn = extract_field(insn, FieldId::Rn);")
-        code.append("    uint32_t rm = extract_field(insn, FieldId::Rm);")
+        code.append("    uint32_t rd = op_reg(insn, 0);")
+        code.append("    uint32_t rn = op_reg(insn, 1);")
+        code.append("    uint32_t rm = op_reg(insn, 2);")
         code.append("")
         code.append("    // Fall back to opaque for UNDEF or unsupported opcodes")
         code.append("    if (e.opcode == Opcode::UNDEF || e.opcode == Opcode::COPY || e.opcode == Opcode::EXTRACT) {")
@@ -16497,12 +17351,12 @@ class ARM64XMLParser:
         code.append("        return l;")
         code.append("    }")
         code.append("")
-        code.append("    // Element-level loop unrolling")
-        code.append("    uint8_t esize = 0, num_elems = 0;")
-        code.append("    simd_arrangement(insn, esize, num_elems);")
-        code.append("    uint8_t vec_size = ((insn >> 30) & 1) ? 16 : 8;")
+        code.append("    // Get element size and vector size from register arrangement")
+        code.append("    uint8_t esize = arr_elem_size(insn.operands[0].r.reg);")
+        code.append("    uint8_t vec_size = arr_vec_size(insn.operands[0].r.reg);")
+        code.append("    uint8_t num_elems = vec_size / esize;")
         code.append("")
-        code.append("    // Bitwise ops (AND/OR/XOR/NOT) always operate on bytes regardless of size field")
+        code.append("    // Bitwise ops (AND/OR/XOR/NOT) always operate on bytes regardless of arrangement")
         code.append("    bool is_bitwise = (e.opcode == Opcode::AND || e.opcode == Opcode::OR ||")
         code.append("                       e.opcode == Opcode::XOR || e.opcode == Opcode::NOT);")
         code.append("    if (is_bitwise) {")
@@ -16510,13 +17364,7 @@ class ARM64XMLParser:
         code.append("        num_elems = vec_size;")
         code.append("    }")
         code.append("")
-        code.append("    // FP SIMD ops use bit 22 as sz (0=single/4B, 1=double/8B), not standard size field")
-        code.append("    bool is_float = (e.opcode == Opcode::FADD || e.opcode == Opcode::FSUB ||")
-        code.append("                     e.opcode == Opcode::FMUL || e.opcode == Opcode::FDIV);")
-        code.append("    if (is_float) {")
-        code.append("        esize = ((insn >> 22) & 1) ? 8 : 4;")
-        code.append("        num_elems = vec_size / esize;")
-        code.append("    }")
+        code.append("    // FP SIMD ops: arrangement from register is already correct (S4=4B, D2=8B)")
         code.append("")
         code.append("    auto src1_reg = VarNode::simd(rn, vec_size);")
         code.append("    auto src2_reg = VarNode::simd(rm, vec_size);")
@@ -16542,11 +17390,12 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
 
-        # SIMD unary with element-level unrolling + bitwise fix
-        code.append("static Lifted interpret_simd_unary(uint32_t insn, const IrEntry& e) {")
+        # SIMD unary
+        code.append("// SIMD unary: Vd.T, Vn.T")
+        code.append("static Lifted interpret_simd_unary(const Instruction& insn, const IrEntry& e, IrDetail) {")
         code.append("    Lifted l;")
-        code.append("    uint32_t rd = extract_field(insn, FieldId::Rd);")
-        code.append("    uint32_t rn = extract_field(insn, FieldId::Rn);")
+        code.append("    uint32_t rd = op_reg(insn, 0);")
+        code.append("    uint32_t rn = op_reg(insn, 1);")
         code.append("")
         code.append("    // Fall back to opaque for UNDEF/COPY or complex ops")
         code.append("    if (e.opcode == Opcode::UNDEF || e.opcode == Opcode::COPY || e.opcode == Opcode::SEXT ||")
@@ -16559,23 +17408,14 @@ class ARM64XMLParser:
         code.append("        return l;")
         code.append("    }")
         code.append("")
-        code.append("    // Element-level loop unrolling")
-        code.append("    uint8_t esize = 0, num_elems = 0;")
-        code.append("    simd_arrangement(insn, esize, num_elems);")
-        code.append("    uint8_t vec_size = ((insn >> 30) & 1) ? 16 : 8;")
+        code.append("    uint8_t esize = arr_elem_size(insn.operands[0].r.reg);")
+        code.append("    uint8_t vec_size = arr_vec_size(insn.operands[0].r.reg);")
+        code.append("    uint8_t num_elems = vec_size / esize;")
         code.append("")
-        code.append("    // Bitwise ops always operate on bytes regardless of size field")
+        code.append("    // Bitwise ops always operate on bytes")
         code.append("    if (e.opcode == Opcode::NOT) {")
         code.append("        esize = 1;")
         code.append("        num_elems = vec_size;")
-        code.append("    }")
-        code.append("")
-        code.append("    // FP SIMD unary ops use bit 22 as sz (0=single/4B, 1=double/8B)")
-        code.append("    bool is_float = (e.opcode == Opcode::FNEG || e.opcode == Opcode::FABS ||")
-        code.append("                     e.opcode == Opcode::FSQRT);")
-        code.append("    if (is_float) {")
-        code.append("        esize = ((insn >> 22) & 1) ? 8 : 4;")
-        code.append("        num_elems = vec_size / esize;")
         code.append("    }")
         code.append("")
         code.append("    auto src_reg = VarNode::simd(rn, vec_size);")
@@ -16600,13 +17440,14 @@ class ARM64XMLParser:
         code.append("")
 
         # FP interpreters
-        code.append("static Lifted interpret_fp_binop(uint32_t insn, const IrEntry& e) {")
+        code.append("// Scalar FP binary: Sd, Sn, Sm")
+        code.append("static Lifted interpret_fp_binop(const Instruction& insn, const IrEntry& e, IrDetail) {")
         code.append("    Lifted l;")
-        code.append("    uint32_t rd = extract_field(insn, FieldId::Rd);")
-        code.append("    uint32_t rn = extract_field(insn, FieldId::Rn);")
-        code.append("    uint32_t rm = extract_field(insn, FieldId::Rm);")
+        code.append("    uint32_t rd = op_reg(insn, 0);")
+        code.append("    uint32_t rn = op_reg(insn, 1);")
+        code.append("    uint32_t rm = op_reg(insn, 2);")
         code.append("    // FP type from bits [23:22]: 00=S, 01=D, 11=H")
-        code.append("    uint32_t ftype = (insn >> 22) & 3;")
+        code.append("    uint32_t ftype = (insn.raw_value >> 22) & 3;")
         code.append("    uint8_t sz = (ftype == 1) ? 8 : (ftype == 3) ? 2 : 4;")
         code.append("")
         code.append("    auto t0 = next_temp(sz);")
@@ -16621,10 +17462,11 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
 
-        code.append("static Lifted interpret_fp_convert(uint32_t insn, const IrEntry& e) {")
+        code.append("// FP convert: Sd<->Xn")
+        code.append("static Lifted interpret_fp_convert(const Instruction& insn, const IrEntry& e, IrDetail) {")
         code.append("    Lifted l;")
-        code.append("    uint32_t rd = extract_field(insn, FieldId::Rd);")
-        code.append("    uint32_t rn = extract_field(insn, FieldId::Rn);")
+        code.append("    uint32_t rd = op_reg(insn, 0);")
+        code.append("    uint32_t rn = op_reg(insn, 1);")
         code.append("")
         code.append("    auto t0 = next_temp(8);")
         code.append("    auto t1 = next_temp(8);")
@@ -16643,7 +17485,7 @@ class ARM64XMLParser:
         code.append("")
 
         # Simple interpreters
-        code.append("static Lifted interpret_nop(uint32_t, const IrEntry&) {")
+        code.append("static Lifted interpret_nop(const Instruction&, const IrEntry&, IrDetail) {")
         code.append("    Lifted l;")
         code.append("    Op o;")
         code.append("    o.opcode = Opcode::NOP;")
@@ -16653,7 +17495,7 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
 
-        code.append("static Lifted interpret_system(uint32_t, const IrEntry&) {")
+        code.append("static Lifted interpret_system(const Instruction&, const IrEntry&, IrDetail) {")
         code.append("    Lifted l;")
         code.append("    Op o;")
         code.append("    o.opcode = Opcode::UNDEF;")
@@ -16663,7 +17505,7 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
 
-        code.append("static Lifted interpret_atomic(uint32_t, const IrEntry&) {")
+        code.append("static Lifted interpret_atomic(const Instruction&, const IrEntry&, IrDetail) {")
         code.append("    Lifted l;")
         code.append("    Op o;")
         code.append("    o.opcode = Opcode::UNDEF;")
@@ -16678,7 +17520,7 @@ class ARM64XMLParser:
         code.append("// Dispatch")
         code.append("// ============================================================================")
         code.append("")
-        code.append("using Interpreter = Lifted(*)(uint32_t insn, const IrEntry& e);")
+        code.append("using Interpreter = Lifted(*)(const Instruction& insn, const IrEntry& e, IrDetail detail);")
         code.append("")
         code.append("static Interpreter get_interpreter(IrTemplate tpl) {")
         code.append("    switch (tpl) {")
@@ -16715,14 +17557,30 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
 
-        code.append("std::optional<Lifted> lift_from_table(uint32_t insn) {")
+        code.append("// Mnemonic-indexed lookup table (built on first call)")
+        code.append("static std::unordered_map<uint16_t, std::vector<size_t>> mnemonic_index;")
+        code.append("static bool mnemonic_index_built = false;")
+        code.append("")
+        code.append("static void build_mnemonic_index() {")
+        code.append("    for (size_t i = 0; i < ir_table_size; ++i)")
+        code.append("        mnemonic_index[static_cast<uint16_t>(ir_table[i].mnemonic)].push_back(i);")
+        code.append("    mnemonic_index_built = true;")
+        code.append("}")
+        code.append("")
+        code.append("std::optional<Lifted> lift_from_instruction(const Instruction& insn, IrDetail detail) {")
         code.append("    temp_idx = 0;")
         code.append("")
-        code.append("    for (size_t i = 0; i < ir_table_size; ++i) {")
-        code.append("        const auto& e = ir_table[i];")
-        code.append("        if ((insn & e.mask) == e.match) {")
+        code.append("    if (!mnemonic_index_built) build_mnemonic_index();")
+        code.append("")
+        code.append("    auto it = mnemonic_index.find(static_cast<uint16_t>(insn.mnemonic));")
+        code.append("    if (it == mnemonic_index.end()) return std::nullopt;")
+        code.append("")
+        code.append("    uint32_t raw = insn.raw_value;")
+        code.append("    for (size_t idx : it->second) {")
+        code.append("        const auto& e = ir_table[idx];")
+        code.append("        if ((raw & e.mask) == e.match) {")
         code.append("            auto interp = get_interpreter(e.tpl);")
-        code.append("            if (interp) return interp(insn, e);")
+        code.append("            if (interp) return interp(insn, e, detail);")
         code.append("            return std::nullopt;")
         code.append("        }")
         code.append("    }")
@@ -16757,15 +17615,11 @@ class ARM64XMLParser:
         for entry in ir_entries_sorted:
             mask = f"0x{entry['mask']:08X}U"
             match = f"0x{entry['match']:08X}U"
+            mnem = entry.get('mnemonic', 'UNKNOWN').upper()
             tpl = f"IrTemplate::{entry['template']}"
             opc = f"Opcode::{entry['opcode']}"
-            dst = f"FieldId::{entry['dst']}"
-            src1 = f"FieldId::{entry['src1']}"
-            src2 = f"FieldId::{entry['src2']}"
-            sz = f"FieldId::{entry['size_field']}"
             ex = str(entry['extra'])
-            comment = entry.get('mnemonic', '')
-            code.append(f"    {{ {mask}, {match}, {tpl}, {opc}, {dst}, {src1}, {src2}, {sz}, {ex} }}, // {comment}")
+            code.append(f"    {{ {mask}, {match}, Mnemonic::{mnem}, {tpl}, {opc}, {ex} }}, // {mnem}")
         code.append("};")
         code.append("")
         code.append(f"const size_t ir_table_size = {len(ir_entries_sorted)};")
@@ -16784,6 +17638,7 @@ class ARM64XMLParser:
         code.append("#ifndef VEDA64_NO_IR")
         code.append("")
         code.append('#include "veda64/ir.hpp"')
+        code.append('#include "veda64.hpp"')
         code.append("#include <cstdio>")
         code.append("#include <cassert>")
         code.append("")
@@ -16797,6 +17652,7 @@ class ARM64XMLParser:
         # Generate test cases for representative instructions
         test_cases = [
             # (name, hex_encoding, expected_opcode, description)
+            # --- GP arithmetic (GpBinop, GpBinopImm) ---
             ("ADD_X0_X1_X2", "0x8B020020", "ADD", "GP register add"),
             ("SUB_X0_X1_X2", "0xCB020020", "SUB", "GP register sub"),
             ("ADDS_X0_X1_X2", "0xAB020020", "ADD", "GP register add with flags"),
@@ -16805,25 +17661,64 @@ class ARM64XMLParser:
             ("EOR_X0_X1_X2", "0xCA020020", "XOR", "GP register EOR"),
             ("ADD_X0_X1_imm42", "0x91010820", "ADD", "GP immediate add"),
             ("SUB_X0_X1_imm42", "0xD1010820", "SUB", "GP immediate sub"),
+            ("ADD_W0_W1_W2", "0x0B020020", "ADD", "32-bit register add"),
+            ("SUBS_X0_X1_X2", "0xEB020020", "SUB", "GP sub with flags"),
+            # --- Move wide (MoveWide) ---
             ("MOVZ_X0_0x1234", "0xD2824680", "COPY", "Move wide immediate"),
+            # --- Divide (GpDiv) ---
             ("SDIV_X0_X1_X2", "0x9AC20C20", "SDIV", "Signed divide"),
             ("UDIV_X0_X1_X2", "0x9AC20820", "UDIV", "Unsigned divide"),
+            # --- Multiply (GpMul) ---
             ("MADD_X0_X1_X2_X3", "0x9B020C20", "MUL", "Multiply-add"),
+            # --- Shifts (GpShift) ---
+            ("LSL_X0_X1_X2", "0x9AC22020", "SHL", "Variable shift left"),
+            ("LSR_X0_X1_X2", "0x9AC22420", "SHR", "Variable shift right"),
+            ("ASR_X0_X1_X2", "0x9AC22820", "SAR", "Arithmetic shift right"),
+            # --- Bitfield (GpBitfield) ---
+            ("UBFX_X0_X1", "0xD3407C20", "EXTRACT", "Unsigned bitfield extract"),
+            # --- Conditional select (CondSelect) ---
+            ("CSEL_X0_X1_X2", "0x9A821020", "NOT", "Conditional select expands NE condition"),
+            # --- Load/store (LoadUnsigned, StoreUnsigned) ---
             ("LDR_X0_X1_8", "0xF9400420", "LOAD", "Load 64-bit unsigned offset"),
             ("STR_X0_X1_8", "0xF9000420", "STORE", "Store 64-bit unsigned offset"),
+            # --- Load/store pair (LoadPair, StorePair) ---
+            ("LDP_X29_X30_SP", "0xA9407BFD", "LOAD", "Load pair"),
+            ("STP_X29_X30_SP", "0xA9007BFD", "STORE", "Store pair"),
+            # --- Branches (Branch, BranchLink) ---
             ("B_0x100", "0x14000040", "BRANCH", "Unconditional branch"),
             ("BL_0x100", "0x94000040", "CALL", "Branch with link"),
             ("RET", "0xD65F03C0", "RET", "Return"),
+            # --- Compare and branch (CompareBranch) ---
             ("CBZ_X0", "0xB4000080", "CMP_EQ", "Compare and branch zero"),
             ("CBNZ_X0", "0xB5000080", "CMP_NE", "Compare and branch non-zero"),
+            # --- Conditional branch (BranchCond) ---
+            ("B_NE", "0x54000041", "CBRANCH", "Conditional branch B.NE"),
+            # --- Test and branch (TestBranch) ---
+            ("TBZ_W0_2", "0x36100060", "CBRANCH", "Test bit and branch zero"),
+            # --- System (System) ---
             ("NOP", "0xD503201F", "NOP", "No operation"),
-            ("ADD_W0_W1_W2", "0x0B020020", "ADD", "32-bit register add"),
-            ("SUBS_X0_X1_X2", "0xEB020020", "SUB", "GP sub with flags"),
-            # SIMD vector element-level unrolling tests
+            ("DSB_SY", "0xD5033F9F", "NOP", "DSB barrier maps to NOP"),
+            # --- Scalar FP (FpBinop) ---
+            ("FADD_S0_S1_S2", "0x1E222820", "FADD", "Scalar FP add"),
+            ("FDIV_D0_D1_D2", "0x1E621820", "FDIV", "Scalar FP div"),
+            # --- FP conversion (FpConvert) ---
+            ("SCVTF_S0_X1", "0x9E220020", "INT2FLOAT", "Int to float convert"),
+            # --- SIMD vector element-level unrolling tests ---
             ("SIMD_ADD_V0_4S", "0x4EA28420", "VEXTRACT_ELEM", "SIMD ADD V0.4S produces VEXTRACT_ELEM"),
             ("SIMD_ADD_V0_16B", "0x4E228420", "VEXTRACT_ELEM", "SIMD ADD V0.16B produces VEXTRACT_ELEM"),
             ("SIMD_SUB_V0_4S", "0x6EA28420", "VEXTRACT_ELEM", "SIMD SUB V0.4S produces VEXTRACT_ELEM"),
             ("SIMD_FNEG_V0_4S", "0x6EA0F820", "VEXTRACT_ELEM", "SIMD FNEG V0.4S unary unrolling"),
+            ("SIMD_MUL_4S", "0x4EA29C20", "VEXTRACT_ELEM", "SIMD MUL V0.4S unrolled"),
+            # --- SIMD bitwise (always byte arrangement) ---
+            ("SIMD_AND_16B", "0x4E221C20", "VEXTRACT_ELEM", "SIMD AND V0.16B unrolled"),
+            ("SIMD_ORR_16B", "0x4EA21C20", "VEXTRACT_ELEM", "SIMD ORR V0.16B unrolled"),
+            ("SIMD_EOR_16B", "0x6E221C20", "VEXTRACT_ELEM", "SIMD EOR V0.16B unrolled"),
+            # --- SIMD FP ---
+            ("SIMD_FMUL_4S", "0x6E22DC20", "VEXTRACT_ELEM", "SIMD FMUL V0.4S unrolled"),
+            # --- SIMD unary ---
+            ("SIMD_NOT_16B", "0x6E205820", "VEXTRACT_ELEM", "SIMD NOT V0.16B unrolled"),
+            # --- Atomic (opaque) ---
+            ("LDADD_W0", "0xB8200020", "UNDEF", "Atomic LDADD returns UNDEF"),
         ]
 
         code.append("static void run_tests() {")
@@ -16850,107 +17745,613 @@ class ARM64XMLParser:
             code.append(f"    }}")
         code.append("")
 
-        # SIMD lane count tests
-        code.append('    // SIMD ADD V0.4S should have exactly 4 VEXTRACT_ELEM ops')
-        code.append('    {')
-        code.append('        tests_run++;')
-        code.append('        printf("  %-40s ", "SIMD_ADD_4S_lane_count");')
-        code.append('        auto r = lift(0x4EA28420);  // ADD V0.4S, V1.4S, V2.4S')
-        code.append('        if (!r.has_value()) {')
-        code.append('            printf("FAIL: lift returned nullopt\\n");')
-        code.append('        } else {')
-        code.append('            int extract_count = 0;')
-        code.append('            for (auto& op : r->ops) {')
-        code.append('                if (op.opcode == Opcode::VEXTRACT_ELEM) extract_count++;')
-        code.append('            }')
-        code.append('            if (extract_count == 8) {  // 4 lanes x 2 sources')
-        code.append('                printf("PASS\\n");')
-        code.append('                tests_passed++;')
-        code.append('            } else {')
-        code.append('                printf("FAIL: expected 8 VEXTRACT_ELEM, got %d\\n", extract_count);')
-        code.append('            }')
-        code.append('        }')
-        code.append('    }')
-        code.append('')
-        code.append('    // SIMD ADD V0.16B should have exactly 16 VEXTRACT_ELEM ops (16 lanes x 2 srcs = 32)')
-        code.append('    {')
-        code.append('        tests_run++;')
-        code.append('        printf("  %-40s ", "SIMD_ADD_16B_lane_count");')
-        code.append('        auto r = lift(0x4E228420);  // ADD V0.16B, V1.16B, V2.16B')
-        code.append('        if (!r.has_value()) {')
-        code.append('            printf("FAIL: lift returned nullopt\\n");')
-        code.append('        } else {')
-        code.append('            int extract_count = 0;')
-        code.append('            for (auto& op : r->ops) {')
-        code.append('                if (op.opcode == Opcode::VEXTRACT_ELEM) extract_count++;')
-        code.append('            }')
-        code.append('            if (extract_count == 32) {  // 16 lanes x 2 sources')
-        code.append('                printf("PASS\\n");')
-        code.append('                tests_passed++;')
-        code.append('            } else {')
-        code.append('                printf("FAIL: expected 32 VEXTRACT_ELEM, got %d\\n", extract_count);')
-        code.append('            }')
-        code.append('        }')
-        code.append('    }')
-        code.append('')
-        code.append('    // SIMD FNEG V0.4S unary should have 4 VEXTRACT_ELEM ops')
-        code.append('    {')
-        code.append('        tests_run++;')
-        code.append('        printf("  %-40s ", "SIMD_FNEG_4S_lane_count");')
-        code.append('        auto r = lift(0x6EA0F820);  // FNEG V0.4S, V1.4S')
-        code.append('        if (!r.has_value()) {')
-        code.append('            printf("FAIL: lift returned nullopt\\n");')
-        code.append('        } else {')
-        code.append('            int extract_count = 0;')
-        code.append('            for (auto& op : r->ops) {')
-        code.append('                if (op.opcode == Opcode::VEXTRACT_ELEM) extract_count++;')
-        code.append('            }')
-        code.append('            if (extract_count == 4) {  // 4 lanes x 1 source')
-        code.append('                printf("PASS\\n");')
-        code.append('                tests_passed++;')
-        code.append('            } else {')
-        code.append('                printf("FAIL: expected 4 VEXTRACT_ELEM, got %d\\n", extract_count);')
-        code.append('            }')
-        code.append('        }')
-        code.append('    }')
-        code.append('')
+        # ============================================================
+        # Custom test blocks (structured validation beyond opcode presence)
+        # ============================================================
 
-        # Test to_string
-        code.append('    // to_string test')
-        code.append('    {')
-        code.append('        tests_run++;')
-        code.append('        printf("  %-40s ", "to_string");')
-        code.append('        auto r = lift(0x8B020020);')
-        code.append('        if (r.has_value()) {')
-        code.append('            auto s = to_string(*r);')
-        code.append('            if (!s.empty()) {')
-        code.append('                printf("PASS\\n");')
-        code.append('                tests_passed++;')
-        code.append('            } else {')
-        code.append('                printf("FAIL: empty string\\n");')
-        code.append('            }')
-        code.append('        } else {')
-        code.append('            printf("FAIL: lift returned nullopt\\n");')
-        code.append('        }')
-        code.append('    }')
+        # Helper: emit a custom test block
+        def emit_test(name, body_lines):
+            """Emit a custom test block. body_lines should set 'pass' bool."""
+            code.append(f'    // {name}')
+            code.append('    {')
+            code.append('        tests_run++;')
+            code.append(f'        printf("  %-40s ", "{name}");')
+            for line in body_lines:
+                code.append(f'        {line}')
+            code.append('    }')
+            code.append('')
 
-        # Test UDF (0x00000000) returns UNDEF
-        code.append('')
-        code.append('    // UDF instruction returns UNDEF opcode')
-        code.append('    {')
-        code.append('        tests_run++;')
-        code.append('        printf("  %-40s ", "UDF_0x00000000");')
-        code.append('        auto r = lift(0x00000000);')
-        code.append('        if (r.has_value() && r->ops.size() > 0 && r->ops[0].opcode == Opcode::UNDEF) {')
-        code.append('            printf("PASS\\n");')
-        code.append('            tests_passed++;')
-        code.append('        } else if (!r.has_value()) {')
-        code.append('            printf("PASS\\n"); // also acceptable')
-        code.append('            tests_passed++;')
-        code.append('        } else {')
-        code.append('            printf("FAIL: expected UNDEF or nullopt\\n");')
-        code.append('        }')
-        code.append('    }')
+        # --- SIMD lane count tests ---
+        for test_name, hex_val, expected_count, desc in [
+            ("SIMD_ADD_4S_lane_count", "0x4EA28420", 8, "4 lanes x 2 sources"),
+            ("SIMD_ADD_16B_lane_count", "0x4E228420", 32, "16 lanes x 2 sources"),
+            ("SIMD_FNEG_4S_lane_count", "0x6EA0F820", 4, "4 lanes x 1 source"),
+        ]:
+            emit_test(test_name, [
+                f'auto r = lift({hex_val});',
+                'if (!r.has_value()) { printf("FAIL: lift nullopt\\n"); }',
+                'else {',
+                '    int c = 0;',
+                '    for (auto& op : r->ops) if (op.opcode == Opcode::VEXTRACT_ELEM) c++;',
+                f'    if (c == {expected_count}) {{ printf("PASS\\n"); tests_passed++; }}',
+                f'    else printf("FAIL: expected {expected_count}, got %d\\n", c);',
+                '}',
+            ])
+
+        # --- Simplify pass tests ---
+        # GP ADD: simplified to 1 op
+        emit_test("simplify_ADD_X0_X1_X2", [
+            'auto raw = lift(0x8B020020);',
+            'if (!raw.has_value()) { printf("FAIL: lift nullopt\\n"); }',
+            'else {',
+            '    auto sim = simplify(*raw);',
+            '    if (sim.ops.size() == 1 && sim.ops[0].opcode == Opcode::ADD',
+            '        && sim.ops[0].output.space == Space::GPR && sim.ops[0].output.offset == 0',
+            '        && sim.ops[0].inputs[0].space == Space::GPR && sim.ops[0].inputs[0].offset == 1',
+            '        && sim.ops[0].inputs[1].space == Space::GPR && sim.ops[0].inputs[1].offset == 2) {',
+            '        printf("PASS\\n"); tests_passed++;',
+            '    } else {',
+            '        printf("FAIL: ops=%zu opc=%d out=%d/%d in0=%d/%d in1=%d/%d\\n",',
+            '            sim.ops.size(),',
+            '            sim.ops.empty() ? -1 : (int)sim.ops[0].opcode,',
+            '            sim.ops.empty() ? -1 : (int)sim.ops[0].output.space, sim.ops.empty() ? -1 : (int)sim.ops[0].output.offset,',
+            '            sim.ops.empty() ? -1 : (int)sim.ops[0].inputs[0].space, sim.ops.empty() ? -1 : (int)sim.ops[0].inputs[0].offset,',
+            '            sim.ops.empty() ? -1 : (int)sim.ops[0].inputs[1].space, sim.ops.empty() ? -1 : (int)sim.ops[0].inputs[1].offset);',
+            '    }',
+            '}',
+        ])
+
+        # MADD: simplified to 2 ops (mul + add)
+        emit_test("simplify_MADD", [
+            'auto raw = lift(0x9B020C20);',
+            'if (!raw.has_value()) { printf("FAIL: lift nullopt\\n"); }',
+            'else {',
+            '    auto sim = simplify(*raw);',
+            '    if (sim.ops.size() == 2 && sim.ops[0].opcode == Opcode::MUL && sim.ops[1].opcode == Opcode::ADD) {',
+            '        printf("PASS\\n"); tests_passed++;',
+            '    } else {',
+            '        printf("FAIL: ops=%zu\\n", sim.ops.size());',
+            '    }',
+            '}',
+        ])
+
+        # SDIV: simplified to 1 op
+        emit_test("simplify_SDIV", [
+            'auto raw = lift(0x9AC20C20);',
+            'if (!raw.has_value()) { printf("FAIL: lift nullopt\\n"); }',
+            'else {',
+            '    auto sim = simplify(*raw);',
+            '    if (sim.ops.size() == 1 && sim.ops[0].opcode == Opcode::SDIV) {',
+            '        printf("PASS\\n"); tests_passed++;',
+            '    } else {',
+            '        printf("FAIL: ops=%zu opc=%d\\n", sim.ops.size(), sim.ops.empty() ? -1 : (int)sim.ops[0].opcode);',
+            '    }',
+            '}',
+        ])
+
+        # MOVZ: simplified to 1 COPY with constant value
+        emit_test("simplify_MOVZ_value", [
+            'auto raw = lift(0xD2824680);',
+            'if (!raw.has_value()) { printf("FAIL: lift nullopt\\n"); }',
+            'else {',
+            '    auto sim = simplify(*raw);',
+            '    if (sim.ops.size() == 1 && sim.ops[0].opcode == Opcode::COPY',
+            '        && sim.ops[0].output.space == Space::GPR',
+            '        && sim.ops[0].inputs[0].value == 0x1234) {',
+            '        printf("PASS\\n"); tests_passed++;',
+            '    } else {',
+            '        printf("FAIL: ops=%zu val=%lld\\n", sim.ops.size(),',
+            '            sim.ops.empty() ? -1LL : (long long)sim.ops[0].inputs[0].value);',
+            '    }',
+            '}',
+        ])
+
+        # --- Element size tests (SIMD) ---
+        for test_name, hex_val, expected_esize, desc in [
+            ("esize_ADD_4S", "0x4EA28420", 4, "ADD V0.4S elements 4 bytes"),
+            ("esize_SUB_2D", "0x6EE28420", 8, "SUB V0.2D elements 8 bytes"),
+            ("esize_AND_16B", "0x4E221C20", 1, "AND V0.16B elements 1 byte"),
+            ("esize_FMUL_4S", "0x6E22DC20", 4, "FMUL V0.4S elements 4 bytes"),
+            ("esize_FNEG_4S", "0x6EA0F820", 4, "FNEG V0.4S elements 4 bytes"),
+        ]:
+            emit_test(test_name, [
+                f'auto r = lift({hex_val});',
+                'if (!r.has_value()) { printf("FAIL: lift nullopt\\n"); }',
+                'else {',
+                '    bool found = false;',
+                '    for (auto& op : r->ops) {',
+                '        if (op.opcode == Opcode::VEXTRACT_ELEM) {',
+                f'            if (op.output.size == {expected_esize}) {{ found = true; break; }}',
+                f'            else {{ printf("FAIL: esize=%d expected {expected_esize}\\n", op.output.size); break; }}',
+                '        }',
+                '    }',
+                '    if (found) { printf("PASS\\n"); tests_passed++; }',
+                '    else if (!found) { printf("FAIL: no VEXTRACT_ELEM found\\n"); }',
+                '}',
+            ])
+
+        # --- Register size tests (32-bit vs 64-bit) ---
+        emit_test("regsize_ADD_X_64bit", [
+            'auto sim = simplify(*lift(0x8B020020));',
+            'if (sim.ops.size() >= 1 && sim.ops[0].output.size == 8) {',
+            '    printf("PASS\\n"); tests_passed++;',
+            '} else {',
+            '    printf("FAIL: size=%d\\n", sim.ops.empty() ? -1 : sim.ops[0].output.size);',
+            '}',
+        ])
+        emit_test("regsize_ADD_W_32bit", [
+            'auto sim = simplify(*lift(0x0B020020));',
+            'if (sim.ops.size() >= 1 && sim.ops[0].output.size == 4) {',
+            '    printf("PASS\\n"); tests_passed++;',
+            '} else {',
+            '    printf("FAIL: size=%d\\n", sim.ops.empty() ? -1 : sim.ops[0].output.size);',
+            '}',
+        ])
+
+        # --- Output register offset test ---
+        emit_test("regoffset_ADD_X5_X10_X15", [
+            'auto sim = simplify(*lift(0x8B0F0145));  // ADD X5, X10, X15',
+            'if (sim.ops.size() >= 1',
+            '    && sim.ops[0].output.offset == 5',
+            '    && sim.ops[0].inputs[0].offset == 10',
+            '    && sim.ops[0].inputs[1].offset == 15) {',
+            '    printf("PASS\\n"); tests_passed++;',
+            '} else {',
+            '    printf("FAIL: out=%d in0=%d in1=%d\\n",',
+            '        sim.ops.empty() ? -1 : (int)sim.ops[0].output.offset,',
+            '        sim.ops.empty() ? -1 : (int)sim.ops[0].inputs[0].offset,',
+            '        sim.ops.empty() ? -1 : (int)sim.ops[0].inputs[1].offset);',
+            '}',
+        ])
+
+        # --- Branch offset test ---
+        emit_test("branch_offset_B_256", [
+            'auto sim = simplify(*lift(0x14000040));  // B .+0x100',
+            'if (sim.ops.size() >= 1 && sim.ops[0].inputs[0].value == 256) {',
+            '    printf("PASS\\n"); tests_passed++;',
+            '} else {',
+            '    printf("FAIL: val=%lld\\n", sim.ops.empty() ? -1LL : (long long)sim.ops[0].inputs[0].value);',
+            '}',
+        ])
+
+        # CBZ: CMP_EQ + CBRANCH
+        emit_test("cbz_structure", [
+            'auto sim = simplify(*lift(0xB4000080));  // CBZ X0',
+            'if (sim.ops.size() == 2',
+            '    && sim.ops[0].opcode == Opcode::CMP_EQ',
+            '    && sim.ops[1].opcode == Opcode::CBRANCH) {',
+            '    printf("PASS\\n"); tests_passed++;',
+            '} else {',
+            '    printf("FAIL: ops=%zu\\n", sim.ops.size());',
+            '}',
+        ])
+
+        # --- Memory address test ---
+        emit_test("ldr_offset_8", [
+            'auto sim = simplify(*lift(0xF9400420));  // LDR X0, [X1, #8]',
+            'bool found_add_8 = false;',
+            'for (auto& op : sim.ops) {',
+            '    if (op.opcode == Opcode::ADD) {',
+            '        for (int i = 0; i < 3; i++) {',
+            '            if (op.inputs[i].space == Space::Const && op.inputs[i].value == 8) {',
+            '                found_add_8 = true; break;',
+            '            }',
+            '        }',
+            '    }',
+            '}',
+            'if (found_add_8) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: no ADD with const 8\\n"); }',
+        ])
+
+        # LDP: two LOADs
+        emit_test("ldp_two_loads", [
+            'auto r = lift(0xA9407BFD);  // LDP X29, X30, [SP]',
+            'if (!r.has_value()) { printf("FAIL: lift nullopt\\n"); }',
+            'else {',
+            '    int lc = 0;',
+            '    for (auto& op : r->ops) if (op.opcode == Opcode::LOAD) lc++;',
+            '    if (lc == 2) { printf("PASS\\n"); tests_passed++; }',
+            '    else { printf("FAIL: load_count=%d\\n", lc); }',
+            '}',
+        ])
+
+        # --- SIMD lower-half (Q=0) test ---
+        emit_test("simd_lower_half_2S", [
+            'auto r = lift(0x2EA28420);  // SUB V0.2S (Q=0)',
+            'if (!r.has_value()) { printf("FAIL: lift nullopt\\n"); }',
+            'else {',
+            '    int extract_count = 0;',
+            '    bool esize_ok = true;',
+            '    for (auto& op : r->ops) {',
+            '        if (op.opcode == Opcode::VEXTRACT_ELEM) {',
+            '            if (op.output.size != 4) esize_ok = false;',
+            '            extract_count++;',
+            '        }',
+            '    }',
+            '    if (extract_count == 4 && esize_ok) {  // 2 lanes x 2 sources',
+            '        printf("PASS\\n"); tests_passed++;',
+            '    } else {',
+            '        printf("FAIL: extracts=%d esize_ok=%d\\n", extract_count, esize_ok);',
+            '    }',
+            '}',
+        ])
+
+        # --- to_string test ---
+        emit_test("to_string", [
+            'auto r = lift(0x8B020020);',
+            'if (r.has_value()) {',
+            '    auto s = to_string(*r);',
+            '    if (!s.empty()) { printf("PASS\\n"); tests_passed++; }',
+            '    else { printf("FAIL: empty string\\n"); }',
+            '} else { printf("FAIL: lift nullopt\\n"); }',
+        ])
+
+        # --- UDF test ---
+        emit_test("UDF_0x00000000", [
+            'auto r = lift(0x00000000);',
+            'if (r.has_value() && r->ops.size() > 0 && r->ops[0].opcode == Opcode::UNDEF) {',
+            '    printf("PASS\\n"); tests_passed++;',
+            '} else if (!r.has_value()) {',
+            '    printf("PASS\\n"); tests_passed++;',
+            '} else { printf("FAIL: expected UNDEF or nullopt\\n"); }',
+        ])
+
+        # --- NZCV flag decomposition tests ---
+        # ADDS should produce N/Z/C/V writes
+        emit_test("adds_nzcv_semantic", [
+            'auto r = lift(0xAB020020);  // ADDS X0, X1, X2',
+            'if (!r.has_value()) { printf("FAIL: lift nullopt\\n"); }',
+            'else {',
+            '    bool has_n = false, has_z = false, has_c = false, has_v = false;',
+            '    for (auto& op : r->ops) {',
+            '        if (op.output.space == Space::Flags) {',
+            '            if (op.output.offset == 0) has_n = true;',
+            '            if (op.output.offset == 1) has_z = true;',
+            '            if (op.output.offset == 2) has_c = true;',
+            '            if (op.output.offset == 3) has_v = true;',
+            '        }',
+            '    }',
+            '    if (has_n && has_z && has_c && has_v) { printf("PASS\\n"); tests_passed++; }',
+            '    else { printf("FAIL: N=%d Z=%d C=%d V=%d\\n", has_n, has_z, has_c, has_v); }',
+            '}',
+        ])
+
+        # SUBS semantic: carry_sub and overflow_sub opcodes
+        emit_test("subs_semantic_opcodes", [
+            'auto r = lift(0xEB020020);  // SUBS X0, X1, X2',
+            'if (!r.has_value()) { printf("FAIL: lift nullopt\\n"); }',
+            'else {',
+            '    bool has_carry_sub = false, has_overflow_sub = false;',
+            '    for (auto& op : r->ops) {',
+            '        if (op.opcode == Opcode::CARRY_SUB) has_carry_sub = true;',
+            '        if (op.opcode == Opcode::OVERFLOW_SUB) has_overflow_sub = true;',
+            '    }',
+            '    if (has_carry_sub && has_overflow_sub) { printf("PASS\\n"); tests_passed++; }',
+            '    else { printf("FAIL: carry=%d overflow=%d\\n", has_carry_sub, has_overflow_sub); }',
+            '}',
+        ])
+
+        # Expanded mode: no CARRY_SUB/OVERFLOW_SUB, uses CMP_ULE instead
+        emit_test("subs_expanded_no_semantic", [
+            'auto r = lift(0xEB020020, IrDetail::Expanded);  // SUBS expanded',
+            'if (!r.has_value()) { printf("FAIL: lift nullopt\\n"); }',
+            'else {',
+            '    bool has_sem = false, has_ule = false;',
+            '    for (auto& op : r->ops) {',
+            '        if (op.opcode == Opcode::CARRY_SUB || op.opcode == Opcode::OVERFLOW_SUB) has_sem = true;',
+            '        if (op.opcode == Opcode::CMP_ULE) has_ule = true;',
+            '    }',
+            '    if (!has_sem && has_ule) { printf("PASS\\n"); tests_passed++; }',
+            '    else { printf("FAIL: sem=%d ule=%d\\n", has_sem, has_ule); }',
+            '}',
+        ])
+
+        # B.NE: should read Z flag and NOT it
+        emit_test("bne_reads_Z_flag", [
+            'auto r = lift(0x54000041);  // B.NE',
+            'if (!r.has_value()) { printf("FAIL: lift nullopt\\n"); }',
+            'else {',
+            '    bool reads_z = false;',
+            '    for (auto& op : r->ops) {',
+            '        for (uint8_t i = 0; i < op.num_inputs; ++i) {',
+            '            if (op.inputs[i].space == Space::Flags && op.inputs[i].offset == 1)',
+            '                reads_z = true;',
+            '        }',
+            '    }',
+            '    if (reads_z) { printf("PASS\\n"); tests_passed++; }',
+            '    else { printf("FAIL: does not read Z flag\\n"); }',
+            '}',
+        ])
+
+        # ADDS imm: carries for ADD
+        emit_test("adds_imm_carry_add", [
+            'auto r = lift(0xB1000800);  // ADDS X0, X0, #2',
+            'if (!r.has_value()) { printf("FAIL: lift nullopt\\n"); }',
+            'else {',
+            '    bool has_carry = false;',
+            '    for (auto& op : r->ops) {',
+            '        if (op.opcode == Opcode::CARRY_ADD) has_carry = true;',
+            '    }',
+            '    if (has_carry) { printf("PASS\\n"); tests_passed++; }',
+            '    else { printf("FAIL: no CARRY_ADD\\n"); }',
+            '}',
+        ])
+
+        # --- decode-then-lift tests (validate Instruction-based primary path) ---
+        emit_test("decode_then_lift_ADD", [
+            'auto decoded = decode(0x8B020020);',
+            'if (!decoded) { printf("FAIL: decode nullopt\\n"); }',
+            'else {',
+            '    auto r = lift(*decoded);',
+            '    if (!r.has_value()) { printf("FAIL: lift nullopt\\n"); }',
+            '    else {',
+            '        auto sim = simplify(*r);',
+            '        if (sim.ops.size() == 1 && sim.ops[0].opcode == Opcode::ADD',
+            '            && sim.ops[0].output.space == Space::GPR && sim.ops[0].output.offset == 0',
+            '            && sim.ops[0].inputs[0].offset == 1 && sim.ops[0].inputs[1].offset == 2) {',
+            '            printf("PASS\\n"); tests_passed++;',
+            '        } else { printf("FAIL: wrong result\\n"); }',
+            '    }',
+            '}',
+        ])
+        emit_test("decode_then_lift_LDR", [
+            'auto decoded = decode(0xF9400420);',
+            'if (!decoded) { printf("FAIL: decode nullopt\\n"); }',
+            'else {',
+            '    auto r = lift(*decoded);',
+            '    if (!r.has_value()) { printf("FAIL: lift nullopt\\n"); }',
+            '    else {',
+            '        bool found = false;',
+            '        for (auto& op : r->ops) if (op.opcode == Opcode::LOAD) found = true;',
+            '        if (found) { printf("PASS\\n"); tests_passed++; }',
+            '        else { printf("FAIL: expected LOAD\\n"); }',
+            '    }',
+            '}',
+        ])
+        emit_test("decode_then_lift_B", [
+            'auto decoded = decode(0x14000040);',
+            'if (!decoded) { printf("FAIL: decode nullopt\\n"); }',
+            'else {',
+            '    auto r = lift(*decoded);',
+            '    auto sim = simplify(*r);',
+            '    if (sim.ops.size() >= 1 && sim.ops[0].inputs[0].value == 256) {',
+            '        printf("PASS\\n"); tests_passed++;',
+            '    } else { printf("FAIL\\n"); }',
+            '}',
+        ])
+
+        # --- AST tests ---
+        emit_test("ast_add_single_effect", [
+            'auto ast = lift_ast(0x8B020020);  // ADD X0, X1, X2',
+            'if (!ast.has_value()) { printf("FAIL: lift_ast nullopt\\n"); }',
+            'else if (ast->effects.size() == 1',
+            '    && ast->effects[0].kind == Effect::Kind::Assign',
+            '    && ast->effects[0].dest.space == Space::GPR',
+            '    && ast->effects[0].dest.offset == 0',
+            '    && ast->effects[0].expr',
+            '    && ast->effects[0].expr->kind == Expr::Kind::Op',
+            '    && ast->effects[0].expr->opcode == Opcode::ADD) {',
+            '    printf("PASS\\n"); tests_passed++;',
+            '} else {',
+            '    printf("FAIL: effects=%zu\\n", ast->effects.size());',
+            '}',
+        ])
+
+        emit_test("ast_subs_five_effects", [
+            'auto ast = lift_ast(0xEB020020);  // SUBS X0, X1, X2',
+            'if (!ast.has_value()) { printf("FAIL: lift_ast nullopt\\n"); }',
+            'else {',
+            '    int assigns = 0;',
+            '    bool has_x0 = false, has_n = false, has_z = false, has_c = false, has_v = false;',
+            '    for (auto& e : ast->effects) {',
+            '        if (e.kind == Effect::Kind::Assign) {',
+            '            assigns++;',
+            '            if (e.dest.space == Space::GPR && e.dest.offset == 0) has_x0 = true;',
+            '            if (e.dest.space == Space::Flags && e.dest.offset == 0) has_n = true;',
+            '            if (e.dest.space == Space::Flags && e.dest.offset == 1) has_z = true;',
+            '            if (e.dest.space == Space::Flags && e.dest.offset == 2) has_c = true;',
+            '            if (e.dest.space == Space::Flags && e.dest.offset == 3) has_v = true;',
+            '        }',
+            '    }',
+            '    if (assigns == 5 && has_x0 && has_n && has_z && has_c && has_v) {',
+            '        printf("PASS\\n"); tests_passed++;',
+            '    } else {',
+            '        printf("FAIL: assigns=%d x0=%d N=%d Z=%d C=%d V=%d\\n", assigns, has_x0, has_n, has_z, has_c, has_v);',
+            '    }',
+            '}',
+        ])
+
+        emit_test("ast_bgt_one_cbranch", [
+            'auto ast = lift_ast(0x5400004C);  // B.GT .+8',
+            'if (!ast.has_value()) { printf("FAIL: lift_ast nullopt\\n"); }',
+            'else {',
+            '    int cbs = 0;',
+            '    for (auto& e : ast->effects) if (e.kind == Effect::Kind::CBranch) cbs++;',
+            '    if (cbs == 1) { printf("PASS\\n"); tests_passed++; }',
+            '    else { printf("FAIL: cbranches=%d\\n", cbs); }',
+            '}',
+        ])
+
+        emit_test("ast_ldr_nested", [
+            'auto ast = lift_ast(0xF9400420);  // LDR X0, [X1, #8]',
+            'if (!ast.has_value()) { printf("FAIL: lift_ast nullopt\\n"); }',
+            'else if (ast->effects.size() == 1',
+            '    && ast->effects[0].kind == Effect::Kind::Assign',
+            '    && ast->effects[0].expr',
+            '    && ast->effects[0].expr->kind == Expr::Kind::Op',
+            '    && ast->effects[0].expr->opcode == Opcode::LOAD) {',
+            '    // Check nested add(x1, 8) inside load',
+            '    auto& load = ast->effects[0].expr;',
+            '    if (load->children.size() >= 1 && load->children[0]->kind == Expr::Kind::Op',
+            '        && load->children[0]->opcode == Opcode::ADD) {',
+            '        printf("PASS\\n"); tests_passed++;',
+            '    } else { printf("FAIL: load child not add\\n"); }',
+            '} else {',
+            '    printf("FAIL: effects=%zu\\n", ast.has_value() ? ast->effects.size() : 0u);',
+            '}',
+        ])
+
+        emit_test("ast_str_store_effect", [
+            'auto ast = lift_ast(0xF9000420);  // STR X0, [X1, #8]',
+            'if (!ast.has_value()) { printf("FAIL: lift_ast nullopt\\n"); }',
+            'else {',
+            '    bool has_store = false;',
+            '    for (auto& e : ast->effects) if (e.kind == Effect::Kind::Store) has_store = true;',
+            '    if (has_store) { printf("PASS\\n"); tests_passed++; }',
+            '    else { printf("FAIL: no store effect\\n"); }',
+            '}',
+        ])
+
+        emit_test("ast_to_string_nonempty", [
+            'auto ast = lift_ast(0x8B020020);',
+            'if (!ast.has_value()) { printf("FAIL: lift_ast nullopt\\n"); }',
+            'else {',
+            '    auto s = to_string(*ast);',
+            '    if (!s.empty()) { printf("PASS\\n"); tests_passed++; }',
+            '    else { printf("FAIL: empty string\\n"); }',
+            '}',
+        ])
+
+        # --- Interpreter tests ---
+        emit_test("interp_add", [
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[1] = 5; ctx.gpr[2] = 3;',
+            'execute(ctx, 0x8B020020);  // ADD X0, X1, X2',
+            'if (ctx.gpr[0] == 8 && ctx.pc == 4) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=%llu pc=%llu\\n", (unsigned long long)ctx.gpr[0], (unsigned long long)ctx.pc); }',
+        ])
+
+        emit_test("interp_subs_positive", [
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[1] = 5; ctx.gpr[2] = 3;',
+            'execute(ctx, 0xEB020020);  // SUBS X0, X1, X2',
+            '// 5-3=2: N=0, Z=0, C=1 (no borrow), V=0',
+            'if (ctx.gpr[0] == 2 && ctx.flags[0] == 0 && ctx.flags[1] == 0 && ctx.flags[2] == 1 && ctx.flags[3] == 0)',
+            '    { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=%llu N=%d Z=%d C=%d V=%d\\n", (unsigned long long)ctx.gpr[0], ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }',
+        ])
+
+        emit_test("interp_subs_negative", [
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[1] = 3; ctx.gpr[2] = 5;',
+            'execute(ctx, 0xEB020020);  // SUBS X0, X1, X2',
+            '// 3-5 wraps: N=1, Z=0, C=0 (borrow), V=0',
+            'if (ctx.flags[0] == 1 && ctx.flags[1] == 0 && ctx.flags[2] == 0 && ctx.flags[3] == 0)',
+            '    { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: N=%d Z=%d C=%d V=%d\\n", ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }',
+        ])
+
+        emit_test("interp_subs_zero", [
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[1] = 7; ctx.gpr[2] = 7;',
+            'execute(ctx, 0xEB020020);  // SUBS X0, X1, X2',
+            '// 7-7=0: N=0, Z=1, C=1, V=0',
+            'if (ctx.gpr[0] == 0 && ctx.flags[0] == 0 && ctx.flags[1] == 1 && ctx.flags[2] == 1 && ctx.flags[3] == 0)',
+            '    { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=%llu N=%d Z=%d C=%d V=%d\\n", (unsigned long long)ctx.gpr[0], ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }',
+        ])
+
+        emit_test("interp_adds_carry", [
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[1] = 0xFFFFFFFFFFFFFFFFULL; ctx.gpr[2] = 1;',
+            'execute(ctx, 0xAB020020);  // ADDS X0, X1, X2',
+            '// MAX+1 wraps to 0: N=0, Z=1, C=1 (carry out), V=0',
+            'if (ctx.gpr[0] == 0 && ctx.flags[0] == 0 && ctx.flags[1] == 1 && ctx.flags[2] == 1 && ctx.flags[3] == 0)',
+            '    { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=0x%llx N=%d Z=%d C=%d V=%d\\n", (unsigned long long)ctx.gpr[0], ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }',
+        ])
+
+        emit_test("interp_adds_overflow", [
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[1] = 0x7FFFFFFFFFFFFFFFULL; ctx.gpr[2] = 1;',
+            'execute(ctx, 0xAB020020);  // ADDS X0, X1, X2',
+            '// LLONG_MAX+1 overflows to negative: N=1, Z=0, C=0, V=1',
+            'if (ctx.gpr[0] == 0x8000000000000000ULL && ctx.flags[0] == 1 && ctx.flags[1] == 0 && ctx.flags[2] == 0 && ctx.flags[3] == 1)',
+            '    { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=0x%llx N=%d Z=%d C=%d V=%d\\n", (unsigned long long)ctx.gpr[0], ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }',
+        ])
+
+        emit_test("interp_ands_flags", [
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[1] = 0xABCD; ctx.gpr[2] = 0xFFFF;',
+            'execute(ctx, 0xEA020020);  // ANDS X0, X1, X2',
+            '// 0xABCD & 0xFFFF = 0xABCD: N=0, Z=0',
+            'if (ctx.gpr[0] == 0xABCD && ctx.flags[0] == 0 && ctx.flags[1] == 0)',
+            '    { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=0x%llx N=%d Z=%d\\n", (unsigned long long)ctx.gpr[0], ctx.flags[0], ctx.flags[1]); }',
+        ])
+
+        emit_test("interp_cmp_bne", [
+            '// CMP X1, X2 (SUBS XZR, X1, X2) then B.NE',
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[1] = 5; ctx.gpr[2] = 3; ctx.pc = 0x1000;',
+            'execute(ctx, 0xEB02003F);  // CMP X1, X2 (SUBS XZR)',
+            '// Not equal, so Z=0',
+            'execute(ctx, 0x54000041);  // B.NE +8',
+            '// Z=0 means NE taken, pc = 0x1004 + 8 = 0x100C',
+            'if (ctx.pc == 0x100C) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: pc=0x%llx Z=%d\\n", (unsigned long long)ctx.pc, ctx.flags[1]); }',
+        ])
+
+        emit_test("interp_cmp_beq_not_taken", [
+            '// CMP X1, X2 then B.EQ (not taken because 5 != 3)',
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[1] = 5; ctx.gpr[2] = 3; ctx.pc = 0x1000;',
+            'execute(ctx, 0xEB02003F);  // CMP X1, X2',
+            'execute(ctx, 0x54000040);  // B.EQ +8',
+            '// Z=0 means EQ not taken, pc = 0x1004 + 4 = 0x1008',
+            'if (ctx.pc == 0x1008) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: pc=0x%llx Z=%d\\n", (unsigned long long)ctx.pc, ctx.flags[1]); }',
+        ])
+
+        emit_test("interp_mov_imm", [
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'execute(ctx, 0xD2800540);  // MOVZ X0, #42',
+            'if (ctx.gpr[0] == 42) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=%llu\\n", (unsigned long long)ctx.gpr[0]); }',
+        ])
+
+        emit_test("interp_ldr_str", [
+            'Context ctx;',
+            'uint8_t mem[65536] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[31] = 0x1000; // SP',
+            'ctx.gpr[1] = 0xDEADBEEFCAFEBABEULL;',
+            'execute(ctx, 0xF90003E1);  // STR X1, [SP]',
+            'execute(ctx, 0xF94003E0);  // LDR X0, [SP]',
+            'if (ctx.gpr[0] == 0xDEADBEEFCAFEBABEULL) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=0x%llx\\n", (unsigned long long)ctx.gpr[0]); }',
+        ])
+
+        emit_test("interp_branch", [
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.pc = 0x100;',
+            'execute(ctx, 0x14000002);  // B +8',
+            'if (ctx.pc == 0x108) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: pc=0x%llx\\n", (unsigned long long)ctx.pc); }',
+        ])
 
         code.append("}")
         code.append("")
@@ -17048,6 +18449,7 @@ def main():
     print(f"\n=== Generating Tools ===")
     tools_dir = base_dir / "tools"
     parser.generate_disasm_tool(tools_dir)
+    parser.generate_interp_tool(tools_dir)
 
     # Generate Python bindings
     print(f"\n=== Generating Python Bindings ===")

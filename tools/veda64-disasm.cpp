@@ -44,6 +44,9 @@ void print_usage(const char* progname) {
     std::cerr << "  -b, --big-endian  Input values are in big-endian byte order\n";
 #ifndef VEDA64_NO_IR
     std::cerr << "      --ir          Show IR (intermediate representation) output\n";
+    std::cerr << "      --ir-expanded Show IR with expanded flag primitives\n";
+    std::cerr << "      --ast         Show AST (expression tree) output\n";
+    std::cerr << "      --ast-expanded Show AST with expanded flag primitives\n";
 #endif
     std::cerr << "  -h, --help        Show this help message\n";
     std::cerr << "\n";
@@ -66,6 +69,8 @@ int main(int argc, char* argv[]) {
 
     bool big_endian = false;
     bool show_ir = false;
+    bool ir_expanded = false;
+    bool show_ast = false;
     int start_idx = 1;
 
     // Parse options
@@ -75,6 +80,17 @@ int main(int argc, char* argv[]) {
             start_idx++;
         } else if (std::strcmp(argv[start_idx], "--ir") == 0) {
             show_ir = true;
+            start_idx++;
+        } else if (std::strcmp(argv[start_idx], "--ir-expanded") == 0) {
+            show_ir = true;
+            ir_expanded = true;
+            start_idx++;
+        } else if (std::strcmp(argv[start_idx], "--ast") == 0) {
+            show_ast = true;
+            start_idx++;
+        } else if (std::strcmp(argv[start_idx], "--ast-expanded") == 0) {
+            show_ast = true;
+            ir_expanded = true;
             start_idx++;
         } else if (std::strcmp(argv[start_idx], "-h") == 0 || std::strcmp(argv[start_idx], "--help") == 0) {
             print_usage(argv[0]);
@@ -94,6 +110,8 @@ int main(int argc, char* argv[]) {
 
 #ifdef VEDA64_NO_IR
     (void)show_ir;
+    (void)ir_expanded;
+    (void)show_ast;
 #endif
     int errors = 0;
 
@@ -121,13 +139,24 @@ int main(int argc, char* argv[]) {
 
 #ifndef VEDA64_NO_IR
         if (show_ir) {
-            auto ir_result = ir::lift(insn);
+            auto detail = ir_expanded ? ir::IrDetail::Expanded : ir::IrDetail::Semantic;
+            auto ir_result = result ? ir::lift(*result, detail) : ir::lift(insn, detail);
             if (ir_result) {
                 auto simplified = ir::simplify(*ir_result);
                 for (auto& op : simplified.ops)
                     std::cout << "  " << ir::to_string(op) << "\n";
             } else {
                 std::cout << "  <no IR>\n";
+            }
+        }
+        if (show_ast) {
+            auto ast_detail = ir_expanded ? ir::IrDetail::Expanded : ir::IrDetail::Semantic;
+            auto ast_result = ir::lift_ast(insn, ast_detail);
+            if (ast_result) {
+                for (auto& eff : ast_result->effects)
+                    std::cout << "  " << ir::to_string(eff) << "\n";
+            } else {
+                std::cout << "  <no AST>\n";
             }
         }
 #endif
