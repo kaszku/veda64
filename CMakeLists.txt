@@ -10,7 +10,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 # Build options
-option(VEDA64_STRINGS "Enable string functions (to_string, mnemonic_to_string, etc.)" OFF)
+option(VEDA64_STRINGS "Enable string functions (to_string, mnemonic_to_string, etc.)" ON)
 option(VEDA64_IR "Enable IR lifting and interpreter support" OFF)
 option(VEDA64_HOOK "Enable inline hooking support (Windows only)" OFF)
 option(VEDA64_BUILD_TESTS "Build test executables" OFF)
