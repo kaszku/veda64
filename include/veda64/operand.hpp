@@ -192,7 +192,7 @@ public:
         r.reg = set_register_arrangement(r.reg, arr);
     }
 
-#ifndef VEDA64_NO_STRINGS
+#ifdef VEDA64_STRINGS
     // Format operand for disassembly
     std::string to_string() const;
 
@@ -216,7 +216,7 @@ static_assert(sizeof(Operand) == 16, "Operand must be 16 bytes");
 #pragma warning(pop)
 #endif
 
-#ifndef VEDA64_NO_STRINGS
+#ifdef VEDA64_STRINGS
 // Convert mnemonic enum to string
 const char* mnemonic_to_string(Mnemonic mnem);
 

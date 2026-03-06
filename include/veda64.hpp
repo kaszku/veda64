@@ -10,6 +10,10 @@
 #include "veda64/operand.hpp"
 #include "veda64/instruction.hpp"
 
-#if !defined(VEDA64_NO_HOOKS) && (defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT))
+#if defined(VEDA64_HOOK) && (defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT))
 #include "veda64/hook.hpp"
+#endif
+
+#ifdef VEDA64_IR
+#include "veda64/ir.hpp"
 #endif

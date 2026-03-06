@@ -11,7 +11,7 @@ SysOp sysop_from_value(uint32_t idx) {
     return SysOp::UNKNOWN;
 }
 
-#ifndef VEDA64_NO_STRINGS
+#ifdef VEDA64_STRINGS
 const char* sysop_to_string(SysOp op) {
     switch (op) {
         case SysOp::VMALLE1OS: return "vmalle1os";

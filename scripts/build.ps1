@@ -18,6 +18,11 @@ $cmakeArgs = @(
     "-DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake"
     "-DVCPKG_OVERLAY_PORTS=$root/vcpkg_overlay_ports"
     "-DPython_EXECUTABLE=C:/Python311-arm64/python.exe"
+    "-DVEDA64_STRINGS=ON"
+    "-DVEDA64_IR=ON"
+    "-DVEDA64_HOOK=ON"
+    "-DVEDA64_BUILD_TESTS=ON"
+    "-DVEDA64_PYTHON=ON"
 )
 
 if ($VS) {

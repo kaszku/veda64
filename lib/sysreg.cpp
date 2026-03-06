@@ -910,7 +910,7 @@ SystemRegister sysreg_from_encoding(uint32_t op0, uint32_t op1, uint32_t CRn, ui
     }
 }
 
-#ifndef VEDA64_NO_STRINGS
+#ifdef VEDA64_STRINGS
 const char* sysreg_to_string(SystemRegister reg) {
     switch (reg) {
         case SystemRegister::OSDTRRX_EL1: return "osdtrrx_el1";

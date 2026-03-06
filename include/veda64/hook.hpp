@@ -4,7 +4,7 @@
 
 #pragma once
 
-#if !defined(VEDA64_NO_HOOKS) && (defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT))
+#if defined(VEDA64_HOOK) && (defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT))
 
 #include <cstdint>
 #include <cstddef>
@@ -33,7 +33,7 @@ enum class HookStatus {
     InternalError
 };
 
-#ifndef VEDA64_NO_STRINGS
+#ifdef VEDA64_STRINGS
 // Convert status to string
 const char* status_to_string(HookStatus status);
 #endif
@@ -126,7 +126,7 @@ size_t get_hook_size(HookHandle handle);
 // Get number of instructions relocated to trampoline
 size_t get_relocated_count(HookHandle handle);
 
-#ifndef VEDA64_NO_STRINGS
+#ifdef VEDA64_STRINGS
 // Debug: Dump hook information
 void dump_hook(HookHandle handle);
 #endif
@@ -197,4 +197,4 @@ void resume_threads();
 } // namespace hook
 } // namespace veda64
 
-#endif // !VEDA64_NO_HOOKS && (_WIN32 || VEDA64_HOOK_SUPPORT)
+#endif // VEDA64_HOOK && (_WIN32 || VEDA64_HOOK_SUPPORT)

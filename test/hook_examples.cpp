@@ -5,7 +5,7 @@
 
 #include "veda64.hpp"
 
-#if !defined(VEDA64_NO_HOOKS) && defined(_WIN32) && (defined(_M_ARM64) || defined(__aarch64__))
+#if defined(VEDA64_HOOK) && defined(_WIN32) && (defined(_M_ARM64) || defined(__aarch64__))
 #include <iostream>
 #include <string>
 #include <vector>
@@ -342,4 +342,4 @@ private:
 } // namespace examples
 } // namespace veda64
 
-#endif // !VEDA64_NO_HOOKS && Windows ARM64
+#endif // VEDA64_HOOK && Windows ARM64

@@ -6,7 +6,7 @@
 #include "veda64.hpp"
 
 // Only compile when hooks are enabled
-#if !defined(VEDA64_NO_HOOKS) && (defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT))
+#if defined(VEDA64_HOOK) && (defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT))
 
 #include <Windows.h>
 #include <vector>
@@ -270,7 +270,7 @@ struct HookState {
 
 static HookState g_state;
 
-#ifndef VEDA64_NO_STRINGS
+#ifdef VEDA64_STRINGS
 // ============================================================================
 // Status to string
 // ============================================================================
@@ -293,7 +293,7 @@ const char* status_to_string(HookStatus status) {
         default: return "Unknown error";
     }
 }
-#endif // VEDA64_NO_STRINGS
+#endif // VEDA64_STRINGS
 
 // ============================================================================
 // Configuration
@@ -1330,7 +1330,7 @@ size_t get_relocated_count(HookHandle handle) {
     return handle->trampoline.insn_count;
 }
 
-#ifndef VEDA64_NO_STRINGS
+#ifdef VEDA64_STRINGS
 void dump_hook(HookHandle handle) {
     if (!handle || !handle->valid) {
         printf("Invalid hook handle\n");
@@ -1381,9 +1381,9 @@ void dump_hook(HookHandle handle) {
         }
     }
 }
-#endif // !VEDA64_NO_STRINGS
+#endif // VEDA64_STRINGS
 
 } // namespace hook
 } // namespace veda64
 
-#endif // !VEDA64_NO_HOOKS && (_WIN32 || VEDA64_HOOK_SUPPORT)
+#endif // VEDA64_HOOK && (_WIN32 || VEDA64_HOOK_SUPPORT)

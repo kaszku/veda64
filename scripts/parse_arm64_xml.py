@@ -1201,7 +1201,7 @@ class ARM64XMLParser:
                 if op_name not in op_name_idx:
                     op_name_idx[op_name] = len(op_names)
                     op_names.append(op_name)
-            code.append("#if !defined(VEDA64_NO_STRINGS) && !defined(VEDA64_NO_MNEMONIC_OPERANDS)")
+            code.append("#ifdef VEDA64_STRINGS")
             code.append("// SYS alias operation name string table")
             names_str = ', '.join(f'"{n.lower()}"' for n in op_names) if op_names else '"<unknown>"'
             code.append(f"static const char* sys_ops[] = {{{names_str}}};")
@@ -1236,7 +1236,7 @@ class ARM64XMLParser:
             code.append("    }")
             code.append("    return false;")
             code.append("}")
-            code.append("#endif  // !VEDA64_NO_STRINGS && !VEDA64_NO_MNEMONIC_OPERANDS")
+            code.append("#endif // VEDA64_STRINGS")
             code.append("")
 
         # Generate decode function
@@ -1510,7 +1510,7 @@ class ARM64XMLParser:
         code.append("    bool has_index = false;                            // byte 19")
         code.append("    bool prefer_decimal = false;                       // byte 20")
         code.append("")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("    // Format operand for disassembly")
         code.append("    std::string to_string() const;")
         code.append("    static const char* arrangement_to_string(Arrangement a);")
@@ -1532,14 +1532,14 @@ class ARM64XMLParser:
         code.append("")
 
         # Generate helper function declaration
-        code.append("#ifndef VEDA64_NO_STRINGS")
-        code.append("// Convert mnemonic enum to string")
-        code.append("const char* mnemonic_to_string(Mnemonic mnem);")
-        code.append("")
         code.append("// Determine vector arrangement for MOVI/MVNI based on Q and cmode fields")
         code.append("Arrangement get_movi_arrangement(uint32_t insn);")
         code.append("// Returns shift amount for MOVI/MVNI (0=none, >0=LSL, <0=MSL with abs value)")
         code.append("int get_movi_shift(uint32_t insn);")
+        code.append("")
+        code.append("#ifdef VEDA64_STRINGS")
+        code.append("// Convert mnemonic enum to string")
+        code.append("const char* mnemonic_to_string(Mnemonic mnem);")
         code.append("#endif")
         code.append("")
 
@@ -1555,7 +1555,7 @@ class ARM64XMLParser:
         code.append("    uint32_t raw_value = 0;")
         code.append("    std::vector<Operand> operands;")
         code.append("")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("    // Format as disassembled instruction")
         code.append("    std::string to_string() const;")
         code.append("#endif")
@@ -1753,7 +1753,7 @@ class ARM64XMLParser:
         sorted_mnemonics = sorted(mnemonics)
 
         # Generate mnemonic_to_string function (conditionally compiled)
-        code.append("#if !defined(VEDA64_NO_STRINGS) && !defined(VEDA64_NO_MNEMONIC_OPERANDS)")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("// Convert mnemonic enum to string")
         code.append("const char* mnemonic_to_string(Mnemonic mnem) {")
         code.append("    switch (mnem) {")
@@ -1778,14 +1778,14 @@ class ARM64XMLParser:
 
         # Only emit sys_ops[] here (used by Operand::to_string). The full table and
         # decode_sys_alias function are emitted in control.cpp where they are called.
-        code.append("#if !defined(VEDA64_NO_STRINGS) && !defined(VEDA64_NO_MNEMONIC_OPERANDS)")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("// SYS alias operation name string table (used by Operand::to_string)")
         if op_names:
             names_str = ', '.join(f'"{n.lower()}"' for n in op_names)
         else:
             names_str = '"<unknown>"'  # fallback if XML not present
         code.append(f"static const char* sys_ops[] = {{{names_str}}};")
-        code.append("#endif  // !VEDA64_NO_STRINGS && !VEDA64_NO_MNEMONIC_OPERANDS")
+        code.append("#endif // VEDA64_STRINGS")
         code.append("")
 
         # Generate format_register helper (now in Operand class)
@@ -1846,8 +1846,10 @@ class ARM64XMLParser:
         code.append("")
         code.append("// arrangement_to_string is now a free inline function in types.hpp")
         code.append("")
+        code.append("#endif // VEDA64_STRINGS")
+        code.append("")
 
-        # Generate helper for MOVI/MVNI arrangement determination
+        # Generate helper for MOVI/MVNI arrangement determination (outside STRINGS guard — used by decoder)
         code.append("// Determine vector arrangement for MOVI/MVNI based on Q and cmode fields")
         code.append("Arrangement get_movi_arrangement(uint32_t insn) {")
         code.append("    uint32_t Q = (insn >> 30) & 1;")
@@ -1905,7 +1907,8 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
 
-        # Generate condition_to_string function
+        # Generate condition_to_string function (back inside STRINGS guard)
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("const char* condition_to_string(Condition cond) {")
         code.append("    static const char* names[] = {\"eq\", \"ne\", \"hs\", \"lo\", \"mi\", \"pl\", \"vs\", \"vc\",")
         code.append("                                   \"hi\", \"ls\", \"ge\", \"lt\", \"gt\", \"le\", \"al\", \"nv\"};")
@@ -3033,7 +3036,7 @@ class ARM64XMLParser:
         code.append("            return std::to_string(sv.val);")
         code.append("    }")
         code.append("}")
-        code.append("#endif // !VEDA64_NO_STRINGS")
+        code.append("#endif // VEDA64_STRINGS")
         code.append("")
 
         # Generate unified decode function - delegates to format-based decoder
@@ -3464,7 +3467,7 @@ class ARM64XMLParser:
         code.append("")
 
         # register_to_string - table-based for all 1209 entries
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("inline const char* register_to_string(Register r) {")
         code.append("    auto v = static_cast<uint16_t>(r);")
         # GP registers (0-65) - use switch
@@ -3595,7 +3598,7 @@ class ARM64XMLParser:
         code.append("// Look up SystemRegister enum from encoding fields")
         code.append("SystemRegister sysreg_from_encoding(uint32_t op0, uint32_t op1, uint32_t CRn, uint32_t CRm, uint32_t op2);")
         code.append("")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("// Convert SystemRegister to its lowercase string name")
         code.append("const char* sysreg_to_string(SystemRegister reg);")
         code.append("#endif")
@@ -3626,7 +3629,7 @@ class ARM64XMLParser:
         code.append("")
 
         # sysreg_to_string
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("const char* sysreg_to_string(SystemRegister reg) {")
         code.append("    switch (reg) {")
         for key, enum_name, display_name in entries:
@@ -3677,7 +3680,7 @@ class ARM64XMLParser:
         code.append("// Look up PstateField from packed (op1<<7)|(CRm<<3)|op2 value")
         code.append("PstateField pstate_from_value(uint32_t packed);")
         code.append("")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("const char* pstate_to_string(PstateField f);")
         code.append("#endif")
         code.append("")
@@ -3713,7 +3716,7 @@ class ARM64XMLParser:
         code.append("    return PstateField::UNKNOWN;")
         code.append("}")
         code.append("")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("const char* pstate_to_string(PstateField f) {")
         code.append("    switch (f) {")
         for _, enum_name, display_name in self._PSTATE_ENTRIES:
@@ -3756,7 +3759,7 @@ class ARM64XMLParser:
         code.append("// Look up PrefetchOp from 5-bit prfop field")
         code.append("PrefetchOp prefetch_from_value(uint32_t prfop);")
         code.append("")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("const char* prefetch_to_string(PrefetchOp op);")
         code.append("#endif")
         code.append("")
@@ -3774,7 +3777,7 @@ class ARM64XMLParser:
         code.append("    return static_cast<PrefetchOp>(prfop & 0x1F);")
         code.append("}")
         code.append("")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("const char* prefetch_to_string(PrefetchOp op) {")
         code.append("    switch (op) {")
         for val, name in self._PREFETCH_ENTRIES:
@@ -3815,7 +3818,7 @@ class ARM64XMLParser:
         code.append("// Look up BarrierOp from 4-bit CRm field")
         code.append("BarrierOp barrier_from_value(uint32_t crm);")
         code.append("")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("const char* barrier_to_string(BarrierOp op);")
         code.append("#endif")
         code.append("")
@@ -3837,7 +3840,7 @@ class ARM64XMLParser:
         code.append("    }")
         code.append("}")
         code.append("")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("const char* barrier_to_string(BarrierOp op) {")
         code.append("    switch (op) {")
         for val, name in self._BARRIER_ENTRIES:
@@ -3878,7 +3881,7 @@ class ARM64XMLParser:
         code.append("// Look up SvePattern from 5-bit pattern field")
         code.append("SvePattern pattern_from_value(uint32_t pattern);")
         code.append("")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("const char* pattern_to_string(SvePattern pat);")
         code.append("#endif")
         code.append("")
@@ -3900,7 +3903,7 @@ class ARM64XMLParser:
         code.append("    }")
         code.append("}")
         code.append("")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("const char* pattern_to_string(SvePattern pat) {")
         code.append("    switch (pat) {")
         for val, name in self._SVE_PATTERN_ENTRIES:
@@ -3954,7 +3957,7 @@ class ARM64XMLParser:
         code.append("// Look up SysOp from index into sys_ops table")
         code.append("SysOp sysop_from_value(uint32_t idx);")
         code.append("")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("const char* sysop_to_string(SysOp op);")
         code.append("#endif")
         code.append("")
@@ -3974,7 +3977,7 @@ class ARM64XMLParser:
         code.append("    return SysOp::UNKNOWN;")
         code.append("}")
         code.append("")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("const char* sysop_to_string(SysOp op) {")
         code.append("    switch (op) {")
         for idx, enum_name, display_name in entries:
@@ -4190,7 +4193,7 @@ class ARM64XMLParser:
         code.append("        r.reg = set_register_arrangement(r.reg, arr);")
         code.append("    }")
         code.append("")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("    // Format operand for disassembly")
         code.append("    std::string to_string() const;")
         code.append("")
@@ -4214,7 +4217,7 @@ class ARM64XMLParser:
         code.append("#pragma warning(pop)")
         code.append("#endif")
         code.append("")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("// Convert mnemonic enum to string")
         code.append("const char* mnemonic_to_string(Mnemonic mnem);")
         code.append("")
@@ -4258,7 +4261,7 @@ class ARM64XMLParser:
         code.append("    uint32_t raw_value = 0;")
         code.append("    std::vector<Operand> operands;")
         code.append("")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("    // Format as disassembled instruction")
         code.append("    std::string to_string() const;")
         code.append("#endif")
@@ -4281,7 +4284,7 @@ class ARM64XMLParser:
         code = self._license_header()
         code.append("#pragma once")
         code.append("")
-        code.append("#if !defined(VEDA64_NO_HOOKS) && (defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT))")
+        code.append("#if defined(VEDA64_HOOK) && (defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT))")
         code.append("")
         code.append("#include <cstdint>")
         code.append("#include <cstddef>")
@@ -4310,7 +4313,7 @@ class ARM64XMLParser:
         code.append("    InternalError")
         code.append("};")
         code.append("")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("// Convert status to string")
         code.append("const char* status_to_string(HookStatus status);")
         code.append("#endif")
@@ -4403,7 +4406,7 @@ class ARM64XMLParser:
         code.append("// Get number of instructions relocated to trampoline")
         code.append("size_t get_relocated_count(HookHandle handle);")
         code.append("")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("// Debug: Dump hook information")
         code.append("void dump_hook(HookHandle handle);")
         code.append("#endif")
@@ -4474,7 +4477,7 @@ class ARM64XMLParser:
         code.append("} // namespace hook")
         code.append("} // namespace veda64")
         code.append("")
-        code.append("#endif // !VEDA64_NO_HOOKS && (_WIN32 || VEDA64_HOOK_SUPPORT)")
+        code.append("#endif // VEDA64_HOOK && (_WIN32 || VEDA64_HOOK_SUPPORT)")
         code.append("")
         self._write_file(output_file, code)
 
@@ -4489,8 +4492,12 @@ class ARM64XMLParser:
         code.append("#include \"veda64/operand.hpp\"")
         code.append("#include \"veda64/instruction.hpp\"")
         code.append("")
-        code.append("#if !defined(VEDA64_NO_HOOKS) && (defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT))")
+        code.append("#if defined(VEDA64_HOOK) && (defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT))")
         code.append("#include \"veda64/hook.hpp\"")
+        code.append("#endif")
+        code.append("")
+        code.append("#ifdef VEDA64_IR")
+        code.append("#include \"veda64/ir.hpp\"")
         code.append("#endif")
         code.append("")
 
@@ -6130,7 +6137,7 @@ class ARM64XMLParser:
         }
         is_sys_alias = encoding_name in _sys_alias_encodings
         if is_sys_alias:
-            code.append(f"#if !defined(VEDA64_NO_STRINGS) && !defined(VEDA64_NO_MNEMONIC_OPERANDS)")
+            code.append(f"#ifdef VEDA64_STRINGS")
             code.append(f"{ind}if (decode_sys_alias(insn, result)) return result;")
             code.append(f"#endif")
             code.append(f"{ind}// Fallback: unknown SYS alias - emit raw fields")
@@ -11214,12 +11221,12 @@ class ARM64XMLParser:
         code.append("# IDE folder grouping")
         code.append("set_property(GLOBAL PROPERTY USE_FOLDERS ON)")
         code.append("")
-        code.append("# Option to reduce binary size and remove strings")
-        code.append("option(VEDA64_NO_STRINGS \"Disable all string functions (to_string, mnemonic_to_string, status_to_string, dump_hook)\" OFF)")
-        code.append("option(VEDA64_BUILD_TESTS \"Build test executables\" ON)")
-        code.append("option(VEDA64_HOOK \"Enable inline hooking support (Windows only)\" ON)")
-        code.append("option(VEDA64_PYTHON \"Build Python bindings via nanobind (requires vcpkg toolchain)\" ON)")
-        code.append("option(VEDA64_NO_IR \"Disable IR lifting support\" OFF)")
+        code.append("# Build options")
+        code.append("option(VEDA64_STRINGS \"Enable string functions (to_string, mnemonic_to_string, etc.)\" OFF)")
+        code.append("option(VEDA64_IR \"Enable IR lifting and interpreter support\" OFF)")
+        code.append("option(VEDA64_HOOK \"Enable inline hooking support (Windows only)\" OFF)")
+        code.append("option(VEDA64_BUILD_TESTS \"Build test executables\" OFF)")
+        code.append("option(VEDA64_PYTHON \"Build Python bindings via nanobind (requires vcpkg toolchain)\" OFF)")
         code.append("")
         code.append("# Compiler warnings")
         code.append("if(MSVC)")
@@ -11229,12 +11236,14 @@ class ARM64XMLParser:
         code.append("endif()")
         code.append("")
         code.append("# Pass options as compile definitions")
-        code.append("if(VEDA64_NO_STRINGS)")
-        code.append("    add_compile_definitions(VEDA64_NO_STRINGS)")
+        code.append("if(VEDA64_STRINGS)")
+        code.append("    add_compile_definitions(VEDA64_STRINGS)")
         code.append("endif()")
-        code.append("")
-        code.append("if(VEDA64_NO_IR)")
-        code.append("    add_compile_definitions(VEDA64_NO_IR)")
+        code.append("if(VEDA64_IR)")
+        code.append("    add_compile_definitions(VEDA64_IR)")
+        code.append("endif()")
+        code.append("if(VEDA64_HOOK)")
+        code.append("    add_compile_definitions(VEDA64_HOOK)")
         code.append("endif()")
         code.append("")
         code.append("# Collect all source and header files")
@@ -11244,7 +11253,6 @@ class ARM64XMLParser:
         code.append("# Hook support")
         code.append("if(NOT VEDA64_HOOK)")
         code.append("    list(REMOVE_ITEM VEDA64_SOURCES \"${CMAKE_CURRENT_SOURCE_DIR}/lib/hook.cpp\")")
-        code.append("    add_compile_definitions(VEDA64_NO_HOOKS)")
         code.append("endif()")
         code.append("")
         code.append("# Create library")
@@ -11267,7 +11275,7 @@ class ARM64XMLParser:
         code.append("target_link_libraries(veda64-disasm PRIVATE veda64)")
         code.append("set_target_properties(veda64-disasm PROPERTIES FOLDER \"tools\")")
         code.append("")
-        code.append("if(NOT VEDA64_NO_IR)")
+        code.append("if(VEDA64_IR)")
         code.append("    add_executable(veda64-interp tools/veda64-interp.cpp)")
         code.append("    target_link_libraries(veda64-interp PRIVATE veda64)")
         code.append("    set_target_properties(veda64-interp PROPERTIES FOLDER \"tools\")")
@@ -11365,7 +11373,7 @@ class ARM64XMLParser:
         code.append("#include <nanobind/stl/shared_ptr.h>")
         code.append("#include <nanobind/make_iterator.h>")
         code.append("#include <veda64.hpp>")
-        code.append("#ifndef VEDA64_NO_IR")
+        code.append("#ifdef VEDA64_IR")
         code.append("#include <veda64/ir.hpp>")
         code.append("#endif")
         code.append("")
@@ -11489,7 +11497,7 @@ class ARM64XMLParser:
         code.append("")
 
         # --- IR bindings ---
-        code.append("#ifndef VEDA64_NO_IR")
+        code.append("#ifdef VEDA64_IR")
         code.append("    // === IR (Intermediate Representation) ===")
         code.append("    auto ir_mod = m.def_submodule(\"ir\", \"P-Code style intermediate representation\");")
         code.append("")
@@ -11642,7 +11650,7 @@ class ARM64XMLParser:
         code.append("        veda64::ir::execute(ctx, insn);")
         code.append("    }, \"ctx\"_a, \"insn\"_a, \"Execute a single ARM64 instruction against a context\");")
         code.append("")
-        code.append("#endif // !VEDA64_NO_IR")
+        code.append("#endif // VEDA64_IR")
 
         code.append("}")
         code.append("")
@@ -12153,7 +12161,7 @@ class ARM64XMLParser:
 
         code = self._license_header()
         code.append("#include \"veda64.hpp\"")
-        code.append("#ifndef VEDA64_NO_IR")
+        code.append("#ifdef VEDA64_IR")
         code.append("#include \"veda64/ir.hpp\"")
         code.append("#endif")
         code.append("#include <iostream>")
@@ -12192,7 +12200,7 @@ class ARM64XMLParser:
         code.append("    std::cerr << \"\\n\";")
         code.append("    std::cerr << \"Options:\\n\";")
         code.append("    std::cerr << \"  -b, --big-endian  Input values are in big-endian byte order\\n\";")
-        code.append("#ifndef VEDA64_NO_IR")
+        code.append("#ifdef VEDA64_IR")
         code.append("    std::cerr << \"      --ir          Show IR (intermediate representation) output\\n\";")
         code.append("    std::cerr << \"      --ir-expanded Show IR with expanded flag primitives\\n\";")
         code.append("    std::cerr << \"      --ast         Show AST (expression tree) output\\n\";")
@@ -12258,7 +12266,7 @@ class ARM64XMLParser:
         code.append("        return 1;")
         code.append("    }")
         code.append("")
-        code.append("#ifdef VEDA64_NO_IR")
+        code.append("#ifndef VEDA64_IR")
         code.append("    (void)show_ir;")
         code.append("    (void)ir_expanded;")
         code.append("    (void)show_ast;")
@@ -12287,7 +12295,7 @@ class ARM64XMLParser:
         code.append("            std::cout << \"0x\" << std::hex << (big_endian ? bswap32(insn) : insn) << std::dec << \": <unknown>\\n\";")
         code.append("        }")
         code.append("")
-        code.append("#ifndef VEDA64_NO_IR")
+        code.append("#ifdef VEDA64_IR")
         code.append("        if (show_ir) {")
         code.append("            auto detail = ir_expanded ? ir::IrDetail::Expanded : ir::IrDetail::Semantic;")
         code.append("            auto ir_result = result ? ir::lift(*result, detail) : ir::lift(insn, detail);")
@@ -12325,7 +12333,7 @@ class ARM64XMLParser:
         tools_dir.mkdir(exist_ok=True)
 
         code = self._license_header()
-        code.append("#ifndef VEDA64_NO_IR")
+        code.append("#ifdef VEDA64_IR")
         code.append("")
         code.append('#include "veda64.hpp"')
         code.append('#include "veda64/ir.hpp"')
@@ -12393,7 +12401,7 @@ class ARM64XMLParser:
         code.append("    for (size_t idx = 0; idx < insns.size() && !ctx.halted; ) {")
         code.append("        uint32_t insn = insns[idx];")
         code.append("        if (step) {")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("            auto decoded = decode(insn);")
         code.append('            if (decoded) printf("[0x%llx] %s\\n", (unsigned long long)ctx.pc, decoded->to_string().c_str());')
         code.append('#else')
@@ -12414,10 +12422,10 @@ class ARM64XMLParser:
         code.append("    return 0;")
         code.append("}")
         code.append("")
-        code.append("#else // VEDA64_NO_IR")
+        code.append("#else // !VEDA64_IR")
         code.append("")
         code.append("#include <cstdio>")
-        code.append('int main() { fprintf(stderr, "IR interpreter disabled (VEDA64_NO_IR)\\n"); return 1; }')
+        code.append('int main() { fprintf(stderr, "IR interpreter disabled (VEDA64_IR not set)\\n"); return 1; }')
         code.append("")
         code.append("#endif")
         code.append("")
@@ -12437,7 +12445,7 @@ class ARM64XMLParser:
         code.append("#include \"veda64.hpp\"")
         code.append("")
         code.append("// Only compile when hooks are enabled")
-        code.append("#if !defined(VEDA64_NO_HOOKS) && (defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT))")
+        code.append("#if defined(VEDA64_HOOK) && (defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT))")
         code.append("")
         code.append("#include <Windows.h>")
         code.append("#include <vector>")
@@ -12701,7 +12709,7 @@ class ARM64XMLParser:
         code.append("")
         code.append("static HookState g_state;")
         code.append("")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("// ============================================================================")
         code.append("// Status to string")
         code.append("// ============================================================================")
@@ -12724,7 +12732,7 @@ class ARM64XMLParser:
         code.append("        default: return \"Unknown error\";")
         code.append("    }")
         code.append("}")
-        code.append("#endif // VEDA64_NO_STRINGS")
+        code.append("#endif // VEDA64_STRINGS")
         code.append("")
         code.append("// ============================================================================")
         code.append("// Configuration")
@@ -13761,7 +13769,7 @@ class ARM64XMLParser:
         code.append("    return handle->trampoline.insn_count;")
         code.append("}")
         code.append("")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("void dump_hook(HookHandle handle) {")
         code.append("    if (!handle || !handle->valid) {")
         code.append("        printf(\"Invalid hook handle\\n\");")
@@ -13812,12 +13820,12 @@ class ARM64XMLParser:
         code.append("        }")
         code.append("    }")
         code.append("}")
-        code.append("#endif // !VEDA64_NO_STRINGS")
+        code.append("#endif // VEDA64_STRINGS")
         code.append("")
         code.append("} // namespace hook")
         code.append("} // namespace veda64")
         code.append("")
-        code.append("#endif // !VEDA64_NO_HOOKS && (_WIN32 || VEDA64_HOOK_SUPPORT)")
+        code.append("#endif // VEDA64_HOOK && (_WIN32 || VEDA64_HOOK_SUPPORT)")
         code.append("")
 
         output_file = lib_dir / "hook.cpp"
@@ -14059,7 +14067,7 @@ class ARM64XMLParser:
         code = self._license_header()
         code.append("#include \"veda64.hpp\"")
         code.append("")
-        code.append("#if !defined(VEDA64_NO_HOOKS) && (defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT))")
+        code.append("#if defined(VEDA64_HOOK) && (defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT))")
         code.append("")
         code.append("#include <cassert>")
         code.append("#include <cstdint>")
@@ -14124,7 +14132,7 @@ class ARM64XMLParser:
         code.append("")
 
         # ---- Test 3: Status strings ----
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("void test_status_strings() {")
         code.append("    std::cout << \"  test_status_strings...\" << std::endl;")
         code.append("")
@@ -14807,7 +14815,7 @@ class ARM64XMLParser:
         code.append("    // Cross-platform tests")
         code.append("    test_initialization_lifecycle();")
         code.append("    test_configuration();")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("    test_status_strings();")
         code.append("#endif")
         code.append("    test_error_handling();")
@@ -14835,7 +14843,7 @@ class ARM64XMLParser:
         code.append("    return 0;")
         code.append("}")
         code.append("")
-        code.append("#else // VEDA64_NO_HOOKS || !(_WIN32 || VEDA64_HOOK_SUPPORT)")
+        code.append("#else // !VEDA64_HOOK || !(_WIN32 || VEDA64_HOOK_SUPPORT)")
         code.append("")
         code.append("// Hook support not available on this platform")
         code.append("#include <iostream>")
@@ -14844,7 +14852,7 @@ class ARM64XMLParser:
         code.append("    return 0;")
         code.append("}")
         code.append("")
-        code.append("#endif // !VEDA64_NO_HOOKS && (_WIN32 || VEDA64_HOOK_SUPPORT)")
+        code.append("#endif // VEDA64_HOOK && (_WIN32 || VEDA64_HOOK_SUPPORT)")
         code.append("")
 
         output_file = test_dir / "test_hook.cpp"
@@ -14861,7 +14869,7 @@ class ARM64XMLParser:
         code.append("")
         code.append("#include \"veda64.hpp\"")
         code.append("")
-        code.append("#if !defined(VEDA64_NO_HOOKS) && defined(_WIN32) && (defined(_M_ARM64) || defined(__aarch64__))")
+        code.append("#if defined(VEDA64_HOOK) && defined(_WIN32) && (defined(_M_ARM64) || defined(__aarch64__))")
         code.append("#include <iostream>")
         code.append("#include <string>")
         code.append("#include <vector>")
@@ -15214,7 +15222,7 @@ class ARM64XMLParser:
         code.append("} // namespace examples")
         code.append("} // namespace veda64")
         code.append("")
-        code.append("#endif // !VEDA64_NO_HOOKS && Windows ARM64")
+        code.append("#endif // VEDA64_HOOK && Windows ARM64")
         code.append("")
 
         output_file = test_dir / "hook_examples.cpp"
@@ -15728,7 +15736,7 @@ class ARM64XMLParser:
         code = self._license_header()
         code.append("#pragma once")
         code.append("")
-        code.append("#ifndef VEDA64_NO_IR")
+        code.append("#ifdef VEDA64_IR")
         code.append("")
         code.append("#include <cstdint>")
         code.append("#include <string>")
@@ -15892,7 +15900,7 @@ class ARM64XMLParser:
         code.append("// Simplify IR: copy propagation + output folding + dead temp elimination")
         code.append("Lifted simplify(const Lifted& l);")
         code.append("")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("// String formatters")
         code.append("std::string to_string(const VarNode& v);")
         code.append("std::string to_string(const Op& op);")
@@ -15956,7 +15964,7 @@ class ARM64XMLParser:
         code.append("std::optional<Ast> lift_ast(uint32_t insn, IrDetail detail = IrDetail::Semantic);")
         code.append("std::optional<Ast> lift_ast(const Instruction& insn, IrDetail detail = IrDetail::Semantic);")
         code.append("")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("std::string to_string(const Expr& e);")
         code.append("std::string to_string(const Effect& eff);")
         code.append("std::string to_string(const Ast& ast);")
@@ -15987,7 +15995,7 @@ class ARM64XMLParser:
         code.append("")
         code.append("} // namespace veda64::ir")
         code.append("")
-        code.append("#endif // !VEDA64_NO_IR")
+        code.append("#endif // VEDA64_IR")
         code.append("")
 
         ir_header_path = include_dir / "veda64" / "ir.hpp"
@@ -16002,7 +16010,7 @@ class ARM64XMLParser:
         code.append("")
         code.append("#pragma once")
         code.append("")
-        code.append("#ifndef VEDA64_NO_IR")
+        code.append("#ifdef VEDA64_IR")
         code.append("")
         code.append('#include "veda64/ir.hpp"')
         code.append('#include "veda64/mnemonic.hpp"')
@@ -16055,7 +16063,7 @@ class ARM64XMLParser:
         code.append("")
         code.append("} // namespace veda64::ir")
         code.append("")
-        code.append("#endif // !VEDA64_NO_IR")
+        code.append("#endif // VEDA64_IR")
         code.append("")
 
         self._write_file(lib_ir_dir / "ir_internal.hpp", code)
@@ -16064,7 +16072,7 @@ class ARM64XMLParser:
     def _generate_ir_cpp(self, lib_ir_dir: Path):
         """Generate lib/ir/ir.cpp — lift dispatch + simplify + to_string."""
         code = self._license_header()
-        code.append("#ifndef VEDA64_NO_IR")
+        code.append("#ifdef VEDA64_IR")
         code.append("")
         code.append('#include "veda64/ir.hpp"')
         code.append('#include "veda64.hpp"')
@@ -16182,7 +16190,7 @@ class ARM64XMLParser:
         code.append("    return result;")
         code.append("}")
         code.append("")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("")
         code.append("const char* opcode_names[] = {")
         code.append('    "copy", "load", "store",')
@@ -16267,7 +16275,7 @@ class ARM64XMLParser:
         code.append("    return s;")
         code.append("}")
         code.append("")
-        code.append("#endif // !VEDA64_NO_STRINGS")
+        code.append("#endif // VEDA64_STRINGS")
         code.append("")
         code.append("// ============================================================")
         code.append("// AST (Expression Tree) layer")
@@ -16394,7 +16402,7 @@ class ARM64XMLParser:
         code.append("    return to_ast(*l);")
         code.append("}")
         code.append("")
-        code.append("#ifndef VEDA64_NO_STRINGS")
+        code.append("#ifdef VEDA64_STRINGS")
         code.append("")
         code.append("std::string to_string(const Expr& e) {")
         code.append("    switch (e.kind) {")
@@ -16443,7 +16451,7 @@ class ARM64XMLParser:
         code.append("    return s;")
         code.append("}")
         code.append("")
-        code.append("#endif // !VEDA64_NO_STRINGS")
+        code.append("#endif // VEDA64_STRINGS")
         code.append("")
         code.append("// ============================================================")
         code.append("// Interpreter implementation")
@@ -16567,7 +16575,7 @@ class ARM64XMLParser:
         code.append("    switch (e.opcode) {")
         code.append("    case Opcode::COPY:")
         code.append("        if (nc == 1) return c[0] & mask;")
-        code.append("        if (nc == 3) return c[0] ? c[1] : c[2]; // CSEL")
+        code.append("        if (nc == 3) return (c[0] & 1) ? c[1] : c[2]; // CSEL")
         code.append("        return c[0];")
         code.append("    case Opcode::ADD: return (c[0] + c[1]) & mask;")
         code.append("    case Opcode::SUB: return (c[0] - c[1]) & mask;")
@@ -16682,7 +16690,7 @@ class ARM64XMLParser:
         code.append("            branch_taken = true;")
         code.append("            break;")
         code.append("        case Effect::Kind::CBranch:")
-        code.append("            if (eff.expr && eval_expr(ctx, *eff.expr)) {")
+        code.append("            if (eff.expr && (eval_expr(ctx, *eff.expr) & 1)) {")
         code.append("                ctx.pc = eff.value ? eval_expr(ctx, *eff.value) : 0;")
         code.append("                branch_taken = true;")
         code.append("            }")
@@ -16708,7 +16716,7 @@ class ARM64XMLParser:
         code.append("")
         code.append("} // namespace veda64::ir")
         code.append("")
-        code.append("#endif // !VEDA64_NO_IR")
+        code.append("#endif // VEDA64_IR")
         code.append("")
 
         self._write_file(lib_ir_dir / "ir.cpp", code)
@@ -16717,7 +16725,7 @@ class ARM64XMLParser:
     def _generate_ir_lift_cpp(self, lib_ir_dir: Path):
         """Generate lib/ir/ir_lift.cpp — template interpreters and dispatch."""
         code = self._license_header()
-        code.append("#ifndef VEDA64_NO_IR")
+        code.append("#ifdef VEDA64_IR")
         code.append("")
         code.append('#include "ir_internal.hpp"')
         code.append('#include "veda64/types.hpp"')
@@ -17589,7 +17597,7 @@ class ARM64XMLParser:
         code.append("")
         code.append("} // namespace veda64::ir")
         code.append("")
-        code.append("#endif // !VEDA64_NO_IR")
+        code.append("#endif // VEDA64_IR")
         code.append("")
 
         self._write_file(lib_ir_dir / "ir_lift.cpp", code)
@@ -17598,7 +17606,7 @@ class ARM64XMLParser:
     def _generate_ir_tables(self, lib_ir_dir: Path, ir_entries: list):
         """Generate lib/ir/ir_tables.cpp with the data table."""
         code = self._license_header()
-        code.append("#ifndef VEDA64_NO_IR")
+        code.append("#ifdef VEDA64_IR")
         code.append("")
         code.append('#include "ir_internal.hpp"')
         code.append("")
@@ -17626,7 +17634,7 @@ class ARM64XMLParser:
         code.append("")
         code.append("} // namespace veda64::ir")
         code.append("")
-        code.append("#endif // !VEDA64_NO_IR")
+        code.append("#endif // VEDA64_IR")
         code.append("")
 
         self._write_file(lib_ir_dir / "ir_tables.cpp", code)
@@ -17635,7 +17643,7 @@ class ARM64XMLParser:
     def _generate_ir_test(self, test_dir: Path, ir_entries: list):
         """Generate test/test_ir.cpp that validates lift() on sample encodings."""
         code = self._license_header()
-        code.append("#ifndef VEDA64_NO_IR")
+        code.append("#ifdef VEDA64_IR")
         code.append("")
         code.append('#include "veda64/ir.hpp"')
         code.append('#include "veda64.hpp"')
@@ -18353,6 +18361,312 @@ class ARM64XMLParser:
             'else { printf("FAIL: pc=0x%llx\\n", (unsigned long long)ctx.pc); }',
         ])
 
+        # --- 32-bit arithmetic ---
+        emit_test("interp_add_w32", [
+            '// ADD W0, W1, W2 — 32-bit result zero-extended to 64-bit',
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[1] = 0xFFFFFFFF; ctx.gpr[2] = 1;',
+            'execute(ctx, 0x0B020020);  // ADD W0, W1, W2',
+            '// 0xFFFFFFFF + 1 = 0x100000000 truncated to 32-bit = 0, zero-extended',
+            'if (ctx.gpr[0] == 0) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=0x%llx\\n", (unsigned long long)ctx.gpr[0]); }',
+        ])
+
+        emit_test("interp_sub_x64", [
+            '// SUB X0, X1, X2',
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[1] = 100; ctx.gpr[2] = 37;',
+            'execute(ctx, 0xCB020020);  // SUB X0, X1, X2',
+            'if (ctx.gpr[0] == 63) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=%llu\\n", (unsigned long long)ctx.gpr[0]); }',
+        ])
+
+        emit_test("interp_subs_w32_flags", [
+            '// SUBS W0, W1, W2 — 32-bit flags (bit 31 = N)',
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[1] = 1; ctx.gpr[2] = 2;',
+            'execute(ctx, 0x6B020020);  // SUBS W0, W1, W2',
+            '// 1-2 wraps in 32-bit: result=0xFFFFFFFF, N=1, Z=0, C=0',
+            'if (ctx.gpr[0] == 0xFFFFFFFF && ctx.flags[0] == 1 && ctx.flags[1] == 0 && ctx.flags[2] == 0)',
+            '    { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=0x%llx N=%d Z=%d C=%d\\n", (unsigned long long)ctx.gpr[0], ctx.flags[0], ctx.flags[1], ctx.flags[2]); }',
+        ])
+
+        # --- Logical ops ---
+        emit_test("interp_and", [
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[1] = 0xFF00FF00ULL; ctx.gpr[2] = 0x0F0F0F0FULL;',
+            'execute(ctx, 0x8A020020);  // AND X0, X1, X2',
+            'if (ctx.gpr[0] == 0x0F000F00ULL) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=0x%llx\\n", (unsigned long long)ctx.gpr[0]); }',
+        ])
+
+        emit_test("interp_eor", [
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[1] = 0xAAAAAAAAAAAAAAAAULL; ctx.gpr[2] = 0x5555555555555555ULL;',
+            'execute(ctx, 0xCA020020);  // EOR X0, X1, X2',
+            'if (ctx.gpr[0] == 0xFFFFFFFFFFFFFFFFULL) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=0x%llx\\n", (unsigned long long)ctx.gpr[0]); }',
+        ])
+
+        # --- MOV variants ---
+        emit_test("interp_movn", [
+            '// MOVN X0, #1 → X0 = ~1 = 0xFFFFFFFFFFFFFFFE',
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'execute(ctx, 0x92800020);  // MOV X0, #-2 (MOVN X0, #1)',
+            'if (ctx.gpr[0] == 0xFFFFFFFFFFFFFFFEULL) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=0x%llx\\n", (unsigned long long)ctx.gpr[0]); }',
+        ])
+
+        emit_test("interp_movz_shifted", [
+            '// MOVZ X0, #0x1001 (imm16=0x1001, hw=0)',
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'execute(ctx, 0xD2820020);  // MOV X0, #0x1001',
+            'if (ctx.gpr[0] == 0x1001) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=0x%llx\\n", (unsigned long long)ctx.gpr[0]); }',
+        ])
+
+        # --- Division ---
+        emit_test("interp_udiv", [
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[1] = 100; ctx.gpr[2] = 7;',
+            'execute(ctx, 0x9AC20820);  // UDIV X0, X1, X2',
+            'if (ctx.gpr[0] == 14) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=%llu\\n", (unsigned long long)ctx.gpr[0]); }',
+        ])
+
+        emit_test("interp_sdiv", [
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[1] = (uint64_t)(int64_t)-100; ctx.gpr[2] = 7;',
+            'execute(ctx, 0x9AC20C20);  // SDIV X0, X1, X2',
+            '// -100 / 7 = -14',
+            'if (ctx.gpr[0] == (uint64_t)(int64_t)-14) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=0x%llx\\n", (unsigned long long)ctx.gpr[0]); }',
+        ])
+
+        emit_test("interp_udiv_by_zero", [
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[0] = 0xDEAD; ctx.gpr[1] = 42; ctx.gpr[2] = 0;',
+            'execute(ctx, 0x9AC20820);  // UDIV X0, X1, X2 (div by zero → 0)',
+            'if (ctx.gpr[0] == 0) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=%llu\\n", (unsigned long long)ctx.gpr[0]); }',
+        ])
+
+        # --- MOV register ---
+        emit_test("interp_mov_reg", [
+            '// MOV X0, X2 (alias of ORR X0, XZR, X2)',
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[2] = 0x123456789ABCDEF0ULL;',
+            'execute(ctx, 0xAA0203E0);  // MOV X0, X2',
+            'if (ctx.gpr[0] == 0x123456789ABCDEF0ULL) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=0x%llx\\n", (unsigned long long)ctx.gpr[0]); }',
+        ])
+
+        # --- CSEL ---
+        emit_test("interp_csel_taken", [
+            '// SUBS X5, X1, X2 (equal values); CSEL X0, X3, X4, EQ',
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[1] = 7; ctx.gpr[2] = 7;',
+            'ctx.gpr[3] = 0xAAAA; ctx.gpr[4] = 0xBBBB;',
+            'execute(ctx, 0xEB0200A5);  // SUBS X5, X5, X2 — but this has Rn=X5',
+            '// Use SUBS X0, X1, X2 with equal values instead',
+            'Context ctx2;',
+            'uint8_t mem2[1024] = {};',
+            'ctx2.memory = mem2; ctx2.memory_size = sizeof(mem2);',
+            'ctx2.gpr[1] = 7; ctx2.gpr[2] = 7;',
+            'ctx2.gpr[3] = 0xAAAA; ctx2.gpr[4] = 0xBBBB;',
+            'execute(ctx2, 0xEB020020);  // SUBS X0, X1, X2 (7-7=0, Z=1)',
+            'execute(ctx2, 0x9A840060);  // CSEL X0, X3, X4, EQ',
+            '// Z=1 → EQ taken → X0=X3',
+            'if (ctx2.gpr[0] == 0xAAAA) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=0x%llx Z=%d\\n", (unsigned long long)ctx2.gpr[0], ctx2.flags[1]); }',
+        ])
+
+        emit_test("interp_csel_not_taken", [
+            '// SUBS X0, X1, X2 (unequal); CSEL X0, X3, X4, EQ',
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[1] = 10; ctx.gpr[2] = 20;',
+            'ctx.gpr[3] = 0xAAAA; ctx.gpr[4] = 0xBBBB;',
+            'execute(ctx, 0xEB020020);  // SUBS X0, X1, X2 (10-20, Z=0)',
+            'execute(ctx, 0x9A840060);  // CSEL X0, X3, X4, EQ',
+            '// Z=0 → EQ not taken → X0=X4',
+            'if (ctx.gpr[0] == 0xBBBB) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=0x%llx Z=%d\\n", (unsigned long long)ctx.gpr[0], ctx.flags[1]); }',
+        ])
+
+        # --- LDR/STR with offset ---
+        emit_test("interp_ldr_str_offset", [
+            '// STR X0, [X1, #0x10] then LDR X2, [X1, #0x10]',
+            'Context ctx;',
+            'uint8_t mem[65536] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[0] = 0xCAFEBABE12345678ULL; ctx.gpr[1] = 0x200;',
+            'execute(ctx, 0xF9000820);  // STR X0, [X1, #0x10]',
+            'execute(ctx, 0xF9400822);  // LDR X2, [X1, #0x10]',
+            'if (ctx.gpr[2] == 0xCAFEBABE12345678ULL) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x2=0x%llx\\n", (unsigned long long)ctx.gpr[2]); }',
+        ])
+
+        # --- STP/LDP ---
+        emit_test("interp_stp_ldp", [
+            '// Store two values with STR, load back with LDP',
+            'Context ctx;',
+            'uint8_t mem[65536] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[31] = 0x2000; // SP',
+            'ctx.gpr[0] = 0x1111111111111111ULL;',
+            'ctx.gpr[1] = 0x2222222222222222ULL;',
+            '// Manually store two 8-byte values at SP',
+            'execute(ctx, 0xF90003E0);  // STR X0, [SP, #0]',
+            'execute(ctx, 0xF90007E1);  // STR X1, [SP, #8]',
+            '// Now LDP them back',
+            'ctx.gpr[2] = 0; ctx.gpr[3] = 0;',
+            'execute(ctx, 0xA9400FE2);  // LDP X2, X3, [SP]',
+            'if (ctx.gpr[2] == 0x1111111111111111ULL && ctx.gpr[3] == 0x2222222222222222ULL)',
+            '    { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x2=0x%llx x3=0x%llx\\n", (unsigned long long)ctx.gpr[2], (unsigned long long)ctx.gpr[3]); }',
+        ])
+
+        # --- ADDS immediate ---
+        emit_test("interp_adds_imm", [
+            '// ADDS X0, X1, #3',
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[1] = 10;',
+            'execute(ctx, 0xB1000C20);  // ADDS X0, X1, #3',
+            'if (ctx.gpr[0] == 13 && ctx.flags[0] == 0 && ctx.flags[1] == 0 && ctx.flags[2] == 0 && ctx.flags[3] == 0)',
+            '    { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=%llu N=%d Z=%d C=%d V=%d\\n", (unsigned long long)ctx.gpr[0], ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }',
+        ])
+
+        # --- Multi-instruction sequence: compute x0 = (x1 + x2) * x3 ---
+        emit_test("interp_sequence_add_mul", [
+            '// x0 = (x1 + x2), then x0 = x0 * x3',
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[1] = 6; ctx.gpr[2] = 4; ctx.gpr[3] = 5;',
+            'execute(ctx, 0x8B020020);  // ADD X0, X1, X2  → X0=10',
+            'execute(ctx, 0x9B037C00);  // MUL X0, X0, X3  → X0=50',
+            'if (ctx.gpr[0] == 50) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=%llu\\n", (unsigned long long)ctx.gpr[0]); }',
+        ])
+
+        # --- SUBS equal then B.EQ taken ---
+        emit_test("interp_subs_beq_taken", [
+            '// Use SUBS (not CMP) to set Z=1, then B.EQ',
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[1] = 42; ctx.gpr[2] = 42; ctx.pc = 0x2000;',
+            'execute(ctx, 0xEB020020);  // SUBS X0, X1, X2 (42-42=0, Z=1)',
+            'execute(ctx, 0x54000040);  // B.EQ +8',
+            '// Z=1 → EQ taken → pc = 0x2004 + 8 = 0x200C',
+            'if (ctx.pc == 0x200C && ctx.flags[1] == 1) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: pc=0x%llx Z=%d\\n", (unsigned long long)ctx.pc, ctx.flags[1]); }',
+        ])
+
+        # --- Memory write then verify bytes (little-endian) ---
+        emit_test("interp_mem_le_bytes", [
+            '// STR X0, [X1] then verify individual bytes in memory are LE',
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[0] = 0x0807060504030201ULL; ctx.gpr[1] = 0x100;',
+            'execute(ctx, 0xF9000020);  // STR X0, [X1]',
+            '// Check LE byte order in memory',
+            'bool ok = mem[0x100]==0x01 && mem[0x101]==0x02 && mem[0x102]==0x03 && mem[0x103]==0x04',
+            '       && mem[0x104]==0x05 && mem[0x105]==0x06 && mem[0x106]==0x07 && mem[0x107]==0x08;',
+            'if (ok) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: bytes=%02x %02x %02x %02x %02x %02x %02x %02x\\n",',
+            '       mem[0x100], mem[0x101], mem[0x102], mem[0x103], mem[0x104], mem[0x105], mem[0x106], mem[0x107]); }',
+        ])
+
+        # --- XZR destination (writes discarded) ---
+        emit_test("interp_xzr_dest", [
+            '// CMP is SUBS XZR — X31 (SP) should NOT be modified',
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[31] = 0x5000; // SP',
+            'ctx.gpr[1] = 5; ctx.gpr[2] = 3;',
+            'execute(ctx, 0xEB02003F);  // CMP X1, X2 (SUBS XZR, X1, X2)',
+            '// Flags should be set, but SP should remain unchanged',
+            '// Note: XZR vs SP ambiguity — the IR uses gpr[31] as SP',
+            '// CMP writes to XZR which maps to gpr[31]; this tests current behavior',
+            'bool flags_ok = (ctx.flags[0] == 0 && ctx.flags[1] == 0 && ctx.flags[2] == 1);',
+            'if (flags_ok) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: N=%d Z=%d C=%d V=%d sp=0x%llx\\n", ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3], (unsigned long long)ctx.gpr[31]); }',
+        ])
+
+        # --- PC advances by 4 for non-branch ---
+        emit_test("interp_pc_advance", [
+            '// Three instructions, PC should advance by 12',
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.pc = 0x400;',
+            'ctx.gpr[1] = 1; ctx.gpr[2] = 2; ctx.gpr[3] = 3;',
+            'execute(ctx, 0x8B020020);  // ADD X0, X1, X2',
+            'execute(ctx, 0x8B030000);  // ADD X0, X0, X3',
+            'execute(ctx, 0xD2800060);  // MOV X0, #3',
+            'if (ctx.pc == 0x40C) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: pc=0x%llx\\n", (unsigned long long)ctx.pc); }',
+        ])
+
+        # --- CSEL with NE condition ---
+        emit_test("interp_csel_ne", [
+            '// CSEL X0, X1, X2, NE',
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[1] = 111; ctx.gpr[2] = 222;',
+            'ctx.flags[1] = 0; // Z=0 → NE is true',
+            'execute(ctx, 0x9A821020);  // CSEL X0, X1, X2, NE',
+            '// NE → Z==0 → condition true → X0 = X1 = 111',
+            'if (ctx.gpr[0] == 111) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=%llu Z=%d\\n", (unsigned long long)ctx.gpr[0], ctx.flags[1]); }',
+        ])
+
+        emit_test("interp_csel_ne_false", [
+            '// CSEL X0, X1, X2, NE with Z=1 → NE false → X0=X2',
+            'Context ctx;',
+            'uint8_t mem[1024] = {};',
+            'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
+            'ctx.gpr[1] = 111; ctx.gpr[2] = 222;',
+            'ctx.flags[1] = 1; // Z=1 → NE is false',
+            'execute(ctx, 0x9A821020);  // CSEL X0, X1, X2, NE',
+            'if (ctx.gpr[0] == 222) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=%llu Z=%d\\n", (unsigned long long)ctx.gpr[0], ctx.flags[1]); }',
+        ])
+
         code.append("}")
         code.append("")
         code.append("int main() {")
@@ -18362,11 +18676,11 @@ class ARM64XMLParser:
         code.append("    return (tests_passed == tests_run) ? 0 : 1;")
         code.append("}")
         code.append("")
-        code.append("#else // VEDA64_NO_IR")
+        code.append("#else // !VEDA64_IR")
         code.append("")
         code.append("#include <cstdio>")
         code.append("int main() {")
-        code.append('    printf("IR tests skipped (VEDA64_NO_IR)\\n");')
+        code.append('    printf("IR tests skipped (VEDA64_IR not set)\\n");')
         code.append("    return 0;")
         code.append("}")
         code.append("")

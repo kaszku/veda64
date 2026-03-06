@@ -2,7 +2,7 @@
 // Copyright (c) 2026 Kevin Szkudlapski
 // Auto-generated — do not edit
 
-#ifndef VEDA64_NO_IR
+#ifdef VEDA64_IR
 
 #include "veda64/ir.hpp"
 #include "veda64.hpp"
@@ -120,7 +120,7 @@ Lifted simplify(const Lifted& l) {
     return result;
 }
 
-#ifndef VEDA64_NO_STRINGS
+#ifdef VEDA64_STRINGS
 
 const char* opcode_names[] = {
     "copy", "load", "store",
@@ -205,7 +205,7 @@ std::string to_string(const Lifted& l) {
     return s;
 }
 
-#endif // !VEDA64_NO_STRINGS
+#endif // VEDA64_STRINGS
 
 // ============================================================
 // AST (Expression Tree) layer
@@ -332,7 +332,7 @@ std::optional<Ast> lift_ast(const Instruction& insn, IrDetail detail) {
     return to_ast(*l);
 }
 
-#ifndef VEDA64_NO_STRINGS
+#ifdef VEDA64_STRINGS
 
 std::string to_string(const Expr& e) {
     switch (e.kind) {
@@ -381,7 +381,7 @@ std::string to_string(const Ast& ast) {
     return s;
 }
 
-#endif // !VEDA64_NO_STRINGS
+#endif // VEDA64_STRINGS
 
 // ============================================================
 // Interpreter implementation
@@ -505,7 +505,7 @@ uint64_t eval_expr(const Context& ctx, const Expr& e) {
     switch (e.opcode) {
     case Opcode::COPY:
         if (nc == 1) return c[0] & mask;
-        if (nc == 3) return c[0] ? c[1] : c[2]; // CSEL
+        if (nc == 3) return (c[0] & 1) ? c[1] : c[2]; // CSEL
         return c[0];
     case Opcode::ADD: return (c[0] + c[1]) & mask;
     case Opcode::SUB: return (c[0] - c[1]) & mask;
@@ -620,7 +620,7 @@ void execute_ast(Context& ctx, const Ast& ast) {
             branch_taken = true;
             break;
         case Effect::Kind::CBranch:
-            if (eff.expr && eval_expr(ctx, *eff.expr)) {
+            if (eff.expr && (eval_expr(ctx, *eff.expr) & 1)) {
                 ctx.pc = eff.value ? eval_expr(ctx, *eff.value) : 0;
                 branch_taken = true;
             }
@@ -646,4 +646,4 @@ void execute(Context& ctx, uint32_t insn) {
 
 } // namespace veda64::ir
 
-#endif // !VEDA64_NO_IR
+#endif // VEDA64_IR

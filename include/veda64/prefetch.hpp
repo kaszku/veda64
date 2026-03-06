@@ -40,7 +40,7 @@ enum class PrefetchOp : uint8_t {
 // Look up PrefetchOp from 5-bit prfop field
 PrefetchOp prefetch_from_value(uint32_t prfop);
 
-#ifndef VEDA64_NO_STRINGS
+#ifdef VEDA64_STRINGS
 const char* prefetch_to_string(PrefetchOp op);
 #endif
 

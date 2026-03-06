@@ -558,7 +558,7 @@ inline constexpr bool register_is_sp(Register r) {
     return r == Register::SP || r == Register::WSP;
 }
 
-#ifndef VEDA64_NO_STRINGS
+#ifdef VEDA64_STRINGS
 inline const char* register_to_string(Register r) {
     auto v = static_cast<uint16_t>(r);
     if (v <= 65) {

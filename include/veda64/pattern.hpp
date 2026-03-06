@@ -33,7 +33,7 @@ enum class SvePattern : uint8_t {
 // Look up SvePattern from 5-bit pattern field
 SvePattern pattern_from_value(uint32_t pattern);
 
-#ifndef VEDA64_NO_STRINGS
+#ifdef VEDA64_STRINGS
 const char* pattern_to_string(SvePattern pat);
 #endif
 

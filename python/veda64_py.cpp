@@ -9,7 +9,7 @@
 #include <nanobind/stl/shared_ptr.h>
 #include <nanobind/make_iterator.h>
 #include <veda64.hpp>
-#ifndef VEDA64_NO_IR
+#ifdef VEDA64_IR
 #include <veda64/ir.hpp>
 #endif
 
@@ -1669,7 +1669,7 @@ NB_MODULE(veda64_py, m) {
     m.attr("VERSION_MINOR") = veda64::VERSION_MINOR;
     m.attr("VERSION_PATCH") = veda64::VERSION_PATCH;
 
-#ifndef VEDA64_NO_IR
+#ifdef VEDA64_IR
     // === IR (Intermediate Representation) ===
     auto ir_mod = m.def_submodule("ir", "P-Code style intermediate representation");
 
@@ -1856,5 +1856,5 @@ NB_MODULE(veda64_py, m) {
         veda64::ir::execute(ctx, insn);
     }, "ctx"_a, "insn"_a, "Execute a single ARM64 instruction against a context");
 
-#endif // !VEDA64_NO_IR
+#endif // VEDA64_IR
 }

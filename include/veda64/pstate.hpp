@@ -29,7 +29,7 @@ enum class PstateField : uint8_t {
 // Look up PstateField from packed (op1<<7)|(CRm<<3)|op2 value
 PstateField pstate_from_value(uint32_t packed);
 
-#ifndef VEDA64_NO_STRINGS
+#ifdef VEDA64_STRINGS
 const char* pstate_to_string(PstateField f);
 #endif
 

@@ -27,7 +27,7 @@ public:
     uint32_t raw_value = 0;
     std::vector<Operand> operands;
 
-#ifndef VEDA64_NO_STRINGS
+#ifdef VEDA64_STRINGS
     // Format as disassembled instruction
     std::string to_string() const;
 #endif

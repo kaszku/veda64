@@ -271,7 +271,7 @@ enum class SysOp : uint16_t {
 // Look up SysOp from index into sys_ops table
 SysOp sysop_from_value(uint32_t idx);
 
-#ifndef VEDA64_NO_STRINGS
+#ifdef VEDA64_STRINGS
 const char* sysop_to_string(SysOp op);
 #endif
 

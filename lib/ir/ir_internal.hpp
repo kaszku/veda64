@@ -6,7 +6,7 @@
 
 #pragma once
 
-#ifndef VEDA64_NO_IR
+#ifdef VEDA64_IR
 
 #include "veda64/ir.hpp"
 #include "veda64/mnemonic.hpp"
@@ -59,4 +59,4 @@ extern const size_t ir_table_size;
 
 } // namespace veda64::ir
 
-#endif // !VEDA64_NO_IR
+#endif // VEDA64_IR

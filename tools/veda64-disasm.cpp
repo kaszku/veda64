@@ -3,7 +3,7 @@
 // Auto-generated — do not edit
 
 #include "veda64.hpp"
-#ifndef VEDA64_NO_IR
+#ifdef VEDA64_IR
 #include "veda64/ir.hpp"
 #endif
 #include <iostream>
@@ -42,7 +42,7 @@ void print_usage(const char* progname) {
     std::cerr << "\n";
     std::cerr << "Options:\n";
     std::cerr << "  -b, --big-endian  Input values are in big-endian byte order\n";
-#ifndef VEDA64_NO_IR
+#ifdef VEDA64_IR
     std::cerr << "      --ir          Show IR (intermediate representation) output\n";
     std::cerr << "      --ir-expanded Show IR with expanded flag primitives\n";
     std::cerr << "      --ast         Show AST (expression tree) output\n";
@@ -108,7 +108,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-#ifdef VEDA64_NO_IR
+#ifndef VEDA64_IR
     (void)show_ir;
     (void)ir_expanded;
     (void)show_ast;
@@ -137,7 +137,7 @@ int main(int argc, char* argv[]) {
             std::cout << "0x" << std::hex << (big_endian ? bswap32(insn) : insn) << std::dec << ": <unknown>\n";
         }
 
-#ifndef VEDA64_NO_IR
+#ifdef VEDA64_IR
         if (show_ir) {
             auto detail = ir_expanded ? ir::IrDetail::Expanded : ir::IrDetail::Semantic;
             auto ir_result = result ? ir::lift(*result, detail) : ir::lift(insn, detail);

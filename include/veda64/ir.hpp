@@ -4,7 +4,7 @@
 
 #pragma once
 
-#ifndef VEDA64_NO_IR
+#ifdef VEDA64_IR
 
 #include <cstdint>
 #include <string>
@@ -168,7 +168,7 @@ std::optional<Lifted> lift(const Instruction& insn, IrDetail detail = IrDetail::
 // Simplify IR: copy propagation + output folding + dead temp elimination
 Lifted simplify(const Lifted& l);
 
-#ifndef VEDA64_NO_STRINGS
+#ifdef VEDA64_STRINGS
 // String formatters
 std::string to_string(const VarNode& v);
 std::string to_string(const Op& op);
@@ -232,7 +232,7 @@ Ast to_ast(const Lifted& l);
 std::optional<Ast> lift_ast(uint32_t insn, IrDetail detail = IrDetail::Semantic);
 std::optional<Ast> lift_ast(const Instruction& insn, IrDetail detail = IrDetail::Semantic);
 
-#ifndef VEDA64_NO_STRINGS
+#ifdef VEDA64_STRINGS
 std::string to_string(const Expr& e);
 std::string to_string(const Effect& eff);
 std::string to_string(const Ast& ast);
@@ -263,4 +263,4 @@ void execute(Context& ctx, uint32_t insn);
 
 } // namespace veda64::ir
 
-#endif // !VEDA64_NO_IR
+#endif // VEDA64_IR

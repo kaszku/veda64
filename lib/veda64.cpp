@@ -10,7 +10,7 @@
 
 namespace veda64 {
 
-#if !defined(VEDA64_NO_STRINGS) && !defined(VEDA64_NO_MNEMONIC_OPERANDS)
+#ifdef VEDA64_STRINGS
 // Convert mnemonic enum to string
 const char* mnemonic_to_string(Mnemonic mnem) {
     switch (mnem) {
@@ -1540,10 +1540,10 @@ const char* mnemonic_to_string(Mnemonic mnem) {
     }
 }
 
-#if !defined(VEDA64_NO_STRINGS) && !defined(VEDA64_NO_MNEMONIC_OPERANDS)
+#ifdef VEDA64_STRINGS
 // SYS alias operation name string table (used by Operand::to_string)
 static const char* sys_ops[] = {"vmalle1os", "vae1os", "aside1os", "vaae1os", "vale1os", "vaale1os", "rvae1is", "rvaae1is", "rvale1is", "rvaale1is", "vmalle1is", "vae1is", "aside1is", "vaae1is", "vale1is", "vaale1is", "rvae1os", "rvaae1os", "rvale1os", "rvaale1os", "rvae1", "rvaae1", "rvale1", "rvaale1", "vmalle1", "vae1", "aside1", "vaae1", "vale1", "vaale1", "vmalle1osnxs", "vae1osnxs", "aside1osnxs", "vaae1osnxs", "vale1osnxs", "vaale1osnxs", "rvae1isnxs", "rvaae1isnxs", "rvale1isnxs", "rvaale1isnxs", "vmalle1isnxs", "vae1isnxs", "aside1isnxs", "vaae1isnxs", "vale1isnxs", "vaale1isnxs", "rvae1osnxs", "rvaae1osnxs", "rvale1osnxs", "rvaale1osnxs", "rvae1nxs", "rvaae1nxs", "rvale1nxs", "rvaale1nxs", "vmalle1nxs", "vae1nxs", "aside1nxs", "vaae1nxs", "vale1nxs", "vaale1nxs", "ipas2e1is", "ripas2e1is", "ipas2le1is", "ripas2le1is", "alle2os", "vae2os", "alle1os", "vale2os", "vmalls12e1os", "rvae2is", "vmallws2e1is", "rvale2is", "alle2is", "vae2is", "alle1is", "vale2is", "vmalls12e1is", "ipas2e1os", "ipas2e1", "ripas2e1", "ripas2e1os", "ipas2le1os", "ipas2le1", "ripas2le1", "ripas2le1os", "rvae2os", "vmallws2e1os", "rvale2os", "rvae2", "vmallws2e1", "rvale2", "alle2", "vae2", "alle1", "vale2", "vmalls12e1", "ipas2e1isnxs", "ripas2e1isnxs", "ipas2le1isnxs", "ripas2le1isnxs", "alle2osnxs", "vae2osnxs", "alle1osnxs", "vale2osnxs", "vmalls12e1osnxs", "rvae2isnxs", "vmallws2e1isnxs", "rvale2isnxs", "alle2isnxs", "vae2isnxs", "alle1isnxs", "vale2isnxs", "vmalls12e1isnxs", "ipas2e1osnxs", "ipas2e1nxs", "ripas2e1nxs", "ripas2e1osnxs", "ipas2le1osnxs", "ipas2le1nxs", "ripas2le1nxs", "ripas2le1osnxs", "rvae2osnxs", "vmallws2e1osnxs", "rvale2osnxs", "rvae2nxs", "vmallws2e1nxs", "rvale2nxs", "alle2nxs", "vae2nxs", "alle1nxs", "vale2nxs", "vmalls12e1nxs", "alle3os", "vae3os", "paallos", "vale3os", "rvae3is", "rvale3is", "alle3is", "vae3is", "vale3is", "rpaos", "rpalos", "rvae3os", "rvale3os", "rvae3", "rvale3", "alle3", "vae3", "paall", "vale3", "alle3osnxs", "vae3osnxs", "vale3osnxs", "rvae3isnxs", "rvale3isnxs", "alle3isnxs", "vae3isnxs", "vale3isnxs", "rvae3osnxs", "rvale3osnxs", "rvae3nxs", "rvale3nxs", "alle3nxs", "vae3nxs", "vale3nxs", "ivac", "isw", "igvac", "igsw", "igdvac", "igdsw", "csw", "cgsw", "cgdsw", "cisw", "cigsw", "cigdsw", "civaps", "cigdvaps", "zva", "gva", "gzva", "zgbva", "gbva", "cvac", "cgvac", "cgdvac", "cvaoc", "cvau", "cgdvaoc", "cvap", "cgvap", "cgdvap", "cvadp", "cgvadp", "cgdvadp", "civac", "cigvac", "cigdvac", "civaoc", "cigdvaoc", "cipae", "cigdpae", "cipapa", "cigdpapa", "s1e1r", "s1e1w", "s1e0r", "s1e0w", "s1e1rp", "s1e1wp", "s1e1a", "s1e2r", "s1e2w", "s12e1r", "s12e1w", "s12e0r", "s12e0w", "s1e2a", "s1e3r", "s1e3w", "s1e3a", "ialluis", "iallu", "ivau", "cddis", "cden", "cdpri", "cdaff", "cdpend", "cdrcfg", "cdeoi", "cddi", "cdhm", "vddis", "vden", "vdpri", "vdaff", "vdpend", "vdrcfg", "vddi", "vdhm", "lddis", "lden", "ldpri", "ldaff", "ldpend", "ldrcfg", "lddi", "ldhm", "iall", "inj", "rctx", "s2poc"};
-#endif  // !VEDA64_NO_STRINGS && !VEDA64_NO_MNEMONIC_OPERANDS
+#endif // VEDA64_STRINGS
 
 // Format a general purpose register
 std::string Operand::format_register(uint32_t reg, bool is_64bit, bool is_sp) {
@@ -1598,6 +1598,8 @@ Arrangement Operand::vec_arr(uint32_t size, uint32_t q) {
 }
 
 // arrangement_to_string is now a free inline function in types.hpp
+
+#endif // VEDA64_STRINGS
 
 // Determine vector arrangement for MOVI/MVNI based on Q and cmode fields
 Arrangement get_movi_arrangement(uint32_t insn) {
@@ -1654,6 +1656,7 @@ int get_movi_shift(uint32_t insn) {
     return 0;
 }
 
+#ifdef VEDA64_STRINGS
 const char* condition_to_string(Condition cond) {
     static const char* names[] = {"eq", "ne", "hs", "lo", "mi", "pl", "vs", "vc",
                                    "hi", "ls", "ge", "lt", "gt", "le", "al", "nv"};
@@ -2749,7 +2752,7 @@ std::string Operand::to_string() const {
             return std::to_string(sv.val);
     }
 }
-#endif // !VEDA64_NO_STRINGS
+#endif // VEDA64_STRINGS
 
 // Unified decode function - dispatches to format-based group decoders
 std::optional<Instruction> decode(uint32_t insn) {

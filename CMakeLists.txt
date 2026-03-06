@@ -9,12 +9,12 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # IDE folder grouping
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-# Option to reduce binary size and remove strings
-option(VEDA64_NO_STRINGS "Disable all string functions (to_string, mnemonic_to_string, status_to_string, dump_hook)" OFF)
-option(VEDA64_BUILD_TESTS "Build test executables" ON)
-option(VEDA64_HOOK "Enable inline hooking support (Windows only)" ON)
-option(VEDA64_PYTHON "Build Python bindings via nanobind (requires vcpkg toolchain)" ON)
-option(VEDA64_NO_IR "Disable IR lifting support" OFF)
+# Build options
+option(VEDA64_STRINGS "Enable string functions (to_string, mnemonic_to_string, etc.)" OFF)
+option(VEDA64_IR "Enable IR lifting and interpreter support" OFF)
+option(VEDA64_HOOK "Enable inline hooking support (Windows only)" OFF)
+option(VEDA64_BUILD_TESTS "Build test executables" OFF)
+option(VEDA64_PYTHON "Build Python bindings via nanobind (requires vcpkg toolchain)" OFF)
 
 # Compiler warnings
 if(MSVC)
@@ -24,12 +24,14 @@ else()
 endif()
 
 # Pass options as compile definitions
-if(VEDA64_NO_STRINGS)
-    add_compile_definitions(VEDA64_NO_STRINGS)
+if(VEDA64_STRINGS)
+    add_compile_definitions(VEDA64_STRINGS)
 endif()
-
-if(VEDA64_NO_IR)
-    add_compile_definitions(VEDA64_NO_IR)
+if(VEDA64_IR)
+    add_compile_definitions(VEDA64_IR)
+endif()
+if(VEDA64_HOOK)
+    add_compile_definitions(VEDA64_HOOK)
 endif()
 
 # Collect all source and header files
@@ -39,7 +41,6 @@ file(GLOB_RECURSE VEDA64_HEADERS "include/*.hpp")
 # Hook support
 if(NOT VEDA64_HOOK)
     list(REMOVE_ITEM VEDA64_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/lib/hook.cpp")
-    add_compile_definitions(VEDA64_NO_HOOKS)
 endif()
 
 # Create library
@@ -62,7 +63,7 @@ add_executable(veda64-disasm tools/veda64-disasm.cpp)
 target_link_libraries(veda64-disasm PRIVATE veda64)
 set_target_properties(veda64-disasm PROPERTIES FOLDER "tools")
 
-if(NOT VEDA64_NO_IR)
+if(VEDA64_IR)
     add_executable(veda64-interp tools/veda64-interp.cpp)
     target_link_libraries(veda64-interp PRIVATE veda64)
     set_target_properties(veda64-interp PROPERTIES FOLDER "tools")

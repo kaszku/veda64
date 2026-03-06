@@ -2,7 +2,7 @@
 // Copyright (c) 2026 Kevin Szkudlapski
 // Auto-generated — do not edit
 
-#ifndef VEDA64_NO_IR
+#ifdef VEDA64_IR
 
 #include "veda64.hpp"
 #include "veda64/ir.hpp"
@@ -70,7 +70,7 @@ int main(int argc, char** argv) {
     for (size_t idx = 0; idx < insns.size() && !ctx.halted; ) {
         uint32_t insn = insns[idx];
         if (step) {
-#ifndef VEDA64_NO_STRINGS
+#ifdef VEDA64_STRINGS
             auto decoded = decode(insn);
             if (decoded) printf("[0x%llx] %s\n", (unsigned long long)ctx.pc, decoded->to_string().c_str());
 #else
@@ -91,9 +91,9 @@ int main(int argc, char** argv) {
     return 0;
 }
 
-#else // VEDA64_NO_IR
+#else // !VEDA64_IR
 
 #include <cstdio>
-int main() { fprintf(stderr, "IR interpreter disabled (VEDA64_NO_IR)\n"); return 1; }
+int main() { fprintf(stderr, "IR interpreter disabled (VEDA64_IR not set)\n"); return 1; }
 
 #endif

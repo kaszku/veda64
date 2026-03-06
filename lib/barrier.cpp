@@ -24,7 +24,7 @@ BarrierOp barrier_from_value(uint32_t crm) {
     }
 }
 
-#ifndef VEDA64_NO_STRINGS
+#ifdef VEDA64_STRINGS
 const char* barrier_to_string(BarrierOp op) {
     switch (op) {
         case BarrierOp::OSHLD: return "oshld";

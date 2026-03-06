@@ -23,6 +23,7 @@ include/veda64/prefetch.hpp
 include/veda64/sysop.hpp
 include/veda64/sysreg.hpp
 include/veda64/types.hpp
+include/veda64/ir.hpp
 include/veda64/util.hpp
 lib/format/control.cpp
 lib/format/dpimm.cpp
@@ -39,6 +40,10 @@ lib/pstate.cpp
 lib/prefetch.cpp
 lib/sysop.cpp
 lib/sysreg.cpp
+lib/ir/ir.cpp
+lib/ir/ir_internal.hpp
+lib/ir/ir_lift.cpp
+lib/ir/ir_tables.cpp
 lib/veda64.cpp
 test/CMakeLists.txt
 test/hook_examples.cpp
@@ -52,5 +57,7 @@ test/test_reserved.cpp
 test/test_simd_dp.cpp
 test/test_sme.cpp
 test/test_sve.cpp
+test/test_ir.cpp
 test/test_undef.cpp
 tools/veda64-disasm.cpp
+tools/veda64-interp.cpp

@@ -4,7 +4,7 @@
 
 #include "veda64.hpp"
 
-#if !defined(VEDA64_NO_HOOKS) && (defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT))
+#if defined(VEDA64_HOOK) && (defined(_WIN32) || defined(VEDA64_HOOK_SUPPORT))
 
 #include <cassert>
 #include <cstdint>
@@ -63,7 +63,7 @@ void test_configuration() {
     hook::shutdown();
 }
 
-#ifndef VEDA64_NO_STRINGS
+#ifdef VEDA64_STRINGS
 void test_status_strings() {
     std::cout << "  test_status_strings..." << std::endl;
 
@@ -678,7 +678,7 @@ int main() {
     // Cross-platform tests
     test_initialization_lifecycle();
     test_configuration();
-#ifndef VEDA64_NO_STRINGS
+#ifdef VEDA64_STRINGS
     test_status_strings();
 #endif
     test_error_handling();
@@ -706,7 +706,7 @@ int main() {
     return 0;
 }
 
-#else // VEDA64_NO_HOOKS || !(_WIN32 || VEDA64_HOOK_SUPPORT)
+#else // !VEDA64_HOOK || !(_WIN32 || VEDA64_HOOK_SUPPORT)
 
 // Hook support not available on this platform
 #include <iostream>
@@ -715,4 +715,4 @@ int main() {
     return 0;
 }
 
-#endif // !VEDA64_NO_HOOKS && (_WIN32 || VEDA64_HOOK_SUPPORT)
+#endif // VEDA64_HOOK && (_WIN32 || VEDA64_HOOK_SUPPORT)

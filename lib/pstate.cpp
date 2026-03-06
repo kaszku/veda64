@@ -26,7 +26,7 @@ PstateField pstate_from_value(uint32_t packed) {
     return PstateField::UNKNOWN;
 }
 
-#ifndef VEDA64_NO_STRINGS
+#ifdef VEDA64_STRINGS
 const char* pstate_to_string(PstateField f) {
     switch (f) {
         case PstateField::UAO: return "uao";

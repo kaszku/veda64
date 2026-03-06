@@ -2,7 +2,7 @@
 // Copyright (c) 2026 Kevin Szkudlapski
 // Auto-generated — do not edit
 
-#ifndef VEDA64_NO_IR
+#ifdef VEDA64_IR
 
 #include "ir_internal.hpp"
 
@@ -4641,4 +4641,4 @@ const size_t ir_table_size = 4623;
 
 } // namespace veda64::ir
 
-#endif // !VEDA64_NO_IR
+#endif // VEDA64_IR

@@ -10,7 +10,7 @@ PrefetchOp prefetch_from_value(uint32_t prfop) {
     return static_cast<PrefetchOp>(prfop & 0x1F);
 }
 
-#ifndef VEDA64_NO_STRINGS
+#ifdef VEDA64_STRINGS
 const char* prefetch_to_string(PrefetchOp op) {
     switch (op) {
         case PrefetchOp::PLDL1KEEP: return "pldl1keep";

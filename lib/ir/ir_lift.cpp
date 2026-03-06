@@ -2,7 +2,7 @@
 // Copyright (c) 2026 Kevin Szkudlapski
 // Auto-generated — do not edit
 
-#ifndef VEDA64_NO_IR
+#ifdef VEDA64_IR
 
 #include "ir_internal.hpp"
 #include "veda64/types.hpp"
@@ -838,4 +838,4 @@ std::optional<Lifted> lift_from_instruction(const Instruction& insn, IrDetail de
 
 } // namespace veda64::ir
 
-#endif // !VEDA64_NO_IR
+#endif // VEDA64_IR

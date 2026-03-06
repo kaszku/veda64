@@ -913,7 +913,7 @@ enum class SystemRegister : uint16_t {
 // Look up SystemRegister enum from encoding fields
 SystemRegister sysreg_from_encoding(uint32_t op0, uint32_t op1, uint32_t CRn, uint32_t CRm, uint32_t op2);
 
-#ifndef VEDA64_NO_STRINGS
+#ifdef VEDA64_STRINGS
 // Convert SystemRegister to its lowercase string name
 const char* sysreg_to_string(SystemRegister reg);
 #endif
