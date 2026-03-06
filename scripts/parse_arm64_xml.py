@@ -539,6 +539,136 @@ class ARM64XMLParser:
 
         return result
 
+    @staticmethod
+    def _partial_pattern_matches(pattern, mask, value):
+        """Check if a partial pattern like '10x0' has its fixed bits matching (mask, value)."""
+        if not pattern:
+            return False
+        fixed_mask = 0
+        fixed_val = 0
+        for i, ch in enumerate(pattern):
+            bit_pos = len(pattern) - 1 - i
+            if ch in ('0', '1'):
+                fixed_mask |= (1 << bit_pos)
+                if ch == '1':
+                    fixed_val |= (1 << bit_pos)
+        return (fixed_mask & mask) == mask and (fixed_val & mask) == value
+
+    def _movi_arrangement_expr(self, field_map, member_name):
+        """Return a C++ expression for MOVI/MVNI/FMOV arrangement, resolved from fixed fields."""
+        def _get_fixed(name):
+            f = field_map.get(name)
+            if f and f['is_fixed']:
+                return int(f['fixed'], 2)
+            return None
+
+        cmode = _get_fixed('cmode')
+        cmode_partial = None
+        if cmode is None:
+            f = field_map.get('cmode')
+            if f and not f['is_fixed']:
+                cmode_partial = f.get('partial_pattern')
+        op = _get_fixed('op')
+        o2 = _get_fixed('o2')
+        Q_fixed = _get_fixed('Q')
+
+        def _q_expr(arr_q1, arr_q0):
+            if Q_fixed is not None:
+                return f"Arrangement::{arr_q1}" if Q_fixed else f"Arrangement::{arr_q0}"
+            q_cpp = field_map['Q']['name']
+            return f"enc.{member_name}.{q_cpp} ? Arrangement::{arr_q1} : Arrangement::{arr_q0}"
+
+        if cmode is not None:
+            # Fully fixed cmode
+            if cmode == 0xE and op == 0:
+                return _q_expr('B16', 'B8')
+            if cmode == 0xE and op == 1:
+                return _q_expr('D2', 'D')
+            if (cmode & 0xD) == 0x8:
+                return _q_expr('H8', 'H4')
+            if (cmode & 0x9) == 0x0:
+                return _q_expr('S4', 'S2')
+            if (cmode & 0xE) == 0xC:
+                return _q_expr('S4', 'S2')
+            if cmode == 0xF:
+                if o2 == 1:
+                    return _q_expr('H8', 'H4')
+                if op == 0:
+                    return _q_expr('S4', 'S2')
+                if op == 1:
+                    return _q_expr('D2', 'D')
+        elif cmode_partial:
+            # Partially fixed cmode — match patterns
+            # 16-bit shifted: 10x0 (fixed bits: bit3=1, bit2=0, bit0=0)
+            if self._partial_pattern_matches(cmode_partial, 0xD, 0x8):
+                return _q_expr('H8', 'H4')
+            # 32-bit shifted: 0xx0 (fixed bits: bit3=0, bit0=0)
+            if self._partial_pattern_matches(cmode_partial, 0x9, 0x0):
+                return _q_expr('S4', 'S2')
+            # 32-bit shifting ones: 110x (fixed bits: bit3=1, bit2=1, bit1=0)
+            if self._partial_pattern_matches(cmode_partial, 0xE, 0xC):
+                return _q_expr('S4', 'S2')
+        return None
+
+    def _movi_shift_code(self, field_map, member_name, ind):
+        """Return C++ lines for the MOVI/MVNI shift operand, resolved from fixed cmode bits."""
+        f = field_map.get('cmode')
+        if not f:
+            return None
+
+        if f['is_fixed']:
+            cmode = int(f['fixed'], 2)
+        else:
+            # Check partial pattern
+            partial = f.get('partial_pattern')
+            if not partial:
+                return None
+            # For partial cmode, some bits are variable — need runtime expression
+            cmode_cpp = f['name']
+            # 16-bit shifted: 10x0 → LSL cmode[1]*8 (variable bit 1)
+            if self._partial_pattern_matches(partial, 0xD, 0x8):
+                return [
+                    f"{ind}{{",
+                    f"{ind}    int _s = ((enc.{member_name}.{cmode_cpp} >> 1) & 1) * 8;",
+                    f"{ind}    if (_s) result.operands.push_back(Operand::shift(ShiftType::LSL, _s));",
+                    f"{ind}}}",
+                ]
+            # 32-bit shifted: 0xx0 → LSL ((cmode>>1)&3)*8 (variable bits 2:1)
+            if self._partial_pattern_matches(partial, 0x9, 0x0):
+                return [
+                    f"{ind}{{",
+                    f"{ind}    int _s = ((enc.{member_name}.{cmode_cpp} >> 1) & 3) * 8;",
+                    f"{ind}    if (_s) result.operands.push_back(Operand::shift(ShiftType::LSL, _s));",
+                    f"{ind}}}",
+                ]
+            # 32-bit shifting ones: 110x → MSL (cmode&1)?16:8 (variable bit 0)
+            if self._partial_pattern_matches(partial, 0xE, 0xC):
+                return [
+                    f"{ind}result.operands.push_back(Operand::shift(ShiftType::MSL, (enc.{member_name}.{cmode_cpp} & 1) ? 16 : 8));",
+                ]
+            # Other partial patterns: no shift
+            return []
+
+        # Fully fixed cmode
+        # 16-bit shifted: cmode=10x0 → LSL cmode[1]*8
+        if (cmode & 0xD) == 0x8:
+            shift = ((cmode >> 1) & 1) * 8
+            if shift == 0:
+                return []  # LSL #0 is implicit
+            return [f"{ind}result.operands.push_back(Operand::shift(ShiftType::LSL,{shift}));"]
+        # 32-bit shifted: cmode=0xx0 → LSL ((cmode>>1)&3)*8
+        if (cmode & 0x9) == 0x0:
+            shift = ((cmode >> 1) & 3) * 8
+            if shift == 0:
+                return []
+            return [f"{ind}result.operands.push_back(Operand::shift(ShiftType::LSL,{shift}));"]
+        # 32-bit shifting ones: cmode=110x → MSL
+        if (cmode & 0xE) == 0xC:
+            msl_amt = 16 if (cmode & 1) else 8
+            return [f"{ind}result.operands.push_back(Operand::shift(ShiftType::MSL,{msl_amt}));"]
+        # Everything else: no shift
+        return []
+
     def _generate_sve_index_expr(self, field_map, member_name, encoding_name):
         """Generate C++ expression to compute SVE element index from split i2/i3 fields."""
         # Try common index field patterns: i3h:i3l, i2h:i2l, i2, i3, imm
@@ -1531,12 +1661,6 @@ class ARM64XMLParser:
         code.append("#endif")
         code.append("")
 
-        # Generate helper function declaration
-        code.append("// Determine vector arrangement for MOVI/MVNI based on Q and cmode fields")
-        code.append("Arrangement get_movi_arrangement(uint32_t insn);")
-        code.append("// Returns shift amount for MOVI/MVNI (0=none, >0=LSL, <0=MSL with abs value)")
-        code.append("int get_movi_shift(uint32_t insn);")
-        code.append("")
         code.append("#ifdef VEDA64_STRINGS")
         code.append("// Convert mnemonic enum to string")
         code.append("const char* mnemonic_to_string(Mnemonic mnem);")
@@ -1847,64 +1971,6 @@ class ARM64XMLParser:
         code.append("// arrangement_to_string is now a free inline function in types.hpp")
         code.append("")
         code.append("#endif // VEDA64_STRINGS")
-        code.append("")
-
-        # Generate helper for MOVI/MVNI arrangement determination (outside STRINGS guard — used by decoder)
-        code.append("// Determine vector arrangement for MOVI/MVNI based on Q and cmode fields")
-        code.append("Arrangement get_movi_arrangement(uint32_t insn) {")
-        code.append("    uint32_t Q = (insn >> 30) & 1;")
-        code.append("    uint32_t op = (insn >> 29) & 1;")
-        code.append("    uint32_t cmode = (insn >> 12) & 0xF;")
-        code.append("    ")
-        code.append("    // 8-bit (cmode=1110, op=0 MOVI)")
-        code.append("    if (op == 0 && cmode == 0xE) {")
-        code.append("        return Q ? Arrangement::B16 : Arrangement::B8;")
-        code.append("    }")
-        code.append("    // 64-bit (cmode=1110, op=1 MOVI)")
-        code.append("    if (op == 1 && cmode == 0xE) {")
-        code.append("        return Q ? Arrangement::D2 : Arrangement::D;  // Scalar D register form")
-        code.append("    }")
-        code.append("    // 16-bit shifted (cmode=10x0) — MOVI op=0 and MVNI op=1")
-        code.append("    if ((cmode & 0xD) == 0x8) {")
-        code.append("        return Q ? Arrangement::H8 : Arrangement::H4;")
-        code.append("    }")
-        code.append("    // 32-bit shifted (cmode=0xx0) — MOVI op=0 and MVNI op=1")
-        code.append("    if ((cmode & 0x9) == 0x0) {")
-        code.append("        return Q ? Arrangement::S4 : Arrangement::S2;")
-        code.append("    }")
-        code.append("    // 32-bit shifting ones (cmode=110x) — MOVI op=0 and MVNI op=1")
-        code.append("    if ((cmode & 0xE) == 0xC) {")
-        code.append("        return Q ? Arrangement::S4 : Arrangement::S2;")
-        code.append("    }")
-        code.append("    // FP modified immediate (cmode=1111) — FMOV vector variants")
-        code.append("    if (cmode == 0xF) {")
-        code.append("        uint32_t o2 = (insn >> 11) & 1;")
-        code.append("        if (o2 == 1) return Q ? Arrangement::H8 : Arrangement::H4;  // FP16 (.8h/.4h)")
-        code.append("        if (op == 0) return Q ? Arrangement::S4 : Arrangement::S2;  // Single-precision (.4s/.2s)")
-        code.append("        return Q ? Arrangement::D2 : Arrangement::D;  // Double-precision (.2d)")
-        code.append("    }")
-        code.append("    return Arrangement::None;")
-        code.append("}")
-        code.append("")
-        # Generate get_movi_shift: returns shift amount for MOVI/MVNI based on cmode
-        code.append("// Returns shift amount for MOVI/MVNI, or -1 if no shift / MSL encoding")
-        code.append("int get_movi_shift(uint32_t insn) {")
-        code.append("    uint32_t cmode = (insn >> 12) & 0xF;")
-        code.append("    // 16-bit shifted (cmode=10x0): shift = cmode[1] * 8 — MOVI op=0 and MVNI op=1")
-        code.append("    if ((cmode & 0xD) == 0x8) {")
-        code.append("        return ((cmode >> 1) & 1) * 8;")
-        code.append("    }")
-        code.append("    // 32-bit shifted (cmode=0xx0): shift = cmode[2:1] * 8 — MOVI op=0 and MVNI op=1")
-        code.append("    if ((cmode & 0x9) == 0x0) {")
-        code.append("        return ((cmode >> 1) & 3) * 8;")
-        code.append("    }")
-        code.append("    // 32-bit shifting ones (cmode=110x): MSL — MOVI op=0 and MVNI op=1")
-        code.append("    if ((cmode & 0xE) == 0xC) {")
-        code.append("        return -((cmode & 1) ? 16 : 8);  // Negative = MSL")
-        code.append("    }")
-        code.append("    // 8-bit, 64-bit, FMOV: no shift")
-        code.append("    return 0;")
-        code.append("}")
         code.append("")
 
         # Generate condition_to_string function (back inside STRINGS guard)
@@ -4220,10 +4286,6 @@ class ARM64XMLParser:
         code.append("#ifdef VEDA64_STRINGS")
         code.append("// Convert mnemonic enum to string")
         code.append("const char* mnemonic_to_string(Mnemonic mnem);")
-        code.append("")
-        code.append("// Determine vector arrangement for MOVI/MVNI based on Q and cmode fields")
-        code.append("Arrangement get_movi_arrangement(uint32_t insn);")
-        code.append("int get_movi_shift(uint32_t insn);")
         code.append("")
         code.append("// Convert condition code to string (\"eq\", \"ne\", etc.)")
         code.append("const char* condition_to_string(Condition cond);")
@@ -9619,17 +9681,23 @@ class ARM64XMLParser:
                         code.append(f"{ind}}}")
                     elif (mnemonic in ['MOVI', 'MVNI'] or (mnemonic == 'FMOV' and 'asimdimm' in encoding_name)) and reg_name == 'Rd':
                         # MOVI/MVNI/FMOV-vector need arrangement from Q and cmode fields
-                        code.append(f"{ind}{{")
-                        code.append(f"{ind}    Arrangement _marr = get_movi_arrangement(insn);")
-                        code.append(f"{ind}    if (_marr == Arrangement::D) {{")
-                        code.append(f"{ind}        // Scalar D register form (MOVI D_ds)")
-                        code.append(f"{ind}        result.operands.push_back(Operand::scalar(enc.{member_name}.{field_cpp_name}, Arrangement::D));")
-                        code.append(f"{ind}    }} else {{")
-                        code.append(f"{ind}        auto op = Operand::vec(enc.{member_name}.{field_cpp_name});")
-                        code.append(f"{ind}        op.set_arrangement(_marr);")
-                        code.append(f"{ind}        result.operands.push_back(op);")
-                        code.append(f"{ind}    }}")
-                        code.append(f"{ind}}}")
+                        arr_expr = self._movi_arrangement_expr(field_map, member_name)
+                        if arr_expr and 'Arrangement::D' == arr_expr:
+                            # Always scalar D
+                            code.append(f"{ind}result.operands.push_back(Operand::scalar(enc.{member_name}.{field_cpp_name}, Arrangement::D));")
+                        elif arr_expr and '?' not in arr_expr:
+                            # Fixed arrangement, not D
+                            code.append(f"{ind}result.operands.push_back(Operand::vec(enc.{member_name}.{field_cpp_name}, {arr_expr}));")
+                        elif arr_expr:
+                            # Q-dependent expression
+                            code.append(f"{ind}{{")
+                            code.append(f"{ind}    Arrangement _marr = {arr_expr};")
+                            code.append(f"{ind}    if (_marr == Arrangement::D) {{")
+                            code.append(f"{ind}        result.operands.push_back(Operand::scalar(enc.{member_name}.{field_cpp_name}, Arrangement::D));")
+                            code.append(f"{ind}    }} else {{")
+                            code.append(f"{ind}        result.operands.push_back(Operand::vec(enc.{member_name}.{field_cpp_name}, _marr));")
+                            code.append(f"{ind}    }}")
+                            code.append(f"{ind}}}")
                     elif mnemonic in ['FMAXV', 'FMINV', 'FMAXNMV', 'FMINNMV'] and reg_name == 'Rn' and '_only_h' in encoding_name_lower:
                         # FP16 reduce-across: source vector is .4h (Q=0) or .8h (Q=1)
                         if 'Q' in field_map and not field_map['Q']['is_fixed']:
@@ -10826,29 +10894,51 @@ class ARM64XMLParser:
             elif mnemonic == 'MOVI':
                 # For 64-bit forms (D or 2d arrangement), expand 8-bit immediate to 64-bit:
                 # each bit of imm8 → full byte (0x00 or 0xff)
-                code.append(f"{ind}{{")
-                code.append(f"{ind}    uint32_t _imm8 = {combined};")
-                code.append(f"{ind}    auto _movi_op = Operand::imm(_imm8);")
-                code.append(f"{ind}    Arrangement _marr = get_movi_arrangement(insn);")
-                code.append(f"{ind}    if (_marr != Arrangement::None && (_marr == Arrangement::D || _marr == Arrangement::D2)) {{")
-                code.append(f"{ind}        uint64_t _imm64 = 0;")
-                code.append(f"{ind}        for (int _i = 0; _i < 8; _i++) {{ if (_imm8 & (1u << _i)) _imm64 |= (0xFFULL << (_i * 8)); }}")
-                code.append(f"{ind}        _movi_op.iv.value = _imm64;")
-                code.append(f"{ind}    }}")
-                code.append(f"{ind}    result.operands.push_back(_movi_op);")
-                code.append(f"{ind}}}")
+                arr_expr = self._movi_arrangement_expr(field_map, member_name)
+                is_64bit = arr_expr and ('D2' in arr_expr or arr_expr == 'Arrangement::D')
+                if is_64bit and '?' not in (arr_expr or ''):
+                    # Statically known 64-bit form
+                    code.append(f"{ind}{{")
+                    code.append(f"{ind}    uint32_t _imm8 = {combined};")
+                    code.append(f"{ind}    uint64_t _imm64 = 0;")
+                    code.append(f"{ind}    for (int _i = 0; _i < 8; _i++) {{ if (_imm8 & (1u << _i)) _imm64 |= (0xFFULL << (_i * 8)); }}")
+                    code.append(f"{ind}    auto _movi_op = Operand::imm(_imm8);")
+                    code.append(f"{ind}    _movi_op.iv.value = _imm64;")
+                    code.append(f"{ind}    result.operands.push_back(_movi_op);")
+                    code.append(f"{ind}}}")
+                elif arr_expr and '?' in arr_expr:
+                    # Q-dependent — might be 64-bit
+                    code.append(f"{ind}{{")
+                    code.append(f"{ind}    uint32_t _imm8 = {combined};")
+                    code.append(f"{ind}    auto _movi_op = Operand::imm(_imm8);")
+                    code.append(f"{ind}    Arrangement _marr = {arr_expr};")
+                    code.append(f"{ind}    if (_marr == Arrangement::D || _marr == Arrangement::D2) {{")
+                    code.append(f"{ind}        uint64_t _imm64 = 0;")
+                    code.append(f"{ind}        for (int _i = 0; _i < 8; _i++) {{ if (_imm8 & (1u << _i)) _imm64 |= (0xFFULL << (_i * 8)); }}")
+                    code.append(f"{ind}        _movi_op.iv.value = _imm64;")
+                    code.append(f"{ind}    }}")
+                    code.append(f"{ind}    result.operands.push_back(_movi_op);")
+                    code.append(f"{ind}}}")
+                else:
+                    # Non-64-bit form, plain immediate
+                    code.append(f"{ind}result.operands.push_back(Operand::imm({combined}));")
             else:
                 code.append(f"{ind}result.operands.push_back(Operand::imm({combined}));")
             # Add shift operand for MOVI/MVNI (LSL/MSL based on cmode) — must come after immediate
             if mnemonic in ['MOVI', 'MVNI']:
-                code.append(f"{ind}{{")
-                code.append(f"{ind}    int _movi_shift = get_movi_shift(insn);")
-                code.append(f"{ind}    if (_movi_shift > 0) {{")
-                code.append(f"{ind}        result.operands.push_back(Operand::shift(ShiftType::LSL,_movi_shift));  // LSL")
-                code.append(f"{ind}    }} else if (_movi_shift < 0) {{")
-                code.append(f"{ind}        result.operands.push_back(Operand::shift(ShiftType::MSL,(-_movi_shift)));  // MSL")
-                code.append(f"{ind}    }}")
-                code.append(f"{ind}}}")
+                shift_lines = self._movi_shift_code(field_map, member_name, ind)
+                if shift_lines is not None:
+                    for line in shift_lines:
+                        code.append(line)
+                else:
+                    # cmode not fully fixed — fallback to runtime (shouldn't happen)
+                    cmode_cpp = field_map['cmode']['name']
+                    code.append(f"{ind}{{")
+                    code.append(f"{ind}    uint32_t _cm = enc.{member_name}.{cmode_cpp};")
+                    code.append(f"{ind}    if ((_cm & 0xD) == 0x8) {{ int _s = ((_cm >> 1) & 1) * 8; if (_s) result.operands.push_back(Operand::shift(ShiftType::LSL, _s)); }}")
+                    code.append(f"{ind}    else if ((_cm & 0x9) == 0x0) {{ int _s = ((_cm >> 1) & 3) * 8; if (_s) result.operands.push_back(Operand::shift(ShiftType::LSL, _s)); }}")
+                    code.append(f"{ind}    else if ((_cm & 0xE) == 0xC) {{ result.operands.push_back(Operand::shift(ShiftType::MSL, (_cm & 1) ? 16 : 8)); }}")
+                    code.append(f"{ind}}}")
 
         # SVE logical immediate: imm13 encodes N:immr:imms, needs decode_bit_masks
         if 'imm13' in field_map and not field_map['imm13']['is_fixed'] and ('Zdn' in field_map or 'Zd' in field_map):

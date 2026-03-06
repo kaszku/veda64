@@ -1601,61 +1601,6 @@ Arrangement Operand::vec_arr(uint32_t size, uint32_t q) {
 
 #endif // VEDA64_STRINGS
 
-// Determine vector arrangement for MOVI/MVNI based on Q and cmode fields
-Arrangement get_movi_arrangement(uint32_t insn) {
-    uint32_t Q = (insn >> 30) & 1;
-    uint32_t op = (insn >> 29) & 1;
-    uint32_t cmode = (insn >> 12) & 0xF;
-
-    // 8-bit (cmode=1110, op=0 MOVI)
-    if (op == 0 && cmode == 0xE) {
-        return Q ? Arrangement::B16 : Arrangement::B8;
-    }
-    // 64-bit (cmode=1110, op=1 MOVI)
-    if (op == 1 && cmode == 0xE) {
-        return Q ? Arrangement::D2 : Arrangement::D;  // Scalar D register form
-    }
-    // 16-bit shifted (cmode=10x0) — MOVI op=0 and MVNI op=1
-    if ((cmode & 0xD) == 0x8) {
-        return Q ? Arrangement::H8 : Arrangement::H4;
-    }
-    // 32-bit shifted (cmode=0xx0) — MOVI op=0 and MVNI op=1
-    if ((cmode & 0x9) == 0x0) {
-        return Q ? Arrangement::S4 : Arrangement::S2;
-    }
-    // 32-bit shifting ones (cmode=110x) — MOVI op=0 and MVNI op=1
-    if ((cmode & 0xE) == 0xC) {
-        return Q ? Arrangement::S4 : Arrangement::S2;
-    }
-    // FP modified immediate (cmode=1111) — FMOV vector variants
-    if (cmode == 0xF) {
-        uint32_t o2 = (insn >> 11) & 1;
-        if (o2 == 1) return Q ? Arrangement::H8 : Arrangement::H4;  // FP16 (.8h/.4h)
-        if (op == 0) return Q ? Arrangement::S4 : Arrangement::S2;  // Single-precision (.4s/.2s)
-        return Q ? Arrangement::D2 : Arrangement::D;  // Double-precision (.2d)
-    }
-    return Arrangement::None;
-}
-
-// Returns shift amount for MOVI/MVNI, or -1 if no shift / MSL encoding
-int get_movi_shift(uint32_t insn) {
-    uint32_t cmode = (insn >> 12) & 0xF;
-    // 16-bit shifted (cmode=10x0): shift = cmode[1] * 8 — MOVI op=0 and MVNI op=1
-    if ((cmode & 0xD) == 0x8) {
-        return ((cmode >> 1) & 1) * 8;
-    }
-    // 32-bit shifted (cmode=0xx0): shift = cmode[2:1] * 8 — MOVI op=0 and MVNI op=1
-    if ((cmode & 0x9) == 0x0) {
-        return ((cmode >> 1) & 3) * 8;
-    }
-    // 32-bit shifting ones (cmode=110x): MSL — MOVI op=0 and MVNI op=1
-    if ((cmode & 0xE) == 0xC) {
-        return -((cmode & 1) ? 16 : 8);  // Negative = MSL
-    }
-    // 8-bit, 64-bit, FMOV: no shift
-    return 0;
-}
-
 #ifdef VEDA64_STRINGS
 const char* condition_to_string(Condition cond) {
     static const char* names[] = {"eq", "ne", "hs", "lo", "mi", "pl", "vs", "vc",

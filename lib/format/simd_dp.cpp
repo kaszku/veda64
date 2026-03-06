@@ -35114,35 +35114,14 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        {
-                            Arrangement _marr = get_movi_arrangement(insn);
-                            if (_marr == Arrangement::D) {
-                                // Scalar D register form (MOVI D_ds)
-                                result.operands.push_back(Operand::scalar(enc.movi_asimdimm_dds.Rd, Arrangement::D));
-                            } else {
-                                auto op = Operand::vec(enc.movi_asimdimm_dds.Rd);
-                                op.set_arrangement(_marr);
-                                result.operands.push_back(op);
-                            }
-                        }
+                        result.operands.push_back(Operand::scalar(enc.movi_asimdimm_dds.Rd, Arrangement::D));
                         {
                             uint32_t _imm8 = (enc.movi_asimdimm_dds.a << 7) | (enc.movi_asimdimm_dds.b << 6) | (enc.movi_asimdimm_dds.c << 5) | (enc.movi_asimdimm_dds.d << 4) | (enc.movi_asimdimm_dds.e << 3) | (enc.movi_asimdimm_dds.f << 2) | (enc.movi_asimdimm_dds.g << 1) | (enc.movi_asimdimm_dds.h << 0);
+                            uint64_t _imm64 = 0;
+                            for (int _i = 0; _i < 8; _i++) { if (_imm8 & (1u << _i)) _imm64 |= (0xFFULL << (_i * 8)); }
                             auto _movi_op = Operand::imm(_imm8);
-                            Arrangement _marr = get_movi_arrangement(insn);
-                            if (_marr != Arrangement::None && (_marr == Arrangement::D || _marr == Arrangement::D2)) {
-                                uint64_t _imm64 = 0;
-                                for (int _i = 0; _i < 8; _i++) { if (_imm8 & (1u << _i)) _imm64 |= (0xFFULL << (_i * 8)); }
-                                _movi_op.iv.value = _imm64;
-                            }
+                            _movi_op.iv.value = _imm64;
                             result.operands.push_back(_movi_op);
-                        }
-                        {
-                            int _movi_shift = get_movi_shift(insn);
-                            if (_movi_shift > 0) {
-                                result.operands.push_back(Operand::shift(ShiftType::LSL,_movi_shift));  // LSL
-                            } else if (_movi_shift < 0) {
-                                result.operands.push_back(Operand::shift(ShiftType::MSL,(-_movi_shift)));  // MSL
-                            }
                         }
                         return result;
         }
@@ -35151,35 +35130,14 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        {
-                            Arrangement _marr = get_movi_arrangement(insn);
-                            if (_marr == Arrangement::D) {
-                                // Scalar D register form (MOVI D_ds)
-                                result.operands.push_back(Operand::scalar(enc.movi_asimdimm_d2d.Rd, Arrangement::D));
-                            } else {
-                                auto op = Operand::vec(enc.movi_asimdimm_d2d.Rd);
-                                op.set_arrangement(_marr);
-                                result.operands.push_back(op);
-                            }
-                        }
+                        result.operands.push_back(Operand::vec(enc.movi_asimdimm_d2d.Rd, Arrangement::D2));
                         {
                             uint32_t _imm8 = (enc.movi_asimdimm_d2d.a << 7) | (enc.movi_asimdimm_d2d.b << 6) | (enc.movi_asimdimm_d2d.c << 5) | (enc.movi_asimdimm_d2d.d << 4) | (enc.movi_asimdimm_d2d.e << 3) | (enc.movi_asimdimm_d2d.f << 2) | (enc.movi_asimdimm_d2d.g << 1) | (enc.movi_asimdimm_d2d.h << 0);
+                            uint64_t _imm64 = 0;
+                            for (int _i = 0; _i < 8; _i++) { if (_imm8 & (1u << _i)) _imm64 |= (0xFFULL << (_i * 8)); }
                             auto _movi_op = Operand::imm(_imm8);
-                            Arrangement _marr = get_movi_arrangement(insn);
-                            if (_marr != Arrangement::None && (_marr == Arrangement::D || _marr == Arrangement::D2)) {
-                                uint64_t _imm64 = 0;
-                                for (int _i = 0; _i < 8; _i++) { if (_imm8 & (1u << _i)) _imm64 |= (0xFFULL << (_i * 8)); }
-                                _movi_op.iv.value = _imm64;
-                            }
+                            _movi_op.iv.value = _imm64;
                             result.operands.push_back(_movi_op);
-                        }
-                        {
-                            int _movi_shift = get_movi_shift(insn);
-                            if (_movi_shift > 0) {
-                                result.operands.push_back(Operand::shift(ShiftType::LSL,_movi_shift));  // LSL
-                            } else if (_movi_shift < 0) {
-                                result.operands.push_back(Operand::shift(ShiftType::MSL,(-_movi_shift)));  // MSL
-                            }
                         }
                         return result;
         }
@@ -35188,17 +35146,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        {
-                            Arrangement _marr = get_movi_arrangement(insn);
-                            if (_marr == Arrangement::D) {
-                                // Scalar D register form (MOVI D_ds)
-                                result.operands.push_back(Operand::scalar(enc.fmov_asimdimm_d2d.Rd, Arrangement::D));
-                            } else {
-                                auto op = Operand::vec(enc.fmov_asimdimm_d2d.Rd);
-                                op.set_arrangement(_marr);
-                                result.operands.push_back(op);
-                            }
-                        }
+                        result.operands.push_back(Operand::vec(enc.fmov_asimdimm_d2d.Rd, Arrangement::D2));
                         result.operands.push_back(Operand::float_imm((enc.fmov_asimdimm_d2d.a << 7) | (enc.fmov_asimdimm_d2d.b << 6) | (enc.fmov_asimdimm_d2d.c << 5) | (enc.fmov_asimdimm_d2d.d << 4) | (enc.fmov_asimdimm_d2d.e << 3) | (enc.fmov_asimdimm_d2d.f << 2) | (enc.fmov_asimdimm_d2d.g << 1) | (enc.fmov_asimdimm_d2d.h << 0)));
                         return result;
         }
@@ -38731,34 +38679,23 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         {
-                            Arrangement _marr = get_movi_arrangement(insn);
+                            Arrangement _marr = enc.movi_asimdimm_nb.Q ? Arrangement::B16 : Arrangement::B8;
                             if (_marr == Arrangement::D) {
-                                // Scalar D register form (MOVI D_ds)
                                 result.operands.push_back(Operand::scalar(enc.movi_asimdimm_nb.Rd, Arrangement::D));
                             } else {
-                                auto op = Operand::vec(enc.movi_asimdimm_nb.Rd);
-                                op.set_arrangement(_marr);
-                                result.operands.push_back(op);
+                                result.operands.push_back(Operand::vec(enc.movi_asimdimm_nb.Rd, _marr));
                             }
                         }
                         {
                             uint32_t _imm8 = (enc.movi_asimdimm_nb.a << 7) | (enc.movi_asimdimm_nb.b << 6) | (enc.movi_asimdimm_nb.c << 5) | (enc.movi_asimdimm_nb.d << 4) | (enc.movi_asimdimm_nb.e << 3) | (enc.movi_asimdimm_nb.f << 2) | (enc.movi_asimdimm_nb.g << 1) | (enc.movi_asimdimm_nb.h << 0);
                             auto _movi_op = Operand::imm(_imm8);
-                            Arrangement _marr = get_movi_arrangement(insn);
-                            if (_marr != Arrangement::None && (_marr == Arrangement::D || _marr == Arrangement::D2)) {
+                            Arrangement _marr = enc.movi_asimdimm_nb.Q ? Arrangement::B16 : Arrangement::B8;
+                            if (_marr == Arrangement::D || _marr == Arrangement::D2) {
                                 uint64_t _imm64 = 0;
                                 for (int _i = 0; _i < 8; _i++) { if (_imm8 & (1u << _i)) _imm64 |= (0xFFULL << (_i * 8)); }
                                 _movi_op.iv.value = _imm64;
                             }
                             result.operands.push_back(_movi_op);
-                        }
-                        {
-                            int _movi_shift = get_movi_shift(insn);
-                            if (_movi_shift > 0) {
-                                result.operands.push_back(Operand::shift(ShiftType::LSL,_movi_shift));  // LSL
-                            } else if (_movi_shift < 0) {
-                                result.operands.push_back(Operand::shift(ShiftType::MSL,(-_movi_shift)));  // MSL
-                            }
                         }
                         return result;
         }
@@ -38768,14 +38705,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         {
-                            Arrangement _marr = get_movi_arrangement(insn);
+                            Arrangement _marr = enc.fmov_asimdimm_ss.Q ? Arrangement::S4 : Arrangement::S2;
                             if (_marr == Arrangement::D) {
-                                // Scalar D register form (MOVI D_ds)
                                 result.operands.push_back(Operand::scalar(enc.fmov_asimdimm_ss.Rd, Arrangement::D));
                             } else {
-                                auto op = Operand::vec(enc.fmov_asimdimm_ss.Rd);
-                                op.set_arrangement(_marr);
-                                result.operands.push_back(op);
+                                result.operands.push_back(Operand::vec(enc.fmov_asimdimm_ss.Rd, _marr));
                             }
                         }
                         result.operands.push_back(Operand::float_imm((enc.fmov_asimdimm_ss.a << 7) | (enc.fmov_asimdimm_ss.b << 6) | (enc.fmov_asimdimm_ss.c << 5) | (enc.fmov_asimdimm_ss.d << 4) | (enc.fmov_asimdimm_ss.e << 3) | (enc.fmov_asimdimm_ss.f << 2) | (enc.fmov_asimdimm_ss.g << 1) | (enc.fmov_asimdimm_ss.h << 0)));
@@ -38787,14 +38721,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         {
-                            Arrangement _marr = get_movi_arrangement(insn);
+                            Arrangement _marr = enc.fmov_asimdimm_hh.Q ? Arrangement::H8 : Arrangement::H4;
                             if (_marr == Arrangement::D) {
-                                // Scalar D register form (MOVI D_ds)
                                 result.operands.push_back(Operand::scalar(enc.fmov_asimdimm_hh.Rd, Arrangement::D));
                             } else {
-                                auto op = Operand::vec(enc.fmov_asimdimm_hh.Rd);
-                                op.set_arrangement(_marr);
-                                result.operands.push_back(op);
+                                result.operands.push_back(Operand::vec(enc.fmov_asimdimm_hh.Rd, _marr));
                             }
                         }
                         result.operands.push_back(Operand::float_imm((enc.fmov_asimdimm_hh.a << 7) | (enc.fmov_asimdimm_hh.b << 6) | (enc.fmov_asimdimm_hh.c << 5) | (enc.fmov_asimdimm_hh.d << 4) | (enc.fmov_asimdimm_hh.e << 3) | (enc.fmov_asimdimm_hh.f << 2) | (enc.fmov_asimdimm_hh.g << 1) | (enc.fmov_asimdimm_hh.h << 0)));
@@ -38811,35 +38742,25 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         {
-                            Arrangement _marr = get_movi_arrangement(insn);
+                            Arrangement _marr = enc.movi_asimdimm_msm.Q ? Arrangement::S4 : Arrangement::S2;
                             if (_marr == Arrangement::D) {
-                                // Scalar D register form (MOVI D_ds)
                                 result.operands.push_back(Operand::scalar(enc.movi_asimdimm_msm.Rd, Arrangement::D));
                             } else {
-                                auto op = Operand::vec(enc.movi_asimdimm_msm.Rd);
-                                op.set_arrangement(_marr);
-                                result.operands.push_back(op);
+                                result.operands.push_back(Operand::vec(enc.movi_asimdimm_msm.Rd, _marr));
                             }
                         }
                         {
                             uint32_t _imm8 = (enc.movi_asimdimm_msm.a << 7) | (enc.movi_asimdimm_msm.b << 6) | (enc.movi_asimdimm_msm.c << 5) | (enc.movi_asimdimm_msm.d << 4) | (enc.movi_asimdimm_msm.e << 3) | (enc.movi_asimdimm_msm.f << 2) | (enc.movi_asimdimm_msm.g << 1) | (enc.movi_asimdimm_msm.h << 0);
                             auto _movi_op = Operand::imm(_imm8);
-                            Arrangement _marr = get_movi_arrangement(insn);
-                            if (_marr != Arrangement::None && (_marr == Arrangement::D || _marr == Arrangement::D2)) {
+                            Arrangement _marr = enc.movi_asimdimm_msm.Q ? Arrangement::S4 : Arrangement::S2;
+                            if (_marr == Arrangement::D || _marr == Arrangement::D2) {
                                 uint64_t _imm64 = 0;
                                 for (int _i = 0; _i < 8; _i++) { if (_imm8 & (1u << _i)) _imm64 |= (0xFFULL << (_i * 8)); }
                                 _movi_op.iv.value = _imm64;
                             }
                             result.operands.push_back(_movi_op);
                         }
-                        {
-                            int _movi_shift = get_movi_shift(insn);
-                            if (_movi_shift > 0) {
-                                result.operands.push_back(Operand::shift(ShiftType::LSL,_movi_shift));  // LSL
-                            } else if (_movi_shift < 0) {
-                                result.operands.push_back(Operand::shift(ShiftType::MSL,(-_movi_shift)));  // MSL
-                            }
-                        }
+                        result.operands.push_back(Operand::shift(ShiftType::MSL, (enc.movi_asimdimm_msm.cmode & 1) ? 16 : 8));
                         return result;
         }
         case 0x2F00C400u: { // MVNI_asimdimm_M_sm
@@ -38848,25 +38769,15 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         {
-                            Arrangement _marr = get_movi_arrangement(insn);
+                            Arrangement _marr = enc.mvni_asimdimm_msm.Q ? Arrangement::S4 : Arrangement::S2;
                             if (_marr == Arrangement::D) {
-                                // Scalar D register form (MOVI D_ds)
                                 result.operands.push_back(Operand::scalar(enc.mvni_asimdimm_msm.Rd, Arrangement::D));
                             } else {
-                                auto op = Operand::vec(enc.mvni_asimdimm_msm.Rd);
-                                op.set_arrangement(_marr);
-                                result.operands.push_back(op);
+                                result.operands.push_back(Operand::vec(enc.mvni_asimdimm_msm.Rd, _marr));
                             }
                         }
                         result.operands.push_back(Operand::imm((enc.mvni_asimdimm_msm.a << 7) | (enc.mvni_asimdimm_msm.b << 6) | (enc.mvni_asimdimm_msm.c << 5) | (enc.mvni_asimdimm_msm.d << 4) | (enc.mvni_asimdimm_msm.e << 3) | (enc.mvni_asimdimm_msm.f << 2) | (enc.mvni_asimdimm_msm.g << 1) | (enc.mvni_asimdimm_msm.h << 0)));
-                        {
-                            int _movi_shift = get_movi_shift(insn);
-                            if (_movi_shift > 0) {
-                                result.operands.push_back(Operand::shift(ShiftType::LSL,_movi_shift));  // LSL
-                            } else if (_movi_shift < 0) {
-                                result.operands.push_back(Operand::shift(ShiftType::MSL,(-_movi_shift)));  // MSL
-                            }
-                        }
+                        result.operands.push_back(Operand::shift(ShiftType::MSL, (enc.mvni_asimdimm_msm.cmode & 1) ? 16 : 8));
                         return result;
         }
         default: break;
@@ -38880,21 +38791,18 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         {
-                            Arrangement _marr = get_movi_arrangement(insn);
+                            Arrangement _marr = enc.movi_asimdimm_lhl.Q ? Arrangement::H8 : Arrangement::H4;
                             if (_marr == Arrangement::D) {
-                                // Scalar D register form (MOVI D_ds)
                                 result.operands.push_back(Operand::scalar(enc.movi_asimdimm_lhl.Rd, Arrangement::D));
                             } else {
-                                auto op = Operand::vec(enc.movi_asimdimm_lhl.Rd);
-                                op.set_arrangement(_marr);
-                                result.operands.push_back(op);
+                                result.operands.push_back(Operand::vec(enc.movi_asimdimm_lhl.Rd, _marr));
                             }
                         }
                         {
                             uint32_t _imm8 = (enc.movi_asimdimm_lhl.a << 7) | (enc.movi_asimdimm_lhl.b << 6) | (enc.movi_asimdimm_lhl.c << 5) | (enc.movi_asimdimm_lhl.d << 4) | (enc.movi_asimdimm_lhl.e << 3) | (enc.movi_asimdimm_lhl.f << 2) | (enc.movi_asimdimm_lhl.g << 1) | (enc.movi_asimdimm_lhl.h << 0);
                             auto _movi_op = Operand::imm(_imm8);
-                            Arrangement _marr = get_movi_arrangement(insn);
-                            if (_marr != Arrangement::None && (_marr == Arrangement::D || _marr == Arrangement::D2)) {
+                            Arrangement _marr = enc.movi_asimdimm_lhl.Q ? Arrangement::H8 : Arrangement::H4;
+                            if (_marr == Arrangement::D || _marr == Arrangement::D2) {
                                 uint64_t _imm64 = 0;
                                 for (int _i = 0; _i < 8; _i++) { if (_imm8 & (1u << _i)) _imm64 |= (0xFFULL << (_i * 8)); }
                                 _movi_op.iv.value = _imm64;
@@ -38902,12 +38810,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             result.operands.push_back(_movi_op);
                         }
                         {
-                            int _movi_shift = get_movi_shift(insn);
-                            if (_movi_shift > 0) {
-                                result.operands.push_back(Operand::shift(ShiftType::LSL,_movi_shift));  // LSL
-                            } else if (_movi_shift < 0) {
-                                result.operands.push_back(Operand::shift(ShiftType::MSL,(-_movi_shift)));  // MSL
-                            }
+                            int _s = ((enc.movi_asimdimm_lhl.cmode >> 1) & 1) * 8;
+                            if (_s) result.operands.push_back(Operand::shift(ShiftType::LSL, _s));
                         }
                         return result;
         }
@@ -38926,24 +38830,17 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         {
-                            Arrangement _marr = get_movi_arrangement(insn);
+                            Arrangement _marr = enc.mvni_asimdimm_lhl.Q ? Arrangement::H8 : Arrangement::H4;
                             if (_marr == Arrangement::D) {
-                                // Scalar D register form (MOVI D_ds)
                                 result.operands.push_back(Operand::scalar(enc.mvni_asimdimm_lhl.Rd, Arrangement::D));
                             } else {
-                                auto op = Operand::vec(enc.mvni_asimdimm_lhl.Rd);
-                                op.set_arrangement(_marr);
-                                result.operands.push_back(op);
+                                result.operands.push_back(Operand::vec(enc.mvni_asimdimm_lhl.Rd, _marr));
                             }
                         }
                         result.operands.push_back(Operand::imm((enc.mvni_asimdimm_lhl.a << 7) | (enc.mvni_asimdimm_lhl.b << 6) | (enc.mvni_asimdimm_lhl.c << 5) | (enc.mvni_asimdimm_lhl.d << 4) | (enc.mvni_asimdimm_lhl.e << 3) | (enc.mvni_asimdimm_lhl.f << 2) | (enc.mvni_asimdimm_lhl.g << 1) | (enc.mvni_asimdimm_lhl.h << 0)));
                         {
-                            int _movi_shift = get_movi_shift(insn);
-                            if (_movi_shift > 0) {
-                                result.operands.push_back(Operand::shift(ShiftType::LSL,_movi_shift));  // LSL
-                            } else if (_movi_shift < 0) {
-                                result.operands.push_back(Operand::shift(ShiftType::MSL,(-_movi_shift)));  // MSL
-                            }
+                            int _s = ((enc.mvni_asimdimm_lhl.cmode >> 1) & 1) * 8;
+                            if (_s) result.operands.push_back(Operand::shift(ShiftType::LSL, _s));
                         }
                         return result;
         }
@@ -38967,21 +38864,18 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         {
-                            Arrangement _marr = get_movi_arrangement(insn);
+                            Arrangement _marr = enc.movi_asimdimm_lsl.Q ? Arrangement::S4 : Arrangement::S2;
                             if (_marr == Arrangement::D) {
-                                // Scalar D register form (MOVI D_ds)
                                 result.operands.push_back(Operand::scalar(enc.movi_asimdimm_lsl.Rd, Arrangement::D));
                             } else {
-                                auto op = Operand::vec(enc.movi_asimdimm_lsl.Rd);
-                                op.set_arrangement(_marr);
-                                result.operands.push_back(op);
+                                result.operands.push_back(Operand::vec(enc.movi_asimdimm_lsl.Rd, _marr));
                             }
                         }
                         {
                             uint32_t _imm8 = (enc.movi_asimdimm_lsl.a << 7) | (enc.movi_asimdimm_lsl.b << 6) | (enc.movi_asimdimm_lsl.c << 5) | (enc.movi_asimdimm_lsl.d << 4) | (enc.movi_asimdimm_lsl.e << 3) | (enc.movi_asimdimm_lsl.f << 2) | (enc.movi_asimdimm_lsl.g << 1) | (enc.movi_asimdimm_lsl.h << 0);
                             auto _movi_op = Operand::imm(_imm8);
-                            Arrangement _marr = get_movi_arrangement(insn);
-                            if (_marr != Arrangement::None && (_marr == Arrangement::D || _marr == Arrangement::D2)) {
+                            Arrangement _marr = enc.movi_asimdimm_lsl.Q ? Arrangement::S4 : Arrangement::S2;
+                            if (_marr == Arrangement::D || _marr == Arrangement::D2) {
                                 uint64_t _imm64 = 0;
                                 for (int _i = 0; _i < 8; _i++) { if (_imm8 & (1u << _i)) _imm64 |= (0xFFULL << (_i * 8)); }
                                 _movi_op.iv.value = _imm64;
@@ -38989,12 +38883,8 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                             result.operands.push_back(_movi_op);
                         }
                         {
-                            int _movi_shift = get_movi_shift(insn);
-                            if (_movi_shift > 0) {
-                                result.operands.push_back(Operand::shift(ShiftType::LSL,_movi_shift));  // LSL
-                            } else if (_movi_shift < 0) {
-                                result.operands.push_back(Operand::shift(ShiftType::MSL,(-_movi_shift)));  // MSL
-                            }
+                            int _s = ((enc.movi_asimdimm_lsl.cmode >> 1) & 3) * 8;
+                            if (_s) result.operands.push_back(Operand::shift(ShiftType::LSL, _s));
                         }
                         return result;
         }
@@ -39013,24 +38903,17 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         enc.raw = insn;
                         bool is_64bit = false;
                         {
-                            Arrangement _marr = get_movi_arrangement(insn);
+                            Arrangement _marr = enc.mvni_asimdimm_lsl.Q ? Arrangement::S4 : Arrangement::S2;
                             if (_marr == Arrangement::D) {
-                                // Scalar D register form (MOVI D_ds)
                                 result.operands.push_back(Operand::scalar(enc.mvni_asimdimm_lsl.Rd, Arrangement::D));
                             } else {
-                                auto op = Operand::vec(enc.mvni_asimdimm_lsl.Rd);
-                                op.set_arrangement(_marr);
-                                result.operands.push_back(op);
+                                result.operands.push_back(Operand::vec(enc.mvni_asimdimm_lsl.Rd, _marr));
                             }
                         }
                         result.operands.push_back(Operand::imm((enc.mvni_asimdimm_lsl.a << 7) | (enc.mvni_asimdimm_lsl.b << 6) | (enc.mvni_asimdimm_lsl.c << 5) | (enc.mvni_asimdimm_lsl.d << 4) | (enc.mvni_asimdimm_lsl.e << 3) | (enc.mvni_asimdimm_lsl.f << 2) | (enc.mvni_asimdimm_lsl.g << 1) | (enc.mvni_asimdimm_lsl.h << 0)));
                         {
-                            int _movi_shift = get_movi_shift(insn);
-                            if (_movi_shift > 0) {
-                                result.operands.push_back(Operand::shift(ShiftType::LSL,_movi_shift));  // LSL
-                            } else if (_movi_shift < 0) {
-                                result.operands.push_back(Operand::shift(ShiftType::MSL,(-_movi_shift)));  // MSL
-                            }
+                            int _s = ((enc.mvni_asimdimm_lsl.cmode >> 1) & 3) * 8;
+                            if (_s) result.operands.push_back(Operand::shift(ShiftType::LSL, _s));
                         }
                         return result;
         }
